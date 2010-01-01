@@ -120,7 +120,7 @@ public class Host1NewGuy extends Activity {//WAS ActionBarActivity (got "app sto
     	//buttonSound.start();
     	
     	//multiplayer = "yes";
-    	
+		
     	
     	getName();
 	}
@@ -129,6 +129,9 @@ public class Host1NewGuy extends Activity {//WAS ActionBarActivity (got "app sto
 	public void getName() {
 		
 		final MediaPlayer buttonSound = MediaPlayer.create(Host1NewGuy.this, R.raw.swordswing);
+		
+		
+		//ArrayOfAvatars.avatar[5] = "computer";
 		
 		
 		AlertDialog.Builder alert = new AlertDialog.Builder(Host1NewGuy.this, R.style.customalertdialog);

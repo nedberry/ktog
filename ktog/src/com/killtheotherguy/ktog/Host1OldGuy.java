@@ -129,6 +129,7 @@ public class Host1OldGuy extends Activity {//WAS ActionBarActivity (got "app sto
     	
     	//multiplayer = "yes";
     	
+		
     	getCount();
     	
     	getName();

@@ -432,6 +432,8 @@ public class Host2 extends Activity {
 		playerNameTextView.setTypeface(typeFace);		
 		playerNameTextView.setText(ArrayOfPlayers.player[5]);		
 		
+		//ArrayOfAvatars.avatar[5] = "computer";
+		
 		/*FOR COMP/1 PLAYER NAME:
 		TextView computerNameTextView = (TextView)findViewById(R.id.textviewnameright);
 		computerNameTextView.setTypeface(typeFace);
@@ -2485,7 +2487,8 @@ public class Host2 extends Activity {
 		String str = "> " + ArrayOfPlayers.player[5] + " has disconnected.";
   		sendToAllClients(str);
 		
-
+  		
+  		Toast.makeText(Host2.this, "handleUncaughtException", Toast.LENGTH_SHORT).show();
 	    System.exit(1); // kill off the crashed app
 	}	
 	
@@ -30094,7 +30097,9 @@ public void criticalMissGraphic() {
 		        	}     
 		          
 		        } catch (IOException e) {
-		          System.exit(-1);
+		          
+		        	Toast.makeText(Host2.this, "Clientworkers NOT WORKING", Toast.LENGTH_SHORT).show();
+		        	System.exit(-1);
 		        }
 		      }
 		}
@@ -30298,8 +30303,10 @@ public void criticalMissGraphic() {
 	        	
 	        	
 	        } catch (IOException e) {
-	          System.out.println("in or out failed");
-	          System.exit(-1);
+	        	
+	        	Toast.makeText(Host2.this, "in or out NOT WORKING", Toast.LENGTH_SHORT).show();
+	        	//System.out.println("in or out failed");
+	        	System.exit(-1);
 	        }
 	        
 	        

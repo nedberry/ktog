@@ -16290,7 +16290,24 @@ public void criticalMissGraphic() {
 	                mNsdManager.resolveService(service, mResolveListener);
 	            }
 	        }
-	        
+	        /*
+	        @Override
+	        public void onServiceFound(NsdServiceInfo serviceInfo) {
+	            //Log.d(TAG, "Service found: "+ serviceInfo);
+	            if (serviceInfo.getServiceType().equals(SERVICE_TYPE)){
+	                mNsdManager.resolveService(serviceInfo, new NsdManager.ResolveListener() {
+	                    @Override
+	                    public void onResolveFailed(NsdServiceInfo serviceInfo, int errorCode) {
+	                        //Log.e(TAG, "Resolve Failed: " + serviceInfo);
+	                    }
+	                    @Override
+	                    public void onServiceResolved(NsdServiceInfo serviceInfo) {
+	                        //Log.i(TAG, "Service Resolved: " + serviceInfo);
+	                    }
+	                });
+	            }
+	        }
+	        */
 	        @Override
 	        public void onServiceLost(NsdServiceInfo service) {
 	            // When the network service is no longer available.
