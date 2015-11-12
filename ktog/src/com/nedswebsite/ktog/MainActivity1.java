@@ -2,18 +2,11 @@ package com.nedswebsite.ktog;
 
 import android.support.v7.app.ActionBarActivity;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.Animation.AnimationListener;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -48,7 +41,7 @@ public class MainActivity1 extends ActionBarActivity {
         	buttonSound.start();        	
         	
         	Toast.makeText(MainActivity1.this,"One player button is working!!", Toast.LENGTH_LONG).show();
-        	//USE THIS WHEN READY:
+        	//USE THIS WHEN READY??:
         	//Intent openMain2Activity = new Intent("com.example.ktog1.MAIN2ACTIVITY");
 			//startActivity(openMain2Activity);		
         				
@@ -62,7 +55,7 @@ public class MainActivity1 extends ActionBarActivity {
         	buttonSound.start();        	
         	
         	Toast.makeText(MainActivity1.this,"Multi-player button is working!!", Toast.LENGTH_LONG).show();
-        	//USE THIS WHEN READY:
+        	//USE THIS WHEN READY??:
         	//Intent openMain2Activity = new Intent("com.example.ktog1.MAIN2ACTIVITY");
 			//startActivity(openMain2Activity);		
         				
@@ -73,10 +66,17 @@ public class MainActivity1 extends ActionBarActivity {
             @Override
 			public void onClick(View v) {
 			                    	
-        	buttonSound.start();        	
+        	buttonSound.start();
         	
-        	Toast.makeText(MainActivity1.this,"About button is working!!", Toast.LENGTH_LONG).show();
-        	//USE THIS WHEN READY:
+        	//Think I need this so user doesn't have to push 'back' more than once (possibly)?
+        	finish();
+        	
+        	Intent i = new Intent(MainActivity1.this, Rules.class);
+        	MainActivity1.this.startActivity(i);
+        	
+        	//Toast.makeText(MainActivity1.this,"About button is working!!", Toast.LENGTH_LONG).show();
+        	
+        	//USE THIS WHEN READY??:
         	//Intent openMain2Activity = new Intent("com.example.ktog1.MAIN2ACTIVITY");
 			//startActivity(openMain2Activity);		
         				

@@ -49,7 +49,8 @@ public class Video extends ActionBarActivity
         final ImageButton imageButton1 = (ImageButton) findViewById(R.id.videobutton1);
                 
         imageButton1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
+            @Override
+			public void onClick(View v) {
                           	
             	// Perform action on click
             	Intent openMainActivity = new Intent("com.nedswebsite.ktog.MAINACTIVITY1");

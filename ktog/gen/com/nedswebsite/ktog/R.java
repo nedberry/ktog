@@ -15,6 +15,10 @@ public final class R {
         public static final int abc_slide_in_top=0x7f040003;
         public static final int abc_slide_out_bottom=0x7f040004;
         public static final int abc_slide_out_top=0x7f040005;
+        public static final int left_in=0x7f040006;
+        public static final int left_out=0x7f040007;
+        public static final int right_in=0x7f040008;
+        public static final int right_out=0x7f040009;
     }
     public static final class attr {
         /**  Custom divider drawable to use for elements in the action bar. 
@@ -948,6 +952,11 @@ containing a value of this type.
          */
         public static final int abc_search_view_text_min_width=0x7f09000c;
         /**  Default screen margins, per the Android Design guidelines. 
+
+         Example customization of dimensions originally defined in res/values/dimens.xml
+         (such as screen margins) for screens with more than 820dp of available width. This
+         would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively).
+    
          */
         public static final int activity_horizontal_margin=0x7f090015;
         public static final int activity_vertical_margin=0x7f090016;
@@ -1074,16 +1083,19 @@ containing a value of this type.
         public static final int abc_textfield_searchview_right_holo_light=0x7f020056;
         public static final int about=0x7f020057;
         public static final int ktogicon4=0x7f020058;
-        public static final int mainmenutitle=0x7f020059;
-        public static final int multi_player=0x7f02005a;
-        public static final int one_player=0x7f02005b;
-        public static final int pressedabout=0x7f02005c;
-        public static final int pressedmultiplayer=0x7f02005d;
-        public static final int pressedoneplayer=0x7f02005e;
-        public static final int taptoskip=0x7f02005f;
-        public static final int unpressedabout=0x7f020060;
-        public static final int unpressedmultiplayer=0x7f020061;
-        public static final int unpressedoneplayer=0x7f020062;
+        public static final int ktogrules1=0x7f020059;
+        public static final int ktogrules2=0x7f02005a;
+        public static final int ktogrules3=0x7f02005b;
+        public static final int mainmenutitle=0x7f02005c;
+        public static final int multi_player=0x7f02005d;
+        public static final int one_player=0x7f02005e;
+        public static final int pressedabout=0x7f02005f;
+        public static final int pressedmultiplayer=0x7f020060;
+        public static final int pressedoneplayer=0x7f020061;
+        public static final int taptoskip=0x7f020062;
+        public static final int unpressedabout=0x7f020063;
+        public static final int unpressedmultiplayer=0x7f020064;
+        public static final int unpressedoneplayer=0x7f020065;
     }
     public static final class id {
         public static final int action_bar=0x7f06001c;
@@ -1097,7 +1109,7 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f060016;
         public static final int action_menu_presenter=0x7f060017;
         public static final int action_mode_close_button=0x7f060024;
-        public static final int action_settings=0x7f060042;
+        public static final int action_settings=0x7f060044;
         public static final int activity_chooser_view_content=0x7f060025;
         public static final int always=0x7f06000b;
         public static final int beginning=0x7f060011;
@@ -1129,6 +1141,7 @@ containing a value of this type.
         public static final int progress_circular=0x7f060018;
         public static final int progress_horizontal=0x7f060019;
         public static final int radio=0x7f06002f;
+        public static final int relativeLayout=0x7f060040;
         public static final int search_badge=0x7f060032;
         public static final int search_bar=0x7f060031;
         public static final int search_button=0x7f060033;
@@ -1150,8 +1163,9 @@ containing a value of this type.
         public static final int top_action_bar=0x7f060020;
         public static final int up=0x7f060021;
         public static final int useLogo=0x7f060003;
-        public static final int videobutton1=0x7f060041;
-        public static final int videoview=0x7f060040;
+        public static final int videobutton1=0x7f060043;
+        public static final int videoview=0x7f060042;
+        public static final int viewFlipper=0x7f060041;
         public static final int withText=0x7f06000c;
     }
     public static final class integer {
@@ -1205,12 +1219,15 @@ containing a value of this type.
         public static final int abc_search_view=0x7f030016;
         public static final int abc_simple_decor=0x7f030017;
         public static final int activity_main_activity1=0x7f030018;
-        public static final int activity_video=0x7f030019;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001a;
+        public static final int activity_rules=0x7f030019;
+        public static final int activity_video=0x7f03001a;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001b;
     }
     public static final class menu {
         public static final int main_activity1=0x7f0d0000;
-        public static final int video=0x7f0d0001;
+        public static final int new_guy_old_guy=0x7f0d0001;
+        public static final int rules=0x7f0d0002;
+        public static final int video=0x7f0d0003;
     }
     public static final class raw {
         public static final int buttonsound4b=0x7f050000;
@@ -1266,7 +1283,10 @@ containing a value of this type.
         public static final int abc_shareactionprovider_share_with_application=0x7f0b000b;
         public static final int action_settings=0x7f0b000e;
         public static final int app_name=0x7f0b000d;
+        public static final int hello_world=0x7f0b0012;
         public static final int title_activity_main_activity1=0x7f0b0010;
+        public static final int title_activity_new_guy_old_guy=0x7f0b0013;
+        public static final int title_activity_rules=0x7f0b0011;
         public static final int title_activity_video=0x7f0b000f;
     }
     public static final class style {
