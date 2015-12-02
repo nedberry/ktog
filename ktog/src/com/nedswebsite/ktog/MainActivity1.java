@@ -1,10 +1,25 @@
 package com.nedswebsite.ktog;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+
 import android.support.v7.app.ActionBarActivity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.ContextThemeWrapper;
 import android.view.View;
@@ -19,9 +34,9 @@ import android.widget.Toast;
 public class MainActivity1 extends ActionBarActivity {
 
 	//NEED THE 6?
-	String[] player = new String[6];
+	public static String[] player = new String[6];
 	//NEED THE 6?
-	final String[] avatar = new String[6];
+	public static String[] avatar = new String[6];
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +89,9 @@ public class MainActivity1 extends ActionBarActivity {
 	        	player[1] = "Computer".toString();
 	        	
 	        	//Toast.makeText(MainActivity1.this, "Welcome " + player[0] + "!", Toast.LENGTH_LONG).show();
-        		        	
+        		
+	        	insertToDatabase(player[0]);
+	        	
 	        	
 	        	// ARRAY ADAPTER WITH ICON STUFF:
 	        	
@@ -103,7 +120,7 @@ public class MainActivity1 extends ActionBarActivity {
 	    				}
 	        	
         	  		}
-	    		});
+	    		});	    		
 	        	
 	            builder.create().show();	        	
 	        	
@@ -119,7 +136,7 @@ public class MainActivity1 extends ActionBarActivity {
         	alert.show();        	
         	
 			}
-		});
+		});		
 		
 		multiPlayerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,4 +174,52 @@ public class MainActivity1 extends ActionBarActivity {
 		});
 	
 	}
+	
+	
+	
+	private void insertToDatabase(final String player){
+        class SendPostReqAsyncTask extends AsyncTask<String, Void, String> {
+            @Override
+            protected String doInBackground(String... params) {
+                String player = params[0];
+                              
+                //String name = editTextName.getText().toString();
+                //String add = editTextAdd.getText().toString();
+ 
+                List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+                nameValuePairs.add(new BasicNameValuePair("player", player));
+                 
+                try {
+                    HttpClient httpClient = new DefaultHttpClient();
+                    HttpPost httpPost = new HttpPost("http://nedswebsite.com/insert-db.php");
+                    httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+ 
+                    HttpResponse response = httpClient.execute(httpPost);
+ 
+                    HttpEntity entity = response.getEntity();
+ 
+          
+                } catch (ClientProtocolException e) {
+ 
+                } catch (IOException e) {
+ 
+                }
+                return "success";
+            }
+        }
+        /*
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
+            TextView textViewResult = (TextView) findViewById(R.id.textViewResult);
+            textViewResult.setText("Inserted");
+        }*/
+        SendPostReqAsyncTask sendPostReqAsyncTask = new SendPostReqAsyncTask();
+        sendPostReqAsyncTask.execute(player);
+    }	
+	
+	
+	
 }
