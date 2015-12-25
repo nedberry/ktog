@@ -16,13 +16,16 @@ import org.apache.http.message.BasicNameValuePair;
 
 import android.support.v7.app.ActionBarActivity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.ContextThemeWrapper;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -31,12 +34,7 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.Toast;
 
-public class MainActivity1 extends ActionBarActivity {
-
-	//NEED THE 6?
-	public static String[] player = new String[6];
-	//NEED THE 6?
-	public static String[] avatar = new String[6];
+public class MainActivity1 extends ActionBarActivity {			
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -85,13 +83,13 @@ public class MainActivity1 extends ActionBarActivity {
         		// Do something with value!        		
         		  		
         		//NEED TO SEND TO ARRAY HERE:
-	        	player[0] = input.getText().toString();
-	        	player[1] = "Computer".toString();
-	        	
-	        	//Toast.makeText(MainActivity1.this, "Welcome " + player[0] + "!", Toast.LENGTH_LONG).show();
-        		
-	        	insertToDatabase(player[0]);
-	        	
+        		String playername = input.getText().toString();
+            	String playercomputer = "Computer".toString();
+            	
+            	ArrayOfPlayers.player[0] = playername;
+            	ArrayOfPlayers.player[1] = playercomputer;
+            	
+            	insertToDatabase(playername);	        	
 	        	
 	        	// ARRAY ADAPTER WITH ICON STUFF:
 	        	
@@ -118,11 +116,13 @@ public class MainActivity1 extends ActionBarActivity {
 	    				if (item == 2) {
 	    					avatar[0] = "stonedead";
 	    				}
-	        	
+	    				
+	    				Intent openMainActivity2 = new Intent("com.nedswebsite.ktog.MAINACTIVITY2");
+	    	        	startActivity(openMainActivity2);
         	  		}
 	    		});	    		
 	        	
-	            builder.create().show();	        	
+	            builder.create().show();            
 	        	
         	  }
         	});
@@ -142,9 +142,11 @@ public class MainActivity1 extends ActionBarActivity {
             @Override
 			public void onClick(View v) {
 			                    	
-        	buttonSound.start();        	
+        	buttonSound.start();       	
         	
-        	Toast.makeText(MainActivity1.this,"Multi-player button is working!!", Toast.LENGTH_LONG).show();
+        	Intent openMainActivity2 = new Intent("com.nedswebsite.ktog.MAINACTIVITY2");
+        	startActivity(openMainActivity2);
+        	//Toast.makeText(MainActivity1.this,"Multi-player button is working!!", Toast.LENGTH_LONG).show();
         	//USE THIS WHEN READY??:
         	//Intent openMain2Activity = new Intent("com.example.ktog1.MAIN2ACTIVITY");
 			//startActivity(openMain2Activity);		
@@ -173,11 +175,9 @@ public class MainActivity1 extends ActionBarActivity {
 			}
 		});
 	
-	}
+	}	
 	
-	
-	
-	private void insertToDatabase(final String player){
+	public static void insertToDatabase(final String player){
         class SendPostReqAsyncTask extends AsyncTask<String, Void, String> {
             @Override
             protected String doInBackground(String... params) {
@@ -217,9 +217,238 @@ public class MainActivity1 extends ActionBarActivity {
             textViewResult.setText("Inserted");
         }*/
         SendPostReqAsyncTask sendPostReqAsyncTask = new SendPostReqAsyncTask();
-        sendPostReqAsyncTask.execute(player);
-    }	
-	
-	
-	
+        sendPostReqAsyncTask.execute(player);		
+    }
+		
+	@Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);        
+             
+        // For sound for buttons:
+     	final MediaPlayer buttonSound1 = MediaPlayer.create(MainActivity1.this, R.raw.swordswing);
+        final MediaPlayer buttonSound2 = MediaPlayer.create(MainActivity1.this, R.raw.sworddraw1);
+ 
+        // Checks the orientation of the screen
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+        	
+        	setContentView(R.layout.activity_main_activity1);
+        	
+        	ImageButton onePlayerButton = (ImageButton) findViewById(R.id.imagebuttononeplayer);
+    		ImageButton multiPlayerButton = (ImageButton) findViewById(R.id.imagebuttonmultiplayer);
+    		ImageButton aboutButton = (ImageButton) findViewById(R.id.imagebuttonabout);
+    		
+    		onePlayerButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+    			public void onClick(View v) {    			                    	
+            	buttonSound1.start();            	
+            	AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity1.this);
+
+            	alert.setTitle("KtOG");
+            	alert.setMessage("Enter Name");
+
+            	// Set an EditText view to get user input 
+            	final EditText input = new EditText(MainActivity1.this);
+            	alert.setView(input);
+
+            	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            	public void onClick(DialogInterface dialog, int whichButton) {
+            		        		
+            		// Do something with value!        		
+            		  		
+            		//NEED TO SEND TO ARRAY HERE:
+            		String playername = input.getText().toString();
+                	String playercomputer = "Computer".toString();
+                	
+                	ArrayOfPlayers.player[0] = playername;
+                	ArrayOfPlayers.player[1] = playercomputer;
+                	
+                	insertToDatabase(playername);    	        	
+    	        	
+    	        	// ARRAY ADAPTER WITH ICON STUFF:
+    	        	
+    	        	final String[] avatar = new String[6];
+    	        	final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead"};
+    	    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2};
+    	    		
+    	    		ListAdapter adapter = new ArrayAdapterWithIcon(MainActivity1.this, items, avatars);
+    	    		
+    	    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
+    	    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
+    	    		//builder.setIcon(R.drawable.computerhead);
+    	    		builder.setTitle("Choose Your Avatar");
+    	    		
+    	    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
+    	    			public void onClick(DialogInterface dialog, int item) { 
+    	    								
+    	    				if (item == 0) {
+    	    					avatar[0] = "computer";
+    	    				}
+    	    				if (item == 1) {
+    	    					avatar[0] = "crossedswords";
+    	    				}
+    	    				if (item == 2) {
+    	    					avatar[0] = "stonedead";
+    	    				}
+    	    				
+    	    				Intent openMainActivity2 = new Intent("com.nedswebsite.ktog.MAINACTIVITY2");
+    	                	startActivity(openMainActivity2);
+            	  		}
+    	    		});	    		
+    	        	
+    	            builder.create().show();    	            
+    	        	
+            	  }
+            	});
+
+            	alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            	  public void onClick(DialogInterface dialog, int whichButton) {
+            	    // Canceled.
+            	  }
+            	});
+            	
+            	alert.show();           	
+            	
+    			}
+    		});		
+    		
+    		multiPlayerButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+    			public void onClick(View v) {    			                    	
+            	buttonSound1.start();            	
+            	Intent openMainActivity2 = new Intent("com.nedswebsite.ktog.MAINACTIVITY2");
+            	startActivity(openMainActivity2);
+            	//Toast.makeText(MainActivity1.this,"Multi-player button is working!!", Toast.LENGTH_LONG).show();
+            	//USE THIS WHEN READY??:
+            	//Intent openMain2Activity = new Intent("com.example.ktog1.MAIN2ACTIVITY");
+    			//startActivity(openMain2Activity);            				
+    			}
+    		});
+    		
+    		aboutButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+    			public void onClick(View v) {    			                    	
+            	buttonSound1.start();            	
+            	//Think I need this so user doesn't have to push 'back' more than once (possibly)?
+            	finish();            	
+            	Intent i = new Intent(MainActivity1.this, Rules.class);
+            	MainActivity1.this.startActivity(i);            	
+            	//USE THIS WHEN READY??:
+            	//Intent openMain2Activity = new Intent("com.example.ktog1.MAIN2ACTIVITY");
+    			//startActivity(openMain2Activity);		
+            				
+    			}
+    		});	
+        	buttonSound1.start();
+        	
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+        	
+        	setContentView(R.layout.activity_main_activity1);
+        	
+        	final ImageButton onePlayerButton = (ImageButton) findViewById(R.id.imagebuttononeplayer);
+    		final ImageButton multiPlayerButton = (ImageButton) findViewById(R.id.imagebuttonmultiplayer);
+    		final ImageButton aboutButton = (ImageButton) findViewById(R.id.imagebuttonabout);
+
+    		onePlayerButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+    			public void onClick(View v) {    			                    	
+            	buttonSound1.start();            	
+            	AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity1.this);
+
+            	alert.setTitle("KtOG");
+            	alert.setMessage("Enter Name");
+
+            	// Set an EditText view to get user input 
+            	final EditText input = new EditText(MainActivity1.this);
+            	alert.setView(input);
+
+            	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            	public void onClick(DialogInterface dialog, int whichButton) {
+            		        		
+            		// Do something with value!        		
+            		  		
+            		//NEED TO SEND TO ARRAY HERE:
+            		String playername = input.getText().toString();
+                	String playercomputer = "Computer".toString();
+                	
+                	ArrayOfPlayers.player[0] = playername;
+                	ArrayOfPlayers.player[1] = playercomputer;
+                	
+                	insertToDatabase(playername);    	        	
+    	        	
+    	        	// ARRAY ADAPTER WITH ICON STUFF:
+    	        	
+    	        	final String[] avatar = new String[6];
+    	        	final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead"};
+    	    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2};
+    	    		
+    	    		ListAdapter adapter = new ArrayAdapterWithIcon(MainActivity1.this, items, avatars);
+    	    		
+    	    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
+    	    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
+    	    		//builder.setIcon(R.drawable.computerhead);
+    	    		builder.setTitle("Choose Your Avatar");
+    	    		
+    	    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
+    	    			public void onClick(DialogInterface dialog, int item) { 
+    	    								
+    	    				if (item == 0) {
+    	    					avatar[0] = "computer";
+    	    				}
+    	    				if (item == 1) {
+    	    					avatar[0] = "crossedswords";
+    	    				}
+    	    				if (item == 2) {
+    	    					avatar[0] = "stonedead";
+    	    				}
+    	    				
+    	    				Intent openMainActivity2 = new Intent("com.nedswebsite.ktog.MAINACTIVITY2");
+    	                	startActivity(openMainActivity2);
+            	  		}
+    	    		});	    		
+    	        	
+    	            builder.create().show();   	            
+    	        	
+            	  }
+            	});
+
+            	alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            	  public void onClick(DialogInterface dialog, int whichButton) {
+            	    // Canceled.
+            	  }
+            	});
+            	
+            	alert.show();           	
+            	
+    			}
+    		});		
+    		
+    		multiPlayerButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+    			public void onClick(View v) {    			                    	
+            	buttonSound1.start();            	
+            	Intent openMainActivity2 = new Intent("com.nedswebsite.ktog.MAINACTIVITY2");
+            	startActivity(openMainActivity2);
+            	//Toast.makeText(MainActivity1.this,"Multi-player button is working!!", Toast.LENGTH_LONG).show();
+            	//USE THIS WHEN READY??:
+            	//Intent openMain2Activity = new Intent("com.example.ktog1.MAIN2ACTIVITY");
+    			//startActivity(openMain2Activity);            				
+    			}
+    		});
+    		
+    		aboutButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+    			public void onClick(View v) {    			                    	
+            	buttonSound1.start();            	
+            	//Think I need this so user doesn't have to push 'back' more than once (possibly)?
+            	finish();            	
+            	Intent i = new Intent(MainActivity1.this, Rules.class);
+            	MainActivity1.this.startActivity(i);            	
+            	//USE THIS WHEN READY??:
+            	//Intent openMain2Activity = new Intent("com.example.ktog1.MAIN2ACTIVITY");
+    			//startActivity(openMain2Activity);            				
+    			}
+    		});    		
+        	buttonSound2.start();
+        }
+    }			
 }

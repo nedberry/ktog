@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.nedswebsite.ktog.MainActivity2" >       
+    
+    <ImageView
+        android:id="@+id/imageviewscroll3b5left"
+        android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+        android:background="@drawable/scroll3b5left" />
+    
+    <TextView
+        android:id="@+id/textviewnameleft"
+        android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:layout_alignParentTop="true"
+	    android:textSize="25sp"
+	    android:gravity="bottom|center"
+        android:background="@drawable/nameleft" />
+    
+    <ImageView
+        android:id="@+id/imageviewavatarleft"
+        android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:layout_below="@+id/imageviewnameleft"
+        android:background="@drawable/avatarleft" />
+    
+    <ImageView
+        android:id="@+id/imageviewhitpointsleft"
+        android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:layout_below="@+id/imageviewavatarleft"
+        android:background="@drawable/hitpointsleft" />
+    
+   <ImageView
+        android:id="@+id/imageviewplayerbox4left"
+        android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:layout_below="@+id/imageviewhitpointsleft"
+        android:background="@drawable/playerbox4left" />
+   
+   <ImageView
+        android:id="@+id/imageviewmessageleft"
+        android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:layout_below="@+id/imageviewplayerbox4left"
+        android:background="@drawable/messageleft" />
+   
+   
+   
+
+    <ImageView
+        android:id="@+id/imageviewscroll3b5right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/scroll3b5right" />
+    
+    <TextView
+        android:id="@+id/textviewnameright"
+        android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentRight="true"
+	    android:layout_alignParentTop="true"
+	    android:textSize="25sp"
+	    android:gravity="bottom|center"
+        android:background="@drawable/nameright" />
+    
+    <ImageView
+        android:id="@+id/imageviewavatarright"
+        android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentRight="true"
+	    android:layout_below="@+id/imageviewnameright"
+        android:background="@drawable/avatarright" />
+    
+    <ImageView
+        android:id="@+id/imageviewhitpointsright"
+        android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentRight="true"
+	    android:layout_below="@+id/imageviewavatarright"
+        android:background="@drawable/hitpointsright" />
+    
+   <ImageView
+        android:id="@+id/imageviewplayerbox4right"
+        android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentRight="true"
+	    android:layout_below="@+id/imageviewhitpointsright"
+        android:background="@drawable/playerbox4right" />
+   
+   <ImageView
+        android:id="@+id/imageviewmessageright"
+        android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentRight="true"
+	    android:layout_below="@+id/imageviewplayerbox4right"
+        android:background="@drawable/messageright" />
+   
+   
+   
+
+    <ImageView
+        android:id="@+id/imageviewtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/imageviewscroll3b5left"
+        android:background="@drawable/title" />
+
+    <ImageView
+        android:id="@+id/imageviewcenterscroll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageviewtitle"
+        android:layout_toLeftOf="@+id/imageviewscroll3b5right"
+        android:background="@drawable/centerscroll" />
+    
+    <ImageButton
+	    android:id="@+id/imagebuttonaction"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@+id/imageviewcenterscroll"
+	    android:layout_toRightOf="@+id/imageviewscroll3b5left"
+	    android:background="@drawable/action"
+	    android:cropToPadding="false" />
+    
+    <ImageButton
+	    android:id="@+id/imagebuttonattack"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@+id/imageviewcenterscroll"
+	    android:layout_toLeftOf="@+id/imageviewscroll3b5right"
+	    android:background="@drawable/attack"
+	    android:cropToPadding="false" />    
+    
+
+</RelativeLayout>
