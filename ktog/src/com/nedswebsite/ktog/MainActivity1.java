@@ -43,8 +43,7 @@ public class MainActivity1 extends ActionBarActivity {
 		// USED THE FOLLOWING TO REMOVE TITLE BAR:
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 
-		WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		
+		WindowManager.LayoutParams.FLAG_FULLSCREEN);		
 				
 		setContentView(R.layout.activity_main_activity1);
 		
@@ -91,9 +90,8 @@ public class MainActivity1 extends ActionBarActivity {
             	
             	insertToDatabase(playername);	        	
 	        	
-	        	// ARRAY ADAPTER WITH ICON STUFF:
+	        	// ARRAY ADAPTER WITH ICON STUFF:	        	
 	        	
-	        	final String[] avatar = new String[6];
 	        	final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead"};
 	    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2};
 	    		
@@ -108,13 +106,13 @@ public class MainActivity1 extends ActionBarActivity {
 	    			public void onClick(DialogInterface dialog, int item) { 
 	    								
 	    				if (item == 0) {
-	    					avatar[0] = "computer";
+	    					ArrayOfAvatars.avatar[0] = "computer";
 	    				}
 	    				if (item == 1) {
-	    					avatar[0] = "crossedswords";
+	    					ArrayOfAvatars.avatar[0] = "crossedswords";
 	    				}
 	    				if (item == 2) {
-	    					avatar[0] = "stonedead";
+	    					ArrayOfAvatars.avatar[0] = "stonedead";
 	    				}
 	    				
 	    				Intent openMainActivity2 = new Intent("com.nedswebsite.ktog.MAINACTIVITY2");
@@ -149,8 +147,7 @@ public class MainActivity1 extends ActionBarActivity {
         	//Toast.makeText(MainActivity1.this,"Multi-player button is working!!", Toast.LENGTH_LONG).show();
         	//USE THIS WHEN READY??:
         	//Intent openMain2Activity = new Intent("com.example.ktog1.MAIN2ACTIVITY");
-			//startActivity(openMain2Activity);		
-        				
+			//startActivity(openMain2Activity);        				
 			}
 		});
 		
@@ -170,11 +167,9 @@ public class MainActivity1 extends ActionBarActivity {
         	
         	//USE THIS WHEN READY??:
         	//Intent openMain2Activity = new Intent("com.example.ktog1.MAIN2ACTIVITY");
-			//startActivity(openMain2Activity);		
-        				
+			//startActivity(openMain2Activity);        				
 			}
-		});
-	
+		});	
 	}	
 	
 	public static void insertToDatabase(final String player){
@@ -264,9 +259,8 @@ public class MainActivity1 extends ActionBarActivity {
                 	
                 	insertToDatabase(playername);    	        	
     	        	
-    	        	// ARRAY ADAPTER WITH ICON STUFF:
+    	        	// ARRAY ADAPTER WITH ICON STUFF:    	        	
     	        	
-    	        	final String[] avatar = new String[6];
     	        	final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead"};
     	    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2};
     	    		
@@ -281,13 +275,13 @@ public class MainActivity1 extends ActionBarActivity {
     	    			public void onClick(DialogInterface dialog, int item) { 
     	    								
     	    				if (item == 0) {
-    	    					avatar[0] = "computer";
+    	    					ArrayOfAvatars.avatar[0] = "computer";
     	    				}
     	    				if (item == 1) {
-    	    					avatar[0] = "crossedswords";
+    	    					ArrayOfAvatars.avatar[0] = "crossedswords";
     	    				}
     	    				if (item == 2) {
-    	    					avatar[0] = "stonedead";
+    	    					ArrayOfAvatars.avatar[0] = "stonedead";
     	    				}
     	    				
     	    				Intent openMainActivity2 = new Intent("com.nedswebsite.ktog.MAINACTIVITY2");
@@ -334,8 +328,7 @@ public class MainActivity1 extends ActionBarActivity {
             	MainActivity1.this.startActivity(i);            	
             	//USE THIS WHEN READY??:
             	//Intent openMain2Activity = new Intent("com.example.ktog1.MAIN2ACTIVITY");
-    			//startActivity(openMain2Activity);		
-            				
+    			//startActivity(openMain2Activity);            				
     			}
     		});	
         	buttonSound1.start();
@@ -375,9 +368,8 @@ public class MainActivity1 extends ActionBarActivity {
                 	
                 	insertToDatabase(playername);    	        	
     	        	
-    	        	// ARRAY ADAPTER WITH ICON STUFF:
+    	        	// ARRAY ADAPTER WITH ICON STUFF:    	        	
     	        	
-    	        	final String[] avatar = new String[6];
     	        	final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead"};
     	    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2};
     	    		
@@ -392,13 +384,13 @@ public class MainActivity1 extends ActionBarActivity {
     	    			public void onClick(DialogInterface dialog, int item) { 
     	    								
     	    				if (item == 0) {
-    	    					avatar[0] = "computer";
+    	    					ArrayOfAvatars.avatar[0] = "computer";
     	    				}
     	    				if (item == 1) {
-    	    					avatar[0] = "crossedswords";
+    	    					ArrayOfAvatars.avatar[0] = "crossedswords";
     	    				}
     	    				if (item == 2) {
-    	    					avatar[0] = "stonedead";
+    	    					ArrayOfAvatars.avatar[0] = "stonedead";
     	    				}
     	    				
     	    				Intent openMainActivity2 = new Intent("com.nedswebsite.ktog.MAINACTIVITY2");
