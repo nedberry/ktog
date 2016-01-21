@@ -442,5 +442,11 @@ public class MainActivity1 extends ActionBarActivity {
     		});    		
         	buttonSound2.start();
         }
-    }			
+    }
+	
+	@Override
+    public void onBackPressed() {
+            super.onBackPressed();
+            this.finish();
+    }
 }

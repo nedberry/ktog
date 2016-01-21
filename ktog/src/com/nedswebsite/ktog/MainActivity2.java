@@ -26,7 +26,11 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	ImageView computerAvatar;
 	ImageView crossedswords2;
-	ImageView stonedead2;	
+	ImageView stonedead2;
+	ImageView titleimageview;
+	ImageView instructionsimageview;
+	
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,35 +39,30 @@ public class MainActivity2 extends ActionBarActivity {
 		// USED THE FOLLOWING TO REMOVE TITLE BAR:
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 
-		WindowManager.LayoutParams.FLAG_FULLSCREEN);		
-				
-		setContentView(R.layout.activity_main_activity2);
+		WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		
+		// This will hide the system bar until user swipes up from bottom or down from top.		
+		getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_IMMERSIVE
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+		
+		setContentView(R.layout.activity_main_activity2);		
 		
 		getWindow().getDecorView().setBackgroundColor(Color.BLACK);
-		// for the little space between the action & attack button
+		// for the little space between the action & attack button		
 		
-		final MediaPlayer activityOpeningSound = MediaPlayer.create(MainActivity2.this, R.raw.sworddraw1);
-		activityOpeningSound.start();		
-		
-		final ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
-		
-			titleBlankButton.setOnClickListener(new View.OnClickListener() {
-	            @Override
-				public void onClick(View v) {			                    	
-	        	
-	        	Toast.makeText(MainActivity2.this,"(QUICK RULES WILL GO HERE)", Toast.LENGTH_LONG).show();	        				
-				}
-			});		
-		
+		final MediaPlayer activityOpeningSound = MediaPlayer.create(MainActivity2.this, R.raw.buttonsound6);
+		activityOpeningSound.start();			    			
+			
+			
 		final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 		centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 		
 		TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);
+		// Text not centered for the human player so inserted spaces.
 		playerNameTextView.setText("  " + ArrayOfPlayers.player[0]);
 		
 		TextView computerNameTextView = (TextView)findViewById(R.id.textviewnameright);
-		computerNameTextView.setText(ArrayOfPlayers.player[1]);
-		
+		computerNameTextView.setText(ArrayOfPlayers.player[1]);		
 		
 		computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft0);
 		crossedswords2 = (ImageView) findViewById(R.id.imageviewavatarleft1);
@@ -73,21 +72,48 @@ public class MainActivity2 extends ActionBarActivity {
 			crossedswords2.setVisibility(View.INVISIBLE);
 			stonedead2.setVisibility(View.INVISIBLE);			
 		}
-		if (ArrayOfAvatars.avatar[0].equals("crossedswords")){
+		else if (ArrayOfAvatars.avatar[0].equals("crossedswords")){
 			computerAvatar.setVisibility(View.INVISIBLE);
 			stonedead2.setVisibility(View.INVISIBLE);
 		}
-		if (ArrayOfAvatars.avatar[0].equals("stonedead")){
+		else if (ArrayOfAvatars.avatar[0].equals("stonedead")){
 			crossedswords2.setVisibility(View.INVISIBLE);
 			computerAvatar.setVisibility(View.INVISIBLE);
 		}
 		
-		initiative (centerscrolltext);
 		
+		unfoldScrolls (centerscrolltext);
+		
+		showTitle();
+		
+		
+		final ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+		
+		titleBlankButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+			public void onClick(View v) {
+            	
+            	animateTitle();       	
+			}	            
+		});
 	}
 	
-	public void initiative (final TextView centerscrolltext) {
 	
+	
+	public void showTitle(){
+		
+		final ImageView img1 = (ImageView)findViewById(R.id.titleanimation);		
+		img1.setBackgroundResource(R.drawable.showtitle);		
+		
+		// Get the background, which has been compiled to an AnimationDrawable object.
+		final AnimationDrawable frameAnimation1 = (AnimationDrawable) img1.getBackground();
+		
+    	frameAnimation1.stop();
+    	frameAnimation1.start();		
+	}
+	  
+	public void unfoldScrolls (final TextView centerscrolltext) {
+		
 		// Setting up scroll frame animation.
 		ImageView img = (ImageView)findViewById(R.id.scrollanimation);
 		img.setBackgroundResource(R.drawable.scrollanimationup);
@@ -96,6 +122,7 @@ public class MainActivity2 extends ActionBarActivity {
 		AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
 					
 		// Start the animation.
+		frameAnimation.stop();
 		frameAnimation.start();		
 		
 		
@@ -109,6 +136,19 @@ public class MainActivity2 extends ActionBarActivity {
 				centerscrolltext.append("Welcome, " + ArrayOfPlayers.player[0] + ".");				        						        						        		 			        						        	
 			}
 
-        }, 2500);		
-	}	
+        }, 2725);		
+	}
+	
+	public void animateTitle(){
+		
+		final ImageView img1 = (ImageView)findViewById(R.id.titleanimation);		
+		img1.setBackgroundResource(R.drawable.titleanimation);		
+		
+		// Get the background, which has been compiled to an AnimationDrawable object.
+		final AnimationDrawable frameAnimation1 = (AnimationDrawable) img1.getBackground();
+		
+    	frameAnimation1.stop();
+    	frameAnimation1.start();
+	}
+	
 }

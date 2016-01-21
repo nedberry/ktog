@@ -9,6 +9,8 @@
         android:id="@+id/imageviewscroll3b5left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
         android:background="@drawable/scroll3b5left" />
 
     <TextView
@@ -27,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/imageviewplayerbox4left"
-        android:layout_toLeftOf="@+id/imageviewtitle"
+        android:layout_toLeftOf="@+id/imagebuttontitleblank"
         android:background="@drawable/hitpointsleft" />
 
     <ImageView
@@ -45,7 +47,10 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:background="@drawable/messageleft" />
-
+    
+    
+    
+	
     <ImageView
         android:id="@+id/imageviewscroll3b5right"
         android:layout_width="wrap_content"
@@ -89,6 +94,9 @@
         android:layout_alignParentRight="true"
         android:background="@drawable/messageright" />
     
+    
+    
+    
     <ImageButton
         android:id="@+id/imagebuttontitleblank"
         android:layout_width="wrap_content"
@@ -96,24 +104,19 @@
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/imageviewscroll3b5left"
         android:alpha="0"        
-        android:src="@drawable/titleblank" />
-
-    <ImageView
-        android:id="@+id/imageviewtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/imageviewscroll3b5left"
-        android:background="@drawable/title" />
+        android:src="@drawable/titleblank" />        
 
     <ImageView
         android:id="@+id/imageviewcenterscroll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageviewtitle"
+        android:layout_below="@+id/imagebuttontitleblank"
         android:layout_toLeftOf="@+id/imageviewscroll3b5right"
         android:background="@drawable/centerscroll" />
-
+    
+    
+	
+    
     <ImageButton
         android:id="@+id/imagebuttonaction"
         android:layout_width="wrap_content"
@@ -130,12 +133,11 @@
         android:layout_below="@+id/imageviewcenterscroll"
         android:layout_toLeftOf="@+id/imageviewscroll3b5right"
         android:background="@drawable/attack"
-        android:cropToPadding="false" />
+        android:cropToPadding="false" />   
     
     
+	
     
-    
-
     <ImageView
         android:id="@+id/imageviewavatarright"
         android:layout_width="wrap_content"
@@ -144,7 +146,10 @@
         android:layout_below="@+id/textviewnameleft"
         android:layout_marginRight="93dp"
         android:background="@drawable/computer" />
-
+    
+    
+	
+    
     <ImageView
         android:id="@+id/imageviewavatarleft2"
         android:layout_width="wrap_content"
@@ -169,24 +174,34 @@
         android:layout_alignLeft="@+id/imageviewavatarleft2"
         android:layout_alignTop="@+id/imageviewavatarleft2"
         android:background="@drawable/computer" />
-
+    
     <TextView
         android:id="@+id/textviewcenterscrolltext"
         android:layout_width="340dp"
         android:layout_height="220dp"
-        android:layout_below="@+id/imageviewavatarleft2"
-        android:layout_centerHorizontal="true"        
+        android:layout_alignBottom="@+id/imageviewcenterscroll"
+        android:layout_below="@+id/imagebuttontitleblank"
+        android:layout_toLeftOf="@+id/imageviewscroll3b5right"
+        android:layout_toRightOf="@+id/imageviewscroll3b5left"
         android:fadeScrollbars="false"
-        android:gravity="bottom"
+        android:gravity="top"
         android:scrollbars="vertical"
         android:textSize="20sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:padding="20dp" />
     
     <ImageView
         android:id="@+id/scrollanimation"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true" />    
+    
+    <ImageView
+        android:id="@+id/titleanimation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" />    
 
 </RelativeLayout>

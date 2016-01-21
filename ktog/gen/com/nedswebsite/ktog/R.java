@@ -15,10 +15,12 @@ public final class R {
         public static final int abc_slide_in_top=0x7f040003;
         public static final int abc_slide_out_bottom=0x7f040004;
         public static final int abc_slide_out_top=0x7f040005;
-        public static final int left_in=0x7f040006;
-        public static final int left_out=0x7f040007;
-        public static final int right_in=0x7f040008;
-        public static final int right_out=0x7f040009;
+        public static final int instructionstotitle=0x7f040006;
+        public static final int left_in=0x7f040007;
+        public static final int left_out=0x7f040008;
+        public static final int right_in=0x7f040009;
+        public static final int right_out=0x7f04000a;
+        public static final int titletoinstructions=0x7f04000b;
     }
     public static final class attr {
         /**  Custom divider drawable to use for elements in the action bar. 
@@ -1093,7 +1095,7 @@ containing a value of this type.
         public static final int crossedswords2=0x7f020060;
         public static final int hitpointsleft=0x7f020061;
         public static final int hitpointsright=0x7f020062;
-        public static final int ktogicon4=0x7f020063;
+        public static final int ktogicon8a=0x7f020063;
         public static final int ktogrules1=0x7f020064;
         public static final int ktogrules2=0x7f020065;
         public static final int ktogrules3=0x7f020066;
@@ -1109,30 +1111,51 @@ containing a value of this type.
         public static final int pressedabout=0x7f020070;
         public static final int pressedmultiplayer=0x7f020071;
         public static final int pressedoneplayer=0x7f020072;
-        public static final int scroll3b5foranimation1=0x7f020073;
-        public static final int scroll3b5foranimation10=0x7f020074;
-        public static final int scroll3b5foranimation11=0x7f020075;
-        public static final int scroll3b5foranimation12=0x7f020076;
-        public static final int scroll3b5foranimation13=0x7f020077;
-        public static final int scroll3b5foranimation14=0x7f020078;
-        public static final int scroll3b5foranimation2=0x7f020079;
-        public static final int scroll3b5foranimation3=0x7f02007a;
-        public static final int scroll3b5foranimation4=0x7f02007b;
-        public static final int scroll3b5foranimation5=0x7f02007c;
-        public static final int scroll3b5foranimation6=0x7f02007d;
-        public static final int scroll3b5foranimation7=0x7f02007e;
-        public static final int scroll3b5foranimation8=0x7f02007f;
-        public static final int scroll3b5foranimation9=0x7f020080;
-        public static final int scroll3b5left=0x7f020081;
-        public static final int scroll3b5right=0x7f020082;
-        public static final int scrollanimationup=0x7f020083;
-        public static final int stonedead2=0x7f020084;
-        public static final int taptoskip=0x7f020085;
-        public static final int title=0x7f020086;
-        public static final int titleblank=0x7f020087;
-        public static final int unpressedabout=0x7f020088;
-        public static final int unpressedmultiplayer=0x7f020089;
-        public static final int unpressedoneplayer=0x7f02008a;
+        public static final int quickinstructions=0x7f020073;
+        public static final int scroll3b5foranimation1=0x7f020074;
+        public static final int scroll3b5foranimation10=0x7f020075;
+        public static final int scroll3b5foranimation11=0x7f020076;
+        public static final int scroll3b5foranimation12=0x7f020077;
+        public static final int scroll3b5foranimation13=0x7f020078;
+        public static final int scroll3b5foranimation14=0x7f020079;
+        public static final int scroll3b5foranimation2=0x7f02007a;
+        public static final int scroll3b5foranimation3=0x7f02007b;
+        public static final int scroll3b5foranimation4=0x7f02007c;
+        public static final int scroll3b5foranimation5=0x7f02007d;
+        public static final int scroll3b5foranimation6=0x7f02007e;
+        public static final int scroll3b5foranimation7=0x7f02007f;
+        public static final int scroll3b5foranimation8=0x7f020080;
+        public static final int scroll3b5foranimation9=0x7f020081;
+        public static final int scroll3b5left=0x7f020082;
+        public static final int scroll3b5right=0x7f020083;
+        public static final int scrollanimationup=0x7f020084;
+        public static final int showtitle=0x7f020085;
+        public static final int stonedead2=0x7f020086;
+        public static final int taptoskip=0x7f020087;
+        public static final int title=0x7f020088;
+        public static final int title2andktog1=0x7f020089;
+        public static final int title2andktog2=0x7f02008a;
+        public static final int title2andktog3=0x7f02008b;
+        public static final int title2andktog4=0x7f02008c;
+        public static final int title2andktog5=0x7f02008d;
+        public static final int title2andktog6=0x7f02008e;
+        public static final int title2andktog7=0x7f02008f;
+        public static final int title2andktog8=0x7f020090;
+        public static final int title2andktog9=0x7f020091;
+        public static final int title2andquickinstructions1=0x7f020092;
+        public static final int title2andquickinstructions2=0x7f020093;
+        public static final int title2andquickinstructions3=0x7f020094;
+        public static final int title2andquickinstructions4=0x7f020095;
+        public static final int title2andquickinstructions5=0x7f020096;
+        public static final int title2andquickinstructions6=0x7f020097;
+        public static final int title2andquickinstructions7=0x7f020098;
+        public static final int title2andquickinstructions8=0x7f020099;
+        public static final int title2andquickinstructions9=0x7f02009a;
+        public static final int titleanimation=0x7f02009b;
+        public static final int titleblank=0x7f02009c;
+        public static final int unpressedabout=0x7f02009d;
+        public static final int unpressedmultiplayer=0x7f02009e;
+        public static final int unpressedoneplayer=0x7f02009f;
     }
     public static final class id {
         public static final int action_bar=0x7f06001c;
@@ -1166,16 +1189,16 @@ containing a value of this type.
         public static final int ifRoom=0x7f06000a;
         public static final int image=0x7f060027;
         public static final int imagebuttonabout=0x7f06003f;
-        public static final int imagebuttonaction=0x7f06004d;
-        public static final int imagebuttonattack=0x7f06004e;
+        public static final int imagebuttonaction=0x7f06004c;
+        public static final int imagebuttonattack=0x7f06004d;
         public static final int imagebuttonmultiplayer=0x7f06003e;
         public static final int imagebuttononeplayer=0x7f06003d;
-        public static final int imagebuttontitleblank=0x7f06004b;
-        public static final int imageviewavatarleft0=0x7f060052;
-        public static final int imageviewavatarleft1=0x7f060051;
-        public static final int imageviewavatarleft2=0x7f060050;
-        public static final int imageviewavatarright=0x7f06004f;
-        public static final int imageviewcenterscroll=0x7f06004c;
+        public static final int imagebuttontitleblank=0x7f060044;
+        public static final int imageviewavatarleft0=0x7f060051;
+        public static final int imageviewavatarleft1=0x7f060050;
+        public static final int imageviewavatarleft2=0x7f06004f;
+        public static final int imageviewavatarright=0x7f06004e;
+        public static final int imageviewcenterscroll=0x7f06004b;
         public static final int imageviewhitpointsleft=0x7f060042;
         public static final int imageviewhitpointsright=0x7f060048;
         public static final int imageviewmessageleft=0x7f060045;
@@ -1184,7 +1207,6 @@ containing a value of this type.
         public static final int imageviewplayerbox4right=0x7f060049;
         public static final int imageviewscroll3b5left=0x7f060040;
         public static final int imageviewscroll3b5right=0x7f060046;
-        public static final int imageviewtitle=0x7f060044;
         public static final int listMode=0x7f060001;
         public static final int list_item=0x7f060029;
         public static final int menu1=0x7f06003c;
@@ -1196,7 +1218,7 @@ containing a value of this type.
         public static final int progress_horizontal=0x7f060019;
         public static final int radio=0x7f06002f;
         public static final int relativeLayout=0x7f060055;
-        public static final int scrollanimation=0x7f060054;
+        public static final int scrollanimation=0x7f060053;
         public static final int search_badge=0x7f060032;
         public static final int search_bar=0x7f060031;
         public static final int search_button=0x7f060033;
@@ -1214,10 +1236,11 @@ containing a value of this type.
         public static final int split_action_bar=0x7f06001e;
         public static final int submit_area=0x7f060039;
         public static final int tabMode=0x7f060002;
-        public static final int textviewcenterscrolltext=0x7f060053;
+        public static final int textviewcenterscrolltext=0x7f060052;
         public static final int textviewnameleft=0x7f060041;
         public static final int textviewnameright=0x7f060047;
         public static final int title=0x7f06002b;
+        public static final int titleanimation=0x7f060054;
         public static final int top_action_bar=0x7f060020;
         public static final int up=0x7f060021;
         public static final int useLogo=0x7f060003;
@@ -1284,11 +1307,12 @@ containing a value of this type.
         public static final int support_simple_spinner_dropdown_item=0x7f03001d;
     }
     public static final class menu {
-        public static final int main_activity1=0x7f0d0000;
-        public static final int main_activity2=0x7f0d0001;
-        public static final int new_guy_old_guy=0x7f0d0002;
-        public static final int rules=0x7f0d0003;
-        public static final int video=0x7f0d0004;
+        public static final int array_of_title=0x7f0d0000;
+        public static final int main_activity1=0x7f0d0001;
+        public static final int main_activity2=0x7f0d0002;
+        public static final int new_guy_old_guy=0x7f0d0003;
+        public static final int rules=0x7f0d0004;
+        public static final int video=0x7f0d0005;
     }
     public static final class raw {
         public static final int buttonsound4b=0x7f050000;
@@ -1345,6 +1369,7 @@ containing a value of this type.
         public static final int action_settings=0x7f0b000e;
         public static final int app_name=0x7f0b000d;
         public static final int hello_world=0x7f0b0013;
+        public static final int title_activity_array_of_title=0x7f0b0014;
         public static final int title_activity_main_activity1=0x7f0b0010;
         public static final int title_activity_main_activity2=0x7f0b0012;
         public static final int title_activity_rules=0x7f0b0011;
