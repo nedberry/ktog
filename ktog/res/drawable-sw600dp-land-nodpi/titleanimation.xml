@@ -21,7 +21,7 @@
     <item android:drawable="@drawable/title2andquickinstructions3" android:duration="75" />
     <item android:drawable="@drawable/title2andquickinstructions2" android:duration="75" />
     
-    <item android:drawable="@drawable/title2andquickinstructions1" android:duration="12000" />    
+    <item android:drawable="@drawable/title2andquickinstructions1" android:duration="10000" />    
     
     <item android:drawable="@drawable/title2andquickinstructions2" android:duration="75" />
     <item android:drawable="@drawable/title2andquickinstructions3" android:duration="75" />

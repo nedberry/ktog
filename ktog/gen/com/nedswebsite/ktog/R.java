@@ -1307,12 +1307,11 @@ containing a value of this type.
         public static final int support_simple_spinner_dropdown_item=0x7f03001d;
     }
     public static final class menu {
-        public static final int array_of_title=0x7f0d0000;
-        public static final int main_activity1=0x7f0d0001;
-        public static final int main_activity2=0x7f0d0002;
-        public static final int new_guy_old_guy=0x7f0d0003;
-        public static final int rules=0x7f0d0004;
-        public static final int video=0x7f0d0005;
+        public static final int main_activity1=0x7f0d0000;
+        public static final int main_activity2=0x7f0d0001;
+        public static final int new_guy_old_guy=0x7f0d0002;
+        public static final int rules=0x7f0d0003;
+        public static final int video=0x7f0d0004;
     }
     public static final class raw {
         public static final int buttonsound4b=0x7f050000;

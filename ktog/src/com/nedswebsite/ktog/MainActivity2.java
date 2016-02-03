@@ -1,5 +1,7 @@
 package com.nedswebsite.ktog;
 
+import java.util.Arrays;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -31,7 +33,6 @@ public class MainActivity2 extends ActionBarActivity {
 	ImageView instructionsimageview;
 	
 	
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -48,7 +49,7 @@ public class MainActivity2 extends ActionBarActivity {
 		setContentView(R.layout.activity_main_activity2);		
 		
 		getWindow().getDecorView().setBackgroundColor(Color.BLACK);
-		// for the little space between the action & attack button		
+		// For the little space between the action & attack button.	
 		
 		final MediaPlayer activityOpeningSound = MediaPlayer.create(MainActivity2.this, R.raw.buttonsound6);
 		activityOpeningSound.start();			    			
@@ -99,8 +100,18 @@ public class MainActivity2 extends ActionBarActivity {
 	}
 	
 	
+	// Destroys data in arrays, and pro-actively cleans up memory (finish) for the user (good practice?).
+	@Override
+    public void onBackPressed() {
+			
+			Arrays.fill(ArrayOfPlayers.player, null);
+			Arrays.fill(ArrayOfAvatars.avatar, null);
+			
+            super.onBackPressed();
+            this.finish();
+    }
 	
-	public void showTitle(){
+	public void showTitle() {
 		
 		final ImageView img1 = (ImageView)findViewById(R.id.titleanimation);		
 		img1.setBackgroundResource(R.drawable.showtitle);		
@@ -108,8 +119,21 @@ public class MainActivity2 extends ActionBarActivity {
 		// Get the background, which has been compiled to an AnimationDrawable object.
 		final AnimationDrawable frameAnimation1 = (AnimationDrawable) img1.getBackground();
 		
+		// Animation is just 1 slide so user can see title.
     	frameAnimation1.stop();
-    	frameAnimation1.start();		
+    	frameAnimation1.start();
+    	
+    	// Animation to show user quick instructions.
+    	final Handler h = new Handler();
+		h.postDelayed(new Runnable() {
+
+        	@Override
+        	public void run()
+        	{  
+        		animateTitle();				        						        						        		 			        						        	
+			}
+
+        }, 2700);
 	}
 	  
 	public void unfoldScrolls (final TextView centerscrolltext) {
@@ -136,10 +160,10 @@ public class MainActivity2 extends ActionBarActivity {
 				centerscrolltext.append("Welcome, " + ArrayOfPlayers.player[0] + ".");				        						        						        		 			        						        	
 			}
 
-        }, 2725);		
+        }, 2700);		
 	}
 	
-	public void animateTitle(){
+	public void animateTitle() {
 		
 		final ImageView img1 = (ImageView)findViewById(R.id.titleanimation);		
 		img1.setBackgroundResource(R.drawable.titleanimation);		
@@ -149,6 +173,5 @@ public class MainActivity2 extends ActionBarActivity {
 		
     	frameAnimation1.stop();
     	frameAnimation1.start();
-	}
-	
+	}	
 }

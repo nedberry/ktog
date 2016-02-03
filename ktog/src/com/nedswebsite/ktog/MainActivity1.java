@@ -15,6 +15,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
 import android.support.v7.app.ActionBarActivity;
+import android.text.InputFilter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -38,7 +39,7 @@ public class MainActivity1 extends ActionBarActivity {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+		super.onCreate(savedInstanceState);		
 		
 		// USED THE FOLLOWING TO REMOVE TITLE BAR:
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -72,16 +73,18 @@ public class MainActivity1 extends ActionBarActivity {
         	alert.setTitle("KtOG");
         	alert.setMessage("Enter Name");
 
-        	// Set an EditText view to get user input 
+        	// Set an EditText view to get user input:
         	final EditText input = new EditText(MainActivity1.this);
         	alert.setView(input);
+        	// Limits the number of characters entered to 14.
+        	InputFilter[] FilterArray = new InputFilter[1];
+        	FilterArray[0] = new InputFilter.LengthFilter(14);
+        	input.setFilters(FilterArray);
 
         	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-        	public void onClick(DialogInterface dialog, int whichButton) {
-        		        		
-        		// Do something with value!        		
+        	public void onClick(DialogInterface dialog, int whichButton) {        		         		
         		  		
-        		//NEED TO SEND TO ARRAY HERE:
+        		// NEED TO SEND TO ARRAY HERE:
         		String playername = input.getText().toString();
             	String playercomputer = "Computer".toString();
             	
@@ -169,8 +172,9 @@ public class MainActivity1 extends ActionBarActivity {
         	//Intent openMain2Activity = new Intent("com.example.ktog1.MAIN2ACTIVITY");
 			//startActivity(openMain2Activity);        				
 			}
-		});	
+		});
 	}	
+	
 	
 	public static void insertToDatabase(final String player){
         class SendPostReqAsyncTask extends AsyncTask<String, Void, String> {
@@ -191,8 +195,7 @@ public class MainActivity1 extends ActionBarActivity {
  
                     HttpResponse response = httpClient.execute(httpPost);
  
-                    HttpEntity entity = response.getEntity();
- 
+                    HttpEntity entity = response.getEntity(); 
           
                 } catch (ClientProtocolException e) {
  
@@ -223,7 +226,7 @@ public class MainActivity1 extends ActionBarActivity {
      	final MediaPlayer buttonSound1 = MediaPlayer.create(MainActivity1.this, R.raw.swordswing);
         final MediaPlayer buttonSound2 = MediaPlayer.create(MainActivity1.this, R.raw.sworddraw1);
  
-        // Checks the orientation of the screen
+        // Checks the orientation of the screen.
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
         	
         	setContentView(R.layout.activity_main_activity1);
@@ -246,11 +249,9 @@ public class MainActivity1 extends ActionBarActivity {
             	alert.setView(input);
 
             	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-            	public void onClick(DialogInterface dialog, int whichButton) {
-            		        		
-            		// Do something with value!        		
+            	public void onClick(DialogInterface dialog, int whichButton) {            		         		
             		  		
-            		//NEED TO SEND TO ARRAY HERE:
+            		// NEED TO SEND TO ARRAY HERE:
             		String playername = input.getText().toString();
                 	String playercomputer = "Computer".toString();
                 	
@@ -355,11 +356,9 @@ public class MainActivity1 extends ActionBarActivity {
             	alert.setView(input);
 
             	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-            	public void onClick(DialogInterface dialog, int whichButton) {
-            		        		
-            		// Do something with value!        		
+            	public void onClick(DialogInterface dialog, int whichButton) {            		         		
             		  		
-            		//NEED TO SEND TO ARRAY HERE:
+            		// NEED TO SEND TO ARRAY HERE:
             		String playername = input.getText().toString();
                 	String playercomputer = "Computer".toString();
                 	
@@ -442,11 +441,5 @@ public class MainActivity1 extends ActionBarActivity {
     		});    		
         	buttonSound2.start();
         }
-    }
-	
-	@Override
-    public void onBackPressed() {
-            super.onBackPressed();
-            this.finish();
-    }
+    }	
 }
