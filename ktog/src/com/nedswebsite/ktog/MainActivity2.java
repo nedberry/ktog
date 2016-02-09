@@ -49,10 +49,15 @@ public class MainActivity2 extends ActionBarActivity {
 		setContentView(R.layout.activity_main_activity2);		
 		
 		getWindow().getDecorView().setBackgroundColor(Color.BLACK);
-		// For the little space between the action & attack button.	
+		// For the little space between the action & attack button.
 		
-		final MediaPlayer activityOpeningSound = MediaPlayer.create(MainActivity2.this, R.raw.buttonsound6);
-		activityOpeningSound.start();			    			
+		
+		// Sounds stuff:
+		//final MediaPlayer activityOpeningSound = MediaPlayer.create(MainActivity2.this, R.raw.buttonsound6);
+		//activityOpeningSound.start();
+		
+		final Intent svc=new Intent(this, Badonk2SoundService.class);
+		stopService(svc);
 			
 			
 		final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
@@ -83,9 +88,34 @@ public class MainActivity2 extends ActionBarActivity {
 		}
 		
 		
-		unfoldScrolls (centerscrolltext);
 		
-		showTitle();
+		
+		//showTitle();
+		
+		ArrayIsInitiativeStarted.isinitiativestarted[0] = "no";
+		
+		//final Thread myPreInitiativeScrollsThread = new Thread(myPreInitiativeScrollsRunnable);
+		//final Thread myPreInitiativeTitleThread = new Thread(myPreInitiativeTitleRunnable);
+		//final Thread myInitiativeNotStartedThread = new Thread(myInitiativeNotStartedRunnable);
+		//final Thread myInitiativeIsStartedThread = new Thread(myInitiativeIsStartedRunnable);
+		
+		unfoldScrolls();
+		//myPreInitiativeScrollsThread.start();		
+		
+		final Handler h = new Handler();
+  	  	h.postDelayed(new Runnable() {
+
+  	  		@Override
+  	  		public void run()
+  	  		{  	  			
+	  	  		centerscrolltext.setVisibility(View.VISIBLE);
+	  			centerscrolltext.append("Welcome, " + ArrayOfPlayers.player[0] + ".");	  			
+  	  		}
+
+  	  	}, 5025);
+  	  	
+		preInitiativeTitle();
+		//myPreInitiativeTitleThread.start();
 		
 		
 		final ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
@@ -94,10 +124,22 @@ public class MainActivity2 extends ActionBarActivity {
             @Override
 			public void onClick(View v) {
             	
-            	animateTitle();       	
+            	if (ArrayIsInitiativeStarted.isinitiativestarted[0].equals("no")) {
+            		myInitiativeNotStarted();            		
+            	}
+            	
+            	else if (ArrayIsInitiativeStarted.isinitiativestarted[0].equals("yes")) {
+            		myInitiativeIsStarted();            		
+            	}
+            	
+            	//animateTitle();       	
 			}	            
 		});
 	}
+	
+	
+	//===================================================================================================
+	//===================================================================================================
 	
 	
 	// Destroys data in arrays, and pro-actively cleans up memory (finish) for the user (good practice?).
@@ -111,6 +153,110 @@ public class MainActivity2 extends ActionBarActivity {
             this.finish();
     }
 	
+	public void unfoldScrolls () {
+		
+		// Setting up scroll frame animation.
+		ImageView img1 = (ImageView)findViewById(R.id.scrollanimation);
+		img1.setBackgroundResource(R.drawable.scrollanimationup);
+	
+		// Get the background, which has been compiled to an AnimationDrawable object.
+		AnimationDrawable frameAnimation = (AnimationDrawable) img1.getBackground();
+					
+		// Start the animation.
+		frameAnimation.stop();
+		frameAnimation.start();       		
+	}
+	
+	public void preInitiativeTitle() {	
+  	
+		final ImageView img = (ImageView)findViewById(R.id.titleanimation);		
+		img.setBackgroundResource(R.drawable.titleanimationpreinitiative);
+  	  
+  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+		
+  	  	// Animation is just 1 slide so user can see title.
+  	  	frameAnimation.stop();
+  	  	frameAnimation.start();  	  	
+	}
+	
+	/*
+	final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);	
+	Runnable myPreInitiativeScrollsRunnable = new Runnable() {
+	      @Override
+	      public void run() {
+	    	  
+	    	// Setting up scroll frame animation.
+	  		ImageView img = (ImageView)findViewById(R.id.scrollanimation);
+	  		img.setBackgroundResource(R.drawable.scrollanimationup);
+	  	
+	  		// Get the background, which has been compiled to an AnimationDrawable object.
+	  		AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+	  					
+	  		// Start the animation.
+	  		frameAnimation.stop();
+	  		frameAnimation.start();	  		
+	  		
+	  		final Handler h = new Handler();
+	  		h.postDelayed(new Runnable() {
+
+	          	@Override
+	          	public void run()
+	          	{  
+	          		centerscrolltext.setVisibility(View.VISIBLE);
+	  				centerscrolltext.append("Welcome, " + ArrayOfPlayers.player[0] + ".");				        						        						        		 			        						        	
+	  			}
+	  		}, 2700);
+	                  
+	      }
+	};
+	*/
+	/*
+	Runnable myPreInitiativeTitleRunnable = new Runnable() {
+	      @Override
+	      public void run() {
+	    	  
+	    	  final ImageView img1 = (ImageView)findViewById(R.id.titleanimation);		
+	    	  img1.setBackgroundResource(R.drawable.titleanimationpreinitiative);
+	    	  
+	    	  // Get the background, which has been compiled to an AnimationDrawable object.
+	    	  final AnimationDrawable frameAnimation1 = (AnimationDrawable) img1.getBackground();
+			
+	    	  // Animation is just 1 slide so user can see title.
+	    	  frameAnimation1.stop();
+	    	  frameAnimation1.start();
+	                     
+	      }
+	};
+	*/
+	public void myInitiativeNotStarted() {	      
+	    	  
+	    	  final ImageView img = (ImageView)findViewById(R.id.titleanimation);		
+	    	  img.setBackgroundResource(R.drawable.titleanimationnoinitiative);
+	    	  
+	    	  // Get the background, which has been compiled to an AnimationDrawable object.
+	    	  final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+			
+	    	  // Animation is just 1 slide so user can see title.
+	    	  frameAnimation.stop();
+	    	  frameAnimation.start();	      
+	}
+	
+	public void  myInitiativeIsStarted() {	      
+	    	  
+	    	  final ImageView img1 = (ImageView)findViewById(R.id.titleanimation);		
+	    	  img1.setBackgroundResource(R.drawable.titleanimationyesinitiative);
+	    	  
+	    	  // Get the background, which has been compiled to an AnimationDrawable object.
+	    	  final AnimationDrawable frameAnimation1 = (AnimationDrawable) img1.getBackground();
+			
+	    	  // Animation is just 1 slide so user can see title.
+	    	  frameAnimation1.stop();
+	    	  frameAnimation1.start();	      
+	}
+	
+	
+	/*
 	public void showTitle() {
 		
 		final ImageView img1 = (ImageView)findViewById(R.id.titleanimation);		
@@ -134,34 +280,7 @@ public class MainActivity2 extends ActionBarActivity {
 			}
 
         }, 2700);
-	}
-	  
-	public void unfoldScrolls (final TextView centerscrolltext) {
-		
-		// Setting up scroll frame animation.
-		ImageView img = (ImageView)findViewById(R.id.scrollanimation);
-		img.setBackgroundResource(R.drawable.scrollanimationup);
-	
-		// Get the background, which has been compiled to an AnimationDrawable object.
-		AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
-					
-		// Start the animation.
-		frameAnimation.stop();
-		frameAnimation.start();		
-		
-		
-		final Handler h = new Handler();
-		h.postDelayed(new Runnable() {
-
-        	@Override
-        	public void run()
-        	{  
-        		centerscrolltext.setVisibility(View.VISIBLE);
-				centerscrolltext.append("Welcome, " + ArrayOfPlayers.player[0] + ".");				        						        						        		 			        						        	
-			}
-
-        }, 2700);		
-	}
+	}	
 	
 	public void animateTitle() {
 		
@@ -173,5 +292,8 @@ public class MainActivity2 extends ActionBarActivity {
 		
     	frameAnimation1.stop();
     	frameAnimation1.start();
-	}	
+	}
+	*/
+	
+	
 }

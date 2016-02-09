@@ -184,11 +184,14 @@
         android:layout_toLeftOf="@+id/imageviewscroll3b5right"
         android:layout_toRightOf="@+id/imageviewscroll3b5left"
         android:fadeScrollbars="false"
-        android:gravity="top"
+        android:gravity="bottom"       
         android:scrollbars="vertical"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:padding="20dp" />
+        android:paddingTop="20dp"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
+        android:paddingBottom="50dp" />
     
     <ImageView
         android:id="@+id/scrollanimation"

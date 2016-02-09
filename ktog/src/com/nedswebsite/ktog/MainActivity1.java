@@ -54,8 +54,12 @@ public class MainActivity1 extends ActionBarActivity {
 		final ImageButton multiPlayerButton = (ImageButton) findViewById(R.id.imagebuttonmultiplayer);
 		final ImageButton aboutButton = (ImageButton) findViewById(R.id.imagebuttonabout);
 		
-		// For sound for buttons:
+		
+		// Sound stuff:
 		final MediaPlayer buttonSound = MediaPlayer.create(MainActivity1.this, R.raw.swordswing);
+		
+		final Intent svc=new Intent(this, Badonk2SoundService.class);
+		startService(svc);
 		
 		onePlayerButton.setOnClickListener(new View.OnClickListener() {
             @Override
