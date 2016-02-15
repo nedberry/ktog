@@ -2,6 +2,7 @@ package com.nedswebsite.ktog;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.http.HttpEntity;
@@ -65,7 +66,9 @@ public class MainActivity1 extends ActionBarActivity {
             @Override
 			public void onClick(View v) {
 			                    	
-        	buttonSound.start();        	
+        	buttonSound.start();
+        	
+        	//stopService(svc);
         	
         	//Toast.makeText(MainActivity1.this,"One player button is working!!", Toast.LENGTH_LONG).show();
         	//USE THIS WHEN READY??:
@@ -122,6 +125,8 @@ public class MainActivity1 extends ActionBarActivity {
 	    					ArrayOfAvatars.avatar[0] = "stonedead";
 	    				}
 	    				
+	    				stopService(svc);
+	    				
 	    				Intent openMainActivity2 = new Intent("com.nedswebsite.ktog.MAINACTIVITY2");
 	    	        	startActivity(openMainActivity2);
         	  		}
@@ -149,12 +154,10 @@ public class MainActivity1 extends ActionBarActivity {
 			                    	
         	buttonSound.start();       	
         	
-        	Intent openMainActivity2 = new Intent("com.nedswebsite.ktog.MAINACTIVITY2");
-        	startActivity(openMainActivity2);
-        	//Toast.makeText(MainActivity1.this,"Multi-player button is working!!", Toast.LENGTH_LONG).show();
-        	//USE THIS WHEN READY??:
-        	//Intent openMain2Activity = new Intent("com.example.ktog1.MAIN2ACTIVITY");
-			//startActivity(openMain2Activity);        				
+        	//Intent openMainActivity2 = new Intent("com.nedswebsite.ktog.MAINACTIVITY2");
+        	//startActivity(openMainActivity2);
+        	Toast.makeText(MainActivity1.this,"Multi-player not working yet :(", Toast.LENGTH_LONG).show();
+        	        	        				
 			}
 		});
 		
@@ -179,6 +182,15 @@ public class MainActivity1 extends ActionBarActivity {
 		});
 	}	
 	
+	@Override
+    public void onBackPressed() {
+			
+			final Intent svc=new Intent(this, Badonk2SoundService.class);
+			stopService(svc);
+			
+            super.onBackPressed();
+            this.finish();
+    }
 	
 	public static void insertToDatabase(final String player){
         class SendPostReqAsyncTask extends AsyncTask<String, Void, String> {
@@ -229,6 +241,8 @@ public class MainActivity1 extends ActionBarActivity {
         // For sound for buttons:
      	final MediaPlayer buttonSound1 = MediaPlayer.create(MainActivity1.this, R.raw.swordswing);
         final MediaPlayer buttonSound2 = MediaPlayer.create(MainActivity1.this, R.raw.sworddraw1);
+        
+        final Intent svc=new Intent(this, Badonk2SoundService.class);
  
         // Checks the orientation of the screen.
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -242,7 +256,8 @@ public class MainActivity1 extends ActionBarActivity {
     		onePlayerButton.setOnClickListener(new View.OnClickListener() {
                 @Override
     			public void onClick(View v) {    			                    	
-            	buttonSound1.start();            	
+            	buttonSound1.start();
+            	//stopService(svc);
             	AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity1.this);
 
             	alert.setTitle("KtOG");
@@ -289,6 +304,8 @@ public class MainActivity1 extends ActionBarActivity {
     	    					ArrayOfAvatars.avatar[0] = "stonedead";
     	    				}
     	    				
+    	    				stopService(svc);
+    	    				
     	    				Intent openMainActivity2 = new Intent("com.nedswebsite.ktog.MAINACTIVITY2");
     	                	startActivity(openMainActivity2);
             	  		}
@@ -312,14 +329,14 @@ public class MainActivity1 extends ActionBarActivity {
     		
     		multiPlayerButton.setOnClickListener(new View.OnClickListener() {
                 @Override
-    			public void onClick(View v) {    			                    	
-            	buttonSound1.start();            	
-            	Intent openMainActivity2 = new Intent("com.nedswebsite.ktog.MAINACTIVITY2");
-            	startActivity(openMainActivity2);
-            	//Toast.makeText(MainActivity1.this,"Multi-player button is working!!", Toast.LENGTH_LONG).show();
-            	//USE THIS WHEN READY??:
-            	//Intent openMain2Activity = new Intent("com.example.ktog1.MAIN2ACTIVITY");
-    			//startActivity(openMain2Activity);            				
+    			public void onClick(View v) {
+                	
+            	buttonSound1.start();
+            	
+            	//Intent openMainActivity2 = new Intent("com.nedswebsite.ktog.MAINACTIVITY2");
+            	//startActivity(openMainActivity2);
+            	Toast.makeText(MainActivity1.this,"Multi-player not working yet :(", Toast.LENGTH_LONG).show();
+            	            				
     			}
     		});
     		
@@ -349,7 +366,8 @@ public class MainActivity1 extends ActionBarActivity {
     		onePlayerButton.setOnClickListener(new View.OnClickListener() {
                 @Override
     			public void onClick(View v) {    			                    	
-            	buttonSound1.start();            	
+            	buttonSound1.start();
+            	//stopService(svc);
             	AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity1.this);
 
             	alert.setTitle("KtOG");
@@ -396,6 +414,8 @@ public class MainActivity1 extends ActionBarActivity {
     	    					ArrayOfAvatars.avatar[0] = "stonedead";
     	    				}
     	    				
+    	    				stopService(svc);
+    	    				
     	    				Intent openMainActivity2 = new Intent("com.nedswebsite.ktog.MAINACTIVITY2");
     	                	startActivity(openMainActivity2);
             	  		}
@@ -419,14 +439,14 @@ public class MainActivity1 extends ActionBarActivity {
     		
     		multiPlayerButton.setOnClickListener(new View.OnClickListener() {
                 @Override
-    			public void onClick(View v) {    			                    	
-            	buttonSound1.start();            	
-            	Intent openMainActivity2 = new Intent("com.nedswebsite.ktog.MAINACTIVITY2");
-            	startActivity(openMainActivity2);
-            	//Toast.makeText(MainActivity1.this,"Multi-player button is working!!", Toast.LENGTH_LONG).show();
-            	//USE THIS WHEN READY??:
-            	//Intent openMain2Activity = new Intent("com.example.ktog1.MAIN2ACTIVITY");
-    			//startActivity(openMain2Activity);            				
+                public void onClick(View v) {
+                	
+                buttonSound1.start();
+                	
+                //Intent openMainActivity2 = new Intent("com.nedswebsite.ktog.MAINACTIVITY2");
+                //startActivity(openMainActivity2);
+                Toast.makeText(MainActivity1.this,"Multi-player not working yet :(", Toast.LENGTH_LONG).show();
+                	             				
     			}
     		});
     		

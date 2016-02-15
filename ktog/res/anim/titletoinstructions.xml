@@ -10,9 +10,8 @@
     <item android:drawable="@drawable/title2andktog6" android:duration="100" />
     <item android:drawable="@drawable/title2andktog7" android:duration="100" />
     <item android:drawable="@drawable/title2andktog8" android:duration="100" />
-    <item android:drawable="@drawable/title2andktog9" android:duration="100" />
+    <item android:drawable="@drawable/title2andktog9" android:duration="100" />    
     
-    <item android:drawable="@drawable/title2andquickinstructions9" android:duration="100" />
     <item android:drawable="@drawable/title2andquickinstructions8" android:duration="100" />
     <item android:drawable="@drawable/title2andquickinstructions7" android:duration="100" />
     <item android:drawable="@drawable/title2andquickinstructions6" android:duration="100" />

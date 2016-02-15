@@ -15,7 +15,7 @@ public class Badonk2SoundService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        player = MediaPlayer.create(this, R.raw.badonk2);
+        player = MediaPlayer.create(this, R.raw.badonk2b);
         player.setLooping(true); // Set looping
         player.setVolume(100,100);
 

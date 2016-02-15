@@ -47,21 +47,14 @@ public class MainActivity2 extends ActionBarActivity {
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
 		
 		setContentView(R.layout.activity_main_activity2);		
-		
-		getWindow().getDecorView().setBackgroundColor(Color.BLACK);
 		// For the little space between the action & attack button.
+		getWindow().getDecorView().setBackgroundColor(Color.BLACK);		
 		
 		
-		// Sounds stuff:
-		//final MediaPlayer activityOpeningSound = MediaPlayer.create(MainActivity2.this, R.raw.buttonsound6);
-		//activityOpeningSound.start();
-		
-		final Intent svc=new Intent(this, Badonk2SoundService.class);
-		stopService(svc);
-			
-			
-		final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
-		centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+		// Sounds stuff:		
+		//final Intent svc=new Intent(this, Badonk2SoundService.class);
+		//stopService(svc);			
+				
 		
 		TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);
 		// Text not centered for the human player so inserted spaces.
@@ -99,22 +92,12 @@ public class MainActivity2 extends ActionBarActivity {
 		//final Thread myInitiativeNotStartedThread = new Thread(myInitiativeNotStartedRunnable);
 		//final Thread myInitiativeIsStartedThread = new Thread(myInitiativeIsStartedRunnable);
 		
-		unfoldScrolls();
+		//unfoldScrolls();
 		//myPreInitiativeScrollsThread.start();		
 		
-		final Handler h = new Handler();
-  	  	h.postDelayed(new Runnable() {
-
-  	  		@Override
-  	  		public void run()
-  	  		{  	  			
-	  	  		centerscrolltext.setVisibility(View.VISIBLE);
-	  			centerscrolltext.append("Welcome, " + ArrayOfPlayers.player[0] + ".");	  			
-  	  		}
-
-  	  	}, 5025);
+		
   	  	
-		preInitiativeTitle();
+		//preInitiativeTitle();
 		//myPreInitiativeTitleThread.start();
 		
 		
@@ -137,6 +120,54 @@ public class MainActivity2 extends ActionBarActivity {
 		});
 	}
 	
+	@Override
+    protected void onResume() {
+        super.onResume();        
+        
+        // More sounds stuff:        
+        final MediaPlayer activityOpeningSound = MediaPlayer.create(MainActivity2.this, R.raw.buttonsound6);
+		activityOpeningSound.start();
+        
+        unfoldScrolls();
+        preInitiativeTitle();
+        
+        final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+		centerscrolltext.setMovementMethod(new ScrollingMovementMethod());
+		
+		final Handler h1 = new Handler();
+  	  	h1.postDelayed(new Runnable() {
+
+  	  		@Override
+  	  		public void run()
+  	  		{  	  			
+	  	  		centerscrolltext.setVisibility(View.VISIBLE);
+	  			centerscrolltext.append("> Welcome, " + ArrayOfPlayers.player[0] + ".");
+	  			
+	  			final Handler h2 = new Handler();
+	  	  	  	h2.postDelayed(new Runnable() {
+
+	  	  	  		@Override
+	  	  	  		public void run()
+	  	  	  		{  	  			
+	  		  	  		centerscrolltext.setVisibility(View.VISIBLE);
+	  		  			centerscrolltext.append("\n" + "> Please slide the die to see who goes first..");
+	  		  			
+		  		  		final Handler h3 = new Handler();
+			  	  	  	h3.postDelayed(new Runnable() {
+	
+			  	  	  		@Override
+			  	  	  		public void run()
+			  	  	  		{  	  			
+			  		  	  		sixSidedRollFromLeft();
+			  	  	  		}	
+			  	  	  	}, 2000);			  	  	  	
+	  	  	  		}
+	  	  	  	}, 2000);
+  	  		}
+  	  	}, 2000);		
+		
+    }
+	
 	
 	//===================================================================================================
 	//===================================================================================================
@@ -146,21 +177,24 @@ public class MainActivity2 extends ActionBarActivity {
 	@Override
     public void onBackPressed() {
 			
-			Arrays.fill(ArrayOfPlayers.player, null);
-			Arrays.fill(ArrayOfAvatars.avatar, null);
-			
-            super.onBackPressed();
-            this.finish();
+		Arrays.fill(ArrayOfPlayers.player, null);
+		Arrays.fill(ArrayOfAvatars.avatar, null);
+	
+		final Intent svc=new Intent(this, Badonk2SoundService.class);
+		startService(svc);
+	
+		super.onBackPressed();
+		this.finish();
     }
 	
 	public void unfoldScrolls () {
 		
 		// Setting up scroll frame animation.
-		ImageView img1 = (ImageView)findViewById(R.id.scrollanimation);
-		img1.setBackgroundResource(R.drawable.scrollanimationup);
+		ImageView img = (ImageView)findViewById(R.id.scrollanimation);
+		img.setBackgroundResource(R.drawable.scrollanimationup);
 	
 		// Get the background, which has been compiled to an AnimationDrawable object.
-		AnimationDrawable frameAnimation = (AnimationDrawable) img1.getBackground();
+		AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
 					
 		// Start the animation.
 		frameAnimation.stop();
@@ -169,7 +203,7 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	public void preInitiativeTitle() {	
   	
-		final ImageView img = (ImageView)findViewById(R.id.titleanimation);		
+		ImageView img = (ImageView)findViewById(R.id.titleanimation);		
 		img.setBackgroundResource(R.drawable.titleanimationpreinitiative);
   	  
   	  	// Get the background, which has been compiled to an AnimationDrawable object.
@@ -177,7 +211,23 @@ public class MainActivity2 extends ActionBarActivity {
 		
   	  	// Animation is just 1 slide so user can see title.
   	  	frameAnimation.stop();
-  	  	frameAnimation.start();  	  	
+  	  	frameAnimation.start();
+	}
+	
+	public void sixSidedRollFromLeft() {	
+	  	
+		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+		img.setBackgroundResource(R.drawable.sixsidedrollfromleftanimation);
+  	  
+  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+		
+  	  	final MediaPlayer dieRolling = MediaPlayer.create(MainActivity2.this, R.raw.dierolling3b);
+  	  	dieRolling.start();
+  	  	
+  	  	// Animation is just 1 slide so user can see title.
+  	  	frameAnimation.stop();
+  	  	frameAnimation.start();
 	}
 	
 	/*
@@ -229,30 +279,30 @@ public class MainActivity2 extends ActionBarActivity {
 	      }
 	};
 	*/
-	public void myInitiativeNotStarted() {	      
+	public void myInitiativeNotStarted() {
 	    	  
-	    	  final ImageView img = (ImageView)findViewById(R.id.titleanimation);		
-	    	  img.setBackgroundResource(R.drawable.titleanimationnoinitiative);
-	    	  
-	    	  // Get the background, which has been compiled to an AnimationDrawable object.
-	    	  final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
-			
-	    	  // Animation is just 1 slide so user can see title.
-	    	  frameAnimation.stop();
-	    	  frameAnimation.start();	      
+		final ImageView img = (ImageView)findViewById(R.id.titleanimation);		
+		img.setBackgroundResource(R.drawable.titleanimationnoinitiative);
+  
+		// Get the background, which has been compiled to an AnimationDrawable object.
+		final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+
+		// Animation is just 1 slide so user can see title.
+		frameAnimation.stop();
+		frameAnimation.start();	      
 	}
 	
 	public void  myInitiativeIsStarted() {	      
 	    	  
-	    	  final ImageView img1 = (ImageView)findViewById(R.id.titleanimation);		
-	    	  img1.setBackgroundResource(R.drawable.titleanimationyesinitiative);
-	    	  
-	    	  // Get the background, which has been compiled to an AnimationDrawable object.
-	    	  final AnimationDrawable frameAnimation1 = (AnimationDrawable) img1.getBackground();
-			
-	    	  // Animation is just 1 slide so user can see title.
-	    	  frameAnimation1.stop();
-	    	  frameAnimation1.start();	      
+		final ImageView img = (ImageView)findViewById(R.id.titleanimation);		
+		img.setBackgroundResource(R.drawable.titleanimationyesinitiative);
+  
+		// Get the background, which has been compiled to an AnimationDrawable object.
+		final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+
+		// Animation is just 1 slide so user can see title.
+		frameAnimation.stop();
+		frameAnimation.start();	      
 	}
 	
 	
