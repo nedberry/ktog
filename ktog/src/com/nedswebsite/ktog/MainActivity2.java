@@ -48,12 +48,7 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		setContentView(R.layout.activity_main_activity2);		
 		// For the little space between the action & attack button.
-		getWindow().getDecorView().setBackgroundColor(Color.BLACK);		
-		
-		
-		// Sounds stuff:		
-		//final Intent svc=new Intent(this, Badonk2SoundService.class);
-		//stopService(svc);			
+		getWindow().getDecorView().setBackgroundColor(Color.BLACK);				
 				
 		
 		TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);
@@ -78,28 +73,9 @@ public class MainActivity2 extends ActionBarActivity {
 		else if (ArrayOfAvatars.avatar[0].equals("stonedead")){
 			crossedswords2.setVisibility(View.INVISIBLE);
 			computerAvatar.setVisibility(View.INVISIBLE);
-		}
+		}		
 		
-		
-		
-		
-		//showTitle();
-		
-		ArrayIsInitiativeStarted.isinitiativestarted[0] = "no";
-		
-		//final Thread myPreInitiativeScrollsThread = new Thread(myPreInitiativeScrollsRunnable);
-		//final Thread myPreInitiativeTitleThread = new Thread(myPreInitiativeTitleRunnable);
-		//final Thread myInitiativeNotStartedThread = new Thread(myInitiativeNotStartedRunnable);
-		//final Thread myInitiativeIsStartedThread = new Thread(myInitiativeIsStartedRunnable);
-		
-		//unfoldScrolls();
-		//myPreInitiativeScrollsThread.start();		
-		
-		
-  	  	
-		//preInitiativeTitle();
-		//myPreInitiativeTitleThread.start();
-		
+		ArrayIsInitiativeStarted.isinitiativestarted[0] = "no";		
 		
 		final ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
 		
@@ -113,9 +89,7 @@ public class MainActivity2 extends ActionBarActivity {
             	
             	else if (ArrayIsInitiativeStarted.isinitiativestarted[0].equals("yes")) {
             		myInitiativeIsStarted();            		
-            	}
-            	
-            	//animateTitle();       	
+            	}            	       	
 			}	            
 		});
 	}
@@ -150,26 +124,18 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  		public void run()
 	  	  	  		{  	  			
 	  		  	  		centerscrolltext.setVisibility(View.VISIBLE);
-	  		  			centerscrolltext.append("\n" + "> Please slide the die to see who goes first..");
+	  		  			centerscrolltext.append("\n" + "> Please slide the die to see who goes first...");
 	  		  			
-		  		  		final Handler h3 = new Handler();
-			  	  	  	h3.postDelayed(new Runnable() {
-	
-			  	  	  		@Override
-			  	  	  		public void run()
-			  	  	  		{  	  			
-			  		  	  		sixSidedRollFromLeft();
-			  	  	  		}	
-			  	  	  	}, 2000);			  	  	  	
+	  		  			sixSidedRollFromLeft();		  		  					  	  	  	
 	  	  	  		}
-	  	  	  	}, 2000);
+	  	  	  	}, 4000);
   	  		}
   	  	}, 2000);		
-		
     }
 	
 	
 	//===================================================================================================
+	// SEPERATOR
 	//===================================================================================================
 	
 	
@@ -228,57 +194,8 @@ public class MainActivity2 extends ActionBarActivity {
   	  	// Animation is just 1 slide so user can see title.
   	  	frameAnimation.stop();
   	  	frameAnimation.start();
-	}
+	}	
 	
-	/*
-	final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);	
-	Runnable myPreInitiativeScrollsRunnable = new Runnable() {
-	      @Override
-	      public void run() {
-	    	  
-	    	// Setting up scroll frame animation.
-	  		ImageView img = (ImageView)findViewById(R.id.scrollanimation);
-	  		img.setBackgroundResource(R.drawable.scrollanimationup);
-	  	
-	  		// Get the background, which has been compiled to an AnimationDrawable object.
-	  		AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
-	  					
-	  		// Start the animation.
-	  		frameAnimation.stop();
-	  		frameAnimation.start();	  		
-	  		
-	  		final Handler h = new Handler();
-	  		h.postDelayed(new Runnable() {
-
-	          	@Override
-	          	public void run()
-	          	{  
-	          		centerscrolltext.setVisibility(View.VISIBLE);
-	  				centerscrolltext.append("Welcome, " + ArrayOfPlayers.player[0] + ".");				        						        						        		 			        						        	
-	  			}
-	  		}, 2700);
-	                  
-	      }
-	};
-	*/
-	/*
-	Runnable myPreInitiativeTitleRunnable = new Runnable() {
-	      @Override
-	      public void run() {
-	    	  
-	    	  final ImageView img1 = (ImageView)findViewById(R.id.titleanimation);		
-	    	  img1.setBackgroundResource(R.drawable.titleanimationpreinitiative);
-	    	  
-	    	  // Get the background, which has been compiled to an AnimationDrawable object.
-	    	  final AnimationDrawable frameAnimation1 = (AnimationDrawable) img1.getBackground();
-			
-	    	  // Animation is just 1 slide so user can see title.
-	    	  frameAnimation1.stop();
-	    	  frameAnimation1.start();
-	                     
-	      }
-	};
-	*/
 	public void myInitiativeNotStarted() {
 	    	  
 		final ImageView img = (ImageView)findViewById(R.id.titleanimation);		
@@ -303,47 +220,6 @@ public class MainActivity2 extends ActionBarActivity {
 		// Animation is just 1 slide so user can see title.
 		frameAnimation.stop();
 		frameAnimation.start();	      
-	}
-	
-	
-	/*
-	public void showTitle() {
-		
-		final ImageView img1 = (ImageView)findViewById(R.id.titleanimation);		
-		img1.setBackgroundResource(R.drawable.showtitle);		
-		
-		// Get the background, which has been compiled to an AnimationDrawable object.
-		final AnimationDrawable frameAnimation1 = (AnimationDrawable) img1.getBackground();
-		
-		// Animation is just 1 slide so user can see title.
-    	frameAnimation1.stop();
-    	frameAnimation1.start();
-    	
-    	// Animation to show user quick instructions.
-    	final Handler h = new Handler();
-		h.postDelayed(new Runnable() {
-
-        	@Override
-        	public void run()
-        	{  
-        		animateTitle();				        						        						        		 			        						        	
-			}
-
-        }, 2700);
 	}	
-	
-	public void animateTitle() {
-		
-		final ImageView img1 = (ImageView)findViewById(R.id.titleanimation);		
-		img1.setBackgroundResource(R.drawable.titleanimation);		
-		
-		// Get the background, which has been compiled to an AnimationDrawable object.
-		final AnimationDrawable frameAnimation1 = (AnimationDrawable) img1.getBackground();
-		
-    	frameAnimation1.stop();
-    	frameAnimation1.start();
-	}
-	*/
-	
 	
 }

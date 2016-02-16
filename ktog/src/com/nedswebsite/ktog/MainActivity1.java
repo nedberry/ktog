@@ -180,7 +180,13 @@ public class MainActivity1 extends ActionBarActivity {
 			//startActivity(openMain2Activity);        				
 			}
 		});
-	}	
+	}
+	
+	
+	//===================================================================================================
+	// SEPERATOR
+	//===================================================================================================
+	
 	
 	@Override
     public void onBackPressed() {
