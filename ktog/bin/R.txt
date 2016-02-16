@@ -386,8 +386,6 @@ int id imageviewavatarleft1 0x7f060050
 int id imageviewavatarleft2 0x7f06004f
 int id imageviewavatarright 0x7f06004e
 int id imageviewcenterscroll 0x7f06004b
-int id imageviewhitpointsleft 0x7f060042
-int id imageviewhitpointsright 0x7f060048
 int id imageviewmessageleft 0x7f060045
 int id imageviewmessageright 0x7f06004a
 int id imageviewplayerbox4left 0x7f060043
@@ -425,6 +423,8 @@ int id split_action_bar 0x7f06001e
 int id submit_area 0x7f060039
 int id tabMode 0x7f060002
 int id textviewcenterscrolltext 0x7f060052
+int id textviewhitpointsleft 0x7f060042
+int id textviewhitpointsright 0x7f060048
 int id textviewnameleft 0x7f060041
 int id textviewnameright 0x7f060047
 int id title 0x7f06002b

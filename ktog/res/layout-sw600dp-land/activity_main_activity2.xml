@@ -24,13 +24,16 @@
         android:textSize="25sp"
         android:textStyle="bold" />    
 
-    <ImageView
-        android:id="@+id/imageviewhitpointsleft"
+    <TextView
+        android:id="@+id/textviewhitpointsleft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/imageviewplayerbox4left"
         android:layout_toLeftOf="@+id/imagebuttontitleblank"
-        android:background="@drawable/hitpointsleft" />
+        android:background="@drawable/hitpointsleft"
+        android:gravity="top|center"
+        android:textSize="50sp"
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/imageviewplayerbox4left"
@@ -70,13 +73,16 @@
         android:textSize="25sp"
         android:textStyle="bold" />
 
-    <ImageView
-        android:id="@+id/imageviewhitpointsright"
+    <TextView
+        android:id="@+id/textviewhitpointsright"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/imageviewplayerbox4right"
         android:layout_alignParentRight="true"
-        android:background="@drawable/hitpointsright" />
+        android:background="@drawable/hitpointsright"
+        android:gravity="center|center"
+        android:textSize="50sp"
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/imageviewplayerbox4right"

@@ -1231,8 +1231,6 @@ containing a value of this type.
         public static final int imageviewavatarleft2=0x7f06004f;
         public static final int imageviewavatarright=0x7f06004e;
         public static final int imageviewcenterscroll=0x7f06004b;
-        public static final int imageviewhitpointsleft=0x7f060042;
-        public static final int imageviewhitpointsright=0x7f060048;
         public static final int imageviewmessageleft=0x7f060045;
         public static final int imageviewmessageright=0x7f06004a;
         public static final int imageviewplayerbox4left=0x7f060043;
@@ -1270,6 +1268,8 @@ containing a value of this type.
         public static final int submit_area=0x7f060039;
         public static final int tabMode=0x7f060002;
         public static final int textviewcenterscrolltext=0x7f060052;
+        public static final int textviewhitpointsleft=0x7f060042;
+        public static final int textviewhitpointsright=0x7f060048;
         public static final int textviewnameleft=0x7f060041;
         public static final int textviewnameright=0x7f060047;
         public static final int title=0x7f06002b;

@@ -30,7 +30,8 @@ public class MainActivity2 extends ActionBarActivity {
 	ImageView crossedswords2;
 	ImageView stonedead2;
 	ImageView titleimageview;
-	ImageView instructionsimageview;
+	ImageView instructionsimageview;	
+	
 	
 	
 	@Override
@@ -57,6 +58,14 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		TextView computerNameTextView = (TextView)findViewById(R.id.textviewnameright);
 		computerNameTextView.setText(ArrayOfPlayers.player[1]);		
+		
+		ArrayOfHitPoints.hitpoints[0] = 20;		
+		TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+		playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+		
+		ArrayOfHitPoints.hitpoints[1] = 20;
+		TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+		computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
 		
 		computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft0);
 		crossedswords2 = (ImageView) findViewById(R.id.imageviewavatarleft1);
@@ -123,10 +132,19 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  		@Override
 	  	  	  		public void run()
 	  	  	  		{  	  			
-	  		  	  		centerscrolltext.setVisibility(View.VISIBLE);
-	  		  			centerscrolltext.append("\n" + "> Please slide the die to see who goes first...");
+	  		  	  		sixSidedRollFromLeft();
 	  		  			
-	  		  			sixSidedRollFromLeft();		  		  					  	  	  	
+		  		  		final Handler h3 = new Handler();
+			  	  	  	h3.postDelayed(new Runnable() {
+	
+			  	  	  		@Override
+			  	  	  		public void run()
+			  	  	  		{  	  			
+			  		  	  		centerscrolltext.setVisibility(View.VISIBLE);
+			  		  			centerscrolltext.append("\n" + "> Please slide the die to see who goes first...");
+			  		  			
+			  	  	  		}
+			  	  	  	}, 1000);
 	  	  	  		}
 	  	  	  	}, 4000);
   	  		}
