@@ -30,8 +30,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/imageviewplayerbox4left"
         android:layout_toLeftOf="@+id/imagebuttontitleblank"
-        android:background="@drawable/hitpointsleft"
-        android:gravity="top|center"
+        android:background="@drawable/hitpointsleftcopy"
+        android:gravity="center|center"
         android:textSize="50sp"
         android:textStyle="bold" />
 
@@ -79,7 +79,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/imageviewplayerbox4right"
         android:layout_alignParentRight="true"
-        android:background="@drawable/hitpointsright"
+        android:background="@drawable/hitpointsrightcopy"
         android:gravity="center|center"
         android:textSize="50sp"
         android:textStyle="bold" />
