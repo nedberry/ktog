@@ -4,12 +4,11 @@ int anim abc_slide_in_bottom 0x7f040002
 int anim abc_slide_in_top 0x7f040003
 int anim abc_slide_out_bottom 0x7f040004
 int anim abc_slide_out_top 0x7f040005
-int anim instructionstotitle 0x7f040006
+int anim anim_alpha_text 0x7f040006
 int anim left_in 0x7f040007
 int anim left_out 0x7f040008
 int anim right_in 0x7f040009
 int anim right_out 0x7f04000a
-int anim titletoinstructions 0x7f04000b
 int attr actionBarDivider 0x7f01000f
 int attr actionBarItemBackground 0x7f010010
 int attr actionBarSize 0x7f01000e

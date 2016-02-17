@@ -107,6 +107,8 @@ public class MainActivity2 extends ActionBarActivity {
     protected void onResume() {
         super.onResume();        
         
+        final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+        
         // More sounds stuff:        
         final MediaPlayer activityOpeningSound = MediaPlayer.create(MainActivity2.this, R.raw.buttonsound6);
 		activityOpeningSound.start();
@@ -123,7 +125,8 @@ public class MainActivity2 extends ActionBarActivity {
   	  		@Override
   	  		public void run()
   	  		{  	  			
-	  	  		centerscrolltext.setVisibility(View.VISIBLE);
+  	  			centerscrolltext.setVisibility(View.VISIBLE);
+  	  			centerscrolltext.startAnimation(animAlphaText);
 	  			centerscrolltext.append("> Welcome, " + ArrayOfPlayers.player[0] + ".");
 	  			
 	  			final Handler h2 = new Handler();
@@ -141,6 +144,7 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  		public void run()
 			  	  	  		{  	  			
 			  		  	  		centerscrolltext.setVisibility(View.VISIBLE);
+			  		  	  		centerscrolltext.startAnimation(animAlphaText);
 			  		  			centerscrolltext.append("\n" + "> Please slide the die to see who goes first...");
 			  		  			
 			  	  	  		}
