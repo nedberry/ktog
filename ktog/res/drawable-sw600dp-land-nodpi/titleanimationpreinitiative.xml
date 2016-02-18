@@ -22,13 +22,13 @@
     <item android:drawable="@drawable/title2andktog8" android:duration="75" />
     <item android:drawable="@drawable/title2andktog9" android:duration="75" />    
     
-    <item android:drawable="@drawable/determineinitiative8" android:duration="75" />
-    <item android:drawable="@drawable/determineinitiative7" android:duration="75" />
-    <item android:drawable="@drawable/determineinitiative6" android:duration="75" />
-    <item android:drawable="@drawable/determineinitiative5" android:duration="75" />
-    <item android:drawable="@drawable/determineinitiative4" android:duration="75" />
-    <item android:drawable="@drawable/determineinitiative3" android:duration="75" />
-    <item android:drawable="@drawable/determineinitiative2" android:duration="75" />
-    <item android:drawable="@drawable/determineinitiative1" android:duration="75" />    
+    <item android:drawable="@drawable/initiative8" android:duration="75" />
+    <item android:drawable="@drawable/initiative7" android:duration="75" />
+    <item android:drawable="@drawable/initiative6" android:duration="75" />
+    <item android:drawable="@drawable/initiative5" android:duration="75" />
+    <item android:drawable="@drawable/initiative4" android:duration="75" />
+    <item android:drawable="@drawable/initiative3" android:duration="75" />
+    <item android:drawable="@drawable/initiative2" android:duration="75" />
+    <item android:drawable="@drawable/initiative1" android:duration="75" />    
 
 </animation-list>

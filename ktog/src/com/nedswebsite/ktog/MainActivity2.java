@@ -5,6 +5,7 @@ import java.util.Arrays;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
 import android.os.Build;
@@ -52,19 +53,25 @@ public class MainActivity2 extends ActionBarActivity {
 		getWindow().getDecorView().setBackgroundColor(Color.BLACK);				
 				
 		
+		Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/Anaheim-Regular.ttf");
+		
 		TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);
 		// Text not centered for the human player so inserted spaces.
+		playerNameTextView.setTypeface(typeFace);
 		playerNameTextView.setText("  " + ArrayOfPlayers.player[0]);
 		
 		TextView computerNameTextView = (TextView)findViewById(R.id.textviewnameright);
+		computerNameTextView.setTypeface(typeFace);
 		computerNameTextView.setText(ArrayOfPlayers.player[1]);		
 		
 		ArrayOfHitPoints.hitpoints[0] = 20;		
 		TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+		playerHitPointsTextView.setTypeface(typeFace);
 		playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
 		
 		ArrayOfHitPoints.hitpoints[1] = 20;
 		TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+		computerHitPointsTextView.setTypeface(typeFace);
 		computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
 		
 		computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft0);
@@ -101,13 +108,8 @@ public class MainActivity2 extends ActionBarActivity {
             	}            	       	
 			}	            
 		});
-	}
-	
-	@Override
-    protected void onResume() {
-        super.onResume();        
-        
-        final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+		
+		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
         
         // More sounds stuff:        
         final MediaPlayer activityOpeningSound = MediaPlayer.create(MainActivity2.this, R.raw.buttonsound6);
@@ -118,6 +120,9 @@ public class MainActivity2 extends ActionBarActivity {
         
         final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 		centerscrolltext.setMovementMethod(new ScrollingMovementMethod());
+		
+		//Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/Anaheim-Regular.ttf");
+		centerscrolltext.setTypeface(typeFace);
 		
 		final Handler h1 = new Handler();
   	  	h1.postDelayed(new Runnable() {
@@ -152,8 +157,13 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  		}
 	  	  	  	}, 4000);
   	  		}
-  	  	}, 2000);		
-    }
+  	  	}, 2000);
+	}
+	
+	        
+        
+        		
+    
 	
 	
 	//===================================================================================================

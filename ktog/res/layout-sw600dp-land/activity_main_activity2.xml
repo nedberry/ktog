@@ -22,7 +22,7 @@
         android:background="@drawable/nameleft3"
         android:gravity="bottom|center"
         android:textSize="25sp"
-        android:textStyle="bold" />    
+        android:textColor="#FFFFFF" />    
 
     <TextView
         android:id="@+id/textviewhitpointsleft"
@@ -33,6 +33,7 @@
         android:background="@drawable/hitpointsleftcopy"
         android:gravity="center|center"
         android:textSize="50sp"
+        android:textColor="#FFFFFF"
         android:textStyle="bold" />
 
     <ImageView
@@ -71,7 +72,7 @@
         android:background="@drawable/nameright"
         android:gravity="bottom|center"
         android:textSize="25sp"
-        android:textStyle="bold" />
+        android:textColor="#FFFFFF" />
 
     <TextView
         android:id="@+id/textviewhitpointsright"
@@ -82,6 +83,7 @@
         android:background="@drawable/hitpointsrightcopy"
         android:gravity="center|center"
         android:textSize="50sp"
+        android:textColor="#FFFFFF"
         android:textStyle="bold" />
 
     <ImageView
@@ -193,8 +195,8 @@
         android:gravity="bottom"       
         android:scrollbars="vertical"
         android:textSize="20sp"
-        android:lineSpacingExtra="10dp"
-        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:lineSpacingExtra="5dp"
         android:paddingTop="20dp"
         android:paddingRight="20dp"
         android:paddingLeft="20dp"
