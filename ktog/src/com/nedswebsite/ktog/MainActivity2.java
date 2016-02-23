@@ -53,7 +53,7 @@ public class MainActivity2 extends ActionBarActivity {
 		getWindow().getDecorView().setBackgroundColor(Color.BLACK);				
 				
 		
-		Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/Anaheim-Regular.ttf");
+		Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 		
 		TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);
 		// Text not centered for the human player so inserted spaces.
