@@ -2,33 +2,33 @@
 <animation-list xmlns:android="http://schemas.android.com/apk/res/android"
     android:oneshot="true" >    
         
-    <item android:drawable="@drawable/title2andktog1" android:duration="75" />    
-    <item android:drawable="@drawable/title2andktog2" android:duration="75" />
-    <item android:drawable="@drawable/title2andktog3" android:duration="75" />
-    <item android:drawable="@drawable/title2andktog4" android:duration="75" />
-    <item android:drawable="@drawable/title2andktog5" android:duration="75" />
-    <item android:drawable="@drawable/title2andktog6" android:duration="75" />
-    <item android:drawable="@drawable/title2andktog7" android:duration="75" />
-    <item android:drawable="@drawable/title2andktog8" android:duration="75" />
-    <item android:drawable="@drawable/title2andktog9" android:duration="75" />
+    <item android:drawable="@drawable/title1" android:duration="75" />    
+    <item android:drawable="@drawable/title2" android:duration="75" />
+    <item android:drawable="@drawable/title3" android:duration="75" />
+    <item android:drawable="@drawable/title4" android:duration="75" />
+    <item android:drawable="@drawable/title5" android:duration="75" />
+    <item android:drawable="@drawable/title6" android:duration="75" />
+    <item android:drawable="@drawable/title7" android:duration="75" />
+    <item android:drawable="@drawable/title8" android:duration="75" />
+    <item android:drawable="@drawable/scrollclosed" android:duration="75" />
     
-    <item android:drawable="@drawable/title2andquickinstructions8" android:duration="75" />
-    <item android:drawable="@drawable/title2andquickinstructions7" android:duration="75" />
-    <item android:drawable="@drawable/title2andquickinstructions6" android:duration="75" />
-    <item android:drawable="@drawable/title2andquickinstructions5" android:duration="75" />
-    <item android:drawable="@drawable/title2andquickinstructions4" android:duration="75" />
-    <item android:drawable="@drawable/title2andquickinstructions3" android:duration="75" />
-    <item android:drawable="@drawable/title2andquickinstructions2" android:duration="75" />
+    <item android:drawable="@drawable/quickinstructions8" android:duration="75" />
+    <item android:drawable="@drawable/quickinstructions7" android:duration="75" />
+    <item android:drawable="@drawable/quickinstructions6" android:duration="75" />
+    <item android:drawable="@drawable/quickinstructions5" android:duration="75" />
+    <item android:drawable="@drawable/quickinstructions4" android:duration="75" />
+    <item android:drawable="@drawable/quickinstructions3" android:duration="75" />
+    <item android:drawable="@drawable/quickinstructions2" android:duration="75" />
     
-    <item android:drawable="@drawable/title2andquickinstructions1" android:duration="10000" />    
+    <item android:drawable="@drawable/quickinstructions1" android:duration="10000" />    
     
-    <item android:drawable="@drawable/title2andquickinstructions2" android:duration="75" />
-    <item android:drawable="@drawable/title2andquickinstructions3" android:duration="75" />
-    <item android:drawable="@drawable/title2andquickinstructions4" android:duration="75" />
-    <item android:drawable="@drawable/title2andquickinstructions5" android:duration="75" />
-    <item android:drawable="@drawable/title2andquickinstructions6" android:duration="75" />
-    <item android:drawable="@drawable/title2andquickinstructions7" android:duration="75" />
-    <item android:drawable="@drawable/title2andquickinstructions8" android:duration="75" />
-    <item android:drawable="@drawable/title2andktog9" android:duration="75" />
+    <item android:drawable="@drawable/quickinstructions2" android:duration="75" />
+    <item android:drawable="@drawable/quickinstructions3" android:duration="75" />
+    <item android:drawable="@drawable/quickinstructions4" android:duration="75" />
+    <item android:drawable="@drawable/quickinstructions5" android:duration="75" />
+    <item android:drawable="@drawable/quickinstructions6" android:duration="75" />
+    <item android:drawable="@drawable/quickinstructions7" android:duration="75" />
+    <item android:drawable="@drawable/quickinstructions8" android:duration="75" />
+    <item android:drawable="@drawable/scrollclosed" android:duration="75" />
 
 </animation-list>
