@@ -154,7 +154,9 @@
         android:minHeight="60dp"
         android:textColor="#FFFFFF"
         android:textSize="50sp"
-         />
+        android:layout_marginTop="-5dp"
+		android:layout_marginBottom="-5dp" />
+    <!-- Use the neg. margin to shrink (& move closer to top) because font has white space on top & bottom?  -->
     
     <TextView
         android:id="@+id/textviewhitpointsright"
@@ -168,7 +170,9 @@
         android:minHeight="60dp"
         android:textColor="#FFFFFF"
         android:textSize="50sp"
-         />
+        android:layout_marginTop="-5dp"
+		android:layout_marginBottom="-5dp" />
+    <!-- Use the neg. margin to shrink (& move closer to top) because font has white space on top & bottom?  -->
     
     
     
@@ -187,7 +191,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"        
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"       
         android:background="@drawable/attack"
         android:cropToPadding="false"        
          /> 
@@ -229,7 +234,7 @@
         android:fadeScrollbars="false"
         android:gravity="bottom"
         android:lineSpacingExtra="5dp"
-        android:paddingBottom="50dp"
+        android:paddingBottom="40dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:paddingTop="20dp"
