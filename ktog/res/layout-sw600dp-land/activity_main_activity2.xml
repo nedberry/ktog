@@ -18,11 +18,13 @@
     <ImageButton
         android:id="@+id/imagebuttontitleblank"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"        
-        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/imageviewcenterscroll"
+        android:layout_alignLeft="@+id/imageviewcenterscroll"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/textviewhitpointsright"
         android:alpha="0"
-        android:background="@drawable/titleblank"
-         />
+        android:background="@drawable/titleblank" />
 
     <TextView
         android:id="@+id/textviewnameleft"
@@ -34,8 +36,7 @@
         android:gravity="bottom|center"
         android:minHeight="105dp"
         android:textColor="#FFFFFF"
-        android:textSize="25sp"
-         />
+        android:textSize="25sp" />
 
     <ImageView
         android:id="@+id/imageviewscroll3b5right"
@@ -147,32 +148,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/imageviewscroll3b5left"
         android:layout_below="@+id/imageviewhitpointsleft"
-        android:layout_toLeftOf="@+id/imagebuttontitleblank"
-        android:layout_toRightOf="@+id/imageviewcenterscroll"
+        android:layout_marginBottom="-5dp"
+        android:layout_marginTop="-5dp"        
         android:gravity="center|center"
         android:minHeight="60dp"
         android:textColor="#FFFFFF"
-        android:textSize="50sp"
-        android:layout_marginTop="-5dp"
-		android:layout_marginBottom="-5dp" />
-    <!-- Use the neg. margin to shrink (& move closer to top) because font has white space on top & bottom?  -->
+        android:textSize="50sp" />
+    	<!-- Use the neg. margin to shrink (& move closer to top) because font has white space on top & bottom?  -->
     
     <TextView
         android:id="@+id/textviewhitpointsright"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageviewhitpointsright"
+        android:layout_alignLeft="@+id/imageviewplayerbox4right"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/imageviewhitpointsright"
-        android:layout_toLeftOf="@+id/imageviewcenterscroll"
+        android:layout_marginBottom="-5dp"
+        android:layout_marginTop="-5dp"        
         android:gravity="center|center"
         android:minHeight="60dp"
         android:textColor="#FFFFFF"
-        android:textSize="50sp"
-        android:layout_marginTop="-5dp"
-		android:layout_marginBottom="-5dp" />
-    <!-- Use the neg. margin to shrink (& move closer to top) because font has white space on top & bottom?  -->
+        android:textSize="50sp" />
+    	<!-- Use the neg. margin to shrink (& move closer to top) because font has white space on top & bottom?  -->
     
     
     
@@ -220,7 +219,7 @@
    	    android:layout_width="wrap_content"
    	    android:layout_height="wrap_content"
    	    android:layout_above="@+id/imagebuttonaction"
-   	    android:layout_toRightOf="@+id/imageviewscroll3b5left"
+   	    android:layout_toRightOf="@+id/imageviewscroll3b5left"   	    
    	    android:background="@drawable/centerscroll" />
    	
    	<TextView
@@ -245,23 +244,17 @@
    	<ImageView
         android:id="@+id/scrollanimation"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true" />    
+        android:layout_height="match_parent" />    
     
    	<ImageView
         android:id="@+id/titleanimation"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true" />
+        android:layout_height="match_parent" />
     
    	<ImageView
         android:id="@+id/sixsidedanimation"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true" />
+        android:layout_height="match_parent" />
    	
    	
 

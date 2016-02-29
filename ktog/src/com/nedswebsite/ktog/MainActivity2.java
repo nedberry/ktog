@@ -55,10 +55,8 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 		
-		TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);
-		// Text not centered for the human player so inserted spaces.---- NO!!!!!!!!!!!!!??????
-		playerNameTextView.setTypeface(typeFace);
-		//playerNameTextView.setText("  " + ArrayOfPlayers.player[0]);
+		TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);		
+		playerNameTextView.setTypeface(typeFace);		
 		playerNameTextView.setText(ArrayOfPlayers.player[0]);
 		
 		TextView computerNameTextView = (TextView)findViewById(R.id.textviewnameright);
@@ -151,7 +149,7 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  		{  	  			
 			  		  	  		centerscrolltext.setVisibility(View.VISIBLE);
 			  		  	  		centerscrolltext.startAnimation(animAlphaText);
-			  		  			centerscrolltext.append("\n" + "> Please slide the die to see who goes first...");
+			  		  			centerscrolltext.append("\n" + "> Please slide the die...");
 			  		  			
 			  	  	  		}
 			  	  	  	}, 1000);
