@@ -151,6 +151,8 @@ public class MainActivity2 extends ActionBarActivity {
 			  		  	  		centerscrolltext.startAnimation(animAlphaText);
 			  		  			centerscrolltext.append("\n" + "> Please slide the die...");
 			  		  			
+			  		  			sixSidedFlare();
+			  		  			
 			  	  	  		}
 			  	  	  	}, 1000);
 	  	  	  		}
@@ -188,7 +190,7 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		// Setting up scroll frame animation.
 		ImageView img = (ImageView)findViewById(R.id.scrollanimation);
-		img.setBackgroundResource(R.drawable.scrollanimationup);
+		img.setBackgroundResource(R.anim.scrollanimationup);
 	
 		// Get the background, which has been compiled to an AnimationDrawable object.
 		AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -201,7 +203,7 @@ public class MainActivity2 extends ActionBarActivity {
 	public void preInitiativeTitle() {	
   	
 		ImageView img = (ImageView)findViewById(R.id.titleanimation);		
-		img.setBackgroundResource(R.drawable.titleanimationpreinitiative);
+		img.setBackgroundResource(R.anim.titleanimationpreinitiative);
   	  
   	  	// Get the background, which has been compiled to an AnimationDrawable object.
   	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -214,7 +216,7 @@ public class MainActivity2 extends ActionBarActivity {
 	public void sixSidedRollFromLeft() {	
 	  	
 		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
-		img.setBackgroundResource(R.drawable.sixsidedrollfromleftanimation);
+		img.setBackgroundResource(R.anim.sixsidedrollfromleftanimation);
   	  
   	  	// Get the background, which has been compiled to an AnimationDrawable object.
   	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -225,12 +227,28 @@ public class MainActivity2 extends ActionBarActivity {
   	  	// Animation is just 1 slide so user can see title.
   	  	frameAnimation.stop();
   	  	frameAnimation.start();
-	}	
+	}
+	
+	public void sixSidedFlare() {	
+	  	
+		ImageView img = (ImageView)findViewById(R.id.sixsidedflare);		
+		img.setBackgroundResource(R.anim.sixsidedflareanimation);
+  	  
+  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+		
+  	  	//final MediaPlayer dieRolling = MediaPlayer.create(MainActivity2.this, R.raw.dierolling3b);
+  	  	//dieRolling.start();
+  	  	
+  	  	// Animation is just 1 slide so user can see title.
+  	  	frameAnimation.stop();
+  	  	frameAnimation.start();
+	}
 	
 	public void myInitiativeNotStarted() {
 	    	  
 		final ImageView img = (ImageView)findViewById(R.id.titleanimation);		
-		img.setBackgroundResource(R.drawable.titleanimationnoinitiative);
+		img.setBackgroundResource(R.anim.titleanimationnoinitiative);
   
 		// Get the background, which has been compiled to an AnimationDrawable object.
 		final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -243,7 +261,7 @@ public class MainActivity2 extends ActionBarActivity {
 	public void  myInitiativeIsStarted() {	      
 	    	  
 		final ImageView img = (ImageView)findViewById(R.id.titleanimation);		
-		img.setBackgroundResource(R.drawable.titleanimationyesinitiative);
+		img.setBackgroundResource(R.anim.titleanimationyesinitiative);
   
 		// Get the background, which has been compiled to an AnimationDrawable object.
 		final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();

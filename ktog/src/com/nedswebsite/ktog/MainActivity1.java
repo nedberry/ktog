@@ -83,6 +83,7 @@ public class MainActivity1 extends ActionBarActivity {
         	// Set an EditText view to get user input:
         	final EditText input = new EditText(MainActivity1.this);
         	input.setSingleLine(true);
+        	// Limits to 1 line (clicking return is like clicking "ok".
         	alert.setView(input);
         	// Limits the number of characters entered to 14.
         	InputFilter[] FilterArray = new InputFilter[1];
