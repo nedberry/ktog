@@ -13,9 +13,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.text.method.ScrollingMovementMethod;
+import android.view.GestureDetector;
+import android.view.GestureDetector.OnGestureListener;
+import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -30,9 +35,8 @@ public class MainActivity2 extends ActionBarActivity {
 	ImageView computerAvatar;
 	ImageView crossedswords2;
 	ImageView stonedead2;
-	ImageView titleimageview;
-	ImageView instructionsimageview;	
-	
+		
+	ImageView sixsixrightleftrotateblank;
 	
 	
 	@Override
@@ -159,6 +163,21 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  	}, 4000);
   	  		}
   	  	}, 2000);
+  	  	
+  	  	sixsixrightleftrotateblank = (ImageView) findViewById(R.id.sixsidedblank);  	
+  	  	
+  	  	sixsixrightleftrotateblank.setOnTouchListener(new OnSwipeTouchListener(MainActivity2.this) {
+  	  		@Override
+  	  		public void onSwipeLeft() {
+  	  			Toast.makeText(MainActivity2.this, "LEFT", Toast.LENGTH_SHORT).show();
+  	  		}
+  	  		public void onSwipeRight() {
+	  			Toast.makeText(MainActivity2.this, "RIGHT", Toast.LENGTH_SHORT).show();
+	  		}
+  	  	});
+  	  	
+  	  	
+  
 	}
 	
 	        
@@ -170,7 +189,7 @@ public class MainActivity2 extends ActionBarActivity {
 	//===================================================================================================
 	// SEPERATOR
 	//===================================================================================================
-	
+		
 	
 	// Destroys data in arrays, and pro-actively cleans up memory (finish) for the user (good practice?).
 	@Override

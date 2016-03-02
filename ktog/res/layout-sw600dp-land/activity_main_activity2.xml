@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context="com.nedswebsite.ktog.MainActivity2"
      >
-
+       
     <ImageView
         android:id="@+id/imageviewscroll3b5left"
         android:layout_width="wrap_content"
@@ -239,7 +239,26 @@
         android:paddingTop="20dp"
         android:scrollbars="vertical"
         android:textColor="#FFFFFF"
-        android:textSize="25sp" />
+        android:textSize="25sp" /> 
+        
+   	
+   	<ImageButton
+   	    android:id="@+id/sixsidedblank"
+   	    android:layout_width="match_parent"
+   	    android:layout_height="match_parent"
+   	    android:layout_centerVertical="true"
+   	    android:layout_centerHorizontal="true"
+   	    android:layout_marginTop="482dp"
+   	    android:layout_marginBottom="482dp"
+   	    android:layout_marginLeft="814dp"
+   	    android:layout_marginRight="815dp"  	    
+   	    android:background="@drawable/sixsixrightleftrotateblank" 
+   	    android:clickable="true"
+		android:focusable="true"
+		android:focusableInTouchMode="true"/>
+   		<!-- Could not get imageview to match parent so had to use margins.  -->	
+   		
+   	   	
    	
    	<ImageView
         android:id="@+id/scrollanimation"
@@ -260,6 +279,11 @@
         android:id="@+id/sixsidedanimation"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+   	
+   	
+   	
+   	
+   	
    	
    	
 
