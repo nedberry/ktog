@@ -10,10 +10,10 @@ import android.widget.Toast;
 
 public class OnSwipeTouchListener implements OnTouchListener {
 
-	private final GestureDetector gestureDetector;
+	private final GestureDetector gestureDetector;	
 
     public OnSwipeTouchListener(Context context) {
-        gestureDetector = new GestureDetector(context, new GestureListener());
+        gestureDetector = new GestureDetector(context, new GestureListener());        
     }
 
     public void onSwipeLeft() {
@@ -22,7 +22,7 @@ public class OnSwipeTouchListener implements OnTouchListener {
     public void onSwipeRight() {
     }
 
-    public boolean onTouch(View v, MotionEvent event) {
+    public boolean onTouch(View v, MotionEvent event) {    	
         return gestureDetector.onTouchEvent(event);
     }
 

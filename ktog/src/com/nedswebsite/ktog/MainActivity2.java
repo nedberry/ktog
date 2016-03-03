@@ -32,10 +32,11 @@ import android.widget.Toast;
 
 public class MainActivity2 extends ActionBarActivity {			
 	
+	
 	ImageView computerAvatar;
 	ImageView crossedswords2;
 	ImageView stonedead2;
-		
+	
 	ImageView sixsixrightleftrotateblank;
 	
 	
@@ -94,8 +95,8 @@ public class MainActivity2 extends ActionBarActivity {
 			computerAvatar.setVisibility(View.INVISIBLE);
 		}		
 		
-		ArrayIsInitiativeStarted.isinitiativestarted[0] = "no";		
-		
+		ArrayIsInitiativeStarted.isinitiativestarted[0] = "no";
+				
 		final ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
 		
 		titleBlankButton.setOnClickListener(new View.OnClickListener() {
@@ -164,10 +165,11 @@ public class MainActivity2 extends ActionBarActivity {
   	  		}
   	  	}, 2000);
   	  	
-  	  	sixsixrightleftrotateblank = (ImageView) findViewById(R.id.sixsidedblank);  	
+  	  	sixsixrightleftrotateblank = (ImageView) findViewById(R.id.sixsidedanimation);  	  	
   	  	
   	  	sixsixrightleftrotateblank.setOnTouchListener(new OnSwipeTouchListener(MainActivity2.this) {
-  	  		@Override
+  	  	
+  	  		@Override  	  	
   	  		public void onSwipeLeft() {
   	  			Toast.makeText(MainActivity2.this, "LEFT", Toast.LENGTH_SHORT).show();
   	  		}
