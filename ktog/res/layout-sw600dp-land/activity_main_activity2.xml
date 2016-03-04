@@ -3,10 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.nedswebsite.ktog.MainActivity2"
-     >
-       
-    
+    tools:context="com.nedswebsite.ktog.MainActivity2" >    
     
     <ImageView
         android:id="@+id/imageviewscroll3b5left"
@@ -14,8 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:background="@drawable/leftscroll"
-         />
+        android:background="@drawable/leftscroll" />
 
     <ImageButton
         android:id="@+id/imagebuttontitleblank"
@@ -46,8 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:background="@drawable/rightscroll"
-         />
+        android:background="@drawable/rightscroll" />
 
     <TextView
         android:id="@+id/textviewnameright"
@@ -59,8 +54,10 @@
         android:gravity="bottom|center"
         android:minHeight="105dp"
         android:textColor="#FFFFFF"
-        android:textSize="25sp"
-         />
+        android:textSize="25sp" />
+    
+    
+    
 
     <RelativeLayout
         android:id="@+id/relativeLayout2"
@@ -68,8 +65,7 @@
         android:layout_height="205dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/imagebuttontitleblank"
-         >
+        android:layout_toRightOf="@+id/imagebuttontitleblank" >
 
         <ImageView
             android:id="@+id/imageviewavatarright"
@@ -78,9 +74,11 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:background="@drawable/computer"
-            android:gravity="center"
-             />
+            android:gravity="center" />        
     </RelativeLayout>
+    
+    
+    
 
     <RelativeLayout
         android:id="@+id/relativeLayout1"
@@ -88,8 +86,7 @@
         android:layout_height="205dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@+id/imagebuttontitleblank"
-         >
+        android:layout_toLeftOf="@+id/imagebuttontitleblank" >
 
         <ImageView
             android:id="@+id/imageviewavatarleft1"
@@ -98,8 +95,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:background="@drawable/computer"
-            android:gravity="center"
-             />
+            android:gravity="center" />
 
         <ImageView
             android:id="@+id/imageviewavatarleft2"
@@ -108,8 +104,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:background="@drawable/crossedswords2"
-            android:gravity="center"
-             />
+            android:gravity="center" />
 
         <ImageView
             android:id="@+id/imageviewavatarleft3"
@@ -118,10 +113,11 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:background="@drawable/stonedead2"
-            android:gravity="center"
-             />
-        
+            android:gravity="center" />        
     </RelativeLayout>
+    
+    
+    
 
     <ImageView
         android:id="@+id/imageviewhitpointsleft"
@@ -131,8 +127,7 @@
         android:layout_alignRight="@+id/textviewhitpointsleft"
         android:layout_below="@+id/relativeLayout1"
         android:layout_marginTop="10dp"
-        android:background="@drawable/hitpointsrightandleft"
-         />
+        android:background="@drawable/hitpointsrightandleft" />
 
     <ImageView
         android:id="@+id/imageviewhitpointsright"
@@ -142,8 +137,7 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/relativeLayout2"
         android:layout_marginTop="10dp"
-        android:background="@drawable/hitpointsrightandleft"
-         />
+        android:background="@drawable/hitpointsrightandleft" />
     
     <TextView
         android:id="@+id/textviewhitpointsleft"
@@ -174,6 +168,7 @@
         android:textColor="#FFFFFF"
         android:textSize="50sp" />
     	<!-- Use the neg. margin to shrink (& move closer to top) because font has white space on top & bottom?  -->
+    	
     
     
     
@@ -184,8 +179,7 @@
         android:layout_above="@+id/imagebuttonattack"
         android:layout_centerHorizontal="true"
         android:background="@drawable/action"
-        android:cropToPadding="false"
-         />
+        android:cropToPadding="false" />
     
     <ImageButton
         android:id="@+id/imagebuttonattack"
@@ -195,8 +189,10 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"       
         android:background="@drawable/attack"
-        android:cropToPadding="false"        
-         /> 
+        android:cropToPadding="false" />
+    
+    
+     
         
     <ImageView
         android:id="@+id/imageviewplayerbox4left"
@@ -204,8 +200,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"        
-        android:background="@drawable/skillsleft"
-         />
+        android:background="@drawable/skillsleft" />
     
     <ImageView
         android:id="@+id/imageviewplayerbox4right"
@@ -213,7 +208,9 @@
         android:layout_height="wrap_content"        
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/skillsright" />    
+        android:background="@drawable/skillsright" />
+    
+       
         
 
    	<ImageView
@@ -222,9 +219,7 @@
    	    android:layout_height="wrap_content"
    	    android:layout_above="@+id/imagebuttonaction"
    	    android:layout_toRightOf="@+id/imageviewscroll3b5left"   	    
-   	    android:background="@drawable/centerscroll" />
-   	
-   	
+   	    android:background="@drawable/centerscroll" />   	
    	
    	<TextView
         android:id="@+id/textviewcenterscrolltext"
@@ -243,13 +238,7 @@
         android:paddingTop="20dp"
         android:scrollbars="vertical"
         android:textColor="#FFFFFF"
-        android:textSize="25sp" />
-   	
-   	
-   	
-   	
-   	
-   	
+        android:textSize="25sp" />	
    	
    	
    	
@@ -258,9 +247,7 @@
    	<ImageView
         android:id="@+id/scrollanimation"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-   	
-   	
+        android:layout_height="match_parent" />   	
    	
    	<ImageView
         android:id="@+id/titleanimation"
@@ -275,8 +262,7 @@
    	<ImageView
         android:id="@+id/sixsidedanimation"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-   	
+        android:layout_height="match_parent" />   	
    	
    	
    	

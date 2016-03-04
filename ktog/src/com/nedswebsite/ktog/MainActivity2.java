@@ -32,17 +32,11 @@ import android.widget.Toast;
 
 public class MainActivity2 extends ActionBarActivity {			
 	
-	
-	ImageView computerAvatar;
-	ImageView crossedswords2;
-	ImageView stonedead2;
-	
-	ImageView sixsixrightleftrotateblank;
-	
+		
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+		super.onCreate(savedInstanceState);		
 		
 		// USED THE FOLLOWING TO REMOVE TITLE BAR:
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -59,6 +53,7 @@ public class MainActivity2 extends ActionBarActivity {
 				
 		
 		Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+		
 		
 		TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);		
 		playerNameTextView.setTypeface(typeFace);		
@@ -78,9 +73,9 @@ public class MainActivity2 extends ActionBarActivity {
 		computerHitPointsTextView.setTypeface(typeFace);
 		computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
 		
-		computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
-		crossedswords2 = (ImageView) findViewById(R.id.imageviewavatarleft2);
-		stonedead2 = (ImageView) findViewById(R.id.imageviewavatarleft3);
+		ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
+		ImageView crossedswords2 = (ImageView) findViewById(R.id.imageviewavatarleft2);
+		ImageView stonedead2 = (ImageView) findViewById(R.id.imageviewavatarleft3);
 		
 		if (ArrayOfAvatars.avatar[0].equals("computer")){
 			crossedswords2.setVisibility(View.INVISIBLE);
@@ -93,10 +88,13 @@ public class MainActivity2 extends ActionBarActivity {
 		else if (ArrayOfAvatars.avatar[0].equals("stonedead")){
 			crossedswords2.setVisibility(View.INVISIBLE);
 			computerAvatar.setVisibility(View.INVISIBLE);
-		}		
+		}
+		
 		
 		ArrayIsInitiativeStarted.isinitiativestarted[0] = "no";
+		ArrayIsSixSidedRolled.issixsidedrolled[0] = "no";
 				
+		
 		final ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
 		
 		titleBlankButton.setOnClickListener(new View.OnClickListener() {
@@ -123,10 +121,9 @@ public class MainActivity2 extends ActionBarActivity {
         preInitiativeTitle();
         
         final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
-		centerscrolltext.setMovementMethod(new ScrollingMovementMethod());
+		centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 		
-		//Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/Anaheim-Regular.ttf");
-		centerscrolltext.setTypeface(typeFace);
+		centerscrolltext.setTypeface(typeFace);				
 		
 		final Handler h1 = new Handler();
   	  	h1.postDelayed(new Runnable() {
@@ -143,8 +140,10 @@ public class MainActivity2 extends ActionBarActivity {
 
 	  	  	  		@Override
 	  	  	  		public void run()
-	  	  	  		{  	  			
-	  		  	  		sixSidedRollFromLeft();
+	  	  	  		{	  	  	  			
+	  	  	  			sixSidedRollFromLeft();
+	  	  	  			
+	  	  	  			ArrayIsSixSidedRolled.issixsidedrolled[0] = "yes";
 	  		  			
 		  		  		final Handler h3 = new Handler();
 			  	  	  	h3.postDelayed(new Runnable() {
@@ -155,9 +154,11 @@ public class MainActivity2 extends ActionBarActivity {
 			  		  	  		centerscrolltext.setVisibility(View.VISIBLE);
 			  		  	  		centerscrolltext.startAnimation(animAlphaText);
 			  		  			centerscrolltext.append("\n" + "> Please slide the die...");
+			  		  						  		  			
+				  		  	  	//System.gc();
+				  		  	  	// This because was getting Out of Memory error when 6-sided was rolled.
 			  		  			
-			  		  			sixSidedFlare();
-			  		  			
+			  		  			sixSidedWobbleStart();
 			  	  	  		}
 			  	  	  	}, 1000);
 	  	  	  		}
@@ -165,27 +166,59 @@ public class MainActivity2 extends ActionBarActivity {
   	  		}
   	  	}, 2000);
   	  	
-  	  	sixsixrightleftrotateblank = (ImageView) findViewById(R.id.sixsidedanimation);  	  	
   	  	
-  	  	sixsixrightleftrotateblank.setOnTouchListener(new OnSwipeTouchListener(MainActivity2.this) {
-  	  	
-  	  		@Override  	  	
-  	  		public void onSwipeLeft() {
-  	  			Toast.makeText(MainActivity2.this, "LEFT", Toast.LENGTH_SHORT).show();
-  	  		}
-  	  		public void onSwipeRight() {
-	  			Toast.makeText(MainActivity2.this, "RIGHT", Toast.LENGTH_SHORT).show();
+  	  	final ImageView sixsixrightleftrotateblank = (ImageView) findViewById(R.id.sixsidedanimation);  	  	
+		// Creating view for animation that rides on pre-existing view.
+	  	
+	  	sixsixrightleftrotateblank.setOnTouchListener(new OnSwipeTouchListener(MainActivity2.this) {	  	
+	  		@Override  	  	
+	  		public void onSwipeLeft() {	  			
+	  			
+	  			if (ArrayIsSixSidedRolled.issixsidedrolled[0].equals("yes")) {
+	  				sixSidedWobbleStop();
+		  			sixSidedRollFromCenterToLeft();
+	  			}	  				
+	  				
+	  			//Toast.makeText(MainActivity2.this,"LEFT!!", Toast.LENGTH_LONG).show();
+	  				  			
+	  			/*
+	  			final Handler h = new Handler();
+	  	  	  	h.postDelayed(new Runnable() {
+
+	  	  	  		@Override
+	  	  	  		public void run()
+	  	  	  		{  	  			
+	  	  	  			sixSidedWobbleStop();			  		  			
+	  	  	  		}
+	  	  	  	}, 1000);
+	  	  	  	*/	  			
 	  		}
-  	  	});
+	  		public void onSwipeRight() {	  			
+	  			
+	  			if (ArrayIsSixSidedRolled.issixsidedrolled[0].equals("yes")) {
+	  				sixSidedWobbleStop();
+	  				sixSidedRollFromCenterToRight();
+	  			}
+	  			
+	  			//Toast.makeText(MainActivity2.this,"Right!!", Toast.LENGTH_LONG).show();	  			
+	  			
+	  			/*
+	  			final Handler h = new Handler();
+	  	  	  	h.postDelayed(new Runnable() {
+
+	  	  	  		@Override
+	  	  	  		public void run()
+	  	  	  		{  	  			
+	  	  	  			sixSidedWobbleStop();			  		  			
+	  	  	  		}
+	  	  	  	}, 1000);
+	  	  	  	*/
+	  		}
+	  	}); 
   	  	
   	  	
   
 	}
-	
-	        
-        
-        		
-    
 	
 	
 	//===================================================================================================
@@ -218,7 +251,7 @@ public class MainActivity2 extends ActionBarActivity {
 					
 		// Start the animation.
 		frameAnimation.stop();
-		frameAnimation.start();       		
+		frameAnimation.start();		
 	}
 	
 	public void preInitiativeTitle() {	
@@ -231,12 +264,12 @@ public class MainActivity2 extends ActionBarActivity {
 		
   	  	// Animation is just 1 slide so user can see title.
   	  	frameAnimation.stop();
-  	  	frameAnimation.start();
+  	  	frameAnimation.start();  	  	
 	}
 	
 	public void sixSidedRollFromLeft() {	
 	  	
-		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+		final ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
 		img.setBackgroundResource(R.anim.sixsidedrollfromleftanimation);
   	  
   	  	// Get the background, which has been compiled to an AnimationDrawable object.
@@ -247,23 +280,55 @@ public class MainActivity2 extends ActionBarActivity {
   	  	
   	  	// Animation is just 1 slide so user can see title.
   	  	frameAnimation.stop();
-  	  	frameAnimation.start();
+  	  	frameAnimation.start();  	  	  	  	
 	}
 	
-	public void sixSidedFlare() {	
+	public void sixSidedWobbleStart() {
+		final ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
+		final Animation shake = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.wobblesixsided);
+		img.setAnimation(shake);
+	}
+	
+	public void sixSidedWobbleStop() {
+		final ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
+		final Animation shake = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.wobblesixsided);
+		img.clearAnimation();
+	}
+	
+	public void sixSidedRollFromCenterToLeft() {	
 	  	
-		ImageView img = (ImageView)findViewById(R.id.sixsidedflare);		
-		img.setBackgroundResource(R.anim.sixsidedflareanimation);
+		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+		img.setBackgroundResource(R.anim.sixsidedrollfromcentertoleftanimation);
   	  
   	  	// Get the background, which has been compiled to an AnimationDrawable object.
   	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
 		
-  	  	//final MediaPlayer dieRolling = MediaPlayer.create(MainActivity2.this, R.raw.dierolling3b);
-  	  	//dieRolling.start();
+  	  	final MediaPlayer dieRolling = MediaPlayer.create(MainActivity2.this, R.raw.dierolling3b);
+  	  	dieRolling.start();
   	  	
   	  	// Animation is just 1 slide so user can see title.
   	  	frameAnimation.stop();
   	  	frameAnimation.start();
+  	  	
+  	  	ArrayIsSixSidedRolled.issixsidedrolled[0] = "no";
+	}
+	
+	public void sixSidedRollFromCenterToRight() {	
+	  	
+		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+		img.setBackgroundResource(R.anim.sixsidedrollfromcentertorightanimation);
+  	  
+  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+		
+  	  	final MediaPlayer dieRolling = MediaPlayer.create(MainActivity2.this, R.raw.dierolling3b);
+  	  	dieRolling.start();
+  	  	
+  	  	// Animation is just 1 slide so user can see title.
+  	  	frameAnimation.stop();
+  	  	frameAnimation.start();
+  	  	
+  	  	ArrayIsSixSidedRolled.issixsidedrolled[0] = "no";
 	}
 	
 	public void myInitiativeNotStarted() {

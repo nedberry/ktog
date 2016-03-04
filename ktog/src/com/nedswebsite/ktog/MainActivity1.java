@@ -127,7 +127,7 @@ public class MainActivity1 extends ActionBarActivity {
 	    					ArrayOfAvatars.avatar[0] = "stonedead";
 	    				}
 	    				
-	    				stopService(svc);
+	    				stopService(svc);	    				
 	    				
 	    				Intent openMainActivity2 = new Intent("com.nedswebsite.ktog.MAINACTIVITY2");
 	    	        	startActivity(openMainActivity2);

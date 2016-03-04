@@ -21,11 +21,13 @@ public final class R {
         public static final int right_in=0x7f040009;
         public static final int right_out=0x7f04000a;
         public static final int scrollanimationup=0x7f04000b;
-        public static final int sixsidedflareanimation=0x7f04000c;
-        public static final int sixsidedrollfromleftanimation=0x7f04000d;
-        public static final int titleanimationnoinitiative=0x7f04000e;
-        public static final int titleanimationpreinitiative=0x7f04000f;
-        public static final int titleanimationyesinitiative=0x7f040010;
+        public static final int sixsidedrollfromcentertoleftanimation=0x7f04000c;
+        public static final int sixsidedrollfromcentertorightanimation=0x7f04000d;
+        public static final int sixsidedrollfromleftanimation=0x7f04000e;
+        public static final int titleanimationnoinitiative=0x7f04000f;
+        public static final int titleanimationpreinitiative=0x7f040010;
+        public static final int titleanimationyesinitiative=0x7f040011;
+        public static final int wobblesixsided=0x7f040012;
     }
     public static final class attr {
         /**  Custom divider drawable to use for elements in the action bar. 
