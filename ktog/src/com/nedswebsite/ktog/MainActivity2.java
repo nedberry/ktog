@@ -113,12 +113,15 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
         
-        // More sounds stuff:        
+        // More sounds stuff:	
         final MediaPlayer activityOpeningSound = MediaPlayer.create(MainActivity2.this, R.raw.buttonsound6);
 		activityOpeningSound.start();
+		
         
-        unfoldScrolls();
-        preInitiativeTitle();
+        unfoldScrolls();                
+        
+        preInitiativeTitle();        
+        
         
         final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 		centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
@@ -225,6 +228,35 @@ public class MainActivity2 extends ActionBarActivity {
 	// SEPERATOR
 	//===================================================================================================
 		
+	@Override
+    protected void onStart() {
+        super.onStart();
+        
+        final Handler h = new Handler();
+	  	  	h.postDelayed(new Runnable() {
+
+	  	  		@Override
+	  	  		public void run()
+	  	  		{  	  			
+		  	  		final MediaPlayer scrollsUnrollingSound = MediaPlayer.create(MainActivity2.this, R.raw.scrollsunrolling);
+		  			scrollsUnrollingSound.start();			  		  			
+	  	  		}
+	  	  	}, 650);        
+        
+		
+		final MediaPlayer scrollRollingAndUnrollingSound = MediaPlayer.create(MainActivity2.this, R.raw.scrollrollingandunrolling);		
+  	  	
+  	  	final Handler h2 = new Handler();
+	  	h2.postDelayed(new Runnable() {
+
+	  		@Override
+	  		public void run()
+	  		{  			
+	  			scrollRollingAndUnrollingSound.start();  			
+	  		}
+	  	}, 4400);	  	        
+    }
+	
 	
 	// Destroys data in arrays, and pro-actively cleans up memory (finish) for the user (good practice?).
 	@Override
@@ -251,7 +283,7 @@ public class MainActivity2 extends ActionBarActivity {
 					
 		// Start the animation.
 		frameAnimation.stop();
-		frameAnimation.start();		
+		frameAnimation.start();					
 	}
 	
 	public void preInitiativeTitle() {	
