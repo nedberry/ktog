@@ -155,9 +155,7 @@ public class MainActivity2 extends ActionBarActivity {
   	  		{  	  			
   	  			centerscrolltext.setVisibility(View.VISIBLE);
   	  			centerscrolltext.startAnimation(animAlphaText);
-	  			centerscrolltext.append("> Welcome, " + ArrayOfPlayers.player[0] + ".");
-	  			
-	  			playerNameStartFadeInFadeOut();
+	  			centerscrolltext.append("> Welcome, " + ArrayOfPlayers.player[0] + ".");	  			
 	  			
 	  			final Handler h4 = new Handler();
 	  	  	  	h4.postDelayed(new Runnable() {
@@ -173,11 +171,13 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  		@Override
 			  	  	  		public void run()
 			  	  	  		{  	  			
-			  		  	  		centerscrolltext.setVisibility(View.VISIBLE);
+			  	  	  			sixSidedWobbleStart();
+			  	  	  			
+			  	  	  			centerscrolltext.setVisibility(View.VISIBLE);
 			  		  	  		centerscrolltext.startAnimation(animAlphaText);
-			  		  			centerscrolltext.append("\n" + "> Please slide the die...");				  		  	  	
+			  		  			centerscrolltext.append("\n" + "> Please slide the die...");			  		  			
 			  		  			
-			  		  			sixSidedWobbleStart();
+			  		  			playerNameStartFadeInFadeOut();
 			  		  			
 			  		  			ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "yes";
 			  		  			ArrayIsInitiativeStarted.isinitiativestarted[0].equals("yes");

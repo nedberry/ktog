@@ -2,7 +2,7 @@
 <animation-list xmlns:android="http://schemas.android.com/apk/res/android"
     android:oneshot="true" >    
     
-    <item android:drawable="@drawable/sixsixrightleftrotatewithdropshadow" android:duration="75" />
+    <item android:drawable="@drawable/sixsixrightleftrotate" android:duration="75" />
     <item android:drawable="@drawable/sixfivesixright1" android:duration="75" />
     <item android:drawable="@drawable/sixfiveright2" android:duration="75" />
     <item android:drawable="@drawable/sixonefiveright3" android:duration="75" />

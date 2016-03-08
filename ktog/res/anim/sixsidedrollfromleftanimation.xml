@@ -8,6 +8,6 @@
     <item android:drawable="@drawable/sixfiveoneleft3" android:duration="75" />
     <item android:drawable="@drawable/sixfiveleft2" android:duration="75" />
     <item android:drawable="@drawable/sixsixfiveleft1" android:duration="75" />
-    <item android:drawable="@drawable/sixsixrightleftrotatewithdropshadow" android:duration="75" />
+    <item android:drawable="@drawable/sixsixrightleftrotate" android:duration="75" />
 
 </animation-list>
