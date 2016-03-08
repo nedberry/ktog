@@ -50,7 +50,19 @@ public class MainActivity2 extends ActionBarActivity {
 		setContentView(R.layout.activity_main_activity2);		
 		// For the little space between the action & attack button.
 		getWindow().getDecorView().setBackgroundColor(Color.BLACK);				
-				
+		
+		
+		
+		Thread thread = new Thread() {
+		    @Override
+		    public void run() {
+		    	final MediaPlayer activityOpeningSound = MediaPlayer.create(MainActivity2.this, R.raw.buttonsound6);
+				activityOpeningSound.start();
+		    }
+		};
+		thread.start();	
+        
+		
 		
 		Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 		
@@ -92,7 +104,104 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		
 		ArrayIsInitiativeStarted.isinitiativestarted[0] = "no";
-		ArrayIsSixSidedRolled.issixsidedrolled[0] = "no";
+		ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "no";
+		ArrayAreThereDoubles.aretheredoubles[0] = "yes";
+		
+		
+		
+		
+		
+		unfoldScrolls();	  	      
+        /*
+        final Handler h1 = new Handler();
+  	  	h1.postDelayed(new Runnable() {
+
+  	  		@Override
+  	  		public void run()
+  	  		{  	  			
+	  	  		final MediaPlayer scrollsUnrollingSound = MediaPlayer.create(MainActivity2.this, R.raw.scrollsunrolling);
+	  			scrollsUnrollingSound.start();			  		  			
+  	  		}
+  	  	}, 800);        
+    	*/
+		
+  	  	preInitiativeTitle();				
+		
+  	  	
+		final Handler h2 = new Handler();
+	  	h2.postDelayed(new Runnable() {
+	
+	  		@Override
+	  		public void run()
+	  		{  			
+	  			final MediaPlayer scrollRollingAndUnrollingSound = MediaPlayer.create(MainActivity2.this, R.raw.scrollrollingandunrolling);
+	  			scrollRollingAndUnrollingSound.start();  			
+	  		}
+	  	}, 4450);  	
+	  	
+  	  	
+        final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+		centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+		
+		centerscrolltext.setTypeface(typeFace);				
+		
+		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+		
+		final Handler h3 = new Handler();
+  	  	h3.postDelayed(new Runnable() {
+
+  	  		@Override
+  	  		public void run()
+  	  		{  	  			
+  	  			centerscrolltext.setVisibility(View.VISIBLE);
+  	  			centerscrolltext.startAnimation(animAlphaText);
+	  			centerscrolltext.append("> Welcome, " + ArrayOfPlayers.player[0] + ".");
+	  			
+	  			playerNameStartFadeInFadeOut();
+	  			
+	  			final Handler h4 = new Handler();
+	  	  	  	h4.postDelayed(new Runnable() {
+
+	  	  	  		@Override
+	  	  	  		public void run()
+	  	  	  		{	  	  	  			
+	  	  	  			sixSidedRollFromLeft();  	  	  			
+	  		  			
+		  		  		final Handler h5 = new Handler();
+			  	  	  	h5.postDelayed(new Runnable() {
+	
+			  	  	  		@Override
+			  	  	  		public void run()
+			  	  	  		{  	  			
+			  		  	  		centerscrolltext.setVisibility(View.VISIBLE);
+			  		  	  		centerscrolltext.startAnimation(animAlphaText);
+			  		  			centerscrolltext.append("\n" + "> Please slide the die...");				  		  	  	
+			  		  			
+			  		  			sixSidedWobbleStart();
+			  		  			
+			  		  			ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "yes";
+			  		  			ArrayIsInitiativeStarted.isinitiativestarted[0].equals("yes");
+			  	  	  		}
+			  	  	  	}, 1000);
+	  	  	  		}
+	  	  	  	}, 4000);
+  	  		}
+  	  	}, 2000);
+  	  	
+  	  	Thread thread2 = new Thread() {
+		    @Override
+		    public void run() {
+		    	
+		    	determineInitiative();
+		    }
+		};
+		thread2.start();
+  	  	
+  	  	
+  	  	
+  	  	
+  	  	
+  	  	
 				
 		
 		final ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
@@ -105,70 +214,13 @@ public class MainActivity2 extends ActionBarActivity {
             		myInitiativeNotStarted();            		
             	}
             	
-            	else if (ArrayIsInitiativeStarted.isinitiativestarted[0].equals("yes")) {
+            	else if (ArrayIsInitiativeStarted.isinitiativestarted[0].equals("yes") && ArrayAreThereDoubles.aretheredoubles[0].equals("no")) {
             		myInitiativeIsStarted();            		
             	}            	       	
 			}	            
 		});
 		
-		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
-        
-        // More sounds stuff:	
-        final MediaPlayer activityOpeningSound = MediaPlayer.create(MainActivity2.this, R.raw.buttonsound6);
-		activityOpeningSound.start();
-		
-        
-        unfoldScrolls();                
-        
-        preInitiativeTitle();        
-        
-        
-        final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
-		centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
-		
-		centerscrolltext.setTypeface(typeFace);				
-		
-		final Handler h1 = new Handler();
-  	  	h1.postDelayed(new Runnable() {
-
-  	  		@Override
-  	  		public void run()
-  	  		{  	  			
-  	  			centerscrolltext.setVisibility(View.VISIBLE);
-  	  			centerscrolltext.startAnimation(animAlphaText);
-	  			centerscrolltext.append("> Welcome, " + ArrayOfPlayers.player[0] + ".");
-	  			
-	  			final Handler h2 = new Handler();
-	  	  	  	h2.postDelayed(new Runnable() {
-
-	  	  	  		@Override
-	  	  	  		public void run()
-	  	  	  		{	  	  	  			
-	  	  	  			sixSidedRollFromLeft();
-	  	  	  			
-	  	  	  			ArrayIsSixSidedRolled.issixsidedrolled[0] = "yes";
-	  		  			
-		  		  		final Handler h3 = new Handler();
-			  	  	  	h3.postDelayed(new Runnable() {
-	
-			  	  	  		@Override
-			  	  	  		public void run()
-			  	  	  		{  	  			
-			  		  	  		centerscrolltext.setVisibility(View.VISIBLE);
-			  		  	  		centerscrolltext.startAnimation(animAlphaText);
-			  		  			centerscrolltext.append("\n" + "> Please slide the die...");
-			  		  						  		  			
-				  		  	  	//System.gc();
-				  		  	  	// This because was getting Out of Memory error when 6-sided was rolled.
-			  		  			
-			  		  			sixSidedWobbleStart();
-			  	  	  		}
-			  	  	  	}, 1000);
-	  	  	  		}
-	  	  	  	}, 4000);
-  	  		}
-  	  	}, 2000);
-  	  	
+		  	  	
   	  	
   	  	final ImageView sixsixrightleftrotateblank = (ImageView) findViewById(R.id.sixsidedanimation);  	  	
 		// Creating view for animation that rides on pre-existing view.
@@ -177,85 +229,100 @@ public class MainActivity2 extends ActionBarActivity {
 	  		@Override  	  	
 	  		public void onSwipeLeft() {	  			
 	  			
-	  			if (ArrayIsSixSidedRolled.issixsidedrolled[0].equals("yes")) {
-	  				sixSidedWobbleStop();
-		  			sixSidedRollFromCenterToLeft();
-	  			}	  				
+	  			if (ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0].equals("yes")) {	  				
 	  				
-	  			//Toast.makeText(MainActivity2.this,"LEFT!!", Toast.LENGTH_LONG).show();
-	  				  			
-	  			/*
-	  			final Handler h = new Handler();
-	  	  	  	h.postDelayed(new Runnable() {
-
-	  	  	  		@Override
-	  	  	  		public void run()
-	  	  	  		{  	  			
-	  	  	  			sixSidedWobbleStop();			  		  			
-	  	  	  		}
-	  	  	  	}, 1000);
-	  	  	  	*/	  			
+	  				sixSidedWobbleStop();
+		  			//sixSidedRollFromCenterToLeft();
+		  			//determineInitiative();
+		  			
+		  			if (ArrayOfInitiative.initiative[0] == 1){		  				
+		  				sixSidedRollFromCenterToLeft1();								  		  	  	
+					}
+					else if (ArrayOfInitiative.initiative[0] == 2){
+						sixSidedRollFromCenterToLeft2();
+					}
+					else if (ArrayOfInitiative.initiative[0] == 3){
+						sixSidedRollFromCenterToLeft3();
+					}
+					else if (ArrayOfInitiative.initiative[0] == 4){
+						sixSidedRollFromCenterToLeft4();
+					}
+					else if (ArrayOfInitiative.initiative[0] == 5){
+						sixSidedRollFromCenterToLeft5();
+					}
+					else if (ArrayOfInitiative.initiative[0] == 6){
+						sixSidedRollFromCenterToLeft6();
+					}
+		  			determineDoubles();
+	  			}	  			
 	  		}
+	  		
 	  		public void onSwipeRight() {	  			
 	  			
-	  			if (ArrayIsSixSidedRolled.issixsidedrolled[0].equals("yes")) {
+	  			if (ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0].equals("yes")) {	  				
+	  				
 	  				sixSidedWobbleStop();
-	  				sixSidedRollFromCenterToRight();
-	  			}
-	  			
-	  			//Toast.makeText(MainActivity2.this,"Right!!", Toast.LENGTH_LONG).show();	  			
-	  			
-	  			/*
-	  			final Handler h = new Handler();
-	  	  	  	h.postDelayed(new Runnable() {
-
-	  	  	  		@Override
-	  	  	  		public void run()
-	  	  	  		{  	  			
-	  	  	  			sixSidedWobbleStop();			  		  			
-	  	  	  		}
-	  	  	  	}, 1000);
-	  	  	  	*/
+	  				//sixSidedRollFromCenterToRight();
+	  				//determineInitiative();
+	  				
+	  				if (ArrayOfInitiative.initiative[0] == 1){
+	  					sixSidedRollFromCenterToRight1();							  		  	  	
+					}
+					else if (ArrayOfInitiative.initiative[0] == 2){
+						sixSidedRollFromCenterToRight2();
+					}
+					else if (ArrayOfInitiative.initiative[0] == 3){
+						sixSidedRollFromCenterToRight3();
+					}
+					else if (ArrayOfInitiative.initiative[0] == 4){
+						sixSidedRollFromCenterToRight4();
+					}
+					else if (ArrayOfInitiative.initiative[0] == 5){
+						sixSidedRollFromCenterToRight5();
+					}
+					else if (ArrayOfInitiative.initiative[0] == 6){
+						sixSidedRollFromCenterToRight6();
+					}
+	  				determineDoubles();
+	  			}	  			
 	  		}
-	  	}); 
-  	  	
-  	  	
+	  	});
+	  	
+	  	
+	  	//Toast.makeText(MainActivity2.this,"isinitiativestarted = " + ArrayIsInitiativeStarted.isinitiativestarted[0] + " issixsidedrolled = " + ArrayIsSixSidedRolled.issixsidedrolled[0], Toast.LENGTH_SHORT).show();
+	  	 	  	
   
 	}
 	
 	
-	//===================================================================================================
-	// SEPERATOR
-	//===================================================================================================
+	//========================================================================================================
+	//  OnCreate SEPERATOR
+	//========================================================================================================	
+	
+	
+	public void playerNameStartFadeInFadeOut() {
+		TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);
+		final Animation animAlphaTextRepeat = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text_repeat);
+	  	playerNameTextView.startAnimation(animAlphaTextRepeat);
+	}
+	
+	public void playerNameStopFadeInFadeOut() {
+		TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);
 		
-	@Override
-    protected void onStart() {
-        super.onStart();
-        
-        final Handler h = new Handler();
-	  	  	h.postDelayed(new Runnable() {
-
-	  	  		@Override
-	  	  		public void run()
-	  	  		{  	  			
-		  	  		final MediaPlayer scrollsUnrollingSound = MediaPlayer.create(MainActivity2.this, R.raw.scrollsunrolling);
-		  			scrollsUnrollingSound.start();			  		  			
-	  	  		}
-	  	  	}, 650);        
-        
+	  	playerNameTextView.clearAnimation();  	
+	}
+	
+	public void computerStartFadeInFadeOut() {
+		TextView computerNameTextView = (TextView)findViewById(R.id.textviewnameright);
+		final Animation animAlphaTextRepeat = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text_repeat);
+		computerNameTextView.startAnimation(animAlphaTextRepeat);
+	}
+	
+	public void computerStopFadeInFadeOut() {
+		TextView computerNameTextView = (TextView)findViewById(R.id.textviewnameright);
 		
-		final MediaPlayer scrollRollingAndUnrollingSound = MediaPlayer.create(MainActivity2.this, R.raw.scrollrollingandunrolling);		
-  	  	
-  	  	final Handler h2 = new Handler();
-	  	h2.postDelayed(new Runnable() {
-
-	  		@Override
-	  		public void run()
-	  		{  			
-	  			scrollRollingAndUnrollingSound.start();  			
-	  		}
-	  	}, 4400);	  	        
-    }
+		computerNameTextView.clearAnimation();
+	}
 	
 	
 	// Destroys data in arrays, and pro-actively cleans up memory (finish) for the user (good practice?).
@@ -264,12 +331,19 @@ public class MainActivity2 extends ActionBarActivity {
 			
 		Arrays.fill(ArrayOfPlayers.player, null);
 		Arrays.fill(ArrayOfAvatars.avatar, null);
+		Arrays.fill(ArrayAreThereDoubles.aretheredoubles, null);
+		Arrays.fill(ArrayIsInitiativeStarted.isinitiativestarted, null);
+		Arrays.fill(ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative, null);
+		Arrays.fill(ArrayOfHitPoints.hitpoints, 20);  // IS THIS RIGHT???????????????
+		Arrays.fill(ArrayOfInitiative.initiative, 0); // IS THIS RIGHT???????????????		
 	
 		final Intent svc=new Intent(this, Badonk2SoundService.class);
 		startService(svc);
 	
 		super.onBackPressed();
 		this.finish();
+		
+		//Toast.makeText(MainActivity2.this,"onBackPressed WORKING!!!!", Toast.LENGTH_SHORT).show();
     }
 	
 	public void unfoldScrolls () {
@@ -327,10 +401,15 @@ public class MainActivity2 extends ActionBarActivity {
 		img.clearAnimation();
 	}
 	
-	public void sixSidedRollFromCenterToLeft() {	
+	
+	//========================================================================================================
+	// Six-sided rolling SEPERATOR
+	//========================================================================================================
+		
+	public void sixSidedRollFromCenterToLeft1() {	
 	  	
 		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
-		img.setBackgroundResource(R.anim.sixsidedrollfromcentertoleftanimation);
+		img.setBackgroundResource(R.anim.sixsidedrollfromcentertoleftanimation1);
   	  
   	  	// Get the background, which has been compiled to an AnimationDrawable object.
   	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -342,13 +421,13 @@ public class MainActivity2 extends ActionBarActivity {
   	  	frameAnimation.stop();
   	  	frameAnimation.start();
   	  	
-  	  	ArrayIsSixSidedRolled.issixsidedrolled[0] = "no";
+  	  	ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "no";
 	}
 	
-	public void sixSidedRollFromCenterToRight() {	
+	public void sixSidedRollFromCenterToLeft2() {	
 	  	
 		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
-		img.setBackgroundResource(R.anim.sixsidedrollfromcentertorightanimation);
+		img.setBackgroundResource(R.anim.sixsidedrollfromcentertoleftanimation2);
   	  
   	  	// Get the background, which has been compiled to an AnimationDrawable object.
   	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -360,8 +439,192 @@ public class MainActivity2 extends ActionBarActivity {
   	  	frameAnimation.stop();
   	  	frameAnimation.start();
   	  	
-  	  	ArrayIsSixSidedRolled.issixsidedrolled[0] = "no";
+  	  	ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "no";
 	}
+
+	public void sixSidedRollFromCenterToLeft3() {	
+	  	
+		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+		img.setBackgroundResource(R.anim.sixsidedrollfromcentertoleftanimation3);
+  	  
+  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+		
+  	  	final MediaPlayer dieRolling = MediaPlayer.create(MainActivity2.this, R.raw.dierolling3b);
+  	  	dieRolling.start();
+  	  	
+  	  	// Animation is just 1 slide so user can see title.
+  	  	frameAnimation.stop();
+  	  	frameAnimation.start();
+  	  	
+  	  	ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "no";
+	}
+	
+	public void sixSidedRollFromCenterToLeft4() {	
+	  	
+		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+		img.setBackgroundResource(R.anim.sixsidedrollfromcentertoleftanimation4);
+  	  
+  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+		
+  	  	final MediaPlayer dieRolling = MediaPlayer.create(MainActivity2.this, R.raw.dierolling3b);
+  	  	dieRolling.start();
+  	  	
+  	  	// Animation is just 1 slide so user can see title.
+  	  	frameAnimation.stop();
+  	  	frameAnimation.start();
+  	  	
+  	  	ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "no";
+	}
+	
+	public void sixSidedRollFromCenterToLeft5() {	
+	  	
+		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+		img.setBackgroundResource(R.anim.sixsidedrollfromcentertoleftanimation5);
+  	  
+  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+		
+  	  	final MediaPlayer dieRolling = MediaPlayer.create(MainActivity2.this, R.raw.dierolling3b);
+  	  	dieRolling.start();
+  	  	
+  	  	// Animation is just 1 slide so user can see title.
+  	  	frameAnimation.stop();
+  	  	frameAnimation.start();
+  	  	
+  	  	ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "no";
+	}
+	
+	public void sixSidedRollFromCenterToLeft6() {	
+	  	
+		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+		img.setBackgroundResource(R.anim.sixsidedrollfromcentertoleftanimation6);
+  	  
+  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+		
+  	  	final MediaPlayer dieRolling = MediaPlayer.create(MainActivity2.this, R.raw.dierolling3b);
+  	  	dieRolling.start();
+  	  	
+  	  	// Animation is just 1 slide so user can see title.
+  	  	frameAnimation.stop();
+  	  	frameAnimation.start();
+  	  	
+  	  	ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "no";
+	}
+	
+	public void sixSidedRollFromCenterToRight1() {	
+	  	
+		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+		img.setBackgroundResource(R.anim.sixsidedrollfromcentertorightanimation1);
+  	  
+  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+		
+  	  	final MediaPlayer dieRolling = MediaPlayer.create(MainActivity2.this, R.raw.dierolling3b);
+  	  	dieRolling.start();
+  	  	
+  	  	// Animation is just 1 slide so user can see title.
+  	  	frameAnimation.stop();
+  	  	frameAnimation.start();
+  	  	
+  	  	ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "no";
+	}
+	
+	public void sixSidedRollFromCenterToRight2() {	
+	  	
+		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+		img.setBackgroundResource(R.anim.sixsidedrollfromcentertorightanimation2);
+  	  
+  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+		
+  	  	final MediaPlayer dieRolling = MediaPlayer.create(MainActivity2.this, R.raw.dierolling3b);
+  	  	dieRolling.start();
+  	  	
+  	  	// Animation is just 1 slide so user can see title.
+  	  	frameAnimation.stop();
+  	  	frameAnimation.start();
+  	  	
+  	  	ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "no";
+	}
+	
+	public void sixSidedRollFromCenterToRight3() {	
+	  	
+		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+		img.setBackgroundResource(R.anim.sixsidedrollfromcentertorightanimation3);
+  	  
+  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+		
+  	  	final MediaPlayer dieRolling = MediaPlayer.create(MainActivity2.this, R.raw.dierolling3b);
+  	  	dieRolling.start();
+  	  	
+  	  	// Animation is just 1 slide so user can see title.
+  	  	frameAnimation.stop();
+  	  	frameAnimation.start();
+  	  	
+  	  	ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "no";
+	}
+	
+	public void sixSidedRollFromCenterToRight4() {	
+	  	
+		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+		img.setBackgroundResource(R.anim.sixsidedrollfromcentertorightanimation4);
+  	  
+  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+		
+  	  	final MediaPlayer dieRolling = MediaPlayer.create(MainActivity2.this, R.raw.dierolling3b);
+  	  	dieRolling.start();
+  	  	
+  	  	// Animation is just 1 slide so user can see title.
+  	  	frameAnimation.stop();
+  	  	frameAnimation.start();
+  	  	
+  	  	ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "no";
+	}
+	
+	public void sixSidedRollFromCenterToRight5() {	
+	  	
+		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+		img.setBackgroundResource(R.anim.sixsidedrollfromcentertorightanimation5);
+  	  
+  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+		
+  	  	final MediaPlayer dieRolling = MediaPlayer.create(MainActivity2.this, R.raw.dierolling3b);
+  	  	dieRolling.start();
+  	  	
+  	  	// Animation is just 1 slide so user can see title.
+  	  	frameAnimation.stop();
+  	  	frameAnimation.start();
+  	  	
+  	  	ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "no";
+	}
+	
+	public void sixSidedRollFromCenterToRight6() {	
+	  	
+		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+		img.setBackgroundResource(R.anim.sixsidedrollfromcentertorightanimation6);
+  	  
+  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+		
+  	  	final MediaPlayer dieRolling = MediaPlayer.create(MainActivity2.this, R.raw.dierolling3b);
+  	  	dieRolling.start();
+  	  	
+  	  	// Animation is just 1 slide so user can see title.
+  	  	frameAnimation.stop();
+  	  	frameAnimation.start();
+  	  	
+  	  	ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "no";
+	}
+		
+	//========================================================================================================
+	//========================================================================================================
+	
 	
 	public void myInitiativeNotStarted() {
 	    	  
@@ -379,7 +642,7 @@ public class MainActivity2 extends ActionBarActivity {
 	public void  myInitiativeIsStarted() {	      
 	    	  
 		final ImageView img = (ImageView)findViewById(R.id.titleanimation);		
-		img.setBackgroundResource(R.anim.titleanimationyesinitiative);
+		img.setBackgroundResource(R.anim.titleanimationpostinitiative);
   
 		// Get the background, which has been compiled to an AnimationDrawable object.
 		final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -387,6 +650,158 @@ public class MainActivity2 extends ActionBarActivity {
 		// Animation is just 1 slide so user can see title.
 		frameAnimation.stop();
 		frameAnimation.start();	      
-	}	
+	}
+	
+	public void  determineInitiative() {
+		
+		int result = (int)(Math.random()*6)+1;
+        //(Math.random()*6) returns a number between 0 (inclusive) and 6 (exclusive)
+        //same as: (int) Math.ceil(Math.random()*6); ?
+		ArrayOfInitiative.initiative[0] = result;
+		
+		int resultComputer = (int)(Math.random()*6)+1;
+		ArrayOfInitiative.initiative[1] = resultComputer;
+				
+		/*		
+		Thread thread = new Thread() {
+		    @Override
+		    public void run() {
+		    }
+		};
+		thread.start();
+		*/
+		
+		/*
+		if (ArrayOfInitiative.initiative[0] == 1){
+				final ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+				img.setBackgroundResource(R.drawable.sixonerotate4);
+				img.setImageResource(R.drawable.sixonerotate4);		  		  	  	
+			}
+			else if (ArrayOfInitiative.initiative[0] == 2){
+				final ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+				img.setBackgroundResource(R.drawable.sixtworotate6);
+				img.setImageResource(R.drawable.sixtworotate6);
+			}
+			else if (ArrayOfInitiative.initiative[0] == 3){
+				final ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+				img.setBackgroundResource(R.drawable.sixthree);
+				img.setImageResource(R.drawable.sixthree);
+			}
+			else if (ArrayOfInitiative.initiative[0] == 4){
+				final ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+				img.setBackgroundResource(R.drawable.sixfour);
+				img.setImageResource(R.drawable.sixfour);
+			}
+			else if (ArrayOfInitiative.initiative[0] == 5){
+				final ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+				img.setBackgroundResource(R.drawable.sixfiverotate2);
+				img.setImageResource(R.drawable.sixfiverotate2);
+			}
+			else if (ArrayOfInitiative.initiative[0] == 6){
+				final ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+				img.setBackgroundResource(R.drawable.sixsixrightleftrotate);
+				img.setImageResource(R.drawable.sixsixrightleftrotate);
+			}
+			*/
+	}
+	
+	public void  determineDoubles() {
+		
+		//Toast.makeText(MainActivity2.this,"At method determineDoubles().", Toast.LENGTH_SHORT).show();		
+		
+		final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+		centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+		
+		Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+		centerscrolltext.setTypeface(typeFace);				
+		
+		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+		
+		final Handler h1 = new Handler();
+	  	  	h1.postDelayed(new Runnable() {
+
+	  	  		@Override
+	  	  		public void run()
+	  	  		{  	  			
+		  	  		centerscrolltext.setVisibility(View.VISIBLE);
+		  	  		centerscrolltext.startAnimation(animAlphaText);
+		  			centerscrolltext.append("\n" + ">" + "\n" + "> You roll a " + ArrayOfInitiative.initiative[0] + " for initiative!");
+		  			
+		  			final Handler h2 = new Handler();
+			  	  	h2.postDelayed(new Runnable() {
+
+			  	  		@Override
+			  	  		public void run()
+			  	  		{  	  			
+				  	  		centerscrolltext.setVisibility(View.VISIBLE);
+				  	  		centerscrolltext.startAnimation(animAlphaText);
+				  			centerscrolltext.append("\n" + "> Now the computer rolls...");
+				  			
+				  			playerNameStopFadeInFadeOut();
+				  			computerStartFadeInFadeOut();
+				  			
+				  			
+			  	  		}
+			  	  	}, 3000);
+	  	  		}
+	  	  	}, 2000);
+		
+		/*
+		 
+     do 
+     {
+        for (int i = 0; i < 1; i++)   
+        {
+           if (i != 0 && initiative[i] == initiative[0])   
+           {
+              do
+              {
+                 System.out.println();
+                 System.out.println(player[i] + " re-rolls for inititiative..");
+                 //Scanner input = new Scanner(System.in);// used to let user hit enter to re-roll.
+                 //input.nextLine();// used to let user hit enter to re-roll.
+                 int result = (int) Math.ceil(Math.random()*6);
+                 initiative[i] = result;
+                 System.out.println(player[i] + " rolls a " + initiative[i] + " !");
+        
+                 System.out.println();
+                 System.out.println(player[0] + " re-roll for inititiative..");
+                 input.nextLine();// used to let user hit enter to re-roll.
+                 result = (int) Math.ceil(Math.random()*6);
+                 initiative[0] = result;
+                 System.out.println(player[0] + " rolls a " + initiative[0] + " !");
+              }
+              while (initiative[i] == initiative[0]);
+           }
+  
+           else if (i != 1 && initiative[i] == initiative[1])   
+           {
+              do
+              {
+                 System.out.println();
+                 System.out.println(player[i] + " re-roll for inititiative..");
+                 Scanner input = new Scanner(System.in);// used to let user hit enter to re-roll.
+                 input.nextLine();// used to let user hit enter to re-roll.
+                 int result = (int) Math.ceil(Math.random()*6);
+                 initiative[i] = result;
+                 System.out.println(player[i] + " rolls a " + initiative[i] + " !");
+        
+                 System.out.println();
+                 System.out.println(player[1] + " re-rolls for inititiative..");
+                 //input.nextLine();// used to let user hit enter to re-roll.
+                 result = (int) Math.ceil(Math.random()*6);
+                 initiative[1] = result;
+                 System.out.println(player[1] + " rolls a " + initiative[1] + " !");
+              }
+              while (initiative[i] == initiative[1]);
+           }
+        }
+     }
+     while (initiative[0] == initiative[1] || initiative[1] == initiative[0]);
+	      
+		 */		
+	}
+	
+	
 	
 }
