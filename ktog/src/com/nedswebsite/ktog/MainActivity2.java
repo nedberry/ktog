@@ -20,6 +20,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnFocusChangeListener;
 import android.view.View.OnTouchListener;
 import android.view.Window;
 import android.view.WindowManager;
@@ -260,7 +261,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  		public void onSwipeRight() {	  			
 	  			
 	  			if (ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0].equals("yes")) {	  				
-	  				
+	  								
 	  				sixSidedWobbleStop();
 	  				//sixSidedRollFromCenterToRight();
 	  				//determineInitiative();
@@ -289,8 +290,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	});
 	  	
 	  	
-	  	//Toast.makeText(MainActivity2.this,"isinitiativestarted = " + ArrayIsInitiativeStarted.isinitiativestarted[0] + " issixsidedrolled = " + ArrayIsSixSidedRolled.issixsidedrolled[0], Toast.LENGTH_SHORT).show();
-	  	 	  	
+	  	  		  	
   
 	}
 	
@@ -386,7 +386,7 @@ public class MainActivity2 extends ActionBarActivity {
   	  	
   	  	// Animation is just 1 slide so user can see title.
   	  	frameAnimation.stop();
-  	  	frameAnimation.start();  	  	  	  	
+  	  	frameAnimation.start();
 	}
 	
 	public void sixSidedWobbleStart() {
@@ -397,7 +397,7 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	public void sixSidedWobbleStop() {
 		final ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
-		final Animation shake = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.wobblesixsided);
+		
 		img.clearAnimation();
 	}
 	
@@ -669,40 +669,7 @@ public class MainActivity2 extends ActionBarActivity {
 		    }
 		};
 		thread.start();
-		*/
-		
-		/*
-		if (ArrayOfInitiative.initiative[0] == 1){
-				final ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
-				img.setBackgroundResource(R.drawable.sixonerotate4);
-				img.setImageResource(R.drawable.sixonerotate4);		  		  	  	
-			}
-			else if (ArrayOfInitiative.initiative[0] == 2){
-				final ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
-				img.setBackgroundResource(R.drawable.sixtworotate6);
-				img.setImageResource(R.drawable.sixtworotate6);
-			}
-			else if (ArrayOfInitiative.initiative[0] == 3){
-				final ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
-				img.setBackgroundResource(R.drawable.sixthree);
-				img.setImageResource(R.drawable.sixthree);
-			}
-			else if (ArrayOfInitiative.initiative[0] == 4){
-				final ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
-				img.setBackgroundResource(R.drawable.sixfour);
-				img.setImageResource(R.drawable.sixfour);
-			}
-			else if (ArrayOfInitiative.initiative[0] == 5){
-				final ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
-				img.setBackgroundResource(R.drawable.sixfiverotate2);
-				img.setImageResource(R.drawable.sixfiverotate2);
-			}
-			else if (ArrayOfInitiative.initiative[0] == 6){
-				final ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
-				img.setBackgroundResource(R.drawable.sixsixrightleftrotate);
-				img.setImageResource(R.drawable.sixsixrightleftrotate);
-			}
-			*/
+		*/		
 	}
 	
 	public void  determineDoubles() {
@@ -710,7 +677,7 @@ public class MainActivity2 extends ActionBarActivity {
 		//Toast.makeText(MainActivity2.this,"At method determineDoubles().", Toast.LENGTH_SHORT).show();		
 		
 		final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
-		centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+		//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 		
 		Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 		centerscrolltext.setTypeface(typeFace);				
@@ -740,11 +707,69 @@ public class MainActivity2 extends ActionBarActivity {
 				  			playerNameStopFadeInFadeOut();
 				  			computerStartFadeInFadeOut();
 				  			
-				  			
+				  			final Handler h3 = new Handler();
+				  	  	  	h3.postDelayed(new Runnable() {
+		
+				  	  	  		@Override
+				  	  	  		public void run()
+				  	  	  		{				  	  	  			
+					  	  	  		if (ArrayOfInitiative.initiative[1] == 1){
+					  					sixSidedRollFromCenterToRight1();							  		  	  	
+									}
+									else if (ArrayOfInitiative.initiative[1] == 2){
+										sixSidedRollFromCenterToRight2();
+									}
+									else if (ArrayOfInitiative.initiative[1] == 3){
+										sixSidedRollFromCenterToRight3();
+									}
+									else if (ArrayOfInitiative.initiative[1] == 4){
+										sixSidedRollFromCenterToRight4();
+									}
+									else if (ArrayOfInitiative.initiative[1] == 5){
+										sixSidedRollFromCenterToRight5();
+									}
+									else if (ArrayOfInitiative.initiative[1] == 6){
+										sixSidedRollFromCenterToRight6();
+									}
+					  	  	  		
+						  	  	  	final Handler h4 = new Handler();
+						  	  	  	h4.postDelayed(new Runnable() {
+			
+						  	  	  		@Override
+						  	  	  		public void run()
+						  	  	  		{				  	  	  			
+							  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
+								  	  		centerscrolltext.startAnimation(animAlphaText);
+								  			centerscrolltext.append("\n" + ">" + "\n" + "> The computer rolls a " + ArrayOfInitiative.initiative[1] + " for initiative.");
+								  			
+								  			final Handler h5 = new Handler();
+								  	  	  	h5.postDelayed(new Runnable() {
+					
+								  	  	  		@Override
+								  	  	  		public void run()
+								  	  	  		{	  	  	  		
+									  	  	  		// Use a blank drawable to hide the imageview animation:
+								  	  	  			ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+													img.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+													img.setImageResource(R.drawable.sixsixrightleftrotateblank);
+													
+													// Rre-enables ability to use srollbar:
+													centerscrolltext.bringToFront();
+													
+													centerscrolltext.setVisibility(View.VISIBLE);													
+											  		centerscrolltext.startAnimation(animAlphaText);
+													centerscrolltext.append("\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "> THIS IS A TEST...");
+													
+								  	  	  		}
+								  	  	  	}, 3000);
+						  	  	  		}
+						  	  	  	}, 1000);					  	  	  		
+				  	  	  		}
+				  	  	  	}, 3000);				  			
 			  	  		}
-			  	  	}, 3000);
+			  	  	}, 4000);
 	  	  		}
-	  	  	}, 2000);
+	  	  	}, 1250);
 		
 		/*
 		 
@@ -801,6 +826,7 @@ public class MainActivity2 extends ActionBarActivity {
 	      
 		 */		
 	}
+	
 	
 	
 	
