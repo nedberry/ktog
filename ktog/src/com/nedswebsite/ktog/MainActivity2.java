@@ -2,6 +2,8 @@ package com.nedswebsite.ktog;
 
 import java.util.Arrays;
 
+import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -12,7 +14,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
+import android.text.Spannable;
 import android.text.method.ScrollingMovementMethod;
+import android.text.style.BackgroundColorSpan;
 import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.GestureDetector.SimpleOnGestureListener;
@@ -50,19 +54,20 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		setContentView(R.layout.activity_main_activity2);		
 		// For the little space between the action & attack button.
-		getWindow().getDecorView().setBackgroundColor(Color.BLACK);				
+		getWindow().getDecorView().setBackgroundColor(Color.BLACK);		
 		
 		
-		
-		Thread thread = new Thread() {
+		Thread thread1 = new Thread() {
 		    @Override
 		    public void run() {
+		    	/*
 		    	final MediaPlayer activityOpeningSound = MediaPlayer.create(MainActivity2.this, R.raw.buttonsound6);
 				activityOpeningSound.start();
+				*/
+		    	MediaPlayerWrapper.play(MainActivity2.this, R.raw.buttonsound6);
 		    }
 		};
-		thread.start();	
-        
+		thread1.start();		
 		
 		
 		Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
@@ -70,21 +75,34 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);		
 		playerNameTextView.setTypeface(typeFace);		
-		playerNameTextView.setText(ArrayOfPlayers.player[0]);
+		playerNameTextView.setText(ArrayOfPlayers.player[0]);		
 		
 		TextView computerNameTextView = (TextView)findViewById(R.id.textviewnameright);
 		computerNameTextView.setTypeface(typeFace);
-		computerNameTextView.setText(ArrayOfPlayers.player[1]);		
+		computerNameTextView.setText(ArrayOfPlayers.player[1]);
+		
 		
 		ArrayOfHitPoints.hitpoints[0] = 20;		
-		TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+		final TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
 		playerHitPointsTextView.setTypeface(typeFace);
-		playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+		playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));		
 		
 		ArrayOfHitPoints.hitpoints[1] = 20;
-		TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+		final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
 		computerHitPointsTextView.setTypeface(typeFace);
 		computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
+		
+		
+		final Animation animPulsingAnimation = AnimationUtils.loadAnimation(this, R.anim.pulsinganimation);
+		Thread thread2 = new Thread() {
+		    @Override
+		    public void run() {		    	
+				playerHitPointsTextView.startAnimation(animPulsingAnimation);		
+				computerHitPointsTextView.startAnimation(animPulsingAnimation);
+		    }
+		};
+		thread2.start();	
+		
 		
 		ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
 		ImageView crossedswords2 = (ImageView) findViewById(R.id.imageviewavatarleft2);
@@ -106,10 +124,7 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		ArrayIsInitiativeStarted.isinitiativestarted[0] = "no";
 		ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "no";
-		ArrayAreThereDoubles.aretheredoubles[0] = "yes";
-		
-		
-		
+		ArrayAreThereDoubles.aretheredoubles[0] = "yes";		
 		
 		
 		unfoldScrolls();	  	      
@@ -128,25 +143,25 @@ public class MainActivity2 extends ActionBarActivity {
 		
   	  	preInitiativeTitle();				
 		
-  	  	
+  	  	/*
 		final Handler h2 = new Handler();
 	  	h2.postDelayed(new Runnable() {
 	
 	  		@Override
 	  		public void run()
-	  		{  			
-	  			final MediaPlayer scrollRollingAndUnrollingSound = MediaPlayer.create(MainActivity2.this, R.raw.scrollrollingandunrolling);
-	  			scrollRollingAndUnrollingSound.start();  			
+	  		{	  			
+	  			MediaPlayerWrapper.play(MainActivity2.this, R.raw.scrollrollingandunrolling);
 	  		}
 	  	}, 4450);  	
-	  	
+	  	*/  	  	
+  	  	
   	  	
         final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 		centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 		
 		centerscrolltext.setTypeface(typeFace);				
 		
-		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);		
 		
 		final Handler h3 = new Handler();
   	  	h3.postDelayed(new Runnable() {
@@ -178,7 +193,7 @@ public class MainActivity2 extends ActionBarActivity {
 			  		  	  		centerscrolltext.startAnimation(animAlphaText);
 			  		  			centerscrolltext.append("\n" + "> Please slide the die...");			  		  			
 			  		  			
-			  		  			playerNameStartFadeInFadeOut();
+			  		  			//playerNameStartFadeInFadeOut();
 			  		  			
 			  		  			ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "yes";
 			  		  			ArrayIsInitiativeStarted.isinitiativestarted[0].equals("yes");
@@ -189,14 +204,13 @@ public class MainActivity2 extends ActionBarActivity {
   	  		}
   	  	}, 2000);
   	  	
-  	  	Thread thread2 = new Thread() {
+  	  	Thread thread3 = new Thread() {
 		    @Override
-		    public void run() {
-		    	
+		    public void run() {		    	
 		    	determineInitiative();
 		    }
 		};
-		thread2.start();
+		thread3.start();
   	  	
   	  	
   	  	
@@ -298,12 +312,12 @@ public class MainActivity2 extends ActionBarActivity {
 	//========================================================================================================
 	//  OnCreate SEPERATOR
 	//========================================================================================================	
+		
 	
-	
-	public void playerNameStartFadeInFadeOut() {
+	public void playerNameStartFadeInFadeOut() {		
 		TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);
 		final Animation animAlphaTextRepeat = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text_repeat);
-	  	playerNameTextView.startAnimation(animAlphaTextRepeat);
+	  	playerNameTextView.startAnimation(animAlphaTextRepeat);	  		  	
 	}
 	
 	public void playerNameStopFadeInFadeOut() {
@@ -379,10 +393,17 @@ public class MainActivity2 extends ActionBarActivity {
 		img.setBackgroundResource(R.anim.sixsidedrollfromleftanimation);
   	  
   	  	// Get the background, which has been compiled to an AnimationDrawable object.
-  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
-		
-  	  	final MediaPlayer dieRolling = MediaPlayer.create(MainActivity2.this, R.raw.dierolling3b);
-  	  	dieRolling.start();
+  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();		
+  	  
+  	  		Thread thread = new Thread() {
+		    @Override
+		    public void run() {
+		    	MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
+		    }
+		};
+		thread.start();
+  	  	//MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
+  	  	
   	  	
   	  	// Animation is just 1 slide so user can see title.
   	  	frameAnimation.stop();
@@ -412,10 +433,9 @@ public class MainActivity2 extends ActionBarActivity {
 		img.setBackgroundResource(R.anim.sixsidedrollfromcentertoleftanimation1);
   	  
   	  	// Get the background, which has been compiled to an AnimationDrawable object.
-  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
-		
-  	  	final MediaPlayer dieRolling = MediaPlayer.create(MainActivity2.this, R.raw.dierolling3b);
-  	  	dieRolling.start();
+  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();		
+  	  	
+  	  	MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
   	  	
   	  	// Animation is just 1 slide so user can see title.
   	  	frameAnimation.stop();
@@ -430,10 +450,9 @@ public class MainActivity2 extends ActionBarActivity {
 		img.setBackgroundResource(R.anim.sixsidedrollfromcentertoleftanimation2);
   	  
   	  	// Get the background, which has been compiled to an AnimationDrawable object.
-  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
-		
-  	  	final MediaPlayer dieRolling = MediaPlayer.create(MainActivity2.this, R.raw.dierolling3b);
-  	  	dieRolling.start();
+  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();		
+  	  	
+  	  	MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
   	  	
   	  	// Animation is just 1 slide so user can see title.
   	  	frameAnimation.stop();
@@ -448,10 +467,9 @@ public class MainActivity2 extends ActionBarActivity {
 		img.setBackgroundResource(R.anim.sixsidedrollfromcentertoleftanimation3);
   	  
   	  	// Get the background, which has been compiled to an AnimationDrawable object.
-  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
-		
-  	  	final MediaPlayer dieRolling = MediaPlayer.create(MainActivity2.this, R.raw.dierolling3b);
-  	  	dieRolling.start();
+  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();		
+  	  	
+  	  	MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
   	  	
   	  	// Animation is just 1 slide so user can see title.
   	  	frameAnimation.stop();
@@ -468,8 +486,7 @@ public class MainActivity2 extends ActionBarActivity {
   	  	// Get the background, which has been compiled to an AnimationDrawable object.
   	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
 		
-  	  	final MediaPlayer dieRolling = MediaPlayer.create(MainActivity2.this, R.raw.dierolling3b);
-  	  	dieRolling.start();
+  	  	MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
   	  	
   	  	// Animation is just 1 slide so user can see title.
   	  	frameAnimation.stop();
@@ -486,8 +503,7 @@ public class MainActivity2 extends ActionBarActivity {
   	  	// Get the background, which has been compiled to an AnimationDrawable object.
   	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
 		
-  	  	final MediaPlayer dieRolling = MediaPlayer.create(MainActivity2.this, R.raw.dierolling3b);
-  	  	dieRolling.start();
+  	  	MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
   	  	
   	  	// Animation is just 1 slide so user can see title.
   	  	frameAnimation.stop();
@@ -504,8 +520,7 @@ public class MainActivity2 extends ActionBarActivity {
   	  	// Get the background, which has been compiled to an AnimationDrawable object.
   	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
 		
-  	  	final MediaPlayer dieRolling = MediaPlayer.create(MainActivity2.this, R.raw.dierolling3b);
-  	  	dieRolling.start();
+  	  	MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
   	  	
   	  	// Animation is just 1 slide so user can see title.
   	  	frameAnimation.stop();
@@ -522,8 +537,7 @@ public class MainActivity2 extends ActionBarActivity {
   	  	// Get the background, which has been compiled to an AnimationDrawable object.
   	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
 		
-  	  	final MediaPlayer dieRolling = MediaPlayer.create(MainActivity2.this, R.raw.dierolling3b);
-  	  	dieRolling.start();
+  	  	MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
   	  	
   	  	// Animation is just 1 slide so user can see title.
   	  	frameAnimation.stop();
@@ -540,8 +554,7 @@ public class MainActivity2 extends ActionBarActivity {
   	  	// Get the background, which has been compiled to an AnimationDrawable object.
   	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
 		
-  	  	final MediaPlayer dieRolling = MediaPlayer.create(MainActivity2.this, R.raw.dierolling3b);
-  	  	dieRolling.start();
+  	  	MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
   	  	
   	  	// Animation is just 1 slide so user can see title.
   	  	frameAnimation.stop();
@@ -558,8 +571,7 @@ public class MainActivity2 extends ActionBarActivity {
   	  	// Get the background, which has been compiled to an AnimationDrawable object.
   	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
 		
-  	  	final MediaPlayer dieRolling = MediaPlayer.create(MainActivity2.this, R.raw.dierolling3b);
-  	  	dieRolling.start();
+  	  	MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
   	  	
   	  	// Animation is just 1 slide so user can see title.
   	  	frameAnimation.stop();
@@ -576,8 +588,7 @@ public class MainActivity2 extends ActionBarActivity {
   	  	// Get the background, which has been compiled to an AnimationDrawable object.
   	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
 		
-  	  	final MediaPlayer dieRolling = MediaPlayer.create(MainActivity2.this, R.raw.dierolling3b);
-  	  	dieRolling.start();
+  	  	MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
   	  	
   	  	// Animation is just 1 slide so user can see title.
   	  	frameAnimation.stop();
@@ -594,8 +605,7 @@ public class MainActivity2 extends ActionBarActivity {
   	  	// Get the background, which has been compiled to an AnimationDrawable object.
   	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
 		
-  	  	final MediaPlayer dieRolling = MediaPlayer.create(MainActivity2.this, R.raw.dierolling3b);
-  	  	dieRolling.start();
+  	  	MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
   	  	
   	  	// Animation is just 1 slide so user can see title.
   	  	frameAnimation.stop();
@@ -612,8 +622,7 @@ public class MainActivity2 extends ActionBarActivity {
   	  	// Get the background, which has been compiled to an AnimationDrawable object.
   	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
 		
-  	  	final MediaPlayer dieRolling = MediaPlayer.create(MainActivity2.this, R.raw.dierolling3b);
-  	  	dieRolling.start();
+  	  	MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
   	  	
   	  	// Animation is just 1 slide so user can see title.
   	  	frameAnimation.stop();
@@ -692,7 +701,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  		{  	  			
 		  	  		centerscrolltext.setVisibility(View.VISIBLE);
 		  	  		centerscrolltext.startAnimation(animAlphaText);
-		  			centerscrolltext.append("\n" + ">" + "\n" + "> You roll a " + ArrayOfInitiative.initiative[0] + " for initiative!");
+		  			centerscrolltext.append("\n" + ">" + "\n" + "> You roll a " + ArrayOfInitiative.initiative[0] + " for initiative.");
 		  			
 		  			final Handler h2 = new Handler();
 			  	  	h2.postDelayed(new Runnable() {
@@ -704,8 +713,8 @@ public class MainActivity2 extends ActionBarActivity {
 				  	  		centerscrolltext.startAnimation(animAlphaText);
 				  			centerscrolltext.append("\n" + "> Now the computer rolls...");
 				  			
-				  			playerNameStopFadeInFadeOut();
-				  			computerStartFadeInFadeOut();
+				  			//playerNameStopFadeInFadeOut();
+				  			//computerStartFadeInFadeOut();
 				  			
 				  			final Handler h3 = new Handler();
 				  	  	  	h3.postDelayed(new Runnable() {
@@ -754,11 +763,13 @@ public class MainActivity2 extends ActionBarActivity {
 													img.setImageResource(R.drawable.sixsixrightleftrotateblank);
 													
 													// Rre-enables ability to use srollbar:
-													centerscrolltext.bringToFront();
+													centerscrolltext.bringToFront();													
 													
 													centerscrolltext.setVisibility(View.VISIBLE);													
 											  		centerscrolltext.startAnimation(animAlphaText);
 													centerscrolltext.append("\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "> THIS IS A TEST...");
+													
+													//computerStopFadeInFadeOut();
 													
 								  	  	  		}
 								  	  	  	}, 3000);

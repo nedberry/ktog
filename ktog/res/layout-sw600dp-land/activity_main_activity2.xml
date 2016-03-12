@@ -216,10 +216,10 @@
    	<ImageView
    	    android:id="@+id/imageviewcenterscroll"
    	    android:layout_width="wrap_content"
-   	    android:layout_height="wrap_content"
+   	    android:layout_height="wrap_content"   	    
    	    android:layout_above="@+id/imagebuttonaction"
    	    android:layout_toRightOf="@+id/imageviewscroll3b5left"   	    
-   	    android:background="@drawable/centerscroll" />   	
+   	    android:background="@drawable/centerscroll2" /> 	
    	
    	<TextView
         android:id="@+id/textviewcenterscrolltext"
@@ -237,9 +237,12 @@
         android:paddingRight="20dp"
         android:paddingTop="20dp"
         android:scrollbars="vertical"
+        
+        
+                
         android:textColor="#FFFFFF"
         android:textSize="25sp" />	
-   	
+   		<!-- android:scrollbarSize="100dp" ISN"T WORKING  -->
    	
    	
    	
