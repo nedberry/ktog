@@ -12,6 +12,11 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:background="@drawable/leftscroll" />
+    
+    <ImageView
+        android:id="@+id/playerturnbackgroundanimation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <ImageButton
         android:id="@+id/imagebuttontitleblank"
@@ -34,8 +39,8 @@
         android:gravity="bottom|center"
         android:minHeight="105dp"
         android:textColor="#FFFFFF"
-        android:textSize="25sp" />
-
+        android:textSize="25sp" />    
+    
     <ImageView
         android:id="@+id/imageviewscroll3b5right"
         android:layout_width="wrap_content"
@@ -43,6 +48,11 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:background="@drawable/rightscroll" />
+    
+    <ImageView
+        android:id="@+id/computerturnbackgroundanimation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <TextView
         android:id="@+id/textviewnameright"
@@ -235,7 +245,7 @@
         android:paddingBottom="40dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:paddingTop="20dp"
+        android:paddingTop="25dp"
         android:scrollbars="vertical"
         
         

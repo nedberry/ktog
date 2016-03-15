@@ -37,7 +37,9 @@ import android.widget.Toast;
 
 public class MainActivity2 extends ActionBarActivity {			
 	
-		
+	
+	
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +71,7 @@ public class MainActivity2 extends ActionBarActivity {
 		};
 		thread1.start();		
 		
-		
+		// Crashes if this is put up top.
 		Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 		
 		
@@ -90,13 +92,13 @@ public class MainActivity2 extends ActionBarActivity {
 		ArrayOfHitPoints.hitpoints[1] = 20;
 		final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
 		computerHitPointsTextView.setTypeface(typeFace);
-		computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
+		computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));		
 		
 		
-		final Animation animPulsingAnimation = AnimationUtils.loadAnimation(this, R.anim.pulsinganimation);
 		Thread thread2 = new Thread() {
 		    @Override
-		    public void run() {		    	
+		    public void run() {
+		    	final Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);
 				playerHitPointsTextView.startAnimation(animPulsingAnimation);		
 				computerHitPointsTextView.startAnimation(animPulsingAnimation);
 		    }
@@ -127,7 +129,7 @@ public class MainActivity2 extends ActionBarActivity {
 		ArrayAreThereDoubles.aretheredoubles[0] = "yes";		
 		
 		
-		unfoldScrolls();	  	      
+		unfoldScrolls();		
         /*
         final Handler h1 = new Handler();
   	  	h1.postDelayed(new Runnable() {
@@ -141,8 +143,7 @@ public class MainActivity2 extends ActionBarActivity {
   	  	}, 800);        
     	*/
 		
-  	  	preInitiativeTitle();				
-		
+  	  	preInitiativeTitle();		
   	  	/*
 		final Handler h2 = new Handler();
 	  	h2.postDelayed(new Runnable() {
@@ -178,22 +179,32 @@ public class MainActivity2 extends ActionBarActivity {
 
 	  	  	  		@Override
 	  	  	  		public void run()
-	  	  	  		{	  	  	  			
+	  	  	  		{
 	  	  	  			sixSidedRollFromLeft();  	  	  			
 	  		  			
 		  		  		final Handler h5 = new Handler();
 			  	  	  	h5.postDelayed(new Runnable() {
-	
-			  	  	  		@Override
-			  	  	  		public void run()
-			  	  	  		{  	  			
-			  	  	  			sixSidedWobbleStart();
+			  	  	  			
+			  	  	  			// Does this thread help:?
+				  	  	  		@Override
+				  	  	  		public void run()
+				  	  	  		{  	  			
+				  	  	  			runOnUiThread(new Runnable() {
+					  	  	  	    @Override
+					  	  	  	    public void run() {					  	  	  	    	
+					  	  	  	    	sixSidedWobbleStart();
+						  	  	  	}
+					  	  	  	});
+				  	  	  		
 			  	  	  			
 			  	  	  			centerscrolltext.setVisibility(View.VISIBLE);
 			  		  	  		centerscrolltext.startAnimation(animAlphaText);
 			  		  			centerscrolltext.append("\n" + "> Please slide the die...");			  		  			
 			  		  			
-			  		  			//playerNameStartFadeInFadeOut();
+			  		  			
+			  		  			playerNameStartFadeInFadeOut();
+			  		  			//playerTurnBackgroundStart();  		  			
+			  		  			
 			  		  			
 			  		  			ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "yes";
 			  		  			ArrayIsInitiativeStarted.isinitiativestarted[0].equals("yes");
@@ -204,6 +215,7 @@ public class MainActivity2 extends ActionBarActivity {
   	  		}
   	  	}, 2000);
   	  	
+  	  	
   	  	Thread thread3 = new Thread() {
 		    @Override
 		    public void run() {		    	
@@ -211,12 +223,7 @@ public class MainActivity2 extends ActionBarActivity {
 		    }
 		};
 		thread3.start();
-  	  	
-  	  	
-  	  	
-  	  	
-  	  	
-  	  	
+		
 				
 		
 		final ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
@@ -304,8 +311,6 @@ public class MainActivity2 extends ActionBarActivity {
 	  	});
 	  	
 	  	
-	  	  		  	
-  
 	}
 	
 	
@@ -313,11 +318,16 @@ public class MainActivity2 extends ActionBarActivity {
 	//  OnCreate SEPERATOR
 	//========================================================================================================	
 		
-	
+	// OK IN THEIR OWN THREADS????
 	public void playerNameStartFadeInFadeOut() {		
-		TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);
-		final Animation animAlphaTextRepeat = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text_repeat);
-	  	playerNameTextView.startAnimation(animAlphaTextRepeat);	  		  	
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {		    	
+		    	TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);
+				final Animation animAlphaTextRepeat = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.anim_alpha_text_repeat);
+			  	playerNameTextView.startAnimation(animAlphaTextRepeat);
+		    }
+  		});			  		  	
 	}
 	
 	public void playerNameStopFadeInFadeOut() {
@@ -327,9 +337,14 @@ public class MainActivity2 extends ActionBarActivity {
 	}
 	
 	public void computerStartFadeInFadeOut() {
-		TextView computerNameTextView = (TextView)findViewById(R.id.textviewnameright);
-		final Animation animAlphaTextRepeat = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text_repeat);
-		computerNameTextView.startAnimation(animAlphaTextRepeat);
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {		    	
+		    	TextView computerNameTextView = (TextView)findViewById(R.id.textviewnameright);
+				final Animation animAlphaTextRepeat = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.anim_alpha_text_repeat);
+				computerNameTextView.startAnimation(animAlphaTextRepeat);
+		    }
+		});			
 	}
 	
 	public void computerStopFadeInFadeOut() {
@@ -337,6 +352,82 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		computerNameTextView.clearAnimation();
 	}
+	
+	//========================================================================================================
+	
+	public void playerTurnBackgroundStart() {		
+		runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+				// Setting up scroll frame animation.
+				ImageView img = (ImageView)findViewById(R.id.playerturnbackgroundanimation);
+				img.setBackgroundResource(R.anim.playerturnbackgroundanimation);
+				
+				// Get the background, which has been compiled to an AnimationDrawable object.
+				AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+							
+				// Start the animation.				
+				frameAnimation.start();
+		  	    }
+	  		});
+		
+		/*Thread thread = new Thread() {
+		    @Override
+		    public void run() {
+		    					
+		    }
+		};
+		thread.start();*/		  		  	
+	}
+	
+	public void playerTurnBackgroundStop() {
+		// Use a drawable to hide the imageview animation:
+  		ImageView img = (ImageView)findViewById(R.id.playerturnbackgroundanimation);		
+		img.setBackgroundResource(R.drawable.leftscroll);
+		img.setImageResource(R.drawable.leftscroll);		 	
+	}
+	
+	public void computerTurnBackgroundStart() {
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {		
+		/*Thread thread = new Thread() {
+		    @Override
+		    public void run() {*/
+		    	// Setting up scroll frame animation.
+				ImageView img = (ImageView)findViewById(R.id.computerturnbackgroundanimation);
+				img.setBackgroundResource(R.anim.computerturnbackgroundanimation);
+			
+				// Get the background, which has been compiled to an AnimationDrawable object.
+				AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+							
+				// Start the animation.				
+				frameAnimation.start();		    	
+		    /*}
+		};
+		thread.start();*/
+		    }
+  		});
+	}
+	
+	public void computerTurnBackgroundStop() {
+		// Use a drawable to hide the imageview animation:
+  		ImageView img = (ImageView)findViewById(R.id.computerturnbackgroundanimation);		
+		img.setBackgroundResource(R.drawable.rightscroll);
+		img.setImageResource(R.drawable.rightscroll);		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	// Destroys data in arrays, and pro-actively cleans up memory (finish) for the user (good practice?).
@@ -360,7 +451,39 @@ public class MainActivity2 extends ActionBarActivity {
 		//Toast.makeText(MainActivity2.this,"onBackPressed WORKING!!!!", Toast.LENGTH_SHORT).show();
     }
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//@SuppressWarnings("deprecation")
 	public void unfoldScrolls () {
+		/*
+		// TO PERFORM FRAME ANIMATION PROGRAMMATICALLY:
+		AnimationDrawable animation;
+		animation = new AnimationDrawable();
+        animation.addFrame(getResources().getDrawable(R.drawable.dualingscrolls14), 75);
+        animation.addFrame(getResources().getDrawable(R.drawable.dualingscrolls12), 75);
+        animation.addFrame(getResources().getDrawable(R.drawable.dualingscrolls10), 75);
+        animation.addFrame(getResources().getDrawable(R.drawable.dualingscrolls8), 75);
+        animation.addFrame(getResources().getDrawable(R.drawable.dualingscrolls6), 75);
+        animation.addFrame(getResources().getDrawable(R.drawable.dualingscrolls4), 75);
+        animation.addFrame(getResources().getDrawable(R.drawable.dualingscrolls1), 75);
+        
+        animation.setOneShot(true);
+       
+        ImageView imageAnim =  (ImageView) findViewById(R.id.scrollanimation);
+        imageAnim.setBackgroundDrawable(animation);       
+        
+        imageAnim.post(animation);
+		*/
 		
 		// Setting up scroll frame animation.
 		ImageView img = (ImageView)findViewById(R.id.scrollanimation);
@@ -371,8 +494,9 @@ public class MainActivity2 extends ActionBarActivity {
 					
 		// Start the animation.
 		frameAnimation.stop();
-		frameAnimation.start();					
-	}
+		frameAnimation.start();
+			
+	}	
 	
 	public void preInitiativeTitle() {	
   	
@@ -713,8 +837,10 @@ public class MainActivity2 extends ActionBarActivity {
 				  	  		centerscrolltext.startAnimation(animAlphaText);
 				  			centerscrolltext.append("\n" + "> Now the computer rolls...");
 				  			
-				  			//playerNameStopFadeInFadeOut();
-				  			//computerStartFadeInFadeOut();
+				  			playerNameStopFadeInFadeOut();
+				  			computerStartFadeInFadeOut();
+				  			//playerTurnBackgroundStop();
+				  			//computerTurnBackgroundStart();
 				  			
 				  			final Handler h3 = new Handler();
 				  	  	  	h3.postDelayed(new Runnable() {
@@ -769,7 +895,8 @@ public class MainActivity2 extends ActionBarActivity {
 											  		centerscrolltext.startAnimation(animAlphaText);
 													centerscrolltext.append("\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "> THIS IS A TEST...");
 													
-													//computerStopFadeInFadeOut();
+													computerStopFadeInFadeOut();
+													//computerTurnBackgroundStop();
 													
 								  	  	  		}
 								  	  	  	}, 3000);

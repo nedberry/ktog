@@ -43,12 +43,15 @@ public class Video extends ActionBarActivity
             	startActivity(openMainActivity);            	
             }
         });        
-                
+        
+        
         // By tapping button (screen), player skips video.
                         
-        final ImageButton imageButton1 = (ImageButton) findViewById(R.id.videobutton1);
-                
-        imageButton1.setOnClickListener(new View.OnClickListener() {
+        final ImageButton imageButton = (ImageButton) findViewById(R.id.videobutton1);
+        
+        //imageButton1.bringToFront();
+        
+        imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
 			public void onClick(View v) {
                           	
@@ -58,7 +61,8 @@ public class Video extends ActionBarActivity
             	// USE TO PRESERVE MEMORY
             	finish();            	
             }
-        });        
+        });
+                
     }
 		
 	protected void onResume(VideoView vv) {
