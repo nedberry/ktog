@@ -164,6 +164,7 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);		
 		
+		// THESE RUN METHODS ARE THREAD-SAFE, SUPPOSEDLY.
 		final Handler h3 = new Handler();
   	  	h3.postDelayed(new Runnable() {
 
@@ -194,9 +195,7 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  	  	    public void run() {					  	  	  	    	
 					  	  	  	    	sixSidedWobbleStart();
 						  	  	  	}
-					  	  	  	});
-				  	  	  		
-			  	  	  			
+					  	  	  	});			  	  	  			
 			  	  	  			centerscrolltext.setVisibility(View.VISIBLE);
 			  		  	  		centerscrolltext.startAnimation(animAlphaText);
 			  		  			centerscrolltext.append("\n" + "> Please slide the die...");			  		  			
@@ -485,21 +484,26 @@ public class MainActivity2 extends ActionBarActivity {
         imageAnim.post(animation);
 		*/
 		
-		// Setting up scroll frame animation.
-		ImageView img = (ImageView)findViewById(R.id.scrollanimation);
-		img.setBackgroundResource(R.anim.scrollanimationup);
-	
-		// Get the background, which has been compiled to an AnimationDrawable object.
-		AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
-					
-		// Start the animation.
-		frameAnimation.stop();
-		frameAnimation.start();
+		// USING "runOnUiThread(new Runnable() {}" TO SEE IF IT WORKS BETTER THAN NOT USING IT.
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				// Setting up scroll frame animation.
+				ImageView img = (ImageView)findViewById(R.id.scrollanimation);
+				img.setBackgroundResource(R.anim.scrollanimationup);
 			
+				// Get the background, which has been compiled to an AnimationDrawable object.
+				AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+							
+				// Start the animation.
+				frameAnimation.stop();
+				frameAnimation.start();
+	  	    }
+  		});	
 	}	
 	
 	public void preInitiativeTitle() {	
-  	
+		/*
 		ImageView img = (ImageView)findViewById(R.id.titleanimation);		
 		img.setBackgroundResource(R.anim.titleanimationpreinitiative);
   	  
@@ -508,11 +512,28 @@ public class MainActivity2 extends ActionBarActivity {
 		
   	  	// Animation is just 1 slide so user can see title.
   	  	frameAnimation.stop();
-  	  	frameAnimation.start();  	  	
+  	  	frameAnimation.start();
+  	  	*/
+		// USING "runOnUiThread(new Runnable() {}" TO SEE IF IT WORKS BETTER THAN NOT USING IT.
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				// Setting up scroll frame animation.
+				ImageView img = (ImageView)findViewById(R.id.titleanimation);		
+				img.setBackgroundResource(R.anim.titleanimationpreinitiative);
+		  	  
+		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+				
+		  	  	// Animation is just 1 slide so user can see title.
+		  	  	frameAnimation.stop();
+		  	  	frameAnimation.start();
+	  	    }
+  		});	
 	}
 	
 	public void sixSidedRollFromLeft() {	
-	  	
+	  	/*
 		final ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
 		img.setBackgroundResource(R.anim.sixsidedrollfromleftanimation);
   	  
@@ -520,11 +541,11 @@ public class MainActivity2 extends ActionBarActivity {
   	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();		
   	  
   	  		Thread thread = new Thread() {
-		    @Override
-		    public void run() {
-		    	MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
-		    }
-		};
+			    @Override
+			    public void run() {
+			    	MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
+			    }
+			};
 		thread.start();
   	  	//MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
   	  	
@@ -532,6 +553,32 @@ public class MainActivity2 extends ActionBarActivity {
   	  	// Animation is just 1 slide so user can see title.
   	  	frameAnimation.stop();
   	  	frameAnimation.start();
+  	  	*/
+		// USING "runOnUiThread(new Runnable() {}" TO SEE IF IT WORKS BETTER THAN NOT USING IT.
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				final ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+				img.setBackgroundResource(R.anim.sixsidedrollfromleftanimation);
+		  	  
+		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();		
+		  	  
+		  	  		Thread thread = new Thread() {
+					    @Override
+					    public void run() {
+					    	MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
+					    }
+		  	  		};
+		  	  		thread.start();
+		  	  	//MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
+		  	  	
+		  	  	
+		  	  	// Animation is just 1 slide so user can see title.
+		  	  	frameAnimation.stop();
+		  	  	frameAnimation.start();
+	  	    }
+  		});	
 	}
 	
 	public void sixSidedWobbleStart() {
@@ -552,7 +599,7 @@ public class MainActivity2 extends ActionBarActivity {
 	//========================================================================================================
 		
 	public void sixSidedRollFromCenterToLeft1() {	
-	  	
+	  	/*
 		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
 		img.setBackgroundResource(R.anim.sixsidedrollfromcentertoleftanimation1);
   	  
@@ -564,12 +611,30 @@ public class MainActivity2 extends ActionBarActivity {
   	  	// Animation is just 1 slide so user can see title.
   	  	frameAnimation.stop();
   	  	frameAnimation.start();
+  	  	*/
+		// USING "runOnUiThread(new Runnable() {}" TO SEE IF IT WORKS BETTER THAN NOT USING IT.
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+				img.setBackgroundResource(R.anim.sixsidedrollfromcentertoleftanimation1);
+		  	  
+		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();		
+		  	  	
+		  	  	MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
+		  	  	
+		  	  	// Animation is just 1 slide so user can see title.
+		  	  	frameAnimation.stop();
+		  	  	frameAnimation.start();
+	  	    }
+  		});
   	  	
   	  	ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "no";
 	}
 	
 	public void sixSidedRollFromCenterToLeft2() {	
-	  	
+	  	/*
 		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
 		img.setBackgroundResource(R.anim.sixsidedrollfromcentertoleftanimation2);
   	  
@@ -581,12 +646,30 @@ public class MainActivity2 extends ActionBarActivity {
   	  	// Animation is just 1 slide so user can see title.
   	  	frameAnimation.stop();
   	  	frameAnimation.start();
+  	  	*/
+		// USING "runOnUiThread(new Runnable() {}" TO SEE IF IT WORKS BETTER THAN NOT USING IT.
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+				img.setBackgroundResource(R.anim.sixsidedrollfromcentertoleftanimation2);
+		  	  
+		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();		
+		  	  	
+		  	  	MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
+		  	  	
+		  	  	// Animation is just 1 slide so user can see title.
+		  	  	frameAnimation.stop();
+		  	  	frameAnimation.start();
+	  	    }
+  		});
   	  	
   	  	ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "no";
 	}
 
 	public void sixSidedRollFromCenterToLeft3() {	
-	  	
+	  	/*
 		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
 		img.setBackgroundResource(R.anim.sixsidedrollfromcentertoleftanimation3);
   	  
@@ -598,12 +681,30 @@ public class MainActivity2 extends ActionBarActivity {
   	  	// Animation is just 1 slide so user can see title.
   	  	frameAnimation.stop();
   	  	frameAnimation.start();
-  	  	
+  	  	*/
+		// USING "runOnUiThread(new Runnable() {}" TO SEE IF IT WORKS BETTER THAN NOT USING IT.
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+				img.setBackgroundResource(R.anim.sixsidedrollfromcentertoleftanimation3);
+		  	  
+		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();		
+		  	  	
+		  	  	MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
+		  	  	
+		  	  	// Animation is just 1 slide so user can see title.
+		  	  	frameAnimation.stop();
+		  	  	frameAnimation.start();
+	  	    }
+  		});
+		
   	  	ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "no";
 	}
 	
 	public void sixSidedRollFromCenterToLeft4() {	
-	  	
+	  	/*
 		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
 		img.setBackgroundResource(R.anim.sixsidedrollfromcentertoleftanimation4);
   	  
@@ -615,12 +716,30 @@ public class MainActivity2 extends ActionBarActivity {
   	  	// Animation is just 1 slide so user can see title.
   	  	frameAnimation.stop();
   	  	frameAnimation.start();
-  	  	
+  	  	*/
+		// USING "runOnUiThread(new Runnable() {}" TO SEE IF IT WORKS BETTER THAN NOT USING IT.
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+				img.setBackgroundResource(R.anim.sixsidedrollfromcentertoleftanimation4);
+		  	  
+		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+				
+		  	  	MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
+		  	  	
+		  	  	// Animation is just 1 slide so user can see title.
+		  	  	frameAnimation.stop();
+		  	  	frameAnimation.start();
+	  	    }
+  		});
+		
   	  	ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "no";
 	}
 	
 	public void sixSidedRollFromCenterToLeft5() {	
-	  	
+	  	/*
 		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
 		img.setBackgroundResource(R.anim.sixsidedrollfromcentertoleftanimation5);
   	  
@@ -632,12 +751,30 @@ public class MainActivity2 extends ActionBarActivity {
   	  	// Animation is just 1 slide so user can see title.
   	  	frameAnimation.stop();
   	  	frameAnimation.start();
-  	  	
+  	  	*/
+		// USING "runOnUiThread(new Runnable() {}" TO SEE IF IT WORKS BETTER THAN NOT USING IT.
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+				img.setBackgroundResource(R.anim.sixsidedrollfromcentertoleftanimation5);
+		  	  
+		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+				
+		  	  	MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
+		  	  	
+		  	  	// Animation is just 1 slide so user can see title.
+		  	  	frameAnimation.stop();
+		  	  	frameAnimation.start();
+	  	    }
+  		});
+		
   	  	ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "no";
 	}
 	
 	public void sixSidedRollFromCenterToLeft6() {	
-	  	
+	  	/*
 		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
 		img.setBackgroundResource(R.anim.sixsidedrollfromcentertoleftanimation6);
   	  
@@ -649,12 +786,30 @@ public class MainActivity2 extends ActionBarActivity {
   	  	// Animation is just 1 slide so user can see title.
   	  	frameAnimation.stop();
   	  	frameAnimation.start();
-  	  	
+  	  	*/
+		// USING "runOnUiThread(new Runnable() {}" TO SEE IF IT WORKS BETTER THAN NOT USING IT.
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+				img.setBackgroundResource(R.anim.sixsidedrollfromcentertoleftanimation6);
+		  	  
+		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+				
+		  	  	MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
+		  	  	
+		  	  	// Animation is just 1 slide so user can see title.
+		  	  	frameAnimation.stop();
+		  	  	frameAnimation.start();
+	  	    }
+  		});
+		
   	  	ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "no";
 	}
 	
 	public void sixSidedRollFromCenterToRight1() {	
-	  	
+	  	/*
 		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
 		img.setBackgroundResource(R.anim.sixsidedrollfromcentertorightanimation1);
   	  
@@ -666,12 +821,30 @@ public class MainActivity2 extends ActionBarActivity {
   	  	// Animation is just 1 slide so user can see title.
   	  	frameAnimation.stop();
   	  	frameAnimation.start();
+  	  	*/
+		// USING "runOnUiThread(new Runnable() {}" TO SEE IF IT WORKS BETTER THAN NOT USING IT.
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+				img.setBackgroundResource(R.anim.sixsidedrollfromcentertorightanimation1);
+		  	  
+		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+				
+		  	  	MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
+		  	  	
+		  	  	// Animation is just 1 slide so user can see title.
+		  	  	frameAnimation.stop();
+		  	  	frameAnimation.start();
+	  	    }
+  		});
   	  	
   	  	ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "no";
 	}
 	
 	public void sixSidedRollFromCenterToRight2() {	
-	  	
+	  	/*
 		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
 		img.setBackgroundResource(R.anim.sixsidedrollfromcentertorightanimation2);
   	  
@@ -683,12 +856,30 @@ public class MainActivity2 extends ActionBarActivity {
   	  	// Animation is just 1 slide so user can see title.
   	  	frameAnimation.stop();
   	  	frameAnimation.start();
-  	  	
+  	  	*/
+		// USING "runOnUiThread(new Runnable() {}" TO SEE IF IT WORKS BETTER THAN NOT USING IT.
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+				img.setBackgroundResource(R.anim.sixsidedrollfromcentertorightanimation2);
+		  	  
+		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+				
+		  	  	MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
+		  	  	
+		  	  	// Animation is just 1 slide so user can see title.
+		  	  	frameAnimation.stop();
+		  	  	frameAnimation.start();
+	  	    }
+  		});
+		
   	  	ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "no";
 	}
 	
 	public void sixSidedRollFromCenterToRight3() {	
-	  	
+	  	/*
 		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
 		img.setBackgroundResource(R.anim.sixsidedrollfromcentertorightanimation3);
   	  
@@ -700,12 +891,30 @@ public class MainActivity2 extends ActionBarActivity {
   	  	// Animation is just 1 slide so user can see title.
   	  	frameAnimation.stop();
   	  	frameAnimation.start();
-  	  	
+  	  	*/
+		// USING "runOnUiThread(new Runnable() {}" TO SEE IF IT WORKS BETTER THAN NOT USING IT.
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+				img.setBackgroundResource(R.anim.sixsidedrollfromcentertorightanimation3);
+		  	  
+		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+				
+		  	  	MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
+		  	  	
+		  	  	// Animation is just 1 slide so user can see title.
+		  	  	frameAnimation.stop();
+		  	  	frameAnimation.start();
+	  	    }
+  		});
+		
   	  	ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "no";
 	}
 	
 	public void sixSidedRollFromCenterToRight4() {	
-	  	
+	  	/*
 		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
 		img.setBackgroundResource(R.anim.sixsidedrollfromcentertorightanimation4);
   	  
@@ -717,12 +926,30 @@ public class MainActivity2 extends ActionBarActivity {
   	  	// Animation is just 1 slide so user can see title.
   	  	frameAnimation.stop();
   	  	frameAnimation.start();
-  	  	
+  	  	*/
+		// USING "runOnUiThread(new Runnable() {}" TO SEE IF IT WORKS BETTER THAN NOT USING IT.
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+				img.setBackgroundResource(R.anim.sixsidedrollfromcentertorightanimation4);
+		  	  
+		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+				
+		  	  	MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
+		  	  	
+		  	  	// Animation is just 1 slide so user can see title.
+		  	  	frameAnimation.stop();
+		  	  	frameAnimation.start();
+	  	    }
+  		});
+		
   	  	ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "no";
 	}
 	
 	public void sixSidedRollFromCenterToRight5() {	
-	  	
+	  	/*
 		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
 		img.setBackgroundResource(R.anim.sixsidedrollfromcentertorightanimation5);
   	  
@@ -734,12 +961,30 @@ public class MainActivity2 extends ActionBarActivity {
   	  	// Animation is just 1 slide so user can see title.
   	  	frameAnimation.stop();
   	  	frameAnimation.start();
-  	  	
+  	  	*/
+		// USING "runOnUiThread(new Runnable() {}" TO SEE IF IT WORKS BETTER THAN NOT USING IT.
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+				img.setBackgroundResource(R.anim.sixsidedrollfromcentertorightanimation5);
+		  	  
+		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+				
+		  	  	MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
+		  	  	
+		  	  	// Animation is just 1 slide so user can see title.
+		  	  	frameAnimation.stop();
+		  	  	frameAnimation.start();
+	  	    }
+  		});
+		
   	  	ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "no";
 	}
 	
 	public void sixSidedRollFromCenterToRight6() {	
-	  	
+	  	/*
 		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
 		img.setBackgroundResource(R.anim.sixsidedrollfromcentertorightanimation6);
   	  
@@ -751,7 +996,25 @@ public class MainActivity2 extends ActionBarActivity {
   	  	// Animation is just 1 slide so user can see title.
   	  	frameAnimation.stop();
   	  	frameAnimation.start();
-  	  	
+  	  	*/
+		// USING "runOnUiThread(new Runnable() {}" TO SEE IF IT WORKS BETTER THAN NOT USING IT.
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+				img.setBackgroundResource(R.anim.sixsidedrollfromcentertorightanimation6);
+		  	  
+		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+				
+		  	  	MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
+		  	  	
+		  	  	// Animation is just 1 slide so user can see title.
+		  	  	frameAnimation.stop();
+		  	  	frameAnimation.start();
+	  	    }
+  		});
+		
   	  	ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "no";
 	}
 		
