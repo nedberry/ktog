@@ -200,6 +200,14 @@ public class MainActivity1 extends ActionBarActivity {
             this.finish();
     }
 	
+	// DESTROYS EVERYTHING (EXCEPT SERVICE?)
+	
+	@Override
+	protected void onDestroy() {
+	    android.os.Process.killProcess(android.os.Process.myPid());
+	}
+	
+	
 	public static void insertToDatabase(final String player){
         class SendPostReqAsyncTask extends AsyncTask<String, Void, String> {
             @Override

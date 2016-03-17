@@ -246,10 +246,7 @@
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:paddingTop="25dp"
-        android:scrollbars="vertical"
-        
-        
-                
+        android:scrollbars="vertical"               
         android:textColor="#FFFFFF"
         android:textSize="25sp" />	
    		<!-- android:scrollbarSize="100dp" ISN"T WORKING  -->

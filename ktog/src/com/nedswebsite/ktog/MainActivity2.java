@@ -37,7 +37,12 @@ import android.widget.Toast;
 
 public class MainActivity2 extends ActionBarActivity {			
 	
+	// Using variable because was getting null pointer if onbackpressed before rollfromleft was completed:
+	String onBackPressedOk = "no";
 	
+	String isinitiativestarted = "no";
+	String issixsidedrolledforinitiative = "no";
+	String aretheredoubles = "yes";
 	
 	
 	
@@ -94,8 +99,8 @@ public class MainActivity2 extends ActionBarActivity {
 		computerHitPointsTextView.setTypeface(typeFace);
 		computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));		
 		
-		
-		Thread thread2 = new Thread() {
+		/*
+		Thread thread3 = new Thread() {
 		    @Override
 		    public void run() {
 		    	final Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);
@@ -103,7 +108,16 @@ public class MainActivity2 extends ActionBarActivity {
 				computerHitPointsTextView.startAnimation(animPulsingAnimation);
 		    }
 		};
-		thread2.start();	
+		thread3.start();
+		*/
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				final Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);
+				playerHitPointsTextView.startAnimation(animPulsingAnimation);		
+				computerHitPointsTextView.startAnimation(animPulsingAnimation);
+	  	    }
+  		});
 		
 		
 		ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
@@ -121,12 +135,7 @@ public class MainActivity2 extends ActionBarActivity {
 		else if (ArrayOfAvatars.avatar[0].equals("stonedead")){
 			crossedswords2.setVisibility(View.INVISIBLE);
 			computerAvatar.setVisibility(View.INVISIBLE);
-		}
-		
-		
-		ArrayIsInitiativeStarted.isinitiativestarted[0] = "no";
-		ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "no";
-		ArrayAreThereDoubles.aretheredoubles[0] = "yes";		
+		}		
 		
 		
 		unfoldScrolls();		
@@ -202,11 +211,13 @@ public class MainActivity2 extends ActionBarActivity {
 			  		  			
 			  		  			
 			  		  			playerNameStartFadeInFadeOut();
-			  		  			//playerTurnBackgroundStart();  		  			
+			  		  			//playerTurnBackgroundStart(); 		  			
 			  		  			
 			  		  			
-			  		  			ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "yes";
-			  		  			ArrayIsInitiativeStarted.isinitiativestarted[0].equals("yes");
+			  		  			issixsidedrolledforinitiative = "yes";
+			  		  			isinitiativestarted = "yes";
+			  		  			
+			  		  			onBackPressedOk = "yes";
 			  	  	  		}
 			  	  	  	}, 1000);
 	  	  	  		}
@@ -215,13 +226,13 @@ public class MainActivity2 extends ActionBarActivity {
   	  	}, 2000);
   	  	
   	  	
-  	  	Thread thread3 = new Thread() {
+  	  	Thread thread2 = new Thread() {
 		    @Override
 		    public void run() {		    	
 		    	determineInitiative();
 		    }
 		};
-		thread3.start();
+		thread2.start();
 		
 				
 		
@@ -231,11 +242,11 @@ public class MainActivity2 extends ActionBarActivity {
             @Override
 			public void onClick(View v) {
             	
-            	if (ArrayIsInitiativeStarted.isinitiativestarted[0].equals("no")) {
+            	if (isinitiativestarted.equals("no")) {
             		myInitiativeNotStarted();            		
             	}
             	
-            	else if (ArrayIsInitiativeStarted.isinitiativestarted[0].equals("yes") && ArrayAreThereDoubles.aretheredoubles[0].equals("no")) {
+            	else if (isinitiativestarted.equals("yes") && aretheredoubles.equals("no")) {
             		myInitiativeIsStarted();            		
             	}            	       	
 			}	            
@@ -250,7 +261,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  		@Override  	  	
 	  		public void onSwipeLeft() {	  			
 	  			
-	  			if (ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0].equals("yes")) {	  				
+	  			if (issixsidedrolledforinitiative.equals("yes")) {	  				
 	  				
 	  				sixSidedWobbleStop();
 		  			//sixSidedRollFromCenterToLeft();
@@ -280,7 +291,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  		
 	  		public void onSwipeRight() {	  			
 	  			
-	  			if (ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0].equals("yes")) {	  				
+	  			if (issixsidedrolledforinitiative.equals("yes")) {	  				
 	  								
 	  				sixSidedWobbleStop();
 	  				//sixSidedRollFromCenterToRight();
@@ -432,20 +443,26 @@ public class MainActivity2 extends ActionBarActivity {
 	// Destroys data in arrays, and pro-actively cleans up memory (finish) for the user (good practice?).
 	@Override
     public void onBackPressed() {
+		
+		if (onBackPressedOk.equals("yes")){
+			Arrays.fill(ArrayOfPlayers.player, null);
+			Arrays.fill(ArrayOfAvatars.avatar, null);			
+			Arrays.fill(ArrayOfHitPoints.hitpoints, 20);  // IS THIS RIGHT???????????????
+			Arrays.fill(ArrayOfInitiative.initiative, 0); // IS THIS RIGHT???????????????		
 			
-		Arrays.fill(ArrayOfPlayers.player, null);
-		Arrays.fill(ArrayOfAvatars.avatar, null);
-		Arrays.fill(ArrayAreThereDoubles.aretheredoubles, null);
-		Arrays.fill(ArrayIsInitiativeStarted.isinitiativestarted, null);
-		Arrays.fill(ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative, null);
-		Arrays.fill(ArrayOfHitPoints.hitpoints, 20);  // IS THIS RIGHT???????????????
-		Arrays.fill(ArrayOfInitiative.initiative, 0); // IS THIS RIGHT???????????????		
-	
-		final Intent svc=new Intent(this, Badonk2SoundService.class);
-		startService(svc);
-	
-		super.onBackPressed();
-		this.finish();
+			// NEED TO GET RID OF THREADS???????????????????
+			
+			final Intent svc=new Intent(this, Badonk2SoundService.class);
+			startService(svc);
+			
+			// SAME AS "super.onBackPressed();"?
+			finish();
+			
+			super.onBackPressed();
+		}
+		else if (onBackPressedOk.equals("no")){
+			android.os.Process.killProcess(android.os.Process.myPid());
+		}		
 		
 		//Toast.makeText(MainActivity2.this,"onBackPressed WORKING!!!!", Toast.LENGTH_SHORT).show();
     }
@@ -555,6 +572,7 @@ public class MainActivity2 extends ActionBarActivity {
   	  	frameAnimation.start();
   	  	*/
 		// USING "runOnUiThread(new Runnable() {}" TO SEE IF IT WORKS BETTER THAN NOT USING IT.
+		
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
@@ -630,7 +648,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	    }
   		});
   	  	
-  	  	ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "no";
+  	  	issixsidedrolledforinitiative = "no";
 	}
 	
 	public void sixSidedRollFromCenterToLeft2() {	
@@ -665,7 +683,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	    }
   		});
   	  	
-  	  	ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "no";
+  	  	issixsidedrolledforinitiative = "no";
 	}
 
 	public void sixSidedRollFromCenterToLeft3() {	
@@ -700,7 +718,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	    }
   		});
 		
-  	  	ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "no";
+  	  	issixsidedrolledforinitiative = "no";
 	}
 	
 	public void sixSidedRollFromCenterToLeft4() {	
@@ -735,7 +753,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	    }
   		});
 		
-  	  	ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "no";
+  	  	issixsidedrolledforinitiative = "no";
 	}
 	
 	public void sixSidedRollFromCenterToLeft5() {	
@@ -770,7 +788,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	    }
   		});
 		
-  	  	ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "no";
+  	  	issixsidedrolledforinitiative = "no";
 	}
 	
 	public void sixSidedRollFromCenterToLeft6() {	
@@ -805,7 +823,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	    }
   		});
 		
-  	  	ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "no";
+  	  	issixsidedrolledforinitiative = "no";
 	}
 	
 	public void sixSidedRollFromCenterToRight1() {	
@@ -840,7 +858,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	    }
   		});
   	  	
-  	  	ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "no";
+  	  	issixsidedrolledforinitiative = "no";
 	}
 	
 	public void sixSidedRollFromCenterToRight2() {	
@@ -875,7 +893,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	    }
   		});
 		
-  	  	ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "no";
+  	  	issixsidedrolledforinitiative = "no";
 	}
 	
 	public void sixSidedRollFromCenterToRight3() {	
@@ -910,7 +928,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	    }
   		});
 		
-  	  	ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "no";
+  	  	issixsidedrolledforinitiative = "no";
 	}
 	
 	public void sixSidedRollFromCenterToRight4() {	
@@ -945,7 +963,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	    }
   		});
 		
-  	  	ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "no";
+  	  	issixsidedrolledforinitiative = "no";
 	}
 	
 	public void sixSidedRollFromCenterToRight5() {	
@@ -980,7 +998,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	    }
   		});
 		
-  	  	ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "no";
+  	  	issixsidedrolledforinitiative = "no";
 	}
 	
 	public void sixSidedRollFromCenterToRight6() {	
@@ -1015,7 +1033,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	    }
   		});
 		
-  	  	ArrayIsSixSidedRolledForInitiative.issixsidedrolledforinitiative[0] = "no";
+  	  	issixsidedrolledforinitiative = "no";
 	}
 		
 	//========================================================================================================
@@ -1081,8 +1099,8 @@ public class MainActivity2 extends ActionBarActivity {
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
 		final Handler h1 = new Handler();
-	  	  	h1.postDelayed(new Runnable() {
-
+	  	  	h1.postDelayed(new Runnable() {	  	  		
+	  	  		
 	  	  		@Override
 	  	  		public void run()
 	  	  		{  	  			
@@ -1151,7 +1169,7 @@ public class MainActivity2 extends ActionBarActivity {
 													img.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
 													img.setImageResource(R.drawable.sixsixrightleftrotateblank);
 													
-													// Rre-enables ability to use srollbar:
+													// Re-enables ability to use srollbar:
 													centerscrolltext.bringToFront();													
 													
 													centerscrolltext.setVisibility(View.VISIBLE);													
@@ -1160,6 +1178,37 @@ public class MainActivity2 extends ActionBarActivity {
 													
 													computerStopFadeInFadeOut();
 													//computerTurnBackgroundStop();
+													
+													/* 	  	
+ 													do 
+													{
+														for (int i = 0; i < 1; i++)   
+													    {
+													       if (i != 1 && ArrayOfInitiative.initiative[i] == ArrayOfInitiative.initiative[1])   
+													       {
+													          do
+													          {
+													             System.out.println();
+													             System.out.println(player[i] + " re-roll for inititiative..");
+													             Scanner input = new Scanner(System.in);// used to let user hit enter to re-roll.
+													             input.nextLine();// used to let user hit enter to re-roll.
+													             int result = (int) Math.ceil(Math.random()*6);
+													             ArrayOfInitiative.initiative[i] = result;
+													             System.out.println(player[i] + " rolls a " + ArrayOfInitiative.initiative[i] + " !");
+													
+													             System.out.println();
+													             System.out.println(player[1] + " re-rolls for inititiative..");
+													             //input.nextLine();// used to let user hit enter to re-roll.
+													             result = (int) Math.ceil(Math.random()*6);
+													             ArrayOfInitiative.initiative[1] = result;
+													             System.out.println(player[1] + " rolls a " + ArrayOfInitiative.initiative[1] + " !");
+													          }
+													          while (ArrayOfInitiative.initiative[i] == ArrayOfInitiative.initiative[1]);
+													       }
+													    }
+													 }
+													 while (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[1] || ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[0]);
+													 */
 													
 								  	  	  		}
 								  	  	  	}, 3000);
@@ -1170,65 +1219,8 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  		}
 			  	  	}, 4000);
 	  	  		}
-	  	  	}, 1250);
-		
-		/*
-		 
-     do 
-     {
-        for (int i = 0; i < 1; i++)   
-        {
-           if (i != 0 && initiative[i] == initiative[0])   
-           {
-              do
-              {
-                 System.out.println();
-                 System.out.println(player[i] + " re-rolls for inititiative..");
-                 //Scanner input = new Scanner(System.in);// used to let user hit enter to re-roll.
-                 //input.nextLine();// used to let user hit enter to re-roll.
-                 int result = (int) Math.ceil(Math.random()*6);
-                 initiative[i] = result;
-                 System.out.println(player[i] + " rolls a " + initiative[i] + " !");
-        
-                 System.out.println();
-                 System.out.println(player[0] + " re-roll for inititiative..");
-                 input.nextLine();// used to let user hit enter to re-roll.
-                 result = (int) Math.ceil(Math.random()*6);
-                 initiative[0] = result;
-                 System.out.println(player[0] + " rolls a " + initiative[0] + " !");
-              }
-              while (initiative[i] == initiative[0]);
-           }
-  
-           else if (i != 1 && initiative[i] == initiative[1])   
-           {
-              do
-              {
-                 System.out.println();
-                 System.out.println(player[i] + " re-roll for inititiative..");
-                 Scanner input = new Scanner(System.in);// used to let user hit enter to re-roll.
-                 input.nextLine();// used to let user hit enter to re-roll.
-                 int result = (int) Math.ceil(Math.random()*6);
-                 initiative[i] = result;
-                 System.out.println(player[i] + " rolls a " + initiative[i] + " !");
-        
-                 System.out.println();
-                 System.out.println(player[1] + " re-rolls for inititiative..");
-                 //input.nextLine();// used to let user hit enter to re-roll.
-                 result = (int) Math.ceil(Math.random()*6);
-                 initiative[1] = result;
-                 System.out.println(player[1] + " rolls a " + initiative[1] + " !");
-              }
-              while (initiative[i] == initiative[1]);
-           }
-        }
-     }
-     while (initiative[0] == initiative[1] || initiative[1] == initiative[0]);
-	      
-		 */		
-	}
-	
-	
+	  	  	}, 1250);		 		
+	}	
 	
 	
 }
