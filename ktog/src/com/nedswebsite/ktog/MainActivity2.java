@@ -7,6 +7,7 @@ import android.animation.PropertyValuesHolder;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
@@ -37,14 +38,14 @@ import android.widget.Toast;
 
 public class MainActivity2 extends ActionBarActivity {			
 	
+	
 	// Using variable because was getting null pointer if onbackpressed before rollfromleft was completed:
 	String onBackPressedOk = "no";
 	
 	String isinitiativestarted = "no";
 	String issixsidedrolledforinitiative = "no";
 	String aretheredoubles = "yes";
-	
-	
+		
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -211,7 +212,8 @@ public class MainActivity2 extends ActionBarActivity {
 			  		  			
 			  		  			
 			  		  			playerNameStartFadeInFadeOut();
-			  		  			//playerTurnBackgroundStart(); 		  			
+			  		  			//playerTurnBackgroundStart();			  		  			
+			  		  			
 			  		  			
 			  		  			
 			  		  			issixsidedrolledforinitiative = "yes";
@@ -332,10 +334,29 @@ public class MainActivity2 extends ActionBarActivity {
 	public void playerNameStartFadeInFadeOut() {		
 		runOnUiThread(new Runnable() {
 			@Override
-			public void run() {		    	
-		    	TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);
+			public void run() {	
+				/*
+		    	TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);		    	
 				final Animation animAlphaTextRepeat = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.anim_alpha_text_repeat);
 			  	playerNameTextView.startAnimation(animAlphaTextRepeat);
+			  	*/
+			  	
+			  	// Changes color of imageview:
+			  	/*
+			  	ImageView img = (ImageView)findViewById(R.id.playerturnbackgroundanimation);
+			  	img.setBackgroundResource(R.drawable.leftscroll);
+				img.setImageResource(R.drawable.leftscroll);
+			  	img.getBackground().setColorFilter(Color.parseColor("#ff0000"), PorterDuff.Mode.DARKEN);
+			  	*/
+			  	ImageView img = (ImageView)findViewById(R.id.playerturnbackgroundanimation);			  	
+			  	//img.setBackgroundResource(R.drawable.leftscroll);
+			  	//img.setImageResource(R.drawable.leftscroll);
+			  	img.bringToFront();
+			  	final Animation animAlphaTextRepeat = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.anim_alpha_text_repeat);
+			  	img.startAnimation(animAlphaTextRepeat);
+			  	
+			  	
+			  	
 		    }
   		});			  		  	
 	}
@@ -636,7 +657,7 @@ public class MainActivity2 extends ActionBarActivity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
 				img.setBackgroundResource(R.anim.sixsidedrollfromcentertoleftanimation1);
-		  	  
+				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();		
 		  	  	
@@ -671,7 +692,7 @@ public class MainActivity2 extends ActionBarActivity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
 				img.setBackgroundResource(R.anim.sixsidedrollfromcentertoleftanimation2);
-		  	  
+				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();		
 		  	  	
@@ -706,7 +727,7 @@ public class MainActivity2 extends ActionBarActivity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
 				img.setBackgroundResource(R.anim.sixsidedrollfromcentertoleftanimation3);
-		  	  
+				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();		
 		  	  	
@@ -741,7 +762,7 @@ public class MainActivity2 extends ActionBarActivity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
 				img.setBackgroundResource(R.anim.sixsidedrollfromcentertoleftanimation4);
-		  	  
+				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
 				
@@ -776,7 +797,7 @@ public class MainActivity2 extends ActionBarActivity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
 				img.setBackgroundResource(R.anim.sixsidedrollfromcentertoleftanimation5);
-		  	  
+				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
 				
@@ -811,7 +832,7 @@ public class MainActivity2 extends ActionBarActivity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
 				img.setBackgroundResource(R.anim.sixsidedrollfromcentertoleftanimation6);
-		  	  
+				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
 				
@@ -846,7 +867,7 @@ public class MainActivity2 extends ActionBarActivity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
 				img.setBackgroundResource(R.anim.sixsidedrollfromcentertorightanimation1);
-		  	  
+				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
 				
@@ -881,7 +902,7 @@ public class MainActivity2 extends ActionBarActivity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
 				img.setBackgroundResource(R.anim.sixsidedrollfromcentertorightanimation2);
-		  	  
+				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
 				
@@ -916,7 +937,7 @@ public class MainActivity2 extends ActionBarActivity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
 				img.setBackgroundResource(R.anim.sixsidedrollfromcentertorightanimation3);
-		  	  
+				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
 				
@@ -951,7 +972,7 @@ public class MainActivity2 extends ActionBarActivity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
 				img.setBackgroundResource(R.anim.sixsidedrollfromcentertorightanimation4);
-		  	  
+				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
 				
@@ -986,7 +1007,7 @@ public class MainActivity2 extends ActionBarActivity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
 				img.setBackgroundResource(R.anim.sixsidedrollfromcentertorightanimation5);
-		  	  
+				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
 				
@@ -1021,7 +1042,7 @@ public class MainActivity2 extends ActionBarActivity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
 				img.setBackgroundResource(R.anim.sixsidedrollfromcentertorightanimation6);
-		  	  
+				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
 				
