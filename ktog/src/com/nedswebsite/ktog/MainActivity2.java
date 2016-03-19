@@ -211,7 +211,7 @@ public class MainActivity2 extends ActionBarActivity {
 			  		  			centerscrolltext.append("\n" + "> Please slide the die...");			  		  			
 			  		  			
 			  		  			
-			  		  			playerNameStartFadeInFadeOut();
+			  		  			playerCardStartFadeInFadeOut();
 			  		  			//playerTurnBackgroundStart();			  		  			
 			  		  			
 			  		  			
@@ -331,7 +331,7 @@ public class MainActivity2 extends ActionBarActivity {
 	//========================================================================================================	
 		
 	// OK IN THEIR OWN THREADS????
-	public void playerNameStartFadeInFadeOut() {		
+	public void playerCardStartFadeInFadeOut() {		
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {	
@@ -348,9 +348,7 @@ public class MainActivity2 extends ActionBarActivity {
 				img.setImageResource(R.drawable.leftscroll);
 			  	img.getBackground().setColorFilter(Color.parseColor("#ff0000"), PorterDuff.Mode.DARKEN);
 			  	*/
-			  	ImageView img = (ImageView)findViewById(R.id.playerturnbackgroundanimation);			  	
-			  	//img.setBackgroundResource(R.drawable.leftscroll);
-			  	//img.setImageResource(R.drawable.leftscroll);
+			  	ImageView img = (ImageView)findViewById(R.id.playerturnbackgroundanimation);		  	
 			  	img.bringToFront();
 			  	final Animation animAlphaTextRepeat = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.anim_alpha_text_repeat);
 			  	img.startAnimation(animAlphaTextRepeat);
@@ -361,27 +359,43 @@ public class MainActivity2 extends ActionBarActivity {
   		});			  		  	
 	}
 	
-	public void playerNameStopFadeInFadeOut() {
-		TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);
+	public void playerCardStopFadeInFadeOut() {
+		/*
+		TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);		
+	  	playerNameTextView.clearAnimation();
+	  	*/
+		ImageView img = (ImageView)findViewById(R.id.playerturnbackgroundanimation);
+		img.clearAnimation();
+		img.setVisibility(View.GONE);
 		
-	  	playerNameTextView.clearAnimation();  	
+		
 	}
 	
-	public void computerStartFadeInFadeOut() {
+	public void computerCardStartFadeInFadeOut() {
 		runOnUiThread(new Runnable() {
 			@Override
-			public void run() {		    	
+			public void run() {
+				/*
 		    	TextView computerNameTextView = (TextView)findViewById(R.id.textviewnameright);
 				final Animation animAlphaTextRepeat = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.anim_alpha_text_repeat);
 				computerNameTextView.startAnimation(animAlphaTextRepeat);
+				*/
+				ImageView img = (ImageView)findViewById(R.id.computerturnbackgroundanimation);		  	
+			  	img.bringToFront();
+			  	final Animation animAlphaTextRepeat = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.anim_alpha_text_repeat);
+			  	img.startAnimation(animAlphaTextRepeat);
 		    }
 		});			
 	}
 	
-	public void computerStopFadeInFadeOut() {
-		TextView computerNameTextView = (TextView)findViewById(R.id.textviewnameright);
-		
+	public void computerCardStopFadeInFadeOut() {
+		/*
+		TextView computerNameTextView = (TextView)findViewById(R.id.textviewnameright);		
 		computerNameTextView.clearAnimation();
+		*/
+		ImageView img = (ImageView)findViewById(R.id.computerturnbackgroundanimation);
+		img.clearAnimation();
+		img.setVisibility(View.GONE);
 	}
 	
 	//========================================================================================================
@@ -1139,8 +1153,8 @@ public class MainActivity2 extends ActionBarActivity {
 				  	  		centerscrolltext.startAnimation(animAlphaText);
 				  			centerscrolltext.append("\n" + "> Now the computer rolls...");
 				  			
-				  			playerNameStopFadeInFadeOut();
-				  			computerStartFadeInFadeOut();
+				  			playerCardStopFadeInFadeOut();
+				  			computerCardStartFadeInFadeOut();
 				  			//playerTurnBackgroundStop();
 				  			//computerTurnBackgroundStart();
 				  			
@@ -1197,7 +1211,7 @@ public class MainActivity2 extends ActionBarActivity {
 											  		centerscrolltext.startAnimation(animAlphaText);
 													centerscrolltext.append("\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "> THIS IS A TEST...");
 													
-													computerStopFadeInFadeOut();
+													computerCardStopFadeInFadeOut();
 													//computerTurnBackgroundStop();
 													
 													/* 	  	
@@ -1234,7 +1248,7 @@ public class MainActivity2 extends ActionBarActivity {
 								  	  	  		}
 								  	  	  	}, 3000);
 						  	  	  		}
-						  	  	  	}, 1000);					  	  	  		
+						  	  	  	}, 1250);					  	  	  		
 				  	  	  		}
 				  	  	  	}, 3000);				  			
 			  	  		}
