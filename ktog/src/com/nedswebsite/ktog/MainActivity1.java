@@ -170,7 +170,7 @@ public class MainActivity1 extends ActionBarActivity {
         	buttonSound.start();
         	
         	//Think I need this so user doesn't have to push 'back' more than once (possibly)?
-        	finish();
+        	//finish();
         	
         	Intent i = new Intent(MainActivity1.this, Rules.class);
         	MainActivity1.this.startActivity(i);
@@ -363,7 +363,7 @@ public class MainActivity1 extends ActionBarActivity {
     			public void onClick(View v) {    			                    	
             	buttonSound1.start();            	
             	//Think I need this so user doesn't have to push 'back' more than once (possibly)?
-            	finish();            	
+            	//finish();            	
             	Intent i = new Intent(MainActivity1.this, Rules.class);
             	MainActivity1.this.startActivity(i);            	
             	//USE THIS WHEN READY??:
@@ -475,7 +475,7 @@ public class MainActivity1 extends ActionBarActivity {
     			public void onClick(View v) {    			                    	
             	buttonSound1.start();            	
             	//Think I need this so user doesn't have to push 'back' more than once (possibly)?
-            	finish();            	
+            	//finish();            	
             	Intent i = new Intent(MainActivity1.this, Rules.class);
             	MainActivity1.this.startActivity(i);            	
             	//USE THIS WHEN READY??:

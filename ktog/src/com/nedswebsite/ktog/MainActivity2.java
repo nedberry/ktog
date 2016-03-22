@@ -45,6 +45,8 @@ public class MainActivity2 extends ActionBarActivity {
 	String isinitiativestarted = "no";
 	String issixsidedrolledforinitiative = "no";
 	String aretheredoubles = "yes";
+	
+	
 		
 	
 	@Override
@@ -239,7 +241,7 @@ public class MainActivity2 extends ActionBarActivity {
 				
 		
 		final ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
-		
+				
 		titleBlankButton.setOnClickListener(new View.OnClickListener() {
             @Override
 			public void onClick(View v) {
@@ -256,9 +258,9 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		  	  	
   	  	
-  	  	final ImageView sixsixrightleftrotateblank = (ImageView) findViewById(R.id.sixsidedanimation);  	  	
+		final ImageView sixsixrightleftrotateblank = (ImageView) findViewById(R.id.sixsidedanimation);  	  	
 		// Creating view for animation that rides on pre-existing view.
-	  	
+	  	  	  	
 	  	sixsixrightleftrotateblank.setOnTouchListener(new OnSwipeTouchListener(MainActivity2.this) {	  	
 	  		@Override  	  	
 	  		public void onSwipeLeft() {	  			
@@ -287,7 +289,7 @@ public class MainActivity2 extends ActionBarActivity {
 					else if (ArrayOfInitiative.initiative[0] == 6){
 						sixSidedRollFromCenterToLeft6();
 					}
-		  			determineDoubles();
+		  			resultsInitiative();
 	  			}	  			
 	  		}
 	  		
@@ -317,7 +319,7 @@ public class MainActivity2 extends ActionBarActivity {
 					else if (ArrayOfInitiative.initiative[0] == 6){
 						sixSidedRollFromCenterToRight6();
 					}
-	  				determineDoubles();
+	  				resultsInitiative();
 	  			}	  			
 	  		}
 	  	});
@@ -398,62 +400,10 @@ public class MainActivity2 extends ActionBarActivity {
 		img.setVisibility(View.GONE);
 	}
 	
-	//========================================================================================================
 	
-	public void playerTurnBackgroundStart() {		
-		runOnUiThread(new Runnable() {
-				@Override
-				public void run() {
-				// Setting up scroll frame animation.
-				ImageView img = (ImageView)findViewById(R.id.playerturnbackgroundanimation);
-				img.setBackgroundResource(R.anim.playerturnbackgroundanimation);
-				
-				// Get the background, which has been compiled to an AnimationDrawable object.
-				AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
-							
-				// Start the animation.				
-				frameAnimation.start();
-		  	    }
-	  		});
-		
-		/*Thread thread = new Thread() {
-		    @Override
-		    public void run() {
-		    					
-		    }
-		};
-		thread.start();*/		  		  	
-	}
 	
-	public void playerTurnBackgroundStop() {
-		// Use a drawable to hide the imageview animation:
-  		ImageView img = (ImageView)findViewById(R.id.playerturnbackgroundanimation);		
-		img.setBackgroundResource(R.drawable.leftscroll);
-		img.setImageResource(R.drawable.leftscroll);		 	
-	}
 	
-	public void computerTurnBackgroundStart() {
-		runOnUiThread(new Runnable() {
-			@Override
-			public void run() {		
-		/*Thread thread = new Thread() {
-		    @Override
-		    public void run() {*/
-		    	// Setting up scroll frame animation.
-				ImageView img = (ImageView)findViewById(R.id.computerturnbackgroundanimation);
-				img.setBackgroundResource(R.anim.computerturnbackgroundanimation);
-			
-				// Get the background, which has been compiled to an AnimationDrawable object.
-				AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
-							
-				// Start the animation.				
-				frameAnimation.start();		    	
-		    /*}
-		};
-		thread.start();*/
-		    }
-  		});
-	}
+	/* EXAMPLE CODE TO "STOP" FRAME ANIMATION BY ENDING ANIMATION ON AN IMAGE:
 	
 	public void computerTurnBackgroundStop() {
 		// Use a drawable to hide the imageview animation:
@@ -461,20 +411,14 @@ public class MainActivity2 extends ActionBarActivity {
 		img.setBackgroundResource(R.drawable.rightscroll);
 		img.setImageResource(R.drawable.rightscroll);		
 	}
+	*/
+		
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	//========================================================================================================
+	//
+	//========================================================================================================
+
+		
 	// Destroys data in arrays, and pro-actively cleans up memory (finish) for the user (good practice?).
 	@Override
     public void onBackPressed() {
@@ -503,16 +447,10 @@ public class MainActivity2 extends ActionBarActivity {
     }
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	//========================================================================================================
+	//
+	//========================================================================================================
+
 	
 	//@SuppressWarnings("deprecation")
 	public void unfoldScrolls () {
@@ -1072,6 +1010,7 @@ public class MainActivity2 extends ActionBarActivity {
 	}
 		
 	//========================================================================================================
+	//
 	//========================================================================================================
 	
 	
@@ -1086,6 +1025,19 @@ public class MainActivity2 extends ActionBarActivity {
 		// Animation is just 1 slide so user can see title.
 		frameAnimation.stop();
 		frameAnimation.start();	      
+	}
+	
+	public void myInitiativeTransition() {
+		
+		final ImageView img = (ImageView)findViewById(R.id.titleanimation);		
+		img.setBackgroundResource(R.anim.titleanimationyesinitiative);
+  
+		// Get the background, which has been compiled to an AnimationDrawable object.
+		final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+
+		// Animation is just 1 slide so user can see title.
+		frameAnimation.stop();
+		frameAnimation.start();
 	}
 	
 	public void  myInitiativeIsStarted() {	      
@@ -1121,7 +1073,7 @@ public class MainActivity2 extends ActionBarActivity {
 		*/		
 	}
 	
-	public void  determineDoubles() {
+	public void resultsInitiative() {
 		
 		//Toast.makeText(MainActivity2.this,"At method determineDoubles().", Toast.LENGTH_SHORT).show();		
 		
@@ -1191,62 +1143,9 @@ public class MainActivity2 extends ActionBarActivity {
 						  	  	  		{				  	  	  			
 							  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 								  	  		centerscrolltext.startAnimation(animAlphaText);
-								  			centerscrolltext.append("\n" + ">" + "\n" + "> The computer rolls a " + ArrayOfInitiative.initiative[1] + " for initiative.");
-								  			
-								  			final Handler h5 = new Handler();
-								  	  	  	h5.postDelayed(new Runnable() {
-					
-								  	  	  		@Override
-								  	  	  		public void run()
-								  	  	  		{	  	  	  		
-									  	  	  		// Use a blank drawable to hide the imageview animation:
-								  	  	  			ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
-													img.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
-													img.setImageResource(R.drawable.sixsixrightleftrotateblank);
-													
-													// Re-enables ability to use srollbar:
-													centerscrolltext.bringToFront();													
-													
-													centerscrolltext.setVisibility(View.VISIBLE);													
-											  		centerscrolltext.startAnimation(animAlphaText);
-													centerscrolltext.append("\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "> THIS IS A TEST...");
-													
-													computerCardStopFadeInFadeOut();
-													//computerTurnBackgroundStop();
-													
-													/* 	  	
- 													do 
-													{
-														for (int i = 0; i < 1; i++)   
-													    {
-													       if (i != 1 && ArrayOfInitiative.initiative[i] == ArrayOfInitiative.initiative[1])   
-													       {
-													          do
-													          {
-													             System.out.println();
-													             System.out.println(player[i] + " re-roll for inititiative..");
-													             Scanner input = new Scanner(System.in);// used to let user hit enter to re-roll.
-													             input.nextLine();// used to let user hit enter to re-roll.
-													             int result = (int) Math.ceil(Math.random()*6);
-													             ArrayOfInitiative.initiative[i] = result;
-													             System.out.println(player[i] + " rolls a " + ArrayOfInitiative.initiative[i] + " !");
-													
-													             System.out.println();
-													             System.out.println(player[1] + " re-rolls for inititiative..");
-													             //input.nextLine();// used to let user hit enter to re-roll.
-													             result = (int) Math.ceil(Math.random()*6);
-													             ArrayOfInitiative.initiative[1] = result;
-													             System.out.println(player[1] + " rolls a " + ArrayOfInitiative.initiative[1] + " !");
-													          }
-													          while (ArrayOfInitiative.initiative[i] == ArrayOfInitiative.initiative[1]);
-													       }
-													    }
-													 }
-													 while (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[1] || ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[0]);
-													 */
-													
-								  	  	  		}
-								  	  	  	}, 3000);
+								  			centerscrolltext.append("\n" + ">" + "\n" + "> The computer rolls a " + ArrayOfInitiative.initiative[1] + " for initiative.");								  			
+						  	  	  			
+								  			determineDoubles();
 						  	  	  		}
 						  	  	  	}, 1250);					  	  	  		
 				  	  	  		}
@@ -1257,5 +1156,115 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	}, 1250);		 		
 	}	
 	
+	public void determineDoubles() {
+		
+		final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+		//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+		
+		Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+		centerscrolltext.setTypeface(typeFace);				
+		
+		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+		
+		
+		if ((ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[1] || ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[0])) {			  										  	  	  						 	  	
+						
+			computerCardStopFadeInFadeOut();
+			
+			final Handler h2 = new Handler();
+	  	  	h2.postDelayed(new Runnable() {
+	
+	  	  		@Override
+	  	  		public void run()
+	  	  		{  	  			
+	  	  			centerscrolltext.setVisibility(View.VISIBLE);
+	  	  			centerscrolltext.startAnimation(animAlphaText);
+		  			centerscrolltext.append("\n" + "> Initiative is a tie!");	  			
+		  			
+		  			final Handler h3 = new Handler();
+		  	  	  	h3.postDelayed(new Runnable() {
+	
+		  	  	  		@Override
+		  	  	  		public void run()
+		  	  	  		{
+		  	  	  			sixSidedRollFromLeft();  	  	  			
+		  		  			
+			  		  		final Handler h4 = new Handler();
+				  	  	  	h4.postDelayed(new Runnable() {
+				  	  	  			
+				  	  	  			// Does this thread help:?
+					  	  	  		@Override
+					  	  	  		public void run()
+					  	  	  		{  	  			
+					  	  	  			runOnUiThread(new Runnable() {
+						  	  	  	    @Override
+						  	  	  	    public void run() {
+						  	  	  	    	
+						  	  	  	    	sixSidedWobbleStart();					  	  	  	    	
+						  	  	  	    	
+							  	  	  	}
+						  	  	  	});			  	  	  			
+				  	  	  			centerscrolltext.setVisibility(View.VISIBLE);
+				  		  	  		centerscrolltext.startAnimation(animAlphaText);
+				  		  			centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0]  + ", please slide the die...");			  		  			
+				  		  			
+				  		  			
+				  		  			playerCardStartFadeInFadeOut();
+				  		  			//playerTurnBackgroundStart();  		  			
+					  		  		
+					  		  		// NEED REF TO ONASWIPE CLASS?????????????????
+				  		  			
+				  	  	  		}
+				  	  	  	}, 1000);
+		  	  	  		}
+		  	  	  	}, 4000);
+	  	  		}
+	  	  	}, 2000);				  			  	  				
+		}	  	  	
+	  	
+		else if ((ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[1] || ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[0])) {
+						
+			aretheredoubles = "no";		
+			
+			final Handler h1 = new Handler();
+  	  	  	h1.postDelayed(new Runnable() {
+
+  	  	  		@Override
+  	  	  		public void run()
+  	  	  		{				  	  	  			
+	  	  	  		// Use a blank drawable to hide the imageview animation:
+	  	  	  		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+	  	  			img.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+	  	  			img.setImageResource(R.drawable.sixsixrightleftrotateblank);
+	  	  			
+	  	  			// Re-enables ability to use srollbar:
+	  	  			centerscrolltext.bringToFront();													
+	  	  			
+	  	  			centerscrolltext.setVisibility(View.VISIBLE);													
+	  	  	  		centerscrolltext.startAnimation(animAlphaText);
+	  	  			centerscrolltext.append("\n" +  ">" + "\n" + "> Let the battle begin!...");
+	  	  			
+	  	  			computerCardStopFadeInFadeOut();
+	  	  			//computerTurnBackgroundStop();
+	  	  			
+	  	  			
+	  	  			final Handler h2 = new Handler();
+	  	    	  	  	h2.postDelayed(new Runnable() {
+	
+	  	    	  	  		@Override
+	  	    	  	  		public void run()
+	  	    	  	  		{				  	  	  			
+	  	    	  	  			myInitiativeTransition();
+	  	    	  	  		}
+	  	    	  	  	}, 1250);			
+	  	  			
+	  	  			
+	  	  			//Toast.makeText(MainActivity2.this,"isinitiativestarted = " +  isinitiativestarted + " aretheredoubles = " + aretheredoubles, Toast.LENGTH_SHORT).show();
+	  	  			final ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+	  	  			titleBlankButton.bringToFront();
+  	  	  		}
+  	  	  	}, 3000);			
+		}
+	}
 	
 }
