@@ -82,6 +82,10 @@ public class MainActivity2 extends ActionBarActivity {
 		// Crashes if this is put up top.
 		Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 		
+		// HERE TO PREVENT PRE-MATURE ROLLING FOR INITIATIVE:
+		final ImageView sixsixrightleftrotateblank = (ImageView) findViewById(R.id.sixsidedanimation);
+		sixsixrightleftrotateblank.setVisibility(View.INVISIBLE);
+		
 		
 		TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);		
 		playerNameTextView.setTypeface(typeFace);		
@@ -193,6 +197,8 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  		@Override
 	  	  	  		public void run()
 	  	  	  		{
+	  	  	  			sixsixrightleftrotateblank.setVisibility(View.VISIBLE);
+	  	  	  			
 	  	  	  			sixSidedRollFromLeft();  	  	  			
 	  		  			
 		  		  		final Handler h5 = new Handler();
@@ -256,8 +262,8 @@ public class MainActivity2 extends ActionBarActivity {
 			}	            
 		});
 		
-		  	  	
-  	  	
+		// OLD WAY:  	  	
+  	  	/*
 		final ImageView sixsixrightleftrotateblank = (ImageView) findViewById(R.id.sixsidedanimation);  	  	
 		// Creating view for animation that rides on pre-existing view.
 	  	  	  	
@@ -323,15 +329,83 @@ public class MainActivity2 extends ActionBarActivity {
 	  			}	  			
 	  		}
 	  	});
-	  	
-	  	
-	}
+	  	*/
+				
+		
+		sixsixrightleftrotateblank.setOnTouchListener(new OnSixSidedSwipeTouchListener(MainActivity2.this) {
+		    public void onSwipeTop() {
+		        Toast.makeText(MainActivity2.this, "top", Toast.LENGTH_SHORT).show();
+		    }
+		    public void onSwipeRight() {
+		    	//if (issixsidedrolledforinitiative.equals("yes")) {	  				
+					
+					sixSidedWobbleStop();
+					//sixSidedRollFromCenterToRight();
+					//determineInitiative();
+					
+					if (ArrayOfInitiative.initiative[0] == 1){
+						sixSidedRollFromCenterToRight1();							  		  	  	
+					}
+					else if (ArrayOfInitiative.initiative[0] == 2){
+						sixSidedRollFromCenterToRight2();
+					}
+					else if (ArrayOfInitiative.initiative[0] == 3){
+						sixSidedRollFromCenterToRight3();
+					}
+					else if (ArrayOfInitiative.initiative[0] == 4){
+						sixSidedRollFromCenterToRight4();
+					}
+					else if (ArrayOfInitiative.initiative[0] == 5){
+						sixSidedRollFromCenterToRight5();
+					}
+					else if (ArrayOfInitiative.initiative[0] == 6){
+						sixSidedRollFromCenterToRight6();
+					}
+						resultsInitiative();
+				//}
+		    }
+		    
+		    public void onSwipeLeft() {
+		    	//if (issixsidedrolledforinitiative.equals("yes")) {	  				
+					
+					sixSidedWobbleStop();
+					//sixSidedRollFromCenterToLeft();
+					//determineInitiative();
+					
+					if (ArrayOfInitiative.initiative[0] == 1){		  				
+						sixSidedRollFromCenterToLeft1();								  		  	  	
+					}
+					else if (ArrayOfInitiative.initiative[0] == 2){
+						sixSidedRollFromCenterToLeft2();
+					}
+					else if (ArrayOfInitiative.initiative[0] == 3){
+						sixSidedRollFromCenterToLeft3();
+					}
+					else if (ArrayOfInitiative.initiative[0] == 4){
+						sixSidedRollFromCenterToLeft4();
+					}
+					else if (ArrayOfInitiative.initiative[0] == 5){
+						sixSidedRollFromCenterToLeft5();
+					}
+					else if (ArrayOfInitiative.initiative[0] == 6){
+						sixSidedRollFromCenterToLeft6();
+					}
+					resultsInitiative();
+				//}
+		    }
+		    public void onSwipeBottom() {
+		        Toast.makeText(MainActivity2.this, "bottom", Toast.LENGTH_SHORT).show();
+		    }
+
+		}); 	
+	}	
 	
 	
 	//========================================================================================================
 	//  OnCreate SEPERATOR
 	//========================================================================================================	
-		
+	
+	
 	// OK IN THEIR OWN THREADS????
 	public void playerCardStartFadeInFadeOut() {		
 		runOnUiThread(new Runnable() {
@@ -353,10 +427,7 @@ public class MainActivity2 extends ActionBarActivity {
 			  	ImageView img = (ImageView)findViewById(R.id.playerturnbackgroundanimation);		  	
 			  	img.bringToFront();
 			  	final Animation animAlphaTextRepeat = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.anim_alpha_text_repeat);
-			  	img.startAnimation(animAlphaTextRepeat);
-			  	
-			  	
-			  	
+			  	img.startAnimation(animAlphaTextRepeat);			  	
 		    }
   		});			  		  	
 	}
@@ -368,9 +439,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	*/
 		ImageView img = (ImageView)findViewById(R.id.playerturnbackgroundanimation);
 		img.clearAnimation();
-		img.setVisibility(View.GONE);
-		
-		
+		img.setVisibility(View.GONE);		
 	}
 	
 	public void computerCardStartFadeInFadeOut() {
@@ -1168,7 +1237,9 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		
 		if ((ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[1] || ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[0])) {			  										  	  	  						 	  	
-						
+			
+			determineInitiative();			
+			
 			computerCardStopFadeInFadeOut();
 			
 			final Handler h2 = new Handler();
@@ -1256,7 +1327,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	    	  	  		{				  	  	  			
 	  	    	  	  			myInitiativeTransition();
 	  	    	  	  		}
-	  	    	  	  	}, 1250);			
+	  	    	  	  	}, 1000);			
 	  	  			
 	  	  			
 	  	  			//Toast.makeText(MainActivity2.this,"isinitiativestarted = " +  isinitiativestarted + " aretheredoubles = " + aretheredoubles, Toast.LENGTH_SHORT).show();
