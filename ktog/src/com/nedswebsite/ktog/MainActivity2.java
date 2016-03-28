@@ -36,8 +36,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity2 extends ActionBarActivity {			
-	
+public class MainActivity2 extends ActionBarActivity {
 	
 	// Using variable because was getting null pointer if onbackpressed before rollfromleft was completed:
 	String onBackPressedOk = "no";
@@ -46,6 +45,7 @@ public class MainActivity2 extends ActionBarActivity {
 	static String isinitiativestartedinterrupted = "no";
 	String issixsidedrolledforinitiative = "no";
 	String aretheredoubles = "yes";
+	
 	
 	
 		
@@ -143,8 +143,11 @@ public class MainActivity2 extends ActionBarActivity {
 		else if (ArrayOfAvatars.avatar[0].equals("stonedead")){
 			crossedswords2.setVisibility(View.INVISIBLE);
 			computerAvatar.setVisibility(View.INVISIBLE);
-		}		
+		}
 		
+		
+		final ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+		titleBlankButton.setVisibility(View.INVISIBLE);
 		
 		unfoldScrolls();		
         /*
@@ -247,7 +250,7 @@ public class MainActivity2 extends ActionBarActivity {
 		
 				
 		
-		final ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+		
 				
 		titleBlankButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1369,13 +1372,24 @@ public class MainActivity2 extends ActionBarActivity {
 	  	    	  	  		public void run()
 	  	    	  	  		{				  	  	  			
 	  	    	  	  			myInitiativeTransition();
+	  	    	  	  			
+		  	    	  	  		final Handler h3 = new Handler();
+			  	    	  	  	h3.postDelayed(new Runnable() {
+			
+			  	    	  	  		@Override
+			  	    	  	  		public void run()
+			  	    	  	  		{
+				  	    	  	  		final ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+				  		  	  			titleBlankButton.setVisibility(View.VISIBLE);
+				  		  	  			titleBlankButton.bringToFront();
+			  	    	  	  		}
+			  	    	  	  	}, 12400);
 	  	    	  	  		}
 	  	    	  	  	}, 1000);
 	  	  			
 	  	  			
 	  	  			//Toast.makeText(MainActivity2.this,"isinitiativestarted = " +  isinitiativestarted + " aretheredoubles = " + aretheredoubles, Toast.LENGTH_SHORT).show();
-	  	  			final ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
-	  	  			titleBlankButton.bringToFront();
+	  	  			
   	  	  		}
   	  	  	}, 3000);			
 		}

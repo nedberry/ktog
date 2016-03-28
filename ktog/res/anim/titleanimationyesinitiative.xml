@@ -9,8 +9,26 @@
     <item android:drawable="@drawable/initiative5" android:duration="75" />
     <item android:drawable="@drawable/initiative6" android:duration="75" />
     <item android:drawable="@drawable/initiative7" android:duration="75" />
-    <item android:drawable="@drawable/initiative8" android:duration="75" />
+    <item android:drawable="@drawable/initiative8" android:duration="75" />    
+    <item android:drawable="@drawable/scrollclosed" android:duration="75" />
     
+    <item android:drawable="@drawable/quickinstructions8" android:duration="75" />
+    <item android:drawable="@drawable/quickinstructions7" android:duration="75" />
+    <item android:drawable="@drawable/quickinstructions6" android:duration="75" />
+    <item android:drawable="@drawable/quickinstructions5" android:duration="75" />
+    <item android:drawable="@drawable/quickinstructions4" android:duration="75" />
+    <item android:drawable="@drawable/quickinstructions3" android:duration="75" />
+    <item android:drawable="@drawable/quickinstructions2" android:duration="75" />
+    
+    <item android:drawable="@drawable/quickinstructions1" android:duration="10000" />    
+    
+    <item android:drawable="@drawable/quickinstructions2" android:duration="75" />
+    <item android:drawable="@drawable/quickinstructions3" android:duration="75" />
+    <item android:drawable="@drawable/quickinstructions4" android:duration="75" />
+    <item android:drawable="@drawable/quickinstructions5" android:duration="75" />
+    <item android:drawable="@drawable/quickinstructions6" android:duration="75" />
+    <item android:drawable="@drawable/quickinstructions7" android:duration="75" />
+    <item android:drawable="@drawable/quickinstructions8" android:duration="75" />
     <item android:drawable="@drawable/scrollclosed" android:duration="75" />
     
     <item android:drawable="@drawable/title8" android:duration="75" />
