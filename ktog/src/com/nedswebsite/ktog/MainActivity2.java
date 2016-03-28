@@ -43,6 +43,7 @@ public class MainActivity2 extends ActionBarActivity {
 	String onBackPressedOk = "no";
 	
 	String isinitiativestarted = "no";
+	static String isinitiativestartedinterrupted = "no";
 	String issixsidedrolledforinitiative = "no";
 	String aretheredoubles = "yes";
 	
@@ -257,9 +258,22 @@ public class MainActivity2 extends ActionBarActivity {
             	}
             	
             	else if (isinitiativestarted.equals("yes") && aretheredoubles.equals("no")) {
-            		myInitiativeIsStarted();            		
-            	}            	       	
-			}	            
+            		
+            		if (isinitiativestartedinterrupted.equals("no")) {
+            			
+            			isinitiativestartedinterrupted = "yes";            		
+                		
+                		myInitiativeIsStarted();
+            		}
+            		
+            		else if (isinitiativestartedinterrupted.equals("yes")) {
+            			
+            			myInitiativeIsStartedTitleInterrupt();
+            			
+            			isinitiativestartedinterrupted = "no";
+            		}            				
+            	}            	
+			}            
 		});
 		
 		// OLD WAY:  	  	
@@ -1119,7 +1133,36 @@ public class MainActivity2 extends ActionBarActivity {
 
 		// Animation is just 1 slide so user can see title.
 		frameAnimation.stop();
-		frameAnimation.start();	      
+		frameAnimation.start();
+		
+		waitToSetInterruptVariable();
+	}
+	
+	public static String waitToSetInterruptVariable() {
+		
+		final Handler h1 = new Handler();
+	  	  	h1.postDelayed(new Runnable() {
+
+	  	  		public void run()
+	  	  		{				  	  	  			
+		  	  		isinitiativestartedinterrupted = "no";		  			
+	  	  		}
+	  	  	}, 12400);
+	  	  	
+	  	  	return isinitiativestartedinterrupted;	
+	}
+	
+	public void  myInitiativeIsStartedTitleInterrupt() {
+		
+		final ImageView img = (ImageView)findViewById(R.id.titleanimation);		
+		img.setBackgroundResource(R.anim.initiativestartedtitleinterruptanimation);
+  
+		// Get the background, which has been compiled to an AnimationDrawable object.
+		final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+
+		// Animation is just 1 slide so user can see title.
+		frameAnimation.stop();
+		frameAnimation.start();
 	}
 	
 	public void  determineInitiative() {
@@ -1327,7 +1370,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	    	  	  		{				  	  	  			
 	  	    	  	  			myInitiativeTransition();
 	  	    	  	  		}
-	  	    	  	  	}, 1000);			
+	  	    	  	  	}, 1000);
 	  	  			
 	  	  			
 	  	  			//Toast.makeText(MainActivity2.this,"isinitiativestarted = " +  isinitiativestarted + " aretheredoubles = " + aretheredoubles, Toast.LENGTH_SHORT).show();

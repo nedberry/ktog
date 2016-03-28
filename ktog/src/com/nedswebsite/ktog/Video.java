@@ -45,8 +45,7 @@ public class Video extends ActionBarActivity
         });        
         
         
-        // By tapping button (screen), player skips video.
-                        
+        // By tapping button (screen), player skips video.                        
         final ImageButton imageButton = (ImageButton) findViewById(R.id.videobutton1);
         
         //imageButton1.bringToFront();
