@@ -5,6 +5,8 @@ import java.util.Arrays;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -15,6 +17,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
+import android.text.InputFilter;
 import android.text.Spannable;
 import android.text.method.ScrollingMovementMethod;
 import android.text.style.BackgroundColorSpan;
@@ -31,6 +34,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -46,7 +50,7 @@ public class MainActivity2 extends ActionBarActivity {
 	String issixsidedrolledforinitiative = "no";
 	String aretheredoubles = "yes";
 	
-	
+	int max = 0;
 	
 		
 	
@@ -78,14 +82,11 @@ public class MainActivity2 extends ActionBarActivity {
 		    	MediaPlayerWrapper.play(MainActivity2.this, R.raw.buttonsound6);
 		    }
 		};
-		thread1.start();		
+		thread1.start();
+		
 		
 		// Crashes if this is put up top.
-		Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-		
-		// HERE TO PREVENT PRE-MATURE ROLLING FOR INITIATIVE:
-		final ImageView sixsixrightleftrotateblank = (ImageView) findViewById(R.id.sixsidedanimation);
-		sixsixrightleftrotateblank.setVisibility(View.INVISIBLE);
+		Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
 		
 		
 		TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);		
@@ -149,6 +150,11 @@ public class MainActivity2 extends ActionBarActivity {
 		final ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
 		titleBlankButton.setVisibility(View.INVISIBLE);
 		
+		// Here to prevent pre-mature rolling (use ".setEnabled(false);" in "resultsInitiative()"):
+		final ImageView sixsixrightleftrotateblank = (ImageView) findViewById(R.id.sixsidedanimation);
+		sixsixrightleftrotateblank.setVisibility(View.INVISIBLE);
+		
+		
 		unfoldScrolls();		
         /*
         final Handler h1 = new Handler();
@@ -201,8 +207,6 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  		@Override
 	  	  	  		public void run()
 	  	  	  		{
-	  	  	  			sixsixrightleftrotateblank.setVisibility(View.VISIBLE);
-	  	  	  			
 	  	  	  			sixSidedRollFromLeft();  	  	  			
 	  		  			
 		  		  		final Handler h5 = new Handler();
@@ -217,7 +221,8 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  	  	    public void run() {					  	  	  	    	
 					  	  	  	    	sixSidedWobbleStart();
 						  	  	  	}
-					  	  	  	});			  	  	  			
+					  	  	  	});
+				  	  	  		
 			  	  	  			centerscrolltext.setVisibility(View.VISIBLE);
 			  		  	  		centerscrolltext.startAnimation(animAlphaText);
 			  		  			centerscrolltext.append("\n" + "> Please slide the die...");			  		  			
@@ -227,10 +232,8 @@ public class MainActivity2 extends ActionBarActivity {
 			  		  			//playerTurnBackgroundStart();			  		  			
 			  		  			
 			  		  			
-			  		  			
 			  		  			issixsidedrolledforinitiative = "yes";
-			  		  			isinitiativestarted = "yes";
-			  		  			
+			  		  			isinitiativestarted = "yes";			  		  			
 			  		  			onBackPressedOk = "yes";
 			  	  	  		}
 			  	  	  	}, 1000);
@@ -378,7 +381,8 @@ public class MainActivity2 extends ActionBarActivity {
 					else if (ArrayOfInitiative.initiative[0] == 6){
 						sixSidedRollFromCenterToRight6();
 					}
-						resultsInitiative();
+					
+					resultsInitiative();					
 				//}
 		    }
 		    
@@ -407,7 +411,8 @@ public class MainActivity2 extends ActionBarActivity {
 					else if (ArrayOfInitiative.initiative[0] == 6){
 						sixSidedRollFromCenterToLeft6();
 					}
-					resultsInitiative();
+					
+					resultsInitiative();					
 				//}
 		    }
 		    public void onSwipeBottom() {
@@ -419,8 +424,10 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	
 	//========================================================================================================
-	//  OnCreate SEPERATOR
+	//========================================================================================================
+	//  Player Cards
 	//========================================================================================================	
+	//========================================================================================================
 	
 	
 	// OK IN THEIR OWN THREADS????
@@ -498,13 +505,15 @@ public class MainActivity2 extends ActionBarActivity {
 		img.setImageResource(R.drawable.rightscroll);		
 	}
 	*/
-		
+	
 	
 	//========================================================================================================
-	//
 	//========================================================================================================
-
-		
+	// Android Methods
+	//========================================================================================================
+	//========================================================================================================
+	
+	
 	// Destroys data in arrays, and pro-actively cleans up memory (finish) for the user (good practice?).
 	@Override
     public void onBackPressed() {
@@ -534,9 +543,11 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	
 	//========================================================================================================
-	//
 	//========================================================================================================
-
+	// Intro Animations
+	//========================================================================================================
+	//========================================================================================================
+	
 	
 	//@SuppressWarnings("deprecation")
 	public void unfoldScrolls () {
@@ -606,7 +617,15 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  	frameAnimation.start();
 	  	    }
   		});	
-	}
+	}	
+	
+	
+	//========================================================================================================
+	//========================================================================================================
+	// Six-sided
+	//========================================================================================================
+	//========================================================================================================
+	
 	
 	public void sixSidedRollFromLeft() {	
 	  	/*
@@ -631,6 +650,10 @@ public class MainActivity2 extends ActionBarActivity {
   	  	frameAnimation.start();
   	  	*/
 		// USING "runOnUiThread(new Runnable() {}" TO SEE IF IT WORKS BETTER THAN NOT USING IT.
+		
+		final ImageView sixsixrightleftrotateblank = (ImageView) findViewById(R.id.sixsidedanimation);
+		sixsixrightleftrotateblank.setVisibility(View.VISIBLE);
+		sixsixrightleftrotateblank.setEnabled(true);
 		
 		runOnUiThread(new Runnable() {
 			@Override
@@ -658,6 +681,7 @@ public class MainActivity2 extends ActionBarActivity {
   		});	
 	}
 	
+	
 	public void sixSidedWobbleStart() {
 		final ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
 		final Animation shake = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.wobblesixsided);
@@ -671,10 +695,6 @@ public class MainActivity2 extends ActionBarActivity {
 	}
 	
 	
-	//========================================================================================================
-	// Six-sided rolling SEPERATOR
-	//========================================================================================================
-		
 	public void sixSidedRollFromCenterToLeft1() {	
 	  	/*
 		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
@@ -1094,9 +1114,12 @@ public class MainActivity2 extends ActionBarActivity {
 		
   	  	issixsidedrolledforinitiative = "no";
 	}
-		
+	
+	
 	//========================================================================================================
-	//
+	//========================================================================================================
+	// Initiative Stuff
+	//========================================================================================================
 	//========================================================================================================
 	
 	
@@ -1190,7 +1213,12 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	public void resultsInitiative() {
 		
-		//Toast.makeText(MainActivity2.this,"At method determineDoubles().", Toast.LENGTH_SHORT).show();		
+		//Toast.makeText(MainActivity2.this,"At method determineDoubles().", Toast.LENGTH_SHORT).show();
+		
+		// Here to prevent pre-mature rolling:
+		final ImageView sixsixrightleftrotateblank = (ImageView) findViewById(R.id.sixsidedanimation);
+		sixsixrightleftrotateblank.setEnabled(false);		
+				
 		
 		final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 		//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
@@ -1273,6 +1301,8 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	public void determineDoubles() {
 		
+		//final ImageView sixsixrightleftrotateblank = (ImageView) findViewById(R.id.sixsidedanimation);
+		
 		final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 		//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 		
@@ -1317,14 +1347,12 @@ public class MainActivity2 extends ActionBarActivity {
 						  	  	  	    @Override
 						  	  	  	    public void run() {
 						  	  	  	    	
-						  	  	  	    	sixSidedWobbleStart();					  	  	  	    	
-						  	  	  	    	
+						  	  	  	    	sixSidedWobbleStart();						  	  	  	    	
 							  	  	  	}
 						  	  	  	});			  	  	  			
 				  	  	  			centerscrolltext.setVisibility(View.VISIBLE);
 				  		  	  		centerscrolltext.startAnimation(animAlphaText);
-				  		  			centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0]  + ", please slide the die...");			  		  			
-				  		  			
+				  		  			centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0]  + ", please slide the die...");				  		  			
 				  		  			
 				  		  			playerCardStartFadeInFadeOut();
 				  		  			//playerTurnBackgroundStart();  		  			
@@ -1341,58 +1369,116 @@ public class MainActivity2 extends ActionBarActivity {
 	  	
 		else if ((ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[1] || ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[0])) {
 						
-			aretheredoubles = "no";		
+			aretheredoubles = "no";
 			
-			final Handler h1 = new Handler();
-  	  	  	h1.postDelayed(new Runnable() {
-
-  	  	  		@Override
-  	  	  		public void run()
-  	  	  		{				  	  	  			
-	  	  	  		// Use a blank drawable to hide the imageview animation:
-	  	  	  		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
-	  	  			img.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
-	  	  			img.setImageResource(R.drawable.sixsixrightleftrotateblank);
-	  	  			
-	  	  			// Re-enables ability to use srollbar:
-	  	  			centerscrolltext.bringToFront();													
-	  	  			
-	  	  			centerscrolltext.setVisibility(View.VISIBLE);													
-	  	  	  		centerscrolltext.startAnimation(animAlphaText);
-	  	  			centerscrolltext.append("\n" +  ">" + "\n" + "> Let the battle begin!...");
-	  	  			
-	  	  			computerCardStopFadeInFadeOut();
-	  	  			//computerTurnBackgroundStop();
-	  	  			
-	  	  			
-	  	  			final Handler h2 = new Handler();
-	  	    	  	  	h2.postDelayed(new Runnable() {
-	
-	  	    	  	  		@Override
-	  	    	  	  		public void run()
-	  	    	  	  		{				  	  	  			
-	  	    	  	  			myInitiativeTransition();
-	  	    	  	  			
-		  	    	  	  		final Handler h3 = new Handler();
-			  	    	  	  	h3.postDelayed(new Runnable() {
-			
-			  	    	  	  		@Override
-			  	    	  	  		public void run()
-			  	    	  	  		{
-				  	    	  	  		final ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
-				  		  	  			titleBlankButton.setVisibility(View.VISIBLE);
-				  		  	  			titleBlankButton.bringToFront();
-			  	    	  	  		}
-			  	    	  	  	}, 12400);
-	  	    	  	  		}
-	  	    	  	  	}, 1000);
-	  	  			
-	  	  			
-	  	  			//Toast.makeText(MainActivity2.this,"isinitiativestarted = " +  isinitiativestarted + " aretheredoubles = " + aretheredoubles, Toast.LENGTH_SHORT).show();
-	  	  			
-  	  	  		}
-  	  	  	}, 3000);			
+			maxInitiative();  	  	  	
 		}
+	}
+	
+	public void maxInitiative() {
+		
+		for (int i = 0; i < 2; i++)
+        {
+           if (ArrayOfInitiative.initiative[i] > max)
+           {
+              max = ArrayOfInitiative.initiative[i];
+           }
+        }
+		
+		//Toast.makeText(MainActivity2.this,"MAX = " + max, Toast.LENGTH_SHORT).show();
+		
+		final Handler h1 = new Handler();
+	  	  	h1.postDelayed(new Runnable() {
+
+	  	  		@Override
+	  	  		public void run()
+	  	  		{				  	  	  			
+	  	  		AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+	  			
+	  	    	alert.setTitle("Initiative Results");
+	  	    	/*
+	  	    	alert.setMessage(ArrayOfPlayers.player[0] + getString(R.string.tab) + ArrayOfPlayers.player[1]);
+	  	    	alert.setMessage(ArrayOfInitiative.initiative[0] + getString(R.string.tab) + ArrayOfInitiative.initiative[0]);
+	  	    	*/
+	  	    	for (int i = 0; i < 2; i++)
+	  	        {
+	  	           if (max == ArrayOfInitiative.initiative[i])
+	  	           {
+	  	        	   alert.setMessage("\n" + ArrayOfPlayers.player[i] + " wins with a " + max + "!");
+	  	           }
+	  	        }
+	  	    	
+	  	    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+	  		    	public void onClick(DialogInterface dialog, int whichButton) {
+	  		    		
+	  		    		finishInitiative();
+	  		    	}
+	  	    	});
+	  	    	
+	  	    	alert.show();
+	  	    	
+	  	  		}
+	  	  	}, 4000);		
+	}
+	
+	public void finishInitiative() {
+		
+		final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+		//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+		
+		Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+		centerscrolltext.setTypeface(typeFace);
+		
+		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+		
+		final Handler h1 = new Handler();
+	  	  	h1.postDelayed(new Runnable() {
+
+	  	  		@Override
+	  	  		public void run()
+	  	  		{				  	  	  			
+  	  	  		// Use a blank drawable to hide the imageview animation:
+  	  	  		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+  	  			img.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+  	  			img.setImageResource(R.drawable.sixsixrightleftrotateblank);
+  	  			
+  	  			// Re-enables ability to use srollbar:
+  	  			centerscrolltext.bringToFront();													
+  	  			
+  	  			centerscrolltext.setVisibility(View.VISIBLE);													
+  	  	  		centerscrolltext.startAnimation(animAlphaText);
+  	  			centerscrolltext.append("\n" +  ">" + "\n" + "> Let the battle begin!...");
+  	  			
+  	  			computerCardStopFadeInFadeOut();
+  	  			//computerTurnBackgroundStop();
+  	  			
+  	  			
+  	  			final Handler h2 = new Handler();
+  	    	  	  	h2.postDelayed(new Runnable() {
+
+  	    	  	  		@Override
+  	    	  	  		public void run()
+  	    	  	  		{				  	  	  			
+  	    	  	  			myInitiativeTransition();
+  	    	  	  			
+	  	    	  	  		final Handler h3 = new Handler();
+		  	    	  	  	h3.postDelayed(new Runnable() {
+		
+		  	    	  	  		@Override
+		  	    	  	  		public void run()
+		  	    	  	  		{
+			  	    	  	  		final ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+			  		  	  			titleBlankButton.setVisibility(View.VISIBLE);
+			  		  	  			titleBlankButton.bringToFront();
+		  	    	  	  		}
+		  	    	  	  	}, 12400);
+  	    	  	  		}
+  	    	  	  	}, 1000);	  	  			
+  	  		
+  	    	//Toast.makeText(MainActivity2.this,"isinitiativestarted = " +  isinitiativestarted + " aretheredoubles = " + aretheredoubles, Toast.LENGTH_SHORT).show();
+  	    	 	
+	  	  		}
+	  	  	}, 1250);
 	}
 	
 }
