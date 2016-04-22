@@ -16,6 +16,7 @@ import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.support.v7.app.ActionBarActivity;
 import android.text.InputFilter;
 import android.text.Spannable;
@@ -43,6 +44,103 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity2 extends ActionBarActivity {
+	
+	
+	String isInvokingService = "true";
+	// GAME ENGINE:
+	Runnable myRunnable = new Runnable() {
+		@Override
+		public void run() {			
+			
+			runOnUiThread(new Runnable() {
+  	  	  	    @Override
+  	  	  	    public void run() {
+  	  	  	    	
+  	  	  	    	//Toast.makeText(MainActivity2.this, "*********** TESTING ***********", Toast.LENGTH_SHORT).show();
+  	  	  	    	
+  	  	  	    	final String[] items = new String[] { "Attack", "Disarm", "Haste", "Cure", "Bless" };
+      		
+					AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity2.this);
+	
+					// if back pressed: DOES THIS WORK????????????
+					builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+						@Override
+						public void onCancel(DialogInterface dialog) {
+							
+							//GOTO SOME METHOD!!!!!!!!!!!!!!
+						}
+					});
+	
+					builder.setTitle("Choose Action").setItems(items,
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,	int item) {
+	
+									if (item == 0) {
+										attack(i, turn, gameOn);
+									}
+									if (item == 1) {
+										disarm(i, turn, gameOn);
+									}
+									if (item == 2) {
+										haste(i, turn, gameOn);
+									}
+									if (item == 3) {
+										cure(i, turn, gameOn);
+									}
+									if (item == 4) {
+										bless(i, turn, gameOn);
+									}
+								}
+							});
+					builder.create().show();
+  	  	  	    }
+			});
+			
+			
+			/*while (gameOn == 1) {
+				
+				//SystemClock.sleep(1000);
+				
+				final String[] items = new String[] { "Attack", "Disarm", "Haste", "Cure", "Bless" };
+        		
+				AlertDialog.Builder builder = new AlertDialog.Builder(null);
+
+				// if back pressed: DOES THIS WORK????????????
+				builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+					@Override
+					public void onCancel(DialogInterface dialog) {
+						
+						//GOTO SOME METHOD!!!!!!!!!!!!!!
+					}
+				});
+
+				builder.setTitle("Choose Action").setItems(items,
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog,	int item) {
+
+								if (item == 0) {
+									//attack(i, turn, gameOn);
+								}
+								if (item == 1) {
+									//disarm(i, turn, gameOn);
+								}
+								if (item == 2) {
+									//haste(i, turn, gameOn);
+								}
+								if (item == 3) {
+									//cure(i, turn, gameOn);
+								}
+								if (item == 4) {
+									//bless(i, turn, gameOn);
+								}
+							}
+						});
+				builder.create().show();					
+			}*/		
+		}		     
+	};
+	
+	
 	
 	
 	// Using variable because was getting null pointer if onbackpressed before rollfromleft was completed:
@@ -138,7 +236,9 @@ public class MainActivity2 extends ActionBarActivity {
 		computerHitPointsTextView.setTypeface(typeFace);
 		computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));		
 		
-		/*
+		
+		
+		// MAKE THIS A RUNNABLE LIKE GAME ENGINE AND CALL IT AFTER INITIATIVE?
 		Thread thread3 = new Thread() {
 		    @Override
 		    public void run() {
@@ -148,7 +248,7 @@ public class MainActivity2 extends ActionBarActivity {
 		    }
 		};
 		thread3.start();
-		*/
+		/*
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
@@ -157,6 +257,8 @@ public class MainActivity2 extends ActionBarActivity {
 				computerHitPointsTextView.startAnimation(animPulsingAnimation);
 	  	    }
   		});
+		*/
+		
 		
 		
 		ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
@@ -246,25 +348,20 @@ public class MainActivity2 extends ActionBarActivity {
 				  	  	  		@Override
 				  	  	  		public void run()
 				  	  	  		{  	  			
-				  	  	  			runOnUiThread(new Runnable() {
-					  	  	  	    @Override
-					  	  	  	    public void run() {					  	  	  	    	
-					  	  	  	    	sixSidedWobbleStart();
-						  	  	  	}
-					  	  	  	});
-				  	  	  		
-			  	  	  			centerscrolltext.setVisibility(View.VISIBLE);
-			  		  	  		centerscrolltext.startAnimation(animAlphaText);
-			  		  			centerscrolltext.append("\n" + "> Please slide the die...");			  		  			
-			  		  			
-			  		  			
-			  		  			playerCardStartFadeInFadeOut();
-			  		  			//playerTurnBackgroundStart();			  		  			
-			  		  			
-			  		  			
-			  		  			//issixsidedrolledforinitiative = "yes";
-			  		  			isinitiativestarted = "yes";			  		  			
-			  		  			onBackPressedOk = "yes";			  		  			
+					  	  	  		sixSidedWobbleStart();
+					  	  	  		
+				  	  	  			centerscrolltext.setVisibility(View.VISIBLE);
+				  		  	  		centerscrolltext.startAnimation(animAlphaText);
+				  		  			centerscrolltext.append("\n" + "> Please slide the die...");			  		  			
+				  		  			
+				  		  			
+				  		  			playerCardStartFadeInFadeOut();
+				  		  			//playerTurnBackgroundStart();			  		  			
+				  		  			
+				  		  			
+				  		  			//issixsidedrolledforinitiative = "yes";
+				  		  			isinitiativestarted = "yes";			  		  			
+				  		  			onBackPressedOk = "yes";			  		  			
 			  	  	  		}
 			  	  	  	}, 1000);
 	  	  	  		}
@@ -272,6 +369,7 @@ public class MainActivity2 extends ActionBarActivity {
   	  		}
   	  	}, 2000);
   	  	
+  	  	/*
   	  	// NEED NEW THREAD FOR THIS???????
   	  	Thread thread2 = new Thread() {
 		    @Override
@@ -280,6 +378,8 @@ public class MainActivity2 extends ActionBarActivity {
 		    }
 		};
 		thread2.start();
+		*/
+  	  	determineInitiative();
 		
 				
 		
@@ -460,60 +560,19 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		
 		
+		
+		
+		
 		final ImageButton actionButton = (ImageButton) findViewById(R.id.imagebuttonaction);
 		
-		// Sound stuff:
-		final MediaPlayer buttonSound = MediaPlayer.create(MainActivity2.this, R.raw.swordswing);
 		
-		actionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-			public void onClick(View v) {
-			                    	
-        	buttonSound.start();        	
-        	       	
-	        	
-        	// ARRAY ADAPTER WITH ICON STUFF:	        	
-        	
-        	final String[] items = new String[] {"Attack", "Disarm", "Haste", "Cure", "Bless"};
-    		//final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2};
-    		
-        	// WILL ArrayAdapterWithIcon (with a parameter null) WORK?
-    		ListAdapter adapter = new ArrayAdapterWithIcon(MainActivity2.this, items, null); //, avatars
-    		
-    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity2.this, R.layout.avatar_adapter);
-    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
-    		//builder.setIcon(R.drawable.computerhead);
-    		builder.setTitle("Actions");
-    		
-    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
-    			public void onClick(DialogInterface dialog, int item) { 
-    								
-    				if (item == 0) {
-    					attack(i, turn, gameOn);
-    				}
-    				if (item == 1) {
-    					disarm(i, turn, gameOn);
-    				}
-    				if (item == 2) {
-    					haste(i, turn, gameOn);
-    				}
-    				if (item == 3) {
-    					cure(i, turn, gameOn);
-    				}
-    				if (item == 4) {
-    					bless(i, turn, gameOn);
-    				}
-    				
-    				Intent openMainActivity2 = new Intent("com.nedswebsite.ktog.MAINACTIVITY2");
-    	        	startActivity(openMainActivity2);
-    	  		}
-    		});	    		
-        	
-            builder.create().show();
-        	        	
-        	
-			}
-		});
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -541,6 +600,9 @@ public class MainActivity2 extends ActionBarActivity {
     public void onBackPressed() {
 		
 		if (onBackPressedOk.equals("yes")){
+			
+			super.onBackPressed(); // HERE OR BELOW??????
+			
 			Arrays.fill(ArrayOfPlayers.player, null);
 			Arrays.fill(ArrayOfAvatars.avatar, null);			
 			Arrays.fill(ArrayOfHitPoints.hitpoints, 20);  // IS THIS RIGHT???????????????
@@ -548,13 +610,15 @@ public class MainActivity2 extends ActionBarActivity {
 			
 			// NEED TO GET RID OF THREADS???????????????????
 			
+			// ANIMATIONS METHODS STILL A PROB?
+			
 			final Intent svc=new Intent(this, Badonk2SoundService.class);
 			startService(svc);
 			
 			// SAME AS "super.onBackPressed();"?
 			finish();
 			
-			super.onBackPressed();
+			
 		}
 		else if (onBackPressedOk.equals("no")){
 			android.os.Process.killProcess(android.os.Process.myPid());
@@ -564,7 +628,7 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		//Toast.makeText(MainActivity2.this,"onBackPressed WORKING!!!!", Toast.LENGTH_SHORT).show();
     }
-	
+	/*
 	public void onStop() {		
 		
 		//finish();
@@ -599,7 +663,8 @@ public class MainActivity2 extends ActionBarActivity {
 		}
 		    	
     }	
-	
+	*/
+
 	
 	/*
 	 * 
@@ -1502,8 +1567,8 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  	  		{  	  			
 					  	  	  			runOnUiThread(new Runnable() {
 						  	  	  	    @Override
-						  	  	  	    public void run() 
-						  	  	  	    {						  	  	  	    	
+						  	  	  	    public void run() {
+						  	  	  	    	
 						  	  	  	    	sixSidedWobbleStart();						  	  	  	    	
 							  	  	  	}
 					  	  	  			});
@@ -1610,9 +1675,9 @@ public class MainActivity2 extends ActionBarActivity {
   	  			centerscrolltext.append("\n" +  ">" + "\n" + "> Let the battle begin...");
   	  			
   	  			computerCardStopFadeInFadeOut();
-  	  			//computerTurnBackgroundStop();  	  			
-  	  			
-  	  			
+  	  			//computerTurnBackgroundStop();
+
+ 	  			
   	  			//IS TIMING OF Handler h2 FREEZING OTHER STUFF? JUST DO REGULAR RUNNABLE HERE?????????
   	  			final Handler h2 = new Handler();
   	    	  	  	h2.postDelayed(new Runnable() {
@@ -1620,7 +1685,14 @@ public class MainActivity2 extends ActionBarActivity {
   	    	  	  		@Override
   	    	  	  		public void run()
   	    	  	  		{				  	  	  			
-  	    	  	  			myInitiativeTransition();  	    	  	  			
+  	    	  	  			
+  	    	  	  			runOnUiThread(new Runnable() {
+				  	  	  	    @Override
+				  	  	  	    public void run() {
+				  	  	  	    	
+				  	  	  	    	myInitiativeTransition();						  	  	  	    	
+					  	  	  	}
+			  	  	  		});  	    	  	  			  	    	  	  			
   	    	  	  			  	    	  	  			
 	  	    	  	  		final Handler h3 = new Handler();
 		  	    	  	  	h3.postDelayed(new Runnable() {
@@ -1635,7 +1707,7 @@ public class MainActivity2 extends ActionBarActivity {
 			  		  	  			
 			  		  	  			
 			  		  	  			startGameNow ="yes";
-			  		  	  			onStart();
+			  		  	  			//onStart();
 			  		  	  			
 			  		  	  			/*
 			  		  	  			// Calls method from another class:
@@ -1643,7 +1715,10 @@ public class MainActivity2 extends ActionBarActivity {
 				  		  	  		Engine.gameEngine();
 				  		  	  		*/
 				  		  	  		
-			  		  	  			//gameEngine();
+			  		  	  			gameEngine(null, gameOn, gameOn);
+			  		  	  			
+			  		  	  			//Thread myThread = new Thread(myRunnable);
+			  		  	  			//myThread.start();
 				  		  	  		
 		  	    	  	  		}
 		  	    	  	  	}, 12400);
@@ -7777,7 +7852,7 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	
 	
-	public void onStart() {		
+	public void onStart() {// UI THREAD RIGHT?
 		
 		//super.onStart(); //DOES IT MATTER HERE OR AT BOTTOM?
 		
@@ -7939,7 +8014,7 @@ public class MainActivity2 extends ActionBarActivity {
 				      }
 				 };
 				 
-				 Thread myThread = new Thread();
+				 Thread myThread = new Thread(myRunnable);
 				 myThread.start();			  	
 			}	
 			
@@ -8096,17 +8171,113 @@ public class MainActivity2 extends ActionBarActivity {
 		
 	}
 	
-	public void humanFirst1() {
-		
-				
+	
+	public void gameEngine(Intent intent,int flags,int startId)
+	{ 
+	    //Toast.makeText(this, "Service Started", Toast.LENGTH_LONG).show();
+	    
+	    final int gameOn = 1;
+	    
+	    
+	    
+	    new Thread()
+	    {
+	        public void run() {
+	        	
+	        	while (gameOn == 1) {	        		
+	        		
+	        		SystemClock.sleep(2000);
+	        		
+	        		if (isInvokingService.equals("true")){
+	        			
+	        			runOnUi();	        			
+	        		}
+	        		
+	        		
+	        		/*
+		        	runOnUiThread(new Runnable() {
+		  	  	  	    @Override
+		  	  	  	    public void run() {
+		  	  	  	    	
+		  	  	  	    	
+		  	  	  	    	AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+			  			
+				  	    	alert.setTitle("TEST");				  	    		  	    	
+				  	    	
+				  	    	alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+				  	    		public void onClick(DialogInterface dialog, int whichButton) {					  		    		
+				  		    			  		    		
+				  		    	}
+				  	    	});
+				  	    	
+				  	    		 
+		  	  	  	    	
+		  	  	  	    	Toast.makeText(MainActivity2.this, "*********** TESTING ***********", Toast.LENGTH_SHORT).show();
+		  	  	  	    	
+		  	  	  	    	//Thread myThread = new Thread(myRunnable);
+	  		  	  			//myThread.start();
+		  	  	  	    }
+					});*/
+	        	}
+	        	
+	        }
+	    }.start();
+
+	 return;
 	}
 	
-	public void computerFirst1() {
+	public void runOnUi() {
 		
+		isInvokingService = "false";
 		
-		
-	}
+		runOnUiThread(new Runnable() {
+	  	  	    @Override
+	  	  	    public void run() {	  	  	    	
+	  	  	    	
+		  	  	    final String[] items = new String[] { "Attack", "Disarm", "Haste", "Cure", "Bless" };
+		      		
+					AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity2.this);
 	
+					// if back pressed: DOES THIS WORK????????????
+					builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+						@Override
+						public void onCancel(DialogInterface dialog) {
+							
+							//GOTO SOME METHOD!!!!!!!!!!!!!!
+						}
+					});
+	
+					builder.setTitle("Choose Action").setItems(items,
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,	int item) {
+	
+									if (item == 0) {
+										attack(i, turn, gameOn);
+									}
+									if (item == 1) {
+										disarm(i, turn, gameOn);
+									}
+									if (item == 2) {
+										haste(i, turn, gameOn);
+									}
+									if (item == 3) {
+										cure(i, turn, gameOn);
+									}
+									if (item == 4) {
+										bless(i, turn, gameOn);
+									}
+								}
+							});
+					builder.create().show();
+	  	    		 
+	  	  	    	
+	  	  	    	//Toast.makeText(MainActivity2.this, "*********** TESTING ***********", Toast.LENGTH_SHORT).show();
+	  	  	    	
+	  	  	    	//Thread myThread = new Thread(myRunnable);
+	  	  			//myThread.start();
+	  	  	    }
+		});
+	}
 	
 	
 
