@@ -24,13 +24,12 @@
     <ImageButton
         android:id="@+id/imagebuttontitleblank"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/imageviewcenterscroll"
-        android:layout_alignLeft="@+id/imageviewcenterscroll"
-        android:layout_alignParentTop="true"
+        android:layout_height="wrap_content"        
+        android:layout_alignLeft="@+id/imageviewcenterscroll"        
         android:layout_toLeftOf="@+id/textviewhitpointsright"
+        android:layout_marginTop="20dp"
         android:alpha="0"
-        android:background="@drawable/titleblank" />
+        android:background="@drawable/titleblanksmall" />
 
     <TextView
         android:id="@+id/textviewnameleft"
@@ -187,7 +186,7 @@
     	
     
     
-    
+    <!--
     <ImageButton
         android:id="@+id/imagebuttonaction"
         android:layout_width="wrap_content"
@@ -197,9 +196,8 @@
         android:background="@drawable/action"
         android:cropToPadding="false"
         android:layout_marginTop="15dp"
-        android:layout_marginBottom="19dp" />
+        android:layout_marginBottom="19dp" />    
     
-    <!--
     <ImageButton
         android:id="@+id/imagebuttonattack"
         android:layout_width="wrap_content"
@@ -237,28 +235,30 @@
    	    android:id="@+id/imageviewcenterscroll"
    	    android:layout_width="wrap_content"
    	    android:layout_height="wrap_content"   	    
-   	    android:layout_above="@+id/imagebuttonaction"
+   	    android:layout_alignParentBottom="true"
+   	    android:layout_marginBottom="15dp"
    	    android:layout_toRightOf="@+id/imageviewscroll3b5left"   	    
-   	    android:background="@drawable/centerscroll" /> 	
+   	    android:background="@drawable/centerscroll3" /> 	
    	
    	<TextView
-        android:id="@+id/textviewcenterscrolltext"
-        android:layout_width="340dp"
-        android:layout_height="220dp"
-        android:layout_alignBottom="@+id/imageviewcenterscroll"
-        android:layout_below="@+id/imagebuttontitleblank"
-        android:layout_toLeftOf="@+id/imageviewscroll3b5right"
-        android:layout_toRightOf="@+id/imageviewscroll3b5left"
-        android:fadeScrollbars="false"
-        android:gravity="bottom"
-        android:lineSpacingExtra="5dp"
-        android:paddingBottom="40dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="25dp"
-        android:paddingTop="9dp"
-        android:scrollbars="vertical"               
-        android:textColor="#FFFFFF"
-        android:textSize="25sp" />	
+   	    android:id="@+id/textviewcenterscrolltext"
+   	    android:layout_width="340dp"
+   	    android:layout_height="220dp"
+   	    android:layout_alignBottom="@+id/imageviewcenterscroll"
+   	    android:layout_alignTop="@+id/imageviewcenterscroll"
+   	    android:layout_toLeftOf="@+id/imageviewscroll3b5right"
+   	    android:layout_toRightOf="@+id/imageviewscroll3b5left"
+   	    android:fadeScrollbars="false"
+   	    android:gravity="bottom"
+   	    android:lineSpacingExtra="5dp"
+   	    android:paddingBottom="40dp"
+   	    android:paddingLeft="20dp"
+   	    android:paddingRight="25dp"
+   	    android:paddingTop="9dp"
+   	    android:scrollbars="vertical"
+   	    android:textColor="#FFFFFF"
+   	    android:textSize="25sp" />
+	
    		<!-- android:scrollbarSize="100dp" ISN"T WORKING  -->
    	
    	
@@ -272,12 +272,8 @@
    	<ImageView
         android:id="@+id/titleanimation"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-   	
-   	<ImageView
-        android:id="@+id/sixsidedflare"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp" />   	
    	
    	<ImageView
         android:id="@+id/sixsidedanimation"

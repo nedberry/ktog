@@ -46,102 +46,7 @@ import android.widget.Toast;
 public class MainActivity2 extends ActionBarActivity {
 	
 	
-	String isInvokingService = "true";
-	// GAME ENGINE:
-	Runnable myRunnable = new Runnable() {
-		@Override
-		public void run() {			
-			
-			runOnUiThread(new Runnable() {
-  	  	  	    @Override
-  	  	  	    public void run() {
-  	  	  	    	
-  	  	  	    	//Toast.makeText(MainActivity2.this, "*********** TESTING ***********", Toast.LENGTH_SHORT).show();
-  	  	  	    	
-  	  	  	    	final String[] items = new String[] { "Attack", "Disarm", "Haste", "Cure", "Bless" };
-      		
-					AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity2.this);
-	
-					// if back pressed: DOES THIS WORK????????????
-					builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
-						@Override
-						public void onCancel(DialogInterface dialog) {
-							
-							//GOTO SOME METHOD!!!!!!!!!!!!!!
-						}
-					});
-	
-					builder.setTitle("Choose Action").setItems(items,
-							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,	int item) {
-	
-									if (item == 0) {
-										attack(i, turn, gameOn);
-									}
-									if (item == 1) {
-										disarm(i, turn, gameOn);
-									}
-									if (item == 2) {
-										haste(i, turn, gameOn);
-									}
-									if (item == 3) {
-										cure(i, turn, gameOn);
-									}
-									if (item == 4) {
-										bless(i, turn, gameOn);
-									}
-								}
-							});
-					builder.create().show();
-  	  	  	    }
-			});
-			
-			
-			/*while (gameOn == 1) {
-				
-				//SystemClock.sleep(1000);
-				
-				final String[] items = new String[] { "Attack", "Disarm", "Haste", "Cure", "Bless" };
-        		
-				AlertDialog.Builder builder = new AlertDialog.Builder(null);
-
-				// if back pressed: DOES THIS WORK????????????
-				builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
-					@Override
-					public void onCancel(DialogInterface dialog) {
-						
-						//GOTO SOME METHOD!!!!!!!!!!!!!!
-					}
-				});
-
-				builder.setTitle("Choose Action").setItems(items,
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog,	int item) {
-
-								if (item == 0) {
-									//attack(i, turn, gameOn);
-								}
-								if (item == 1) {
-									//disarm(i, turn, gameOn);
-								}
-								if (item == 2) {
-									//haste(i, turn, gameOn);
-								}
-								if (item == 3) {
-									//cure(i, turn, gameOn);
-								}
-								if (item == 4) {
-									//bless(i, turn, gameOn);
-								}
-							}
-						});
-				builder.create().show();					
-			}*/		
-		}		     
-	};
-	
-	
-	
+	String isInvokingService = "true";	
 	
 	// Using variable because was getting null pointer if onbackpressed before rollfromleft was completed:
 	String onBackPressedOk = "no";
@@ -181,9 +86,7 @@ public class MainActivity2 extends ActionBarActivity {
 	public static int[] hasteSpell = new int[] {2, 2, 2, 2, 2, 2, 2};
 	public static int[] mightyBlowSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
 	public static int[] blessSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
-	public static int[] dodgeBlowSpell = new int[] {1, 1, 1, 1, 1, 1, 1};	
-	
-	
+	public static int[] dodgeBlowSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
 	
 	
 		
@@ -239,7 +142,8 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		
 		// MAKE THIS A RUNNABLE LIKE GAME ENGINE AND CALL IT AFTER INITIATIVE?
-		Thread thread3 = new Thread() {
+		/*
+		Thread thread1 = new Thread() {
 		    @Override
 		    public void run() {
 		    	final Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);
@@ -247,7 +151,8 @@ public class MainActivity2 extends ActionBarActivity {
 				computerHitPointsTextView.startAnimation(animPulsingAnimation);
 		    }
 		};
-		thread3.start();
+		thread1.start();
+		*/
 		/*
 		runOnUiThread(new Runnable() {
 			@Override
@@ -258,7 +163,9 @@ public class MainActivity2 extends ActionBarActivity {
 	  	    }
   		});
 		*/
-		
+		final Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);
+		playerHitPointsTextView.startAnimation(animPulsingAnimation);		
+		computerHitPointsTextView.startAnimation(animPulsingAnimation);
 		
 		
 		ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
@@ -287,7 +194,19 @@ public class MainActivity2 extends ActionBarActivity {
 		sixsixrightleftrotateblank.setVisibility(View.INVISIBLE);
 		
 		
+		
+		// ANIMATIONS RUNNING SLOWER IN THREADS:
+		
 		unfoldScrolls();		
+		/*
+		Thread thread2 = new Thread() {
+		    @Override
+		    public void run() {
+		    	unfoldScrolls();
+		    }
+		};
+		thread2.start();
+		*/
         /*
         final Handler h1 = new Handler();
   	  	h1.postDelayed(new Runnable() {
@@ -299,9 +218,18 @@ public class MainActivity2 extends ActionBarActivity {
 	  			scrollsUnrollingSound.start();			  		  			
   	  		}
   	  	}, 800);        
-    	*/
+    	*/		
 		
-  	  	preInitiativeTitle();		
+		preInitiativeTitle();
+		/*
+		Thread thread3 = new Thread() {
+		    @Override
+		    public void run() {
+		    	preInitiativeTitle();
+		    }
+		};
+		thread3.start();
+		*/
   	  	/*
 		final Handler h2 = new Handler();
 	  	h2.postDelayed(new Runnable() {
@@ -323,7 +251,7 @@ public class MainActivity2 extends ActionBarActivity {
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);		
 		
 		// THESE RUN METHODS ARE THREAD-SAFE, SUPPOSEDLY.
-		final Handler h3 = new Handler();
+		final Handler h3 = new Handler(); // A handler is associated with the thread it is created in.
   	  	h3.postDelayed(new Runnable() {
 
   	  		@Override
@@ -335,7 +263,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  			
 	  			final Handler h4 = new Handler();
 	  	  	  	h4.postDelayed(new Runnable() {
-
+	  	  	  		
 	  	  	  		@Override
 	  	  	  		public void run()
 	  	  	  		{
@@ -369,18 +297,19 @@ public class MainActivity2 extends ActionBarActivity {
   	  		}
   	  	}, 2000);
   	  	
+  	  	
+  	  	determineInitiative();
+  	  	// THREAD MATTER?
   	  	/*
-  	  	// NEED NEW THREAD FOR THIS???????
-  	  	Thread thread2 = new Thread() {
+  	  	Thread thread4 = new Thread() {
 		    @Override
 		    public void run() {		    	
 		    	determineInitiative();
 		    }
 		};
-		thread2.start();
+		thread4.start();
 		*/
-  	  	determineInitiative();
-		
+  	  			
 				
 		
 		
@@ -410,76 +339,7 @@ public class MainActivity2 extends ActionBarActivity {
             		}            				
             	}            	
 			}            
-		});
-		
-		// OLD WAY:  	  	
-  	  	/*
-		final ImageView sixsixrightleftrotateblank = (ImageView) findViewById(R.id.sixsidedanimation);  	  	
-		// Creating view for animation that rides on pre-existing view.
-	  	  	  	
-	  	sixsixrightleftrotateblank.setOnTouchListener(new OnSwipeTouchListener(MainActivity2.this) {	  	
-	  		@Override  	  	
-	  		public void onSwipeLeft() {	  			
-	  			
-	  			if (issixsidedrolledforinitiative.equals("yes")) {	  				
-	  				
-	  				sixSidedWobbleStop();
-		  			//sixSidedRollFromCenterToLeft();
-		  			//determineInitiative();
-		  			
-		  			if (ArrayOfInitiative.initiative[0] == 1){		  				
-		  				sixSidedRollFromCenterToLeft1();								  		  	  	
-					}
-					else if (ArrayOfInitiative.initiative[0] == 2){
-						sixSidedRollFromCenterToLeft2();
-					}
-					else if (ArrayOfInitiative.initiative[0] == 3){
-						sixSidedRollFromCenterToLeft3();
-					}
-					else if (ArrayOfInitiative.initiative[0] == 4){
-						sixSidedRollFromCenterToLeft4();
-					}
-					else if (ArrayOfInitiative.initiative[0] == 5){
-						sixSidedRollFromCenterToLeft5();
-					}
-					else if (ArrayOfInitiative.initiative[0] == 6){
-						sixSidedRollFromCenterToLeft6();
-					}
-		  			resultsInitiative();
-	  			}	  			
-	  		}
-	  		
-	  		public void onSwipeRight() {	  			
-	  			
-	  			if (issixsidedrolledforinitiative.equals("yes")) {	  				
-	  								
-	  				sixSidedWobbleStop();
-	  				//sixSidedRollFromCenterToRight();
-	  				//determineInitiative();
-	  				
-	  				if (ArrayOfInitiative.initiative[0] == 1){
-	  					sixSidedRollFromCenterToRight1();							  		  	  	
-					}
-					else if (ArrayOfInitiative.initiative[0] == 2){
-						sixSidedRollFromCenterToRight2();
-					}
-					else if (ArrayOfInitiative.initiative[0] == 3){
-						sixSidedRollFromCenterToRight3();
-					}
-					else if (ArrayOfInitiative.initiative[0] == 4){
-						sixSidedRollFromCenterToRight4();
-					}
-					else if (ArrayOfInitiative.initiative[0] == 5){
-						sixSidedRollFromCenterToRight5();
-					}
-					else if (ArrayOfInitiative.initiative[0] == 6){
-						sixSidedRollFromCenterToRight6();
-					}
-	  				resultsInitiative();
-	  			}	  			
-	  		}
-	  	});
-	  	*/
+		});		
 				
 		
 		sixsixrightleftrotateblank.setOnTouchListener(new OnSixSidedSwipeTouchListener(MainActivity2.this) {
@@ -489,89 +349,74 @@ public class MainActivity2 extends ActionBarActivity {
 		    public void onSwipeRight() {
 		    	//if (issixsidedrolledforinitiative.equals("yes")) {	  				
 					
-					sixSidedWobbleStop();
-					//sixSidedRollFromCenterToRight();
-					//determineInitiative();
-					
-					if (ArrayOfInitiative.initiative[0] == 1){
-						sixSidedRollFromCenterToRight1();							  		  	  	
-					}
-					else if (ArrayOfInitiative.initiative[0] == 2){
-						sixSidedRollFromCenterToRight2();
-					}
-					else if (ArrayOfInitiative.initiative[0] == 3){
-						sixSidedRollFromCenterToRight3();
-					}
-					else if (ArrayOfInitiative.initiative[0] == 4){
-						sixSidedRollFromCenterToRight4();
-					}
-					else if (ArrayOfInitiative.initiative[0] == 5){
-						sixSidedRollFromCenterToRight5();
-					}
-					else if (ArrayOfInitiative.initiative[0] == 6){
-						sixSidedRollFromCenterToRight6();
-					}
-					
-					
-					if (issixsidedrolledforinitiative.equals("no")) {
-						resultsInitiative();
-					}
-				//}
+				sixSidedWobbleStop();
+				//sixSidedRollFromCenterToRight();
+				//determineInitiative();				
+									
+				
+				if (ArrayOfInitiative.initiative[0] == 1){
+					sixSidedRollFromCenterToRight1();							  		  	  	
+				}
+				else if (ArrayOfInitiative.initiative[0] == 2){
+					sixSidedRollFromCenterToRight2();
+				}
+				else if (ArrayOfInitiative.initiative[0] == 3){
+					sixSidedRollFromCenterToRight3();
+				}
+				else if (ArrayOfInitiative.initiative[0] == 4){
+					sixSidedRollFromCenterToRight4();
+				}
+				else if (ArrayOfInitiative.initiative[0] == 5){
+					sixSidedRollFromCenterToRight5();
+				}
+				else if (ArrayOfInitiative.initiative[0] == 6){
+					sixSidedRollFromCenterToRight6();
+				}			
+				
+				
+				if (issixsidedrolledforinitiative.equals("no")) {
+					resultsInitiative();
+				}
+			//}
 		    }
 		    
 		    public void onSwipeLeft() {
 		    	//if (issixsidedrolledforinitiative.equals("yes")) {	  				
 					
-					sixSidedWobbleStop();
-					//sixSidedRollFromCenterToLeft();
-					//determineInitiative();
-					
-					if (ArrayOfInitiative.initiative[0] == 1){		  				
-						sixSidedRollFromCenterToLeft1();								  		  	  	
-					}
-					else if (ArrayOfInitiative.initiative[0] == 2){
-						sixSidedRollFromCenterToLeft2();
-					}
-					else if (ArrayOfInitiative.initiative[0] == 3){
-						sixSidedRollFromCenterToLeft3();
-					}
-					else if (ArrayOfInitiative.initiative[0] == 4){
-						sixSidedRollFromCenterToLeft4();
-					}
-					else if (ArrayOfInitiative.initiative[0] == 5){
-						sixSidedRollFromCenterToLeft5();
-					}
-					else if (ArrayOfInitiative.initiative[0] == 6){
-						sixSidedRollFromCenterToLeft6();
-					}
-					
-					
-					if (issixsidedrolledforinitiative.equals("no")) {
-						resultsInitiative();
-					}					
-				//}
+				sixSidedWobbleStop();
+				//sixSidedRollFromCenterToLeft();
+				//determineInitiative();					
+				
+				
+				if (ArrayOfInitiative.initiative[0] == 1){		  				
+					sixSidedRollFromCenterToLeft1();								  		  	  	
+				}
+				else if (ArrayOfInitiative.initiative[0] == 2){
+					sixSidedRollFromCenterToLeft2();
+				}
+				else if (ArrayOfInitiative.initiative[0] == 3){
+					sixSidedRollFromCenterToLeft3();
+				}
+				else if (ArrayOfInitiative.initiative[0] == 4){
+					sixSidedRollFromCenterToLeft4();
+				}
+				else if (ArrayOfInitiative.initiative[0] == 5){
+					sixSidedRollFromCenterToLeft5();
+				}
+				else if (ArrayOfInitiative.initiative[0] == 6){
+					sixSidedRollFromCenterToLeft6();
+				}				
+				
+				
+				if (issixsidedrolledforinitiative.equals("no")) {
+					resultsInitiative();
+				}					
+			//}
 		    }
 		    public void onSwipeBottom() {
 		        Toast.makeText(MainActivity2.this, "bottom", Toast.LENGTH_SHORT).show();
 		    }
-
-		});
-		
-		
-		
-		
-		
-		
-		
-		final ImageButton actionButton = (ImageButton) findViewById(R.id.imagebuttonaction);
-		
-		
-		
-		
-		
-		
-		
-		
+		});		
 		
 		
 		
@@ -592,8 +437,7 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	
 	// onStart was here
-	
-	
+		
 	
 	// Destroys data in arrays, and pro-actively cleans up memory (finish) for the user (good practice?).
 	@Override
@@ -1360,15 +1204,21 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	public void myInitiativeTransition() {
 		
-		final ImageView img = (ImageView)findViewById(R.id.titleanimation);		
-		img.setBackgroundResource(R.anim.titleanimationyesinitiative);
-  
-		// Get the background, which has been compiled to an AnimationDrawable object.
-		final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
-
-		// Animation is just 1 slide so user can see title.
-		frameAnimation.stop();
-		frameAnimation.start();
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {		
+		
+				final ImageView img = (ImageView)findViewById(R.id.titleanimation);		
+				img.setBackgroundResource(R.anim.titleanimationyesinitiative);
+		  
+				// Get the background, which has been compiled to an AnimationDrawable object.
+				final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+		
+				// Animation is just 1 slide so user can see title.
+				frameAnimation.stop();
+				frameAnimation.start();
+			}
+  		});
 	}
 	
 	public void  myInitiativeIsStarted() {	      
@@ -1559,12 +1409,12 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  	  			sixSidedRollFromLeft();  	  	  			
 		  		  			
 			  		  		final Handler h4 = new Handler();
-				  	  	  	h4.postDelayed(new Runnable() {
+				  	  	  	h4.postDelayed(new Runnable() {				  	  	  			
 				  	  	  			
-				  	  	  			// Does this thread help:?
 					  	  	  		@Override
-					  	  	  		public void run()
-					  	  	  		{  	  			
+					  	  	  		public void run() {
+					  	  	  			
+					  	  	  			// need runOnUiThread?
 					  	  	  			runOnUiThread(new Runnable() {
 						  	  	  	    @Override
 						  	  	  	    public void run() {
@@ -1600,7 +1450,7 @@ public class MainActivity2 extends ActionBarActivity {
 		}
 	}
 	
-	public void maxInitiative() {
+	public void maxInitiative() {		
 		
 		for (int i = 0; i < 2; i++) // Was "numberOfPlayers", which = 2 up top.
         {
@@ -1613,10 +1463,14 @@ public class MainActivity2 extends ActionBarActivity {
 		//Toast.makeText(MainActivity2.this,"MAX = " + max, Toast.LENGTH_SHORT).show();
 		
 		final Handler h1 = new Handler();
-	  	  	h1.postDelayed(new Runnable() {
+	  	  	h1.postDelayed(new Runnable() {		  	  	
 
 	  	  		@Override
 	  	  		public void run() {
+	  	  			
+		  	  		computerCardStopFadeInFadeOut();
+					//computerTurnBackgroundStop();
+	  	  			
 	  	  						  	  	  			
 		  	  		AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 		  			
@@ -1656,79 +1510,53 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
-		final Handler h1 = new Handler();
-	  	  	h1.postDelayed(new Runnable() {
-
-	  	  		@Override
-	  	  		public void run()
-	  	  		{				  	  	  			
-  	  	  		// Use a blank drawable to hide the imageview animation:
-  	  	  		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
-  	  			img.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
-  	  			img.setImageResource(R.drawable.sixsixrightleftrotateblank);
-  	  			
-  	  			// Re-enables ability to use srollbar:
-  	  			centerscrolltext.bringToFront();													
-  	  			
-  	  			centerscrolltext.setVisibility(View.VISIBLE);													
-  	  	  		centerscrolltext.startAnimation(animAlphaText);
-  	  			centerscrolltext.append("\n" +  ">" + "\n" + "> Let the battle begin...");
-  	  			
-  	  			computerCardStopFadeInFadeOut();
-  	  			//computerTurnBackgroundStop();
-
- 	  			
-  	  			//IS TIMING OF Handler h2 FREEZING OTHER STUFF? JUST DO REGULAR RUNNABLE HERE?????????
-  	  			final Handler h2 = new Handler();
-  	    	  	  	h2.postDelayed(new Runnable() {
-
-  	    	  	  		@Override
-  	    	  	  		public void run()
-  	    	  	  		{				  	  	  			
-  	    	  	  			
-  	    	  	  			runOnUiThread(new Runnable() {
-				  	  	  	    @Override
-				  	  	  	    public void run() {
-				  	  	  	    	
-				  	  	  	    	myInitiativeTransition();						  	  	  	    	
-					  	  	  	}
-			  	  	  		});  	    	  	  			  	    	  	  			
-  	    	  	  			  	    	  	  			
-	  	    	  	  		final Handler h3 = new Handler();
-		  	    	  	  	h3.postDelayed(new Runnable() {
+						  	  	  			
+	  		// Use a blank drawable to hide the imageview animation:
+	  		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+			img.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+			img.setImageResource(R.drawable.sixsixrightleftrotateblank);
+			
+			// Re-enables ability to use srollbar:
+			centerscrolltext.bringToFront();												
+			
+			centerscrolltext.setVisibility(View.VISIBLE);													
+	  		centerscrolltext.startAnimation(animAlphaText);
+			centerscrolltext.append("\n" +  ">" + "\n" + "> Let the battle begin...");  	  			
+			
+			myInitiativeTransition();	  	    	  	  							  	  	 	    	  	  			  	    	  	  			
+		  	  			  	    	  	  			
+	  	  		final Handler h3 = new Handler();
+		  	  	h3.postDelayed(new Runnable() {
+	
+		  	  		@Override
+		  	  		public void run()
+		  	  		{
+	    	  	  		final ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+		  	  			titleBlankButton.setVisibility(View.VISIBLE);
+		  	  			titleBlankButton.bringToFront();
+		  	  			
+		  	  			
+		  	  			
+		  	  			startGameNow ="yes";
+		  	  			//onStart();
+		  	  			
+		  	  			/*
+		  	  			// Calls method from another class:
+	  		  	  		Engine  engine = new Engine();
+	  		  	  		Engine.gameEngine();
+	  		  	  		*/
+	  		  	  		
+		  	  			gameEngine(null, gameOn, gameOn);
+		  	  			
+		  	  			//Thread myThread = new Thread(myRunnable);
+		  	  			//myThread.start();
+	  		  	  		
+		  	  		}
+		  	  	}, 12400);  	    	  	  			  	  			
 		
-		  	    	  	  		@Override
-		  	    	  	  		public void run()
-		  	    	  	  		{
-			  	    	  	  		final ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
-			  		  	  			titleBlankButton.setVisibility(View.VISIBLE);
-			  		  	  			titleBlankButton.bringToFront();
-			  		  	  			
-			  		  	  			
-			  		  	  			
-			  		  	  			startGameNow ="yes";
-			  		  	  			//onStart();
-			  		  	  			
-			  		  	  			/*
-			  		  	  			// Calls method from another class:
-				  		  	  		Engine  engine = new Engine();
-				  		  	  		Engine.gameEngine();
-				  		  	  		*/
-				  		  	  		
-			  		  	  			gameEngine(null, gameOn, gameOn);
-			  		  	  			
-			  		  	  			//Thread myThread = new Thread(myRunnable);
-			  		  	  			//myThread.start();
-				  		  	  		
-		  	    	  	  		}
-		  	    	  	  	}, 12400);
-  	    	  	  		}
-  	    	  	  	}, 1000);	  	  			
-  	  		
-  	    	//Toast.makeText(MainActivity2.this,"isinitiativestarted = " +  isinitiativestarted + " aretheredoubles = " + aretheredoubles, Toast.LENGTH_SHORT).show();
+		  	//Toast.makeText(MainActivity2.this,"isinitiativestarted = " +  isinitiativestarted + " aretheredoubles = " + aretheredoubles, Toast.LENGTH_SHORT).show();
   	    	 	
-	  	  		}
-	  	  	}, 1250);
+	  	  		
 	}
 	
 	
@@ -8172,16 +8000,15 @@ public class MainActivity2 extends ActionBarActivity {
 	}
 	
 	
-	public void gameEngine(Intent intent,int flags,int startId)
-	{ 
+	public void gameEngine(Intent intent,int flags,int startId)	{
+		
 	    //Toast.makeText(this, "Service Started", Toast.LENGTH_LONG).show();
 	    
-	    final int gameOn = 1;
+	    final int gameOn = 1;	    
 	    
 	    
-	    
-	    new Thread()
-	    {
+	    new Thread() {
+	    	
 	        public void run() {
 	        	
 	        	while (gameOn == 1) {	        		
@@ -8190,40 +8017,12 @@ public class MainActivity2 extends ActionBarActivity {
 	        		
 	        		if (isInvokingService.equals("true")){
 	        			
-	        			runOnUi();	        			
-	        		}
-	        		
-	        		
-	        		/*
-		        	runOnUiThread(new Runnable() {
-		  	  	  	    @Override
-		  	  	  	    public void run() {
-		  	  	  	    	
-		  	  	  	    	
-		  	  	  	    	AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-			  			
-				  	    	alert.setTitle("TEST");				  	    		  	    	
-				  	    	
-				  	    	alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-				  	    		public void onClick(DialogInterface dialog, int whichButton) {					  		    		
-				  		    			  		    		
-				  		    	}
-				  	    	});
-				  	    	
-				  	    		 
-		  	  	  	    	
-		  	  	  	    	Toast.makeText(MainActivity2.this, "*********** TESTING ***********", Toast.LENGTH_SHORT).show();
-		  	  	  	    	
-		  	  	  	    	//Thread myThread = new Thread(myRunnable);
-	  		  	  			//myThread.start();
-		  	  	  	    }
-					});*/
-	        	}
-	        	
+	        			runOnUi();
+	        		}	        		
+	        	}	        	
 	        }
 	    }.start();
-
-	 return;
+	return; // NEEDED? MAY HELP STOP THREAD? THREAD SHOULD STOP ON ITS OWN AFTER RUN IS COMPLETED.
 	}
 	
 	public void runOnUi() {
@@ -8268,13 +8067,7 @@ public class MainActivity2 extends ActionBarActivity {
 									}
 								}
 							});
-					builder.create().show();
-	  	    		 
-	  	  	    	
-	  	  	    	//Toast.makeText(MainActivity2.this, "*********** TESTING ***********", Toast.LENGTH_SHORT).show();
-	  	  	    	
-	  	  	    	//Thread myThread = new Thread(myRunnable);
-	  	  			//myThread.start();
+					builder.create().show();	  	  	    	
 	  	  	    }
 		});
 	}
