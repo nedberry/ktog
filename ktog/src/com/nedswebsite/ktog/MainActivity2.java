@@ -6,7 +6,9 @@ import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -43,7 +45,7 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity2 extends ActionBarActivity {
+public class MainActivity2 extends ActionBarActivity {	
 	
 	
 	String isInvokingService = "true";	
@@ -429,7 +431,26 @@ public class MainActivity2 extends ActionBarActivity {
 	 * 
 	 * 
 	 * 
-	 * Android Methods***********************************************************************************
+	 * Other Methods***********************************************************************************
+	 * 
+	 * 
+	 * 
+	 */
+	
+	
+	public void hideNavigation() {
+		
+		// This will hide the system bar until user swipes up from bottom or down from top.		
+  		getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_IMMERSIVE
+                  | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);		
+	}
+	
+	
+	/*
+	 * 
+	 * 
+	 * 
+	 * Android-Related Methods***********************************************************************************
 	 * 
 	 * 
 	 * 
@@ -445,33 +466,29 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		if (onBackPressedOk.equals("yes")){
 			
-			super.onBackPressed(); // HERE OR BELOW??????
-			
-			Arrays.fill(ArrayOfPlayers.player, null);
-			Arrays.fill(ArrayOfAvatars.avatar, null);			
-			Arrays.fill(ArrayOfHitPoints.hitpoints, 20);  // IS THIS RIGHT???????????????
-			Arrays.fill(ArrayOfInitiative.initiative, 0); // IS THIS RIGHT???????????????			
-			
-			// NEED TO GET RID OF THREADS???????????????????
-			
-			// ANIMATIONS METHODS STILL A PROB?
-			
-			final Intent svc=new Intent(this, Badonk2SoundService.class);
-			startService(svc);
-			
-			// SAME AS "super.onBackPressed();"?
-			finish();
-			
-			
+			new AlertDialog.Builder(this)
+	        .setTitle("KtOG")
+	        .setMessage("Are you sure you want to exit?")
+	        .setNegativeButton(android.R.string.no, null)
+	        .setPositiveButton(android.R.string.yes, new OnClickListener() {
+
+	            public void onClick(DialogInterface arg0, int arg1) {
+	            	
+	            	// WelcomeActivity.super.onBackPressed();
+	            	
+	            	backMethodYes();	    			
+	            }
+	        }).create().show();			
 		}
 		else if (onBackPressedOk.equals("no")){
-			android.os.Process.killProcess(android.os.Process.myPid());
 			
-			super.onBackPressed();
+			backMethodNo();			
 		}		
 		
 		//Toast.makeText(MainActivity2.this,"onBackPressed WORKING!!!!", Toast.LENGTH_SHORT).show();
     }
+	
+	
 	/*
 	public void onStop() {		
 		
@@ -508,7 +525,34 @@ public class MainActivity2 extends ActionBarActivity {
 		    	
     }	
 	*/
-
+	
+	public void backMethodYes() {
+		
+		super.onBackPressed(); // HERE OR BELOW??????
+		
+		Arrays.fill(ArrayOfPlayers.player, null);
+		Arrays.fill(ArrayOfAvatars.avatar, null);			
+		Arrays.fill(ArrayOfHitPoints.hitpoints, 20);  // IS THIS RIGHT???????????????
+		Arrays.fill(ArrayOfInitiative.initiative, 0); // IS THIS RIGHT???????????????			
+		
+		// NEED TO GET RID OF THREADS???????????????????
+		
+		// ANIMATIONS METHODS STILL A PROB?
+		
+		final Intent svc=new Intent(this, Badonk2SoundService.class);
+		startService(svc);
+		
+		// SAME AS "super.onBackPressed();"?
+		finish();		
+	}
+	
+	public void backMethodNo() {
+		
+		android.os.Process.killProcess(android.os.Process.myPid());
+		
+		super.onBackPressed();		
+	}
+	
 	
 	/*
 	 * 
@@ -1491,6 +1535,8 @@ public class MainActivity2 extends ActionBarActivity {
 		  	    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 		  		    	public void onClick(DialogInterface dialog, int whichButton) {
 		  		    		
+		  		    		hideNavigation();
+		  		    		
 		  		    		finishInitiative();
 		  		    	}
 		  	    	});
@@ -1661,13 +1707,19 @@ public class MainActivity2 extends ActionBarActivity {
 		  	    	*/	  	    	
 		  	    	
 		  	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-		  		    	public void onClick(DialogInterface dialog, int whichButton) {	  		    		
+		  		    	public void onClick(DialogInterface dialog, int whichButton) {
+		  		    		
+		  		    		hideNavigation();
+		  		    		
 		  		    		cure(i, turn, gameOn);
 		  		    	}
 		  	    	});
 		  	    	
 		  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
 		          	  public void onClick(DialogInterface dialog, int whichButton) {
+		          		  
+		          		  	hideNavigation();
+		          		  	
 		          		  	endGame(i, turn, gameOn);
 		          	  }
 		          	});	  	    	
@@ -3173,6 +3225,8 @@ public class MainActivity2 extends ActionBarActivity {
   		    		
   		    		//NEED THIS??????????????????
   		    		if (dodgeBlowSpell[0] < 1) {
+  		    			
+  		    			hideNavigation();
   						
   						centerscrolltext.setVisibility(View.VISIBLE);													
   				  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -3187,7 +3241,9 @@ public class MainActivity2 extends ActionBarActivity {
   	    	});
   	    	
   	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
-          	  public void onClick(DialogInterface dialog, int whichButton) {          		  	
+          	  public void onClick(DialogInterface dialog, int whichButton) {
+          		  
+          		  	hideNavigation();          		  
           	  }
           	});	  	    	
   	    	
@@ -3253,7 +3309,8 @@ public class MainActivity2 extends ActionBarActivity {
   	    	*/	    	
 	    	
 	    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-		    	public void onClick(DialogInterface dialog, int whichButton) {		    				    		
+		    	public void onClick(DialogInterface dialog, int whichButton) {
+		    		hideNavigation();
 		    	}
 	    	});
 	    	
@@ -3291,7 +3348,8 @@ public class MainActivity2 extends ActionBarActivity {
   	    	*/	    	
 	    	
 	    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-		    	public void onClick(DialogInterface dialog, int whichButton) {		    				    		
+		    	public void onClick(DialogInterface dialog, int whichButton) {
+		    		hideNavigation();
 		    	}
 	    	});
 	    	
@@ -3339,6 +3397,8 @@ public class MainActivity2 extends ActionBarActivity {
   		    		
   		    		//NEED THIS??????????????????
   		    		if (dodgeBlowSpell[0] < 1) {
+  		    			
+  		    			hideNavigation();
   						
   						centerscrolltext.setVisibility(View.VISIBLE);													
   				  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -3353,7 +3413,8 @@ public class MainActivity2 extends ActionBarActivity {
   	    	});
   	    	
   	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
-          	  public void onClick(DialogInterface dialog, int whichButton) {          		  	
+          	  public void onClick(DialogInterface dialog, int whichButton) {
+          		  	hideNavigation();
           	  }
           	});	  	    	
   	    	
@@ -3416,7 +3477,8 @@ public class MainActivity2 extends ActionBarActivity {
   	    	*/	    	
 	    	
 	    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-		    	public void onClick(DialogInterface dialog, int whichButton) {		    				    		
+		    	public void onClick(DialogInterface dialog, int whichButton) {
+		    		hideNavigation();
 		    	}
 	    	});
 	    	
@@ -3453,7 +3515,8 @@ public class MainActivity2 extends ActionBarActivity {
   	    	*/	    	
 	    	
 	    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-		    	public void onClick(DialogInterface dialog, int whichButton) {		    				    		
+		    	public void onClick(DialogInterface dialog, int whichButton) {
+		    		hideNavigation();
 		    	}
 	    	});
 	    	
@@ -4023,6 +4086,8 @@ public class MainActivity2 extends ActionBarActivity {
   		    		
   		    		//NEED THIS??????????????????
   		    		if (dodgeBlowSpell[0] < 1) {
+  		    			
+  		    			hideNavigation();
   						
   						centerscrolltext.setVisibility(View.VISIBLE);													
   				  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -4037,7 +4102,8 @@ public class MainActivity2 extends ActionBarActivity {
   	    	});
   	    	
   	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
-          	  public void onClick(DialogInterface dialog, int whichButton) {          		  	
+          	  public void onClick(DialogInterface dialog, int whichButton) {
+          		  	hideNavigation();
           	  }
           	});	  	    	
   	    	
@@ -4115,7 +4181,8 @@ public class MainActivity2 extends ActionBarActivity {
   	    	*/	    	
 	    	
 	    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-		    	public void onClick(DialogInterface dialog, int whichButton) {		    				    		
+		    	public void onClick(DialogInterface dialog, int whichButton) {
+		    		hideNavigation();
 		    	}
 	    	});
 	    	
@@ -4152,7 +4219,8 @@ public class MainActivity2 extends ActionBarActivity {
   	    	*/	    	
 	    	
 	    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-		    	public void onClick(DialogInterface dialog, int whichButton) {		    				    		
+		    	public void onClick(DialogInterface dialog, int whichButton) {
+		    		hideNavigation();
 		    	}
 	    	});
 	    	
@@ -4199,6 +4267,8 @@ public class MainActivity2 extends ActionBarActivity {
   		    		
   		    		//NEED THIS??????????????????
   		    		if (dodgeBlowSpell[0] < 1) {
+  		    			
+  		    			hideNavigation();
   						
   						centerscrolltext.setVisibility(View.VISIBLE);													
   				  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -4213,7 +4283,8 @@ public class MainActivity2 extends ActionBarActivity {
   	    	});
   	    	
   	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
-          	  public void onClick(DialogInterface dialog, int whichButton) {          		  	
+          	  public void onClick(DialogInterface dialog, int whichButton) {
+          		  	hideNavigation();
           	  }
           	});	  	    	
   	    	
@@ -4287,7 +4358,8 @@ public class MainActivity2 extends ActionBarActivity {
   	    	*/	    	
 	    	
 	    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-		    	public void onClick(DialogInterface dialog, int whichButton) {		    				    		
+		    	public void onClick(DialogInterface dialog, int whichButton) {
+		    		hideNavigation();
 		    	}
 	    	});
 	    	
@@ -4324,7 +4396,8 @@ public class MainActivity2 extends ActionBarActivity {
   	    	*/	    	
 	    	
 	    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-		    	public void onClick(DialogInterface dialog, int whichButton) {		    				    		
+		    	public void onClick(DialogInterface dialog, int whichButton) {
+		    		hideNavigation();
 		    	}
 	    	});
 	    	
@@ -4371,6 +4444,8 @@ public class MainActivity2 extends ActionBarActivity {
   		    		
   		    		//NEED THIS??????????????????
   		    		if (dodgeBlowSpell[0] < 1) {
+  		    			
+  		    			hideNavigation();
   						
   						centerscrolltext.setVisibility(View.VISIBLE);													
   				  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -4385,7 +4460,8 @@ public class MainActivity2 extends ActionBarActivity {
   	    	});
   	    	
   	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
-          	  public void onClick(DialogInterface dialog, int whichButton) {          		  	
+          	  public void onClick(DialogInterface dialog, int whichButton) {
+          		  	hideNavigation();
           	  }
           	});	  	    	
   	    	
@@ -4518,7 +4594,8 @@ public class MainActivity2 extends ActionBarActivity {
   	    	*/	    	
 	    	
 	    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-		    	public void onClick(DialogInterface dialog, int whichButton) {		    				    		
+		    	public void onClick(DialogInterface dialog, int whichButton) {
+		    		hideNavigation();
 		    	}
 	    	});
 	    	
@@ -4555,7 +4632,8 @@ public class MainActivity2 extends ActionBarActivity {
   	    	*/	    	
 	    	
 	    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-		    	public void onClick(DialogInterface dialog, int whichButton) {		    				    		
+		    	public void onClick(DialogInterface dialog, int whichButton) {
+		    		hideNavigation();
 		    	}
 	    	});
 	    	
@@ -4603,6 +4681,8 @@ public class MainActivity2 extends ActionBarActivity {
   		    		
   		    		//NEED THIS??????????????????
   		    		if (dodgeBlowSpell[0] < 1) {
+  		    			
+  		    			hideNavigation();
   						
   						centerscrolltext.setVisibility(View.VISIBLE);													
   				  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -4617,7 +4697,8 @@ public class MainActivity2 extends ActionBarActivity {
   	    	});
   	    	
   	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
-          	  public void onClick(DialogInterface dialog, int whichButton) {          		  	
+          	  public void onClick(DialogInterface dialog, int whichButton) {
+          		  	hideNavigation();
           	  }
           	});	  	    	
   	    	
@@ -4724,7 +4805,8 @@ public class MainActivity2 extends ActionBarActivity {
   	    	*/	    	
 	    	
 	    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-		    	public void onClick(DialogInterface dialog, int whichButton) {		    				    		
+		    	public void onClick(DialogInterface dialog, int whichButton) {
+		    		hideNavigation();
 		    	}
 	    	});
 	    	
@@ -4761,7 +4843,8 @@ public class MainActivity2 extends ActionBarActivity {
   	    	*/	    	
 	    	
 	    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-		    	public void onClick(DialogInterface dialog, int whichButton) {		    				    		
+		    	public void onClick(DialogInterface dialog, int whichButton) {
+		    		hideNavigation();
 		    	}
 	    	});
 	    	
@@ -4809,6 +4892,8 @@ public class MainActivity2 extends ActionBarActivity {
   		    		
   		    		//NEED THIS??????????????????
   		    		if (dodgeBlowSpell[0] < 1) {
+  		    			
+  		    			hideNavigation();
   						
   						centerscrolltext.setVisibility(View.VISIBLE);													
   				  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -4823,7 +4908,8 @@ public class MainActivity2 extends ActionBarActivity {
   	    	});
   	    	
   	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
-          	  public void onClick(DialogInterface dialog, int whichButton) {          		  	
+          	  public void onClick(DialogInterface dialog, int whichButton) {
+          		  	hideNavigation();
           	  }
           	});	  	    	
   	    	
@@ -4923,7 +5009,8 @@ public class MainActivity2 extends ActionBarActivity {
   	    	*/	    	
 	    	
 	    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-		    	public void onClick(DialogInterface dialog, int whichButton) {		    				    		
+		    	public void onClick(DialogInterface dialog, int whichButton) {
+		    		hideNavigation();
 		    	}
 	    	});
 	    	
@@ -4960,7 +5047,8 @@ public class MainActivity2 extends ActionBarActivity {
   	    	*/	    	
 	    	
 	    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-		    	public void onClick(DialogInterface dialog, int whichButton) {		    				    		
+		    	public void onClick(DialogInterface dialog, int whichButton) {
+		    		hideNavigation();
 		    	}
 	    	});
 	    	
@@ -5071,6 +5159,8 @@ public class MainActivity2 extends ActionBarActivity {
   		    		
   		    		//NEED THIS??????????????????
   		    		if (dodgeBlowSpell[0] < 1) {
+  		    			
+  		    			hideNavigation();
   						
   						centerscrolltext.setVisibility(View.VISIBLE);													
   				  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -5085,7 +5175,8 @@ public class MainActivity2 extends ActionBarActivity {
   	    	});
   	    	
   	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
-          	  public void onClick(DialogInterface dialog, int whichButton) {          		  	
+          	  public void onClick(DialogInterface dialog, int whichButton) {
+          		  	hideNavigation();
           	  }
           	});	  	    	
   	    	
@@ -5204,7 +5295,8 @@ public class MainActivity2 extends ActionBarActivity {
   	    	*/	    	
 	    	
 	    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-		    	public void onClick(DialogInterface dialog, int whichButton) {		    				    		
+		    	public void onClick(DialogInterface dialog, int whichButton) {
+		    		hideNavigation();
 		    	}
 	    	});
 	    	
@@ -5241,7 +5333,8 @@ public class MainActivity2 extends ActionBarActivity {
   	    	*/	    	
 	    	
 	    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-		    	public void onClick(DialogInterface dialog, int whichButton) {		    				    		
+		    	public void onClick(DialogInterface dialog, int whichButton) {
+		    		hideNavigation();
 		    	}
 	    	});
 	    	
@@ -5308,7 +5401,8 @@ public class MainActivity2 extends ActionBarActivity {
   	    	*/	    	
 	    	
 	    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-		    	public void onClick(DialogInterface dialog, int whichButton) {		    				    		
+		    	public void onClick(DialogInterface dialog, int whichButton) {
+		    		hideNavigation();
 		    	}
 	    	});
 	    	
@@ -5344,7 +5438,8 @@ public class MainActivity2 extends ActionBarActivity {
   	    	*/	    	
 	    	
 	    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-		    	public void onClick(DialogInterface dialog, int whichButton) {		    				    		
+		    	public void onClick(DialogInterface dialog, int whichButton) {
+		    		hideNavigation();
 		    	}
 	    	});
 	    	
@@ -5448,7 +5543,9 @@ public class MainActivity2 extends ActionBarActivity {
 	  	    	*/	  	    	
 	  	    	
 	  	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-	  		    	public void onClick(DialogInterface dialog, int whichButton) {	  		    		
+	  		    	public void onClick(DialogInterface dialog, int whichButton) {
+	  		    		
+	  		    		hideNavigation();
 	  		    		
 	  		    		mightyBlowSpell[0] = mightyBlowSpell[0] - 1;
 	  		    		
@@ -5484,8 +5581,10 @@ public class MainActivity2 extends ActionBarActivity {
 	  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
 	          	  public void onClick(DialogInterface dialog, int whichButton) {
 	          		  
-	          		damage(i, playerNumberAttacked, gameOn);
-					return;
+	          		  hideNavigation();
+	          		  
+	          		  damage(i, playerNumberAttacked, gameOn);
+	          		  return;
 	          	  }
 	          	});	  	    	
 	  	    	
@@ -5633,6 +5732,8 @@ public class MainActivity2 extends ActionBarActivity {
 	  		    		*/
 	  		    		
 	  		    		
+	  		    		hideNavigation();
+	  		    		
 	  		    		mightyBlowSpell[0] = mightyBlowSpell[0] - 1;
 	  		    		
 	  		    		mightyBlow(i, playerNumberAttacked, gameOn);
@@ -5642,7 +5743,9 @@ public class MainActivity2 extends ActionBarActivity {
 	  	    	
 	  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
 	          	  public void onClick(DialogInterface dialog, int whichButton) {
-	          		
+	          		  
+	          		  hideNavigation();
+	          		  
 	          		  damage(i, playerNumberAttacked, gameOn);
 	          		  return;
 	          	  }
@@ -5772,6 +5875,8 @@ public class MainActivity2 extends ActionBarActivity {
   		    		*/
   		    		
   		    		
+  		    		hideNavigation();
+  		    		
   		    		mightyBlowSpell[0] = mightyBlowSpell[0] - 1;
   		    		
   		    		criticalHitMightyBlowDamage(i, playerNumberAttacked, gameOn);
@@ -5782,6 +5887,8 @@ public class MainActivity2 extends ActionBarActivity {
   	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
           	  public void onClick(DialogInterface dialog, int whichButton) {
           		
+          		hideNavigation();
+          		  
           		criticalHitDamage(i, playerNumberAttacked, gameOn);
 				return;
           	  }
@@ -5890,7 +5997,8 @@ public class MainActivity2 extends ActionBarActivity {
 			  	    	*/	    	
 				    	
 				    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-					    	public void onClick(DialogInterface dialog, int whichButton) {		    				    		
+					    	public void onClick(DialogInterface dialog, int whichButton) {
+					    		hideNavigation();
 					    	}
 				    	});
 				    	
@@ -5916,7 +6024,8 @@ public class MainActivity2 extends ActionBarActivity {
 			  	    	*/	    	
 				    	
 				    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-					    	public void onClick(DialogInterface dialog, int whichButton) {		    				    		
+					    	public void onClick(DialogInterface dialog, int whichButton) {
+					    		hideNavigation();
 					    	}
 				    	});
 				    	
@@ -6008,7 +6117,8 @@ public class MainActivity2 extends ActionBarActivity {
 	  	    	*/	    	
 		    	
 		    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-			    	public void onClick(DialogInterface dialog, int whichButton) {		    				    		
+			    	public void onClick(DialogInterface dialog, int whichButton) {
+			    		hideNavigation();
 			    	}
 		    	});
 		    	
@@ -6045,7 +6155,8 @@ public class MainActivity2 extends ActionBarActivity {
 	  	    	*/	    	
 		    	
 		    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-			    	public void onClick(DialogInterface dialog, int whichButton) {		    				    		
+			    	public void onClick(DialogInterface dialog, int whichButton) {
+			    		hideNavigation();
 			    	}
 		    	});
 		    	
@@ -6121,7 +6232,8 @@ public class MainActivity2 extends ActionBarActivity {
 			  	    	*/	    	
 				    	
 				    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-					    	public void onClick(DialogInterface dialog, int whichButton) {		    				    		
+					    	public void onClick(DialogInterface dialog, int whichButton) {
+					    		hideNavigation();
 					    	}
 				    	});
 				    	
@@ -6146,7 +6258,8 @@ public class MainActivity2 extends ActionBarActivity {
 			  	    	*/	    	
 				    	
 				    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-					    	public void onClick(DialogInterface dialog, int whichButton) {		    				    		
+					    	public void onClick(DialogInterface dialog, int whichButton) {
+					    		hideNavigation();
 					    	}
 				    	});
 				    	
@@ -6233,7 +6346,8 @@ public class MainActivity2 extends ActionBarActivity {
 	  	    	*/	    	
 		    	
 		    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-			    	public void onClick(DialogInterface dialog, int whichButton) {		    				    		
+			    	public void onClick(DialogInterface dialog, int whichButton) {
+			    		hideNavigation();
 			    	}
 		    	});
 		    	
@@ -6269,7 +6383,8 @@ public class MainActivity2 extends ActionBarActivity {
 	  	    	*/	    	
 		    	
 		    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-			    	public void onClick(DialogInterface dialog, int whichButton) {		    				    		
+			    	public void onClick(DialogInterface dialog, int whichButton) {
+			    		hideNavigation();
 			    	}
 		    	});
 		    	
@@ -6421,7 +6536,8 @@ public class MainActivity2 extends ActionBarActivity {
 			  	    	*/	    	
 				    	
 				    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-					    	public void onClick(DialogInterface dialog, int whichButton) {		    				    		
+					    	public void onClick(DialogInterface dialog, int whichButton) {
+					    		hideNavigation();
 					    	}
 				    	});
 				    	
@@ -6446,7 +6562,8 @@ public class MainActivity2 extends ActionBarActivity {
 			  	    	*/	    	
 				    	
 				    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-					    	public void onClick(DialogInterface dialog, int whichButton) {		    				    		
+					    	public void onClick(DialogInterface dialog, int whichButton) {
+					    		hideNavigation();
 					    	}
 				    	});
 				    	
@@ -6567,7 +6684,8 @@ public class MainActivity2 extends ActionBarActivity {
 	  	    	*/	    	
 		    	
 		    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-			    	public void onClick(DialogInterface dialog, int whichButton) {		    				    		
+			    	public void onClick(DialogInterface dialog, int whichButton) {
+			    		hideNavigation();
 			    	}
 		    	});
 		    	
@@ -6604,7 +6722,8 @@ public class MainActivity2 extends ActionBarActivity {
 	  	    	*/	    	
 		    	
 		    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-			    	public void onClick(DialogInterface dialog, int whichButton) {		    				    		
+			    	public void onClick(DialogInterface dialog, int whichButton) {
+			    		hideNavigation();
 			    	}
 		    	});
 		    	
@@ -6711,7 +6830,8 @@ public class MainActivity2 extends ActionBarActivity {
 			  	    	*/	    	
 				    	
 				    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-					    	public void onClick(DialogInterface dialog, int whichButton) {		    				    		
+					    	public void onClick(DialogInterface dialog, int whichButton) {
+					    		hideNavigation();
 					    	}
 				    	});
 				    	
@@ -6736,7 +6856,8 @@ public class MainActivity2 extends ActionBarActivity {
 			  	    	*/	    	
 				    	
 				    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-					    	public void onClick(DialogInterface dialog, int whichButton) {		    				    		
+					    	public void onClick(DialogInterface dialog, int whichButton) {
+					    		hideNavigation();
 					    	}
 				    	});
 				    	
@@ -6853,7 +6974,8 @@ public class MainActivity2 extends ActionBarActivity {
 	  	    	*/	    	
 		    	
 		    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-			    	public void onClick(DialogInterface dialog, int whichButton) {		    				    		
+			    	public void onClick(DialogInterface dialog, int whichButton) {
+			    		hideNavigation();
 			    	}
 		    	});
 		    	
@@ -6890,7 +7012,8 @@ public class MainActivity2 extends ActionBarActivity {
 	  	    	*/	    	
 		    	
 		    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-			    	public void onClick(DialogInterface dialog, int whichButton) {		    				    		
+			    	public void onClick(DialogInterface dialog, int whichButton) {
+			    		hideNavigation();
 			    	}
 		    	});
 		    	
@@ -7041,7 +7164,8 @@ public class MainActivity2 extends ActionBarActivity {
   	    	*/	    	
 	    	
 	    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-		    	public void onClick(DialogInterface dialog, int whichButton) {		    				    		
+		    	public void onClick(DialogInterface dialog, int whichButton) {
+		    		hideNavigation();
 		    	}
 	    	});
 	    	
@@ -7066,7 +7190,8 @@ public class MainActivity2 extends ActionBarActivity {
   	    	*/	    	
 	    	
 	    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-		    	public void onClick(DialogInterface dialog, int whichButton) {		    				    		
+		    	public void onClick(DialogInterface dialog, int whichButton) {
+		    		hideNavigation();
 		    	}
 	    	});
 	    	
@@ -7104,7 +7229,9 @@ public class MainActivity2 extends ActionBarActivity {
 	  	    	*/	  	    	
 	  	    	
 	  	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-	  	    		public void onClick(DialogInterface dialog, int whichButton) {		    		
+	  	    		public void onClick(DialogInterface dialog, int whichButton) {
+	  	    			
+	  	    			hideNavigation();
 	  		    		
 	  		    		blessSpell[0] = blessSpell[0] - 1;
 	  		    		
@@ -7123,6 +7250,8 @@ public class MainActivity2 extends ActionBarActivity {
 	  	    	
 	  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
 	  	    		public void onClick(DialogInterface dialog, int whichButton) {
+	  	    			
+	  	    			hideNavigation();
 	  	    			
 	  	    			usedBless.equals("no");
 	          		            		  
@@ -7534,6 +7663,8 @@ public class MainActivity2 extends ActionBarActivity {
 			  		    		*/
 			  		    		
 			  		    		
+			  		    		hideNavigation();
+			  		    		
 			  		    		mightyBlowSpell[0] = mightyBlowSpell[0] - 1;
 			  		    		
 			  		    		mightyBlow(i, playerNumberAttacked, gameOn);
@@ -7544,6 +7675,8 @@ public class MainActivity2 extends ActionBarActivity {
 			  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
 			          	  public void onClick(DialogInterface dialog, int whichButton) {
 			          		
+			          		hideNavigation(); 
+			          		  
 			          		damage(i, playerNumberAttacked, gameOn);
 							return;
 			          	  }
@@ -8043,6 +8176,8 @@ public class MainActivity2 extends ActionBarActivity {
 						public void onCancel(DialogInterface dialog) {
 							
 							//GOTO SOME METHOD!!!!!!!!!!!!!!
+							
+							runOnUi();
 						}
 					});
 	
@@ -8051,18 +8186,23 @@ public class MainActivity2 extends ActionBarActivity {
 								public void onClick(DialogInterface dialog,	int item) {
 	
 									if (item == 0) {
+										hideNavigation();
 										attack(i, turn, gameOn);
 									}
 									if (item == 1) {
+										hideNavigation();
 										disarm(i, turn, gameOn);
 									}
 									if (item == 2) {
+										hideNavigation();
 										haste(i, turn, gameOn);
 									}
 									if (item == 3) {
+										hideNavigation();
 										cure(i, turn, gameOn);
 									}
 									if (item == 4) {
+										hideNavigation();
 										bless(i, turn, gameOn);
 									}
 								}

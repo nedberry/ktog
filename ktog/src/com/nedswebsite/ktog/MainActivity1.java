@@ -45,8 +45,12 @@ public class MainActivity1 extends ActionBarActivity {
 		// USED THE FOLLOWING TO REMOVE TITLE BAR:
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 
-		WindowManager.LayoutParams.FLAG_FULLSCREEN);		
-				
+		WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		/*
+		// This will hide the system bar until user swipes up from bottom or down from top.		
+		getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_IMMERSIVE
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+		*/		
 		setContentView(R.layout.activity_main_activity1);
 		
 		ImageView img = (ImageView)findViewById(R.id.menu1);
