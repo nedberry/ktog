@@ -462,31 +462,65 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	// Destroys data in arrays, and pro-actively cleans up memory (finish) for the user (good practice?).
 	@Override
-    public void onBackPressed() {
-		
-		if (onBackPressedOk.equals("yes")){
+    public void onBackPressed() {		
 			
-			new AlertDialog.Builder(this)
-	        .setTitle("KtOG")
-	        .setMessage("Are you sure you want to exit?")
-	        .setNegativeButton(android.R.string.no, null)
-	        .setPositiveButton(android.R.string.yes, new OnClickListener() {
-
-	            public void onClick(DialogInterface arg0, int arg1) {
-	            	
-	            	// WelcomeActivity.super.onBackPressed();
-	            	
-	            	backMethodYes();	    			
-	            }
-	        }).create().show();			
-		}
-		else if (onBackPressedOk.equals("no")){
+		AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 			
-			backMethodNo();			
-		}		
+	    	alert.setTitle("KtOG");	  	    	
+	    	alert.setMessage("Are you sure you want to exit?");	  	    		  	    	
+	    	
+	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+	    		public void onClick(DialogInterface dialog, int whichButton) {
+	    			
+	    			hideNavigation();
+			
+	    			if (onBackPressedOk.equals("yes")){
+	    				backMethodYes();
+	    			}
+    	
+	    			else if (onBackPressedOk.equals("no")){	    			
+	    				backMethodNo();			
+	    			}    					  		    			  		    		
+	    		}
+	    	});
+	    	
+	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+	    		public void onClick(DialogInterface dialog, int whichButton) {
+	    			
+	    			hideNavigation();		         		            		  
+	    		}
+	    	});	  	    	
+	    	alert.show();				
 		
 		//Toast.makeText(MainActivity2.this,"onBackPressed WORKING!!!!", Toast.LENGTH_SHORT).show();
     }
+	
+	public void backMethodYes() {
+		
+		super.onBackPressed(); // HERE OR BELOW??????
+		
+		Arrays.fill(ArrayOfPlayers.player, null);
+		Arrays.fill(ArrayOfAvatars.avatar, null);			
+		Arrays.fill(ArrayOfHitPoints.hitpoints, 20);  // IS THIS RIGHT???????????????
+		Arrays.fill(ArrayOfInitiative.initiative, 0); // IS THIS RIGHT???????????????			
+		
+		// NEED TO GET RID OF THREADS???????????????????
+		
+		// ANIMATIONS METHODS STILL A PROB
+		
+		final Intent svc=new Intent(this, Badonk2SoundService.class);
+		startService(svc);
+		
+		// SAME AS "super.onBackPressed();"?
+		finish();		
+	}
+	
+	public void backMethodNo() {
+		
+		android.os.Process.killProcess(android.os.Process.myPid());
+		
+		super.onBackPressed();		
+	}
 	
 	
 	/*
@@ -524,34 +558,7 @@ public class MainActivity2 extends ActionBarActivity {
 		}
 		    	
     }	
-	*/
-	
-	public void backMethodYes() {
-		
-		super.onBackPressed(); // HERE OR BELOW??????
-		
-		Arrays.fill(ArrayOfPlayers.player, null);
-		Arrays.fill(ArrayOfAvatars.avatar, null);			
-		Arrays.fill(ArrayOfHitPoints.hitpoints, 20);  // IS THIS RIGHT???????????????
-		Arrays.fill(ArrayOfInitiative.initiative, 0); // IS THIS RIGHT???????????????			
-		
-		// NEED TO GET RID OF THREADS???????????????????
-		
-		// ANIMATIONS METHODS STILL A PROB?
-		
-		final Intent svc=new Intent(this, Badonk2SoundService.class);
-		startService(svc);
-		
-		// SAME AS "super.onBackPressed();"?
-		finish();		
-	}
-	
-	public void backMethodNo() {
-		
-		android.os.Process.killProcess(android.os.Process.myPid());
-		
-		super.onBackPressed();		
-	}
+	*/	
 	
 	
 	/*
@@ -8146,11 +8153,11 @@ public class MainActivity2 extends ActionBarActivity {
 	        	
 	        	while (gameOn == 1) {	        		
 	        		
-	        		SystemClock.sleep(2000);
+	        		SystemClock.sleep(1000);
 	        		
 	        		if (isInvokingService.equals("true")){
 	        			
-	        			runOnUi();
+	        			runActionsOnUi();
 	        		}	        		
 	        	}	        	
 	        }
@@ -8158,7 +8165,7 @@ public class MainActivity2 extends ActionBarActivity {
 	return; // NEEDED? MAY HELP STOP THREAD? THREAD SHOULD STOP ON ITS OWN AFTER RUN IS COMPLETED.
 	}
 	
-	public void runOnUi() {
+	public void runActionsOnUi() {
 		
 		isInvokingService = "false";
 		
@@ -8177,7 +8184,7 @@ public class MainActivity2 extends ActionBarActivity {
 							
 							//GOTO SOME METHOD!!!!!!!!!!!!!!
 							
-							runOnUi();
+							runActionsOnUi();
 						}
 					});
 	
