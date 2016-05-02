@@ -45,10 +45,9 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity2 extends ActionBarActivity {	
+public class MainActivity2 extends ActionBarActivity {		
 	
-	
-	String isInvokingService = "true";	
+	String isInvokingService = "true";
 	
 	// Using variable because was getting null pointer if onbackpressed before rollfromleft was completed:
 	String onBackPressedOk = "no";
@@ -454,11 +453,8 @@ public class MainActivity2 extends ActionBarActivity {
 	 * 
 	 * 
 	 * 
-	 */	
-	
-	
-	// onStart was here
-		
+	 */		
+			
 	
 	// Destroys data in arrays, and pro-actively cleans up memory (finish) for the user (good practice?).
 	@Override
@@ -473,14 +469,29 @@ public class MainActivity2 extends ActionBarActivity {
 	    		public void onClick(DialogInterface dialog, int whichButton) {
 	    			
 	    			hideNavigation();
-			
+	    			
+	    			//NOT SURE ARRAYS ARE GETTING WIPED COMPLETELY W THE INTENT CODE BELOW, SO ADDED THIS:
+	    			ArrayOfPlayers.player = new String[6];
+	    			ArrayOfAvatars.avatar = new String[6];
+	    			ArrayOfHitPoints.hitpoints = new int[6];
+	    			ArrayOfInitiative.initiative = new int[6];
+	    			
+	    			Intent intent = new Intent(MainActivity2.this, MainActivity1.class);
+	    			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+	    			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);  //this combination of flags would start a new instance even if the instance of same Activity exists.
+	    			intent.addFlags(Intent.FLAG_ACTIVITY_TASK_ON_HOME);
+	    			finish();
+	    			startActivity(intent);	    			
+	    			
+	    			/*
 	    			if (onBackPressedOk.equals("yes")){
 	    				backMethodYes();
 	    			}
     	
 	    			else if (onBackPressedOk.equals("no")){	    			
 	    				backMethodNo();			
-	    			}    					  		    			  		    		
+	    			}
+	    			*/ 					  		    			  		    		
 	    		}
 	    	});
 	    	
@@ -494,7 +505,7 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		//Toast.makeText(MainActivity2.this,"onBackPressed WORKING!!!!", Toast.LENGTH_SHORT).show();
     }
-	
+	/*
 	public void backMethodYes() {
 		
 		super.onBackPressed(); // HERE OR BELOW??????
@@ -521,7 +532,7 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		super.onBackPressed();		
 	}
-	
+	*/
 	
 	/*
 	public void onStop() {		
@@ -1511,46 +1522,37 @@ public class MainActivity2 extends ActionBarActivity {
            }
         }
 		
-		//Toast.makeText(MainActivity2.this,"MAX = " + max, Toast.LENGTH_SHORT).show();
+		//Toast.makeText(MainActivity2.this,"MAX = " + max, Toast.LENGTH_SHORT).show();	  	  		
+	  	  			
+  		computerCardStopFadeInFadeOut();
+		//computerTurnBackgroundStop();
 		
-		final Handler h1 = new Handler();
-	  	  	h1.postDelayed(new Runnable() {		  	  	
-
-	  	  		@Override
-	  	  		public void run() {
-	  	  			
-		  	  		computerCardStopFadeInFadeOut();
-					//computerTurnBackgroundStop();
-	  	  			
-	  	  						  	  	  			
-		  	  		AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-		  			
-		  	    	alert.setTitle("Initiative Results");
-		  	    	/*
-		  	    	alert.setMessage(ArrayOfPlayers.player[0] + getString(R.string.tab) + ArrayOfPlayers.player[1]);
-		  	    	alert.setMessage(ArrayOfInitiative.initiative[0] + getString(R.string.tab) + ArrayOfInitiative.initiative[0]);
-		  	    	*/
-		  	    	for (int i = 0; i < 2; i++) {
-		  	    		// Was "numberOfPlayers", which = 2 up top.
-		  	        
-		  	           if (max == ArrayOfInitiative.initiative[i])
-		  	           {
-		  	        	   alert.setMessage("\n" + ArrayOfPlayers.player[i] + " wins with a " + max + "!");
-		  	           }
-		  	        }
-		  	    	
-		  	    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-		  		    	public void onClick(DialogInterface dialog, int whichButton) {
-		  		    		
-		  		    		hideNavigation();
-		  		    		
-		  		    		finishInitiative();
-		  		    	}
-		  	    	});
-		  	    	
-		  	    	alert.show();	  	    	
-	  	  		}
-	  	  	}, 4000);		
+					  	  	  			
+  		AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+		
+    	alert.setTitle("Initiative Results");
+    	/*
+    	alert.setMessage(ArrayOfPlayers.player[0] + getString(R.string.tab) + ArrayOfPlayers.player[1]);
+    	alert.setMessage(ArrayOfInitiative.initiative[0] + getString(R.string.tab) + ArrayOfInitiative.initiative[0]);
+    	*/
+    	for (int i = 0; i < 2; i++) {
+    		// Was "numberOfPlayers", which = 2 up top.
+        
+           if (max == ArrayOfInitiative.initiative[i])
+           {
+        	   alert.setMessage("\n" + ArrayOfPlayers.player[i] + " wins with a " + max + "!");
+           }
+        }
+    	
+    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+	    	public void onClick(DialogInterface dialog, int whichButton) {
+	    		
+	    		hideNavigation();
+	    		
+	    		finishInitiative();
+	    	}
+    	});		  	    	
+    	alert.show();	  	  			
 	}
 	
 	public void finishInitiative() {
@@ -1586,12 +1588,11 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  		{
 	    	  	  		final ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
 		  	  			titleBlankButton.setVisibility(View.VISIBLE);
-		  	  			titleBlankButton.bringToFront();
-		  	  			
+		  	  			titleBlankButton.bringToFront();		  	  			
 		  	  			
 		  	  			
 		  	  			startGameNow ="yes";
-		  	  			//onStart();
+		  	  			
 		  	  			
 		  	  			/*
 		  	  			// Calls method from another class:
@@ -7820,352 +7821,301 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	
 	
-	public void onStart() {// UI THREAD RIGHT?
-		
-		//super.onStart(); //DOES IT MATTER HERE OR AT BOTTOM?
-		
-		if (startGameNow.equals("yes"))	{		    
-			
-			Toast.makeText(MainActivity2.this, "*********** TESTING ***********", Toast.LENGTH_SHORT).show();				
-			
-			
-			final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
-			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
-			
-			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-			centerscrolltext.setTypeface(typeFace);				
-			
-			final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
-			
-			
-			// for 1 player vs computer(HUMAN GOES FIRST).
-			if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {//numberOfPlayers == 1 &&				
-				
-				//Toast.makeText(MainActivity2.this, "*********** HUMIE ***********", Toast.LENGTH_SHORT).show();
-				
-				playerNumberAttacked = 1;
 	
-				for (int a = 0; a < 2; a++) {
-					playerDeadYet[a] = "no";
-				}				
-				
-				final int gameOn = 1;
-				//final int turn = 1;				
-				
-				
-				 Runnable myRunnable = new Runnable() {
-				      @Override
-				      public void run() {
-				    	  while (gameOn == 1) {
-				    		  	int i = 0;								
-								
-				    		  	centerscrolltext.post(new Runnable() {
-				    		  		@Override
-				                     public void run() {				    		  	
-				    		  	
-										centerscrolltext.setVisibility(View.VISIBLE);													
-						  	  	  		centerscrolltext.startAnimation(animAlphaText);
-						  	  			centerscrolltext.append("\n" + "> Turn " + turn);
-				    		  		}
-				    		  	});
-						  	  			
-								
-								if (ArrayOfHitPoints.hitpoints[0] <= 0) {
-									endGame(i, turn, gameOn); // took out map
-								} else if (canHasDisarmed[0] == "yes") {
-									
-									/*
-									for (int x = 0; x < 1000; --x) // To give human player time to read.
-									{
-									}
-									*/
-									
-									
-									/*
-									 * NEED GRAPHICS HERE:
-									 * 
-									 * disarmGraphic();
-									 */
-									
-									
-									// following 3 steps will be followed for any given number of players.
-									if (disarmedTurnStart[0] == (turn)) {
-										//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
-										disarmedAction(i, turn, gameOn);
-									} else if (disarmedTurnStart[0] + 1 == turn) {
-										//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
-										disarmedAction(i, turn, gameOn);
-									} else if (disarmedTurnStart[0] + 2 == turn) {
-										//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
-										disarmedAction(i, turn, gameOn);
-										canHasDisarmed[0] = "no";
-									}
-								} else {
-									
-									
-									//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
-									
-									
-									/*
-									 * 
-									 * Bring Action To Front?
-									 * 
-									 * actionTemplate();
-									 * 
-									 */
-									
-									
-									/*
-									 * 
-									 * THIS LETS HUMAN PLAYER CHOOSE WHAT THEY WANT TO DO (ACTION/ATTACK)
-									 * 
-									 * Bring Action To Front?
-									 * 
-									 * action(i, turn, gameOn);
-									 * 
-									 */					
-									
-									
-								}
-				
-								i = 1;
-								usedHaste[0] = "no";// so computer doesn't use a haste during a
-													// haste.
-				
-								if (ArrayOfHitPoints.hitpoints[1] <= 0) {
-									endGame(i, turn, gameOn); // took out map
-								} else if (canHasDisarmed[1] == "yes") {
-									
-									
-									/*
-									 * NEED GRAPHICS HERE:
-									 * 
-									 * disarmGraphic();
-									 */
-									
-									
-									// player number whose turn it is is less than the player
-									// number of the player who disarmed him.
-				
-									if (disarmedTurnStart[1] == (turn)) {
-										//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
-										computerDisarmedAction(i, turn, gameOn);
-									} else if (disarmedTurnStart[1] + 1 == turn) {
-										//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
-										computerDisarmedAction(i, turn, gameOn);
-									} else if (disarmedTurnStart[1] + 2 == turn) {
-										//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
-										computerDisarmedAction(i, turn, gameOn);
-										canHasDisarmed[1] = "no";
-									}
-								} else {
-									
-									
-									//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
-									
-									
-									/*
-									 * 
-									 * Bring Action To Front?
-									 * 
-									 * actionTemplate();
-									 * 
-									 */
-									
-									
-									int computerAction = (int) (Math.random() * 100) + 1;
-									computerAttack(i, turn, gameOn, computerAction);					
-								}
-							turn++;
-							}
-				           
-				      }
-				 };
-				 
-				 Thread myThread = new Thread(myRunnable);
-				 myThread.start();			  	
-			}	
-			
-			
-			// for 1 player vs computer(COMPUTER GOES FIRST).
-			if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {//numberOfPlayers == 1 &&				
-				
-				//Toast.makeText(MainActivity2.this, "*********** COMPUTER ***********", Toast.LENGTH_SHORT).show();
-				
-				playerNumberAttacked = 1;
 	
-				for (int a = 0; a < 2; a++) {
-					playerDeadYet[a] = "no";
-				}				
-							
-				final int gameOn = 1;
-				//final int turn = 1;
-				
-				usedHaste[0] = "no";// so computer doesn't use a haste during a haste.
-				
-				Runnable myRunnable = new Runnable() {
-				      @Override
-				      public void run() {
-				    	  while (gameOn == 1) {				
-				    			
-								int i = 1;				
-								
-								centerscrolltext.post(new Runnable() {
-				    		  		@Override
-				                     public void run() {				    		  	
-				    		  	
-										centerscrolltext.setVisibility(View.VISIBLE);													
-						  	  	  		centerscrolltext.startAnimation(animAlphaText);
-						  	  			centerscrolltext.append("\n" + "> Turn " + turn);
-				    		  		}
-				    		  	});				
-								
-				
-								if (ArrayOfHitPoints.hitpoints[1] <= 0) {
-									endGame(i, turn, gameOn); // took out map
-								} else if (canHasDisarmed[1] == "yes") {
-									
-									
-									/*
-									 * NEED GRAPHICS HERE:
-									 * 
-									 * disarmGraphic();
-									 */
-									
-									
-									if (disarmedTurnStart[1] == (turn)) {
-										//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
-										computerDisarmedAction(i, turn, gameOn);
-									} else if (disarmedTurnStart[1] + 1 == turn) {
-										//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
-										computerDisarmedAction(i, turn, gameOn);
-									} else if (disarmedTurnStart[1] + 2 == turn) {
-										//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
-										computerDisarmedAction(i, turn, gameOn);
-										canHasDisarmed[1] = "no";
-									}
-								} else {
-									
-									
-									//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
-									
-									
-									/*
-									 * 
-									 * Bring Action & Attack To Front?
-									 * 
-									 * actionTemplate();
-									 * 
-									 */
-									
-									
-									int computerAction = (int) (Math.random() * 100) + 1;
-									computerAttack(i, turn, gameOn, computerAction);					
-								}
-				
-								i = 0;
-				
-								if (ArrayOfHitPoints.hitpoints[0] <= 0) {
-									endGame(i, turn, gameOn); // took out map
-								} else if (canHasDisarmed[0] == "yes") {
-									
-									/*
-									for (int x = 0; x < 1000; --x)// To give human player time
-																	// to read.
-									{
-									}
-									*/
-									
-									
-									/*
-									 * NEED GRAPHICS HERE:
-									 * 
-									 * disarmGraphic();
-									 */
-									
-									
-									// player number whose turn it is is less than the player
-									// number of the player who disarmed him.
-				
-									if (disarmedTurnStart[0] == (turn)) {
-										//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
-										disarmedAction(i, turn, gameOn);
-									} else if (disarmedTurnStart[0] + 1 == turn) {
-										//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
-										disarmedAction(i, turn, gameOn);
-									} else if (disarmedTurnStart[0] + 2 == turn) {
-										//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
-										disarmedAction(i, turn, gameOn);
-										canHasDisarmed[0] = "no";
-									}
-								} else {
-									
-									
-									//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
-									
-									
-									/*
-									 * 
-									 * Bring Action & Attack To Front?
-									 * 
-									 * actionTemplate();
-									 * 
-									 */
-									
-									
-									/*
-									 * 
-									 * THIS LETS HUMAN PLAYER CHOOSE WHAT THEY WANT TO DO (ACTION/ATTACK)
-									 * 
-									 * Bring Action & Attack To Front?
-									 * 
-									 * action(i, turn, gameOn);
-									 * 
-									 */
-									
-								}
-								turn++;
-							}				
-					}
-		 		};
-		 
-		 		Thread myThread = new Thread(myRunnable);
-		 		myThread.start();				
+	
+public void gameEngine(Intent intent,int flags,int startId)	{		
+		
+		// for 1 player vs computer(HUMAN GOES FIRST).
+		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) { //numberOfPlayers == 1 &&				
+			
+			//Toast.makeText(MainActivity2.this, "*********** HUMIE ***********", Toast.LENGTH_SHORT).show();
+			
+			playerNumberAttacked = 1;
+
+			for (int a = 0; a < 2; a++) {
+				playerDeadYet[a] = "no";
 			}
-			
+		
+		    //Toast.makeText(this, "Service Started", Toast.LENGTH_LONG).show();
+		    
+		    final int gameOn = 1;
+		    //final int turn = 1;			   
+	    
+	    
+		    new Thread() {
+		    	
+		        public void run() {
+		        	
+		        	while (gameOn == 1) {
+		        		
+		        		if (isInvokingService.equals("true")){
+		        			
+		        			runDisplayTurnOnUi();
+		        		}
+		  	  			
+			  	  		if (ArrayOfHitPoints.hitpoints[0] <= 0) {
+							endGame(i, turn, gameOn); // took out map
+						} else if (canHasDisarmed[0] == "yes") {
+							
+							/*
+							for (int x = 0; x < 1000; --x) // To give human player time to read.
+							{
+							}
+							*/
+							
+							
+							/*
+							 * NEED GRAPHICS HERE:
+							 * 
+							 * disarmGraphic();
+							 */
+							
+							
+							// following 3 steps will be followed for any given number of players.
+							if (disarmedTurnStart[0] == (turn)) {
+								//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
+								disarmedAction(i, turn, gameOn);
+							} else if (disarmedTurnStart[0] + 1 == turn) {
+								//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
+								disarmedAction(i, turn, gameOn);
+							} else if (disarmedTurnStart[0] + 2 == turn) {
+								//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
+								disarmedAction(i, turn, gameOn);
+								canHasDisarmed[0] = "no";
+							}
+						} else {
+							
+							/*
+							 * 
+							 * THIS LETS HUMAN PLAYER CHOOSE WHAT THEY WANT TO DO (ACTION/ATTACK)
+							 * 
+							 * Bring Action To Front?
+							 * 
+							 * action(i, turn, gameOn);
+							 * 
+							 */
+							
+							if (isInvokingService.equals("true")){
+								//NEED THIS?
+								SystemClock.sleep(1000);	        		
+									
+								runActionsOnUi();
+							}
+						}
+		
+						i = 1;
+						usedHaste[0] = "no";// so computer doesn't use a haste during a haste.
+		
+						if (ArrayOfHitPoints.hitpoints[1] <= 0) {
+							endGame(i, turn, gameOn); // took out map
+						} else if (canHasDisarmed[1] == "yes") {
+							
+							
+							/*
+							 * NEED GRAPHICS HERE:
+							 * 
+							 * disarmGraphic();
+							 */
+							
+							
+							// player number whose turn it is is less than the player
+							// number of the player who disarmed him.
+		
+							if (disarmedTurnStart[1] == (turn)) {
+								//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
+								computerDisarmedAction(i, turn, gameOn);
+							} else if (disarmedTurnStart[1] + 1 == turn) {
+								//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
+								computerDisarmedAction(i, turn, gameOn);
+							} else if (disarmedTurnStart[1] + 2 == turn) {
+								//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
+								computerDisarmedAction(i, turn, gameOn);
+								canHasDisarmed[1] = "no";
+							}
+						} else {
+							
+							
+							//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
+							
+							
+							/*
+							 * 
+							 * Bring Action To Front?
+							 * 
+							 * actionTemplate();
+							 * 
+							 */
+							
+							
+							int computerAction = (int) (Math.random() * 100) + 1;
+							computerAttack(i, turn, gameOn, computerAction);					
+						}
+						
+					turn++;	        			        		
+		        	}	        	
+		        }
+		    }.start();
 		}
+		    
+		    
+		// for 1 player vs computer(COMPUTER GOES FIRST).
+		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {//numberOfPlayers == 1 &&				
+			
+			//Toast.makeText(MainActivity2.this, "*********** COMPUTER ***********", Toast.LENGTH_SHORT).show();
+			
+			playerNumberAttacked = 1;
+
+			for (int a = 0; a < 2; a++) {
+				playerDeadYet[a] = "no";
+			}				
+						
+			final int gameOn = 1;
+			//final int turn = 1;
+			
+			usedHaste[0] = "no";// so computer doesn't use a haste during a haste.
+			
+			
+			new Thread() {
+		    	
+		        public void run() {
+		        	
+		        	while (gameOn == 1) {
+		        		
+		        		if (isInvokingService.equals("true")){
+		        			
+		        			runDisplayTurnOnUi();
+		        		}
+		  	  			
+			  	  		if (ArrayOfHitPoints.hitpoints[1] <= 0) {
+							endGame(i, turn, gameOn); // took out map
+						} else if (canHasDisarmed[1] == "yes") {
+							
+							
+							/*
+							 * NEED GRAPHICS HERE:
+							 * 
+							 * disarmGraphic();
+							 */
+							
+							
+							if (disarmedTurnStart[1] == (turn)) {
+								//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
+								computerDisarmedAction(i, turn, gameOn);
+							} else if (disarmedTurnStart[1] + 1 == turn) {
+								//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
+								computerDisarmedAction(i, turn, gameOn);
+							} else if (disarmedTurnStart[1] + 2 == turn) {
+								//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
+								computerDisarmedAction(i, turn, gameOn);
+								canHasDisarmed[1] = "no";
+							}
+						} else {
+							
+							
+							//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
+							
+							
+							/*
+							 * 
+							 * Bring Action & Attack To Front?
+							 * 
+							 * actionTemplate();
+							 * 
+							 */
+							
+							
+							int computerAction = (int) (Math.random() * 100) + 1;
+							computerAttack(i, turn, gameOn, computerAction);					
+						}
 		
-		super.onStart();
+						i = 0;
 		
+						if (ArrayOfHitPoints.hitpoints[0] <= 0) {
+							endGame(i, turn, gameOn); // took out map
+						} else if (canHasDisarmed[0] == "yes") {
+							
+							/*
+							for (int x = 0; x < 1000; --x)// To give human player time
+															// to read.
+							{
+							}
+							*/
+							
+							
+							/*
+							 * NEED GRAPHICS HERE:
+							 * 
+							 * disarmGraphic();
+							 */
+							
+							
+							// player number whose turn it is is less than the player
+							// number of the player who disarmed him.
+		
+							if (disarmedTurnStart[0] == (turn)) {
+								//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
+								disarmedAction(i, turn, gameOn);
+							} else if (disarmedTurnStart[0] + 1 == turn) {
+								//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
+								disarmedAction(i, turn, gameOn);
+							} else if (disarmedTurnStart[0] + 2 == turn) {
+								//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
+								disarmedAction(i, turn, gameOn);
+								canHasDisarmed[0] = "no";
+							}
+						} else {							
+							
+							/*
+							 * 
+							 * THIS LETS HUMAN PLAYER CHOOSE WHAT THEY WANT TO DO (ACTION/ATTACK)
+							 * 
+							 * Bring Action To Front?
+							 * 
+							 * action(i, turn, gameOn);
+							 * 
+							 */
+							
+							if (isInvokingService.equals("true")){
+								//NEED THIS?
+								SystemClock.sleep(1000);	        		
+									
+								runActionsOnUi();	
+							}
+						}
+						
+					turn++;	  	  			
+		        	}	        	
+		        }
+		    }.start();			
+		}			    
+		    
+	//return; // NEEDED? MAY HELP STOP THREAD? THREAD SHOULD STOP ON ITS OWN AFTER RUN IS COMPLETED.
 	}
 	
-	
-	public void gameEngine(Intent intent,int flags,int startId)	{
+	public void runDisplayTurnOnUi() {		
 		
-	    //Toast.makeText(this, "Service Started", Toast.LENGTH_LONG).show();
-	    
-	    final int gameOn = 1;	    
-	    
-	    
-	    new Thread() {
-	    	
-	        public void run() {
-	        	
-	        	while (gameOn == 1) {	        		
-	        		
-	        		SystemClock.sleep(1000);
-	        		
-	        		if (isInvokingService.equals("true")){
-	        			
-	        			runActionsOnUi();
-	        		}	        		
-	        	}	        	
-	        }
-	    }.start();
-	return; // NEEDED? MAY HELP STOP THREAD? THREAD SHOULD STOP ON ITS OWN AFTER RUN IS COMPLETED.
+		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+		
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {
+  	  	    	
+	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+	  			
+	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  			centerscrolltext.setTypeface(typeFace);  			
+	  			
+				
+				centerscrolltext.setVisibility(View.VISIBLE);													
+		  		centerscrolltext.startAnimation(animAlphaText);
+				centerscrolltext.append("\n" + "> Turn " + turn);
+  	  	    }
+		});
 	}
 	
-	public void runActionsOnUi() {
+	public void runActionsOnUi() {		
 		
 		isInvokingService = "false";
 		
@@ -8194,22 +8144,27 @@ public class MainActivity2 extends ActionBarActivity {
 	
 									if (item == 0) {
 										hideNavigation();
+										isInvokingService = "true";
 										attack(i, turn, gameOn);
 									}
 									if (item == 1) {
 										hideNavigation();
+										isInvokingService = "true";
 										disarm(i, turn, gameOn);
 									}
 									if (item == 2) {
 										hideNavigation();
+										isInvokingService = "true";
 										haste(i, turn, gameOn);
 									}
 									if (item == 3) {
 										hideNavigation();
+										isInvokingService = "true";
 										cure(i, turn, gameOn);
 									}
 									if (item == 4) {
 										hideNavigation();
+										isInvokingService = "true";
 										bless(i, turn, gameOn);
 									}
 								}
