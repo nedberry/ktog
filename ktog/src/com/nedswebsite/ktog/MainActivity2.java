@@ -9160,7 +9160,7 @@ public class MainActivity2 extends ActionBarActivity {
 				  		centerscrolltext.append("\n" + "> You roll a " + attackResult	+ ", +2 for the Bless Spell = "	+ (attackResult + 2));
 						
 			
-						if ((attackResult + 2) >= 15) {
+						if (attackResult >= 15) {
 							
 							canHasDisarmed[playerNumberAttacked] = "yes";
 			
@@ -9179,7 +9179,7 @@ public class MainActivity2 extends ActionBarActivity {
 							return;
 						}
 			
-						if ((attackResult + 2) <= 14 && (attackResult + 2) > 0) { //NEED (attackResult + 2) > 0 ??
+						if (attackResult <= 14 && attackResult > 0) {
 							
 							centerscrolltext.setVisibility(View.VISIBLE);
 					  		centerscrolltext.startAnimation(animAlphaText);
