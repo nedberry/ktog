@@ -366,27 +366,26 @@ public class MainActivity2 extends ActionBarActivity {
 				//sixSidedRollFromCenterToRight();
 				//determineInitiative();				
 				
-				if (issixsidedrolledforinitiative.equals("no")) {
-					
-					if (ArrayOfInitiative.initiative[0] == 1){
-						sixSidedRollFromCenterToRight1();							  		  	  	
-					}
-					else if (ArrayOfInitiative.initiative[0] == 2){
-						sixSidedRollFromCenterToRight2();
-					}
-					else if (ArrayOfInitiative.initiative[0] == 3){
-						sixSidedRollFromCenterToRight3();
-					}
-					else if (ArrayOfInitiative.initiative[0] == 4){
-						sixSidedRollFromCenterToRight4();
-					}
-					else if (ArrayOfInitiative.initiative[0] == 5){
-						sixSidedRollFromCenterToRight5();
-					}
-					else if (ArrayOfInitiative.initiative[0] == 6){
-						sixSidedRollFromCenterToRight6();
-					}					
-					
+				if (ArrayOfInitiative.initiative[0] == 1){
+					sixSidedRollFromCenterToRight1();							  		  	  	
+				}
+				else if (ArrayOfInitiative.initiative[0] == 2){
+					sixSidedRollFromCenterToRight2();
+				}
+				else if (ArrayOfInitiative.initiative[0] == 3){
+					sixSidedRollFromCenterToRight3();
+				}
+				else if (ArrayOfInitiative.initiative[0] == 4){
+					sixSidedRollFromCenterToRight4();
+				}
+				else if (ArrayOfInitiative.initiative[0] == 5){
+					sixSidedRollFromCenterToRight5();
+				}
+				else if (ArrayOfInitiative.initiative[0] == 6){
+					sixSidedRollFromCenterToRight6();
+				}
+				
+				if (issixsidedrolledforinitiative.equals("no")) {					
 					resultsInitiative();
 				}
 			//}
@@ -398,27 +397,26 @@ public class MainActivity2 extends ActionBarActivity {
 				//sixSidedRollFromCenterToLeft();
 				//determineInitiative();				
 				
-				if (issixsidedrolledforinitiative.equals("no")) {
-					
-					if (ArrayOfInitiative.initiative[0] == 1){		  				
-						sixSidedRollFromCenterToLeft1();								  		  	  	
-					}
-					else if (ArrayOfInitiative.initiative[0] == 2){
-						sixSidedRollFromCenterToLeft2();
-					}
-					else if (ArrayOfInitiative.initiative[0] == 3){
-						sixSidedRollFromCenterToLeft3();
-					}
-					else if (ArrayOfInitiative.initiative[0] == 4){
-						sixSidedRollFromCenterToLeft4();
-					}
-					else if (ArrayOfInitiative.initiative[0] == 5){
-						sixSidedRollFromCenterToLeft5();
-					}
-					else if (ArrayOfInitiative.initiative[0] == 6){
-						sixSidedRollFromCenterToLeft6();
-					}					
-					
+				if (ArrayOfInitiative.initiative[0] == 1){		  				
+					sixSidedRollFromCenterToLeft1();								  		  	  	
+				}
+				else if (ArrayOfInitiative.initiative[0] == 2){
+					sixSidedRollFromCenterToLeft2();
+				}
+				else if (ArrayOfInitiative.initiative[0] == 3){
+					sixSidedRollFromCenterToLeft3();
+				}
+				else if (ArrayOfInitiative.initiative[0] == 4){
+					sixSidedRollFromCenterToLeft4();
+				}
+				else if (ArrayOfInitiative.initiative[0] == 5){
+					sixSidedRollFromCenterToLeft5();
+				}
+				else if (ArrayOfInitiative.initiative[0] == 6){
+					sixSidedRollFromCenterToLeft6();
+				}
+				
+				if (issixsidedrolledforinitiative.equals("no")) {					
 					resultsInitiative();
 				}					
 			//}
