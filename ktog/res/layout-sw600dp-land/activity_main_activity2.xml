@@ -278,9 +278,16 @@
    	<ImageView
         android:id="@+id/sixsidedanimation"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />   	
+        android:layout_height="match_parent" />
    	
+   	<!-- USE android:background="@drawable/(SOME PNG)" TO SPECIFY AREA ON SCREEN ?? -->	
    	
+   	<ImageView
+        android:id="@+id/twentysidedanimation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+   	
+   	<!-- USE android:background="@drawable/(SOME PNG)" TO SPECIFY AREA ON SCREEN ?? -->
    	
    	
 
