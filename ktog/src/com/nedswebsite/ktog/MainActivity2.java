@@ -75,7 +75,9 @@ public class MainActivity2 extends ActionBarActivity {
 	String isinitiativestarted = "no";
 	static String isinitiativestartedinterrupted = "no";
 	String issixsidedrolledforinitiative = "no";
-	String aretheredoubles = "yes";	
+	String aretheredoubles = "yes";
+	String isdisarmwithblessrolled = "no";
+	String isdisarmnoblessrolled = "no";
 	
 	String startGameNow ="no";	
 	
@@ -385,6 +387,7 @@ public class MainActivity2 extends ActionBarActivity {
 					sixSidedRollFromCenterToRight6();
 				}
 				
+				
 				if (issixsidedrolledforinitiative.equals("no")) {					
 					resultsInitiative();
 				}
@@ -415,6 +418,7 @@ public class MainActivity2 extends ActionBarActivity {
 				else if (ArrayOfInitiative.initiative[0] == 6){
 					sixSidedRollFromCenterToLeft6();
 				}
+				
 				
 				if (issixsidedrolledforinitiative.equals("no")) {					
 					resultsInitiative();
@@ -495,7 +499,15 @@ public class MainActivity2 extends ActionBarActivity {
 				}
 				if (attackResult == 20) {
 					twentySidedRollFromCenterToRight20();
-				}				
+				}
+				
+				
+				if (isdisarmwithblessrolled.equals("yes")) {					
+					disarmWithBlessResults();
+				}
+				if (isdisarmnoblessrolled.equals("yes")) {					
+					disarmNoBlessResults();
+				}
 		    }		    
 		    public void onSwipeLeft() {		    		  				
 					
@@ -560,7 +572,15 @@ public class MainActivity2 extends ActionBarActivity {
 				}
 				if (attackResult == 20) {
 					twentySidedRollFromCenterToLeft20();
-				}				
+				}
+				
+				
+				if (isdisarmwithblessrolled.equals("yes")) {					
+					disarmWithBlessResults();
+				}
+				if (isdisarmnoblessrolled.equals("yes")) {					
+					disarmNoBlessResults();
+				}
 		    }
 		    public void onSwipeBottom() {
 		        Toast.makeText(MainActivity2.this, "bottom", Toast.LENGTH_SHORT).show();
@@ -9082,6 +9102,8 @@ public class MainActivity2 extends ActionBarActivity {
 										  		
 										  		attackResult = (int) ((Math.random() * 20) + 1);
 												//int attackResult = (int) ((Math.random() * 20) + 1);
+										  		
+										  		isdisarmwithblessrolled = "yes";
 												
 										  		/*
 												centerscrolltext.setVisibility(View.VISIBLE);
@@ -9133,6 +9155,8 @@ public class MainActivity2 extends ActionBarActivity {
 	}
 	
 	public void disarmWithBlessResults() {
+		
+		isdisarmwithblessrolled = "no";
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
@@ -9270,10 +9294,11 @@ public class MainActivity2 extends ActionBarActivity {
 											 * SLIDE 20-SIDED DIE
 											 * 
 											 * 
-											 */
-									  		
+											 */									  		
 											
 											attackResult = (int) ((Math.random() * 20) + 1);
+											
+											isdisarmnoblessrolled = "yes";
 											
 							  	  	  		}
 							  	  	  	}, 2000);
@@ -9288,6 +9313,8 @@ public class MainActivity2 extends ActionBarActivity {
 	}
 	
 	public void disarmNoBlessResults() {
+		
+		isdisarmnoblessrolled = "no";
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
