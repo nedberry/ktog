@@ -9184,37 +9184,95 @@ public class MainActivity2 extends ActionBarActivity {
 			
 						if (attackResult >= 15) {
 							
+							AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+						      
+							alert.setTitle("The computer has been disarmed!");
+				  	    	/*
+				  	    	alert.setMessage("something");
+				  	    	*/	    	
+					    	
+					    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+						    	public void onClick(DialogInterface dialog, int whichButton) {
+						    		
+						    		hideNavigation();									    		
+
+						    		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+										
+						    			gameEngineHumanFirst2();    							
+									}
+
+						    		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+						    			
+						    			turn();   							
+									}												
+						    	}
+					    	});								    	
+					    	alert.show();
+					    	
+							
 							canHasDisarmed[playerNumberAttacked] = "yes";
 			
 							disarmedTurnStart[playerNumberAttacked] = turn;
 			
 							// playerWhoDisarmed[playerNumberAttacked] = i;
 							
+							/* FOR PLAYERS > 1 ??
 							centerscrolltext.setVisibility(View.VISIBLE);
 					  		centerscrolltext.startAnimation(animAlphaText);
 					  		centerscrolltext.append("\n" + "> You have disarmed player " + (playerNumberAttacked + 1) + "!");
-							/*
-							for (int x = 0; x < 1000; --x)// To give human player time to read.
-							{
-							}
-							*/
+							
+							//for (int x = 0; x < 1000; --x)// To give human player time to read.
+							//{
+							//}
+							
 							return;
+							*/
 						}
 			
 						if (attackResult <= 14 && attackResult > 0) {
 							
+							AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+						      
+							alert.setTitle("Your attempt to disarm misses!");
+				  	    	/*
+				  	    	alert.setMessage("something");
+				  	    	*/	    	
+					    	
+					    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+						    	public void onClick(DialogInterface dialog, int whichButton) {
+						    		
+						    		hideNavigation();									    		
+
+						    		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+										
+						    			gameEngineHumanFirst2();    							
+									}
+
+						    		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+						    			
+						    			turn();   							
+									}												
+						    	}
+					    	});								    	
+					    	alert.show();
+					    	
+							
+							/*
 							centerscrolltext.setVisibility(View.VISIBLE);
 					  		centerscrolltext.startAnimation(animAlphaText);
 					  		centerscrolltext.append("\n" + "> Your attempt to disarm misses!");
-							/*
-							for (int x = 0; x < 1000; --x)// To give human player time to read.
-							{
-							}
-							*/
+							
+							//for (int x = 0; x < 1000; --x)// To give human player time to read.
+							//{
+							//}
+							
 							return;
+							*/
 						}
 	  	  	  		}
-	  	  	  	}, 2000);	  			
+	  	  	  	}, 2000);
+	  	  	  	
+	  	  	  	return; //NEED THIS???
   	  	    }
 		});
 	}
@@ -9342,10 +9400,37 @@ public class MainActivity2 extends ActionBarActivity {
 			
 						if (attackResult >= 17) {
 							
+							AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+						      
+							alert.setTitle("The computer has been disarmed!");
+				  	    	/*
+				  	    	alert.setMessage("something");
+				  	    	*/	    	
+					    	
+					    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+						    	public void onClick(DialogInterface dialog, int whichButton) {
+						    		
+						    		hideNavigation();									    		
+
+						    		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+										
+						    			gameEngineHumanFirst2();    							
+									}
+
+						    		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+						    			
+						    			turn();   							
+									}												
+						    	}
+					    	});								    	
+					    	alert.show();
+					    	
+							
 							canHasDisarmed[playerNumberAttacked] = "yes";
 			
 							disarmedTurnStart[playerNumberAttacked] = turn;
-			
+							
+							/*
 							// playerWhoDisarmed[playerNumberAttacked] = i;
 							
 							centerscrolltext.setVisibility(View.VISIBLE);
@@ -9353,24 +9438,84 @@ public class MainActivity2 extends ActionBarActivity {
 					  		centerscrolltext.append("\n" + "> You have disarmed player " + (playerNumberAttacked + 1) + "!");
 							
 							return;
+							*/
 						}
 			
 						if (attackResult <= 16 && attackResult > 1) {
 							
+							AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+						      
+							alert.setTitle("Your attempt to disarm misses!");
+				  	    	/*
+				  	    	alert.setMessage("something");
+				  	    	*/	    	
+					    	
+					    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+						    	public void onClick(DialogInterface dialog, int whichButton) {
+						    		
+						    		hideNavigation();									    		
+
+						    		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+										
+						    			gameEngineHumanFirst2();    							
+									}
+
+						    		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+						    			
+						    			turn();   							
+									}												
+						    	}
+					    	});								    	
+					    	alert.show();							
+							
+							/*
 							centerscrolltext.setVisibility(View.VISIBLE);
 					  		centerscrolltext.startAnimation(animAlphaText);
 					  		centerscrolltext.append("\n" + "> Your attempt to disarm misses!");
 							
 							return;
+							*/
 						}
 						if (attackResult <= 1) {
 							
+							AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+						      
+							alert.setTitle("You have rolled a critical miss!");
+				  	    	/*
+				  	    	alert.setMessage("something");
+				  	    	*/	    	
+					    	
+					    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+						    	public void onClick(DialogInterface dialog, int whichButton) {
+						    		
+						    		hideNavigation();
+						    		
+						    		criticalMiss();
+
+						    		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+										
+						    			gameEngineHumanFirst2();    							
+									}
+
+						    		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+						    			
+						    			turn();   							
+									}												
+						    	}
+					    	});								    	
+					    	alert.show();
+					    	
+							
+							/*
 							criticalMiss();
 							
 							return;
+							*/
 						}
 	  	  	  		}
-	  	  	  	}, 2000);	  			
+	  	  	  	}, 2000);
+	  	  	  	
+	  	  	  	return; //NEED THIS???
   	  	    }
 		});
 	}
