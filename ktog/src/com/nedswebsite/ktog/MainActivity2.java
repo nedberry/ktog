@@ -78,6 +78,7 @@ public class MainActivity2 extends ActionBarActivity {
 	String aretheredoubles = "yes";
 	String isdisarmwithblessrolled = "no";
 	String isdisarmnoblessrolled = "no";
+	String isattackrolled = "no";
 	
 	String startGameNow ="no";	
 	
@@ -502,6 +503,9 @@ public class MainActivity2 extends ActionBarActivity {
 				}
 				
 				
+				if (isattackrolled.equals("yes")) {
+					attackResults();
+				}
 				if (isdisarmwithblessrolled.equals("yes")) {					
 					disarmWithBlessResults();
 				}
@@ -575,6 +579,9 @@ public class MainActivity2 extends ActionBarActivity {
 				}
 				
 				
+				if (isattackrolled.equals("yes")) {
+					attackResults();
+				}
 				if (isdisarmwithblessrolled.equals("yes")) {					
 					disarmWithBlessResults();
 				}
@@ -6695,159 +6702,239 @@ public class MainActivity2 extends ActionBarActivity {
 					return;
 				}
 				
-							
-				centerscrolltext.setVisibility(View.VISIBLE);
-		  		centerscrolltext.startAnimation(animAlphaText);
-				centerscrolltext.append("\n" + "> Please slide the die...");
-		
-				/*
-				 * 
-				 * 
-				 * SLIDE 20-SIDED DIE
-				 * 
-				 * 
-				 */
-		
 				
-				int attackResult = (int) ((Math.random() * 20) + 1);
-		
-				centerscrolltext.setVisibility(View.VISIBLE);													
-		  		centerscrolltext.startAnimation(animAlphaText);			  		
-				centerscrolltext.append("\n" + "> You roll a " + attackResult + "!");		
+				final Handler h1 = new Handler();
+	  	  	  	h1.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {		  	  	    	 	    			
 				
-		
-				if (attackResult >= 20) {
-					criticalHit();
-					return;
-				}
-				if (attackResult >= 14 && attackResult <= 19) {
-					
-					centerscrolltext.setVisibility(View.VISIBLE);													
-			  		centerscrolltext.startAnimation(animAlphaText);			  		
-					centerscrolltext.append("\n" + "> Your attack hits!");
-					
-					if (mightyBlowSpell[i] > 0) {
-						/*
-						centerscrolltext.setVisibility(View.VISIBLE);													
-				  		centerscrolltext.startAnimation(animAlphaText);		  		
-						centerscrolltext.append("\n" + ArrayOfPlayers.player[i] + ", do you want to use Mighty Blow?");
-						*/
-						
-						AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-			  			
-			  	    	alert.setTitle(ArrayOfPlayers.player[i] + ", do you want to use Mighty Blow?");
-			  	    	/*
-			  	    	alert.setMessage("something");
-			  	    	*/	  	    	
-			  	    	
-			  	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-			  		    	public void onClick(DialogInterface dialog, int whichButton) {
-			  		    		
-			  		    		hideNavigation();
-			  		    		
-			  		    		mightyBlowSpell[0] = mightyBlowSpell[0] - 1;
-			  		    		
-			  		    		
-			  		    		/*
-								 * 
-								 * Picture of swords clanging together:
-								 * 
-								 * 
-								 * swordsGraphic();
-								 * 
-								 */
-			  		    		
-			  		    		/*
-			  		    		System.out
-								.println("     /\\___________          ___________/\\");
-			  		    		System.out
-								.println("/|---||___________\\ MIGHTY /___________||---|\\");
-			  		    		System.out
-								.println("\\|---||___________/  BLOW  \\___________||---|/");
-			  		    		System.out
-								.println("     \\/                                \\/");
-			  		    		for (int x = 0; x < 1; --x) {
-								}
-								*/
-		
-								
-			  		    		mightyBlow();
-								return;
-			  		    	}
-			  	    	});
-			  	    	
-			  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
-			          	  public void onClick(DialogInterface dialog, int whichButton) {
-			          		  
-			          		  hideNavigation();
-			          		  
-			          		  damage();
-			          		  return;
-			          	  }
-			          	});	  	    	
-			  	    	
-			  	    	alert.show();
-						
-						/*
-						String s = input.next();
-						char selection = s.charAt(0);
-						switch (selection) {
-						case 'y':
-						case 'Y':
-							if (numberOfPlayers == 1) {
-								mightyBlowSpell[0] = mightyBlowSpell[0] - 1;
-							}
-							if (numberOfPlayers > 1) {
-								mightyBlowSpell[i] = mightyBlowSpell[i] - 1;
-							}
-		
-							System.out.println();
-		
-							swordsGraphic();
-							System.out
-									.println("     /\\___________          ___________/\\");
-							System.out
-									.println("/|---||___________\\ MIGHTY /___________||---|\\");
-							System.out
-									.println("\\|---||___________/  BLOW  \\___________||---|/");
-							System.out
-									.println("     \\/                                \\/");
-							for (int x = 0; x < 1; --x) {
-							}
-		
-							mightyBlow(i, playerNumberAttacked, gameOn);
-							return playerNumberAttacked;
-						case 'n':
-						case 'N':
-							damage(i, playerNumberAttacked, gameOn);
-							return playerNumberAttacked;
-						default:
-							damage(i, playerNumberAttacked, gameOn);
+		  	  	  		final Handler h2 = new Handler();
+			  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
+			  	  	  			
+			  	  	  		@Override
+				  	  	  	public void run() {
+			  	  	  			
+			  	  	  			// ROLLFROMLEFT (20-SIDED)
+			  	  	  			twentySidedRollFromLeft();
+			  	  	  			
+				  	  	  		final Handler h3 = new Handler();
+					  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
+					  	  	  			
+					  	  	  		@Override
+						  	  	  	public void run() {
+					  	  	  			
+					  	  	  			// 20-SIDED WOBBLE START
+					  	  	  			twentySidedWobbleStart();
+					  	  	  			/*
+					  	  	  			// need runOnUiThread?
+					  	  	  			runOnUiThread(new Runnable() {
+							  	  	  	    @Override
+							  	  	  	    public void run() {
+							  	  	  	    	
+							  	  	  	    	twentySidedWobbleStart();						  	  	  	    	
+								  	  	  	}
+						  	  	  			});
+					  	  	  			*/
+					  	  	  			
+						  	  	  		final Handler h4 = new Handler();
+							  	  	  	h4.postDelayed(new Runnable() {		  	  	  			
+							  	  	  			
+							  	  	  		@Override
+								  	  	  	public void run() {				
 							
-							// IDEALLY WANT THIS TO GO BACK AND ASK AGAIN....RECODE???
-							 * 
-							return playerNumberAttacked;
-						}
-						*/
-					}
-					damage();
-					return;
-				}
-				if (attackResult < 14 && attackResult > 1) {
-					
-					centerscrolltext.setVisibility(View.VISIBLE);
-			  		centerscrolltext.startAnimation(animAlphaText);
-					centerscrolltext.append("\n" + "> Your attack misses!");
-					
-					return;
-				}
-				if (attackResult <= 1) {
-					criticalMiss();
-					return;
-				}
+												centerscrolltext.setVisibility(View.VISIBLE);
+										  		centerscrolltext.startAnimation(animAlphaText);
+												centerscrolltext.append("\n" + "> Please slide the die...");
+										
+												/*
+												 * 
+												 * 
+												 * SLIDE 20-SIDED DIE
+												 * 
+												 * 
+												 */
+										
+												attackResult = (int) ((Math.random() * 20) + 1);
+												//int attackResult = (int) ((Math.random() * 20) + 1);
+												
+												isattackrolled = "yes";
+												
+							  	  	  	}
+							  	  	  	}, 2000);
+					  	  	  		}
+					  	  	  	}, 2000);
+			  	  	  		}
+			  	  	  	}, 2000);
+	  	  	  		}
+	  	  	  	}, 2000);												
   	  	    }
 		});
 		return playerNumberAttacked;
+	}
+					  	  	  		
+	public void attackResults() {
+		
+		isattackrolled = "no";
+		
+		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+		
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {
+  	  	    	
+	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+	  			
+	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  			centerscrolltext.setTypeface(typeFace);
+	  			
+	  			
+	  			final Handler h1 = new Handler();
+	  	  	  	h1.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {		
+		
+						centerscrolltext.setVisibility(View.VISIBLE);													
+				  		centerscrolltext.startAnimation(animAlphaText);			  		
+						centerscrolltext.append("\n" + "> You roll a " + attackResult + "!");		
+						
+				
+						if (attackResult >= 20) {
+							criticalHit();
+							return;
+						}
+						if (attackResult >= 14 && attackResult <= 19) {
+							
+							centerscrolltext.setVisibility(View.VISIBLE);													
+					  		centerscrolltext.startAnimation(animAlphaText);			  		
+							centerscrolltext.append("\n" + "> Your attack hits!");
+							
+							if (mightyBlowSpell[i] > 0) {
+								/*
+								centerscrolltext.setVisibility(View.VISIBLE);													
+						  		centerscrolltext.startAnimation(animAlphaText);		  		
+								centerscrolltext.append("\n" + ArrayOfPlayers.player[i] + ", do you want to use Mighty Blow?");
+								*/
+								
+								AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+					  			
+					  	    	alert.setTitle(ArrayOfPlayers.player[i] + ", do you want to use Mighty Blow?");
+					  	    	/*
+					  	    	alert.setMessage("something");
+					  	    	*/	  	    	
+					  	    	
+					  	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+					  		    	public void onClick(DialogInterface dialog, int whichButton) {
+					  		    		
+					  		    		hideNavigation();
+					  		    		
+					  		    		mightyBlowSpell[0] = mightyBlowSpell[0] - 1;
+					  		    		
+					  		    		
+					  		    		/*
+										 * 
+										 * Picture of swords clanging together:
+										 * 
+										 * 
+										 * swordsGraphic();
+										 * 
+										 */
+					  		    		
+					  		    		/*
+					  		    		System.out
+										.println("     /\\___________          ___________/\\");
+					  		    		System.out
+										.println("/|---||___________\\ MIGHTY /___________||---|\\");
+					  		    		System.out
+										.println("\\|---||___________/  BLOW  \\___________||---|/");
+					  		    		System.out
+										.println("     \\/                                \\/");
+					  		    		for (int x = 0; x < 1; --x) {
+										}
+										*/
+				
+										
+					  		    		mightyBlow();
+										return;
+					  		    	}
+					  	    	});
+					  	    	
+					  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+					          	  public void onClick(DialogInterface dialog, int whichButton) {
+					          		  
+					          		  hideNavigation();
+					          		  
+					          		  damage();
+					          		  return;
+					          	  }
+					          	});	  	    	
+					  	    	
+					  	    	alert.show();
+								
+								/*
+								String s = input.next();
+								char selection = s.charAt(0);
+								switch (selection) {
+								case 'y':
+								case 'Y':
+									if (numberOfPlayers == 1) {
+										mightyBlowSpell[0] = mightyBlowSpell[0] - 1;
+									}
+									if (numberOfPlayers > 1) {
+										mightyBlowSpell[i] = mightyBlowSpell[i] - 1;
+									}
+				
+									System.out.println();
+				
+									swordsGraphic();
+									System.out
+											.println("     /\\___________          ___________/\\");
+									System.out
+											.println("/|---||___________\\ MIGHTY /___________||---|\\");
+									System.out
+											.println("\\|---||___________/  BLOW  \\___________||---|/");
+									System.out
+											.println("     \\/                                \\/");
+									for (int x = 0; x < 1; --x) {
+									}
+				
+									mightyBlow(i, playerNumberAttacked, gameOn);
+									return playerNumberAttacked;
+								case 'n':
+								case 'N':
+									damage(i, playerNumberAttacked, gameOn);
+									return playerNumberAttacked;
+								default:
+									damage(i, playerNumberAttacked, gameOn);
+									
+									// IDEALLY WANT THIS TO GO BACK AND ASK AGAIN....RECODE???
+									 * 
+									return playerNumberAttacked;
+								}
+								*/
+							}							
+							//damage();
+							return;
+						}
+						if (attackResult < 14 && attackResult > 1) {
+							
+							centerscrolltext.setVisibility(View.VISIBLE);
+					  		centerscrolltext.startAnimation(animAlphaText);
+							centerscrolltext.append("\n" + "> Your attack misses!");							
+							return;
+						}
+						if (attackResult <= 1) {
+							criticalMiss();
+							return;
+						}
+	  	  	  		}
+	  	  	  	}, 2000);
+	  	  	  	
+	  	  	  	return; //NEED THIS???
+  	  	    }
+		});		
 	}
 
 	public void attackAgainstDisarmed() {//WAS int						
