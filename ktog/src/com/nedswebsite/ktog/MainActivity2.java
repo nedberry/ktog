@@ -306,7 +306,7 @@ public class MainActivity2 extends ActionBarActivity {
 				  		  			isinitiativestarted = "yes";			  		  			
 				  		  			onBackPressedOk = "yes";			  		  			
 			  	  	  		}
-			  	  	  	}, 1000);
+			  	  	  	}, 750);
 	  	  	  		}
 	  	  	  	}, 4000);
   	  		}
@@ -2500,14 +2500,14 @@ public class MainActivity2 extends ActionBarActivity {
 							  	  	  	}
 					  	  	  			});
 					  	  	  			
-				  	  	  			centerscrolltext.setVisibility(View.VISIBLE);
-				  		  	  		centerscrolltext.startAnimation(animAlphaText);
-				  		  			centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0]  + ", please slide the die...");				  		  			
-				  		  			
-				  		  			playerCardStartFadeInFadeOut();
-				  		  			//playerTurnBackgroundStart();  		  			
-					  		  		
-					  		  		// NEED REF TO ONASWIPE CLASS?????????????????
+					  	  	  			centerscrolltext.setVisibility(View.VISIBLE);
+					  		  	  		centerscrolltext.startAnimation(animAlphaText);
+					  		  			centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0]  + ", please slide the die...");				  		  			
+					  		  			
+					  		  			playerCardStartFadeInFadeOut();
+					  		  			//playerTurnBackgroundStart();  		  			
+						  		  		
+						  		  		// NEED REF TO ONASWIPE CLASS?????????????????
 				  		  			
 					  	  	  		}
 				  	  	  	}, 1000);
@@ -2542,32 +2542,40 @@ public class MainActivity2 extends ActionBarActivity {
   		computerCardStopFadeInFadeOut();
 		//computerTurnBackgroundStop();
 		
-					  	  	  			
-  		AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 		
-    	alert.setTitle("Initiative Results");
-    	/*
-    	alert.setMessage(ArrayOfPlayers.player[0] + getString(R.string.tab) + ArrayOfPlayers.player[1]);
-    	alert.setMessage(ArrayOfInitiative.initiative[0] + getString(R.string.tab) + ArrayOfInitiative.initiative[0]);
-    	*/
-    	for (int i = 0; i < 2; i++) {
-    		// Was "numberOfPlayers", which = 2 up top.
-        
-           if (max == ArrayOfInitiative.initiative[i])
-           {
-        	   alert.setMessage("\n" + ArrayOfPlayers.player[i] + " wins with a " + max + "!");
-           }
-        }
-    	
-    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-	    	public void onClick(DialogInterface dialog, int whichButton) {
-	    		
-	    		hideNavigation();
-	    		
-	    		finishInitiative();
-	    	}
-    	});		  	    	
-    	alert.show();	  	  			
+  		final Handler h = new Handler();
+	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  	  			
+	  	  		@Override
+	  	  		public void run() {
+	  	  			
+		  	  		AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+		  			
+		  	    	alert.setTitle("Initiative Results");
+		  	    	/*
+		  	    	alert.setMessage(ArrayOfPlayers.player[0] + getString(R.string.tab) + ArrayOfPlayers.player[1]);
+		  	    	alert.setMessage(ArrayOfInitiative.initiative[0] + getString(R.string.tab) + ArrayOfInitiative.initiative[0]);
+		  	    	*/
+		  	    	for (int i = 0; i < 2; i++) {
+		  	    		// Was "numberOfPlayers", which = 2 up top.
+		  	        
+		  	           if (max == ArrayOfInitiative.initiative[i])
+		  	           {
+		  	        	   alert.setMessage("\n" + ArrayOfPlayers.player[i] + " wins with a " + max + "!");
+		  	           }
+		  	        }
+		  	    	
+		  	    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+		  		    	public void onClick(DialogInterface dialog, int whichButton) {
+		  		    		
+		  		    		hideNavigation();
+		  		    		
+		  		    		finishInitiative();
+		  		    	}
+		  	    	});		  	    	
+		  	    	alert.show(); 	  	  							  	  	  	
+	  	  		}
+	  	  	}, 2000);  			  	  			
 	}
 	
 	public void finishInitiative() {
@@ -2593,7 +2601,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  		centerscrolltext.startAnimation(animAlphaText);
 			centerscrolltext.append("\n" +  ">" + "\n" + "> Let the battle begin...");  	  			
 			
-			myInitiativeTransition();	  	    	  	  							  	  	 	    	  	  			  	    	  	  			
+			myInitiativeTransition();	    	  	  							  	  	 	    	  	  			  	    	  	  			
 		  	  			  	    	  	  			
 	  	  		final Handler h3 = new Handler();
 		  	  	h3.postDelayed(new Runnable() {
@@ -6707,7 +6715,15 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  	h1.postDelayed(new Runnable() {		  	  	  			
 	  	  	  			
 	  	  	  		@Override
-		  	  	  	public void run() {		  	  	    	 	    			
+		  	  	  	public void run() {
+	  	  	  			
+	  	  	  			/*
+						 * 
+						 * ??????????????
+						 * 
+						 * attackGraphic();  ????????????
+						 * 
+						 */ 
 				
 		  	  	  		final Handler h2 = new Handler();
 			  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
@@ -6716,54 +6732,35 @@ public class MainActivity2 extends ActionBarActivity {
 				  	  	  	public void run() {
 			  	  	  			
 			  	  	  			// ROLLFROMLEFT (20-SIDED)
-			  	  	  			twentySidedRollFromLeft();
-			  	  	  			
+			  	  	  			twentySidedRollFromLeft();				  	  	  		
+					  	  	  			
 				  	  	  		final Handler h3 = new Handler();
 					  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
 					  	  	  			
 					  	  	  		@Override
-						  	  	  	public void run() {
+						  	  	  	public void run() {				
 					  	  	  			
-					  	  	  			// 20-SIDED WOBBLE START
 					  	  	  			twentySidedWobbleStart();
-					  	  	  			/*
-					  	  	  			// need runOnUiThread?
-					  	  	  			runOnUiThread(new Runnable() {
-							  	  	  	    @Override
-							  	  	  	    public void run() {
-							  	  	  	    	
-							  	  	  	    	twentySidedWobbleStart();						  	  	  	    	
-								  	  	  	}
-						  	  	  			});
-					  	  	  			*/
 					  	  	  			
-						  	  	  		final Handler h4 = new Handler();
-							  	  	  	h4.postDelayed(new Runnable() {		  	  	  			
-							  	  	  			
-							  	  	  		@Override
-								  	  	  	public void run() {				
-							
-												centerscrolltext.setVisibility(View.VISIBLE);
-										  		centerscrolltext.startAnimation(animAlphaText);
-												centerscrolltext.append("\n" + "> Please slide the die...");
+										centerscrolltext.setVisibility(View.VISIBLE);
+								  		centerscrolltext.startAnimation(animAlphaText);
+										centerscrolltext.append("\n" + "> Please slide the die...");
+								
+										/*
+										 * 
+										 * 
+										 * SLIDE 20-SIDED DIE
+										 * 
+										 * 
+										 */
+								
+										attackResult = (int) ((Math.random() * 20) + 1);
+										//int attackResult = (int) ((Math.random() * 20) + 1);
 										
-												/*
-												 * 
-												 * 
-												 * SLIDE 20-SIDED DIE
-												 * 
-												 * 
-												 */
+										isattackrolled = "yes";
 										
-												attackResult = (int) ((Math.random() * 20) + 1);
-												//int attackResult = (int) ((Math.random() * 20) + 1);
-												
-												isattackrolled = "yes";
-												
-							  	  	  	}
-							  	  	  	}, 2000);
 					  	  	  		}
-					  	  	  	}, 2000);
+					  	  	  	}, 750);					  	  	  		
 			  	  	  		}
 			  	  	  	}, 2000);
 	  	  	  		}
@@ -6798,137 +6795,168 @@ public class MainActivity2 extends ActionBarActivity {
 		
 						centerscrolltext.setVisibility(View.VISIBLE);													
 				  		centerscrolltext.startAnimation(animAlphaText);			  		
-						centerscrolltext.append("\n" + "> You roll a " + attackResult + "!");		
+						centerscrolltext.append("\n" + "> You roll a " + attackResult + "!");						
 						
+						final Handler h2 = new Handler();
+			  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
+			  	  	  			
+			  	  	  		@Override
+				  	  	  	public void run() {						
 				
-						if (attackResult >= 20) {
-							criticalHit();
-							return;
-						}
-						if (attackResult >= 14 && attackResult <= 19) {
-							
-							centerscrolltext.setVisibility(View.VISIBLE);													
-					  		centerscrolltext.startAnimation(animAlphaText);			  		
-							centerscrolltext.append("\n" + "> Your attack hits!");
-							
-							if (mightyBlowSpell[i] > 0) {
-								/*
-								centerscrolltext.setVisibility(View.VISIBLE);													
-						  		centerscrolltext.startAnimation(animAlphaText);		  		
-								centerscrolltext.append("\n" + ArrayOfPlayers.player[i] + ", do you want to use Mighty Blow?");
-								*/
-								
-								AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-					  			
-					  	    	alert.setTitle(ArrayOfPlayers.player[i] + ", do you want to use Mighty Blow?");
-					  	    	/*
-					  	    	alert.setMessage("something");
-					  	    	*/	  	    	
-					  	    	
-					  	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-					  		    	public void onClick(DialogInterface dialog, int whichButton) {
-					  		    		
-					  		    		hideNavigation();
-					  		    		
-					  		    		mightyBlowSpell[0] = mightyBlowSpell[0] - 1;
-					  		    		
-					  		    		
-					  		    		/*
-										 * 
-										 * Picture of swords clanging together:
-										 * 
-										 * 
-										 * swordsGraphic();
-										 * 
-										 */
-					  		    		
-					  		    		/*
-					  		    		System.out
-										.println("     /\\___________          ___________/\\");
-					  		    		System.out
-										.println("/|---||___________\\ MIGHTY /___________||---|\\");
-					  		    		System.out
-										.println("\\|---||___________/  BLOW  \\___________||---|/");
-					  		    		System.out
-										.println("     \\/                                \\/");
-					  		    		for (int x = 0; x < 1; --x) {
+								if (attackResult >= 20) {
+									criticalHit();
+									return;
+								}
+								if (attackResult >= 14 && attackResult <= 19) {
+									
+									centerscrolltext.setVisibility(View.VISIBLE);													
+							  		centerscrolltext.startAnimation(animAlphaText);			  		
+									centerscrolltext.append("\n" + "> Your attack hits!");
+									
+									if (mightyBlowSpell[i] > 0) {
+										/*
+										centerscrolltext.setVisibility(View.VISIBLE);													
+								  		centerscrolltext.startAnimation(animAlphaText);		  		
+										centerscrolltext.append("\n" + ArrayOfPlayers.player[i] + ", do you want to use Mighty Blow?");
+										*/
+										
+										AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+							  			
+							  	    	alert.setTitle(ArrayOfPlayers.player[i] + ", do you want to use Mighty Blow?");
+							  	    	/*
+							  	    	alert.setMessage("something");
+							  	    	*/	  	    	
+							  	    	
+							  	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+							  		    	public void onClick(DialogInterface dialog, int whichButton) {
+							  		    		
+							  		    		hideNavigation();
+							  		    		
+							  		    		mightyBlowSpell[0] = mightyBlowSpell[0] - 1;
+							  		    		
+							  		    		
+							  		    		/*
+												 * 
+												 * Picture of swords clanging together:
+												 * 
+												 * 
+												 * swordsGraphic();
+												 * 
+												 */
+							  		    		
+							  		    		/*
+							  		    		System.out
+												.println("     /\\___________          ___________/\\");
+							  		    		System.out
+												.println("/|---||___________\\ MIGHTY /___________||---|\\");
+							  		    		System.out
+												.println("\\|---||___________/  BLOW  \\___________||---|/");
+							  		    		System.out
+												.println("     \\/                                \\/");
+							  		    		for (int x = 0; x < 1; --x) {
+												}
+												*/
+						
+												
+							  		    		mightyBlow();
+												return;
+							  		    	}
+							  	    	});
+							  	    	
+							  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+							          	  public void onClick(DialogInterface dialog, int whichButton) {
+							          		  
+							          		  hideNavigation();
+							          		  
+							          		  damage();
+							          		  return;
+							          	  }
+							          	});	  	    	
+							  	    	
+							  	    	alert.show();
+										
+										/*
+										String s = input.next();
+										char selection = s.charAt(0);
+										switch (selection) {
+										case 'y':
+										case 'Y':
+											if (numberOfPlayers == 1) {
+												mightyBlowSpell[0] = mightyBlowSpell[0] - 1;
+											}
+											if (numberOfPlayers > 1) {
+												mightyBlowSpell[i] = mightyBlowSpell[i] - 1;
+											}
+						
+											System.out.println();
+						
+											swordsGraphic();
+											System.out
+													.println("     /\\___________          ___________/\\");
+											System.out
+													.println("/|---||___________\\ MIGHTY /___________||---|\\");
+											System.out
+													.println("\\|---||___________/  BLOW  \\___________||---|/");
+											System.out
+													.println("     \\/                                \\/");
+											for (int x = 0; x < 1; --x) {
+											}
+						
+											mightyBlow(i, playerNumberAttacked, gameOn);
+											return playerNumberAttacked;
+										case 'n':
+										case 'N':
+											damage(i, playerNumberAttacked, gameOn);
+											return playerNumberAttacked;
+										default:
+											damage(i, playerNumberAttacked, gameOn);
+											
+											// IDEALLY WANT THIS TO GO BACK AND ASK AGAIN....RECODE???
+											 * 
+											return playerNumberAttacked;
 										}
 										*/
-				
+									}
+									else {
 										
-					  		    		mightyBlow();
+										damage();
 										return;
-					  		    	}
-					  	    	});
-					  	    	
-					  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
-					          	  public void onClick(DialogInterface dialog, int whichButton) {
-					          		  
-					          		  hideNavigation();
-					          		  
-					          		  damage();
-					          		  return;
-					          	  }
-					          	});	  	    	
-					  	    	
-					  	    	alert.show();
-								
-								/*
-								String s = input.next();
-								char selection = s.charAt(0);
-								switch (selection) {
-								case 'y':
-								case 'Y':
-									if (numberOfPlayers == 1) {
-										mightyBlowSpell[0] = mightyBlowSpell[0] - 1;
 									}
-									if (numberOfPlayers > 1) {
-										mightyBlowSpell[i] = mightyBlowSpell[i] - 1;
-									}
-				
-									System.out.println();
-				
-									swordsGraphic();
-									System.out
-											.println("     /\\___________          ___________/\\");
-									System.out
-											.println("/|---||___________\\ MIGHTY /___________||---|\\");
-									System.out
-											.println("\\|---||___________/  BLOW  \\___________||---|/");
-									System.out
-											.println("     \\/                                \\/");
-									for (int x = 0; x < 1; --x) {
-									}
-				
-									mightyBlow(i, playerNumberAttacked, gameOn);
-									return playerNumberAttacked;
-								case 'n':
-								case 'N':
-									damage(i, playerNumberAttacked, gameOn);
-									return playerNumberAttacked;
-								default:
-									damage(i, playerNumberAttacked, gameOn);
-									
-									// IDEALLY WANT THIS TO GO BACK AND ASK AGAIN....RECODE???
-									 * 
-									return playerNumberAttacked;
+									//damage();
+									//return;
 								}
-								*/
-							}							
-							//damage();
-							return;
-						}
-						if (attackResult < 14 && attackResult > 1) {
-							
-							centerscrolltext.setVisibility(View.VISIBLE);
-					  		centerscrolltext.startAnimation(animAlphaText);
-							centerscrolltext.append("\n" + "> Your attack misses!");							
-							return;
-						}
-						if (attackResult <= 1) {
-							criticalMiss();
-							return;
-						}
+								if (attackResult < 14 && attackResult > 1) {
+									
+									centerscrolltext.setVisibility(View.VISIBLE);
+							  		centerscrolltext.startAnimation(animAlphaText);
+									centerscrolltext.append("\n" + "> Your attack misses!");
+									
+									final Handler h = new Handler();
+						  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+						  	  	  			
+						  	  	  		@Override
+							  	  	  	public void run() {  	  		
+			
+							  	  	  		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+												
+								    			gameEngineHumanFirst2();    							
+											}
+			
+											if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+								    			
+								    			turn();   							
+											}					  	  	  	
+							  	  	  	}
+						  	  	  	}, 2000);
+									
+									return;
+								}
+								if (attackResult <= 1) {
+									criticalMiss();
+									return;
+								}
+			  	  	  		}
+			  	  	  	}, 2000);
 	  	  	  		}
 	  	  	  	}, 2000);
 	  	  	  	
@@ -9133,9 +9161,9 @@ public class MainActivity2 extends ActionBarActivity {
   	  	    	
 		  	  	    	/*
 						 * 
-						 * Picture of hands coming together.
+						 * ??????????????????
 						 * 
-						 * blessGraphic();
+						 * disarmAndBlessGraphic(); ???????????
 						 * 
 						 */  	    			
 				
@@ -9146,93 +9174,74 @@ public class MainActivity2 extends ActionBarActivity {
 				  	  	  	public void run() {
 			  	  	  			
 			  	  	  			// ROLLFROMLEFT (20-SIDED)
-			  	  	  			twentySidedRollFromLeft();
-			  	  	  			
+			  	  	  			twentySidedRollFromLeft();				  	  	  		
+					  	  	  			
 				  	  	  		final Handler h3 = new Handler();
 					  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
 					  	  	  			
 					  	  	  		@Override
 						  	  	  	public void run() {
 					  	  	  			
-					  	  	  			// 20-SIDED WOBBLE START
 					  	  	  			twentySidedWobbleStart();
-					  	  	  			/*
-					  	  	  			// need runOnUiThread?
-					  	  	  			runOnUiThread(new Runnable() {
-							  	  	  	    @Override
-							  	  	  	    public void run() {
-							  	  	  	    	
-							  	  	  	    	twentySidedWobbleStart();						  	  	  	    	
-								  	  	  	}
-						  	  	  			});
-					  	  	  			*/
 					  	  	  			
-						  	  	  		final Handler h4 = new Handler();
-							  	  	  	h4.postDelayed(new Runnable() {		  	  	  			
-							  	  	  			
-							  	  	  		@Override
-								  	  	  	public void run() {
-	  	  	  			
-												centerscrolltext.setVisibility(View.VISIBLE);
-										  		centerscrolltext.startAnimation(animAlphaText);
-										  		centerscrolltext.append("\n" + "> Press slide the die... ");
-										  		
-										  		
-										  		/*
-												 * 
-												 * 
-												 * SLIDE 20-SIDED DIE
-												 * (SEE ABOVE)
-												 * 
-												 * 
-												 */
-										  		
-										  		attackResult = (int) ((Math.random() * 20) + 1);
-												//int attackResult = (int) ((Math.random() * 20) + 1);
-										  		
-										  		isdisarmwithblessrolled = "yes";
-												
-										  		/*
-												centerscrolltext.setVisibility(View.VISIBLE);
-										  		centerscrolltext.startAnimation(animAlphaText);
-										  		centerscrolltext.append("\n" + "> You roll a " + attackResult	+ ", +2 for the Bless Spell = "	+ (attackResult + 2));
-												
-									
-												if (attackResult >= 15) {
-													
-													canHasDisarmed[playerNumberAttacked] = "yes";
-									
-													disarmedTurnStart[playerNumberAttacked] = turn;
-									
-													// playerWhoDisarmed[playerNumberAttacked] = i;
-													
-													centerscrolltext.setVisibility(View.VISIBLE);
-											  		centerscrolltext.startAnimation(animAlphaText);
-											  		centerscrolltext.append("\n" + "> You have disarmed player " + (playerNumberAttacked + 1) + "!");
-													
-													//for (int x = 0; x < 1000; --x)// To give human player time to read.
-													//{
-													//}
-													
-													return;
-												}
-									
-												if (attackResult <= 14 && attackResult > 0) {
-													
-													centerscrolltext.setVisibility(View.VISIBLE);
-											  		centerscrolltext.startAnimation(animAlphaText);
-											  		centerscrolltext.append("\n" + "> Your attempt to disarm misses!");
-													
-													//for (int x = 0; x < 1000; --x)// To give human player time to read.
-													//{
-													//}
-													
-													return;
-												}*/
-							  	  	  		}
-							  	  	  	}, 2000);
+										centerscrolltext.setVisibility(View.VISIBLE);
+								  		centerscrolltext.startAnimation(animAlphaText);
+								  		centerscrolltext.append("\n" + "> Press slide the die... ");
+								  		
+								  		
+								  		/*
+										 * 
+										 * 
+										 * SLIDE 20-SIDED DIE
+										 * (SEE ABOVE)
+										 * 
+										 * 
+										 */
+								  		
+								  		attackResult = (int) ((Math.random() * 20) + 1);
+										//int attackResult = (int) ((Math.random() * 20) + 1);
+								  		
+								  		isdisarmwithblessrolled = "yes";
+										
+								  		/*
+										centerscrolltext.setVisibility(View.VISIBLE);
+								  		centerscrolltext.startAnimation(animAlphaText);
+								  		centerscrolltext.append("\n" + "> You roll a " + attackResult	+ ", +2 for the Bless Spell = "	+ (attackResult + 2));
+										
+							
+										if (attackResult >= 15) {
+											
+											canHasDisarmed[playerNumberAttacked] = "yes";
+							
+											disarmedTurnStart[playerNumberAttacked] = turn;
+							
+											// playerWhoDisarmed[playerNumberAttacked] = i;
+											
+											centerscrolltext.setVisibility(View.VISIBLE);
+									  		centerscrolltext.startAnimation(animAlphaText);
+									  		centerscrolltext.append("\n" + "> You have disarmed player " + (playerNumberAttacked + 1) + "!");
+											
+											//for (int x = 0; x < 1000; --x)// To give human player time to read.
+											//{
+											//}
+											
+											return;
+										}
+							
+										if (attackResult <= 14 && attackResult > 0) {
+											
+											centerscrolltext.setVisibility(View.VISIBLE);
+									  		centerscrolltext.startAnimation(animAlphaText);
+									  		centerscrolltext.append("\n" + "> Your attempt to disarm misses!");
+											
+											//for (int x = 0; x < 1000; --x)// To give human player time to read.
+											//{
+											//}
+											
+											return;
+										}*/
 					  	  	  		}
-					  	  	  	}, 2000);
+					  	  	  	}, 750);					  	  	  		
 			  	  	  		}
 			  	  	  	}, 2000);
 	  	  	  		}
@@ -9268,94 +9277,101 @@ public class MainActivity2 extends ActionBarActivity {
 				  		centerscrolltext.startAnimation(animAlphaText);
 				  		centerscrolltext.append("\n" + "> You roll a " + attackResult	+ ", +2 for the Bless Spell = "	+ (attackResult + 2));
 						
-			
-						if (attackResult >= 15) {
-							
-							AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-						      
-							alert.setTitle("The computer has been disarmed!");
-				  	    	/*
-				  	    	alert.setMessage("something");
-				  	    	*/	    	
-					    	
-					    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-						    	public void onClick(DialogInterface dialog, int whichButton) {
-						    		
-						    		hideNavigation();									    		
-
-						    		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
-										
-						    			gameEngineHumanFirst2();    							
-									}
-
-						    		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
-						    			
-						    			turn();   							
-									}												
-						    	}
-					    	});								    	
-					    	alert.show();
-					    	
-							
-							canHasDisarmed[playerNumberAttacked] = "yes";
-			
-							disarmedTurnStart[playerNumberAttacked] = turn;
-			
-							// playerWhoDisarmed[playerNumberAttacked] = i;
-							
-							/* FOR PLAYERS > 1 ??
-							centerscrolltext.setVisibility(View.VISIBLE);
-					  		centerscrolltext.startAnimation(animAlphaText);
-					  		centerscrolltext.append("\n" + "> You have disarmed player " + (playerNumberAttacked + 1) + "!");
-							
-							//for (int x = 0; x < 1000; --x)// To give human player time to read.
-							//{
-							//}
-							
-							return;
-							*/
-						}
-			
-						if (attackResult <= 14 && attackResult > 0) {
-							
-							AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-						      
-							alert.setTitle("Your attempt to disarm misses!");
-				  	    	/*
-				  	    	alert.setMessage("something");
-				  	    	*/	    	
-					    	
-					    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-						    	public void onClick(DialogInterface dialog, int whichButton) {
-						    		
-						    		hideNavigation();									    		
-
-						    		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
-										
-						    			gameEngineHumanFirst2();    							
-									}
-
-						    		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
-						    			
-						    			turn();   							
-									}												
-						    	}
-					    	});								    	
-					    	alert.show();
-					    	
-							
-							/*
-							centerscrolltext.setVisibility(View.VISIBLE);
-					  		centerscrolltext.startAnimation(animAlphaText);
-					  		centerscrolltext.append("\n" + "> Your attempt to disarm misses!");
-							
-							//for (int x = 0; x < 1000; --x)// To give human player time to read.
-							//{
-							//}
-							
-							return;
-							*/
-						}
+				  		final Handler h2 = new Handler();
+			  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
+			  	  	  			
+			  	  	  		@Override
+				  	  	  	public void run() {
+			  	  	  			
+				  	  	  		if (attackResult >= 15) {
+									
+									AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+								      
+									alert.setTitle("The computer has been disarmed!");
+						  	    	/*
+						  	    	alert.setMessage("something");
+						  	    	*/	    	
+							    	
+							    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+								    	public void onClick(DialogInterface dialog, int whichButton) {
+								    		
+								    		hideNavigation();									    		
+	
+								    		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+												
+								    			gameEngineHumanFirst2();    							
+											}
+	
+								    		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+								    			
+								    			turn();   							
+											}												
+								    	}
+							    	});								    	
+							    	alert.show();
+							    	
+									
+									canHasDisarmed[playerNumberAttacked] = "yes";
+					
+									disarmedTurnStart[playerNumberAttacked] = turn;
+					
+									// playerWhoDisarmed[playerNumberAttacked] = i;
+									
+									/* FOR PLAYERS > 1 ??
+									centerscrolltext.setVisibility(View.VISIBLE);
+							  		centerscrolltext.startAnimation(animAlphaText);
+							  		centerscrolltext.append("\n" + "> You have disarmed player " + (playerNumberAttacked + 1) + "!");
+									
+									//for (int x = 0; x < 1000; --x)// To give human player time to read.
+									//{
+									//}
+									
+									return;
+									*/
+								}
+					
+								if (attackResult <= 14 && attackResult > 0) {
+									
+									AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+								      
+									alert.setTitle("Your attempt to disarm misses!");
+						  	    	/*
+						  	    	alert.setMessage("something");
+						  	    	*/	    	
+							    	
+							    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+								    	public void onClick(DialogInterface dialog, int whichButton) {
+								    		
+								    		hideNavigation();									    		
+	
+								    		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+												
+								    			gameEngineHumanFirst2();    							
+											}
+	
+								    		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+								    			
+								    			turn();   							
+											}												
+								    	}
+							    	});								    	
+							    	alert.show();
+							    	
+									
+									/*
+									centerscrolltext.setVisibility(View.VISIBLE);
+							  		centerscrolltext.startAnimation(animAlphaText);
+							  		centerscrolltext.append("\n" + "> Your attempt to disarm misses!");
+									
+									//for (int x = 0; x < 1000; --x)// To give human player time to read.
+									//{
+									//}
+									
+									return;
+									*/
+								}				  		
+			  	  	  		}
+			  	  	  	}, 2000);						
 	  	  	  		}
 	  	  	  	}, 2000);
 	  	  	  	
@@ -9376,8 +9392,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 	  			
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-	  			centerscrolltext.setTypeface(typeFace);
-	  			
+	  			centerscrolltext.setTypeface(typeFace);	  			
 	  			
 	  			
 	  			final Handler h1 = new Handler();
@@ -9388,9 +9403,9 @@ public class MainActivity2 extends ActionBarActivity {
   	  	    	
 		  	  	    	/*
 						 * 
-						 * Picture of hands coming together.
+						 * ???????????????????
 						 * 
-						 * blessGraphic();
+						 * disarmGraphic(); ???????????
 						 * 
 						 */  	    			
 				
@@ -9401,54 +9416,35 @@ public class MainActivity2 extends ActionBarActivity {
 				  	  	  	public void run() {
 			  	  	  			
 			  	  	  			// ROLLFROMLEFT (20-SIDED)
-			  	  	  			twentySidedRollFromLeft();
-			  	  	  			
+			  	  	  			twentySidedRollFromLeft();				  	  	  		
+					  	  	  			
 				  	  	  		final Handler h3 = new Handler();
 					  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
 					  	  	  			
 					  	  	  		@Override
 						  	  	  	public void run() {
-					  	  	  			
-					  	  	  			// 20-SIDED WOBBLE START
-					  	  	  			twentySidedWobbleStart();
-					  	  	  			/*
-					  	  	  			// need runOnUiThread?
-					  	  	  			runOnUiThread(new Runnable() {
-							  	  	  	    @Override
-							  	  	  	    public void run() {
-							  	  	  	    	
-							  	  	  	    	twentySidedWobbleStart();						  	  	  	    	
-								  	  	  	}
-						  	  	  			});
-					  	  	  			*/
-					  	  	  			
-						  	  	  		final Handler h4 = new Handler();
-							  	  	  	h4.postDelayed(new Runnable() {		  	  	  			
-							  	  	  			
-							  	  	  		@Override
-								  	  	  	public void run() {
-	  	  	  			
-							  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
-									  		centerscrolltext.startAnimation(animAlphaText);
-									  		centerscrolltext.append("\n" + "> Press slide the die... ");
-									  		
-									  		
-									  		/*
-											 * 
-											 * 
-											 * SLIDE 20-SIDED DIE
-											 * 
-											 * 
-											 */									  		
-											
-											attackResult = (int) ((Math.random() * 20) + 1);
-											
-											isdisarmnoblessrolled = "yes";
-											
-							  	  	  		}
-							  	  	  	}, 2000);
+					  	  	  		
+					  	  	  		twentySidedWobbleStart();
+					  	  	  		
+					  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
+							  		centerscrolltext.startAnimation(animAlphaText);
+							  		centerscrolltext.append("\n" + "> Press slide the die... ");
+							  		
+							  		
+							  		/*
+									 * 
+									 * 
+									 * SLIDE 20-SIDED DIE
+									 * 
+									 * 
+									 */									  		
+									
+									attackResult = (int) ((Math.random() * 20) + 1);
+									
+									isdisarmnoblessrolled = "yes";
+									
 					  	  	  		}
-					  	  	  	}, 2000);
+					  	  	  	}, 750);				  	  	  		
 			  	  	  		}
 			  	  	  	}, 2000);
 	  	  	  		}
@@ -9484,121 +9480,129 @@ public class MainActivity2 extends ActionBarActivity {
 				  		centerscrolltext.startAnimation(animAlphaText);
 				  		centerscrolltext.append("\n" + "> You roll a " + attackResult + "!");
 						
-			
-						if (attackResult >= 17) {
-							
-							AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-						      
-							alert.setTitle("The computer has been disarmed!");
-				  	    	/*
-				  	    	alert.setMessage("something");
-				  	    	*/	    	
-					    	
-					    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-						    	public void onClick(DialogInterface dialog, int whichButton) {
-						    		
-						    		hideNavigation();									    		
-
-						    		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
-										
-						    			gameEngineHumanFirst2();    							
-									}
-
-						    		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
-						    			
-						    			turn();   							
-									}												
-						    	}
-					    	});								    	
-					    	alert.show();
-					    	
-							
-							canHasDisarmed[playerNumberAttacked] = "yes";
-			
-							disarmedTurnStart[playerNumberAttacked] = turn;
-							
-							/*
-							// playerWhoDisarmed[playerNumberAttacked] = i;
-							
-							centerscrolltext.setVisibility(View.VISIBLE);
-					  		centerscrolltext.startAnimation(animAlphaText);
-					  		centerscrolltext.append("\n" + "> You have disarmed player " + (playerNumberAttacked + 1) + "!");
-							
-							return;
-							*/
-						}
-			
-						if (attackResult <= 16 && attackResult > 1) {
-							
-							AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-						      
-							alert.setTitle("Your attempt to disarm misses!");
-				  	    	/*
-				  	    	alert.setMessage("something");
-				  	    	*/	    	
-					    	
-					    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-						    	public void onClick(DialogInterface dialog, int whichButton) {
-						    		
-						    		hideNavigation();									    		
-
-						    		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
-										
-						    			gameEngineHumanFirst2();    							
-									}
-
-						    		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
-						    			
-						    			turn();   							
-									}												
-						    	}
-					    	});								    	
-					    	alert.show();							
-							
-							/*
-							centerscrolltext.setVisibility(View.VISIBLE);
-					  		centerscrolltext.startAnimation(animAlphaText);
-					  		centerscrolltext.append("\n" + "> Your attempt to disarm misses!");
-							
-							return;
-							*/
-						}
-						if (attackResult <= 1) {
-							
-							AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-						      
-							alert.setTitle("You have rolled a critical miss!");
-				  	    	/*
-				  	    	alert.setMessage("something");
-				  	    	*/	    	
-					    	
-					    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-						    	public void onClick(DialogInterface dialog, int whichButton) {
-						    		
-						    		hideNavigation();
-						    		
-						    		criticalMiss();
-
-						    		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
-										
-						    			gameEngineHumanFirst2();    							
-									}
-
-						    		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
-						    			
-						    			turn();   							
-									}												
-						    	}
-					    	});								    	
-					    	alert.show();
-					    	
-							
-							/*
-							criticalMiss();
-							
-							return;
-							*/
-						}
+				  		
+				  		final Handler h2 = new Handler();
+			  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
+			  	  	  			
+			  	  	  		@Override
+				  	  	  	public void run() {
+			  	  	  			
+				  	  	  		if (attackResult >= 17) {
+									
+									AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+								      
+									alert.setTitle("The computer has been disarmed!");
+						  	    	/*
+						  	    	alert.setMessage("something");
+						  	    	*/	    	
+							    	
+							    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+								    	public void onClick(DialogInterface dialog, int whichButton) {
+								    		
+								    		hideNavigation();									    		
+	
+								    		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+												
+								    			gameEngineHumanFirst2();    							
+											}
+	
+								    		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+								    			
+								    			turn();   							
+											}												
+								    	}
+							    	});								    	
+							    	alert.show();
+							    	
+									
+									canHasDisarmed[playerNumberAttacked] = "yes";
+					
+									disarmedTurnStart[playerNumberAttacked] = turn;
+									
+									/*
+									// playerWhoDisarmed[playerNumberAttacked] = i;
+									
+									centerscrolltext.setVisibility(View.VISIBLE);
+							  		centerscrolltext.startAnimation(animAlphaText);
+							  		centerscrolltext.append("\n" + "> You have disarmed player " + (playerNumberAttacked + 1) + "!");
+									
+									return;
+									*/
+								}
+					
+								if (attackResult <= 16 && attackResult > 1) {
+									
+									AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+								      
+									alert.setTitle("Your attempt to disarm misses!");
+						  	    	/*
+						  	    	alert.setMessage("something");
+						  	    	*/	    	
+							    	
+							    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+								    	public void onClick(DialogInterface dialog, int whichButton) {
+								    		
+								    		hideNavigation();									    		
+	
+								    		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+												
+								    			gameEngineHumanFirst2();    							
+											}
+	
+								    		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+								    			
+								    			turn();   							
+											}												
+								    	}
+							    	});								    	
+							    	alert.show();							
+									
+									/*
+									centerscrolltext.setVisibility(View.VISIBLE);
+							  		centerscrolltext.startAnimation(animAlphaText);
+							  		centerscrolltext.append("\n" + "> Your attempt to disarm misses!");
+									
+									return;
+									*/
+								}
+								if (attackResult <= 1) {
+									
+									AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+								      
+									alert.setTitle("You have rolled a critical miss!");
+						  	    	/*
+						  	    	alert.setMessage("something");
+						  	    	*/	    	
+							    	
+							    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+								    	public void onClick(DialogInterface dialog, int whichButton) {
+								    		
+								    		hideNavigation();
+								    		
+								    		criticalMiss();
+	
+								    		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+												
+								    			gameEngineHumanFirst2();    							
+											}
+	
+								    		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+								    			
+								    			turn();   							
+											}												
+								    	}
+							    	});								    	
+							    	alert.show();
+							    	
+									
+									/*
+									criticalMiss();
+									
+									return;
+									*/
+								}			  	  	  			
+			  	  	  		}
+			  	  	  	}, 2000);						
 	  	  	  		}
 	  	  	  	}, 2000);
 	  	  	  	
@@ -10355,8 +10359,7 @@ public class MainActivity2 extends ActionBarActivity {
 					builder.create().show();	  	  	    	
 	  	  	    }
 		});
-	}
-	
+	}	
 	
 
 }
