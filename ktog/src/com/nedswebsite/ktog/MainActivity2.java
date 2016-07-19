@@ -68,7 +68,8 @@ public class MainActivity2 extends ActionBarActivity {
 	//static int playerNumberAttacked;
 	
 	// NEEDS TO BE GLOBAL??
-	int attackResult;	
+	int attackResult;
+	int cureResult;
 	
 	
 	String isInvokingService = "true";	
@@ -81,7 +82,8 @@ public class MainActivity2 extends ActionBarActivity {
 	String isdisarmwithblessrolled = "no";
 	String isdisarmnoblessrolled = "no";	
 	String isblessrolled = "no";
-	String isfirsthastebeingused = "no";
+	String ishasteused = "no";
+	String iscurerolled = "no";
 	
 	String startGameNow ="no";	
 	
@@ -326,8 +328,7 @@ public class MainActivity2 extends ActionBarActivity {
 		    }
 		};
 		thread4.start();
-		*/
-  	  			
+		*/		
 				
 		
 		
@@ -372,28 +373,31 @@ public class MainActivity2 extends ActionBarActivity {
 				//sixSidedRollFromCenterToRight();
 				//determineInitiative();				
 				
-				if (ArrayOfInitiative.initiative[0] == 1){
+				if (ArrayOfInitiative.initiative[0] == 1 || cureResult == 1){
 					sixSidedRollFromCenterToRight1();							  		  	  	
 				}
-				else if (ArrayOfInitiative.initiative[0] == 2){
+				else if (ArrayOfInitiative.initiative[0] == 2 || cureResult == 2){
 					sixSidedRollFromCenterToRight2();
 				}
-				else if (ArrayOfInitiative.initiative[0] == 3){
+				else if (ArrayOfInitiative.initiative[0] == 3 || cureResult == 3){
 					sixSidedRollFromCenterToRight3();
 				}
-				else if (ArrayOfInitiative.initiative[0] == 4){
+				else if (ArrayOfInitiative.initiative[0] == 4 || cureResult == 4){
 					sixSidedRollFromCenterToRight4();
 				}
-				else if (ArrayOfInitiative.initiative[0] == 5){
+				else if (ArrayOfInitiative.initiative[0] == 5 || cureResult == 5){
 					sixSidedRollFromCenterToRight5();
 				}
-				else if (ArrayOfInitiative.initiative[0] == 6){
+				else if (ArrayOfInitiative.initiative[0] == 6 || cureResult == 6){
 					sixSidedRollFromCenterToRight6();
 				}
 				
 				
 				if (issixsidedrolledforinitiative.equals("no")) {					
 					resultsInitiative();
+				}
+				if (iscurerolled.equals("yes")) {
+					cureResults();
 				}
 			//}
 		    }		    
@@ -404,29 +408,32 @@ public class MainActivity2 extends ActionBarActivity {
 				//sixSidedRollFromCenterToLeft();
 				//determineInitiative();				
 				
-				if (ArrayOfInitiative.initiative[0] == 1){		  				
+				if (ArrayOfInitiative.initiative[0] == 1 || cureResult == 1){		  				
 					sixSidedRollFromCenterToLeft1();								  		  	  	
 				}
-				else if (ArrayOfInitiative.initiative[0] == 2){
+				else if (ArrayOfInitiative.initiative[0] == 2 || cureResult == 2){
 					sixSidedRollFromCenterToLeft2();
 				}
-				else if (ArrayOfInitiative.initiative[0] == 3){
+				else if (ArrayOfInitiative.initiative[0] == 3 || cureResult == 3){
 					sixSidedRollFromCenterToLeft3();
 				}
-				else if (ArrayOfInitiative.initiative[0] == 4){
+				else if (ArrayOfInitiative.initiative[0] == 4 || cureResult == 4){
 					sixSidedRollFromCenterToLeft4();
 				}
-				else if (ArrayOfInitiative.initiative[0] == 5){
+				else if (ArrayOfInitiative.initiative[0] == 5 || cureResult == 5){
 					sixSidedRollFromCenterToLeft5();
 				}
-				else if (ArrayOfInitiative.initiative[0] == 6){
+				else if (ArrayOfInitiative.initiative[0] == 6 || cureResult == 6){
 					sixSidedRollFromCenterToLeft6();
 				}
 				
 				
 				if (issixsidedrolledforinitiative.equals("no")) {					
 					resultsInitiative();
-				}					
+				}
+				if (iscurerolled.equals("yes")) {
+					cureResults();
+				}
 			//}
 		    }
 		    public void onSwipeBottom() {
@@ -601,9 +608,7 @@ public class MainActivity2 extends ActionBarActivity {
 		    public void onSwipeBottom() {
 		        Toast.makeText(MainActivity2.this, "bottom", Toast.LENGTH_SHORT).show();
 		    }
-		});
-		
-		
+		});		
 	}
 	
 	
@@ -2917,109 +2922,7 @@ public class MainActivity2 extends ActionBarActivity {
 				*/
   	  	    }
 		});
-	}
-	      
-	public void disarmedAction() {
-		
-		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
-		
-		isInvokingService = "false";
-		
-		runOnUiThread(new Runnable() {
-	  	  	    @Override
-	  	  	    public void run() {
-	  	  	    	
-		  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
-		  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
-		  			
-		  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-		  			centerscrolltext.setTypeface(typeFace);
-		  			
-					
-					centerscrolltext.setVisibility(View.VISIBLE);													
-			  		centerscrolltext.startAnimation(animAlphaText);
-					centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you are disarmed. What do you want to do? ");
-	  	  	    					
-					
-					final Handler h = new Handler();
-		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-		  	  	  			
-		  	  	  		@Override
-			  	  	  	public void run() {
-		  	  	  			
-			  	  	  		final String[] items = new String[] { "Punch", "Haste", "Cure" };
-				      		
-							AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity2.this);
-			
-							// if back pressed: DOES THIS WORK????????????
-							builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
-								@Override
-								public void onCancel(DialogInterface dialog) {
-									
-									//GOTO SOME METHOD!!!!!!!!!!!!!!
-									
-									runActionsOnUi();
-								}
-							});					
-							
-							builder.setTitle("Choose Action").setItems(items,
-									new DialogInterface.OnClickListener() {
-										public void onClick(DialogInterface dialog,	int item) {
-			
-											if (item == 0) {
-												hideNavigation();
-												//isInvokingService = "true";
-												punch();
-											}
-											if (item == 1) {
-												hideNavigation();
-												//isInvokingService = "true";
-												haste();
-											}
-											if (item == 2) {
-												hideNavigation();
-												//isInvokingService = "true";
-												cure();
-											}										
-											
-											isInvokingService = "true";
-											
-										}
-									});
-							builder.create().show();							
-			  	  	  	}
-		  	  	  	}, 2000);					
-	  	  	    }
-		});		
-	}
-	
-	public void punch() {
-		
-		/*
-		 * 
-		 * Picture of fists?
-		 * 
-		 * punchGraphic();
-		 * 
-		 */
-		
-		attack(); //ADJUSTED TO-HIT FOR BEING DISARMED
-		
-		
-		/*
-		if (numberOfPlayers > 1) {
-			System.out.print("Player " + playerNumber[i]
-					+ ", who do you want to punch? (Enter player number): ");
-			playerNumberAttacked = input.nextInt();
-			playerNumberAttacked = playerNumberAttacked - 1;
-		}
-		*/		
-		
-		
-		//if (attackResult <= 1) CAN YOU CRITICL MISS A PUNCH???????????????????????????????????? -----DISARM AGAIN TO MAINTAIN BALANCE. 
-		//FOR NOW i'll do no rolls to keep it simpler, but in future might go w roll to hurt yourself (ie stumble & fall) but no roll to lose weapon. 
-				
-	}		
+	}			
 	
 	public int computerDisarmedAction() {			
 		
@@ -3805,114 +3708,6 @@ public class MainActivity2 extends ActionBarActivity {
 				return;
   	  	    }
 		});		
-	}
-	
-	public int[] cure() {		
-		
-		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
-		
-		runOnUiThread(new Runnable() {
-  	  	    @Override
-  	  	    public void run() {
-  	  	    	
-	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
-	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
-	  			
-	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-	  			centerscrolltext.setTypeface(typeFace);
-  	  	    	
-				
-				if (cureSpell[i] > 0) {
-					
-					if (numberOfPlayers == 1) {
-						
-						cureSpell[0] = cureSpell[0] - 1;				
-						
-						centerscrolltext.setVisibility(View.VISIBLE);													
-				  		centerscrolltext.startAnimation(animAlphaText);
-						centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", roll for cure...");
-						
-						
-						/*
-						 * 
-						 * ROLL 6-SIDED DIE
-						 * 
-						 */
-										
-						/*
-						Scanner input = new Scanner(System.in);
-						input.nextLine();
-						*/
-						
-						int result = (int) ((Math.random() * 10) + 1);
-						int cure = result;
-						
-						centerscrolltext.setVisibility(View.VISIBLE);													
-				  		centerscrolltext.startAnimation(animAlphaText);
-						centerscrolltext.append("\n" + "> You roll a " + cure + "!");				
-		
-						ArrayOfHitPoints.hitpoints[0] = ArrayOfHitPoints.hitpoints[0] + cure;
-						return;
-					}
-					/*
-					if (numberOfPlayers > 1) {
-						cureSpell[i] = cureSpell[i] - 1;
-		
-						System.out.print("Player " + playerNumber[i]
-								+ ", who do you want to cure? (Enter player number): ");
-		
-						playerNumberCured = input.nextInt();
-						playerNumberCured = playerNumberCured - 1;
-		
-						while (playerNumberCured < 0 || playerNumberCured > 5)// ||
-																				// !input.hasNextInt());
-						{
-							System.out
-									.print("Not valid entry!..Who do you want to cure? (Enter player number): ");
-							playerNumberCured = input.nextInt();
-						}
-		
-						System.out.println();
-						System.out.print("Player " + playerNumber[i]
-								+ ", roll for cure...");
-						Scanner input = new Scanner(System.in);
-						input.nextLine();
-						int result = (int) ((Math.random() * 10) + 1);
-						int cure = result;
-						System.out.println("You roll a " + cure + "!");
-						System.out.println();
-		
-						ArrayOfHitPoints.hitpoints[playerNumberCured] = ArrayOfHitPoints.hitpoints[playerNumberCured]
-								+ cure;
-						return hitPoints;
-					}
-					*/
-				} else {		
-					
-					centerscrolltext.setVisibility(View.VISIBLE);													
-			  		centerscrolltext.startAnimation(animAlphaText);
-					centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you have already used your cure spell!");					
-					
-					
-					/*
-					 * 
-					 * THIS LETS HUMAN PLAYER CHOOSE WHAT THEY WANT TO DO (ACTION/ATTACK)
-					 * 
-					 * Bring Action & Attack To Front?
-					 * 
-					 * action(i, turn, gameOn);
-					 * 
-					 */
-					if (isInvokingService.equals("true")){
-						//NEED THIS?
-						SystemClock.sleep(1000);	        		
-							
-						runActionsOnUi();
-					}
-				}
-  	  	    }
-		});				
-		return ArrayOfHitPoints.hitpoints; 
 	}
 	
 	public void computerHasteDisarmed() {//WAS int[]						
@@ -6906,7 +6701,7 @@ public class MainActivity2 extends ActionBarActivity {
 									  		centerscrolltext.startAnimation(animAlphaText);			  		
 											centerscrolltext.append("\n" + "> Your attack hits!");
 											
-											if (mightyBlowSpell[i] > 0) {
+											if (mightyBlowSpell[i] > 0 && ishasteused.equals("no")) {
 												/*
 												centerscrolltext.setVisibility(View.VISIBLE);													
 										  		centerscrolltext.startAnimation(animAlphaText);		  		
@@ -7031,14 +6826,24 @@ public class MainActivity2 extends ActionBarActivity {
 								  	  	  		@Override
 									  	  	  	public void run() {  	  		
 					
-									  	  	  		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
-														
-										    			gameEngineHumanFirst2();    							
+								  	  	  			if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
+													
+									    			gameEngineHumanFirst2();    							
 													}
-					
-													if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+	
+													if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
 										    			
 										    			turn();   							
+													}
+													
+													if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
+														
+										    			hastePartTwo();    							
+													}
+	
+													if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
+										    			
+														hastePartTwo();   							
 													}					  	  	  	
 									  	  	  	}
 								  	  	  	}, 2000);
@@ -7061,7 +6866,7 @@ public class MainActivity2 extends ActionBarActivity {
 									  		centerscrolltext.startAnimation(animAlphaText);			  		
 											centerscrolltext.append("\n" + "> Your attack hits!");
 											
-											if (mightyBlowSpell[i] > 0) {
+											if (mightyBlowSpell[i] > 0 && ishasteused.equals("no")) {
 												/*
 												centerscrolltext.setVisibility(View.VISIBLE);													
 										  		centerscrolltext.startAnimation(animAlphaText);		  		
@@ -7186,14 +6991,24 @@ public class MainActivity2 extends ActionBarActivity {
 								  	  	  		@Override
 									  	  	  	public void run() {  	  		
 					
-									  	  	  		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
-														
-										    			gameEngineHumanFirst2();    							
+								  	  	  			if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
+													
+									    			gameEngineHumanFirst2();    							
 													}
-					
-													if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+	
+													if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
 										    			
 										    			turn();   							
+													}
+													
+													if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
+														
+										    			hastePartTwo();    							
+													}
+	
+													if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
+										    			
+														hastePartTwo();   							
 													}					  	  	  	
 									  	  	  	}
 								  	  	  	}, 2000);
@@ -7254,7 +7069,7 @@ public class MainActivity2 extends ActionBarActivity {
 									  		centerscrolltext.startAnimation(animAlphaText);			  		
 											centerscrolltext.append("\n" + "> Your punch hits!");
 											
-											if (mightyBlowSpell[i] > 0) {
+											if (mightyBlowSpell[i] > 0 && ishasteused.equals("no")) {
 												/*
 												centerscrolltext.setVisibility(View.VISIBLE);													
 										  		centerscrolltext.startAnimation(animAlphaText);		  		
@@ -7379,14 +7194,24 @@ public class MainActivity2 extends ActionBarActivity {
 								  	  	  		@Override
 									  	  	  	public void run() {  	  		
 					
-									  	  	  		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
-														
-										    			gameEngineHumanFirst2();    							
+								  	  	  			if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
+													
+									    			gameEngineHumanFirst2();    							
 													}
-					
-													if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+	
+													if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
 										    			
 										    			turn();   							
+													}
+													
+													if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
+														
+										    			hastePartTwo();    							
+													}
+	
+													if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
+										    			
+														hastePartTwo();   							
 													}					  	  	  	
 									  	  	  	}
 								  	  	  	}, 2000);
@@ -7419,7 +7244,7 @@ public class MainActivity2 extends ActionBarActivity {
 									  		centerscrolltext.startAnimation(animAlphaText);			  		
 											centerscrolltext.append("\n" + "> Your punch hits!");
 											
-											if (mightyBlowSpell[i] > 0) {
+											if (mightyBlowSpell[i] > 0 && ishasteused.equals("no")) {
 												/*
 												centerscrolltext.setVisibility(View.VISIBLE);													
 										  		centerscrolltext.startAnimation(animAlphaText);		  		
@@ -7544,14 +7369,24 @@ public class MainActivity2 extends ActionBarActivity {
 								  	  	  		@Override
 									  	  	  	public void run() {  	  		
 					
-									  	  	  		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
-														
-										    			gameEngineHumanFirst2();    							
+								  	  	  			if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
+													
+									    			gameEngineHumanFirst2();    							
 													}
-					
-													if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+	
+													if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
 										    			
 										    			turn();   							
+													}
+													
+													if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
+														
+										    			hastePartTwo();    							
+													}
+	
+													if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
+										    			
+														hastePartTwo();   							
 													}					  	  	  	
 									  	  	  	}
 								  	  	  	}, 2000);
@@ -7614,7 +7449,7 @@ public class MainActivity2 extends ActionBarActivity {
 				*/		
 				
 				
-				if (mightyBlowSpell[i] > 0) {
+				if (mightyBlowSpell[i] > 0 && ishasteused.equals("no")) {
 					
 					AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 		  			
@@ -7827,15 +7662,15 @@ public class MainActivity2 extends ActionBarActivity {
 									    		
 									    		hideNavigation();
 									    		
-									    		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+									    		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
 													
 									    			gameEngineHumanFirst2();    							
 												}
 
-												if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+												if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
 									    			
 									    			turn();   							
-												}
+												}												
 									    	}
 								    	});								    	
 								    	alert.show();						
@@ -7874,15 +7709,15 @@ public class MainActivity2 extends ActionBarActivity {
 									
 									else {									
 
-										if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+										if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
 											
 							    			gameEngineHumanFirst2();    							
 										}
 
-										if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+										if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
 							    			
 							    			turn();   							
-										}										
+										}																				
 									}				  	  	  			
 					  	  	  	}
 				  	  	  	}, 2000);
@@ -7905,15 +7740,15 @@ public class MainActivity2 extends ActionBarActivity {
 				  	  	  		@Override
 					  	  	  	public void run() {  	  		
 	
-					  	  	  		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+					  	  	  		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
 										
 						    			gameEngineHumanFirst2();    							
 									}
 	
-									if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+									if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
 						    			
 						    			turn();   							
-									}					  	  	  	
+									}													  	  	  	
 					  	  	  	}
 				  	  	  	}, 2000);
 							
@@ -8036,15 +7871,15 @@ public class MainActivity2 extends ActionBarActivity {
 							    		
 							    		hideNavigation();
 							    		
-							    		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+							    		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
 											
 							    			gameEngineHumanFirst2();    							
 										}
 
-										if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+										if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
 							    			
 							    			turn();   							
-										}
+										}									
 							    	}
 						    	});						    	
 						    	alert.show();				
@@ -8103,15 +7938,15 @@ public class MainActivity2 extends ActionBarActivity {
 						
 						else {						
 
-							if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
 								
 				    			gameEngineHumanFirst2();    							
 							}
 
-							if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+							if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
 				    			
 				    			turn();   							
-							}
+							}							
 						}
 		  	  	  	}
 	  	  	  	}, 2000);
@@ -8223,14 +8058,24 @@ public class MainActivity2 extends ActionBarActivity {
 									    		
 									    		hideNavigation();
 									    		
-									    		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+									    		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
 													
 									    			gameEngineHumanFirst2();    							
 												}
 
-												if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+												if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
 									    			
 									    			turn();   							
+												}
+												
+												if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
+													
+									    			hastePartTwo();    							
+												}
+
+												if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
+									    			
+													hastePartTwo();   							
 												}
 									    	}
 								    	});								    	
@@ -8269,14 +8114,24 @@ public class MainActivity2 extends ActionBarActivity {
 									
 									else {									
 
-										if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+										if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
 											
 							    			gameEngineHumanFirst2();    							
 										}
 
-										if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+										if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
 							    			
 							    			turn();   							
+										}
+										
+										if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
+											
+							    			hastePartTwo();    							
+										}
+
+										if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
+							    			
+											hastePartTwo();   							
 										}										
 									}				  	  	  			
 					  	  	  	}
@@ -8300,14 +8155,24 @@ public class MainActivity2 extends ActionBarActivity {
 				  	  	  		@Override
 					  	  	  	public void run() {  	  		
 	
-					  	  	  		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+					  	  	  		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
 										
 						    			gameEngineHumanFirst2();    							
 									}
 	
-									if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+									if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
 						    			
 						    			turn();   							
+									}
+									
+									if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
+										
+						    			hastePartTwo();    							
+									}
+	
+									if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
+						    			
+										hastePartTwo();   							
 									}					  	  	  	
 					  	  	  	}
 				  	  	  	}, 2000);
@@ -8424,14 +8289,24 @@ public class MainActivity2 extends ActionBarActivity {
 							    		
 							    		hideNavigation();
 							    		
-							    		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+							    		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
 											
 							    			gameEngineHumanFirst2();    							
 										}
 
-										if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+										if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
 							    			
 							    			turn();   							
+										}
+										
+										if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
+											
+							    			hastePartTwo();    							
+										}
+
+										if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
+							    			
+											hastePartTwo();   							
 										}
 							    	}
 						    	});						    	
@@ -8489,14 +8364,24 @@ public class MainActivity2 extends ActionBarActivity {
 						
 						else {						
 
-							if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
 								
 				    			gameEngineHumanFirst2();    							
 							}
 
-							if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+							if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
 				    			
 				    			turn();   							
+							}
+							
+							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
+								
+				    			hastePartTwo();    							
+							}
+
+							if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
+				    			
+								hastePartTwo();   							
 							}
 						}
 		  	  	  	}
@@ -8504,54 +8389,6 @@ public class MainActivity2 extends ActionBarActivity {
   	  	    }
 		});
 		return ArrayOfHitPoints.hitpoints;
-	}
-	
-	public void criticalMiss() {//WAS int[]
-		// NEED int playerNumberAttacked????????????????						
-		
-		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
-		
-		runOnUiThread(new Runnable() {
-  	  	    @Override
-  	  	    public void run() {
-  	  	    	
-	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
-	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
-	  			
-	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-	  			centerscrolltext.setTypeface(typeFace);
-  	  	    	
-		
-				/*
-				 * 
-				 * Picture of swords clanging together:
-				 * 
-				 * 
-				 * swordsGraphic();
-				 * 
-				 */
-				
-				/*
-				System.out.println("     /\\___________            ___________/\\");
-				System.out
-						.println("/|---||___________\\ CRITICAL /___________||---|\\");
-				System.out
-						.println("\\|---||___________/   MISS   \\___________||---|/");
-				System.out.println("     \\/                                  \\/");
-				for (int x = 0; x < 1; --x) {
-				}
-				*/
-				
-				
-				centerscrolltext.setVisibility(View.VISIBLE);
-		  		centerscrolltext.startAnimation(animAlphaText);
-				centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[i] + ", you must roll to see if you hit yourself.");
-				
-				criticalMissAttack();
-		
-				return; // playerNumberAttacked?????????????????????
-  	  	    }
-		});
 	}
 	
 	public int[] criticalHitMightyBlowDamage() {					
@@ -8733,15 +8570,15 @@ public class MainActivity2 extends ActionBarActivity {
 									    		
 									    		hideNavigation();									    		
 
-									    		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+									    		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
 													
 									    			gameEngineHumanFirst2();    							
 												}
 
-									    		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+												if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
 									    			
 									    			turn();   							
-												}												
+												}																								
 									    	}
 								    	});								    	
 								    	alert.show();						
@@ -8779,15 +8616,15 @@ public class MainActivity2 extends ActionBarActivity {
 									
 									else {									
 
-										if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+										if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
 											
 							    			gameEngineHumanFirst2();    							
 										}
 
-										if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+										if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
 							    			
 							    			turn();   							
-										}										
+										}																				
 									}				  	  	  			
 					  	  	  	}
 				  	  	  	}, 2000);
@@ -8809,15 +8646,15 @@ public class MainActivity2 extends ActionBarActivity {
 				  	  	  		@Override
 					  	  	  	public void run() {  	  		
 	
-					  	  	  		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+					  	  	  		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
 										
 						    			gameEngineHumanFirst2();    							
 									}
 	
-									if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+									if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
 						    			
 						    			turn();   							
-									}					  	  	  	
+									}														  	  	  	
 					  	  	  	}
 				  	  	  	}, 2000);
 							
@@ -9008,15 +8845,15 @@ public class MainActivity2 extends ActionBarActivity {
 							    		
 							    		hideNavigation();						    		
 
-							    		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+							    		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
 											
 							    			gameEngineHumanFirst2();    							
 										}
 
-										if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+										if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
 							    			
 							    			turn();   							
-										}							
+										}																	
 							    	}
 						    	});						    	
 						    	alert.show();				
@@ -9039,8 +8876,7 @@ public class MainActivity2 extends ActionBarActivity {
 							 * 
 							 * deathGraphic();
 							 * 
-							 */
-							
+							 */							
 							
 							if (numberOfPlayers == 1) {
 								
@@ -9075,15 +8911,15 @@ public class MainActivity2 extends ActionBarActivity {
 						
 						else {						
 
-							if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
 								
 				    			gameEngineHumanFirst2();    							
 							}
 
-							if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+							if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
 				    			
 				    			turn();   							
-							}
+							}							
 						}
 		  	  	  	}
 	  	  	  	}, 2000);				
@@ -9260,14 +9096,24 @@ public class MainActivity2 extends ActionBarActivity {
 									    		
 									    		hideNavigation();
 									    		
-									    		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+									    		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
 													
 									    			gameEngineHumanFirst2();    							
 												}
 
-												if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+												if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
 									    			
 									    			turn();   							
+												}
+												
+												if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
+													
+									    			hastePartTwo();    							
+												}
+
+												if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
+									    			
+													hastePartTwo();   							
 												}
 									    	}
 								    	});								    	
@@ -9306,14 +9152,24 @@ public class MainActivity2 extends ActionBarActivity {
 									
 									else {									
 
-										if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+										if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
 											
 							    			gameEngineHumanFirst2();    							
 										}
 
-										if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+										if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
 							    			
 							    			turn();   							
+										}
+										
+										if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
+											
+							    			hastePartTwo();    							
+										}
+
+										if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
+							    			
+											hastePartTwo();   							
 										}										
 									}				  	  	  			
 					  	  	  	}
@@ -9336,14 +9192,24 @@ public class MainActivity2 extends ActionBarActivity {
 				  	  	  		@Override
 					  	  	  	public void run() {  	  		
 	
-					  	  	  		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+					  	  	  		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
 										
 						    			gameEngineHumanFirst2();    							
 									}
 	
-									if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+									if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
 						    			
 						    			turn();   							
+									}
+									
+									if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
+										
+						    			hastePartTwo();    							
+									}
+	
+									if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
+						    			
+										hastePartTwo();   							
 									}					  	  	  	
 					  	  	  	}
 				  	  	  	}, 2000);
@@ -9525,14 +9391,24 @@ public class MainActivity2 extends ActionBarActivity {
 							    		
 							    		hideNavigation();
 							    		
-							    		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+							    		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
 											
 							    			gameEngineHumanFirst2();    							
 										}
 
-										if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+										if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
 							    			
 							    			turn();   							
+										}
+										
+										if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
+											
+							    			hastePartTwo();    							
+										}
+
+										if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
+							    			
+											hastePartTwo();   							
 										}
 							    	}
 						    	});						    	
@@ -9593,14 +9469,24 @@ public class MainActivity2 extends ActionBarActivity {
 						
 						else {						
 
-							if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
 								
 				    			gameEngineHumanFirst2();    							
 							}
 
-							if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+							if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
 				    			
 				    			turn();   							
+							}
+							
+							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
+								
+				    			hastePartTwo();    							
+							}
+
+							if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
+				    			
+								hastePartTwo();   							
 							}
 						}
 		  	  	  	}
@@ -9608,6 +9494,54 @@ public class MainActivity2 extends ActionBarActivity {
   	  	    }
 		});
 		return ArrayOfHitPoints.hitpoints;
+	}
+	
+	public void criticalMiss() {//WAS int[]
+		// NEED int playerNumberAttacked????????????????						
+		
+		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+		
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {
+  	  	    	
+	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+	  			
+	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  			centerscrolltext.setTypeface(typeFace);
+  	  	    	
+		
+				/*
+				 * 
+				 * Picture of swords clanging together:
+				 * 
+				 * 
+				 * swordsGraphic();
+				 * 
+				 */
+				
+				/*
+				System.out.println("     /\\___________            ___________/\\");
+				System.out
+						.println("/|---||___________\\ CRITICAL /___________||---|\\");
+				System.out
+						.println("\\|---||___________/   MISS   \\___________||---|/");
+				System.out.println("     \\/                                  \\/");
+				for (int x = 0; x < 1; --x) {
+				}
+				*/
+				
+				
+				centerscrolltext.setVisibility(View.VISIBLE);
+		  		centerscrolltext.startAnimation(animAlphaText);
+				centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[i] + ", you must roll to see if you hit yourself.");
+				
+				criticalMissAttack();
+		
+				return; // playerNumberAttacked?????????????????????
+  	  	    }
+		});
 	}
 	
 	public void criticalMissAttack() {
@@ -9761,14 +9695,24 @@ public class MainActivity2 extends ActionBarActivity {
 						    		
 						    		hideNavigation();
 						    		
-						    		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+						    		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
 										
 						    			gameEngineHumanFirst2();    							
 									}
 
-									if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+									if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
 						    			
 						    			turn();   							
+									}
+									
+									if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
+										
+						    			hastePartTwo();    							
+									}
+
+									if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
+						    			
+										hastePartTwo();   							
 									}
 						    	}
 					    	});					    	
@@ -9807,14 +9751,24 @@ public class MainActivity2 extends ActionBarActivity {
 						
 						else {									
 
-							if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
 								
 				    			gameEngineHumanFirst2();    							
 							}
 
-							if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+							if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
 				    			
 				    			turn();   							
+							}
+							
+							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
+								
+				    			hastePartTwo();    							
+							}
+
+							if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
+				    			
+								hastePartTwo();   							
 							}										
 						}				  	  	  			
 		  	  	  	}
@@ -10167,15 +10121,15 @@ public class MainActivity2 extends ActionBarActivity {
 								    		
 								    		hideNavigation();									    		
 	
-								    		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+								    		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
 												
 								    			gameEngineHumanFirst2();    							
 											}
-	
-								    		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+
+											if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
 								    			
 								    			turn();   							
-											}												
+											}																						
 								    	}
 							    	});								    	
 							    	alert.show();
@@ -10214,15 +10168,15 @@ public class MainActivity2 extends ActionBarActivity {
 								    		
 								    		hideNavigation();									    		
 	
-								    		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+								    		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
 												
 								    			gameEngineHumanFirst2();    							
 											}
-	
-								    		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+
+											if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
 								    			
 								    			turn();   							
-											}												
+											}																							
 								    	}
 							    	});								    	
 							    	alert.show();
@@ -10371,15 +10325,15 @@ public class MainActivity2 extends ActionBarActivity {
 								    		
 								    		hideNavigation();									    		
 	
-								    		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+								    		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
 												
 								    			gameEngineHumanFirst2();    							
 											}
-	
-								    		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+
+											if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
 								    			
 								    			turn();   							
-											}												
+											}																							
 								    	}
 							    	});								    	
 							    	alert.show();
@@ -10414,15 +10368,15 @@ public class MainActivity2 extends ActionBarActivity {
 								    		
 								    		hideNavigation();									    		
 	
-								    		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+								    		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
 												
 								    			gameEngineHumanFirst2();    							
 											}
-	
-								    		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+
+											if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
 								    			
 								    			turn();   							
-											}												
+											}																						
 								    	}
 							    	});								    	
 							    	alert.show();							
@@ -10435,6 +10389,7 @@ public class MainActivity2 extends ActionBarActivity {
 									return;
 									*/
 								}
+								
 								if (attackResult <= 1) {
 									
 									AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
@@ -10449,21 +10404,10 @@ public class MainActivity2 extends ActionBarActivity {
 								    		
 								    		hideNavigation();
 								    		
-								    		criticalMiss();
-	
-								    		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
-												
-								    			gameEngineHumanFirst2();    							
-											}
-	
-								    		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
-								    			
-								    			turn();   							
-											}												
+								    		criticalMiss();							    														
 								    	}
 							    	});								    	
-							    	alert.show();
-							    	
+							    	alert.show();							    	
 									
 									/*
 									criticalMiss();
@@ -10481,7 +10425,7 @@ public class MainActivity2 extends ActionBarActivity {
 		});
 	}
 	
-	public int[] haste() { // no bless because you can't use 2 spells in one turn.						
+	public void haste() { // NO BLESS because you can't use 2 spells in one turn.	
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
@@ -10494,110 +10438,145 @@ public class MainActivity2 extends ActionBarActivity {
 	  			
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);
-  	  	    	
+	  			
+	  			if (hasteSpell[i] > 0) {
+	  				
+	  				if (numberOfPlayers == 1) {
+	  					
+	  					final Handler h1 = new Handler();
+	  		  	  	  	h1.postDelayed(new Runnable() {		  	  	  			
+	  		  	  	  			
+	  		  	  	  		@Override
+	  			  	  	  	public void run() {
+	  		  	  	  			
+	  		  	  	  			if (canHasDisarmed[i].equals("no")) {
+	  		  	  	  				
+	  		  	  	  				ishasteused = "yes";
+	  	  	  				
+			  	  	  				/*
+									 * 
+									 * Picture of swords clanging together:
+									 * 
+									 * 
+									 * swordsGraphic();
+									 * 
+									 */
+			  	  	  			
+					  	  	  		final Handler h1 = new Handler();
+						  	  	  	h1.postDelayed(new Runnable() {		  	  	  			
+						  	  	  			
+						  	  	  		@Override
+							  	  	  	public void run() {
+						  	  	  			
+							  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
+											centerscrolltext.startAnimation(animAlphaText);
+											centerscrolltext.append("\n" + "> Two Attacks!");
+											
+											final Handler h2 = new Handler();
+								  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
+								  	  	  			
+								  	  	  		@Override
+									  	  	  	public void run() {
+								  	  	  			
+									  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
+											  		centerscrolltext.startAnimation(animAlphaText);
+													centerscrolltext.append("\n" + "> 1st Attack...");
+													
+													final Handler h3 = new Handler();
+										  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
+										  	  	  			
+										  	  	  		@Override
+											  	  	  	public void run() {  	  		
+							
+											  	  	  		attack();					  	  	  	
+											  	  	  	}
+										  	  	  	}, 2000);
+									  	  	  	}
+								  	  	  	}, 2000);			  	  	  							  	  	  	
+							  	  	  	}
+						  	  	  	}, 2000);
+	  		  	  	  			}
+	  		  	  	  			
+			  		  	  	  	if (canHasDisarmed[i].equals("yes")) {
+			  		  	  	  		
+			  		  	  	  		//ishasteused = "yes";
+			  	  	  				
+			  	  	  				/*
+									 * 
+									 * Picture of swords clanging together:
+									 * 
+									 * 
+									 * swordsGraphic();
+									 * 
+									 */									
+									
+									centerscrolltext.setVisibility(View.VISIBLE);
+							  		centerscrolltext.startAnimation(animAlphaText);
+									centerscrolltext.append("\n" + "> You are no longer disarmed!");
+									
+									final Handler h = new Handler();
+						  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+						  	  	  			
+						  	  	  		@Override
+							  	  	  	public void run() {  	  		
 		
-				if (hasteSpell[i] > 0  && isfirsthastebeingused.equals("no")) {
+							  	  	  		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+												
+								    			gameEngineHumanFirst2();    							
+											}
+		
+											if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+								    			
+								    			turn();   							
+											}					  	  	  	
+							  	  	  	}
+						  	  	  	}, 2000);													
+								}
+			  		  	  	  	
+	  		  	  	  			
+	  		  	  	  		}
+	  		  	  	  	}, 2000);
+	  				}
+	  			}	  			
+	  			
+	  			else {
+  	  	  			
+					centerscrolltext.setVisibility(View.VISIBLE);
+			  		centerscrolltext.startAnimation(animAlphaText);
+			  		centerscrolltext.append("\n" + "> You have already used your Haste spells!");
 					
-					if (numberOfPlayers == 1) {
-						
-						hasteSpell[0] = hasteSpell[0] - 1;
-					}
-					/*
-					if (numberOfPlayers > 1) {
-						hasteSpell[i] = hasteSpell[i] - 1;
-					}
-					*/
-					
-					
-					/*
-					 * 
-					 * Picture of swords clanging together:
-					 * 
-					 * 
-					 * swordsGraphic();
-					 * 
-					 */
-					
-					/*
-					swordsGraphic();
-					System.out.println("     /\\___________           ___________/\\");
-					System.out
-							.println("/|---||___________\\   TWO   /___________||---|\\");
-					System.out
-							.println("\\|---||___________/ ATTACKS \\___________||---|/");
-					System.out.println("     \\/                                 \\/");
-					for (int x = 0; x < 1; --x) {
-					}
-					*/
-					
-					/*
-					System.out.println();
-					System.out.println("     /\\____________");
-					System.out.println("/|---||_1st Attack_\\");
-					System.out.println("\\|---||____________/");
-					System.out.println("     \\/           ");
-					System.out.println();
-					*/
-					
-					isfirsthastebeingused = "yes";
-					
-					final Handler h1 = new Handler();
-		  	  	  	h1.postDelayed(new Runnable() {		  	  	  			
+					final Handler h = new Handler();
+		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 		  	  	  			
 		  	  	  		@Override
 			  	  	  	public void run() {
 		  	  	  			
-			  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
-							centerscrolltext.startAnimation(animAlphaText);
-							centerscrolltext.append("\n" + "> Two Attacks!");
-							
-							final Handler h2 = new Handler();
-				  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
-				  	  	  			
-				  	  	  		@Override
-					  	  	  	public void run() {
-				  	  	  			
-					  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
-							  		centerscrolltext.startAnimation(animAlphaText);
-									centerscrolltext.append("\n" + "> 1st Attack...");					  	  	  							  	  	  	
-					  	  	  	}
-				  	  	  	}, 2000);			  	  	  							  	  	  	
+		  	  	  			/*
+							 * 
+							 * THIS LETS HUMAN PLAYER CHOOSE WHAT THEY WANT TO DO (ACTION/ATTACK)
+							 * 
+							 * Bring Action To Front?
+							 * 
+							 * action(i, turn, gameOn);
+							 * 
+							 */			  		
+					  		
+					  		if (isInvokingService.equals("true")){
+								//NEED THIS?
+								SystemClock.sleep(1000);	        		
+									
+								runActionsOnUi();
+					  		}										  	  	  							  	  	  	
 			  	  	  	}
-		  	  	  	}, 2000);					
-					
-					attack();					
-		
-				} else {
-					
-					centerscrolltext.setVisibility(View.VISIBLE);
-			  		centerscrolltext.startAnimation(animAlphaText);
-			  		centerscrolltext.append("\n" + "> You have already used your Haste spell!");					
-			  		
-			  		
-			  		/*
-					 * 
-					 * THIS LETS HUMAN PLAYER CHOOSE WHAT THEY WANT TO DO (ACTION/ATTACK)
-					 * 
-					 * Bring Action To Front?
-					 * 
-					 * action(i, turn, gameOn);
-					 * 
-					 */					
-			  		if (isInvokingService.equals("true")){
-						//NEED THIS?
-						SystemClock.sleep(1000);	        		
-							
-						runActionsOnUi();
-					}
-				}
+		  	  	  	}, 2000);											
+				}	  	  	    				 
   	  	    }
-		});
-		return hasteSpell;
+		});			
 	}
 	
-	public void secondHaste() {
+	public void hastePartTwo() {
 		
-		isfirsthastebeingused = "no";
+		ishasteused = "no";
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
@@ -11020,15 +10999,15 @@ public class MainActivity2 extends ActionBarActivity {
 							  	  	  		@Override
 								  	  	  	public void run() {  	  		
 				
-								  	  	  		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+								  	  	  		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
 													
 									    			gameEngineHumanFirst2();    							
 												}
-				
-												if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+	
+												if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
 									    			
 									    			turn();   							
-												}					  	  	  	
+												}																	  	  	  	
 								  	  	  	}
 							  	  	  	}, 2000);
 										
@@ -11171,15 +11150,15 @@ public class MainActivity2 extends ActionBarActivity {
 							  	  	  		@Override
 								  	  	  	public void run() {  	  		
 				
-								  	  	  		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+								  	  	  		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
 													
 									    			gameEngineHumanFirst2();    							
 												}
-				
-												if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+	
+												if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
 									    			
 									    			turn();   							
-												}					  	  	  	
+												}																	  	  	  	
 								  	  	  	}
 							  	  	  	}, 2000);
 										
@@ -11193,7 +11172,300 @@ public class MainActivity2 extends ActionBarActivity {
   	  	    }
 		});
 		return playerNumberAttacked;
-	}	
+	}
+	
+	public void cure() {
+		
+		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+		
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {
+  	  	    	
+	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+	  			
+	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  			centerscrolltext.setTypeface(typeFace);
+  	  	    	
+		
+				if (cureSpell[i] > 0) {
+					
+					if (numberOfPlayers == 1) {
+						
+						cureSpell[0] = cureSpell[0] - 1;						
+						
+		
+						final Handler h1 = new Handler();
+			  	  	  	h1.postDelayed(new Runnable() {		  	  	  			
+			  	  	  			
+			  	  	  		@Override
+				  	  	  	public void run() {
+			  	  	  			
+			  	  	  			/*
+								 * 
+								 * ???????????????
+								 * 
+								 * cure Graphic();
+								 * 
+								 */
+								
+								//blessGraphic();
+						
+				  	  	  		final Handler h2 = new Handler();
+					  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
+					  	  	  			
+					  	  	  		@Override
+						  	  	  	public void run() {					  	  	  			
+					  	  	  			
+					  	  	  			sixSidedRollFromLeft();				  	  	  		
+							  	  	  			
+						  	  	  		final Handler h3 = new Handler();
+							  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
+							  	  	  			
+							  	  	  		@Override
+								  	  	  	public void run() {				
+							  	  	  			
+							  	  	  			sixSidedWobbleStart();
+							  	  	  			
+												centerscrolltext.setVisibility(View.VISIBLE);
+										  		centerscrolltext.startAnimation(animAlphaText);
+												centerscrolltext.append("\n" + "> Please slide the die...");
+										
+												/*
+												 * 
+												 * ROLL 6-SIDED DIE
+												 * 
+												 */
+										
+												cureResult = (int)(Math.random()*6)+1;
+										        //(Math.random()*6) returns a number between 0 (inclusive) and 6 (exclusive)
+										        //same as: (int) Math.ceil(Math.random()*6); ?										
+												
+												iscurerolled = "yes";
+												
+							  	  	  		}
+							  	  	  	}, 750);					  	  	  		
+					  	  	  		}
+					  	  	  	}, 2000);
+			  	  	  		}
+			  	  	  	}, 2000);
+					}
+					/*
+					if (numberOfPlayers > 1) {
+						cureSpell[i] = cureSpell[i] - 1;
+		
+						System.out.print("Player " + playerNumber[i]
+								+ ", who do you want to cure? (Enter player number): ");
+		
+						playerNumberCured = input.nextInt();
+						playerNumberCured = playerNumberCured - 1;
+		
+						while (playerNumberCured < 0 || playerNumberCured > 5)// ||
+																				// !input.hasNextInt());
+						{
+							System.out
+									.print("Not valid entry!..Who do you want to cure? (Enter player number): ");
+							playerNumberCured = input.nextInt();
+						}
+		
+						System.out.println();
+						System.out.print("Player " + playerNumber[i]
+								+ ", roll for cure...");
+						Scanner input = new Scanner(System.in);
+						input.nextLine();
+						int result = (int) ((Math.random() * 10) + 1);
+						int cure = result;
+						System.out.println("You roll a " + cure + "!");
+						System.out.println();
+		
+						ArrayOfHitPoints.hitpoints[playerNumberCured] = ArrayOfHitPoints.hitpoints[playerNumberCured]
+								+ cure;
+						return hitPoints;
+					}
+					*/
+				} else {
+					
+					centerscrolltext.setVisibility(View.VISIBLE);
+			  		centerscrolltext.startAnimation(animAlphaText);
+			  		centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[i] + ", you have already used your cure spell!");
+								  		
+			  		
+			  		/*
+					 * 
+					 * THIS LETS HUMAN PLAYER CHOOSE WHAT THEY WANT TO DO (ACTION/ATTACK)
+					 * 
+					 * Bring Action To Front?
+					 * 
+					 * action(i, turn, gameOn);
+					 * 
+					 */
+			  		
+			  		if (isInvokingService.equals("true")){
+						//NEED THIS?
+						SystemClock.sleep(1000);	        		
+							
+						runActionsOnUi();
+					}
+				}
+  	  	    }
+		});		 
+	}
+	
+	public void cureResults() {
+		
+		iscurerolled = "no";
+		
+		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+		
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {
+  	  	    	
+	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+	  			
+	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  			centerscrolltext.setTypeface(typeFace);
+  	  	    	
+	  			
+	  			final Handler h1 = new Handler();
+	  	  	  	h1.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {
+	  	  	  			
+		  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
+				  		centerscrolltext.startAnimation(animAlphaText);
+						centerscrolltext.append("\n" + "> You roll a " + cureResult + "!");				
+		
+						ArrayOfHitPoints.hitpoints[i] = ArrayOfHitPoints.hitpoints[i] + cureResult;	  	  	  			
+		  	  	  														
+						
+						final Handler h2 = new Handler();
+			  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
+			  	  	  			
+			  	  	  		@Override
+				  	  	  	public void run() {
+			  	  	  			
+				  	  	  		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
+									
+					    			gameEngineHumanFirst2();    							
+								}
+	
+								if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
+					    			
+					    			turn();   							
+								}																						
+			  	  	  		}
+			  	  	  	}, 2000);
+	  	  	  		}
+	  	  	  	}, 2000);								 
+  	  	    }
+		});		
+	}
+	
+	public void disarmedAction() {
+		
+		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+		
+		isInvokingService = "false";
+		
+		runOnUiThread(new Runnable() {
+	  	  	    @Override
+	  	  	    public void run() {
+	  	  	    	
+		  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+		  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+		  			
+		  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+		  			centerscrolltext.setTypeface(typeFace);
+		  			
+					
+					centerscrolltext.setVisibility(View.VISIBLE);													
+			  		centerscrolltext.startAnimation(animAlphaText);
+					centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you are disarmed. What do you want to do? ");
+	  	  	    					
+					
+					final Handler h = new Handler();
+		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+		  	  	  			
+		  	  	  		@Override
+			  	  	  	public void run() {
+		  	  	  			
+			  	  	  		final String[] items = new String[] { "Punch", "Haste", "Cure" };
+				      		
+							AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity2.this);
+			
+							// if back pressed: DOES THIS WORK????????????
+							builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+								@Override
+								public void onCancel(DialogInterface dialog) {
+									
+									//GOTO SOME METHOD!!!!!!!!!!!!!!
+									
+									runActionsOnUi();
+								}
+							});					
+							
+							builder.setTitle("Choose Action").setItems(items,
+									new DialogInterface.OnClickListener() {
+										public void onClick(DialogInterface dialog,	int item) {
+			
+											if (item == 0) {
+												hideNavigation();
+												//isInvokingService = "true";
+												punch();
+											}
+											if (item == 1) {
+												hideNavigation();
+												//isInvokingService = "true";
+												haste();
+											}
+											if (item == 2) {
+												hideNavigation();
+												//isInvokingService = "true";
+												cure();
+											}										
+											
+											isInvokingService = "true";
+											
+										}
+									});
+							builder.create().show();							
+			  	  	  	}
+		  	  	  	}, 2000);					
+	  	  	    }
+		});		
+	}
+	
+	public void punch() {
+		
+		/*
+		 * 
+		 * Picture of fists?
+		 * 
+		 * punchGraphic();
+		 * 
+		 */
+		
+		attack(); //ADJUSTED TO-HIT FOR BEING DISARMED
+		
+		
+		/*
+		if (numberOfPlayers > 1) {
+			System.out.print("Player " + playerNumber[i]
+					+ ", who do you want to punch? (Enter player number): ");
+			playerNumberAttacked = input.nextInt();
+			playerNumberAttacked = playerNumberAttacked - 1;
+		}
+		*/		
+		
+		
+		//if (attackResult <= 1) CAN YOU CRITICL MISS A PUNCH???????????????????????????????????? -----DISARM AGAIN TO MAINTAIN BALANCE. 
+		//FOR NOW i'll do no rolls to keep it simpler, but in future might go w roll to hurt yourself (ie stumble & fall) but no roll to lose weapon. 
+				
+	}
 	
 	public void gameEngine() {		
 		
