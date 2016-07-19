@@ -10425,7 +10425,7 @@ public class MainActivity2 extends ActionBarActivity {
 		});
 	}
 	
-	public void haste() { // NO BLESS because you can't use 2 spells in one turn.	
+	public void haste() { // Can't use 2 spells in one turn & ONLY 2 ATTACKS OR RE-ARM ONESELF.	
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
