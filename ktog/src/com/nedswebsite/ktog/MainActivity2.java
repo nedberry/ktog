@@ -85,6 +85,7 @@ public class MainActivity2 extends ActionBarActivity {
 	String isblessrolled = "no";
 	String ishasteused = "no";
 	String iscurerolled = "no";
+	String isattackdamagerolled = "no";
 	String iscriticalmissdamagerolled = "no";
 	
 	String startGameNow ="no";	
@@ -401,8 +402,11 @@ public class MainActivity2 extends ActionBarActivity {
 				if (iscurerolled.equals("yes")) {
 					cureResults();
 				}
+				if (isattackdamagerolled.equals("yes")) {
+					damageResults();
+				}
 				if (iscriticalmissdamagerolled.equals("yes")) {
-					criticalMissDamage();
+					criticalMissDamageResults();
 				}
 			//}
 		    }		    
@@ -439,8 +443,11 @@ public class MainActivity2 extends ActionBarActivity {
 				if (iscurerolled.equals("yes")) {
 					cureResults();
 				}
+				if (isattackdamagerolled.equals("yes")) {
+					damageResults();
+				}
 				if (iscriticalmissdamagerolled.equals("yes")) {
-					criticalMissDamage();
+					criticalMissDamageResults();
 				}
 			//}
 		    }
@@ -6697,6 +6704,7 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  	  	public void run() {						
 					
 									if (attackResult >= 20) {
+										
 										criticalHit();
 										return;
 									}
@@ -7963,7 +7971,7 @@ public class MainActivity2 extends ActionBarActivity {
 		return ArrayOfHitPoints.hitpoints;
 	}
 
-	public int[] damage() {						
+	public int[] damage() {
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
@@ -7976,9 +7984,10 @@ public class MainActivity2 extends ActionBarActivity {
 	  			
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);
-  	  	    	
-		
-				if (dodgeBlowSpell[playerNumberAttacked] > 0) {
+				
+	  			// IF DODGE BLOW:
+	  			
+	  			if (dodgeBlowSpell[playerNumberAttacked] > 0) {
 					
 					if (numberOfPlayers == 1) {
 						
@@ -7987,167 +7996,64 @@ public class MainActivity2 extends ActionBarActivity {
 							centerscrolltext.setVisibility(View.VISIBLE);
 					  		centerscrolltext.startAnimation(animAlphaText);
 							centerscrolltext.append("\n" + "> The computer does not dodge.");
-							
-							centerscrolltext.setVisibility(View.VISIBLE);
-					  		centerscrolltext.startAnimation(animAlphaText);
-							centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", roll for damage...");
-							
-							
-							if (canHasDisarmed[0].equals("no")) {
-							
-								/*
-								 * 
-								 * ROLL 6-SIDED DIE
-								 * 
-								 */
-								
-								/*
-								Scanner input = new Scanner(System.in);
-								input.nextLine();
-								*/
-								int result = (int) ((Math.random() * 6) + 1);
-								int attackDamage = result;
-								
-								centerscrolltext.setVisibility(View.VISIBLE);
-						  		centerscrolltext.startAnimation(animAlphaText);
-								centerscrolltext.append("\n" + "> You roll a " + attackDamage + " for damage!");
-								
-			
-								ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - attackDamage;
-							}
-								
-							if (canHasDisarmed[0].equals("yes")) {								
-								
-								/*
-								 * 
-								 * ROLL 6-SIDED DIE
-								 * 
-								 */
-								
-								/*
-								Scanner input = new Scanner(System.in);
-								input.nextLine();
-								*/
-								int result = (int) ((Math.random() * 6) + 1);
-								int attackDamage = result;
-								int attackDamageDisarmed = (result - 2);
-								
-								if (attackDamageDisarmed < 0) {
-									
-					                  attackDamageDisarmed = 0;					            
-								}
-								
-								centerscrolltext.setVisibility(View.VISIBLE);
-						  		centerscrolltext.startAnimation(animAlphaText);
-								centerscrolltext.append("\n" + "> You roll a " + attackDamage + ", -2 damage for punch = " + attackDamageDisarmed + " damage!");
-								
-			
-								ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - attackDamageDisarmed;
-							}							
-								
-							
-							final Handler h = new Handler();
-				  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+										
+		
+							final Handler h1 = new Handler();
+				  	  	  	h1.postDelayed(new Runnable() {		  	  	  			
 				  	  	  			
 				  	  	  		@Override
 					  	  	  	public void run() {
-							
-									if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] == 0) {
-										
-										AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-									      
-										alert.setTitle("The computer has been knocked unconscious!");
-							  	    	/*
-							  	    	alert.setMessage("something");
-							  	    	*/	    	
-								    	
-								    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-									    	public void onClick(DialogInterface dialog, int whichButton) {
-									    		
-									    		hideNavigation();
-									    		
-									    		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
-													
-									    			gameEngineHumanFirst2();    							
-												}
-
-												if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
-									    			
-									    			turn();   							
-												}
-												
-												if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
-													
-									    			hastePartTwo();    							
-												}
-
-												if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
-									    			
-													hastePartTwo();   							
-												}
-									    	}
-								    	});								    	
-								    	alert.show();						
-									}
-				
-									if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] < 0) {
-										
-										/*
-										 * 
-										 * Picture of one sword destroying another.
-										 * 
-										 * deathGraphic();
-										 * 
-										 */
-										
-										AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-									      
-										alert.setTitle("The computer has been slain!");
-							  	    	/*
-							  	    	alert.setMessage("something");
-							  	    	*/	    	
-								    	
-								    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-									    	public void onClick(DialogInterface dialog, int whichButton) {
-									    		
-									    		hideNavigation();
-									    		
-									    		gameOverCheck();
-									    	}
-								    	});								    	
-								    	alert.show();				    	
-										
-										playerDeadYet[playerNumberAttacked] = "yes";										
-									}
+				  	  	  			
+				  	  	  			/*
+									 * 
+									 * ???????????????
+									 * 
+									 * damage Graphic(); ??????????????
+									 * 
+									 */
 									
-									else {									
-
-										if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
+									//blessGraphic();
+							
+					  	  	  		final Handler h2 = new Handler();
+						  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
+						  	  	  			
+						  	  	  		@Override
+							  	  	  	public void run() {					  	  	  			
+						  	  	  			
+						  	  	  			sixSidedRollFromLeft();				  	  	  		
+								  	  	  			
+							  	  	  		final Handler h3 = new Handler();
+								  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
+								  	  	  			
+								  	  	  		@Override
+									  	  	  	public void run() {				
+								  	  	  			
+								  	  	  			sixSidedWobbleStart();
+								  	  	  			
+													centerscrolltext.setVisibility(View.VISIBLE);
+											  		centerscrolltext.startAnimation(animAlphaText);
+													centerscrolltext.append("\n" + "> Please slide the die...");
 											
-							    			gameEngineHumanFirst2();    							
-										}
-
-										if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
-							    			
-							    			turn();   							
-										}
-										
-										if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
-											
-							    			hastePartTwo();    							
-										}
-
-										if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
-							    			
-											hastePartTwo();   							
-										}										
-									}				  	  	  			
-					  	  	  	}
+													/*
+													 * 
+													 * ROLL 6-SIDED DIE
+													 * 
+													 */
+													
+													attackDamage = (int)(Math.random()*6)+1;
+											        //(Math.random()*6) returns a number between 0 (inclusive) and 6 (exclusive)
+											        //same as: (int) Math.ceil(Math.random()*6); ?										
+													
+													isattackdamagerolled = "yes";
+													
+								  	  	  		}
+								  	  	  	}, 750);					  	  	  		
+						  	  	  		}
+						  	  	  	}, 2000);
+				  	  	  		}
 				  	  	  	}, 2000);
+						}				  	  	  	
 				  	  	  	
-							return;
-						}
-						
 						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] <= 6 && ArrayOfHitPoints.hitpoints[playerNumberAttacked] > 0) {
 							
 							centerscrolltext.setVisibility(View.VISIBLE);
@@ -8216,187 +8122,227 @@ public class MainActivity2 extends ActionBarActivity {
 					}
 					*/
 				}
-				
-				centerscrolltext.setVisibility(View.VISIBLE);
-		  		centerscrolltext.startAnimation(animAlphaText);
-				centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[i] + ", roll for damage...");
-				
-				
-				if (canHasDisarmed[0].equals("no")) {
-					
-					/*
-					 * 
-					 * ROLL 6-SIDED DIE
-					 * 
-					 */
-					
-					/*
-					Scanner input = new Scanner(System.in);
-					input.nextLine();
-					*/
-					int result = (int) ((Math.random() * 6) + 1);
-					int attackDamage = result;
-					
-					centerscrolltext.setVisibility(View.VISIBLE);
-			  		centerscrolltext.startAnimation(animAlphaText);
-					centerscrolltext.append("\n" + "> You roll a " + attackDamage + " for damage!");
-					
-
-					ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - attackDamage;
-				}
-					
-				if (canHasDisarmed[0].equals("yes")) {								
-					
-					/*
-					 * 
-					 * ROLL 6-SIDED DIE
-					 * 
-					 */
-					
-					/*
-					Scanner input = new Scanner(System.in);
-					input.nextLine();
-					*/
-					int result = (int) ((Math.random() * 6) + 1);
-					int attackDamage = result;
-					int attackDamageDisarmed = (result - 2);
-					
-					if (attackDamageDisarmed < 0) {
-						
-		                  attackDamageDisarmed = 0;					            
-					}
-					
-					centerscrolltext.setVisibility(View.VISIBLE);
-			  		centerscrolltext.startAnimation(animAlphaText);
-					centerscrolltext.append("\n" + "> You roll a " + attackDamage + ", -2 damage for punch = " + attackDamageDisarmed + " damage!");
-					
-
-					ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - attackDamageDisarmed;
-				}
-				
-				
-				final Handler h = new Handler();
-	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-	  	  	  			
-	  	  	  		@Override
-		  	  	  	public void run() {
-				
-						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] == 0) {
-							System.out.println();
-							if (numberOfPlayers == 1) {
-								
-								AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-							      
-								alert.setTitle("The computer has been knocked unconscious!");
-					  	    	/*
-					  	    	alert.setMessage("something");
-					  	    	*/	    	
-						    	
-						    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-							    	public void onClick(DialogInterface dialog, int whichButton) {
-							    		
-							    		hideNavigation();
-							    		
-							    		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
-											
-							    			gameEngineHumanFirst2();    							
-										}
-
-										if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
-							    			
-							    			turn();   							
-										}
-										
-										if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
-											
-							    			hastePartTwo();    							
-										}
-
-										if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
-							    			
-											hastePartTwo();   							
-										}
-							    	}
-						    	});						    	
-						    	alert.show();				
-							}
-							/*
-							if (numberOfPlayers > 1) {
-								System.out.println("Player " + (playerNumberAttacked + 1) + ", you have been knocked unconscious!");
-							}
-							System.out.print("Press a key to continue... ");
-							input.nextLine();
-							*/
-						}
-				
-						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] < 0) {
-							
-							/*
+	  			
+	  			// IF NO DODGE BLOW:
+	  			
+	  			else {
+	  			
+		  			final Handler h1 = new Handler();
+		  	  	  	h1.postDelayed(new Runnable() {		  	  	  			
+		  	  	  			
+		  	  	  		@Override
+			  	  	  	public void run() {
+		  	  	  			
+		  	  	  			/*
 							 * 
-							 * Picture of one sword destroying another.
+							 * ???????????????
 							 * 
-							 * deathGraphic();
+							 * damage Graphic(); ??????????????
 							 * 
 							 */
 							
-							
-							if (numberOfPlayers == 1) {
-								
-								AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-							      
-								alert.setTitle("The computer has been slain!");
-					  	    	/*
-					  	    	alert.setMessage("something");
-					  	    	*/	    	
-						    	
-						    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-							    	public void onClick(DialogInterface dialog, int whichButton) {
-							    		
-							    		hideNavigation();
-							    		
-							    		gameOverCheck();
-							    	}
-						    	});						    	
-						    	alert.show();				
-							}
-							/*
-							if (numberOfPlayers > 1) {
-								System.out.println("Player " + (playerNumberAttacked + 1) + ", you have been slain!");
-							}
-							System.out.print("Press a key to continue... ");
-							input.nextLine();
-							*/
-							
-							playerDeadYet[playerNumberAttacked] = "yes";							
-						}
-						
-						else {						
-
-							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
-								
-				    			gameEngineHumanFirst2();    							
-							}
-
-							if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
-				    			
-				    			turn();   							
-							}
-							
-							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
-								
-				    			hastePartTwo();    							
-							}
-
-							if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
-				    			
-								hastePartTwo();   							
-							}
-						}
-		  	  	  	}
-	  	  	  	}, 2000);
-  	  	    }
+							//blessGraphic();
+					
+			  	  	  		final Handler h2 = new Handler();
+				  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
+				  	  	  			
+				  	  	  		@Override
+					  	  	  	public void run() {					  	  	  			
+				  	  	  			
+				  	  	  			sixSidedRollFromLeft();				  	  	  		
+						  	  	  			
+					  	  	  		final Handler h3 = new Handler();
+						  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
+						  	  	  			
+						  	  	  		@Override
+							  	  	  	public void run() {				
+						  	  	  			
+						  	  	  			sixSidedWobbleStart();
+						  	  	  			
+											centerscrolltext.setVisibility(View.VISIBLE);
+									  		centerscrolltext.startAnimation(animAlphaText);
+											centerscrolltext.append("\n" + "> Please slide the die...");
+									
+											/*
+											 * 
+											 * ROLL 6-SIDED DIE
+											 * 
+											 */
+											
+											attackDamage = (int)(Math.random()*6)+1;
+									        //(Math.random()*6) returns a number between 0 (inclusive) and 6 (exclusive)
+									        //same as: (int) Math.ceil(Math.random()*6); ?										
+											
+											isattackdamagerolled = "yes";										
+						  	  	  		}
+						  	  	  	}, 750);					  	  	  		
+				  	  	  		}
+				  	  	  	}, 2000);
+		  	  	  		}
+		  	  	  	}, 2000);
+	  			}
+  	  	    }  	  	    
 		});
+		
 		return ArrayOfHitPoints.hitpoints;
+	}
+	
+	public void damageResults() {
+		
+		isattackdamagerolled = "no";
+		
+		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+		
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {
+  	  	    	
+	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+	  			
+	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  			centerscrolltext.setTypeface(typeFace);
+  	  	    	
+	  			
+	  			final Handler h1 = new Handler();
+	  	  	  	h1.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {
+	  	  	  			
+		  	  	  		if (canHasDisarmed[0].equals("no")) {							
+							
+							centerscrolltext.setVisibility(View.VISIBLE);
+					  		centerscrolltext.startAnimation(animAlphaText);
+							centerscrolltext.append("\n" + "> You roll a " + attackDamage + " for damage!");
+							
+		
+							ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - attackDamage;
+						}
+							
+						if (canHasDisarmed[0].equals("yes")) {							
+							
+							int attackDamageDisarmed = (attackDamage - 2);
+							
+							if (attackDamageDisarmed < 0) {
+								
+				                  attackDamageDisarmed = 0;					            
+							}
+							
+							centerscrolltext.setVisibility(View.VISIBLE);
+					  		centerscrolltext.startAnimation(animAlphaText);
+							centerscrolltext.append("\n" + "> You roll a " + attackDamage + ", -2 damage for punch = " + attackDamageDisarmed + " damage!");
+							
+		
+							ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - attackDamageDisarmed;
+						}							
+							
+						
+						final Handler h = new Handler();
+			  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+			  	  	  			
+			  	  	  		@Override
+				  	  	  	public void run() {
+						
+								if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] == 0) {
+									
+									AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+								      
+									alert.setTitle("The computer has been knocked unconscious!");
+						  	    	/*
+						  	    	alert.setMessage("something");
+						  	    	*/	    	
+							    	
+							    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+								    	public void onClick(DialogInterface dialog, int whichButton) {
+								    		
+								    		hideNavigation();
+								    		
+								    		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
+												
+								    			gameEngineHumanFirst2();    							
+											}
+	
+											if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
+								    			
+								    			turn();   							
+											}
+											
+											if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
+												
+								    			hastePartTwo();    							
+											}
+	
+											if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
+								    			
+												hastePartTwo();   							
+											}
+								    	}
+							    	});								    	
+							    	alert.show();						
+								}
+			
+								if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] < 0) {
+									
+									/*
+									 * 
+									 * Picture of one sword destroying another.
+									 * 
+									 * deathGraphic();
+									 * 
+									 */
+									
+									AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+								      
+									alert.setTitle("The computer has been slain!");
+						  	    	/*
+						  	    	alert.setMessage("something");
+						  	    	*/	    	
+							    	
+							    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+								    	public void onClick(DialogInterface dialog, int whichButton) {
+								    		
+								    		hideNavigation();
+								    		
+								    		gameOverCheck();
+								    	}
+							    	});								    	
+							    	alert.show();				    	
+									
+									playerDeadYet[playerNumberAttacked] = "yes";										
+								}
+								
+								else {									
+	
+									if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
+										
+						    			gameEngineHumanFirst2();    							
+									}
+	
+									if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
+						    			
+						    			turn();   							
+									}
+									
+									if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
+										
+						    			hastePartTwo();    							
+									}
+	
+									if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
+						    			
+										hastePartTwo();   							
+									}										
+								}				  	  	  			
+				  	  	  	}
+			  	  	  	}, 2000);
+			  	  	  	
+						return;	  	  			
+		  	  	  		
+	  	  	  		}
+	  	  	  	}, 2000);								 
+  	  	    }
+		});		
 	}
 	
 	public int[] criticalHitMightyBlowDamage() {					
