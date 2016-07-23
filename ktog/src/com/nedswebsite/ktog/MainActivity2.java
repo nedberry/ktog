@@ -86,6 +86,7 @@ public class MainActivity2 extends ActionBarActivity {
 	String ishasteused = "no";
 	String iscurerolled = "no";
 	String isattackdamagerolled = "no";
+	String ismightyblowdamagerolled = "no";
 	String iscriticalmissdamagerolled = "no";
 	
 	String startGameNow ="no";	
@@ -405,6 +406,9 @@ public class MainActivity2 extends ActionBarActivity {
 				if (isattackdamagerolled.equals("yes")) {
 					damageResults();
 				}
+				if (ismightyblowdamagerolled.equals("yes")) {
+					damageResults();
+				}				
 				if (iscriticalmissdamagerolled.equals("yes")) {
 					criticalMissDamageResults();
 				}
@@ -444,6 +448,9 @@ public class MainActivity2 extends ActionBarActivity {
 					cureResults();
 				}
 				if (isattackdamagerolled.equals("yes")) {
+					damageResults();
+				}
+				if (ismightyblowdamagerolled.equals("yes")) {
 					damageResults();
 				}
 				if (iscriticalmissdamagerolled.equals("yes")) {
@@ -7437,137 +7444,7 @@ public class MainActivity2 extends ActionBarActivity {
 		});		
 	}
 
-	public int criticalHit() {
-		
-		runOnUiThread(new Runnable() {
-  	  	    @Override
-  	  	    public void run() {
-		
-				/*
-				 * 
-				 * Picture of swords clanging together:
-				 * 
-				 * 
-				 * swordsGraphic();
-				 * 
-				 */
-				
-				/*
-				swordsGraphic();
-				System.out.println("     /\\___________            ___________/\\");
-				System.out
-						.println("/|---||___________\\ CRITICAL /___________||---|\\");
-				System.out
-						.println("\\|---||___________/   HIT    \\___________||---|/");
-				System.out.println("     \\/                                  \\/");
-				for (int x = 0; x < 1; --x) {
-				}
-				*/		
-				
-				
-				if (mightyBlowSpell[i] > 0 && ishasteused.equals("no")) {
-					
-					AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-		  			
-		  	    	alert.setTitle(ArrayOfPlayers.player[i] + ", do you want to use Mighty Blow?");
-		  	    	/*
-		  	    	alert.setMessage("something");
-		  	    	*/	  	    	
-		  	    	
-		  	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-		  		    	public void onClick(DialogInterface dialog, int whichButton) {	  		    		
-		  		    		
-		  		    		/*
-							 * 
-							 * Picture of swords clanging together:
-							 * 
-							 * 
-							 * swordsGraphic();
-							 * 
-							 */	  		    		
-		  		    		
-		  		    		/*
-		  		    		swordsGraphic();
-							System.out
-									.println("     /\\___________          ___________/\\");
-							System.out
-									.println("/|---||___________\\ MIGHTY /___________||---|\\");
-							System.out
-									.println("\\|---||___________/  BLOW  \\___________||---|/");
-							System.out
-									.println("     \\/                                \\/");
-							for (int x = 0; x < 1; --x) {
-							}
-		  		    		*/
-		  		    		
-		  		    		
-		  		    		hideNavigation();
-		  		    		
-		  		    		mightyBlowSpell[0] = mightyBlowSpell[0] - 1;
-		  		    		
-		  		    		criticalHitMightyBlowDamage();
-		  					return;	  		    		
-		  		    	}
-		  	    	});
-		  	    	
-		  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
-		          	  public void onClick(DialogInterface dialog, int whichButton) {
-		          		
-		          		hideNavigation();
-		          		  
-		          		criticalHitDamage();
-						return;
-		          	  }
-		          	});		  	    	
-		  	    	alert.show();					
-					
-					
-					/*
-					System.out.print("Player " + playerNumber[i] + ", do you want to use Mighty Blow(Y/N)? ");
-					String s = input.next();
-					char selection = s.charAt(0);
-					switch (selection) {
-					case 'y':
-					case 'Y':
-						if (numberOfPlayers == 1) {
-							mightyBlowSpell[0] = mightyBlowSpell[0] - 1;
-						}
-						if (numberOfPlayers > 1) {
-							mightyBlowSpell[i] = mightyBlowSpell[i] - 1;
-						}
-		
-						System.out.println();
-		
-						swordsGraphic();
-						System.out
-								.println("     /\\___________          ___________/\\");
-						System.out
-								.println("/|---||___________\\ MIGHTY /___________||---|\\");
-						System.out
-								.println("\\|---||___________/  BLOW  \\___________||---|/");
-						System.out
-								.println("     \\/                                \\/");
-						for (int x = 0; x < 1; --x) {
-						}
-		
-						criticalHitMightyBlowDamage(i, playerNumberAttacked, gameOn);
-						return playerNumberAttacked;
-					case 'n':
-					case 'N':
-						criticalHitDamage(i, playerNumberAttacked, gameOn);
-						return playerNumberAttacked;
-					default:
-						criticalHitDamage(i, playerNumberAttacked, gameOn);
-					}
-					*/
-				}
-  	  	    }
-		});
-		criticalHitDamage();
-		return playerNumberAttacked;
-	}
-
-	public int[] mightyBlow() {					
+	public void mightyBlow() {					
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
@@ -7581,8 +7458,9 @@ public class MainActivity2 extends ActionBarActivity {
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);	
   	  	    	
+	  			// IF DODGE BLOW:
 		
-				if (dodgeBlowSpell[playerNumberAttacked] > 0) {
+				if (mightyBlowSpell[playerNumberAttacked] > 0) {
 					
 					if (numberOfPlayers == 1) {
 						
@@ -7592,166 +7470,73 @@ public class MainActivity2 extends ActionBarActivity {
 					  		centerscrolltext.startAnimation(animAlphaText);
 							centerscrolltext.append("\n" + "> The computer does not dodge.");
 							
-							centerscrolltext.setVisibility(View.VISIBLE);
-					  		centerscrolltext.startAnimation(animAlphaText);
-							centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[i] + ", roll for mighty blow damage...");
-							
-							
-							if (canHasDisarmed[0].equals("no")) {							
-							
-								/*
-								 * 
-								 * ROLL 6-SIDED DIE
-								 * 
-								 */
-								
-								/*
-								Scanner input = new Scanner(System.in);
-								input.nextLine();
-								*/
-								int result = (int) ((Math.random() * 6) + 1);
-								int attackDamage = result;
-								
-								centerscrolltext.setVisibility(View.VISIBLE);
-						  		centerscrolltext.startAnimation(animAlphaText);
-								centerscrolltext.append("\n" + "> You roll a " + attackDamage	+ " for damage!");
-								
-								centerscrolltext.setVisibility(View.VISIBLE);
-						  		centerscrolltext.startAnimation(animAlphaText);
-								centerscrolltext.append("\n" + "> Double damage for Mighty Blow = " + (attackDamage * 2) + "!");
-								
-			
-								ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked]	- (attackDamage * 2);
-							}							
-							
-							if (canHasDisarmed[0].equals("yes")) {
-							
-								/*
-								 * 
-								 * ROLL 6-SIDED DIE
-								 * 
-								 */
-								
-								/*
-								Scanner input = new Scanner(System.in);
-								input.nextLine();
-								*/
-								int result = (int) ((Math.random() * 6) + 1);
-								int attackDamage = result;
-								int attackDamageDisarmed = (result - 2);
-								
-								if (attackDamageDisarmed < 0) {
-									
-					                  attackDamageDisarmed = 0;					            
-								}
-								
-								centerscrolltext.setVisibility(View.VISIBLE);
-						  		centerscrolltext.startAnimation(animAlphaText);
-								centerscrolltext.append("\n" + "> You roll a " + attackDamage + ", -2 damage for punch = " + attackDamageDisarmed + " damage!");
-								
-								centerscrolltext.setVisibility(View.VISIBLE);
-						  		centerscrolltext.startAnimation(animAlphaText);
-								centerscrolltext.append("\n" + "> Double damage for Mighty Blow = " + (attackDamageDisarmed * 2) + "!");
-								
-			
-								ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked]	- (attackDamageDisarmed * 2);
-							}							
-							
-							
-							final Handler h = new Handler();
-				  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+							final Handler h1 = new Handler();
+				  	  	  	h1.postDelayed(new Runnable() {		  	  	  			
 				  	  	  			
 				  	  	  		@Override
 					  	  	  	public void run() {
-							
-									if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] == 0) {						
-										
-										AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-									      
-										alert.setTitle("The computer has been knocked unconscious!");
-							  	    	/*
-							  	    	alert.setMessage("something");
-							  	    	*/	    	
-								    	
-								    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-									    	public void onClick(DialogInterface dialog, int whichButton) {
-									    		
-									    		hideNavigation();
-									    		
-									    		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
-													
-									    			gameEngineHumanFirst2();    							
-												}
-
-												if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
-									    			
-									    			turn();   							
-												}												
-									    	}
-								    	});								    	
-								    	alert.show();						
-									}
-				
-									if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] < 0) {
-				
-										/*
-										 * 
-										 * Picture of one sword destroying another.
-										 * 
-										 * deathGraphic();
-										 * 
-										 */
-										
-										
-										AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-									      
-										alert.setTitle("The computer has been slain!");
-							  	    	/*
-							  	    	alert.setMessage("something");
-							  	    	*/	    	
-								    	
-								    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-									    	public void onClick(DialogInterface dialog, int whichButton) {
-									    		
-									    		hideNavigation();
-									    		
-									    		gameOverCheck();
-									    	}
-								    	});								    	
-								    	alert.show();										
-										
-										playerDeadYet[playerNumberAttacked] = "yes";										
-									}
+				  	  	  			
+				  	  	  			/*
+									 * 
+									 * ???????????????
+									 * 
+									 * mighty blow Graphic(); ??????????????
+									 * 
+									 */
 									
-									else {									
-
-										if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
-											
-							    			gameEngineHumanFirst2();    							
-										}
-
-										if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
-							    			
-							    			turn();   							
-										}																				
-									}				  	  	  			
-					  	  	  	}
-				  	  	  	}, 2000);
-				  	  	  	
-							return;
-						}
-						
-						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] <= 10 && ArrayOfHitPoints.hitpoints[playerNumberAttacked] > 0) {
+									// Mighty Blow Graphic();
 							
+					  	  	  		final Handler h2 = new Handler();
+						  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
+						  	  	  			
+						  	  	  		@Override
+							  	  	  	public void run() {					  	  	  			
+						  	  	  			
+						  	  	  			sixSidedRollFromLeft();				  	  	  		
+								  	  	  			
+							  	  	  		final Handler h3 = new Handler();
+								  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
+								  	  	  			
+								  	  	  		@Override
+									  	  	  	public void run() {				
+								  	  	  			
+								  	  	  			sixSidedWobbleStart();
+								  	  	  			
+													centerscrolltext.setVisibility(View.VISIBLE);
+											  		centerscrolltext.startAnimation(animAlphaText);
+													centerscrolltext.append("\n" + "> Please slide the die...");
+											
+													/*
+													 * 
+													 * ROLL 6-SIDED DIE
+													 * 
+													 */
+													
+													attackDamage = (int)(Math.random()*6)+1;
+											        //(Math.random()*6) returns a number between 0 (inclusive) and 6 (exclusive)
+											        //same as: (int) Math.ceil(Math.random()*6); ?										
+													
+													isattackdamagerolled = "yes";
+													
+								  	  	  		}
+								  	  	  	}, 750);					  	  	  		
+						  	  	  		}
+						  	  	  	}, 2000);
+				  	  	  		}
+				  	  	  	}, 2000);
+						}
+				  	  	  	
+			  	  	  	if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] <= 10 && ArrayOfHitPoints.hitpoints[playerNumberAttacked] > 0) {
+						
 							centerscrolltext.setVisibility(View.VISIBLE);
 					  		centerscrolltext.startAnimation(animAlphaText);
 							centerscrolltext.append("\n" + "> The computer uses it's dodge blow spell.");
 							
-							dodgeBlowSpell[playerNumberAttacked] = dodgeBlowSpell[playerNumberAttacked] - 1;
+							mightyBlowSpell[playerNumberAttacked] = mightyBlowSpell[playerNumberAttacked] - 1;
 							
 							
-							final Handler h = new Handler();
-				  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+							final Handler h4 = new Handler();
+				  	  	  	h4.postDelayed(new Runnable() {		  	  	  			
 				  	  	  			
 				  	  	  		@Override
 					  	  	  	public void run() {  	  		
@@ -7769,7 +7554,7 @@ public class MainActivity2 extends ActionBarActivity {
 				  	  	  	}, 2000);
 							
 							return;
-						}
+			  	  	  	}
 					}
 					/*
 					if (numberOfPlayers > 1) {
@@ -7797,181 +7582,224 @@ public class MainActivity2 extends ActionBarActivity {
 						}
 					}
 					*/
-				}
+				}				
 				
-				
-				centerscrolltext.setVisibility(View.VISIBLE);
-		  		centerscrolltext.startAnimation(animAlphaText);
-				centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[i] + ", roll for mighty blow damage...");
-						
-				if (canHasDisarmed[0].equals("no")) {							
-					
-					/*
-					 * 
-					 * ROLL 6-SIDED DIE
-					 * 
-					 */
-					
-					/*
-					Scanner input = new Scanner(System.in);
-					input.nextLine();
-					*/
-					int result = (int) ((Math.random() * 6) + 1);
-					int attackDamage = result;
-					
-					centerscrolltext.setVisibility(View.VISIBLE);
-			  		centerscrolltext.startAnimation(animAlphaText);
-					centerscrolltext.append("\n" + "> You roll a " + attackDamage	+ " for damage!");
-					
-					centerscrolltext.setVisibility(View.VISIBLE);
-			  		centerscrolltext.startAnimation(animAlphaText);
-					centerscrolltext.append("\n" + "> Double damage for Mighty Blow = " + (attackDamage * 2) + "!");
-					
-
-					ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked]	- (attackDamage * 2);
-				}							
-				
-				if (canHasDisarmed[0].equals("yes")) {
-				
-					/*
-					 * 
-					 * ROLL 6-SIDED DIE
-					 * 
-					 */
-					
-					/*
-					Scanner input = new Scanner(System.in);
-					input.nextLine();
-					*/
-					int result = (int) ((Math.random() * 6) + 1);
-					int attackDamage = result;
-					int attackDamageDisarmed = (result - 2);
-					
-					if (attackDamageDisarmed < 0) {
-						
-		                  attackDamageDisarmed = 0;					            
-					}
-					
-					centerscrolltext.setVisibility(View.VISIBLE);
-			  		centerscrolltext.startAnimation(animAlphaText);
-					centerscrolltext.append("\n" + "> You roll a " + attackDamage + ", -2 damage for punch = " + attackDamageDisarmed + " damage!");
-					
-					centerscrolltext.setVisibility(View.VISIBLE);
-			  		centerscrolltext.startAnimation(animAlphaText);
-					centerscrolltext.append("\n" + "> Double damage for Mighty Blow = " + (attackDamageDisarmed * 2) + "!");
-					
-
-					ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked]	- (attackDamageDisarmed * 2);
-				}
-				
-				
-				final Handler h = new Handler();
-	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-	  	  	  			
-	  	  	  		@Override
-		  	  	  	public void run() {
-				
-						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] == 0) {
+				// IF NO DODGE BLOW:
 							
-							if (numberOfPlayers == 1) {
-								
-								AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-							      
-								alert.setTitle("The computer has been knocked unconscious!");
-					  	    	/*
-					  	    	alert.setMessage("something");
-					  	    	*/	    	
-						    	
-						    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-							    	public void onClick(DialogInterface dialog, int whichButton) {
-							    		
-							    		hideNavigation();
-							    		
-							    		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
-											
-							    			gameEngineHumanFirst2();    							
-										}
-
-										if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
-							    			
-							    			turn();   							
-										}									
-							    	}
-						    	});						    	
-						    	alert.show();				
-							}
-							/*
-							if (numberOfPlayers > 1) {
-								System.out.println("Player " + (playerNumberAttacked + 1)
-										+ ", you have been knocked unconscious!");
-							}
-							System.out.print("Press a key to continue... ");
-							input.nextLine();
-							*/
-						}
-				
-						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] < 0) {
-				
-							/*
+				else {
+		  			
+		  			final Handler h5 = new Handler();
+		  	  	  	h5.postDelayed(new Runnable() {		  	  	  			
+		  	  	  			
+		  	  	  		@Override
+			  	  	  	public void run() {
+		  	  	  			
+		  	  	  			/*
 							 * 
-							 * Picture of one sword destroying another.
+							 * ???????????????
 							 * 
-							 * deathGraphic();
+							 * damage Graphic(); ??????????????
 							 * 
 							 */
 							
+							//blessGraphic();
+					
+			  	  	  		final Handler h6 = new Handler();
+				  	  	  	h6.postDelayed(new Runnable() {		  	  	  			
+				  	  	  			
+				  	  	  		@Override
+					  	  	  	public void run() {					  	  	  			
+				  	  	  			
+				  	  	  			sixSidedRollFromLeft();				  	  	  		
+						  	  	  			
+					  	  	  		final Handler h7 = new Handler();
+						  	  	  	h7.postDelayed(new Runnable() {		  	  	  			
+						  	  	  			
+						  	  	  		@Override
+							  	  	  	public void run() {				
+						  	  	  			
+						  	  	  			sixSidedWobbleStart();
+						  	  	  			
+											centerscrolltext.setVisibility(View.VISIBLE);
+									  		centerscrolltext.startAnimation(animAlphaText);
+											centerscrolltext.append("\n" + "> Please slide the die...");
+									
+											/*
+											 * 
+											 * ROLL 6-SIDED DIE
+											 * 
+											 */
+											
+											attackDamage = (int)(Math.random()*6)+1;
+									        //(Math.random()*6) returns a number between 0 (inclusive) and 6 (exclusive)
+									        //same as: (int) Math.ceil(Math.random()*6); ?										
+											
+											ismightyblowdamagerolled = "yes";										
+						  	  	  		}
+						  	  	  	}, 750);					  	  	  		
+				  	  	  		}
+				  	  	  	}, 2000);
+		  	  	  		}
+		  	  	  	}, 2000);
+		  	  	  	
+		  	  	  	/*
+					if (numberOfPlayers > 1) {
+					
+					}
+					*/
+	  			}	  			
+  	  	    }  	  	    
+		});
+		
+		return;
+	}							
+	
+	public void mightyBlowResults() {
+		
+		ismightyblowdamagerolled = "no";
+		
+		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+		
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {
+  	  	    	
+	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+	  			
+	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  			centerscrolltext.setTypeface(typeFace);
+  	  	    	
+	  			
+	  			final Handler h1 = new Handler();
+	  	  	  	h1.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {
+	  	  	  			
+		  	  	  		if (canHasDisarmed[0].equals("no")) {
+		  	  	  			
+		  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
+				  		centerscrolltext.startAnimation(animAlphaText);
+						centerscrolltext.append("\n" + "> You roll a " + attackDamage	+ " for damage!");
+						
+						centerscrolltext.setVisibility(View.VISIBLE);
+				  		centerscrolltext.startAnimation(animAlphaText);
+						centerscrolltext.append("\n" + "> Double damage for Mighty Blow = " + (attackDamage * 2) + "!");
+						
+	
+						ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked]	- (attackDamage * 2);
+		  	  	  		}
+						
+						if (canHasDisarmed[0].equals("yes")) {							
 							
-							if (numberOfPlayers == 1) {
+							int attackDamageDisarmed = (attackDamage - 2);
+							
+							if (attackDamageDisarmed < 0) {
 								
-								AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-							      
-								alert.setTitle("The computer has been slain!");
-					  	    	/*
-					  	    	alert.setMessage("something");
-					  	    	*/	    	
-						    	
-						    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-							    	public void onClick(DialogInterface dialog, int whichButton) {
-							    		
-							    		hideNavigation();
-							    		
-							    		gameOverCheck();
-							    	}
-						    	});						    	
-						    	alert.show();				
+				                  attackDamageDisarmed = 0;					            
 							}
-							/*
-							if (numberOfPlayers > 1) {
-								System.out.println("Player " + (playerNumberAttacked + 1)
-										+ ", you have been slain!");
-							}
-							System.out.print("Press a key to continue... ");
-							input.nextLine();
-							*/
 							
-							playerDeadYet[playerNumberAttacked] = "yes";							
+							centerscrolltext.setVisibility(View.VISIBLE);
+					  		centerscrolltext.startAnimation(animAlphaText);
+							centerscrolltext.append("\n" + "> You roll a " + attackDamage + ", -2 damage for punch = " + attackDamageDisarmed + " damage!");
+							
+							centerscrolltext.setVisibility(View.VISIBLE);
+					  		centerscrolltext.startAnimation(animAlphaText);
+							centerscrolltext.append("\n" + "> Double damage for Mighty Blow = " + (attackDamageDisarmed * 2) + "!");
+							
+		
+							ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked]	- (attackDamageDisarmed * 2);
 						}
 						
-						else {						
-
-							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
+						final Handler h2 = new Handler();
+			  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
+			  	  	  			
+			  	  	  		@Override
+				  	  	  	public void run() {
+						
+								if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] == 0) {
+									
+									AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+								      
+									alert.setTitle("The computer has been knocked unconscious!");
+						  	    	/*
+						  	    	alert.setMessage("something");
+						  	    	*/	    	
+							    	
+							    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+								    	public void onClick(DialogInterface dialog, int whichButton) {
+								    		
+								    		hideNavigation();
+								    		
+								    		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
+												
+								    			gameEngineHumanFirst2();    							
+											}
+	
+											if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
+								    			
+								    			turn();   							
+											}
+											
+								    	}
+							    	});								    	
+							    	alert.show();						
+								}
+			
+								if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] < 0) {
+									
+									/*
+									 * 
+									 * Picture of one sword destroying another.
+									 * 
+									 * deathGraphic();
+									 * 
+									 */
+									
+									AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+								      
+									alert.setTitle("The computer has been slain!");
+						  	    	/*
+						  	    	alert.setMessage("something");
+						  	    	*/	    	
+							    	
+							    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+								    	public void onClick(DialogInterface dialog, int whichButton) {
+								    		
+								    		hideNavigation();
+								    		
+								    		gameOverCheck();
+								    	}
+							    	});								    	
+							    	alert.show();				    	
+									
+									playerDeadYet[playerNumberAttacked] = "yes";										
+								}
 								
-				    			gameEngineHumanFirst2();    							
-							}
-
-							if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
-				    			
-				    			turn();   							
-							}							
-						}
-		  	  	  	}
-	  	  	  	}, 2000);
+								else {									
+	
+									if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
+										
+						    			gameEngineHumanFirst2();    							
+									}
+	
+									if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
+						    			
+						    			turn();   							
+									}									
+								}				  	  	  			
+				  	  	  	}
+			  	  	  	}, 2000);
+			  	  	  	
+						return;		  	  	  		
+	  	  	  		}
+	  	  	  	}, 2000);								 
   	  	    }
-		});
-		return ArrayOfHitPoints.hitpoints;
+		});		
 	}
 
-	public int[] damage() {
+	public void damage() {
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
@@ -8063,8 +7891,8 @@ public class MainActivity2 extends ActionBarActivity {
 							dodgeBlowSpell[playerNumberAttacked] = dodgeBlowSpell[playerNumberAttacked] - 1;
 							
 							
-							final Handler h = new Handler();
-				  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+							final Handler h4 = new Handler();
+				  	  	  	h4.postDelayed(new Runnable() {		  	  	  			
 				  	  	  			
 				  	  	  		@Override
 					  	  	  	public void run() {  	  		
@@ -8127,8 +7955,8 @@ public class MainActivity2 extends ActionBarActivity {
 	  			
 	  			else {
 	  			
-		  			final Handler h1 = new Handler();
-		  	  	  	h1.postDelayed(new Runnable() {		  	  	  			
+		  			final Handler h5 = new Handler();
+		  	  	  	h5.postDelayed(new Runnable() {		  	  	  			
 		  	  	  			
 		  	  	  		@Override
 			  	  	  	public void run() {
@@ -8143,16 +7971,16 @@ public class MainActivity2 extends ActionBarActivity {
 							
 							//blessGraphic();
 					
-			  	  	  		final Handler h2 = new Handler();
-				  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
+			  	  	  		final Handler h6 = new Handler();
+				  	  	  	h6.postDelayed(new Runnable() {		  	  	  			
 				  	  	  			
 				  	  	  		@Override
 					  	  	  	public void run() {					  	  	  			
 				  	  	  			
 				  	  	  			sixSidedRollFromLeft();				  	  	  		
 						  	  	  			
-					  	  	  		final Handler h3 = new Handler();
-						  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
+					  	  	  		final Handler h7 = new Handler();
+						  	  	  	h7.postDelayed(new Runnable() {		  	  	  			
 						  	  	  			
 						  	  	  		@Override
 							  	  	  	public void run() {				
@@ -8180,11 +8008,17 @@ public class MainActivity2 extends ActionBarActivity {
 				  	  	  	}, 2000);
 		  	  	  		}
 		  	  	  	}, 2000);
-	  			}
+		  	  	  	
+		  	  	  	/*
+					if (numberOfPlayers > 1) {
+					
+					}
+					*/
+	  			}	  			
   	  	    }  	  	    
 		});
 		
-		return ArrayOfHitPoints.hitpoints;
+		return;
 	}
 	
 	public void damageResults() {
@@ -8238,8 +8072,8 @@ public class MainActivity2 extends ActionBarActivity {
 						}							
 							
 						
-						final Handler h = new Handler();
-			  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+						final Handler h2 = new Handler();
+			  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
 			  	  	  			
 			  	  	  		@Override
 				  	  	  	public void run() {
@@ -8337,549 +8171,163 @@ public class MainActivity2 extends ActionBarActivity {
 				  	  	  	}
 			  	  	  	}, 2000);
 			  	  	  	
-						return;	  	  			
-		  	  	  		
+						return;		  	  	  		
 	  	  	  		}
 	  	  	  	}, 2000);								 
   	  	    }
 		});		
 	}
 	
-	public int[] criticalHitMightyBlowDamage() {					
-		
-		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+	public void criticalHit() { // WAS int
 		
 		runOnUiThread(new Runnable() {
   	  	    @Override
   	  	    public void run() {
   	  	    	
-	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
-	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
-	  			
-	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-	  			centerscrolltext.setTypeface(typeFace);	
-  	  	    	
-		
-				if (dodgeBlowSpell[playerNumberAttacked] > 0) {
-					
-					if (numberOfPlayers == 1) {
-						
-						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] >= 12) {
-							
-							centerscrolltext.setVisibility(View.VISIBLE);
-					  		centerscrolltext.startAnimation(animAlphaText);
-							centerscrolltext.append("\n" + "> The computer does not dodge.");
-							
-							centerscrolltext.setVisibility(View.VISIBLE);
-					  		centerscrolltext.startAnimation(animAlphaText);
-							centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[i] + ", you roll twice for critical hit damage.");
-							
-							
-							if (canHasDisarmed[0].equals("no")) {
-						  		
-						  		centerscrolltext.setVisibility(View.VISIBLE);
-						  		centerscrolltext.startAnimation(animAlphaText);
-						  		centerscrolltext.append("\n" + "> Make your first roll...");
-								
-						  		/*
-								 * 
-								 * ROLL 6-SIDED DIE
-								 * 
-								 */			  		
-						  		
-						  		/*
-								Scanner input = new Scanner(System.in);
-								input.nextLine();
-								*/
-								int resultOne = (int) ((Math.random() * 6) + 1);
-								int attackDamageOne = resultOne;
-								
-								
-								centerscrolltext.setVisibility(View.VISIBLE);
-						  		centerscrolltext.startAnimation(animAlphaText);
-						  		centerscrolltext.append("\n" + "> You roll a " + attackDamageOne + "!");
-								
-						  		
-						  		centerscrolltext.setVisibility(View.VISIBLE);
-						  		centerscrolltext.startAnimation(animAlphaText);
-						  		centerscrolltext.append("\n" + "> Make your second roll...");
-								
-						  		/*
-								 * 
-								 * ROLL 6-SIDED DIE
-								 * 
-								 */
-						  		
-								// input.nextLine();
-								int resultTwo = (int) ((Math.random() * 6) + 1);
-								int attackDamageTwo = resultTwo;
-								
-								centerscrolltext.setVisibility(View.VISIBLE);
-						  		centerscrolltext.startAnimation(animAlphaText);
-						  		centerscrolltext.append("\n" + "> You roll a " + attackDamageTwo + "!");					  										
-									
-								int totalAttackDamage = (attackDamageOne + attackDamageTwo);
-								
-								centerscrolltext.setVisibility(View.VISIBLE);
-						  		centerscrolltext.startAnimation(animAlphaText);
-								centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[i] + ", you roll a total of " + totalAttackDamage	+ " for critical hit damage!");
-								
-
-								centerscrolltext.setVisibility(View.VISIBLE);
-						  		centerscrolltext.startAnimation(animAlphaText);
-								centerscrolltext.append("\n" + "> Double damage for Mighty Blow = " + (totalAttackDamage * 2) + "!");
-								
-
-								ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - (totalAttackDamage * 2);
-					  		}
-															
-								
-					  		if (canHasDisarmed[0].equals("yes")) {	
-								
-								centerscrolltext.setVisibility(View.VISIBLE);
-						  		centerscrolltext.startAnimation(animAlphaText);
-						  		centerscrolltext.append("\n" + "> Make your first roll...");
-								
-						  		/*
-								 * 
-								 * ROLL 6-SIDED DIE
-								 * 
-								 */			  		
-						  		
-						  		/*
-								Scanner input = new Scanner(System.in);
-								input.nextLine();
-								*/
-								int resultOne = (int) ((Math.random() * 6) + 1);
-								int attackDamageOne = resultOne;
-								int attackDamageOneDisarmed = (resultOne - 2);
-								
-								if (attackDamageOneDisarmed < 0) {
-									
-									attackDamageOneDisarmed = 0;
-							    }
-								
-								centerscrolltext.setVisibility(View.VISIBLE);
-						  		centerscrolltext.startAnimation(animAlphaText);
-						  		centerscrolltext.append("\n" + "> You roll a " + attackDamageOne + ", -2 damage for punch = " + attackDamageOneDisarmed + " damage!");
-								
-						  		
-						  		centerscrolltext.setVisibility(View.VISIBLE);
-						  		centerscrolltext.startAnimation(animAlphaText);
-						  		centerscrolltext.append("\n" + "> Make your second roll...");
-								
-						  		/*
-								 * 
-								 * ROLL 6-SIDED DIE
-								 * 
-								 */
-						  		
-								// input.nextLine();
-								int resultTwo = (int) ((Math.random() * 6) + 1);
-								int attackDamageTwo = resultTwo;
-								int attackDamageTwoDisarmed = (resultTwo - 2);
-								
-								if (attackDamageTwoDisarmed < 0) {
-									
-									attackDamageTwoDisarmed = 0;
-							    }
-								
-								centerscrolltext.setVisibility(View.VISIBLE);
-						  		centerscrolltext.startAnimation(animAlphaText);
-						  		centerscrolltext.append("\n" + "> You roll a " + attackDamageTwo + ", -2 damage for punch = " + attackDamageTwoDisarmed + " damage!");					  										
-									
-						  		int totalAttackDamage = (attackDamageOneDisarmed + attackDamageTwoDisarmed);
-								
-								centerscrolltext.setVisibility(View.VISIBLE);
-						  		centerscrolltext.startAnimation(animAlphaText);
-								centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[i] + ", you roll a total of " + totalAttackDamage	+ " for critical hit damage!");
-								
-
-								centerscrolltext.setVisibility(View.VISIBLE);
-						  		centerscrolltext.startAnimation(animAlphaText);
-								centerscrolltext.append("\n" + "> Double damage for Mighty Blow = " + (totalAttackDamage * 2) + "!");
-								
-
-								ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - (totalAttackDamage * 2);
-					  		}					  		
-							
-							
-							final Handler h = new Handler();
-				  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-				  	  	  			
-				  	  	  		@Override
-					  	  	  	public void run() {
-				  	  	  			
-					  	  	  		if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] == 0) {
-										
-										AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-									      
-										alert.setTitle("The computer has been knocked unconscious!");
-							  	    	/*
-							  	    	alert.setMessage("something");
-							  	    	*/	    	
-								    	
-								    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-									    	public void onClick(DialogInterface dialog, int whichButton) {
-									    		
-									    		hideNavigation();									    		
-
-									    		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
-													
-									    			gameEngineHumanFirst2();    							
-												}
-
-												if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
-									    			
-									    			turn();   							
-												}																								
-									    	}
-								    	});								    	
-								    	alert.show();						
-									}
-				
-									if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] < 0) {
-										
-										/*
-										 * 
-										 * Picture of one sword destroying another.
-										 * 
-										 * deathGraphic();
-										 * 
-										 */
-										
-										AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-									      
-										alert.setTitle("The computer has been slain!");
-							  	    	/*
-							  	    	alert.setMessage("something");
-							  	    	*/	    	
-								    	
-								    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-									    	public void onClick(DialogInterface dialog, int whichButton) {
-									    		
-									    		hideNavigation();
-									    		
-									    		gameOverCheck();
-									    	}
-								    	});								    	
-								    	alert.show();
-										
-										playerDeadYet[playerNumberAttacked] = "yes";										
-									}
-									
-									else {									
-
-										if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
-											
-							    			gameEngineHumanFirst2();    							
-										}
-
-										if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
-							    			
-							    			turn();   							
-										}																				
-									}				  	  	  			
-					  	  	  	}
-				  	  	  	}, 2000);
-				  	  	  	
-							return;
-							
-						} else {
-							
-							centerscrolltext.setVisibility(View.VISIBLE);
-					  		centerscrolltext.startAnimation(animAlphaText);
-							centerscrolltext.append("\n" + "> The computer uses it's dodge.");					
-		
-							dodgeBlowSpell[playerNumberAttacked] = dodgeBlowSpell[playerNumberAttacked] - 1;
-							
-							
-							final Handler h = new Handler();
-				  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-				  	  	  			
-				  	  	  		@Override
-					  	  	  	public void run() {  	  		
-	
-					  	  	  		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
-										
-						    			gameEngineHumanFirst2();    							
-									}
-	
-									if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
-						    			
-						    			turn();   							
-									}														  	  	  	
-					  	  	  	}
-				  	  	  	}, 2000);
-							
-							return;
-						}
-					}
-					
-					/*
-					if (numberOfPlayers > 1) {
-						System.out.println();
-						System.out.print("Player " + (playerNumberAttacked + 1)
-								+ ", do you want to dodge(Y/N)? ");
-						String s = input.next();
-						char selection = s.charAt(0);
-						switch (selection) {
-						case 'y':
-						case 'Y':
-							System.out.println();
-							if (dodgeBlowSpell[playerNumberAttacked] < 1) {
-								System.out
-										.println("You have already used your Dodge Blow spell!");
-								break;
-							}
-							dodgeBlowSpell[playerNumberAttacked] = dodgeBlowSpell[playerNumberAttacked] - 1;
-							return dodgeBlowSpell;
-						case 'n':
-						case 'N':
-							break;
-						default:
-							criticalHitMightyBlowDamage(i, playerNumberAttacked, gameOn);
-						}
-					}
-					*/
-				}
-				
-				centerscrolltext.setVisibility(View.VISIBLE);
-		  		centerscrolltext.startAnimation(animAlphaText);
-		  		centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[i] + ", you roll twice for critical hit damage.");
-				
-		  		
-		  		if (canHasDisarmed[0].equals("no")) {
-			  		
-			  		centerscrolltext.setVisibility(View.VISIBLE);
-			  		centerscrolltext.startAnimation(animAlphaText);
-			  		centerscrolltext.append("\n" + "> Make your first roll...");
-					
-			  		/*
-					 * 
-					 * ROLL 6-SIDED DIE
-					 * 
-					 */			  		
-			  		
-			  		/*
-					Scanner input = new Scanner(System.in);
-					input.nextLine();
-					*/
-					int resultOne = (int) ((Math.random() * 6) + 1);
-					int attackDamageOne = resultOne;
-					
-					centerscrolltext.setVisibility(View.VISIBLE);
-			  		centerscrolltext.startAnimation(animAlphaText);
-			  		centerscrolltext.append("\n" + "> You roll a " + attackDamageOne + "!");
-					
-			  		
-			  		centerscrolltext.setVisibility(View.VISIBLE);
-			  		centerscrolltext.startAnimation(animAlphaText);
-			  		centerscrolltext.append("\n" + "> Make your second roll...");
-					
-			  		/*
-					 * 
-					 * ROLL 6-SIDED DIE
-					 * 
-					 */
-			  		
-					// input.nextLine();
-					int resultTwo = (int) ((Math.random() * 6) + 1);
-					int attackDamageTwo = resultTwo;
-					
-					centerscrolltext.setVisibility(View.VISIBLE);
-			  		centerscrolltext.startAnimation(animAlphaText);
-			  		centerscrolltext.append("\n" + "> You roll a " + attackDamageTwo + "!");					  										
-						
-					int totalAttackDamage = (attackDamageOne + attackDamageTwo);
-					
-					centerscrolltext.setVisibility(View.VISIBLE);
-			  		centerscrolltext.startAnimation(animAlphaText);
-					centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[i] + ", you roll a total of " + totalAttackDamage	+ " for critical hit damage!");
-					
-
-					centerscrolltext.setVisibility(View.VISIBLE);
-			  		centerscrolltext.startAnimation(animAlphaText);
-					centerscrolltext.append("\n" + "> Double damage for Mighty Blow = " + (totalAttackDamage * 2) + "!");
-					
-
-					ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - (totalAttackDamage * 2);
-		  		}
-												
-					
-		  		if (canHasDisarmed[0].equals("yes")) {	
-					
-					centerscrolltext.setVisibility(View.VISIBLE);
-			  		centerscrolltext.startAnimation(animAlphaText);
-			  		centerscrolltext.append("\n" + "> Make your first roll...");
-					
-			  		/*
-					 * 
-					 * ROLL 6-SIDED DIE
-					 * 
-					 */			  		
-			  		
-			  		/*
-					Scanner input = new Scanner(System.in);
-					input.nextLine();
-					*/
-					int resultOne = (int) ((Math.random() * 6) + 1);
-					int attackDamageOne = resultOne;
-					int attackDamageOneDisarmed = (resultOne - 2);
-					
-					if (attackDamageOneDisarmed < 0) {
-						
-						attackDamageOneDisarmed = 0;
-				    }
-					
-					centerscrolltext.setVisibility(View.VISIBLE);
-			  		centerscrolltext.startAnimation(animAlphaText);
-			  		centerscrolltext.append("\n" + "> You roll a " + attackDamageOne + ", -2 damage for punch = " + attackDamageOneDisarmed + " damage!");
-					
-			  		
-			  		centerscrolltext.setVisibility(View.VISIBLE);
-			  		centerscrolltext.startAnimation(animAlphaText);
-			  		centerscrolltext.append("\n" + "> Make your second roll...");
-					
-			  		/*
-					 * 
-					 * ROLL 6-SIDED DIE
-					 * 
-					 */
-			  		
-					// input.nextLine();
-					int resultTwo = (int) ((Math.random() * 6) + 1);
-					int attackDamageTwo = resultTwo;
-					int attackDamageTwoDisarmed = (resultTwo - 2);
-					
-					if (attackDamageTwoDisarmed < 0) {
-						
-						attackDamageTwoDisarmed = 0;
-				    }
-					
-					centerscrolltext.setVisibility(View.VISIBLE);
-			  		centerscrolltext.startAnimation(animAlphaText);
-			  		centerscrolltext.append("\n" + "> You roll a " + attackDamageTwo + ", -2 damage for punch = " + attackDamageTwoDisarmed + " damage!");					  										
-						
-			  		int totalAttackDamage = (attackDamageOneDisarmed + attackDamageTwoDisarmed);
-					
-					centerscrolltext.setVisibility(View.VISIBLE);
-			  		centerscrolltext.startAnimation(animAlphaText);
-					centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[i] + ", you roll a total of " + totalAttackDamage	+ " for critical hit damage!");
-					
-
-					centerscrolltext.setVisibility(View.VISIBLE);
-			  		centerscrolltext.startAnimation(animAlphaText);
-					centerscrolltext.append("\n" + "> Double damage for Mighty Blow = " + (totalAttackDamage * 2) + "!");
-					
-
-					ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - (totalAttackDamage * 2);
-		  		}
-		  		
-		  		
-		  		final Handler h = new Handler();
-	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  	  	    final Handler h1 = new Handler();
+	  	  	  	h1.postDelayed(new Runnable() {		  	  	  			
 	  	  	  			
 	  	  	  		@Override
-		  	  	  	public void run() {	  			
+		  	  	  	public void run() {
 	  	  	  			
-		  	  	  		if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] == 0) {
-							
-							if (numberOfPlayers == 1) {
+	  	  	  			/*
+	  					 * 
+	  					 * Picture of swords clanging together:
+	  					 * 
+	  					 * 
+	  					 * swordsGraphic();
+	  					 * 
+	  					 */
+	  					
+	  					/*
+	  					swordsGraphic();
+	  					System.out.println("     /\\___________            ___________/\\");
+	  					System.out
+	  							.println("/|---||___________\\ CRITICAL /___________||---|\\");
+	  					System.out
+	  							.println("\\|---||___________/   HIT    \\___________||---|/");
+	  					System.out.println("     \\/                                  \\/");
+	  					for (int x = 0; x < 1; --x) {
+	  					}
+	  					*/	  	  	  			
+	  	  	  			
+	  	  	  			
+		  	  	  		final Handler h2 = new Handler();
+			  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
+			  	  	  			
+			  	  	  		@Override
+				  	  	  	public void run() {
+			  	  	  			
+			  	  	  			if (mightyBlowSpell[i] > 0 && ishasteused.equals("no")) {
 								
-								AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-							      
-								alert.setTitle("The computer has been knocked unconscious!");
-					  	    	/*
-					  	    	alert.setMessage("something");
-					  	    	*/	    	
-						    	
-						    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-							    	public void onClick(DialogInterface dialog, int whichButton) {
-							    		
-							    		hideNavigation();						    		
-
-							    		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
-											
-							    			gameEngineHumanFirst2();    							
+									AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+						  			
+						  	    	alert.setTitle(ArrayOfPlayers.player[i] + ", do you want to use Mighty Blow?");
+						  	    	/*
+						  	    	alert.setMessage("something");
+						  	    	*/	  	    	
+						  	    	
+						  	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+						  		    	public void onClick(DialogInterface dialog, int whichButton) {	  		    		
+						  		    		
+						  		    		/*
+											 * 
+											 * Picture of swords clanging together:
+											 * 
+											 * 
+											 * swordsGraphic();
+											 * 
+											 */	  		    		
+						  		    		
+						  		    		/*
+						  		    		swordsGraphic();
+											System.out
+													.println("     /\\___________          ___________/\\");
+											System.out
+													.println("/|---||___________\\ MIGHTY /___________||---|\\");
+											System.out
+													.println("\\|---||___________/  BLOW  \\___________||---|/");
+											System.out
+													.println("     \\/                                \\/");
+											for (int x = 0; x < 1; --x) {
+											}
+						  		    		*/
+						  		    		
+						  		    		
+						  		    		hideNavigation();
+						  		    		
+						  		    		mightyBlowSpell[0] = mightyBlowSpell[0] - 1;
+						  		    		
+						  		    		criticalHitMightyBlowDamage();
+						  					return;	  		    		
+						  		    	}
+						  	    	});
+						  	    	
+						  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+						          	  public void onClick(DialogInterface dialog, int whichButton) {
+						          		
+						          		hideNavigation();
+						          		  
+						          		criticalHitDamage();
+										return;
+						          	  }
+						          	});		  	    	
+						  	    	alert.show();					
+									
+									
+									/*
+									System.out.print("Player " + playerNumber[i] + ", do you want to use Mighty Blow(Y/N)? ");
+									String s = input.next();
+									char selection = s.charAt(0);
+									switch (selection) {
+									case 'y':
+									case 'Y':
+										if (numberOfPlayers == 1) {
+											mightyBlowSpell[0] = mightyBlowSpell[0] - 1;
 										}
-
-										if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
-							    			
-							    			turn();   							
-										}																	
-							    	}
-						    	});						    	
-						    	alert.show();				
-							}
-							/*
-							if (numberOfPlayers > 1) {
-								System.out.println("Player " + (playerNumberAttacked + 1)
-										+ ", you have been knocked unconscious!");
-							}			
-							System.out.print("Press a key to continue... ");
-							input.nextLine();
-							*/
-						}
-				
-						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] < 0) {
-							
-							/*
-							 * 
-							 * Picture of one sword destroying another.
-							 * 
-							 * deathGraphic();
-							 * 
-							 */							
-							
-							if (numberOfPlayers == 1) {
-								
-								AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-							      
-								alert.setTitle("The computer has been slain!");
-					  	    	/*
-					  	    	alert.setMessage("something");
-					  	    	*/	    	
-						    	
-						    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-							    	public void onClick(DialogInterface dialog, int whichButton) {
-							    		
-							    		hideNavigation();
-							    		
-							    		gameOverCheck();
-							    	}
-						    	});						    	
-						    	alert.show();				
-							}
-							/*
-							if (numberOfPlayers > 1) {
-								System.out.println("Player " + (playerNumberAttacked + 1)
-										+ ", you have been slain!");
-							}
-							System.out.print("Press a key to continue... ");
-							input.nextLine();
-							*/
-							
-							playerDeadYet[playerNumberAttacked] = "yes";					
-						}
+										if (numberOfPlayers > 1) {
+											mightyBlowSpell[i] = mightyBlowSpell[i] - 1;
+										}
 						
-						else {						
-
-							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
-								
-				    			gameEngineHumanFirst2();    							
-							}
-
-							if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
-				    			
-				    			turn();   							
-							}							
-						}
+										System.out.println();
+						
+										swordsGraphic();
+										System.out
+												.println("     /\\___________          ___________/\\");
+										System.out
+												.println("/|---||___________\\ MIGHTY /___________||---|\\");
+										System.out
+												.println("\\|---||___________/  BLOW  \\___________||---|/");
+										System.out
+												.println("     \\/                                \\/");
+										for (int x = 0; x < 1; --x) {
+										}
+						
+										criticalHitMightyBlowDamage(i, playerNumberAttacked, gameOn);
+										return playerNumberAttacked;
+									case 'n':
+									case 'N':
+										criticalHitDamage(i, playerNumberAttacked, gameOn);
+										return playerNumberAttacked;
+									default:
+										criticalHitDamage(i, playerNumberAttacked, gameOn);
+									}
+									*/
+			  	  	  			}
+			  	  	  			
+			  	  	  			else {
+			  	  	  				
+			  	  	  				criticalHitDamage();			  	  	  				
+			  	  	  			}
+				  	  	  	}
+			  	  	  	}, 2000);	  	  	  			
 		  	  	  	}
-	  	  	  	}, 2000);				
+	  	  	  	}, 2000);		
   	  	    }
 		});
-		return ArrayOfHitPoints.hitpoints;
+		
+		// NEE THIS?
+		//return playerNumberAttacked;
 	}
 	
 	public int[] criticalHitDamage() {						
@@ -9450,6 +8898,543 @@ public class MainActivity2 extends ActionBarActivity {
 		return ArrayOfHitPoints.hitpoints;
 	}
 	
+	public int[] criticalHitMightyBlowDamage() {					
+		
+		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+		
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {
+  	  	    	
+	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+	  			
+	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  			centerscrolltext.setTypeface(typeFace);	
+  	  	    	
+		
+				if (dodgeBlowSpell[playerNumberAttacked] > 0) {
+					
+					if (numberOfPlayers == 1) {
+						
+						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] >= 12) {
+							
+							centerscrolltext.setVisibility(View.VISIBLE);
+					  		centerscrolltext.startAnimation(animAlphaText);
+							centerscrolltext.append("\n" + "> The computer does not dodge.");
+							
+							centerscrolltext.setVisibility(View.VISIBLE);
+					  		centerscrolltext.startAnimation(animAlphaText);
+							centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[i] + ", you roll twice for critical hit damage.");
+							
+							
+							if (canHasDisarmed[0].equals("no")) {
+						  		
+						  		centerscrolltext.setVisibility(View.VISIBLE);
+						  		centerscrolltext.startAnimation(animAlphaText);
+						  		centerscrolltext.append("\n" + "> Make your first roll...");
+								
+						  		/*
+								 * 
+								 * ROLL 6-SIDED DIE
+								 * 
+								 */			  		
+						  		
+						  		/*
+								Scanner input = new Scanner(System.in);
+								input.nextLine();
+								*/
+								int resultOne = (int) ((Math.random() * 6) + 1);
+								int attackDamageOne = resultOne;
+								
+								
+								centerscrolltext.setVisibility(View.VISIBLE);
+						  		centerscrolltext.startAnimation(animAlphaText);
+						  		centerscrolltext.append("\n" + "> You roll a " + attackDamageOne + "!");
+								
+						  		
+						  		centerscrolltext.setVisibility(View.VISIBLE);
+						  		centerscrolltext.startAnimation(animAlphaText);
+						  		centerscrolltext.append("\n" + "> Make your second roll...");
+								
+						  		/*
+								 * 
+								 * ROLL 6-SIDED DIE
+								 * 
+								 */
+						  		
+								// input.nextLine();
+								int resultTwo = (int) ((Math.random() * 6) + 1);
+								int attackDamageTwo = resultTwo;
+								
+								centerscrolltext.setVisibility(View.VISIBLE);
+						  		centerscrolltext.startAnimation(animAlphaText);
+						  		centerscrolltext.append("\n" + "> You roll a " + attackDamageTwo + "!");					  										
+									
+								int totalAttackDamage = (attackDamageOne + attackDamageTwo);
+								
+								centerscrolltext.setVisibility(View.VISIBLE);
+						  		centerscrolltext.startAnimation(animAlphaText);
+								centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[i] + ", you roll a total of " + totalAttackDamage	+ " for critical hit damage!");
+								
+
+								centerscrolltext.setVisibility(View.VISIBLE);
+						  		centerscrolltext.startAnimation(animAlphaText);
+								centerscrolltext.append("\n" + "> Double damage for Mighty Blow = " + (totalAttackDamage * 2) + "!");
+								
+
+								ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - (totalAttackDamage * 2);
+					  		}
+															
+								
+					  		if (canHasDisarmed[0].equals("yes")) {	
+								
+								centerscrolltext.setVisibility(View.VISIBLE);
+						  		centerscrolltext.startAnimation(animAlphaText);
+						  		centerscrolltext.append("\n" + "> Make your first roll...");
+								
+						  		/*
+								 * 
+								 * ROLL 6-SIDED DIE
+								 * 
+								 */			  		
+						  		
+						  		/*
+								Scanner input = new Scanner(System.in);
+								input.nextLine();
+								*/
+								int resultOne = (int) ((Math.random() * 6) + 1);
+								int attackDamageOne = resultOne;
+								int attackDamageOneDisarmed = (resultOne - 2);
+								
+								if (attackDamageOneDisarmed < 0) {
+									
+									attackDamageOneDisarmed = 0;
+							    }
+								
+								centerscrolltext.setVisibility(View.VISIBLE);
+						  		centerscrolltext.startAnimation(animAlphaText);
+						  		centerscrolltext.append("\n" + "> You roll a " + attackDamageOne + ", -2 damage for punch = " + attackDamageOneDisarmed + " damage!");
+								
+						  		
+						  		centerscrolltext.setVisibility(View.VISIBLE);
+						  		centerscrolltext.startAnimation(animAlphaText);
+						  		centerscrolltext.append("\n" + "> Make your second roll...");
+								
+						  		/*
+								 * 
+								 * ROLL 6-SIDED DIE
+								 * 
+								 */
+						  		
+								// input.nextLine();
+								int resultTwo = (int) ((Math.random() * 6) + 1);
+								int attackDamageTwo = resultTwo;
+								int attackDamageTwoDisarmed = (resultTwo - 2);
+								
+								if (attackDamageTwoDisarmed < 0) {
+									
+									attackDamageTwoDisarmed = 0;
+							    }
+								
+								centerscrolltext.setVisibility(View.VISIBLE);
+						  		centerscrolltext.startAnimation(animAlphaText);
+						  		centerscrolltext.append("\n" + "> You roll a " + attackDamageTwo + ", -2 damage for punch = " + attackDamageTwoDisarmed + " damage!");					  										
+									
+						  		int totalAttackDamage = (attackDamageOneDisarmed + attackDamageTwoDisarmed);
+								
+								centerscrolltext.setVisibility(View.VISIBLE);
+						  		centerscrolltext.startAnimation(animAlphaText);
+								centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[i] + ", you roll a total of " + totalAttackDamage	+ " for critical hit damage!");
+								
+
+								centerscrolltext.setVisibility(View.VISIBLE);
+						  		centerscrolltext.startAnimation(animAlphaText);
+								centerscrolltext.append("\n" + "> Double damage for Mighty Blow = " + (totalAttackDamage * 2) + "!");
+								
+
+								ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - (totalAttackDamage * 2);
+					  		}					  		
+							
+							
+							final Handler h = new Handler();
+				  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+				  	  	  			
+				  	  	  		@Override
+					  	  	  	public void run() {
+				  	  	  			
+					  	  	  		if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] == 0) {
+										
+										AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+									      
+										alert.setTitle("The computer has been knocked unconscious!");
+							  	    	/*
+							  	    	alert.setMessage("something");
+							  	    	*/	    	
+								    	
+								    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+									    	public void onClick(DialogInterface dialog, int whichButton) {
+									    		
+									    		hideNavigation();									    		
+
+									    		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
+													
+									    			gameEngineHumanFirst2();    							
+												}
+
+												if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
+									    			
+									    			turn();   							
+												}																								
+									    	}
+								    	});								    	
+								    	alert.show();						
+									}
+				
+									if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] < 0) {
+										
+										/*
+										 * 
+										 * Picture of one sword destroying another.
+										 * 
+										 * deathGraphic();
+										 * 
+										 */
+										
+										AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+									      
+										alert.setTitle("The computer has been slain!");
+							  	    	/*
+							  	    	alert.setMessage("something");
+							  	    	*/	    	
+								    	
+								    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+									    	public void onClick(DialogInterface dialog, int whichButton) {
+									    		
+									    		hideNavigation();
+									    		
+									    		gameOverCheck();
+									    	}
+								    	});								    	
+								    	alert.show();
+										
+										playerDeadYet[playerNumberAttacked] = "yes";										
+									}
+									
+									else {									
+
+										if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
+											
+							    			gameEngineHumanFirst2();    							
+										}
+
+										if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
+							    			
+							    			turn();   							
+										}																				
+									}				  	  	  			
+					  	  	  	}
+				  	  	  	}, 2000);
+				  	  	  	
+							return;
+							
+						} else {
+							
+							centerscrolltext.setVisibility(View.VISIBLE);
+					  		centerscrolltext.startAnimation(animAlphaText);
+							centerscrolltext.append("\n" + "> The computer uses it's dodge.");					
+		
+							dodgeBlowSpell[playerNumberAttacked] = dodgeBlowSpell[playerNumberAttacked] - 1;
+							
+							
+							final Handler h = new Handler();
+				  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+				  	  	  			
+				  	  	  		@Override
+					  	  	  	public void run() {  	  		
+	
+					  	  	  		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
+										
+						    			gameEngineHumanFirst2();    							
+									}
+	
+									if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
+						    			
+						    			turn();   							
+									}														  	  	  	
+					  	  	  	}
+				  	  	  	}, 2000);
+							
+							return;
+						}
+					}
+					
+					/*
+					if (numberOfPlayers > 1) {
+						System.out.println();
+						System.out.print("Player " + (playerNumberAttacked + 1)
+								+ ", do you want to dodge(Y/N)? ");
+						String s = input.next();
+						char selection = s.charAt(0);
+						switch (selection) {
+						case 'y':
+						case 'Y':
+							System.out.println();
+							if (dodgeBlowSpell[playerNumberAttacked] < 1) {
+								System.out
+										.println("You have already used your Dodge Blow spell!");
+								break;
+							}
+							dodgeBlowSpell[playerNumberAttacked] = dodgeBlowSpell[playerNumberAttacked] - 1;
+							return dodgeBlowSpell;
+						case 'n':
+						case 'N':
+							break;
+						default:
+							criticalHitMightyBlowDamage(i, playerNumberAttacked, gameOn);
+						}
+					}
+					*/
+				}
+				
+				centerscrolltext.setVisibility(View.VISIBLE);
+		  		centerscrolltext.startAnimation(animAlphaText);
+		  		centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[i] + ", you roll twice for critical hit damage.");
+				
+		  		
+		  		if (canHasDisarmed[0].equals("no")) {
+			  		
+			  		centerscrolltext.setVisibility(View.VISIBLE);
+			  		centerscrolltext.startAnimation(animAlphaText);
+			  		centerscrolltext.append("\n" + "> Make your first roll...");
+					
+			  		/*
+					 * 
+					 * ROLL 6-SIDED DIE
+					 * 
+					 */			  		
+			  		
+			  		/*
+					Scanner input = new Scanner(System.in);
+					input.nextLine();
+					*/
+					int resultOne = (int) ((Math.random() * 6) + 1);
+					int attackDamageOne = resultOne;
+					
+					centerscrolltext.setVisibility(View.VISIBLE);
+			  		centerscrolltext.startAnimation(animAlphaText);
+			  		centerscrolltext.append("\n" + "> You roll a " + attackDamageOne + "!");
+					
+			  		
+			  		centerscrolltext.setVisibility(View.VISIBLE);
+			  		centerscrolltext.startAnimation(animAlphaText);
+			  		centerscrolltext.append("\n" + "> Make your second roll...");
+					
+			  		/*
+					 * 
+					 * ROLL 6-SIDED DIE
+					 * 
+					 */
+			  		
+					// input.nextLine();
+					int resultTwo = (int) ((Math.random() * 6) + 1);
+					int attackDamageTwo = resultTwo;
+					
+					centerscrolltext.setVisibility(View.VISIBLE);
+			  		centerscrolltext.startAnimation(animAlphaText);
+			  		centerscrolltext.append("\n" + "> You roll a " + attackDamageTwo + "!");					  										
+						
+					int totalAttackDamage = (attackDamageOne + attackDamageTwo);
+					
+					centerscrolltext.setVisibility(View.VISIBLE);
+			  		centerscrolltext.startAnimation(animAlphaText);
+					centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[i] + ", you roll a total of " + totalAttackDamage	+ " for critical hit damage!");
+					
+
+					centerscrolltext.setVisibility(View.VISIBLE);
+			  		centerscrolltext.startAnimation(animAlphaText);
+					centerscrolltext.append("\n" + "> Double damage for Mighty Blow = " + (totalAttackDamage * 2) + "!");
+					
+
+					ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - (totalAttackDamage * 2);
+		  		}
+												
+					
+		  		if (canHasDisarmed[0].equals("yes")) {	
+					
+					centerscrolltext.setVisibility(View.VISIBLE);
+			  		centerscrolltext.startAnimation(animAlphaText);
+			  		centerscrolltext.append("\n" + "> Make your first roll...");
+					
+			  		/*
+					 * 
+					 * ROLL 6-SIDED DIE
+					 * 
+					 */			  		
+			  		
+			  		/*
+					Scanner input = new Scanner(System.in);
+					input.nextLine();
+					*/
+					int resultOne = (int) ((Math.random() * 6) + 1);
+					int attackDamageOne = resultOne;
+					int attackDamageOneDisarmed = (resultOne - 2);
+					
+					if (attackDamageOneDisarmed < 0) {
+						
+						attackDamageOneDisarmed = 0;
+				    }
+					
+					centerscrolltext.setVisibility(View.VISIBLE);
+			  		centerscrolltext.startAnimation(animAlphaText);
+			  		centerscrolltext.append("\n" + "> You roll a " + attackDamageOne + ", -2 damage for punch = " + attackDamageOneDisarmed + " damage!");
+					
+			  		
+			  		centerscrolltext.setVisibility(View.VISIBLE);
+			  		centerscrolltext.startAnimation(animAlphaText);
+			  		centerscrolltext.append("\n" + "> Make your second roll...");
+					
+			  		/*
+					 * 
+					 * ROLL 6-SIDED DIE
+					 * 
+					 */
+			  		
+					// input.nextLine();
+					int resultTwo = (int) ((Math.random() * 6) + 1);
+					int attackDamageTwo = resultTwo;
+					int attackDamageTwoDisarmed = (resultTwo - 2);
+					
+					if (attackDamageTwoDisarmed < 0) {
+						
+						attackDamageTwoDisarmed = 0;
+				    }
+					
+					centerscrolltext.setVisibility(View.VISIBLE);
+			  		centerscrolltext.startAnimation(animAlphaText);
+			  		centerscrolltext.append("\n" + "> You roll a " + attackDamageTwo + ", -2 damage for punch = " + attackDamageTwoDisarmed + " damage!");					  										
+						
+			  		int totalAttackDamage = (attackDamageOneDisarmed + attackDamageTwoDisarmed);
+					
+					centerscrolltext.setVisibility(View.VISIBLE);
+			  		centerscrolltext.startAnimation(animAlphaText);
+					centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[i] + ", you roll a total of " + totalAttackDamage	+ " for critical hit damage!");
+					
+
+					centerscrolltext.setVisibility(View.VISIBLE);
+			  		centerscrolltext.startAnimation(animAlphaText);
+					centerscrolltext.append("\n" + "> Double damage for Mighty Blow = " + (totalAttackDamage * 2) + "!");
+					
+
+					ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - (totalAttackDamage * 2);
+		  		}
+		  		
+		  		
+		  		final Handler h = new Handler();
+	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {	  			
+	  	  	  			
+		  	  	  		if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] == 0) {
+							
+							if (numberOfPlayers == 1) {
+								
+								AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+							      
+								alert.setTitle("The computer has been knocked unconscious!");
+					  	    	/*
+					  	    	alert.setMessage("something");
+					  	    	*/	    	
+						    	
+						    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+							    	public void onClick(DialogInterface dialog, int whichButton) {
+							    		
+							    		hideNavigation();						    		
+
+							    		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
+											
+							    			gameEngineHumanFirst2();    							
+										}
+
+										if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
+							    			
+							    			turn();   							
+										}																	
+							    	}
+						    	});						    	
+						    	alert.show();				
+							}
+							/*
+							if (numberOfPlayers > 1) {
+								System.out.println("Player " + (playerNumberAttacked + 1)
+										+ ", you have been knocked unconscious!");
+							}			
+							System.out.print("Press a key to continue... ");
+							input.nextLine();
+							*/
+						}
+				
+						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] < 0) {
+							
+							/*
+							 * 
+							 * Picture of one sword destroying another.
+							 * 
+							 * deathGraphic();
+							 * 
+							 */							
+							
+							if (numberOfPlayers == 1) {
+								
+								AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+							      
+								alert.setTitle("The computer has been slain!");
+					  	    	/*
+					  	    	alert.setMessage("something");
+					  	    	*/	    	
+						    	
+						    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+							    	public void onClick(DialogInterface dialog, int whichButton) {
+							    		
+							    		hideNavigation();
+							    		
+							    		gameOverCheck();
+							    	}
+						    	});						    	
+						    	alert.show();				
+							}
+							/*
+							if (numberOfPlayers > 1) {
+								System.out.println("Player " + (playerNumberAttacked + 1)
+										+ ", you have been slain!");
+							}
+							System.out.print("Press a key to continue... ");
+							input.nextLine();
+							*/
+							
+							playerDeadYet[playerNumberAttacked] = "yes";					
+						}
+						
+						else {						
+
+							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
+								
+				    			gameEngineHumanFirst2();    							
+							}
+
+							if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
+				    			
+				    			turn();   							
+							}							
+						}
+		  	  	  	}
+	  	  	  	}, 2000);				
+  	  	    }
+		});
+		return ArrayOfHitPoints.hitpoints;
+	}	
+	
 	public void criticalMiss() {//WAS int[]
 		// NEED int playerNumberAttacked????????????????						
 		
@@ -9494,7 +9479,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  					
 	  					centerscrolltext.setVisibility(View.VISIBLE);
 	  			  		centerscrolltext.startAnimation(animAlphaText);
-	  					centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[i] + ", you must roll to see if you hit yourself.");
+	  					centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[i] + ", you must roll to see if you hit yourself...");
 	  					
 	  					criticalMissAttack();
 	  			
