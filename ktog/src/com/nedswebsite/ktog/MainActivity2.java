@@ -74,6 +74,8 @@ public class MainActivity2 extends ActionBarActivity {
 	int criticalHitAttackDamageTwo;
 	int cureResult;
 	
+	int computerAttackResultAgainstDisarmed;
+	
 	
 	String isInvokingService = "true";	
 	
@@ -95,6 +97,10 @@ public class MainActivity2 extends ActionBarActivity {
 	String iscriticalhitmightyblowfirstrollrolled = "no";
 	String iscriticalhitmightyblowsecondrollrolled = "no";
 	
+	// NEED ARRAY HERE?
+	//public static String[] usedHaste = new String[] {"no"};//FOR COMP. ONLY: so computer doesn't use a haste during a haste.
+	String iscomputerhasteused = "no";
+	
 	String startGameNow ="no";	
 	
 	
@@ -102,10 +108,8 @@ public class MainActivity2 extends ActionBarActivity {
 	public static String[] playerDeadYet = new String[] {"yes", "yes", "yes", "yes", "yes", "yes"}; // NEED 6?????????	
 	//String playerDeadYet[] = {"yes", "yes", "yes", "yes", "yes", "yes"};
 	public static String[] canHasDisarmed = new String[] {"no", "no", "no", "no", "no", "no"}; // NEED 6?????????
-	public static int[] disarmedTurnStart = new int[6];
+	public static int[] disarmedTurnStart = new int[6];	
 	
-	// NEED ARRAY HERE?
-	public static String[] usedHaste = new String[] {"no"};//FOR COMP. ONLY: so computer doesn't use a haste during a haste.
 	
 	// SOME OF THESE MAY NEED TO BE AN ARRAY-CLASS:
 	public static int[] cureSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
@@ -404,7 +408,7 @@ public class MainActivity2 extends ActionBarActivity {
 				
 				
 				if (issixsidedrolledforinitiative.equals("no")) {					
-					resultsInitiative();
+					initiativeResults();
 				}
 				if (iscurerolled.equals("yes")) {
 					cureResults();
@@ -460,7 +464,7 @@ public class MainActivity2 extends ActionBarActivity {
 				
 				
 				if (issixsidedrolledforinitiative.equals("no")) {					
-					resultsInitiative();
+					initiativeResults();
 				}
 				if (iscurerolled.equals("yes")) {
 					cureResults();
@@ -2426,7 +2430,7 @@ public class MainActivity2 extends ActionBarActivity {
 		*/		
 	}
 	
-	public void resultsInitiative() {
+	public void initiativeResults() {
 		
 		//Toast.makeText(MainActivity2.this,"At method determineDoubles().", Toast.LENGTH_SHORT).show();
 		
@@ -2718,336 +2722,22 @@ public class MainActivity2 extends ActionBarActivity {
 	    	});
 	    	
 	    	alert.show();     
-	  */
+	  */	
 	
 	
 	/*
 	 * 
 	 * 
 	 * 
-	 * Game Mechanics*****************************************************************************************
+	 * Computer Methods*****************************************************************************************
 	 * 
 	 * 
 	 * 
-	 */
+	 */	
 	
-		
-	public void endGame() {
-		
-		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);		
-		
-		runOnUiThread(new Runnable() {
-  	  	    @Override
-  	  	    public void run() {
-		
-				final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
-				//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
-				
-				Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-				centerscrolltext.setTypeface(typeFace);		
-				
-				
-				if (numberOfPlayers == 1) {
-					// UNCONSCIOUS
-					// TEMPLATE???????????????????????????????????????????????????????????????
-					
-					
-					//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
-					
-					
-					if (ArrayOfHitPoints.hitpoints[1] == 0) {			
-						
-						centerscrolltext.setVisibility(View.VISIBLE);													
-		  	  	  		centerscrolltext.startAnimation(animAlphaText);
-		  	  			centerscrolltext.append("\n" + "> The computer is unconscious.");
-						
-						
-						if (cureSpell[1] > 0) {
-							
-							centerscrolltext.setVisibility(View.VISIBLE);												
-			  	  	  		centerscrolltext.startAnimation(animAlphaText);
-			  	  			centerscrolltext.append("\n" + "> The computer uses it's cure spell...");
-							
-							computerCure();
-						}
-					}
-					
-					if (ArrayOfHitPoints.hitpoints[0] == 0) {				
-										
-						centerscrolltext.setVisibility(View.VISIBLE);												
-		  	  	  		centerscrolltext.startAnimation(animAlphaText);
-		  	  			centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you are unconscious.");				
-						
-		
-						if (cureSpell[0] > 0) {
-							
-							/*
-							centerscrolltext.setVisibility(View.VISIBLE);												
-			  	  	  		centerscrolltext.startAnimation(animAlphaText);
-			  	  			centerscrolltext.append("\n" + "> Do you want to use your cure spell?");
-			  	  			*/  	  			
-			  	  			
-				  	  		AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-				  			
-				  	    	alert.setTitle("Do you want to use your Cure spell?");
-				  	    	/*
-				  	    	alert.setMessage("something");
-				  	    	*/	  	    	
-				  	    	
-				  	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-				  		    	public void onClick(DialogInterface dialog, int whichButton) {
-				  		    		
-				  		    		hideNavigation();
-				  		    		
-				  		    		cure();
-				  		    	}
-				  	    	});
-				  	    	
-				  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
-				          	  public void onClick(DialogInterface dialog, int whichButton) {
-				          		  
-				          		  	hideNavigation();
-				          		  	
-				          		  	endGame();
-				          	  }
-				          	});				  	    	
-				  	    	alert.show();
-			  	  			
-			  	  			/*
-			  	  			String s = input.next();
-							char selection = s.charAt(0);
-			  	  			switch (selection) {
-							case 'y':
-							case 'Y':
-								cure(i, turn, gameOn);
-								break;
-							case 'n':
-							case 'N':
-								endGame(i, turn, gameOn);
-								break;
-							default:
-								endGame(i, turn, gameOn);
-								break;
-							}
-							*/
-						}
-					}
-					
-					if (ArrayOfHitPoints.hitpoints[0] < 0) {
-						playerDeadYet[0] = "yes";
-						return;
-					}
-					
-					if (ArrayOfHitPoints.hitpoints[1] < 0) {
-						playerDeadYet[1] = "yes";
-						return;
-					}
-				}
-  	  	    }
-  	  	});
-	}
-	
-	public void gameOverCheck() {
-		
-		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
-		
-		runOnUiThread(new Runnable() {
-  	  	    @Override
-  	  	    public void run() {
-		
-				if (playerDeadYet[0] == "no" && playerDeadYet[1] == "yes") {
-				/*&& playerDeadYet[2] == "yes" && playerDeadYet[3] == "yes"	&& playerDeadYet[4] == "yes" && playerDeadYet[5] == "yes"*/
-					
-					gameOn = 0;
-					
-					
-					final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
-					//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
-					
-					Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-					centerscrolltext.setTypeface(typeFace);					
-					
-					
-					centerscrolltext.setVisibility(View.VISIBLE);												
-		  	  		centerscrolltext.startAnimation(animAlphaText);
-		  			centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you are victorious!!");
-		  			
-		  			centerscrolltext.append("\n" + "Game Over!");
-		  			
-					/*
-					if (numberOfPlayers == 1) {
-						System.out.println(ArrayOfPlayers.player[0] + ", you are victorious!!");
-					}
-					
-					if (numberOfPlayers > 1) {
-						System.out.println("Player " + playerNumber[i]
-								+ ", you are victorious!!");
-					}
-					
-					System.out.println();
-					System.out.println("Game Over!");
-					System.exit(0);			
-					*/
-				}
-				
-				if (playerDeadYet[1] == "no" && playerDeadYet[0] == "yes"
-						/*&& playerDeadYet[2] == "yes" && playerDeadYet[3] == "yes"
-						&& playerDeadYet[4] == "yes" && playerDeadYet[5] == "yes"*/) {
-					
-					gameOn = 0;
-					
-					
-					final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
-					//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
-					
-					Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-					centerscrolltext.setTypeface(typeFace);				
-					
-					//final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
-					
-					centerscrolltext.setVisibility(View.VISIBLE);												
-		  	  		centerscrolltext.startAnimation(animAlphaText);
-		  			centerscrolltext.append("\n" + "> The computer is victorious!!");
-		  			
-		  			centerscrolltext.append("\n" + "> Game Over!");
-		  			
-					/*
-					if (numberOfPlayers == 1) {
-						System.out.println("The computer player is victorious!!");
-					}
-					
-					if (numberOfPlayers > 1) {
-						System.out.println("Player " + playerNumber[i]
-								+ ", you are victorious!!");
-					}
-					
-					System.out.println();
-					System.out.println("Game Over!");
-					System.exit(0);
-					*/
-				}
-				/*
-				if (playerDeadYet[2] == "no" && playerDeadYet[0] == "yes"
-						&& playerDeadYet[1] == "yes" && playerDeadYet[3] == "yes"
-						&& playerDeadYet[4] == "yes" && playerDeadYet[5] == "yes") {
-					gameOn = 0;
-					System.out.println();
-					System.out.println("Player " + playerNumber[i]
-							+ ", you are victorious!!");
-					System.out.println();
-					System.out.println("Game Over!");
-					System.exit(0);
-				}
-				if (playerDeadYet[3] == "no" && playerDeadYet[0] == "yes"
-						&& playerDeadYet[1] == "yes" && playerDeadYet[2] == "yes"
-						&& playerDeadYet[4] == "yes" && playerDeadYet[5] == "yes") {
-					gameOn = 0;
-					System.out.println();
-					System.out.println("Player " + playerNumber[i]
-							+ ", you are victorious!!");
-					System.out.println();
-					System.out.println("Game Over!");
-					System.exit(0);
-				}
-				if (playerDeadYet[4] == "no" && playerDeadYet[0] == "yes"
-						&& playerDeadYet[1] == "yes" && playerDeadYet[2] == "yes"
-						&& playerDeadYet[3] == "yes" && playerDeadYet[5] == "yes") {
-					gameOn = 0;
-					System.out.println();
-					System.out.println("Player " + playerNumber[i]
-							+ ", you are victorious!!");
-					System.out.println();
-					System.out.println("Game Over!");
-					System.exit(0);
-				}
-				if (playerDeadYet[5] == "no" && playerDeadYet[0] == "yes"
-						&& playerDeadYet[1] == "yes" && playerDeadYet[2] == "yes"
-						&& playerDeadYet[3] == "yes" && playerDeadYet[4] == "yes") {
-					gameOn = 0;
-					System.out.println();
-					System.out.println("Player " + playerNumber[i]
-							+ ", you are victorious!!");
-					System.out.println();
-					System.out.println("Game Over!");
-					System.exit(0);
-				}
-				*/
-  	  	    }
-		});
-	}			
-	
-	public int computerDisarmedAction() {			
-		
-		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
-		
-		runOnUiThread(new Runnable() {
-  	  	    @Override
-  	  	    public void run() {
-  	  	    	
-	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
-	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
-	  			
-	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-	  			centerscrolltext.setTypeface(typeFace);
-	  			
-				
-				centerscrolltext.setVisibility(View.VISIBLE);													
-		  		centerscrolltext.startAnimation(animAlphaText);
-				centerscrolltext.append("\n" + "> The computer is disarmed...");		
-						
-		
-				// CURE
-				if (ArrayOfHitPoints.hitpoints[1] <= 12 && cureSpell[1] > 0) {
-					
-					centerscrolltext.setVisibility(View.VISIBLE); 													
-			  		centerscrolltext.startAnimation(animAlphaText);
-					centerscrolltext.append("\n" + "> The computer uses it's cure spell...");			
-					
-					computerCure();
-					return;
-				}
-		
-				int computerDisarmedAction = (int) ((Math.random() * 100) + 1);
-		
-				// HASTE
-				if (computerDisarmedAction <= 50 && hasteSpell[1] > 0) {
-					
-					centerscrolltext.setVisibility(View.VISIBLE); 													
-			  		centerscrolltext.startAnimation(animAlphaText);
-					centerscrolltext.append("\n" + "> The computer uses a haste spell...");
-								
-					computerHasteDisarmed();
-					return;
-				}
-		
-				// PUNCH 1
-				if (computerDisarmedAction <= 50 && hasteSpell[1] < 1) {
-					
-					centerscrolltext.setVisibility(View.VISIBLE); 													
-			  		centerscrolltext.startAnimation(animAlphaText);
-					centerscrolltext.append("\n" + "> The computer attempts to punch you...");			
-					
-					computerPunch();
-					return;
-				}
-		
-				// PUNCH 2
-				if (computerDisarmedAction >= 51) {
-					
-					centerscrolltext.setVisibility(View.VISIBLE); 													
-			  		centerscrolltext.startAnimation(animAlphaText);
-					centerscrolltext.append("\n" + "> The computer attempts to punch you...");			
-					
-					computerPunch();
-					return;
-				}
-  	  	    }
-		});
-		return playerNumberAttacked;
-	}
 	
 	public int computerAttack() {
-		// player uses methods as normal, BUT computer must use new methods?		
+		// player uses methods as normal, BUT computer must use new methods?	
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
@@ -3061,18 +2751,18 @@ public class MainActivity2 extends ActionBarActivity {
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);
   	  	    	
-					
+	  			// NO NEED FOR ANOTHER METHOD - ACCOUNTED FOR DISARMED HUMAN AS WELL AS A DISARMED COMPUTER ALL IN 1 METHOD.
+				/*	
 				if (canHasDisarmed[0] == "yes") { 
 					// the goto method to get bonus if attacking disarmed opponent.										 
 				
 					computerAttackAgainstDisarmed();
 					return;
 				}
-		
-				// NEED ALGORITHM FOR *ATTACK/*HASTE/*CURE/*BLESS/*DISARM
+				*/				
 		
 				// CURE
-				if ((ArrayOfHitPoints.hitpoints[1] <= 12 && cureSpell[1] > 0) && (usedHaste[0] == "no")) {							
+				if ((ArrayOfHitPoints.hitpoints[1] <= 12 && cureSpell[1] > 0) && (iscomputerhasteused.equals("no"))) {							
 					
 					centerscrolltext.setVisibility(View.VISIBLE);													
 			  		centerscrolltext.startAnimation(animAlphaText);
@@ -3085,155 +2775,692 @@ public class MainActivity2 extends ActionBarActivity {
 					return;
 				}
 		
-				// ATTACK
-				if (computerAction <= 40) {
-					int attackResult = (int) (Math.random() * 20) + 1;
+				// ATTACK AND ATTACK IF NO BLESS
+				else if ((computerAction <= 40) || (computerAction >= 1 && iscomputerhasteused.equals("yes")) || ((computerAction >= 41 && computerAction <= 50) && (blessSpell[1] < 1 && iscomputerhasteused.equals("no")))) {
 					
-					centerscrolltext.setVisibility(View.VISIBLE);													
-			  		centerscrolltext.startAnimation(animAlphaText);
-					centerscrolltext.append("\n" + "> The computer attacks...");
+					if (canHasDisarmed[1].equals("no")) {
 					
-					// for(int x = 0; x < 100; --x)
-					// {}
-					
-					centerscrolltext.setVisibility(View.VISIBLE);													
-			  		centerscrolltext.startAnimation(animAlphaText);
-					centerscrolltext.append("\n" + "> The computer rolls a " + attackResult + "!");
-					
-		
-					if (attackResult >= 20) {
-						computerCriticalHit();
-						return;
-					}
-					if (attackResult >= 14 && attackResult <= 19) {
+						int attackResult = (int) (Math.random() * 20) + 1;
 						
 						centerscrolltext.setVisibility(View.VISIBLE);													
 				  		centerscrolltext.startAnimation(animAlphaText);
-						centerscrolltext.append("\n" + "> The computer's attack hits!");				
-		
-						if (mightyBlowSpell[1] > 0) {
-							
-							int computerUseMightyBlow = (int) ((Math.random() * 20) + 1);
-							// NEED 1 SCENARIO FOR HUMAN PLAYER HP ABOVE 12 AND 1 SCENARIO FOR HUMAN PLAYER HP BELOW 12
-							
-							if (ArrayOfHitPoints.hitpoints[0] >= 12) {
-								// using 12 just because if comp roll 6 for damage * 2 = 12, comp can kill human player.
-							
-								if (computerUseMightyBlow >= 15) {
-									// less likely for comp to use MB because human HP > 12.						
-									
-									centerscrolltext.setVisibility(View.VISIBLE);													
-							  		centerscrolltext.startAnimation(animAlphaText);
-									centerscrolltext.append("\n" + "> The computer uses mighty blow!");
-									
-									/*
-									for (int x = 0; x < 1000; --x) {
-									}
-									*/
-									
-									mightyBlowSpell[1] = mightyBlowSpell[1] - 1;							
-									
-									
-									/*
-									 * 
-									 * Picture of swords clanging together:
-									 * 
-									 * 
-									 * swordsGraphic();
-									 * 
-									 */
-									
-									
-									/*
-									System.out
-											.println("     /\\___________          ___________/\\");
-									System.out
-											.println("/|---||___________\\ MIGHTY /___________||---|\\");
-									System.out
-											.println("\\|---||___________/  BLOW  \\___________||---|/");
-									System.out
-											.println("     \\/                                \\/");
-									for (int x = 0; x < 1; --x) {
-									}
-									*/
-		
-									computerMightyBlow();
-									return;
-								} else {
-									computerDamage();
-									return;
-								}
-							}
-							
-							if (ArrayOfHitPoints.hitpoints[0] < 12)// see above for explanation
-							{
-								if (computerUseMightyBlow < 15) {
-									// more likely for comp to use MB because human HP < 12.
-								
-									centerscrolltext.setVisibility(View.VISIBLE);													
-							  		centerscrolltext.startAnimation(animAlphaText);
-									centerscrolltext.append("\n" + "> The computer uses mighty blow!");
-									
-									/*
-									for (int x = 0; x < 1000; --x) {
-									}
-									*/
-									
-									mightyBlowSpell[1] = mightyBlowSpell[1] - 1;
-		
-																
-									/*
-									 * 
-									 * Picture of swords clanging together:
-									 * 
-									 * 
-									 * swordsGraphic();
-									 * 
-									 */
-									
-									/*
-									System.out
-											.println("     /\\___________          ___________/\\");
-									System.out
-											.println("/|---||___________\\ MIGHTY /___________||---|\\");
-									System.out
-											.println("\\|---||___________/  BLOW  \\___________||---|/");
-									System.out
-											.println("     \\/                                \\/");
-									for (int x = 0; x < 1; --x) {
-									}
-									*/
-									
-									computerMightyBlow();
-									return;
-								} else {
-									computerDamage();
-									return;
-								}
-							}
+						centerscrolltext.append("\n" + "> The computer attacks...");
+						
+						// for(int x = 0; x < 100; --x)
+						// {}
+						
+						centerscrolltext.setVisibility(View.VISIBLE);													
+				  		centerscrolltext.startAnimation(animAlphaText);
+						centerscrolltext.append("\n" + "> The computer rolls a " + attackResult + "!");
+						
+			
+						if (attackResult >= 20) {
+							computerCriticalHit();
+							return;
 						}
-						computerDamage();
-						return;
+						
+						if (canHasDisarmed[0].equals("no")) {
+						
+							if (attackResult >= 14 && attackResult <= 19) {
+								
+								centerscrolltext.setVisibility(View.VISIBLE);													
+						  		centerscrolltext.startAnimation(animAlphaText);
+								centerscrolltext.append("\n" + "> The computer's attack hits!");				
+				
+								if (mightyBlowSpell[1] > 0 && iscomputerhasteused.equals("no")) {
+									
+									int computerUseMightyBlow = (int) ((Math.random() * 20) + 1);
+									// NEED 1 SCENARIO FOR HUMAN PLAYER HP ABOVE 12 AND 1 SCENARIO FOR HUMAN PLAYER HP BELOW 12
+									
+									if (ArrayOfHitPoints.hitpoints[0] >= 12) {
+										// using 12 just because if comp roll 6 for damage * 2 = 12, comp can kill human player.
+									
+										if (computerUseMightyBlow >= 15) {
+											// less likely for comp to use MB because human HP > 12.						
+											
+											centerscrolltext.setVisibility(View.VISIBLE);													
+									  		centerscrolltext.startAnimation(animAlphaText);
+											centerscrolltext.append("\n" + "> The computer uses mighty blow!");
+											
+											/*
+											for (int x = 0; x < 1000; --x) {
+											}
+											*/
+											
+											mightyBlowSpell[1] = mightyBlowSpell[1] - 1;							
+											
+											
+											/*
+											 * 
+											 * Picture of swords clanging together:
+											 * 
+											 * 
+											 * swordsGraphic();
+											 * 
+											 */
+											
+											
+											/*
+											System.out
+													.println("     /\\___________          ___________/\\");
+											System.out
+													.println("/|---||___________\\ MIGHTY /___________||---|\\");
+											System.out
+													.println("\\|---||___________/  BLOW  \\___________||---|/");
+											System.out
+													.println("     \\/                                \\/");
+											for (int x = 0; x < 1; --x) {
+											}
+											*/
+				
+											computerMightyBlow();
+											return;
+										} else {
+											computerDamage();
+											return;
+										}
+									}
+									
+									if (ArrayOfHitPoints.hitpoints[0] < 12)// see above for explanation
+									{
+										if (computerUseMightyBlow < 15) {
+											// more likely for comp to use MB because human HP < 12.
+										
+											centerscrolltext.setVisibility(View.VISIBLE);													
+									  		centerscrolltext.startAnimation(animAlphaText);
+											centerscrolltext.append("\n" + "> The computer uses mighty blow!");
+											
+											/*
+											for (int x = 0; x < 1000; --x) {
+											}
+											*/
+											
+											mightyBlowSpell[1] = mightyBlowSpell[1] - 1;
+				
+																		
+											/*
+											 * 
+											 * Picture of swords clanging together:
+											 * 
+											 * 
+											 * swordsGraphic();
+											 * 
+											 */
+											
+											/*
+											System.out
+													.println("     /\\___________          ___________/\\");
+											System.out
+													.println("/|---||___________\\ MIGHTY /___________||---|\\");
+											System.out
+													.println("\\|---||___________/  BLOW  \\___________||---|/");
+											System.out
+													.println("     \\/                                \\/");
+											for (int x = 0; x < 1; --x) {
+											}
+											*/
+											
+											computerMightyBlow();
+											return;
+										} else {
+											computerDamage();
+											return;
+										}
+									}
+								}
+								computerDamage();
+								return;
+							}
+							
+							if (attackResult < 14 && attackResult > 1) {
+								
+								centerscrolltext.setVisibility(View.VISIBLE);													
+						  		centerscrolltext.startAnimation(animAlphaText);
+								centerscrolltext.append("\n" + "> The computer's attack misses!");
+								
+								final Handler h = new Handler();
+					  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+					  	  	  			
+					  	  	  		@Override
+						  	  	  	public void run() {
+					  	  	  			
+						  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
+						  	    			
+						  	    			gameEngineComputerFirst2();   							
+						  				}
+	
+									  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
+									  						
+									  		turn();    							
+									  	}
+									  	if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
+									  	    			
+									  		computerHastePartTwo();   							
+									  	}
+				
+									  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
+									  						
+									  		computerHastePartTwo();    							
+									  	}					  	  	  			
+						  	  	  	}
+					  	  	  	}, 2000);
+								
+								return;
+							}
+							
+							if (attackResult <= 1) {
+								computerCriticalMiss();
+								return;
+							}
+							return;
+						}
+						
+						if (canHasDisarmed[0].equals("yes")) {
+							
+							if (attackResult >= 12 && attackResult <= 19) {
+								
+								centerscrolltext.setVisibility(View.VISIBLE);													
+						  		centerscrolltext.startAnimation(animAlphaText);
+								centerscrolltext.append("\n" + "> The computer's attack hits!");				
+				
+								if (mightyBlowSpell[1] > 0 && iscomputerhasteused.equals("no")) {
+									
+									int computerUseMightyBlow = (int) ((Math.random() * 20) + 1);
+									// NEED 1 SCENARIO FOR HUMAN PLAYER HP ABOVE 12 AND 1 SCENARIO FOR HUMAN PLAYER HP BELOW 12
+									
+									if (ArrayOfHitPoints.hitpoints[0] >= 12) {
+										// using 12 just because if comp roll 6 for damage * 2 = 12, comp can kill human player.
+									
+										if (computerUseMightyBlow >= 15) {
+											// less likely for comp to use MB because human HP > 12.						
+											
+											centerscrolltext.setVisibility(View.VISIBLE);													
+									  		centerscrolltext.startAnimation(animAlphaText);
+											centerscrolltext.append("\n" + "> The computer uses mighty blow!");
+											
+											/*
+											for (int x = 0; x < 1000; --x) {
+											}
+											*/
+											
+											mightyBlowSpell[1] = mightyBlowSpell[1] - 1;							
+											
+											
+											/*
+											 * 
+											 * Picture of swords clanging together:
+											 * 
+											 * 
+											 * swordsGraphic();
+											 * 
+											 */
+											
+											
+											/*
+											System.out
+													.println("     /\\___________          ___________/\\");
+											System.out
+													.println("/|---||___________\\ MIGHTY /___________||---|\\");
+											System.out
+													.println("\\|---||___________/  BLOW  \\___________||---|/");
+											System.out
+													.println("     \\/                                \\/");
+											for (int x = 0; x < 1; --x) {
+											}
+											*/
+				
+											computerMightyBlow();
+											return;
+										} else {
+											computerDamage();
+											return;
+										}
+									}
+									
+									if (ArrayOfHitPoints.hitpoints[0] < 12)// see above for explanation
+									{
+										if (computerUseMightyBlow < 15) {
+											// more likely for comp to use MB because human HP < 12.
+										
+											centerscrolltext.setVisibility(View.VISIBLE);													
+									  		centerscrolltext.startAnimation(animAlphaText);
+											centerscrolltext.append("\n" + "> The computer uses mighty blow!");
+											
+											/*
+											for (int x = 0; x < 1000; --x) {
+											}
+											*/
+											
+											mightyBlowSpell[1] = mightyBlowSpell[1] - 1;
+				
+																		
+											/*
+											 * 
+											 * Picture of swords clanging together:
+											 * 
+											 * 
+											 * swordsGraphic();
+											 * 
+											 */
+											
+											/*
+											System.out
+													.println("     /\\___________          ___________/\\");
+											System.out
+													.println("/|---||___________\\ MIGHTY /___________||---|\\");
+											System.out
+													.println("\\|---||___________/  BLOW  \\___________||---|/");
+											System.out
+													.println("     \\/                                \\/");
+											for (int x = 0; x < 1; --x) {
+											}
+											*/
+											
+											computerMightyBlow();
+											return;
+										} else {
+											computerDamage();
+											return;
+										}
+									}
+								}
+								computerDamage();
+								return;
+							}
+							
+							if (attackResult < 12 && attackResult > 1) {
+								
+								centerscrolltext.setVisibility(View.VISIBLE);													
+						  		centerscrolltext.startAnimation(animAlphaText);
+								centerscrolltext.append("\n" + "> The computer's attack misses!");
+								
+								final Handler h = new Handler();
+					  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+					  	  	  			
+					  	  	  		@Override
+						  	  	  	public void run() {
+					  	  	  			
+						  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
+						  	    			
+						  	    			gameEngineComputerFirst2();   							
+						  				}
+	
+									  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
+									  						
+									  		turn();    							
+									  	}
+									  	if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
+									  	    			
+									  		computerHastePartTwo();   							
+									  	}
+				
+									  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
+									  						
+									  		computerHastePartTwo();    							
+									  	}					  	  	  			
+						  	  	  	}
+					  	  	  	}, 2000);
+								
+								return;
+							}
+							
+							if (attackResult <= 1) {
+								computerCriticalMiss();
+								return;
+							}
+							return;
+						}
 					}
 					
-					if (attackResult < 14 && attackResult > 1) {
+					if (canHasDisarmed[1].equals("yes")) {
+						
+						int attackResult = (int) (Math.random() * 20) + 1;
 						
 						centerscrolltext.setVisibility(View.VISIBLE);													
 				  		centerscrolltext.startAnimation(animAlphaText);
-						centerscrolltext.append("\n" + "> The computer's attack misses!");
+						centerscrolltext.append("\n" + "> The computer attacks...");
 						
-						return;
+						// for(int x = 0; x < 100; --x)
+						// {}
+						
+						centerscrolltext.setVisibility(View.VISIBLE);													
+				  		centerscrolltext.startAnimation(animAlphaText);
+						centerscrolltext.append("\n" + "> The computer rolls a " + attackResult + "!");
+						
+			
+						if (attackResult >= 20) {
+							computerCriticalHit();
+							return;
+						}
+						
+						if (canHasDisarmed[0].equals("no")) {
+						
+							if (attackResult >= 15 && attackResult <= 19) { // -1 to-hit for being disarmed.
+								
+								centerscrolltext.setVisibility(View.VISIBLE);													
+						  		centerscrolltext.startAnimation(animAlphaText);
+								centerscrolltext.append("\n" + "> The computer's punch hits!");				
+				
+								if (mightyBlowSpell[1] > 0 && iscomputerhasteused.equals("no")) {
+									
+									int computerUseMightyBlow = (int) ((Math.random() * 20) + 1);
+									// NEED 1 SCENARIO FOR HUMAN PLAYER HP ABOVE 12 AND 1 SCENARIO FOR HUMAN PLAYER HP BELOW 12
+									
+									if (ArrayOfHitPoints.hitpoints[0] >= 12) {
+										// using 12 just because if comp roll 6 for damage * 2 = 12, comp can kill human player.
+									
+										if (computerUseMightyBlow >= 15) {
+											// less likely for comp to use MB because human HP > 12.						
+											
+											centerscrolltext.setVisibility(View.VISIBLE);													
+									  		centerscrolltext.startAnimation(animAlphaText);
+											centerscrolltext.append("\n" + "> The computer uses mighty blow!");
+											
+											/*
+											for (int x = 0; x < 1000; --x) {
+											}
+											*/
+											
+											mightyBlowSpell[1] = mightyBlowSpell[1] - 1;							
+											
+											
+											/*
+											 * 
+											 * Picture of swords clanging together:
+											 * 
+											 * 
+											 * swordsGraphic();
+											 * 
+											 */
+											
+											
+											/*
+											System.out
+													.println("     /\\___________          ___________/\\");
+											System.out
+													.println("/|---||___________\\ MIGHTY /___________||---|\\");
+											System.out
+													.println("\\|---||___________/  BLOW  \\___________||---|/");
+											System.out
+													.println("     \\/                                \\/");
+											for (int x = 0; x < 1; --x) {
+											}
+											*/
+				
+											computerMightyBlow();
+											return;
+										} else {
+											computerDamage();
+											return;
+										}
+									}
+									
+									if (ArrayOfHitPoints.hitpoints[0] < 12)// see above for explanation
+									{
+										if (computerUseMightyBlow < 15) {
+											// more likely for comp to use MB because human HP < 12.
+										
+											centerscrolltext.setVisibility(View.VISIBLE);													
+									  		centerscrolltext.startAnimation(animAlphaText);
+											centerscrolltext.append("\n" + "> The computer uses mighty blow!");
+											
+											/*
+											for (int x = 0; x < 1000; --x) {
+											}
+											*/
+											
+											mightyBlowSpell[1] = mightyBlowSpell[1] - 1;
+				
+																		
+											/*
+											 * 
+											 * Picture of swords clanging together:
+											 * 
+											 * 
+											 * swordsGraphic();
+											 * 
+											 */
+											
+											/*
+											System.out
+													.println("     /\\___________          ___________/\\");
+											System.out
+													.println("/|---||___________\\ MIGHTY /___________||---|\\");
+											System.out
+													.println("\\|---||___________/  BLOW  \\___________||---|/");
+											System.out
+													.println("     \\/                                \\/");
+											for (int x = 0; x < 1; --x) {
+											}
+											*/
+											
+											computerMightyBlow();
+											return;
+										} else {
+											computerDamage();
+											return;
+										}
+									}
+								}
+								computerDamage();
+								return;
+							}
+							
+							if (attackResult < 15 && attackResult >= 1) {
+								
+								centerscrolltext.setVisibility(View.VISIBLE);													
+						  		centerscrolltext.startAnimation(animAlphaText);
+								centerscrolltext.append("\n" + "> The computer's punch misses!");
+								
+								final Handler h = new Handler();
+					  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+					  	  	  			
+					  	  	  		@Override
+						  	  	  	public void run() {
+					  	  	  			
+						  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
+						  	    			
+						  	    			gameEngineComputerFirst2();   							
+						  				}
+	
+									  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
+									  						
+									  		turn();    							
+									  	}
+									  	if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
+									  	    			
+									  		computerHastePartTwo();   							
+									  	}
+				
+									  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
+									  						
+									  		computerHastePartTwo();    							
+									  	}					  	  	  			
+						  	  	  	}
+					  	  	  	}, 2000);
+								
+								return;
+							}
+							
+							// NEW
+							//	CAN YOU CRITICL MISS A PUNCH???????????????????????????????????? -----DISARM AGAIN TO MAINTAIN BALANCE.
+							// for now i'll do no rolls to keep it simpler, but in future might go w roll to hurt yourself (ie stumble & fall) but no roll to lose weapon.
+							/*
+							if (attackResult <= 1) {
+								computerCriticalMiss();
+								return;
+							}
+							*/
+							
+							return;						
+						}
+						
+						if (canHasDisarmed[0].equals("yes")) {
+							
+							if (attackResult >= 13 && attackResult <= 19) { // -1 to-hit for being disarmed but, +2 because computer is disarmed (+1 total)
+								
+								centerscrolltext.setVisibility(View.VISIBLE);													
+						  		centerscrolltext.startAnimation(animAlphaText);
+								centerscrolltext.append("\n" + "> The computer's punch hits!");				
+				
+								if (mightyBlowSpell[1] > 0 && iscomputerhasteused.equals("no")) {
+									
+									int computerUseMightyBlow = (int) ((Math.random() * 20) + 1);
+									// NEED 1 SCENARIO FOR HUMAN PLAYER HP ABOVE 12 AND 1 SCENARIO FOR HUMAN PLAYER HP BELOW 12
+									
+									if (ArrayOfHitPoints.hitpoints[0] >= 12) {
+										// using 12 just because if comp roll 6 for damage * 2 = 12, comp can kill human player.
+									
+										if (computerUseMightyBlow >= 15) {
+											// less likely for comp to use MB because human HP > 12.						
+											
+											centerscrolltext.setVisibility(View.VISIBLE);													
+									  		centerscrolltext.startAnimation(animAlphaText);
+											centerscrolltext.append("\n" + "> The computer uses mighty blow!");
+											
+											/*
+											for (int x = 0; x < 1000; --x) {
+											}
+											*/
+											
+											mightyBlowSpell[1] = mightyBlowSpell[1] - 1;							
+											
+											
+											/*
+											 * 
+											 * Picture of swords clanging together:
+											 * 
+											 * 
+											 * swordsGraphic();
+											 * 
+											 */
+											
+											
+											/*
+											System.out
+													.println("     /\\___________          ___________/\\");
+											System.out
+													.println("/|---||___________\\ MIGHTY /___________||---|\\");
+											System.out
+													.println("\\|---||___________/  BLOW  \\___________||---|/");
+											System.out
+													.println("     \\/                                \\/");
+											for (int x = 0; x < 1; --x) {
+											}
+											*/
+				
+											computerMightyBlow();
+											return;
+										} else {
+											computerDamage();
+											return;
+										}
+									}
+									
+									if (ArrayOfHitPoints.hitpoints[0] < 12)// see above for explanation
+									{
+										if (computerUseMightyBlow < 15) {
+											// more likely for comp to use MB because human HP < 12.
+										
+											centerscrolltext.setVisibility(View.VISIBLE);													
+									  		centerscrolltext.startAnimation(animAlphaText);
+											centerscrolltext.append("\n" + "> The computer uses mighty blow!");
+											
+											/*
+											for (int x = 0; x < 1000; --x) {
+											}
+											*/
+											
+											mightyBlowSpell[1] = mightyBlowSpell[1] - 1;
+				
+																		
+											/*
+											 * 
+											 * Picture of swords clanging together:
+											 * 
+											 * 
+											 * swordsGraphic();
+											 * 
+											 */
+											
+											/*
+											System.out
+													.println("     /\\___________          ___________/\\");
+											System.out
+													.println("/|---||___________\\ MIGHTY /___________||---|\\");
+											System.out
+													.println("\\|---||___________/  BLOW  \\___________||---|/");
+											System.out
+													.println("     \\/                                \\/");
+											for (int x = 0; x < 1; --x) {
+											}
+											*/
+											
+											computerMightyBlow();
+											return;
+										} else {
+											computerDamage();
+											return;
+										}
+									}
+								}
+								computerDamage();
+								return;
+							}
+							
+							if (attackResult < 13 && attackResult >= 1) {
+								
+								centerscrolltext.setVisibility(View.VISIBLE);													
+						  		centerscrolltext.startAnimation(animAlphaText);
+								centerscrolltext.append("\n" + "> The computer's punch misses!");
+								
+								final Handler h = new Handler();
+					  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+					  	  	  			
+					  	  	  		@Override
+						  	  	  	public void run() {
+					  	  	  			
+						  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
+						  	    			
+						  	    			gameEngineComputerFirst2();   							
+						  				}
+	
+									  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
+									  						
+									  		turn();    							
+									  	}
+									  	if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
+									  	    			
+									  		computerHastePartTwo();   							
+									  	}
+				
+									  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
+									  						
+									  		computerHastePartTwo();    							
+									  	}					  	  	  			
+						  	  	  	}
+					  	  	  	}, 2000);
+								
+								return;
+							}
+							
+							// NEW
+							//	CAN YOU CRITICL MISS A PUNCH???????????????????????????????????? -----DISARM AGAIN TO MAINTAIN BALANCE.
+							// for now i'll do no rolls to keep it simpler, but in future might go w roll to hurt yourself (ie stumble & fall) but no roll to lose weapon.
+							/*
+							if (attackResult <= 1) {
+								computerCriticalMiss();
+								return;
+							}
+							*/
+							
+							return;						
+						}
 					}
-					
-					if (attackResult <= 1) {
-						computerCriticalMiss();
-						return;
-					}
-					return;
 				}
 				
 				// BLESS
-				else if ((computerAction >= 41 && computerAction <= 50)	&& (blessSpell[1] == 1 && usedHaste[0] == "no")) {
+				else if ((computerAction >= 41 && computerAction <= 50)	&& (blessSpell[1] == 1 && iscomputerhasteused.equals("no"))) {
 					
 					centerscrolltext.setVisibility(View.VISIBLE);													
 			  		centerscrolltext.startAnimation(animAlphaText);
@@ -3246,158 +3473,18 @@ public class MainActivity2 extends ActionBarActivity {
 					
 					computerBless();
 					return;
-				}
-				// ATTACK IF NO BLESS
-				else if ((computerAction >= 41 && computerAction <= 50)	&& (blessSpell[1] < 1 && usedHaste[0] == "no")) {
-					
-					int attackResult = (int) ((Math.random() * 20) + 1);
-					
-					centerscrolltext.setVisibility(View.VISIBLE);													
-			  		centerscrolltext.startAnimation(animAlphaText);
-					centerscrolltext.append("\n" + "> The computer attacks...");
-					
-					// for(int x = 0; x < 100; --x)
-					// {}
-					
-					centerscrolltext.setVisibility(View.VISIBLE);													
-			  		centerscrolltext.startAnimation(animAlphaText);
-					centerscrolltext.append("\n" + "> The computer rolls a " + attackResult + "!");			
-		
-					if (attackResult >= 20) {
-						computerCriticalHit();
-						return;
-					}
-					
-					if (attackResult >= 14 && attackResult <= 19) {
-						
-						centerscrolltext.setVisibility(View.VISIBLE);													
-				  		centerscrolltext.startAnimation(animAlphaText);
-						centerscrolltext.append("\n" + "> The computer's attack hits!");				
-		
-						if (mightyBlowSpell[1] > 0) {
-							int computerUseMightyBlow = (int) (Math.random() * 20) + 1;
-							// NEED 1 SCENARIO FOR HUMAN PLAYER HP ABOVE 12 AND 1 SCENARION FOR HUMAN PLAYER HP BELOW 12
-							
-							if (ArrayOfHitPoints.hitpoints[0] >= 12) {
-								// using 12 just because if comp roll 6 for damage * 2 = 12, comp can kill human player.
-							
-								if (computerUseMightyBlow >= 15) {
-									// less likely for comp to use MB because human HP > 12.
-								
-									centerscrolltext.setVisibility(View.VISIBLE);													
-							  		centerscrolltext.startAnimation(animAlphaText);
-									centerscrolltext.append("\n" + "> The computer uses mighty blow!");
-									
-									/*
-									for (int x = 0; x < 1000; --x) {
-									}
-									*/
-									
-									mightyBlowSpell[1] = mightyBlowSpell[1] - 1;
-									
-									
-									/*
-									 * 
-									 * Picture of swords clanging together:
-									 * 
-									 * 
-									 * swordsGraphic();
-									 * 
-									 */
-									
-									/*
-									System.out
-											.println("     /\\___________          ___________/\\");
-									System.out
-											.println("/|---||___________\\ MIGHTY /___________||---|\\");
-									System.out
-											.println("\\|---||___________/  BLOW  \\___________||---|/");
-									System.out
-											.println("     \\/                                \\/");
-									for (int x = 0; x < 1; --x) {
-									}
-									*/
-									
-									computerMightyBlow();
-									return;
-								} else {
-									computerDamage();
-									return;
-								}
-							}
-							
-							if (ArrayOfHitPoints.hitpoints[0] < 12)// see above for explanation
-							{
-								if (computerUseMightyBlow < 15) {
-									// more likely for comp to use MB because human HP < 12.
-								
-									centerscrolltext.setVisibility(View.VISIBLE);													
-							  		centerscrolltext.startAnimation(animAlphaText);
-									centerscrolltext.append("\n" + "> The computer uses mighty blow!");
-									
-									/*
-									for (int x = 0; x < 1000; --x) {
-									}
-									*/
-									
-									mightyBlowSpell[1] = mightyBlowSpell[1] - 1;
-									
-									
-									/*
-									 * 
-									 * Picture of swords clanging together:
-									 * 
-									 * 
-									 * swordsGraphic();
-									 * 
-									 */
-									
-									
-									/*
-									System.out
-											.println("     /\\___________          ___________/\\");
-									System.out
-											.println("/|---||___________\\ MIGHTY /___________||---|\\");
-									System.out
-											.println("\\|---||___________/  BLOW  \\___________||---|/");
-									System.out
-											.println("     \\/                                \\/");
-									for (int x = 0; x < 1; --x) {
-									}
-									*/
-									
-									computerMightyBlow();
-									return;
-								} else {
-									computerDamage();
-									return;
-								}
-							}
-						}
-						computerDamage();
-						return;
-					}
-					
-					if (attackResult < 14 && attackResult > 1) {
-						
-						centerscrolltext.setVisibility(View.VISIBLE);													
-				  		centerscrolltext.startAnimation(animAlphaText);
-						centerscrolltext.append("\n" + "> The computer's attack misses!");
-						
-						return;
-					}
-					
-					if (attackResult <= 1) {
-						computerCriticalMiss();
-						return;
-					}
-					return;
-				}
+				}				
+				
+				
+				// HASTE IF DISARMED
+				// Determined at beginning of computer's turn and resolved in computerDisarmedAction().
+				
 				
 				// HASTE
-				else if ((computerAction >= 51 && computerAction <= 75)	&& (hasteSpell[1] > 0 && usedHaste[0] == "no")) {
+				else if ((computerAction >= 51 && computerAction <= 75)	&& (hasteSpell[1] > 0 && iscomputerhasteused.equals("no"))) {
 					
-					usedHaste[0] = "yes"; // so computer doesn't use a haste during a haste.
+					// so computer doesn't use a haste during a haste.
+					//usedHaste[1] = "yes"; 
 					
 					centerscrolltext.setVisibility(View.VISIBLE);													
 			  		centerscrolltext.startAnimation(animAlphaText);
@@ -3410,159 +3497,21 @@ public class MainActivity2 extends ActionBarActivity {
 					
 					computerHaste();
 					return;
-				}
+				}				
 				
+				
+				// CAN ONLY ATTACK ON COMPUTER'S 2ND HASTE. MOVED ATTACK STUFF TO computerHastePartTwo().
+				/*
 				// ATTACK DURING HASTE
-				else if ((computerAction >= 51 && computerAction <= 75)	&& (usedHaste[0] == "yes")) {
-					// in case the roll is between 51 & 75 & the computer used a haste spell.		
-					
-					centerscrolltext.setVisibility(View.VISIBLE);													
-			  		centerscrolltext.startAnimation(animAlphaText);
-					centerscrolltext.append("\n" + "> The computer attacks...");
-					
-					// for(int x = 0; x < 100; --x)
-					// {}
-					
-					int attackResult = (int) ((Math.random() * 20) + 1);
-					
-					centerscrolltext.setVisibility(View.VISIBLE);													
-			  		centerscrolltext.startAnimation(animAlphaText);
-					centerscrolltext.append("\n" + "> The computer rolls a " + attackResult + "!");
-					
-					if (attackResult >= 20) {
-						computerCriticalHit();
-						return;
-					}
-					if (attackResult >= 14 && attackResult <= 19) {
-						
-						centerscrolltext.setVisibility(View.VISIBLE);													
-				  		centerscrolltext.startAnimation(animAlphaText);
-						centerscrolltext.append("\n" + "> The computer's attack hits!");				
-		
-						if (mightyBlowSpell[1] > 0) {
-							
-							int computerUseMightyBlow = (int) ((Math.random() * 20) + 1);
-							// NEED 1 SCENARIO FOR HUMAN PLAYER HP ABOVE 12 AND 1 SCENARIO FOR HUMAN PLAYER HP BELOW 12.
-							
-							if (ArrayOfHitPoints.hitpoints[0] >= 12) {
-								// using 12 just because if comp roll 6 for damage * 2 = 12, comp can kill human player.
-							
-								if (computerUseMightyBlow >= 15) {
-									// less likely for comp to use MB because human HP > 12.
-									
-									centerscrolltext.setVisibility(View.VISIBLE);													
-							  		centerscrolltext.startAnimation(animAlphaText);
-									centerscrolltext.append("\n" + "> The computer uses mighty blow!");
-									
-									/*
-									for (int x = 0; x < 1000; --x) {
-									}
-									*/
-									
-									mightyBlowSpell[1] = mightyBlowSpell[1] - 1;
-									
-									
-									/*
-									 * 
-									 * Picture of swords clanging together:
-									 * 
-									 * 
-									 * swordsGraphic();
-									 * 
-									 */
-									
-									
-									/*
-									System.out
-											.println("     /\\___________          ___________/\\");
-									System.out
-											.println("/|---||___________\\ MIGHTY /___________||---|\\");
-									System.out
-											.println("\\|---||___________/  BLOW  \\___________||---|/");
-									System.out
-											.println("     \\/                                \\/");
-									for (int x = 0; x < 1; --x) {
-									}
-									*/
-									
-									computerMightyBlow();
-									return;
-								} else {
-									computerDamage();
-									return;
-								}
-							}
-							
-							if (ArrayOfHitPoints.hitpoints[0] < 12)// see above for explanation
-							{
-								if (computerUseMightyBlow < 15)// more likely for comp to use MB because human HP < 12.
-								{
-									centerscrolltext.setVisibility(View.VISIBLE);													
-							  		centerscrolltext.startAnimation(animAlphaText);
-									centerscrolltext.append("\n" + "> The computer uses mighty blow!");
-									
-									/*
-									for (int x = 0; x < 1000; --x) {
-									}
-									*/
-									
-									mightyBlowSpell[1] = mightyBlowSpell[1] - 1;
-									
-									
-									/*
-									 * 
-									 * Picture of swords clanging together:
-									 * 
-									 * 
-									 * swordsGraphic();
-									 * 
-									 */
-									
-									
-									/*
-									System.out
-											.println("     /\\___________          ___________/\\");
-									System.out
-											.println("/|---||___________\\ MIGHTY /___________||---|\\");
-									System.out
-											.println("\\|---||___________/  BLOW  \\___________||---|/");
-									System.out
-											.println("     \\/                                \\/");
-									for (int x = 0; x < 1; --x) {
-									}
-									*/
-									
-									computerMightyBlow();
-									return;
-								} else {
-									computerDamage();
-									return;
-								}
-							}
-						}
-						computerDamage();
-						return;
-					}
-					
-					if (attackResult < 14 && attackResult > 1) {
-						
-						centerscrolltext.setVisibility(View.VISIBLE);													
-				  		centerscrolltext.startAnimation(animAlphaText);
-						centerscrolltext.append("\n" + "> The computer's attack misses!");
-						
-						return;
-					}
-					
-					if (attackResult <= 1) {
-						computerCriticalMiss();
-						return;
-					}
-					return;
+				else if ((computerAction >= 41 && computerAction <= 75)	&& (iscomputerhasteused.equals("yes"))) { // WAS 51, BUT HAD A GAP BETWEEN 41 TO 51 WHEN COMP USING HASTE.
+				// in case the roll is between 51 & 75 & the computer used a haste spell.								
 				}
+				*/				
+				
 				
 				// ATTACK IF NO HASTES LEFT
-				else if ((computerAction >= 51 && computerAction <= 75)	&& (hasteSpell[1] < 1 && usedHaste[0] == "no")) {
-					// in case the roll is between 51 & 75 & the computer used both it's haste spells.
+				else if ((computerAction >= 51 && computerAction <= 75)	&& (hasteSpell[1] < 1 && iscomputerhasteused.equals("no"))) {
+				// in case the roll is between 51 & 75 & the computer used both it's haste spells.
 				
 					centerscrolltext.setVisibility(View.VISIBLE);													
 			  		centerscrolltext.startAnimation(animAlphaText);
@@ -3708,7 +3657,7 @@ public class MainActivity2 extends ActionBarActivity {
 				}
 				
 				// DISARM
-				else if (computerAction > 75 && computerAction <= 100) {
+				else if ((computerAction > 75 && computerAction <= 100) && iscomputerhasteused.equals("no")) {
 					
 					centerscrolltext.setVisibility(View.VISIBLE);													
 			  		centerscrolltext.startAnimation(animAlphaText);
@@ -3722,9 +3671,9 @@ public class MainActivity2 extends ActionBarActivity {
   	  	    }
 		});
 		return playerNumberAttacked;
-	}
+	}	
 	
-	public void computerCure() {//WAS int[]			
+	public int computerDisarmedAction() {			
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
@@ -3737,29 +3686,61 @@ public class MainActivity2 extends ActionBarActivity {
 	  			
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);
-  	  	    	
-		
-				cureSpell[1] = cureSpell[1] - 1;
-		
-				int result = (int) ((Math.random() * 10) + 1);
-				int cure = result;						
-				
+	  			
 				
 				centerscrolltext.setVisibility(View.VISIBLE);													
 		  		centerscrolltext.startAnimation(animAlphaText);
-				centerscrolltext.append("\n" + "> The computer rolls a " + cure + "!");
-				
-				/*
-				for (int x = 0; x < 1000; --x)// To give human time to read.
-				{
+				centerscrolltext.append("\n" + "> The computer is disarmed...");		
+						
+		
+				// CURE
+				if (ArrayOfHitPoints.hitpoints[1] <= 12 && cureSpell[1] > 0) {
+					
+					centerscrolltext.setVisibility(View.VISIBLE); 													
+			  		centerscrolltext.startAnimation(animAlphaText);
+					centerscrolltext.append("\n" + "> The computer uses it's cure spell...");			
+					
+					computerCure();
+					return;
 				}
-				*/
-				
-				ArrayOfHitPoints.hitpoints[1] = ArrayOfHitPoints.hitpoints[1] + cure;
-				
-				return;
+		
+				int computerDisarmedAction = (int) ((Math.random() * 100) + 1);
+		
+				// HASTE
+				if (computerDisarmedAction <= 50 && hasteSpell[1] > 0 && canHasDisarmed[1].equals("yes")) {
+					
+					centerscrolltext.setVisibility(View.VISIBLE); 													
+			  		centerscrolltext.startAnimation(animAlphaText);
+					centerscrolltext.append("\n" + "> The computer uses a haste spell...");
+								
+					computerHasteDisarmed();
+					return;
+				}
+		
+				// PUNCH 1
+				if (computerDisarmedAction <= 50 && hasteSpell[1] < 1) {
+					
+					centerscrolltext.setVisibility(View.VISIBLE); 													
+			  		centerscrolltext.startAnimation(animAlphaText);
+					centerscrolltext.append("\n" + "> The computer attempts to punch you...");			
+					
+					computerPunch();
+					return;
+				}
+		
+				// PUNCH 2
+				if (computerDisarmedAction >= 51) {
+					
+					centerscrolltext.setVisibility(View.VISIBLE); 													
+			  		centerscrolltext.startAnimation(animAlphaText);
+					centerscrolltext.append("\n" + "> The computer attempts to punch you...");			
+					
+					computerPunch();
+					return;
+				}
   	  	    }
-		});		
+		});
+		return playerNumberAttacked;
 	}
 	
 	public void computerHasteDisarmed() {//WAS int[]						
@@ -3945,174 +3926,7 @@ public class MainActivity2 extends ActionBarActivity {
 				return;
   	  	    }
 		});		
-	}
-	
-	public void computerAttackAgainstDisarmed() {//WAS int
-		
-		final int attackResult = (int) ((Math.random() * 20) + 1);
-		final int attackResultAgainstDisarmed = (attackResult + 2);					
-		
-		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
-		
-		runOnUiThread(new Runnable() {
-  	  	    @Override
-  	  	    public void run() {
-  	  	    	
-	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
-	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
-	  			
-	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-	  			centerscrolltext.setTypeface(typeFace);	
-  	  	    	
-		
-				centerscrolltext.setVisibility(View.VISIBLE);													
-		  		centerscrolltext.startAnimation(animAlphaText);  		
-				centerscrolltext.append("\n" + "> The computer attacks...");
-				
-				centerscrolltext.setVisibility(View.VISIBLE);													
-		  		centerscrolltext.startAnimation(animAlphaText);
-				centerscrolltext.append("\n" + "> The computer rolls a " + attackResult + ", +2 because you are disarmed = " + attackResultAgainstDisarmed);
-		
-				
-				if (attackResultAgainstDisarmed >= 20) {
-					computerCriticalHit();
-					return;
-				}
-				
-				if (attackResultAgainstDisarmed >= 12 && attackResultAgainstDisarmed <= 19) {
-					
-					centerscrolltext.setVisibility(View.VISIBLE);													
-			  		centerscrolltext.startAnimation(animAlphaText);	  		
-					centerscrolltext.append("\n" + "> The computer's attack hits!");
-					
-		
-					if (mightyBlowSpell[1] > 0) {
-						
-						int computerUseMightyBlow = (int) ((Math.random() * 20) + 1);
-						// using a 20-based percentage calculation.
-						
-						// NEED 1 SCENARIO FOR HUMAN PLAYER HP ABOVE 12 AND 1 SCENARIO
-						// FOR HUMAN PLAYER HP BELOW 12
-						
-						if (ArrayOfHitPoints.hitpoints[0] >= 12) {
-							// using 12 just because if comp roll 6 for damage * 2 = 12, comp can kill human player.
-						
-							if (computerUseMightyBlow >= 15) {
-								// less likely for comp to use MB because human HP > 12.
-								
-								centerscrolltext.setVisibility(View.VISIBLE);													
-						  		centerscrolltext.startAnimation(animAlphaText);	  		
-								centerscrolltext.append("\n" + "> The computer uses mighty blow!");
-								
-								/*
-								for (int x = 0; x < 1000; --x) {
-								}
-								*/
-								
-								mightyBlowSpell[1] = mightyBlowSpell[1] - 1;
-								
-								
-								/*
-								 * 
-								 * Picture of swords clanging together:
-								 * 
-								 * 
-								 * swordsGraphic();
-								 * 
-								 */
-								
-								
-								/*
-								System.out
-										.println("     /\\___________          ___________/\\");
-								System.out
-										.println("/|---||___________\\ MIGHTY /___________||---|\\");
-								System.out
-										.println("\\|---||___________/  BLOW  \\___________||---|/");
-								System.out
-										.println("     \\/                                \\/");
-								for (int x = 0; x < 1; --x) {
-								}
-								*/
-								
-								computerMightyBlow();
-								return;
-							} else {
-								computerDamage();
-								return;
-							}
-						}
-						
-						if (ArrayOfHitPoints.hitpoints[0] < 12)// see above for explanation
-						{
-							if (computerUseMightyBlow < 15) {
-								// more likely for comp to use MB because human HP < 12.
-								
-								centerscrolltext.setVisibility(View.VISIBLE);													
-						  		centerscrolltext.startAnimation(animAlphaText);	  		
-								centerscrolltext.append("\n" + "> The computer uses mighty blow!");
-								
-								/*
-								for (int x = 0; x < 1000; --x) {
-								}
-								*/
-								
-								mightyBlowSpell[1] = mightyBlowSpell[1] - 1;
-								
-								
-								/*
-								 * 
-								 * Picture of swords clanging together:
-								 * 
-								 * 
-								 * swordsGraphic();
-								 * 
-								 */
-								
-								
-								/*
-								System.out
-										.println("     /\\___________          ___________/\\");
-								System.out
-										.println("/|---||___________\\ MIGHTY /___________||---|\\");
-								System.out
-										.println("\\|---||___________/  BLOW  \\___________||---|/");
-								System.out
-										.println("     \\/                                \\/");
-								for (int x = 0; x < 1; --x) {
-								}
-								*/
-								
-								computerMightyBlow();
-								return;
-							} else {
-								computerDamage();
-								return;
-							}
-						}
-					}
-					computerDamage();
-					return;
-				}
-		
-				if (attackResultAgainstDisarmed < 12 && attackResultAgainstDisarmed > 0) {
-					
-					centerscrolltext.setVisibility(View.VISIBLE);													
-			  		centerscrolltext.startAnimation(animAlphaText);	  		
-					centerscrolltext.append("\n" + "> The computer's attack misses!");			
-				}
-				
-				// CAN'T CRITICALLY MISS WHEN ATTACKING DISARMED
-				// OPPONENT????????????????????????????
-				
-				/*
-				 * if (attackResult <= 1) { computerCriticalMiss(i, turn, gameOn); }
-				 */
-				
-				return;
-  	  	    }
-		});		
-	}
+	}	
 	
 	public int computerCriticalHit() {						
 		
@@ -4614,6 +4428,44 @@ public class MainActivity2 extends ActionBarActivity {
 		});		
 	}
 	
+	public void computerCure() {//WAS int[]			
+		
+		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+		
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {
+  	  	    	
+	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+	  			
+	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  			centerscrolltext.setTypeface(typeFace);
+  	  	    	
+		
+				cureSpell[1] = cureSpell[1] - 1;
+		
+				int result = (int) ((Math.random() * 10) + 1);
+				int cure = result;						
+				
+				
+				centerscrolltext.setVisibility(View.VISIBLE);													
+		  		centerscrolltext.startAnimation(animAlphaText);
+				centerscrolltext.append("\n" + "> The computer rolls a " + cure + "!");
+				
+				/*
+				for (int x = 0; x < 1000; --x)// To give human time to read.
+				{
+				}
+				*/
+				
+				ArrayOfHitPoints.hitpoints[1] = ArrayOfHitPoints.hitpoints[1] + cure;
+				
+				return;
+  	  	    }
+		});		
+	}
+	
 	public void computerBless() {//WAS int						
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
@@ -4640,159 +4492,356 @@ public class MainActivity2 extends ActionBarActivity {
 				 * 
 				 */
 				
-		
-				int attackResult = (int) ((Math.random() * 20) + 1);
 				
-				centerscrolltext.setVisibility(View.VISIBLE);													
-		  		centerscrolltext.startAnimation(animAlphaText);			  		
-				centerscrolltext.append("\n" + "> The computer player attacks...");
+				if (canHasDisarmed[0].equals("no")) {
 				
-				// for(int x = 0; x < 100; --x)
-				// {}
-				
-				
-				centerscrolltext.setVisibility(View.VISIBLE);													
-		  		centerscrolltext.startAnimation(animAlphaText);			  		
-				centerscrolltext.append("\n" + "> The computer player rolls a " + attackResult + ", +2 for the Bless Spell = " + (attackResult + 2));
-				
-		
-				if (attackResult >= 20) {
-					computerCriticalHit();
-					return;
-				}
-		
-				if (attackResult >= 12 && attackResult <= 19) {
+					int attackResult = (int) ((Math.random() * 20) + 1);
 					
 					centerscrolltext.setVisibility(View.VISIBLE);													
 			  		centerscrolltext.startAnimation(animAlphaText);			  		
-					centerscrolltext.append("\n" + "> The computer's attack hits!");
+					centerscrolltext.append("\n" + "> The computer player attacks...");
 					
-		
-					if (mightyBlowSpell[1] > 0) {
-						
-						int computerUseMightyBlow = (int) ((Math.random() * 20) + 1);
-						// NEED 1 SCENARIO FOR HUMAN PLAYER HP ABOVE 12 AND 1 SCENARIO FOR HUMAN PLAYER HP BELOW 12
-						
-						if (ArrayOfHitPoints.hitpoints[0] >= 12) {
-							// using 12 just because if comp roll 6 for damage * 2 = 12, comp can kill human player.
-						
-							if (computerUseMightyBlow >= 15) {
-								// less likely for comp to use MB because human HP > 12.
-								
-								centerscrolltext.setVisibility(View.VISIBLE);													
-						  		centerscrolltext.startAnimation(animAlphaText);			  		
-								centerscrolltext.append("\n" + "> The computer uses mighty blow!");
-								
-								/*
-								for (int x = 0; x < 1000; --x) {
-								}
-								*/
-								
-								
-								mightyBlowSpell[1] = mightyBlowSpell[1] - 1;
-		
-								
-								/*
-								 * 
-								 * Picture of swords clanging together:
-								 * 
-								 * 
-								 * swordsGraphic();
-								 * 
-								 */
-								
-								/*
-								System.out
-										.println("     /\\___________          ___________/\\");
-								System.out
-										.println("/|---||___________\\ MIGHTY /___________||---|\\");
-								System.out
-										.println("\\|---||___________/  BLOW  \\___________||---|/");
-								System.out
-										.println("     \\/                                \\/");
-								for (int x = 0; x < 1; --x) {
-								}
-								*/
-								
-								computerMightyBlow();
-								return;
-							} else {
-								computerDamage();
-								return;
-							}
-						}
-						if (ArrayOfHitPoints.hitpoints[0] < 12)// see above for explanation
-						{
-							if (computerUseMightyBlow < 15) {
-								// more likely for comp to use MB because human HP < 12.
-								
-								centerscrolltext.setVisibility(View.VISIBLE);													
-						  		centerscrolltext.startAnimation(animAlphaText);			  		
-								centerscrolltext.append("\n" + "> The computer uses mighty blow!");
-								
-								/*
-								for (int x = 0; x < 1000; --x) {
-								}
-								*/
-								
-								
-								mightyBlowSpell[1] = mightyBlowSpell[1] - 1;
-		
-								
-								/*
-								 * 
-								 * Picture of swords clanging together:
-								 * 
-								 * 
-								 * swordsGraphic();
-								 * 
-								 */
-								
-								/*
-								System.out
-										.println("     /\\___________          ___________/\\");
-								System.out
-										.println("/|---||___________\\ MIGHTY /___________||---|\\");
-								System.out
-										.println("\\|---||___________/  BLOW  \\___________||---|/");
-								System.out
-										.println("     \\/                                \\/");
-								for (int x = 0; x < 1; --x) {
-								}
-								*/
-		
-								computerMightyBlow();
-								return;
-							} else {
-								computerDamage();
-								return;
-							}
-						}
+					// for(int x = 0; x < 100; --x)
+					// {}
+					
+					
+					centerscrolltext.setVisibility(View.VISIBLE);													
+			  		centerscrolltext.startAnimation(animAlphaText);			  		
+					centerscrolltext.append("\n" + "> The computer player rolls a " + attackResult + ", +2 for the Bless Spell = " + (attackResult + 2));
+					
+			
+					if (attackResult >= 20) {
+						computerCriticalHit();
+						return;
 					}
-					computerDamage();
+			
+					if (attackResult >= 12 && attackResult <= 19) {
+						
+						centerscrolltext.setVisibility(View.VISIBLE);													
+				  		centerscrolltext.startAnimation(animAlphaText);			  		
+						centerscrolltext.append("\n" + "> The computer's attack hits!");
+						
+						
+						/* Only one spell can be cast in a round (no spell can be cast in conjunction with another).
+						if (mightyBlowSpell[1] > 0) {
+							
+							int computerUseMightyBlow = (int) ((Math.random() * 20) + 1);
+							// NEED 1 SCENARIO FOR HUMAN PLAYER HP ABOVE 12 AND 1 SCENARIO FOR HUMAN PLAYER HP BELOW 12
+							
+							if (ArrayOfHitPoints.hitpoints[0] >= 12) {
+								// using 12 just because if comp roll 6 for damage * 2 = 12, comp can kill human player.
+							
+								if (computerUseMightyBlow >= 15) {
+									// less likely for comp to use MB because human HP > 12.
+									
+									centerscrolltext.setVisibility(View.VISIBLE);													
+							  		centerscrolltext.startAnimation(animAlphaText);			  		
+									centerscrolltext.append("\n" + "> The computer uses mighty blow!");
+									
+									
+									//for (int x = 0; x < 1000; --x) {
+									//}
+									
+									
+									
+									mightyBlowSpell[1] = mightyBlowSpell[1] - 1;
+			
+									
+									//
+									// 
+									// Picture of swords clanging together:
+									// 
+									// 
+									// swordsGraphic();
+									// 
+									//
+									
+									
+									//System.out
+											//.println("     /\\___________          ___________/\\");
+									//System.out
+											//.println("/|---||___________\\ MIGHTY /___________||---|\\");
+									//System.out
+											//.println("\\|---||___________/  BLOW  \\___________||---|/");
+									//System.out
+											//.println("     \\/                                \\/");
+									//for (int x = 0; x < 1; --x) {
+									//}
+									
+									
+									computerMightyBlow();
+									return;
+								} else {
+									computerDamage();
+									return;
+								}
+							}
+							if (ArrayOfHitPoints.hitpoints[0] < 12)// see above for explanation
+							{
+								if (computerUseMightyBlow < 15) {
+									// more likely for comp to use MB because human HP < 12.
+									
+									centerscrolltext.setVisibility(View.VISIBLE);													
+							  		centerscrolltext.startAnimation(animAlphaText);			  		
+									centerscrolltext.append("\n" + "> The computer uses mighty blow!");
+									
+									
+									//for (int x = 0; x < 1000; --x) {
+									//}
+									
+									
+									
+									mightyBlowSpell[1] = mightyBlowSpell[1] - 1;
+			
+									
+									//
+									// 
+									// Picture of swords clanging together:
+									// 
+									// 
+									// swordsGraphic();
+									// 
+									//
+									
+									
+									//System.out
+											//.println("     /\\___________          ___________/\\");
+									//System.out
+											//.println("/|---||___________\\ MIGHTY /___________||---|\\");
+									//System.out
+											//.println("\\|---||___________/  BLOW  \\___________||---|/");
+									//System.out
+											//.println("     \\/                                \\/");
+									//for (int x = 0; x < 1; --x) {
+									//}
+									
+			
+									computerMightyBlow();
+									return;
+								} else {
+									computerDamage();
+									return;
+								}
+							}
+						}
+						*/
+						
+						computerDamage();
+						return;
+					}
+			
+					if (attackResult < 12 && attackResult > 0) {
+						
+						centerscrolltext.setVisibility(View.VISIBLE);													
+				  		centerscrolltext.startAnimation(animAlphaText);			  		
+						centerscrolltext.append("\n" + "> The computer's attack misses!");
+						
+						final Handler h = new Handler();
+			  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+			  	  	  			
+			  	  	  		@Override
+				  	  	  	public void run() {
+			  	  	  			
+				  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+				  	    			
+				  	    			gameEngineComputerFirst2();   							
+				  				}
+	
+							  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+							  						
+							  		turn();    							
+							  	}			  	  	  			
+				  	  	  	}
+			  	  	  	}, 2000);
+					}
+					
+					// don't critically miss when using bless.
+					/*
+					 * if (attackResult <= 1) { computerCriticalMiss(i, turn); }
+					 */
+					// return gameOn;
+					
 					return;
 				}
-		
-				if (attackResult < 12 && attackResult > 0) {
+				
+				else if (canHasDisarmed[0].equals("yes")) {					
+					
+					int computerAttackResultAgainstDisarmedPlusBless = (computerAttackResultAgainstDisarmed + 2);
 					
 					centerscrolltext.setVisibility(View.VISIBLE);													
 			  		centerscrolltext.startAnimation(animAlphaText);			  		
-					centerscrolltext.append("\n" + "> The computer's attack misses!");			
+					centerscrolltext.append("\n" + "> The computer player attacks...");
+					
+					// for(int x = 0; x < 100; --x)
+					// {}
+					
+					
+					centerscrolltext.setVisibility(View.VISIBLE);													
+			  		centerscrolltext.startAnimation(animAlphaText);			  		
+					centerscrolltext.append("\n" + "> The computer player rolls a " + attackResult + " +4 = " + computerAttackResultAgainstDisarmedPlusBless);
+					
+			
+					if (computerAttackResultAgainstDisarmedPlusBless >= 20) {
+						computerCriticalHit();
+						return;
+					}
+			
+					if (computerAttackResultAgainstDisarmed >= 10 && computerAttackResultAgainstDisarmed <= 19) {
+						
+						centerscrolltext.setVisibility(View.VISIBLE);													
+				  		centerscrolltext.startAnimation(animAlphaText);			  		
+						centerscrolltext.append("\n" + "> The computer's attack hits!");
+						
+						
+						/* Only one spell can be cast in a round (no spell can be cast in conjunction with another).
+						if (mightyBlowSpell[1] > 0) {
+							
+							int computerUseMightyBlow = (int) ((Math.random() * 20) + 1);
+							// NEED 1 SCENARIO FOR HUMAN PLAYER HP ABOVE 12 AND 1 SCENARIO FOR HUMAN PLAYER HP BELOW 12
+							
+							if (ArrayOfHitPoints.hitpoints[0] >= 12) {
+								// using 12 just because if comp roll 6 for damage * 2 = 12, comp can kill human player.
+							
+								if (computerUseMightyBlow >= 15) {
+									// less likely for comp to use MB because human HP > 12.
+									
+									centerscrolltext.setVisibility(View.VISIBLE);													
+							  		centerscrolltext.startAnimation(animAlphaText);			  		
+									centerscrolltext.append("\n" + "> The computer uses mighty blow!");
+									
+									
+									//for (int x = 0; x < 1000; --x) {
+									//}
+									
+									
+									
+									mightyBlowSpell[1] = mightyBlowSpell[1] - 1;
+			
+									
+									//
+									// 
+									// Picture of swords clanging together:
+									// 
+									// 
+									// swordsGraphic();
+									// 
+									//
+									
+									
+									//System.out
+											//.println("     /\\___________          ___________/\\");
+									//System.out
+											//.println("/|---||___________\\ MIGHTY /___________||---|\\");
+									//System.out
+											//.println("\\|---||___________/  BLOW  \\___________||---|/");
+									//System.out
+											//.println("     \\/                                \\/");
+									//for (int x = 0; x < 1; --x) {
+									//}
+									
+									
+									computerMightyBlow();
+									return;
+								} else {
+									computerDamage();
+									return;
+								}
+							}
+							if (ArrayOfHitPoints.hitpoints[0] < 12)// see above for explanation
+							{
+								if (computerUseMightyBlow < 15) {
+									// more likely for comp to use MB because human HP < 12.
+									
+									centerscrolltext.setVisibility(View.VISIBLE);													
+							  		centerscrolltext.startAnimation(animAlphaText);			  		
+									centerscrolltext.append("\n" + "> The computer uses mighty blow!");
+									
+									
+									//for (int x = 0; x < 1000; --x) {
+									//}
+									
+									
+									
+									mightyBlowSpell[1] = mightyBlowSpell[1] - 1;
+			
+									
+									//
+									// 
+									// Picture of swords clanging together:
+									// 
+									// 
+									// swordsGraphic();
+									// 
+									//
+									
+									
+									//System.out
+											//.println("     /\\___________          ___________/\\");
+									//System.out
+											//.println("/|---||___________\\ MIGHTY /___________||---|\\");
+									//System.out
+											//.println("\\|---||___________/  BLOW  \\___________||---|/");
+									//System.out
+											//.println("     \\/                                \\/");
+									//for (int x = 0; x < 1; --x) {
+									//}
+									
+			
+									computerMightyBlow();
+									return;
+								} else {
+									computerDamage();
+									return;
+								}
+							}
+						}
+						*/
+						
+						computerDamage();
+						return;
+					}
+			
+					if (computerAttackResultAgainstDisarmed < 10 && computerAttackResultAgainstDisarmed > 0) {
+						
+						centerscrolltext.setVisibility(View.VISIBLE);													
+				  		centerscrolltext.startAnimation(animAlphaText);			  		
+						centerscrolltext.append("\n" + "> The computer's attack misses!");
+						
+						final Handler h = new Handler();
+			  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+			  	  	  			
+			  	  	  		@Override
+				  	  	  	public void run() {
+			  	  	  			
+				  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+				  	    			
+				  	    			gameEngineComputerFirst2();   							
+				  				}
+	
+							  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+							  						
+							  		turn();    							
+							  	}			  	  	  			
+				  	  	  	}
+			  	  	  	}, 2000);
+					}
+					
+					// don't critically miss when using bless.
+					/*
+					 * if (attackResult <= 1) { computerCriticalMiss(i, turn); }
+					 */
+					// return gameOn;
+					
+					return;
 				}
-				
-				// don't critically miss when using bless.
-				/*
-				 * if (attackResult <= 1) { computerCriticalMiss(i, turn); }
-				 */
-				// return gameOn;
-				
-				return;
   	  	    }
 		});	
 	}
 	
 	public void computerHaste() {//WAS int[]
-		// no bless because you can't use 2 spells in one turn.					
+		// no bless because you can't use 2 spells in one turn.
+		
+		iscomputerhasteused = "yes";
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
@@ -4852,22 +4901,37 @@ public class MainActivity2 extends ActionBarActivity {
 				System.out.println();
 				*/
 				
-				computerAttack();
+				computerAttack();				
 		
-				if (canHasDisarmed[1] == "yes")// so if you critically miss & drop
-												// weapon you don't get 2nd attack.
-				{
-					return;
-				}
-				
-				
-				/*
-				 * 
-				 * ANIMATION FOR HASTE?
-				 * 
-				 */
-				
-				centerscrolltext.setVisibility(View.VISIBLE);													
+				return;
+  	  	    }
+		});
+	}
+	
+	public void computerHastePartTwo() {		
+		
+		iscomputerhasteused = "no";
+		
+		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+		
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {
+  	  	    	
+	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+	  			
+	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  			centerscrolltext.setTypeface(typeFace);
+	  			
+	  			// THIS IS WRONG - CAN GET 2ND ATTACK, YOU'RE JUST DISARMED:
+				//if (canHasDisarmed[1] == "yes")// so if you critically miss & drop weapon you don't get 2nd attack.
+				//{
+				//	return;
+				//}				  			
+	  			
+	  			
+	  			centerscrolltext.setVisibility(View.VISIBLE);													
 		  		centerscrolltext.startAnimation(animAlphaText);			  		
 				centerscrolltext.append("\n" + "> Second Attack...");
 				
@@ -4877,13 +4941,117 @@ public class MainActivity2 extends ActionBarActivity {
 				System.out.println("\\|---||____________/");
 				System.out.println("     \\/           ");
 				System.out.println();
-				*/
+				*/			
 				
-				computerAttack();
-		
-				return;
+				
+				int attackResult = (int) (Math.random() * 20) + 1;
+				
+				centerscrolltext.setVisibility(View.VISIBLE);													
+		  		centerscrolltext.startAnimation(animAlphaText);
+				centerscrolltext.append("\n" + "> The computer attacks...");
+				
+				// for(int x = 0; x < 100; --x)
+				// {}
+				
+				centerscrolltext.setVisibility(View.VISIBLE);													
+		  		centerscrolltext.startAnimation(animAlphaText);
+				centerscrolltext.append("\n" + "> The computer rolls a " + attackResult + "!");
+				
+	
+				if (attackResult >= 20) {
+					computerCriticalHit();
+					return;
+				}
+				
+				if (canHasDisarmed[0].equals("no")) {
+				
+					if (attackResult >= 14 && attackResult <= 19) {
+						
+						centerscrolltext.setVisibility(View.VISIBLE);													
+				  		centerscrolltext.startAnimation(animAlphaText);
+						centerscrolltext.append("\n" + "> The computer's attack hits!");		
+						
+						computerDamage();
+						return;
+					}
+					
+					if (attackResult < 14 && attackResult > 1) {
+						
+						centerscrolltext.setVisibility(View.VISIBLE);													
+				  		centerscrolltext.startAnimation(animAlphaText);
+						centerscrolltext.append("\n" + "> The computer's attack misses!");
+						
+						final Handler h = new Handler();
+			  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+			  	  	  			
+			  	  	  		@Override
+				  	  	  	public void run() {
+			  	  	  			
+				  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+				  	    			
+				  	    			gameEngineComputerFirst2();   							
+				  				}
+							  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+							  						
+							  		turn();    							
+							  	}								  						  	  	  			
+				  	  	  	}
+			  	  	  	}, 2000);
+						
+						return;
+					}
+					
+					if (attackResult <= 1) {
+						computerCriticalMiss();
+						return;
+					}				
+				}
+				
+				if (canHasDisarmed[0].equals("yes")) {
+					
+					if (attackResult >= 12 && attackResult <= 19) {
+						
+						centerscrolltext.setVisibility(View.VISIBLE);													
+				  		centerscrolltext.startAnimation(animAlphaText);
+						centerscrolltext.append("\n" + "> The computer's attack hits!");			
+						
+						computerDamage();
+						return;
+					}
+					
+					if (attackResult < 12 && attackResult > 1) {
+						
+						centerscrolltext.setVisibility(View.VISIBLE);													
+				  		centerscrolltext.startAnimation(animAlphaText);
+						centerscrolltext.append("\n" + "> The computer's attack misses!");
+						
+						final Handler h = new Handler();
+			  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+			  	  	  			
+			  	  	  		@Override
+				  	  	  	public void run() {
+			  	  	  			
+				  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+				  	    			
+				  	    			gameEngineComputerFirst2();   							
+				  				}
+							  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+							  						
+							  		turn();
+							  	}								  						  	  	  			
+				  	  	  	}
+			  	  	  	}, 2000);
+						
+						return;
+					}
+					
+					if (attackResult <= 1) {
+						computerCriticalMiss();
+						return;
+					}					
+				}				
   	  	    }
-		});
+		});		
 	}
 	
 	public String[] computerDisarm() {					
@@ -6590,11 +6758,15 @@ public class MainActivity2 extends ActionBarActivity {
 	}
 	
 	
-	
-	
-	
-	
-	
+	/*
+	 * 
+	 * 
+	 * 
+	 * Human Methods*****************************************************************************************
+	 * 
+	 * 
+	 * 
+	 */
 	
 	
 	public int attack() {
@@ -7703,16 +7875,16 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  			
 		  	  	  		if (canHasDisarmed[0].equals("no")) {
 		  	  	  			
-		  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
-				  		centerscrolltext.startAnimation(animAlphaText);
-						centerscrolltext.append("\n" + "> You roll a " + attackDamage	+ " for damage!");
-						
-						centerscrolltext.setVisibility(View.VISIBLE);
-				  		centerscrolltext.startAnimation(animAlphaText);
-						centerscrolltext.append("\n" + "> Double damage for Mighty Blow = " + (attackDamage * 2) + "!");
-						
-	
-						ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked]	- (attackDamage * 2);
+			  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
+					  		centerscrolltext.startAnimation(animAlphaText);
+							centerscrolltext.append("\n" + "> You roll a " + attackDamage	+ " for damage!");
+							
+							centerscrolltext.setVisibility(View.VISIBLE);
+					  		centerscrolltext.startAnimation(animAlphaText);
+							centerscrolltext.append("\n" + "> Double damage for Mighty Blow = " + (attackDamage * 2) + "!");
+							
+		
+							ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked]	- (attackDamage * 2);
 		  	  	  		}
 						
 						if (canHasDisarmed[0].equals("yes")) {							
@@ -10436,9 +10608,7 @@ public class MainActivity2 extends ActionBarActivity {
 											}					  	  	  	
 							  	  	  	}
 						  	  	  	}, 2000);													
-								}
-			  		  	  	  	
-	  		  	  	  			
+								}	  		  	  	  			
 	  		  	  	  		}
 	  		  	  	  	}, 2000);
 	  				}
@@ -10493,15 +10663,16 @@ public class MainActivity2 extends ActionBarActivity {
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 	  			
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-	  			centerscrolltext.setTypeface(typeFace);				
-		
-				if (canHasDisarmed[i] == "yes")// so if you critically miss & drop weapon you don't get 2nd attack.
-				{
-					return;
-				}
-				// else if(canHasDisarmed[i] == "no") DON'T NEED THIS?????
-				
-				/*
+	  			centerscrolltext.setTypeface(typeFace);	
+	  			
+	  			
+	  			// THIS IS WRONG - CAN GET 2ND ATTACK, YOU'RE JUST DISARMED:
+				//if (canHasDisarmed[i] == "yes")// so if you critically miss & drop weapon you don't get 2nd attack.
+				//{
+				//	return;
+				//}	  			
+	  				
+  				/*
 				System.out.println("     /\\____________");
 				System.out.println("/|---||_2nd Attack_\\");
 				System.out.println("\\|---||____________/");
@@ -10519,9 +10690,13 @@ public class MainActivity2 extends ActionBarActivity {
 				  		centerscrolltext.startAnimation(animAlphaText);
 						centerscrolltext.append("\n" + "> 2nd Attack...");			  	  	  							  	  	  	
 		  	  	  	}
-	  	  	  	}, 2000);					
-				
-				attack();				 
+	  	  	  	}, 2000);
+  				
+	  	  	  	// CAN'T USE CURE OR ANOTHER HASTE WITH A HASTE:
+  				//punch(); // SAME AS ATTACK
+  				attack();
+	  	  	  	
+  				return;  											 
   	  	    }
 		});
 		return;		
@@ -10777,19 +10952,20 @@ public class MainActivity2 extends ActionBarActivity {
 								  		centerscrolltext.startAnimation(animAlphaText);			  		
 										centerscrolltext.append("\n" + "> Your attack hits!");
 										
+										/* Only one spell can be cast in a round (no spell can be cast in conjunction with another).
 										if (mightyBlowSpell[i] > 0) {
-											/*
-											centerscrolltext.setVisibility(View.VISIBLE);													
-									  		centerscrolltext.startAnimation(animAlphaText);		  		
-											centerscrolltext.append("\n" + ArrayOfPlayers.player[i] + ", do you want to use Mighty Blow?");
-											*/
+											
+											//centerscrolltext.setVisibility(View.VISIBLE);													
+									  		//centerscrolltext.startAnimation(animAlphaText);		  		
+											//centerscrolltext.append("\n" + ArrayOfPlayers.player[i] + ", do you want to use Mighty Blow?");
+											
 											
 											AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 								  			
 								  	    	alert.setTitle(ArrayOfPlayers.player[i] + ", do you want to use Mighty Blow?");
-								  	    	/*
-								  	    	alert.setMessage("something");
-								  	    	*/	  	    	
+								  	    	
+								  	    	//alert.setMessage("something");
+								  	    		  	    	
 								  	    	
 								  	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 								  		    	public void onClick(DialogInterface dialog, int whichButton) {
@@ -10799,27 +10975,27 @@ public class MainActivity2 extends ActionBarActivity {
 								  		    		mightyBlowSpell[0] = mightyBlowSpell[0] - 1;
 								  		    		
 								  		    		
-								  		    		/*
-													 * 
-													 * Picture of swords clanging together:
-													 * 
-													 * 
-													 * swordsGraphic();
-													 * 
-													 */
+								  		    		//
+													// 
+													// Picture of swords clanging together:
+													// 
+													// 
+													// swordsGraphic();
+													// 
+													//
 								  		    		
-								  		    		/*
-								  		    		System.out
-													.println("     /\\___________          ___________/\\");
-								  		    		System.out
-													.println("/|---||___________\\ MIGHTY /___________||---|\\");
-								  		    		System.out
-													.println("\\|---||___________/  BLOW  \\___________||---|/");
-								  		    		System.out
-													.println("     \\/                                \\/");
-								  		    		for (int x = 0; x < 1; --x) {
-													}
-													*/
+								  		    		
+								  		    		//System.out
+													//.println("     /\\___________          ___________/\\");
+								  		    		//System.out
+													//.println("/|---||___________\\ MIGHTY /___________||---|\\");
+								  		    		//System.out
+													//.println("\\|---||___________/  BLOW  \\___________||---|/");
+								  		    		//System.out
+													//.println("     \\/                                \\/");
+								  		    		//for (int x = 0; x < 1; --x) {
+													//}
+													
 							
 													
 								  		    		mightyBlow();
@@ -10839,55 +11015,57 @@ public class MainActivity2 extends ActionBarActivity {
 								  	    	
 								  	    	alert.show();
 											
-											/*
-											String s = input.next();
-											char selection = s.charAt(0);
-											switch (selection) {
-											case 'y':
-											case 'Y':
-												if (numberOfPlayers == 1) {
-													mightyBlowSpell[0] = mightyBlowSpell[0] - 1;
-												}
-												if (numberOfPlayers > 1) {
-													mightyBlowSpell[i] = mightyBlowSpell[i] - 1;
-												}
+											
+											//String s = input.next();
+											//char selection = s.charAt(0);
+											//switch (selection) {
+											//case 'y':
+											//case 'Y':
+												//if (numberOfPlayers == 1) {
+													//mightyBlowSpell[0] = mightyBlowSpell[0] - 1;
+												//}
+												//if (numberOfPlayers > 1) {
+													//mightyBlowSpell[i] = mightyBlowSpell[i] - 1;
+												//}
 							
-												System.out.println();
+												//System.out.println();
 							
-												swordsGraphic();
-												System.out
-														.println("     /\\___________          ___________/\\");
-												System.out
-														.println("/|---||___________\\ MIGHTY /___________||---|\\");
-												System.out
-														.println("\\|---||___________/  BLOW  \\___________||---|/");
-												System.out
-														.println("     \\/                                \\/");
-												for (int x = 0; x < 1; --x) {
-												}
+												//swordsGraphic();
+												//System.out
+														//.println("     /\\___________          ___________/\\");
+												//System.out
+														//.println("/|---||___________\\ MIGHTY /___________||---|\\");
+												//System.out
+														//.println("\\|---||___________/  BLOW  \\___________||---|/");
+												//System.out
+														//.println("     \\/                                \\/");
+												//for (int x = 0; x < 1; --x) {
+												//}
 							
-												mightyBlow(i, playerNumberAttacked, gameOn);
-												return playerNumberAttacked;
-											case 'n':
-											case 'N':
-												damage(i, playerNumberAttacked, gameOn);
-												return playerNumberAttacked;
-											default:
-												damage(i, playerNumberAttacked, gameOn);
+												//mightyBlow(i, playerNumberAttacked, gameOn);
+												//return playerNumberAttacked;
+											//case 'n':
+											//case 'N':
+												//damage(i, playerNumberAttacked, gameOn);
+												//return playerNumberAttacked;
+											//default:
+												//damage(i, playerNumberAttacked, gameOn);
 												
 												// IDEALLY WANT THIS TO GO BACK AND ASK AGAIN....RECODE???
-												 * 
-												return playerNumberAttacked;
-											}
-											*/
+												 
+												//return playerNumberAttacked;
+											//}
+											
 										}
 										else {
 											
 											damage();
 											return;
 										}
-										//damage();
-										//return;
+										*/
+										
+										damage();
+										return;
 									}
 									
 									if (attackResult < 12 && attackResult > 0) {
@@ -10928,19 +11106,20 @@ public class MainActivity2 extends ActionBarActivity {
 								  		centerscrolltext.startAnimation(animAlphaText);			  		
 										centerscrolltext.append("\n" + "> Your attack hits!");
 										
+										/* Only one spell can be cast in a round (no spell can be cast in conjunction with another).
 										if (mightyBlowSpell[i] > 0) {
-											/*
-											centerscrolltext.setVisibility(View.VISIBLE);													
-									  		centerscrolltext.startAnimation(animAlphaText);		  		
-											centerscrolltext.append("\n" + ArrayOfPlayers.player[i] + ", do you want to use Mighty Blow?");
-											*/
+											
+											//centerscrolltext.setVisibility(View.VISIBLE);													
+									  		//centerscrolltext.startAnimation(animAlphaText);		  		
+											//centerscrolltext.append("\n" + ArrayOfPlayers.player[i] + ", do you want to use Mighty Blow?");
+											
 											
 											AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 								  			
 								  	    	alert.setTitle(ArrayOfPlayers.player[i] + ", do you want to use Mighty Blow?");
-								  	    	/*
-								  	    	alert.setMessage("something");
-								  	    	*/	  	    	
+								  	    	
+								  	    	//alert.setMessage("something");
+								  	    		  	    	
 								  	    	
 								  	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 								  		    	public void onClick(DialogInterface dialog, int whichButton) {
@@ -10950,27 +11129,27 @@ public class MainActivity2 extends ActionBarActivity {
 								  		    		mightyBlowSpell[0] = mightyBlowSpell[0] - 1;
 								  		    		
 								  		    		
-								  		    		/*
-													 * 
-													 * Picture of swords clanging together:
-													 * 
-													 * 
-													 * swordsGraphic();
-													 * 
-													 */
+								  		    		//
+													// 
+								  		    		// Picture of swords clanging together:
+								  		    		// 
+								  		    		// 
+								  		    		// swordsGraphic();
+								  		    		// 
+								  		    		//
 								  		    		
-								  		    		/*
-								  		    		System.out
-													.println("     /\\___________          ___________/\\");
-								  		    		System.out
-													.println("/|---||___________\\ MIGHTY /___________||---|\\");
-								  		    		System.out
-													.println("\\|---||___________/  BLOW  \\___________||---|/");
-								  		    		System.out
-													.println("     \\/                                \\/");
-								  		    		for (int x = 0; x < 1; --x) {
-													}
-													*/
+								  		    		
+								  		    		//System.out
+													//.println("     /\\___________          ___________/\\");
+								  		    		//System.out
+													//.println("/|---||___________\\ MIGHTY /___________||---|\\");
+								  		    		//System.out
+													//.println("\\|---||___________/  BLOW  \\___________||---|/");
+								  		    		//System.out
+													//.println("     \\/                                \\/");
+								  		    		//for (int x = 0; x < 1; --x) {
+													//}
+													
 							
 													
 								  		    		mightyBlow();
@@ -10990,55 +11169,57 @@ public class MainActivity2 extends ActionBarActivity {
 								  	    	
 								  	    	alert.show();
 											
-											/*
-											String s = input.next();
-											char selection = s.charAt(0);
-											switch (selection) {
-											case 'y':
-											case 'Y':
-												if (numberOfPlayers == 1) {
-													mightyBlowSpell[0] = mightyBlowSpell[0] - 1;
-												}
-												if (numberOfPlayers > 1) {
-													mightyBlowSpell[i] = mightyBlowSpell[i] - 1;
-												}
+											
+											//String s = input.next();
+											//char selection = s.charAt(0);
+											//switch (selection) {
+											//case 'y':
+											//case 'Y':
+												//if (numberOfPlayers == 1) {
+													//mightyBlowSpell[0] = mightyBlowSpell[0] - 1;
+												//}
+												//if (numberOfPlayers > 1) {
+													//mightyBlowSpell[i] = mightyBlowSpell[i] - 1;
+												//}
 							
-												System.out.println();
+												//System.out.println();
 							
-												swordsGraphic();
-												System.out
-														.println("     /\\___________          ___________/\\");
-												System.out
-														.println("/|---||___________\\ MIGHTY /___________||---|\\");
-												System.out
-														.println("\\|---||___________/  BLOW  \\___________||---|/");
-												System.out
-														.println("     \\/                                \\/");
-												for (int x = 0; x < 1; --x) {
-												}
+												//swordsGraphic();
+												//System.out
+														//.println("     /\\___________          ___________/\\");
+												//System.out
+														//.println("/|---||___________\\ MIGHTY /___________||---|\\");
+												//System.out
+														//.println("\\|---||___________/  BLOW  \\___________||---|/");
+												//System.out
+														//.println("     \\/                                \\/");
+												//for (int x = 0; x < 1; --x) {
+												//}
 							
-												mightyBlow(i, playerNumberAttacked, gameOn);
-												return playerNumberAttacked;
-											case 'n':
-											case 'N':
-												damage(i, playerNumberAttacked, gameOn);
-												return playerNumberAttacked;
-											default:
-												damage(i, playerNumberAttacked, gameOn);
+												//mightyBlow(i, playerNumberAttacked, gameOn);
+												//return playerNumberAttacked;
+											//case 'n':
+											//case 'N':
+												//damage(i, playerNumberAttacked, gameOn);
+												//return playerNumberAttacked;
+											//default:
+												//damage(i, playerNumberAttacked, gameOn);
 												
 												// IDEALLY WANT THIS TO GO BACK AND ASK AGAIN....RECODE???
-												 * 
-												return playerNumberAttacked;
-											}
-											*/
+												 
+												//return playerNumberAttacked;
+											//}
+											
 										}
 										else {
 											
 											damage();
 											return;
 										}
-										//damage();
-										//return;
+										*/
+										
+										damage();
+										return;
 									}
 									
 									if (attackResult < 10 && attackResult > 0) {
@@ -11309,7 +11490,7 @@ public class MainActivity2 extends ActionBarActivity {
 									
 									//GOTO SOME METHOD!!!!!!!!!!!!!!
 									
-									runActionsOnUi();
+									disarmedAction();
 								}
 							});					
 							
@@ -11320,12 +11501,26 @@ public class MainActivity2 extends ActionBarActivity {
 											if (item == 0) {
 												hideNavigation();
 												//isInvokingService = "true";
-												punch();
+												//punch();
+												attack();
 											}
 											if (item == 1) {
 												hideNavigation();
-												//isInvokingService = "true";
-												haste();
+												//isInvokingService = "true";												
+													
+												if (hasteSpell[i] < 1) {
+													
+													centerscrolltext.setVisibility(View.VISIBLE);
+											  		centerscrolltext.startAnimation(animAlphaText);
+											  		centerscrolltext.append("\n" + "> You have already used your Haste spells!");
+													
+													disarmedAction();
+												}
+												
+												if (hasteSpell[i] > 0) {
+													
+													haste();
+												}																																																										
 											}
 											if (item == 2) {
 												hideNavigation();
@@ -11344,33 +11539,47 @@ public class MainActivity2 extends ActionBarActivity {
 		});		
 	}
 	
+	/*
 	public void punch() {
 		
-		/*
-		 * 
-		 * Picture of fists?
-		 * 
-		 * punchGraphic();
-		 * 
-		 */
+		//
+		// 
+		// Picture of fists?
+		// 
+		// punchGraphic();
+		// 
+		//
 		
 		attack(); //ADJUSTED TO-HIT FOR BEING DISARMED
 		
 		
-		/*
-		if (numberOfPlayers > 1) {
-			System.out.print("Player " + playerNumber[i]
-					+ ", who do you want to punch? (Enter player number): ");
-			playerNumberAttacked = input.nextInt();
-			playerNumberAttacked = playerNumberAttacked - 1;
-		}
-		*/		
+		
+		//if (numberOfPlayers > 1) {
+			//System.out.print("Player " + playerNumber[i]
+					//+ ", who do you want to punch? (Enter player number): ");
+			//playerNumberAttacked = input.nextInt();
+			//playerNumberAttacked = playerNumberAttacked - 1;
+		//}
+				
 		
 		
 		//if (attackResult <= 1) CAN YOU CRITICL MISS A PUNCH???????????????????????????????????? -----DISARM AGAIN TO MAINTAIN BALANCE. 
 		//FOR NOW i'll do no rolls to keep it simpler, but in future might go w roll to hurt yourself (ie stumble & fall) but no roll to lose weapon. 
 				
 	}
+	*/
+	
+	
+	/*
+	 * 
+	 * 
+	 * 
+	 * Game Mechanics*****************************************************************************************
+	 * 
+	 * 
+	 * 
+	 */
+	
 	
 	public void gameEngine() {		
 		
@@ -11391,7 +11600,7 @@ public class MainActivity2 extends ActionBarActivity {
 		    if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {
 		    	
 		    	// NEED ARRAY HERE?
-		    	usedHaste[0] = "no";// so computer doesn't use a haste during a haste.		    	
+		    	iscomputerhasteused.equals("no");// so computer doesn't use a haste during a haste.		    	
 		    }
 		    
 		    
@@ -11523,7 +11732,8 @@ public class MainActivity2 extends ActionBarActivity {
 	public void gameEngineHumanFirst2() {		
 		
 		i = 1;
-		usedHaste[0] = "no";// so computer doesn't use a haste during a haste.
+		// NEED THIS?:
+		iscomputerhasteused.equals("no");// so computer doesn't use a haste during a haste.
 
 		if (ArrayOfHitPoints.hitpoints[1] <= 0) {
 			endGame(); // took out map
@@ -11570,7 +11780,7 @@ public class MainActivity2 extends ActionBarActivity {
 			 */
 			
 			
-			int computerAction = (int) (Math.random() * 100) + 1;
+			computerAction = (int) (Math.random() * 100) + 1;
 			computerAttack();					
 		}
 	}
@@ -11642,7 +11852,7 @@ public class MainActivity2 extends ActionBarActivity {
 							 */
 							
 							
-							int computerAction = (int) (Math.random() * 100) + 1;
+							computerAction = (int) (Math.random() * 100) + 1;
 							computerAttack();					
 						}
 		  	  	  	}
@@ -11771,7 +11981,250 @@ public class MainActivity2 extends ActionBarActivity {
 					builder.create().show();					
 	  	  	    }
 		});
-	}	
+	}
+		
+	public void endGame() {
+		
+		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);		
+		
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {
+		
+				final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+				//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+				
+				Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+				centerscrolltext.setTypeface(typeFace);		
+				
+				
+				if (numberOfPlayers == 1) {
+					// UNCONSCIOUS
+					// TEMPLATE???????????????????????????????????????????????????????????????
+					
+					
+					//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
+					
+					
+					if (ArrayOfHitPoints.hitpoints[1] == 0) {			
+						
+						centerscrolltext.setVisibility(View.VISIBLE);													
+		  	  	  		centerscrolltext.startAnimation(animAlphaText);
+		  	  			centerscrolltext.append("\n" + "> The computer is unconscious.");
+						
+						
+						if (cureSpell[1] > 0) {
+							
+							centerscrolltext.setVisibility(View.VISIBLE);												
+			  	  	  		centerscrolltext.startAnimation(animAlphaText);
+			  	  			centerscrolltext.append("\n" + "> The computer uses it's cure spell...");
+							
+							computerCure();
+						}
+					}
+					
+					if (ArrayOfHitPoints.hitpoints[0] == 0) {				
+										
+						centerscrolltext.setVisibility(View.VISIBLE);												
+		  	  	  		centerscrolltext.startAnimation(animAlphaText);
+		  	  			centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you are unconscious.");				
+						
+		
+						if (cureSpell[0] > 0) {
+							
+							/*
+							centerscrolltext.setVisibility(View.VISIBLE);												
+			  	  	  		centerscrolltext.startAnimation(animAlphaText);
+			  	  			centerscrolltext.append("\n" + "> Do you want to use your cure spell?");
+			  	  			*/  	  			
+			  	  			
+				  	  		AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+				  			
+				  	    	alert.setTitle("Do you want to use your Cure spell?");
+				  	    	/*
+				  	    	alert.setMessage("something");
+				  	    	*/	  	    	
+				  	    	
+				  	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+				  		    	public void onClick(DialogInterface dialog, int whichButton) {
+				  		    		
+				  		    		hideNavigation();
+				  		    		
+				  		    		cure();
+				  		    	}
+				  	    	});
+				  	    	
+				  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+				          	  public void onClick(DialogInterface dialog, int whichButton) {
+				          		  
+				          		  	hideNavigation();
+				          		  	
+				          		  	endGame();
+				          	  }
+				          	});				  	    	
+				  	    	alert.show();
+			  	  			
+			  	  			/*
+			  	  			String s = input.next();
+							char selection = s.charAt(0);
+			  	  			switch (selection) {
+							case 'y':
+							case 'Y':
+								cure(i, turn, gameOn);
+								break;
+							case 'n':
+							case 'N':
+								endGame(i, turn, gameOn);
+								break;
+							default:
+								endGame(i, turn, gameOn);
+								break;
+							}
+							*/
+						}
+					}
+					
+					if (ArrayOfHitPoints.hitpoints[0] < 0) {
+						playerDeadYet[0] = "yes";
+						return;
+					}
+					
+					if (ArrayOfHitPoints.hitpoints[1] < 0) {
+						playerDeadYet[1] = "yes";
+						return;
+					}
+				}
+  	  	    }
+  	  	});
+	}
 	
+	public void gameOverCheck() {
+		
+		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+		
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {
+		
+				if (playerDeadYet[0] == "no" && playerDeadYet[1] == "yes") {
+				/*&& playerDeadYet[2] == "yes" && playerDeadYet[3] == "yes"	&& playerDeadYet[4] == "yes" && playerDeadYet[5] == "yes"*/
+					
+					gameOn = 0;
+					
+					
+					final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+					//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+					
+					Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+					centerscrolltext.setTypeface(typeFace);					
+					
+					
+					centerscrolltext.setVisibility(View.VISIBLE);												
+		  	  		centerscrolltext.startAnimation(animAlphaText);
+		  			centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you are victorious!!");
+		  			
+		  			centerscrolltext.append("\n" + "Game Over!");
+		  			
+					/*
+					if (numberOfPlayers == 1) {
+						System.out.println(ArrayOfPlayers.player[0] + ", you are victorious!!");
+					}
+					
+					if (numberOfPlayers > 1) {
+						System.out.println("Player " + playerNumber[i]
+								+ ", you are victorious!!");
+					}
+					
+					System.out.println();
+					System.out.println("Game Over!");
+					System.exit(0);			
+					*/
+				}
+				
+				if (playerDeadYet[1] == "no" && playerDeadYet[0] == "yes"
+						/*&& playerDeadYet[2] == "yes" && playerDeadYet[3] == "yes"
+						&& playerDeadYet[4] == "yes" && playerDeadYet[5] == "yes"*/) {
+					
+					gameOn = 0;
+					
+					
+					final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+					//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+					
+					Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+					centerscrolltext.setTypeface(typeFace);				
+					
+					//final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+					
+					centerscrolltext.setVisibility(View.VISIBLE);												
+		  	  		centerscrolltext.startAnimation(animAlphaText);
+		  			centerscrolltext.append("\n" + "> The computer is victorious!!");
+		  			
+		  			centerscrolltext.append("\n" + "> Game Over!");
+		  			
+					/*
+					if (numberOfPlayers == 1) {
+						System.out.println("The computer player is victorious!!");
+					}
+					
+					if (numberOfPlayers > 1) {
+						System.out.println("Player " + playerNumber[i]
+								+ ", you are victorious!!");
+					}
+					
+					System.out.println();
+					System.out.println("Game Over!");
+					System.exit(0);
+					*/
+				}
+				/*
+				if (playerDeadYet[2] == "no" && playerDeadYet[0] == "yes"
+						&& playerDeadYet[1] == "yes" && playerDeadYet[3] == "yes"
+						&& playerDeadYet[4] == "yes" && playerDeadYet[5] == "yes") {
+					gameOn = 0;
+					System.out.println();
+					System.out.println("Player " + playerNumber[i]
+							+ ", you are victorious!!");
+					System.out.println();
+					System.out.println("Game Over!");
+					System.exit(0);
+				}
+				if (playerDeadYet[3] == "no" && playerDeadYet[0] == "yes"
+						&& playerDeadYet[1] == "yes" && playerDeadYet[2] == "yes"
+						&& playerDeadYet[4] == "yes" && playerDeadYet[5] == "yes") {
+					gameOn = 0;
+					System.out.println();
+					System.out.println("Player " + playerNumber[i]
+							+ ", you are victorious!!");
+					System.out.println();
+					System.out.println("Game Over!");
+					System.exit(0);
+				}
+				if (playerDeadYet[4] == "no" && playerDeadYet[0] == "yes"
+						&& playerDeadYet[1] == "yes" && playerDeadYet[2] == "yes"
+						&& playerDeadYet[3] == "yes" && playerDeadYet[5] == "yes") {
+					gameOn = 0;
+					System.out.println();
+					System.out.println("Player " + playerNumber[i]
+							+ ", you are victorious!!");
+					System.out.println();
+					System.out.println("Game Over!");
+					System.exit(0);
+				}
+				if (playerDeadYet[5] == "no" && playerDeadYet[0] == "yes"
+						&& playerDeadYet[1] == "yes" && playerDeadYet[2] == "yes"
+						&& playerDeadYet[3] == "yes" && playerDeadYet[4] == "yes") {
+					gameOn = 0;
+					System.out.println();
+					System.out.println("Player " + playerNumber[i]
+							+ ", you are victorious!!");
+					System.out.println();
+					System.out.println("Game Over!");
+					System.exit(0);
+				}
+				*/
+  	  	    }
+		});
+	}	
 
 }
