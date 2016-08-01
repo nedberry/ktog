@@ -2775,8 +2775,8 @@ public class MainActivity2 extends ActionBarActivity {
 					return;
 				}
 		
-				// ATTACK AND ATTACK IF NO BLESS
-				else if ((computerAction <= 40) || (computerAction >= 1 && iscomputerhasteused.equals("yes")) || ((computerAction >= 41 && computerAction <= 50) && (blessSpell[1] < 1 && iscomputerhasteused.equals("no")))) {
+				// ATTACK && ATTACK USING FIRST HASTE && ATTACK IF NO HASTES LEFT && ATTACK IF NO BLESS
+				else if ((computerAction <= 40 && iscomputerhasteused.equals("no")) || (computerAction >= 1 && iscomputerhasteused.equals("yes")) || ((computerAction >= 51 && computerAction <= 75) && (hasteSpell[1] < 1 && iscomputerhasteused.equals("no"))) || ((computerAction >= 41 && computerAction <= 50) && (blessSpell[1] < 1 && iscomputerhasteused.equals("no")))) {
 					
 					if (canHasDisarmed[1].equals("no")) {
 					
@@ -3500,161 +3500,24 @@ public class MainActivity2 extends ActionBarActivity {
 				}				
 				
 				
-				// CAN ONLY ATTACK ON COMPUTER'S 2ND HASTE. MOVED ATTACK STUFF TO computerHastePartTwo().
+				
 				/*
 				// ATTACK DURING HASTE
+				// CAN ONLY ATTACK ON COMPUTER'S 2ND HASTE. MOVED ATTACK STUFF TO computerHastePartTwo().
 				else if ((computerAction >= 41 && computerAction <= 75)	&& (iscomputerhasteused.equals("yes"))) { // WAS 51, BUT HAD A GAP BETWEEN 41 TO 51 WHEN COMP USING HASTE.
 				// in case the roll is between 51 & 75 & the computer used a haste spell.								
 				}
 				*/				
 				
 				
+				/*
 				// ATTACK IF NO HASTES LEFT
+				// MOVED TO ATTACK (SAME AS ATTACK)
 				else if ((computerAction >= 51 && computerAction <= 75)	&& (hasteSpell[1] < 1 && iscomputerhasteused.equals("no"))) {
-				// in case the roll is between 51 & 75 & the computer used both it's haste spells.
-				
-					centerscrolltext.setVisibility(View.VISIBLE);													
-			  		centerscrolltext.startAnimation(animAlphaText);
-					centerscrolltext.append("\n" + "> The computer attacks...");
-					
-					// for(int x = 0; x < 100; --x)
-					// {}
-					
-					int attackResult = (int) ((Math.random() * 20) + 1);
-					
-					centerscrolltext.setVisibility(View.VISIBLE);													
-			  		centerscrolltext.startAnimation(animAlphaText);
-					centerscrolltext.append("\n" + "> The computer rolls a " + attackResult + "!");			
-		
-					if (attackResult >= 20) {
-						computerCriticalHit();
-						return;
-					}
-					
-					if (attackResult >= 14 && attackResult <= 19) {
-						
-						centerscrolltext.setVisibility(View.VISIBLE);													
-				  		centerscrolltext.startAnimation(animAlphaText);
-						centerscrolltext.append("\n" + "> The computer's attack hits!");
-						
-						if (mightyBlowSpell[1] > 0) {
-							int computerUseMightyBlow = (int) ((Math.random() * 20) + 1);
-							// NEED 1 SCENARIO FOR HUMAN PLAYER HP ABOVE 12 AND 1 SCENARION FOR HUMAN PLAYER HP BELOW 12.
-							
-							if (ArrayOfHitPoints.hitpoints[0] >= 12) {
-								// using 12 just because if comp roll 6 for damage * 2 = 12, comp can kill human player.
-							
-								if (computerUseMightyBlow >= 15) {
-									// less likely for comp to use MB because human HP > 12.
-								
-									centerscrolltext.setVisibility(View.VISIBLE);													
-							  		centerscrolltext.startAnimation(animAlphaText);
-									centerscrolltext.append("\n" + "> The computer uses mighty blow!");
-									
-									/*
-									for (int x = 0; x < 1000; --x) {
-									}
-									*/
-									
-									mightyBlowSpell[1] = mightyBlowSpell[1] - 1;
-									
-									
-									/*
-									 * 
-									 * Picture of swords clanging together:
-									 * 
-									 * 
-									 * swordsGraphic();
-									 * 
-									 */
-									
-									/*
-									System.out
-											.println("     /\\___________          ___________/\\");
-									System.out
-											.println("/|---||___________\\ MIGHTY /___________||---|\\");
-									System.out
-											.println("\\|---||___________/  BLOW  \\___________||---|/");
-									System.out
-											.println("     \\/                                \\/");
-									for (int x = 0; x < 1; --x) {
-									}
-									*/
-		
-									computerMightyBlow();
-									return;
-								} else {
-									computerDamage();
-									return;
-								}
-							}
-							
-							if (ArrayOfHitPoints.hitpoints[0] < 12)// see above for explanation
-							{
-								if (computerUseMightyBlow < 15) {
-									// more likely for comp to use MB because human HP < 12.
-								
-									centerscrolltext.setVisibility(View.VISIBLE);													
-							  		centerscrolltext.startAnimation(animAlphaText);
-									centerscrolltext.append("\n" + "> The computer uses mighty blow!");
-									
-									/*
-									for (int x = 0; x < 1000; --x) {
-									}
-									*/
-									
-									mightyBlowSpell[1] = mightyBlowSpell[1] - 1;
-									
-									
-									/*
-									 * 
-									 * Picture of swords clanging together:
-									 * 
-									 * 
-									 * swordsGraphic();
-									 * 
-									 */
-									
-									/*
-									System.out
-											.println("     /\\___________          ___________/\\");
-									System.out
-											.println("/|---||___________\\ MIGHTY /___________||---|\\");
-									System.out
-											.println("\\|---||___________/  BLOW  \\___________||---|/");
-									System.out
-											.println("     \\/                                \\/");
-									for (int x = 0; x < 1; --x) {
-									}
-									*/
-									
-									computerMightyBlow();
-									return;
-								} else {
-									computerDamage();
-									return;
-								}
-							}
-						}
-						computerDamage();
-						return;
-					}
-					
-					if (attackResult < 14 && attackResult > 1) {
-						
-						centerscrolltext.setVisibility(View.VISIBLE);													
-				  		centerscrolltext.startAnimation(animAlphaText);
-						centerscrolltext.append("\n" + "> The computer's attack misses!");
-						
-						return;
-					}
-					
-					if (attackResult <= 1) {
-						computerCriticalMiss();
-						return;
-					}
-					return;
+				// in case the roll is between 51 & 75 & the computer used both it's haste spells.					
 				}
+				*/
+				
 				
 				// DISARM
 				else if ((computerAction > 75 && computerAction <= 100) && iscomputerhasteused.equals("no")) {
@@ -4991,6 +4854,7 @@ public class MainActivity2 extends ActionBarActivity {
 				  	    			
 				  	    			gameEngineComputerFirst2();   							
 				  				}
+				  	  	  		
 							  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
 							  						
 							  		turn();    							
@@ -5035,6 +4899,7 @@ public class MainActivity2 extends ActionBarActivity {
 				  	    			
 				  	    			gameEngineComputerFirst2();   							
 				  				}
+				  	  	  		
 							  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
 							  						
 							  		turn();
@@ -5074,6 +4939,7 @@ public class MainActivity2 extends ActionBarActivity {
 					int result = (int) ((Math.random() * 100) + 1);
 					
 					if (result >= 51) {
+						
 						blessSpell[1] = blessSpell[1] - 1;
 						
 						centerscrolltext.setVisibility(View.VISIBLE);													
@@ -5103,6 +4969,7 @@ public class MainActivity2 extends ActionBarActivity {
 						
 		
 						if (attackResult >= 15) {
+							
 							canHasDisarmed[0] = "yes";
 		
 							disarmedTurnStart[0] = turn;
@@ -5113,6 +4980,24 @@ public class MainActivity2 extends ActionBarActivity {
 					  		centerscrolltext.startAnimation(animAlphaText);			  		
 							centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you have been disarmed!");
 							
+							final Handler h = new Handler();
+				  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+				  	  	  			
+				  	  	  		@Override
+					  	  	  	public void run() {
+				  	  	  			
+					  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+					  	    			
+					  	    			gameEngineComputerFirst2();   							
+					  				}
+	
+								  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+								  						
+								  		turn();    							
+								  	}				  	  	  			
+					  	  	  	}
+				  	  	  	}, 2000);
+							
 							return;
 						}
 		
@@ -5122,6 +5007,24 @@ public class MainActivity2 extends ActionBarActivity {
 					  		centerscrolltext.startAnimation(animAlphaText);			  		
 							centerscrolltext.append("\n" + "> The computer's attempt to disarm you misses!");
 							
+							final Handler h = new Handler();
+				  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+				  	  	  			
+				  	  	  		@Override
+					  	  	  	public void run() {
+				  	  	  			
+					  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+					  	    			
+					  	    			gameEngineComputerFirst2();   							
+					  				}
+	
+								  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+								  						
+								  		turn();    							
+								  	}				  	  	  			
+					  	  	  	}
+				  	  	  	}, 2000);
+							
 							return;
 						}
 						// don't critically miss when using bless.
@@ -5130,6 +5033,7 @@ public class MainActivity2 extends ActionBarActivity {
 						 * return canHasDisarmed; }
 						 */
 					}
+					
 					if (result < 51) {
 						
 						int attackResult = (int) ((Math.random() * 20) + 1);
@@ -5151,6 +5055,24 @@ public class MainActivity2 extends ActionBarActivity {
 					  		centerscrolltext.startAnimation(animAlphaText);			  		
 							centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you have been disarmed!");
 							
+							final Handler h = new Handler();
+				  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+				  	  	  			
+				  	  	  		@Override
+					  	  	  	public void run() {
+				  	  	  			
+					  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+					  	    			
+					  	    			gameEngineComputerFirst2();   							
+					  				}
+	
+								  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+								  						
+								  		turn();    							
+								  	}				  	  	  			
+					  	  	  	}
+				  	  	  	}, 2000);
+							
 							return;
 						}
 		
@@ -5160,6 +5082,24 @@ public class MainActivity2 extends ActionBarActivity {
 					  		centerscrolltext.startAnimation(animAlphaText);			  		
 							centerscrolltext.append("\n" + "> The computer's attempt to disarm you misses!");
 							
+							final Handler h = new Handler();
+				  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+				  	  	  			
+				  	  	  		@Override
+					  	  	  	public void run() {
+				  	  	  			
+					  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+					  	    			
+					  	    			gameEngineComputerFirst2();   							
+					  				}
+	
+								  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+								  						
+								  		turn();    							
+								  	}				  	  	  			
+					  	  	  	}
+				  	  	  	}, 2000);
+							
 							return;
 						}
 						if (attackResult <= 1) {
@@ -5167,6 +5107,7 @@ public class MainActivity2 extends ActionBarActivity {
 							return;
 						}
 					}
+					
 				} else {
 					
 					int attackResult = (int) ((Math.random() * 20) + 1);
@@ -5177,6 +5118,7 @@ public class MainActivity2 extends ActionBarActivity {
 					
 		
 					if (attackResult >= 17) {
+						
 						canHasDisarmed[0] = "yes";
 		
 						disarmedTurnStart[0] = turn;
@@ -5187,6 +5129,24 @@ public class MainActivity2 extends ActionBarActivity {
 				  		centerscrolltext.startAnimation(animAlphaText);			  		
 						centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you have been disarmed!");
 						
+						final Handler h = new Handler();
+			  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+			  	  	  			
+			  	  	  		@Override
+				  	  	  	public void run() {
+			  	  	  			
+				  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+				  	    			
+				  	    			gameEngineComputerFirst2();   							
+				  				}
+
+							  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+							  						
+							  		turn();    							
+							  	}				  	  	  			
+				  	  	  	}
+			  	  	  	}, 2000);
+						
 						return;
 					}
 		
@@ -5196,9 +5156,29 @@ public class MainActivity2 extends ActionBarActivity {
 				  		centerscrolltext.startAnimation(animAlphaText);			  		
 						centerscrolltext.append("\n" + "> The computer's attempt to disarm you misses!");
 						
+						final Handler h = new Handler();
+			  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+			  	  	  			
+			  	  	  		@Override
+				  	  	  	public void run() {
+			  	  	  			
+				  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+				  	    			
+				  	    			gameEngineComputerFirst2();   							
+				  				}
+
+							  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+							  						
+							  		turn();    							
+							  	}				  	  	  			
+				  	  	  	}
+			  	  	  	}, 2000);
+						
 						return;
 					}
+					
 					if (attackResult <= 1) {
+						
 						computerCriticalMiss();
 						return;
 					}
