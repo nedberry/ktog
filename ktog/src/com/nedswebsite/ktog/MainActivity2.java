@@ -2872,6 +2872,9 @@ public class MainActivity2 extends ActionBarActivity {
 								  		    		
 								  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
 								  		    		
+								  		    		skillsCheck();
+								  		    		
+								  		    		
 								  		    		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 									  	    			
 									  	    			gameEngineComputerFirst2();   							
@@ -3033,6 +3036,9 @@ public class MainActivity2 extends ActionBarActivity {
 								  		    		*/
 								  		    		
 								  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
+								  		    		
+								  		    		skillsCheck();
+								  		    		
 								  		    		
 								  		    		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 									  	    			
@@ -3219,6 +3225,9 @@ public class MainActivity2 extends ActionBarActivity {
 								  		    		
 								  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
 								  		    		
+								  		    		skillsCheck();
+								  		    		
+								  		    		
 								  		    		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 									  	    			
 									  	    			gameEngineComputerFirst2();   							
@@ -3384,6 +3393,9 @@ public class MainActivity2 extends ActionBarActivity {
 								  		    		*/
 								  		    		
 								  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
+								  		    		
+								  		    		skillsCheck();
+								  		    		
 								  		    		
 								  		    		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 									  	    			
@@ -3651,6 +3663,9 @@ public class MainActivity2 extends ActionBarActivity {
 		  		    		*/
 		  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
 		  		    		
+		  		    		skillsCheck();
+		  		    		
+		  		    		
 		  		    		final Handler h = new Handler();
 				  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 				  	  	  			
@@ -3907,7 +3922,9 @@ public class MainActivity2 extends ActionBarActivity {
 							}
 							*/
 							
-							mightyBlowSpell[1] = mightyBlowSpell[1] - 1;							
+							mightyBlowSpell[1] = mightyBlowSpell[1] - 1;
+							
+							skillsCheck();
 							
 							
 							/*
@@ -3953,6 +3970,8 @@ public class MainActivity2 extends ActionBarActivity {
 							*/
 							
 							mightyBlowSpell[1] = mightyBlowSpell[1] - 1;
+							
+							skillsCheck();
 
 														
 							/*
@@ -4146,6 +4165,9 @@ public class MainActivity2 extends ActionBarActivity {
   	  	    	
 		
 				cureSpell[1] = cureSpell[1] - 1;
+				
+				skillsCheck();
+				
 		
 				int result = (int) ((Math.random() * 10) + 1);
 				int cure = result;						
@@ -4209,10 +4231,12 @@ public class MainActivity2 extends ActionBarActivity {
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);
   	  	    	
-		
+	  			
+	  			iscomputerblessrolled = "yes";
+	  			
 				blessSpell[1] = blessSpell[1] - 1;
 				
-				iscomputerblessrolled = "yes";
+				skillsCheck();			
 				
 				
 				/*
@@ -4590,6 +4614,8 @@ public class MainActivity2 extends ActionBarActivity {
   	  	    	
 	
 				hasteSpell[1] = hasteSpell[1] - 1;
+				
+				skillsCheck();
 		
 				
 				/*
@@ -4811,6 +4837,8 @@ public class MainActivity2 extends ActionBarActivity {
 					if (result >= 51) {
 						
 						blessSpell[1] = blessSpell[1] - 1;
+						
+						skillsCheck();
 						
 						centerscrolltext.setVisibility(View.VISIBLE);													
 				  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -5133,7 +5161,10 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		canHasDisarmed[1] = "no";
 		
-		hasteSpell[1] = hasteSpell[1] - 1;		
+		hasteSpell[1] = hasteSpell[1] - 1;
+		
+		skillsCheck();
+		
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
@@ -5255,6 +5286,9 @@ public class MainActivity2 extends ActionBarActivity {
 						  		    		*/
 						  		    		
 						  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
+						  		    		
+						  		    		skillsCheck();
+						  		    		
 						  		    		
 						  		    		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
 							  	    			
@@ -5407,6 +5441,9 @@ public class MainActivity2 extends ActionBarActivity {
 						  		    		*/
 						  		    		
 						  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
+						  		    		
+						  		    		skillsCheck();
+						  		    		
 						  		    		
 						  		    		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
 							  	    			
@@ -5571,6 +5608,9 @@ public class MainActivity2 extends ActionBarActivity {
 		  		    	public void onClick(DialogInterface dialog, int whichButton) {		  		    		
 		  		    		
 		  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
+		  		    		
+		  		    		skillsCheck();
+		  		    		
 		  		    		
 		  		    		final Handler h = new Handler();
 				  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -5802,7 +5842,9 @@ public class MainActivity2 extends ActionBarActivity {
 							}
 							*/
 							
-							mightyBlowSpell[1] = mightyBlowSpell[1] - 1;							
+							mightyBlowSpell[1] = mightyBlowSpell[1] - 1;
+							
+							skillsCheck();
 							
 							
 							/*
@@ -5848,6 +5890,8 @@ public class MainActivity2 extends ActionBarActivity {
 							*/
 							
 							mightyBlowSpell[1] = mightyBlowSpell[1] - 1;
+							
+							skillsCheck();
 
 														
 							/*
@@ -6456,6 +6500,8 @@ public class MainActivity2 extends ActionBarActivity {
 							
 							
 							mightyBlowSpell[1] = mightyBlowSpell[1] - 1;
+							
+							skillsCheck();
 							
 							
 							/*
@@ -7067,6 +7113,8 @@ public class MainActivity2 extends ActionBarActivity {
 							
 							
 							mightyBlowSpell[1] = mightyBlowSpell[1] - 1;
+							
+							skillsCheck();
 		
 							
 							/*
