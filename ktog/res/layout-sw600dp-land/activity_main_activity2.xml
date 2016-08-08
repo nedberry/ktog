@@ -221,12 +221,109 @@
         android:background="@drawable/skillsleft" />
     
     <ImageView
+        android:id="@+id/imageviewplayerbox4leftbless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"        
+        android:background="@drawable/swordcrossedleftblessred" />
+    
+    <ImageView
+        android:id="@+id/imageviewplayerbox4leftcure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"        
+        android:background="@drawable/swordcrossedleftcurered" />
+    
+     <ImageView
+        android:id="@+id/imageviewplayerbox4leftdodge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"        
+        android:background="@drawable/swordcrossedleftdodgered" />
+     
+     <ImageView
+        android:id="@+id/imageviewplayerbox4leftmb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"        
+        android:background="@drawable/swordcrossedleftmbred" />
+     
+    <ImageView
+        android:id="@+id/imageviewplayerbox4lefthaste1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"        
+        android:background="@drawable/swordcrossedlefthaste1red" />
+    
+    <ImageView
+        android:id="@+id/imageviewplayerbox4lefthaste2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"        
+        android:background="@drawable/swordcrossedlefthaste2red" />    
+    
+    
+    <ImageView
         android:id="@+id/imageviewplayerbox4right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"        
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:background="@drawable/skillsright" />
+    
+    <ImageView
+        android:id="@+id/imageviewplayerbox4rightbless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"        
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/swordcrossedrightblessred" />
+    
+    <ImageView
+        android:id="@+id/imageviewplayerbox4rightcure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"        
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/swordcrossedrightcurered" />
+    
+    <ImageView
+        android:id="@+id/imageviewplayerbox4rightdodge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"        
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/swordcrossedrightdodgered" />
+    
+    <ImageView
+        android:id="@+id/imageviewplayerbox4rightmb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"        
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/swordcrossedrightmbred" />
+    
+    <ImageView
+        android:id="@+id/imageviewplayerbox4righthaste1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"        
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/swordcrossedrighthaste1red" />
+    
+    <ImageView
+        android:id="@+id/imageviewplayerbox4righthaste2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"        
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/swordcrossedrighthaste2red" />    
     
        
         

@@ -116,11 +116,11 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	
 	// SOME OF THESE MAY NEED TO BE AN ARRAY-CLASS:
-	public static int[] cureSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
-	public static int[] hasteSpell = new int[] {2, 2, 2, 2, 2, 2, 2};
-	public static int[] mightyBlowSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
 	public static int[] blessSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
+	public static int[] cureSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
 	public static int[] dodgeBlowSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
+	public static int[] mightyBlowSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
+	public static int[] hasteSpell = new int[] {2, 2, 2, 2, 2, 2, 2};	
 	
 	
 		
@@ -218,6 +218,34 @@ public class MainActivity2 extends ActionBarActivity {
 			crossedswords2.setVisibility(View.INVISIBLE);
 			computerAvatar.setVisibility(View.INVISIBLE);
 		}
+		
+		
+		ImageView blessLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftbless);
+		blessLeft.setVisibility(View.INVISIBLE);
+		ImageView cureLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftcure);
+		cureLeft.setVisibility(View.INVISIBLE);
+		ImageView dodgeLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftdodge);
+		dodgeLeft.setVisibility(View.INVISIBLE);
+		ImageView mbLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftmb);
+		mbLeft.setVisibility(View.INVISIBLE);
+		ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
+		hasteLeft1.setVisibility(View.INVISIBLE);
+		ImageView hasteLeft2 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste2);
+		hasteLeft2.setVisibility(View.INVISIBLE);
+		
+		ImageView blessRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightbless);
+		blessRight.setVisibility(View.INVISIBLE);
+		ImageView cureRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightcure);
+		cureRight.setVisibility(View.INVISIBLE);
+		ImageView dodgeRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightdodge);
+		dodgeRight.setVisibility(View.INVISIBLE);
+		ImageView mbRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightmb);
+		mbRight.setVisibility(View.INVISIBLE);
+		ImageView hasteRight1 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste1);
+		hasteRight1.setVisibility(View.INVISIBLE);
+		ImageView hasteRight2 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste2);
+		hasteRight2.setVisibility(View.INVISIBLE);
+		
 		
 		
 		final ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
@@ -381,9 +409,11 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		// USE android:background="@drawable/(SOME PNG)" TO SPECIFY AREA ON SCREEN ??
 		sixSidedBlank.setOnTouchListener(new OnSixSidedSwipeTouchListener(MainActivity2.this) {
-		    public void onSwipeTop() {
+		    /*
+			public void onSwipeTop() {
 		        Toast.makeText(MainActivity2.this, "top", Toast.LENGTH_SHORT).show();
 		    }
+		    */
 		    public void onSwipeRight() {
 		    	//if (issixsidedrolledforinitiative.equals("yes")) {	  				
 					
@@ -496,17 +526,21 @@ public class MainActivity2 extends ActionBarActivity {
 				}
 			//}
 		    }
+		    /*
 		    public void onSwipeBottom() {
 		        Toast.makeText(MainActivity2.this, "bottom", Toast.LENGTH_SHORT).show();
 		    }
+		    */
 		});		
 		
 		
 		// USE android:background="@drawable/(SOME PNG)" TO SPECIFY AREA ON SCREEN ??
 		twentySidedBlank.setOnTouchListener(new OnTwentySidedSwipeTouchListener(MainActivity2.this) {
-		    public void onSwipeTop() {
+		    /*
+			public void onSwipeTop() {
 		        Toast.makeText(MainActivity2.this, "top", Toast.LENGTH_SHORT).show();
 		    }
+		    */
 		    public void onSwipeRight() {		    		  				
 					
 				twentySidedWobbleStop();
@@ -665,9 +699,11 @@ public class MainActivity2 extends ActionBarActivity {
 					blessResults();
 				}
 		    }
+		    /*
 		    public void onSwipeBottom() {
 		        Toast.makeText(MainActivity2.this, "bottom", Toast.LENGTH_SHORT).show();
 		    }
+		    */
 		});		
 	}
 	
@@ -2711,22 +2747,7 @@ public class MainActivity2 extends ActionBarActivity {
 		  	//Toast.makeText(MainActivity2.this,"isinitiativestarted = " +  isinitiativestarted + " aretheredoubles = " + aretheredoubles, Toast.LENGTH_SHORT).show();
   	    	 	
 	  	  		
-	}
-	
-	
-	 /* TEST DIALOG:
-	    AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-	      
-	      	alert.setMessage("test");	    	
-	    	
-	    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-		    	public void onClick(DialogInterface dialog, int whichButton) {
-		    				    		
-		    	}
-	    	});
-	    	
-	    	alert.show();     
-	  */	
+	}	 	
 	
 	
 	/*
@@ -8057,12 +8078,12 @@ public class MainActivity2 extends ActionBarActivity {
 								    		
 								    		hideNavigation();
 								    		
+								    		playerDeadYet[playerNumberAttacked] = "yes";
+								    		
 								    		gameOverCheck();
 								    	}
 							    	});								    	
-							    	alert.show();				    	
-									
-									playerDeadYet[playerNumberAttacked] = "yes";										
+							    	alert.show();																			
 								}
 								
 								else {									
@@ -8171,6 +8192,8 @@ public class MainActivity2 extends ActionBarActivity {
 						  		    		
 						  		    		mightyBlowSpell[0] = mightyBlowSpell[0] - 1;
 						  		    		
+						  		    		skillsCheck();
+						  		    		
 						  		    		
 						  		    		/*
 											 * 
@@ -8272,6 +8295,8 @@ public class MainActivity2 extends ActionBarActivity {
 						
 						dodgeBlowSpell[playerNumberAttacked] = dodgeBlowSpell[playerNumberAttacked] - 1;
 						
+						skillsCheck();
+						
 						
 						final Handler h4 = new Handler();
 			  	  	  	h4.postDelayed(new Runnable() {		  	  	  			
@@ -8335,6 +8360,8 @@ public class MainActivity2 extends ActionBarActivity {
 					  		    		hideNavigation();
 					  		    		
 					  		    		mightyBlowSpell[0] = mightyBlowSpell[0] - 1;
+					  		    		
+					  		    		skillsCheck();
 					  		    		
 					  		    		
 					  		    		/*
@@ -8626,12 +8653,12 @@ public class MainActivity2 extends ActionBarActivity {
 								    		
 								    		hideNavigation();
 								    		
+								    		playerDeadYet[playerNumberAttacked] = "yes";
+								    		
 								    		gameOverCheck();
 								    	}
 							    	});								    	
-							    	alert.show();				    	
-									
-									playerDeadYet[playerNumberAttacked] = "yes";										
+							    	alert.show();																			
 								}
 								
 								else {									
@@ -8803,6 +8830,8 @@ public class MainActivity2 extends ActionBarActivity {
 										  		    		
 										  		    		mightyBlowSpell[0] = mightyBlowSpell[0] - 1;
 										  		    		
+										  		    		skillsCheck();
+										  		    		
 										  		    		criticalHitMightyBlowPartOne();
 										  					return;	  		    		
 										  		    	}
@@ -8876,6 +8905,8 @@ public class MainActivity2 extends ActionBarActivity {
 		  						  		centerscrolltext.append("\n" + "> The computer player uses it's dodge.");					
 		  			
 		  								dodgeBlowSpell[playerNumberAttacked] = dodgeBlowSpell[playerNumberAttacked] - 1;
+		  								
+		  								skillsCheck();
 		  								
 		  								
 		  								final Handler h4 = new Handler();
@@ -8959,6 +8990,8 @@ public class MainActivity2 extends ActionBarActivity {
 									  		    		hideNavigation();
 									  		    		
 									  		    		mightyBlowSpell[0] = mightyBlowSpell[0] - 1;
+									  		    		
+									  		    		skillsCheck();
 									  		    		
 									  		    		criticalHitMightyBlowPartOne();
 									  					return;	  		    		
@@ -9105,8 +9138,7 @@ public class MainActivity2 extends ActionBarActivity {
 				if (numberOfPlayers > 1) {
 				
 				}
-				*/
-				
+				*/				
 	  	    }  	  	    
 		});
 	
@@ -9288,12 +9320,12 @@ public class MainActivity2 extends ActionBarActivity {
 								    		
 								    		hideNavigation();
 								    		
+								    		playerDeadYet[playerNumberAttacked] = "yes";
+								    		
 								    		gameOverCheck();
 								    	}
 							    	});								    	
-							    	alert.show();				    	
-									
-									playerDeadYet[playerNumberAttacked] = "yes";										
+							    	alert.show();																			
 								}
 								
 								else {									
@@ -9612,12 +9644,12 @@ public class MainActivity2 extends ActionBarActivity {
 								    		
 								    		hideNavigation();
 								    		
+								    		playerDeadYet[playerNumberAttacked] = "yes";
+								    		
 								    		gameOverCheck();
 								    	}
 							    	});								    	
-							    	alert.show();				    	
-									
-									playerDeadYet[playerNumberAttacked] = "yes";										
+							    	alert.show();																			
 								}
 								
 								else {									
@@ -10012,6 +10044,8 @@ public class MainActivity2 extends ActionBarActivity {
 							    		
 							    		hideNavigation();
 							    		
+							    		playerDeadYet[i] = "yes";
+							    		
 							    		gameOverCheck();
 							    	}
 						    	});						    	
@@ -10023,9 +10057,7 @@ public class MainActivity2 extends ActionBarActivity {
 							}
 							System.out.print("Press a key to continue... ");
 							input.nextLine();
-							*/
-							
-							playerDeadYet[i] = "yes";							
+							*/														
 						}
 						
 						else {						
@@ -10269,7 +10301,9 @@ public class MainActivity2 extends ActionBarActivity {
 			  	    			
 			  	    			hideNavigation();
 			  		    		
-			  		    		blessSpell[0] = blessSpell[0] - 1;			  		    				  		    		
+			  		    		blessSpell[0] = blessSpell[0] - 1;
+			  		    		
+			  		    		skillsCheck();
 			  		    		
 			  		    		disarmWithBless();			  		    			  		    		
 			  		    	}
@@ -10909,7 +10943,11 @@ public class MainActivity2 extends ActionBarActivity {
 	  		  	  	  		@Override
 	  			  	  	  	public void run() {
 	  		  	  	  			
-	  		  	  	  			if (canHasDisarmed[i].equals("no")) {
+	  		  	  	  			hasteSpell[0] = hasteSpell[0] - 1;
+	  		  	  	  			
+	  		  	  	  			skillsCheck();
+	  		  	  	  			
+	  		  	  	  			if (canHasDisarmed[i].equals("no")) {	  		  	  	  				
 	  		  	  	  				
 	  		  	  	  				ishasteused = "yes";
 	  	  	  				
@@ -11104,9 +11142,11 @@ public class MainActivity2 extends ActionBarActivity {
 					
 					if (numberOfPlayers == 1) {
 						
+						isblessrolled = "yes";
+						
 						blessSpell[0] = blessSpell[0] - 1;
 						
-						isblessrolled = "yes";
+						skillsCheck();						
 						
 		
 						final Handler h1 = new Handler();
@@ -11670,7 +11710,9 @@ public class MainActivity2 extends ActionBarActivity {
 					
 					if (numberOfPlayers == 1) {
 						
-						cureSpell[0] = cureSpell[0] - 1;						
+						cureSpell[0] = cureSpell[0] - 1;
+						
+						skillsCheck();
 						
 		
 						final Handler h1 = new Handler();
@@ -11919,8 +11961,7 @@ public class MainActivity2 extends ActionBarActivity {
 												cure();
 											}										
 											
-											isInvokingService = "true";
-											
+											isInvokingService = "true";											
 										}
 									});
 							builder.create().show();							
@@ -12311,6 +12352,86 @@ public class MainActivity2 extends ActionBarActivity {
 				runActionsOnUi();	
 			}
 		}
+	}
+	
+	public void skillsCheck() {
+		
+		if (numberOfPlayers == 1) {
+			
+			if (blessSpell[0] < 1) {
+				
+				ImageView blessLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftbless);
+				blessLeft.setVisibility(View.VISIBLE);				
+			}				
+			if (cureSpell[0] < 1) {
+				
+				ImageView cureLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftcure);
+				cureLeft.setVisibility(View.VISIBLE);				
+			}			
+			if (dodgeBlowSpell[0] < 1) {
+				
+				ImageView dodgeLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftdodge);
+				dodgeLeft.setVisibility(View.VISIBLE);				
+			}			
+			if (mightyBlowSpell[0] < 1) {
+				
+				ImageView mbLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftmb);
+				mbLeft.setVisibility(View.VISIBLE);				
+			}			
+			if (hasteSpell[0] < 2) {
+				
+				ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
+				hasteLeft1.setVisibility(View.VISIBLE);				
+			}			
+			if (hasteSpell[0] < 1) {
+				
+				ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
+				hasteLeft1.setVisibility(View.VISIBLE);
+				ImageView hasteLeft2 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste2);
+				hasteLeft2.setVisibility(View.VISIBLE);				
+			}
+			
+			
+			if (blessSpell[1] < 1) {
+				
+				ImageView blessRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightbless);
+				blessRight.setVisibility(View.VISIBLE);				
+			}				
+			if (cureSpell[1] < 1) {
+				
+				ImageView cureRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightcure);
+				cureRight.setVisibility(View.VISIBLE);				
+			}			
+			if (dodgeBlowSpell[1] < 1) {
+				
+				ImageView dodgeRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightdodge);
+				dodgeRight.setVisibility(View.VISIBLE);				
+			}			
+			if (mightyBlowSpell[1] < 1) {
+				
+				ImageView mbRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightmb);
+				mbRight.setVisibility(View.VISIBLE);				
+			}			
+			if (hasteSpell[1] < 2) {
+				
+				ImageView hasteRight1 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste1);
+				hasteRight1.setVisibility(View.VISIBLE);				
+			}			
+			if (hasteSpell[1] < 1) {
+				
+				ImageView hasteRight1 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste1);
+				hasteRight1.setVisibility(View.VISIBLE);
+				ImageView hasteRight2 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste2);
+				hasteRight2.setVisibility(View.VISIBLE);				
+			}			
+		}
+		
+		
+		/*
+		if (numberOfPlayers > 1) {
+			
+		}
+		*/
 	}
 	
 	public void runActionsOnUi() {		
