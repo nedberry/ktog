@@ -12102,8 +12102,17 @@ public class MainActivity2 extends ActionBarActivity {
 			if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {
 				
 				int i = 0;
+				
+				computerCardStopFadeInFadeOut();
+    			playerCardStartFadeInFadeOut();
+    			
+    			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+    			
+    			TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+    			playerHitPointsTextView.setTypeface(typeFace);
+    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
         		
-    			gameEngineHumanFirst1();
+    			gameEngineHumanFirst1();    			
     			
     			turn++;				
 			}
@@ -12111,12 +12120,20 @@ public class MainActivity2 extends ActionBarActivity {
 			if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {
 				
 				int i = 1;
+				
+				playerCardStopFadeInFadeOut();
+    			computerCardStartFadeInFadeOut();
     			
-    			gameEngineComputerFirst1();	
+    			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+    			
+    			TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+    			computerHitPointsTextView.setTypeface(typeFace);
+    			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
+    			
+    			gameEngineComputerFirst1();    			
 				
     			turn++;				
-			}
-			
+			}			
 		}
 		
 		if (numberOfPlayers > 1) {			
@@ -12214,6 +12231,15 @@ public class MainActivity2 extends ActionBarActivity {
 		i = 1;
 		// NEED THIS?:
 		iscomputerhasteused.equals("no");// so computer doesn't use a haste during a haste.
+		
+		playerCardStopFadeInFadeOut();
+		computerCardStartFadeInFadeOut();
+		
+		Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+		
+		TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+		computerHitPointsTextView.setTypeface(typeFace);
+		computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
 
 		if (ArrayOfHitPoints.hitpoints[1] <= 0) {
 			endGame(); // took out map
@@ -12344,6 +12370,15 @@ public class MainActivity2 extends ActionBarActivity {
 	public void gameEngineComputerFirst2() {	
 		
 		i = 0;
+		
+		computerCardStopFadeInFadeOut();
+		playerCardStartFadeInFadeOut();
+		
+		Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+		
+		TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+		playerHitPointsTextView.setTypeface(typeFace);
+		playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
 		
 		if (ArrayOfHitPoints.hitpoints[0] <= 0) {
 			endGame(); // took out map
