@@ -2880,18 +2880,10 @@ public class MainActivity2 extends ActionBarActivity {
 					centerscrolltext.append("\n" + "> The computer uses it's cure spell...");
 					
 					// for(int x = 0; x < 100; --x)
-					// {}
-					
-					final Handler h = new Handler();
-		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+					// {}				
 		  	  	  			
-		  	  	  		@Override
-			  	  	  	public void run() {
-		  	  	  			
-			  	  	  		computerCure();
-							return;
-			  	  	  	}
-		  	  	  	}, 2000);					
+	  	  	  		computerCure();
+					return;			  	  						
 				}
 		
 				// ATTACK && ATTACK USING FIRST HASTE && ATTACK IF NO HASTES LEFT && ATTACK IF NO BLESS && ATTACK IF HUMIE ALREADY DISARMED
@@ -4781,64 +4773,73 @@ public class MainActivity2 extends ActionBarActivity {
 				
 				skillsCheck();
 				
-		
-				int result = (int) ((Math.random() * 10) + 1);
-				//final int cure = result;
-				cureResult = result;				
 				
-	  	  	  			
-  	  			computerRolls6SidedDie();
-  	  			
-  	  			
-  	  	  		final Handler h = new Handler();
+				cureResult = (int) ((Math.random() * 10) + 1);
+				
+				//int result = (int) ((Math.random() * 10) + 1);				
+				//cureResult = result;
+				//final int cure = result;
+				
+	  	  	  	
+				final Handler h = new Handler();
 	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 	  	  	  			
 	  	  	  		@Override
 		  	  	  	public void run() {
 	  	  	  			
-		  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
-				  		centerscrolltext.startAnimation(animAlphaText);
-						centerscrolltext.append("\n" + "> The computer rolls a " + cureResult + "!"); // WAS cure
-						
-						/*
-						for (int x = 0; x < 1000; --x)// To give human time to read.
-						{
-						}
-						*/
-						
-						ArrayOfHitPoints.hitpoints[1] = ArrayOfHitPoints.hitpoints[1] + cureResult; // WAS cure
-						
-						
-						final Handler h = new Handler();
+		  	  	  		computerRolls6SidedDie();
+		  	  			
+		  	  			
+		  	  	  		final Handler h = new Handler();
 			  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 			  	  	  			
 			  	  	  		@Override
 				  	  	  	public void run() {
 			  	  	  			
-				  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
-				  	    			
-				  	    			gameEngineComputerFirst2();   							
-				  				}
-			
-							  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
-							  						
-							  		turn();    							
-							  	}
-							  	if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
-							  	    			
-							  		computerHastePartTwo();   							
-							  	}
-			
-							  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
-							  						
-							  		computerHastePartTwo();    							
-							  	}	  	  	  			
+				  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
+						  		centerscrolltext.startAnimation(animAlphaText);
+								centerscrolltext.append("\n" + "> The computer rolls a " + cureResult + "!"); // WAS cure
+								
+								/*
+								for (int x = 0; x < 1000; --x)// To give human time to read.
+								{
+								}
+								*/
+								
+								ArrayOfHitPoints.hitpoints[1] = ArrayOfHitPoints.hitpoints[1] + cureResult; // WAS cure
+								
+								
+								final Handler h = new Handler();
+					  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+					  	  	  			
+					  	  	  		@Override
+						  	  	  	public void run() {
+					  	  	  			
+						  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
+						  	    			
+						  	    			gameEngineComputerFirst2();   							
+						  				}
+					
+									  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
+									  						
+									  		turn();    							
+									  	}
+									  	if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
+									  	    			
+									  		computerHastePartTwo();   							
+									  	}
+					
+									  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
+									  						
+									  		computerHastePartTwo();    							
+									  	}	  	  	  			
+						  	  	  	}
+					  	  	  	}, 2000);				
+								return;
 				  	  	  	}
-			  	  	  	}, 2000);				
-						return;
+			  	  	  	}, 2000);
 		  	  	  	}
-	  	  	  	}, 2000);	  	  	  		
-		  	  	  			
+	  	  	  	}, 2000);		  	  	  			
   	  	    }
 		});		
 	}
@@ -5976,7 +5977,7 @@ public class MainActivity2 extends ActionBarActivity {
 		return canHasDisarmed;
 	}
 	
-	public int computerDisarmedAction() {			
+	public int computerDisarmedAction() {		
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
@@ -6117,327 +6118,377 @@ public class MainActivity2 extends ActionBarActivity {
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);
   	  	    	
-		
-				centerscrolltext.setVisibility(View.VISIBLE);													
-		  		centerscrolltext.startAnimation(animAlphaText);
-				centerscrolltext.append("\n" + "> The computer rolls a " + attackResult + "!");
-				
-				
-				if (attackResult >= 20) {
-					
-					computerCriticalHitDisarmed();
-					return;
-				}
-				
-				if (canHasDisarmed[0].equals("no")) {
-					
-					if (attackResult >= 15 && attackResult <= 19) { // -1 to-hit for being disarmed.
-						
-						centerscrolltext.setVisibility(View.VISIBLE);													
-				  		centerscrolltext.startAnimation(animAlphaText);
-						centerscrolltext.append("\n" + "> The computer's punch hits!");				
-		
-						final Handler h = new Handler();
+	  			
+	  			final Handler h = new Handler();
+	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {
+	  	  	  			
+	  	  	  			computerRolls20SidedDie();
+	  	  	  			
+		  	  	  		final Handler h = new Handler();
 			  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 			  	  	  			
 			  	  	  		@Override
 				  	  	  	public void run() {
 			  	  	  			
-				  	  	  		if (dodgeBlowSpell[0] > 0) {
-									/*
-									centerscrolltext.setVisibility(View.VISIBLE);													
-							  		centerscrolltext.startAnimation(animAlphaText);			  		
-									centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", do you want to dodge?");
-									*/
+				  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
+						  		centerscrolltext.startAnimation(animAlphaText);
+								centerscrolltext.append("\n" + "> The computer rolls a " + attackResult + "!");
+								
+								
+								if (attackResult >= 20) {
 									
-									AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-						  			
-						  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", Do you want to use your Dodge spell?");
-						  	    	/*
-						  	    	alert.setMessage("something");
-						  	    	*/	  	    	
-						  	    	
-						  	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-						  		    	public void onClick(DialogInterface dialog, int whichButton) {	  		    		
-						  		    		
-						  		    		/*
-						  		    		//NEED THIS??????????????????
-						  		    		if (dodgeBlowSpell[0] < 1) {
-						  		    			
-						  		    			hideNavigation();
-						  						
-						  						centerscrolltext.setVisibility(View.VISIBLE);													
-						  				  		centerscrolltext.startAnimation(animAlphaText);			  		
-						  						centerscrolltext.append("\n" + "> You have already used your Dodge spell!");
-						  						
-						  						//break;
-						  					}
-						  		    		*/
-						  		    		
-						  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
-						  		    		
-						  		    		skillsCheck();
-						  		    		
-						  		    		
-						  		    		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
-							  	    			
-							  	    			gameEngineComputerFirst2();   							
-							  				}
-		
-										  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
-										  						
-										  		turn();    							
-										  	}
-										  									  		    		
-						  					return;
-						  		    	}
-						  	    	});
-						  	    	
-						  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
-						          	  public void onClick(DialogInterface dialog, int whichButton) {
-						          		  
-						          		  	hideNavigation();
-						          		  	
-						          		  	computerDamageDisarmed();
-						          		  									          		  	
-						          		  	return;
-						          	  }
-						          	});	  	    	
-						  	    	
-						  	    	alert.show();
+									computerCriticalHitDisarmed();
+									return;
+								}
+								
+								if (canHasDisarmed[0].equals("no")) {
 									
-									/*
-									String s = input.next();
-									char selection = s.charAt(0);
-									
-									switch (selection) {
-									case 'y':
-									case 'Y':
+									if (attackResult >= 15 && attackResult <= 19) { // -1 to-hit for being disarmed.
 										
-										if (dodgeBlowSpell[0] < 1) {
-											
-											centerscrolltext.setVisibility(View.VISIBLE);													
-									  		centerscrolltext.startAnimation(animAlphaText);			  		
-											centerscrolltext.append("\n" + "> You have already used your Dodge Blow spell!");
-											
-											break;
-										}
-										dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
-										return dodgeBlowSpell;
-									case 'n':
-									case 'N':
-										break;
-									default:
-										computerDamage(i, gameOn);
+										final Handler h = new Handler();
+							  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+							  	  	  			
+							  	  	  		@Override
+								  	  	  	public void run() {
+							  	  	  			
+								  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
+										  		centerscrolltext.startAnimation(animAlphaText);
+												centerscrolltext.append("\n" + "> The computer's punch hits!");				
+								
+												final Handler h = new Handler();
+									  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+									  	  	  			
+									  	  	  		@Override
+										  	  	  	public void run() {
+									  	  	  			
+										  	  	  		if (dodgeBlowSpell[0] > 0) {
+															/*
+															centerscrolltext.setVisibility(View.VISIBLE);													
+													  		centerscrolltext.startAnimation(animAlphaText);			  		
+															centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", do you want to dodge?");
+															*/
+															
+															AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+												  			
+												  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", Do you want to use your Dodge spell?");
+												  	    	/*
+												  	    	alert.setMessage("something");
+												  	    	*/	  	    	
+												  	    	
+												  	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+												  		    	public void onClick(DialogInterface dialog, int whichButton) {	  		    		
+												  		    		
+												  		    		/*
+												  		    		//NEED THIS??????????????????
+												  		    		if (dodgeBlowSpell[0] < 1) {
+												  		    			
+												  		    			hideNavigation();
+												  						
+												  						centerscrolltext.setVisibility(View.VISIBLE);													
+												  				  		centerscrolltext.startAnimation(animAlphaText);			  		
+												  						centerscrolltext.append("\n" + "> You have already used your Dodge spell!");
+												  						
+												  						//break;
+												  					}
+												  		    		*/
+												  		    		
+												  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
+												  		    		
+												  		    		skillsCheck();
+												  		    		
+												  		    		
+												  		    		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+													  	    			
+													  	    			gameEngineComputerFirst2();   							
+													  				}
+								
+																  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+																  						
+																  		turn();    							
+																  	}
+																  									  		    		
+												  					return;
+												  		    	}
+												  	    	});
+												  	    	
+												  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+												          	  public void onClick(DialogInterface dialog, int whichButton) {
+												          		  
+												          		  	hideNavigation();
+												          		  	
+												          		  	computerDamageDisarmed();
+												          		  									          		  	
+												          		  	return;
+												          	  }
+												          	});	  	    	
+												  	    	
+												  	    	alert.show();
+															
+															/*
+															String s = input.next();
+															char selection = s.charAt(0);
+															
+															switch (selection) {
+															case 'y':
+															case 'Y':
+																
+																if (dodgeBlowSpell[0] < 1) {
+																	
+																	centerscrolltext.setVisibility(View.VISIBLE);													
+															  		centerscrolltext.startAnimation(animAlphaText);			  		
+																	centerscrolltext.append("\n" + "> You have already used your Dodge Blow spell!");
+																	
+																	break;
+																}
+																dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
+																return dodgeBlowSpell;
+															case 'n':
+															case 'N':
+																break;
+															default:
+																computerDamage(i, gameOn);
+															}
+															*/
+														}
+										  	  	  		
+										  	  	  		else {
+										  	  	  			
+										  	  	  			computerDamageDisarmed();
+										  	  	  			
+															return;						  	  	  			
+										  	  	  		}
+										  	  	  	}
+									  	  	  	}, 2000);
+								  	  	  	}
+							  	  	  	}, 2000);																		
+									}
+									
+									if (attackResult < 15 && attackResult >= 1) {
+										
+										final Handler h = new Handler();
+							  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+							  	  	  			
+							  	  	  		@Override
+								  	  	  	public void run() {
+							  	  	  			
+								  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
+										  		centerscrolltext.startAnimation(animAlphaText);
+												centerscrolltext.append("\n" + "> The computer's punch misses!");
+												
+												final Handler h = new Handler();
+									  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+									  	  	  			
+									  	  	  		@Override
+										  	  	  	public void run() {
+									  	  	  			
+										  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+										  	    			
+										  	    			gameEngineComputerFirst2();   							
+										  				}
+					
+													  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+													  						
+													  		turn();    							
+													  	}							  						  	  	  			
+										  	  	  	}
+									  	  	  	}, 2000);
+									  	  	  	
+												return;
+								  	  	  	}
+							  	  	  	}, 2000);										
+									}
+									
+									// NEW
+									//	CAN YOU CRITICL MISS A PUNCH???????????????????????????????????? -----DISARM AGAIN TO MAINTAIN BALANCE.
+									// for now i'll do no rolls to keep it simpler, but in future might go w roll to hurt yourself (ie stumble & fall) but no roll to lose weapon.
+									/*
+									if (attackResult <= 1) {
+										computerCriticalMiss();
+										return;
 									}
 									*/
+									
+									// NEED THIS:?
+									//return;						
 								}
-				  	  	  		
-				  	  	  		else {
-				  	  	  			
-				  	  	  			computerDamageDisarmed();
-				  	  	  			
-									return;						  	  	  			
-				  	  	  		}
-				  	  	  	}
-			  	  	  	}, 2000);								
-					}
-					
-					if (attackResult < 15 && attackResult >= 1) {
-						
-						centerscrolltext.setVisibility(View.VISIBLE);													
-				  		centerscrolltext.startAnimation(animAlphaText);
-						centerscrolltext.append("\n" + "> The computer's punch misses!");
-						
-						final Handler h = new Handler();
-			  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-			  	  	  			
-			  	  	  		@Override
-				  	  	  	public void run() {
-			  	  	  			
-				  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
-				  	    			
-				  	    			gameEngineComputerFirst2();   							
-				  				}
-
-							  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
-							  						
-							  		turn();    							
-							  	}							  						  	  	  			
-				  	  	  	}
-			  	  	  	}, 2000);
-			  	  	  	
-						return;
-					}
-					
-					// NEW
-					//	CAN YOU CRITICL MISS A PUNCH???????????????????????????????????? -----DISARM AGAIN TO MAINTAIN BALANCE.
-					// for now i'll do no rolls to keep it simpler, but in future might go w roll to hurt yourself (ie stumble & fall) but no roll to lose weapon.
-					/*
-					if (attackResult <= 1) {
-						computerCriticalMiss();
-						return;
-					}
-					*/
-					
-					// NEED THIS:?
-					//return;						
-				}
-				
-				if (canHasDisarmed[0].equals("yes")) {
-					
-					if (attackResult >= 13 && attackResult <= 19) { // -1 to-hit for being disarmed but, +2 because computer is disarmed (+1 total)
-						
-						centerscrolltext.setVisibility(View.VISIBLE);													
-				  		centerscrolltext.startAnimation(animAlphaText);
-						centerscrolltext.append("\n" + "> The computer's punch hits!");				
-		
-						final Handler h = new Handler();
-			  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-			  	  	  			
-			  	  	  		@Override
-				  	  	  	public void run() {
-			  	  	  			
-				  	  	  		if (dodgeBlowSpell[0] > 0) {
-									/*
-									centerscrolltext.setVisibility(View.VISIBLE);													
-							  		centerscrolltext.startAnimation(animAlphaText);			  		
-									centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", do you want to dodge?");
-									*/
+								
+								if (canHasDisarmed[0].equals("yes")) {
 									
-									AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-						  			
-						  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", Do you want to use your Dodge spell?");
-						  	    	/*
-						  	    	alert.setMessage("something");
-						  	    	*/	  	    	
-						  	    	
-						  	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-						  		    	public void onClick(DialogInterface dialog, int whichButton) {	  		    		
-						  		    		
-						  		    		/*
-						  		    		//NEED THIS??????????????????
-						  		    		if (dodgeBlowSpell[0] < 1) {
-						  		    			
-						  		    			hideNavigation();
-						  						
-						  						centerscrolltext.setVisibility(View.VISIBLE);													
-						  				  		centerscrolltext.startAnimation(animAlphaText);			  		
-						  						centerscrolltext.append("\n" + "> You have already used your Dodge spell!");
-						  						
-						  						//break;
-						  					}
-						  		    		*/
-						  		    		
-						  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
-						  		    		
-						  		    		skillsCheck();
-						  		    		
-						  		    		
-						  		    		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
-							  	    			
-							  	    			gameEngineComputerFirst2();   							
-							  				}
-		
-										  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
-										  						
-										  		turn();    							
-										  	}
-										  									  		    		
-						  					return;
-						  		    	}
-						  	    	});
-						  	    	
-						  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
-						          	  public void onClick(DialogInterface dialog, int whichButton) {
-						          		  
-						          		  	hideNavigation();
-						          		  	
-						          		  	computerDamageDisarmed();
-						          		  	
-						          		  	return;
-						          	  }
-						          	});	  	    	
-						  	    	
-						  	    	alert.show();
-									
-									/*
-									String s = input.next();
-									char selection = s.charAt(0);
-									
-									switch (selection) {
-									case 'y':
-									case 'Y':
+									if (attackResult >= 13 && attackResult <= 19) { // -1 to-hit for being disarmed but, +2 because computer is disarmed (+1 total)
 										
-										if (dodgeBlowSpell[0] < 1) {
-											
-											centerscrolltext.setVisibility(View.VISIBLE);													
-									  		centerscrolltext.startAnimation(animAlphaText);			  		
-											centerscrolltext.append("\n" + "> You have already used your Dodge Blow spell!");
-											
-											break;
-										}
-										dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
-										return dodgeBlowSpell;
-									case 'n':
-									case 'N':
-										break;
-									default:
-										computerDamage(i, gameOn);
+										final Handler h = new Handler();
+							  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+							  	  	  			
+							  	  	  		@Override
+								  	  	  	public void run() {
+							  	  	  			
+								  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
+										  		centerscrolltext.startAnimation(animAlphaText);
+												centerscrolltext.append("\n" + "> The computer's punch hits!");				
+								
+												final Handler h = new Handler();
+									  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+									  	  	  			
+									  	  	  		@Override
+										  	  	  	public void run() {
+									  	  	  			
+										  	  	  		if (dodgeBlowSpell[0] > 0) {
+															/*
+															centerscrolltext.setVisibility(View.VISIBLE);													
+													  		centerscrolltext.startAnimation(animAlphaText);			  		
+															centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", do you want to dodge?");
+															*/
+															
+															AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+												  			
+												  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", Do you want to use your Dodge spell?");
+												  	    	/*
+												  	    	alert.setMessage("something");
+												  	    	*/	  	    	
+												  	    	
+												  	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+												  		    	public void onClick(DialogInterface dialog, int whichButton) {	  		    		
+												  		    		
+												  		    		/*
+												  		    		//NEED THIS??????????????????
+												  		    		if (dodgeBlowSpell[0] < 1) {
+												  		    			
+												  		    			hideNavigation();
+												  						
+												  						centerscrolltext.setVisibility(View.VISIBLE);													
+												  				  		centerscrolltext.startAnimation(animAlphaText);			  		
+												  						centerscrolltext.append("\n" + "> You have already used your Dodge spell!");
+												  						
+												  						//break;
+												  					}
+												  		    		*/
+												  		    		
+												  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
+												  		    		
+												  		    		skillsCheck();
+												  		    		
+												  		    		
+												  		    		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+													  	    			
+													  	    			gameEngineComputerFirst2();   							
+													  				}
+								
+																  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+																  						
+																  		turn();    							
+																  	}
+																  									  		    		
+												  					return;
+												  		    	}
+												  	    	});
+												  	    	
+												  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+												          	  public void onClick(DialogInterface dialog, int whichButton) {
+												          		  
+												          		  	hideNavigation();
+												          		  	
+												          		  	computerDamageDisarmed();
+												          		  	
+												          		  	return;
+												          	  }
+												          	});	  	    	
+												  	    	
+												  	    	alert.show();
+															
+															/*
+															String s = input.next();
+															char selection = s.charAt(0);
+															
+															switch (selection) {
+															case 'y':
+															case 'Y':
+																
+																if (dodgeBlowSpell[0] < 1) {
+																	
+																	centerscrolltext.setVisibility(View.VISIBLE);													
+															  		centerscrolltext.startAnimation(animAlphaText);			  		
+																	centerscrolltext.append("\n" + "> You have already used your Dodge Blow spell!");
+																	
+																	break;
+																}
+																dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
+																return dodgeBlowSpell;
+															case 'n':
+															case 'N':
+																break;
+															default:
+																computerDamage(i, gameOn);
+															}
+															*/
+														}
+										  	  	  		
+										  	  	  		else {
+										  	  	  			
+										  	  	  			computerDamageDisarmed();
+										  	  	  			
+															return;						  	  	  			
+										  	  	  		}
+										  	  	  	}
+									  	  	  	}, 2000);
+								  	  	  	}
+							  	  	  	}, 2000);										
 									}
-									*/
+									
+									if (attackResult < 13 && attackResult >= 1) {
+										
+										final Handler h = new Handler();
+							  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+							  	  	  			
+							  	  	  		@Override
+								  	  	  	public void run() {
+							  	  	  			
+								  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
+										  		centerscrolltext.startAnimation(animAlphaText);
+												centerscrolltext.append("\n" + "> The computer's punch misses!");
+												
+												final Handler h = new Handler();
+									  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+									  	  	  			
+									  	  	  		@Override
+										  	  	  	public void run() {
+									  	  	  			
+										  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
+										  	    			
+										  	    			gameEngineComputerFirst2();   							
+										  				}
+					
+													  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
+													  						
+													  		turn();    							
+													  	}							  						  	  	  			
+										  	  	  	}
+									  	  	  	}, 2000);
+									  	  	  	
+												return;
+								  	  	  	}
+							  	  	  	}, 2000);									
+									}
+									
+									// NEW
+									//	CAN YOU CRITICL MISS A PUNCH???????????????????????????????????? -----DISARM AGAIN TO MAINTAIN BALANCE.
+									// for now i'll do no rolls to keep it simpler, but in future might go w roll to hurt yourself (ie stumble & fall) but no roll to lose weapon.
+									/*
+									if (attackResult <= 1) {
+										computerCriticalMiss();
+										return;
+									}
+									*/							
+									
+									// NEED THIS:?
+									//return;						
 								}
-				  	  	  		
-				  	  	  		else {
-				  	  	  			
-				  	  	  			computerDamageDisarmed();
-				  	  	  			
-									return;						  	  	  			
-				  	  	  		}
 				  	  	  	}
-			  	  	  	}, 2000);
-					}
-					
-					if (attackResult < 13 && attackResult >= 1) {
-						
-						centerscrolltext.setVisibility(View.VISIBLE);													
-				  		centerscrolltext.startAnimation(animAlphaText);
-						centerscrolltext.append("\n" + "> The computer's punch misses!");
-						
-						final Handler h = new Handler();
-			  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-			  	  	  			
-			  	  	  		@Override
-				  	  	  	public void run() {
-			  	  	  			
-				  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
-				  	    			
-				  	    			gameEngineComputerFirst2();   							
-				  				}
-
-							  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
-							  						
-							  		turn();    							
-							  	}							  						  	  	  			
-				  	  	  	}
-			  	  	  	}, 2000);
-			  	  	  	
-						return;
-					}
-					
-					// NEW
-					//	CAN YOU CRITICL MISS A PUNCH???????????????????????????????????? -----DISARM AGAIN TO MAINTAIN BALANCE.
-					// for now i'll do no rolls to keep it simpler, but in future might go w roll to hurt yourself (ie stumble & fall) but no roll to lose weapon.
-					/*
-					if (attackResult <= 1) {
-						computerCriticalMiss();
-						return;
-					}
-					*/							
-					
-					// NEED THIS:?
-					//return;						
-				}				
+			  	  	  	}, 2000);		  	  	  		
+		  	  	  	}
+	  	  	  	}, 2000);								
   	  	    }
 		});		
 	}
