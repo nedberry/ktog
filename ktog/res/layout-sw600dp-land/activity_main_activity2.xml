@@ -390,7 +390,7 @@
    	
    	
    	<TextView
-        android:id="@+id/textviewbless"
+        android:id="@+id/textviewspellgraphic"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:textColor="#FFFFFF"

@@ -527,12 +527,12 @@ int id sixsidedanimation 0x7f060063
 int id split_action_bar 0x7f06001e
 int id submit_area 0x7f060039
 int id tabMode 0x7f060002
-int id textviewbless 0x7f060065
 int id textviewcenterscrolltext 0x7f060060
 int id textviewhitpointsleft 0x7f060050
 int id textviewhitpointsright 0x7f060044
 int id textviewnameleft 0x7f060045
 int id textviewnameright 0x7f060048
+int id textviewspellgraphic 0x7f060065
 int id title 0x7f06002b
 int id titleanimation 0x7f060062
 int id top_action_bar 0x7f060020

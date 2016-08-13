@@ -1372,12 +1372,12 @@ containing a value of this type.
         public static final int split_action_bar=0x7f06001e;
         public static final int submit_area=0x7f060039;
         public static final int tabMode=0x7f060002;
-        public static final int textviewbless=0x7f060065;
         public static final int textviewcenterscrolltext=0x7f060060;
         public static final int textviewhitpointsleft=0x7f060050;
         public static final int textviewhitpointsright=0x7f060044;
         public static final int textviewnameleft=0x7f060045;
         public static final int textviewnameright=0x7f060048;
+        public static final int textviewspellgraphic=0x7f060065;
         public static final int title=0x7f06002b;
         public static final int titleanimation=0x7f060062;
         public static final int top_action_bar=0x7f060020;
