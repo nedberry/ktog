@@ -384,8 +384,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
    	
-   	<!-- USE android:background="@drawable/(SOME PNG)" TO SPECIFY AREA ON SCREEN ?? -->   	
-   	   	
+   	<!-- USE android:background="@drawable/(SOME PNG)" TO SPECIFY AREA ON SCREEN ?? --> 
+   	
+   	
+   	
+   	
+   	<TextView
+        android:id="@+id/textviewbless"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:textColor="#FFFFFF"
+        android:textSize="500sp" />   	   	
    	
 
 </RelativeLayout>

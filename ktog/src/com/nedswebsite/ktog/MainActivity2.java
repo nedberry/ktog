@@ -145,11 +145,14 @@ public class MainActivity2 extends ActionBarActivity {
 		getWindow().getDecorView().setBackgroundColor(Color.BLACK);		
 		
 		
+		
+		// Sound stuff:
 		/*
     	final MediaPlayer activityOpeningSound = MediaPlayer.create(MainActivity2.this, R.raw.buttonsound6);
 		activityOpeningSound.start();
 		*/
-    	MediaPlayerWrapper.play(MainActivity2.this, R.raw.buttonsound6);
+    	MediaPlayerWrapper.play(MainActivity2.this, R.raw.buttonsound6);    	
+    			
 		
 		
 		// Crashes if this is put up top.
@@ -174,7 +177,6 @@ public class MainActivity2 extends ActionBarActivity {
 		final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
 		computerHitPointsTextView.setTypeface(typeFace);
 		computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));		
-		
 		
 		
 		// MAKE THIS A RUNNABLE LIKE GAME ENGINE AND CALL IT AFTER INITIATIVE?
@@ -885,6 +887,8 @@ public class MainActivity2 extends ActionBarActivity {
 				img.setImageResource(R.drawable.leftscroll);
 			  	img.getBackground().setColorFilter(Color.parseColor("#ff0000"), PorterDuff.Mode.DARKEN);
 			  	*/
+				getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_IMMERSIVE
+		                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
 			  	ImageView img = (ImageView)findViewById(R.id.playerturnbackgroundanimation);		  	
 			  	img.bringToFront();
 			  	final Animation animAlphaTextRepeat = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.anim_alpha_text_repeat);
@@ -912,6 +916,8 @@ public class MainActivity2 extends ActionBarActivity {
 				final Animation animAlphaTextRepeat = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.anim_alpha_text_repeat);
 				computerNameTextView.startAnimation(animAlphaTextRepeat);
 				*/
+				getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_IMMERSIVE
+		                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
 				ImageView img = (ImageView)findViewById(R.id.computerturnbackgroundanimation);		  	
 			  	img.bringToFront();
 			  	final Animation animAlphaTextRepeat = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.anim_alpha_text_repeat);
@@ -2523,74 +2529,74 @@ public class MainActivity2 extends ActionBarActivity {
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
 		final Handler h1 = new Handler();
-	  	  	h1.postDelayed(new Runnable() {	  	  		
+	  	h1.postDelayed(new Runnable() {	  	  		
 	  	  		
-	  	  		@Override
-	  	  		public void run()
-	  	  		{  	  			
-		  	  		centerscrolltext.setVisibility(View.VISIBLE);
-		  	  		centerscrolltext.startAnimation(animAlphaText);
-		  			centerscrolltext.append("\n" + ">" + "\n" + "> You roll a " + ArrayOfInitiative.initiative[0] + " for initiative.");
-		  			
-		  			final Handler h2 = new Handler();
-			  	  	h2.postDelayed(new Runnable() {
+  	  		@Override
+  	  		public void run()
+  	  		{  	  			
+	  	  		centerscrolltext.setVisibility(View.VISIBLE);
+	  	  		centerscrolltext.startAnimation(animAlphaText);
+	  			centerscrolltext.append("\n" + ">" + "\n" + "> You roll a " + ArrayOfInitiative.initiative[0] + " for initiative.");
+	  			
+	  			final Handler h2 = new Handler();
+		  	  	h2.postDelayed(new Runnable() {
 
-			  	  		@Override
-			  	  		public void run()
-			  	  		{  	  			
-				  	  		centerscrolltext.setVisibility(View.VISIBLE);
-				  	  		centerscrolltext.startAnimation(animAlphaText);
-				  			centerscrolltext.append("\n" + "> Now the computer rolls...");
-				  			
-				  			playerCardStopFadeInFadeOut();
-				  			computerCardStartFadeInFadeOut();
-				  			//playerTurnBackgroundStop();
-				  			//computerTurnBackgroundStart();
-				  			
-				  			final Handler h3 = new Handler();
-				  	  	  	h3.postDelayed(new Runnable() {
+		  	  		@Override
+		  	  		public void run()
+		  	  		{  	  			
+			  	  		centerscrolltext.setVisibility(View.VISIBLE);
+			  	  		centerscrolltext.startAnimation(animAlphaText);
+			  			centerscrolltext.append("\n" + "> Now the computer rolls...");
+			  			
+			  			playerCardStopFadeInFadeOut();
+			  			computerCardStartFadeInFadeOut();
+			  			//playerTurnBackgroundStop();
+			  			//computerTurnBackgroundStart();
+			  			
+			  			final Handler h3 = new Handler();
+			  	  	  	h3.postDelayed(new Runnable() {
+	
+			  	  	  		@Override
+			  	  	  		public void run()
+			  	  	  		{				  	  	  			
+				  	  	  		if (ArrayOfInitiative.initiative[1] == 1){
+				  					sixSidedRollFromCenterToRight1();							  		  	  	
+								}
+								else if (ArrayOfInitiative.initiative[1] == 2){
+									sixSidedRollFromCenterToRight2();
+								}
+								else if (ArrayOfInitiative.initiative[1] == 3){
+									sixSidedRollFromCenterToRight3();
+								}
+								else if (ArrayOfInitiative.initiative[1] == 4){
+									sixSidedRollFromCenterToRight4();
+								}
+								else if (ArrayOfInitiative.initiative[1] == 5){
+									sixSidedRollFromCenterToRight5();
+								}
+								else if (ArrayOfInitiative.initiative[1] == 6){
+									sixSidedRollFromCenterToRight6();
+								}
+				  	  	  		
+					  	  	  	final Handler h4 = new Handler();
+					  	  	  	h4.postDelayed(new Runnable() {
 		
-				  	  	  		@Override
-				  	  	  		public void run()
-				  	  	  		{				  	  	  			
-					  	  	  		if (ArrayOfInitiative.initiative[1] == 1){
-					  					sixSidedRollFromCenterToRight1();							  		  	  	
-									}
-									else if (ArrayOfInitiative.initiative[1] == 2){
-										sixSidedRollFromCenterToRight2();
-									}
-									else if (ArrayOfInitiative.initiative[1] == 3){
-										sixSidedRollFromCenterToRight3();
-									}
-									else if (ArrayOfInitiative.initiative[1] == 4){
-										sixSidedRollFromCenterToRight4();
-									}
-									else if (ArrayOfInitiative.initiative[1] == 5){
-										sixSidedRollFromCenterToRight5();
-									}
-									else if (ArrayOfInitiative.initiative[1] == 6){
-										sixSidedRollFromCenterToRight6();
-									}
-					  	  	  		
-						  	  	  	final Handler h4 = new Handler();
-						  	  	  	h4.postDelayed(new Runnable() {
-			
-						  	  	  		@Override
-						  	  	  		public void run()
-						  	  	  		{				  	  	  			
-							  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
-								  	  		centerscrolltext.startAnimation(animAlphaText);
-								  			centerscrolltext.append("\n" + ">" + "\n" + "> The computer rolls a " + ArrayOfInitiative.initiative[1] + " for initiative.");								  			
-						  	  	  			
-								  			determineDoubles();
-						  	  	  		}
-						  	  	  	}, 1250);					  	  	  		
-				  	  	  		}
-				  	  	  	}, 3000);				  			
-			  	  		}
-			  	  	}, 4000);
-	  	  		}
-	  	  	}, 1250);		 		
+					  	  	  		@Override
+					  	  	  		public void run()
+					  	  	  		{				  	  	  			
+						  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
+							  	  		centerscrolltext.startAnimation(animAlphaText);
+							  			centerscrolltext.append("\n" + ">" + "\n" + "> The computer rolls a " + ArrayOfInitiative.initiative[1] + " for initiative.");								  			
+					  	  	  			
+							  			determineDoubles();
+					  	  	  		}
+					  	  	  	}, 1250);					  	  	  		
+			  	  	  		}
+			  	  	  	}, 3000);				  			
+		  	  		}
+		  	  	}, 4000);
+  	  		}
+  	  	}, 1250);		 		
 	}	
 	
 	public void determineDoubles() {
@@ -2689,38 +2695,38 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		
   		final Handler h = new Handler();
-	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  	h.postDelayed(new Runnable() {		  	  	  			
 	  	  			
-	  	  		@Override
-	  	  		public void run() {
-	  	  			
-		  	  		AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-		  			
-		  	    	alert.setTitle("Initiative Results");
-		  	    	/*
-		  	    	alert.setMessage(ArrayOfPlayers.player[0] + getString(R.string.tab) + ArrayOfPlayers.player[1]);
-		  	    	alert.setMessage(ArrayOfInitiative.initiative[0] + getString(R.string.tab) + ArrayOfInitiative.initiative[0]);
-		  	    	*/
-		  	    	for (int i = 0; i < 2; i++) {
-		  	    		// Was "numberOfPlayers", which = 2 up top.
-		  	        
-		  	           if (max == ArrayOfInitiative.initiative[i])
-		  	           {
-		  	        	   alert.setMessage("\n" + ArrayOfPlayers.player[i] + " wins with a " + max + "!");
-		  	           }
-		  	        }
-		  	    	
-		  	    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-		  		    	public void onClick(DialogInterface dialog, int whichButton) {
-		  		    		
-		  		    		hideNavigation();
-		  		    		
-		  		    		finishInitiative();
-		  		    	}
-		  	    	});		  	    	
-		  	    	alert.show(); 	  	  							  	  	  	
-	  	  		}
-	  	  	}, 2000);  			  	  			
+  	  		@Override
+  	  		public void run() {
+  	  			
+	  	  		AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+	  			
+	  	    	alert.setTitle("Initiative Results");
+	  	    	/*
+	  	    	alert.setMessage(ArrayOfPlayers.player[0] + getString(R.string.tab) + ArrayOfPlayers.player[1]);
+	  	    	alert.setMessage(ArrayOfInitiative.initiative[0] + getString(R.string.tab) + ArrayOfInitiative.initiative[0]);
+	  	    	*/
+	  	    	for (int i = 0; i < 2; i++) {
+	  	    		// Was "numberOfPlayers", which = 2 up top.
+	  	        
+	  	           if (max == ArrayOfInitiative.initiative[i])
+	  	           {
+	  	        	   alert.setMessage("\n" + ArrayOfPlayers.player[i] + " wins with a " + max + "!");
+	  	           }
+	  	        }
+	  	    	
+	  	    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+	  		    	public void onClick(DialogInterface dialog, int whichButton) {
+	  		    		
+	  		    		hideNavigation();
+	  		    		
+	  		    		finishInitiative();
+	  		    	}
+	  	    	});		  	    	
+	  	    	alert.show(); 	  	  							  	  	  	
+  	  		}
+  	  	}, 2000);  			  	  			
 	}
 	
 	public void finishInitiative() {
@@ -2734,52 +2740,52 @@ public class MainActivity2 extends ActionBarActivity {
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
 						  	  	  			
-	  		// Use a blank drawable to hide the imageview animation:
-	  		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
-			img.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
-			img.setImageResource(R.drawable.sixsixrightleftrotateblank);
-			
-			// Re-enables ability to use srollbar:
-			centerscrolltext.bringToFront();												
-			
-			centerscrolltext.setVisibility(View.VISIBLE);													
-	  		centerscrolltext.startAnimation(animAlphaText);
-			centerscrolltext.append("\n" +  ">" + "\n" + "> Let the battle begin...");  	  			
-			
-			myInitiativeTransition();	    	  	  							  	  	 	    	  	  			  	    	  	  			
-		  	  			  	    	  	  			
-	  	  		final Handler h3 = new Handler();
-		  	  	h3.postDelayed(new Runnable() {
-	
-		  	  		@Override
-		  	  		public void run()
-		  	  		{
-	    	  	  		final ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
-		  	  			titleBlankButton.setVisibility(View.VISIBLE);
-		  	  			titleBlankButton.bringToFront();		  	  			
-		  	  			
-		  	  			
-		  	  			startGameNow ="yes";
-		  	  			
-		  	  			
-		  	  			/*
-		  	  			// Calls method from another class:
-	  		  	  		Engine  engine = new Engine();
-	  		  	  		Engine.gameEngine();
-	  		  	  		*/
-	  		  	  		
-		  	  					  	  			
-		  	  			//gameEngine(null, gameOn, gameOn);
-		  	  			gameEngine();
-		  	  			
-		  	  			
-		  	  			//Thread myThread = new Thread(myRunnable);
-		  	  			//myThread.start();
-	  		  	  		
-		  	  		}
-		  	  	}, 12400);  	    	  	  			  	  			
+  		// Use a blank drawable to hide the imageview animation:
+  		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+		img.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+		img.setImageResource(R.drawable.sixsixrightleftrotateblank);
 		
-		  	//Toast.makeText(MainActivity2.this,"isinitiativestarted = " +  isinitiativestarted + " aretheredoubles = " + aretheredoubles, Toast.LENGTH_SHORT).show();
+		// Re-enables ability to use srollbar:
+		centerscrolltext.bringToFront();												
+		
+		centerscrolltext.setVisibility(View.VISIBLE);													
+  		centerscrolltext.startAnimation(animAlphaText);
+		centerscrolltext.append("\n" +  ">" + "\n" + "> Let the battle begin...");  	  			
+		
+		myInitiativeTransition();	    	  	  							  	  	 	    	  	  			  	    	  	  			
+	  	  			  	    	  	  			
+  	  		final Handler h3 = new Handler();
+	  	  	h3.postDelayed(new Runnable() {
+
+	  	  		@Override
+	  	  		public void run()
+	  	  		{
+    	  	  		final ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+	  	  			titleBlankButton.setVisibility(View.VISIBLE);
+	  	  			titleBlankButton.bringToFront();		  	  			
+	  	  			
+	  	  			
+	  	  			startGameNow ="yes";
+	  	  			
+	  	  			
+	  	  			/*
+	  	  			// Calls method from another class:
+  		  	  		Engine  engine = new Engine();
+  		  	  		Engine.gameEngine();
+  		  	  		*/
+  		  	  		
+	  	  					  	  			
+	  	  			//gameEngine(null, gameOn, gameOn);
+	  	  			gameEngine();
+	  	  			
+	  	  			
+	  	  			//Thread myThread = new Thread(myRunnable);
+	  	  			//myThread.start();
+  		  	  		
+	  	  		}
+	  	  	}, 12400);  	    	  	  			  	  			
+	
+	  	//Toast.makeText(MainActivity2.this,"isinitiativestarted = " +  isinitiativestarted + " aretheredoubles = " + aretheredoubles, Toast.LENGTH_SHORT).show();
   	    	 	
 	  	  		
 	}	 	
@@ -12394,6 +12400,8 @@ public class MainActivity2 extends ActionBarActivity {
 	  		  	  	  			
 			  		  	  	  	if (canHasDisarmed[i].equals("yes")) {
 			  		  	  	  		
+			  		  	  	  		canHasDisarmed[i] = "no";
+			  		  	  	  		
 			  		  	  	  		//ishasteused = "yes";
 			  	  	  				
 			  	  	  				/*
@@ -12531,7 +12539,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 	  			
-	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  			final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);
   	  	    	
 		
@@ -12561,45 +12569,89 @@ public class MainActivity2 extends ActionBarActivity {
 								 */
 								
 								//blessGraphic();
-						
-				  	  	  		final Handler h2 = new Handler();
-					  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
+			  	  	  			
+				  	  	  		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletobig);			  	  	  		
+				  	  	  		
+					  	  	  	//Animation a = AnimationUtils.loadAnimation(this, R.anim.textscaletobig);
+					  	  	  	//a.reset();
+					  	  	  	
+						  	  	TextView blessGraphic = (TextView)findViewById(R.id.textviewbless);
+				  	  	  		blessGraphic.setTypeface(typeFace);
+				  	  	  		blessGraphic.setText("Bless");
+				  	  	  		
+				  	  	  		blessGraphic.setVisibility(View.VISIBLE);
+				  	  	  		blessGraphic.bringToFront();
+					  	  	  	
+					  	  	  	blessGraphic.clearAnimation();
+				  	  	  		blessGraphic.startAnimation(a);
+				  	  	  		
+				  	  	  		MediaPlayerWrapper.play(MainActivity2.this, R.raw.badonkshort);
+				  	  	  		
+					  	  	  	//MediaPlayer graphicSound = MediaPlayer.create(MainActivity2.this, R.raw.badonkshort);
+				  	  	  		//graphicSound.start();
+					  	  	  	
+					  	  	  	final Handler h = new Handler();
+					  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 					  	  	  			
 					  	  	  		@Override
 						  	  	  	public void run() {
 					  	  	  			
-					  	  	  			// ROLLFROMLEFT (20-SIDED)
-					  	  	  			twentySidedRollFromLeft();				  	  	  		
-							  	  	  			
-						  	  	  		final Handler h3 = new Handler();
-							  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
+						  	  	  		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletosmall);			  	  	  		
+						  	  	  		
+							  	  	  	//Animation a = AnimationUtils.loadAnimation(this, R.anim.textscaletobig);
+							  	  	  	//a.reset();
+							  	  	  	
+								  	  	final TextView blessGraphic = (TextView)findViewById(R.id.textviewbless);
+						  	  	  		blessGraphic.setTypeface(typeFace);
+						  	  	  		blessGraphic.setText("Bless");
+							  	  	  	
+							  	  	  	blessGraphic.clearAnimation();
+						  	  	  		blessGraphic.startAnimation(a);						  	  	  		
+						  	  	  		
+						  	  	  		
+							  	  	  	final Handler h2 = new Handler();
+							  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
 							  	  	  			
 							  	  	  		@Override
-								  	  	  	public void run() {				
+								  	  	  	public void run() {
 							  	  	  			
-							  	  	  			twentySidedWobbleStart();
+							  	  	  			blessGraphic.setVisibility(View.INVISIBLE);
 							  	  	  			
-												centerscrolltext.setVisibility(View.VISIBLE);
-										  		centerscrolltext.startAnimation(animAlphaText);
-												centerscrolltext.append("\n" + "> Please slide the die...");
-										
-												/*
-												 * 
-												 * 
-												 * SLIDE 20-SIDED DIE
-												 * 
-												 * 
-												 */
-										
-												attackResult = (int) ((Math.random() * 20) + 1);
-												//int attackResult = (int) ((Math.random() * 20) + 1);										
+							  	  	  			// ROLLFROMLEFT (20-SIDED)
+							  	  	  			twentySidedRollFromLeft();				  	  	  		
+									  	  	  			
+								  	  	  		final Handler h3 = new Handler();
+									  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
+									  	  	  			
+									  	  	  		@Override
+										  	  	  	public void run() {				
+									  	  	  			
+									  	  	  			twentySidedWobbleStart();
+									  	  	  			
+														centerscrolltext.setVisibility(View.VISIBLE);
+												  		centerscrolltext.startAnimation(animAlphaText);
+														centerscrolltext.append("\n" + "> Please slide the die...");
 												
-												isblessrolled = "yes";
+														/*
+														 * 
+														 * 
+														 * SLIDE 20-SIDED DIE
+														 * 
+														 * 
+														 */
 												
-							  	  	  		}
-							  	  	  	}, 750);					  	  	  		
-					  	  	  		}
-					  	  	  	}, 2000);
+														attackResult = (int) ((Math.random() * 20) + 1);
+														//int attackResult = (int) ((Math.random() * 20) + 1);										
+														
+														isblessrolled = "yes";
+														
+									  	  	  		}
+									  	  	  	}, 750);					  	  	  		
+							  	  	  		}							  	  	  		
+							  	  	  	// CHANGED FROM 2000 TO 3000 TO ACCOMODATE TEXT ANIM (TO SMALL):	
+							  	  	  	}, 3000);					  	  	  			
+						  	  	  	}
+					  	  	  	}, 3000);	  	  		
 			  	  	  		}
 			  	  	  	}, 2000);
 					}
@@ -13450,7 +13502,7 @@ public class MainActivity2 extends ActionBarActivity {
 			
 			if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {
 				
-				int i = 0;
+				int i = 0;			
 				
 				computerCardStopFadeInFadeOut();
     			playerCardStartFadeInFadeOut();
@@ -13468,7 +13520,7 @@ public class MainActivity2 extends ActionBarActivity {
 			
 			if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {
 				
-				int i = 1;
+				int i = 1;				
 				
 				playerCardStopFadeInFadeOut();
     			computerCardStartFadeInFadeOut();
@@ -13503,7 +13555,11 @@ public class MainActivity2 extends ActionBarActivity {
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 	  			
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-	  			centerscrolltext.setTypeface(typeFace);  			
+	  			centerscrolltext.setTypeface(typeFace);
+	  			
+	  			
+	  			// Re-enables ability to use srollbar:
+				//centerscrolltext.bringToFront();
 	  			
 				
 				centerscrolltext.setVisibility(View.VISIBLE);													
@@ -13579,7 +13635,7 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		i = 1;
 		// NEED THIS?:
-		iscomputerhasteused.equals("no");// so computer doesn't use a haste during a haste.
+		iscomputerhasteused.equals("no");// so computer doesn't use a haste during a haste.		
 		
 		playerCardStopFadeInFadeOut();
 		computerCardStartFadeInFadeOut();
@@ -13718,12 +13774,21 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	public void gameEngineComputerFirst2() {	
 		
-		i = 0;
+		i = 0;		
 		
 		computerCardStopFadeInFadeOut();
 		playerCardStartFadeInFadeOut();
 		
+		final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+		//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+			
 		Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+		centerscrolltext.setTypeface(typeFace);
+		
+		
+		// Re-enables ability to use srollbar:
+		centerscrolltext.bringToFront();
+		
 		
 		TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
 		playerHitPointsTextView.setTypeface(typeFace);
