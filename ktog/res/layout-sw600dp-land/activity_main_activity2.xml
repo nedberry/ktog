@@ -226,7 +226,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"        
-        android:background="@drawable/swordcrossedleftblessred" />
+        android:background="@drawable/swordcrossedblessred" />
     
     <ImageView
         android:id="@+id/imageviewplayerbox4leftcure"
@@ -234,7 +234,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"        
-        android:background="@drawable/swordcrossedleftcurered" />
+        android:background="@drawable/swordcrossedcurered" />
     
      <ImageView
         android:id="@+id/imageviewplayerbox4leftdodge"
@@ -242,7 +242,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"        
-        android:background="@drawable/swordcrossedleftdodgered" />
+        android:background="@drawable/swordcrosseddodgered" />
      
      <ImageView
         android:id="@+id/imageviewplayerbox4leftmb"
@@ -250,7 +250,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"        
-        android:background="@drawable/swordcrossedleftmbred" />
+        android:background="@drawable/swordcrossedmbred" />
      
     <ImageView
         android:id="@+id/imageviewplayerbox4lefthaste1"
@@ -258,7 +258,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"        
-        android:background="@drawable/swordcrossedlefthaste1red" />
+        android:background="@drawable/swordcrossedhaste1red" />
     
     <ImageView
         android:id="@+id/imageviewplayerbox4lefthaste2"
@@ -266,7 +266,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"        
-        android:background="@drawable/swordcrossedlefthaste2red" />    
+        android:background="@drawable/swordcrossedhaste2red" />    
     
     
     <ImageView
@@ -283,7 +283,7 @@
         android:layout_height="wrap_content"        
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/swordcrossedrightblessred" />
+        android:background="@drawable/swordcrossedblessred" />
     
     <ImageView
         android:id="@+id/imageviewplayerbox4rightcure"
@@ -291,7 +291,7 @@
         android:layout_height="wrap_content"        
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/swordcrossedrightcurered" />
+        android:background="@drawable/swordcrossedcurered" />
     
     <ImageView
         android:id="@+id/imageviewplayerbox4rightdodge"
@@ -299,7 +299,7 @@
         android:layout_height="wrap_content"        
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/swordcrossedrightdodgered" />
+        android:background="@drawable/swordcrosseddodgered" />
     
     <ImageView
         android:id="@+id/imageviewplayerbox4rightmb"
@@ -307,7 +307,7 @@
         android:layout_height="wrap_content"        
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/swordcrossedrightmbred" />
+        android:background="@drawable/swordcrossedmbred" />
     
     <ImageView
         android:id="@+id/imageviewplayerbox4righthaste1"
@@ -315,7 +315,7 @@
         android:layout_height="wrap_content"        
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/swordcrossedrighthaste1red" />
+        android:background="@drawable/swordcrossedhaste1red" />
     
     <ImageView
         android:id="@+id/imageviewplayerbox4righthaste2"
@@ -323,7 +323,7 @@
         android:layout_height="wrap_content"        
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/swordcrossedrighthaste2red" />    
+        android:background="@drawable/swordcrossedhaste2red" />    
     
        
         
@@ -392,19 +392,24 @@
    	<TextView
         android:id="@+id/textviewspellgraphic"
         android:layout_width="wrap_content"
-   	    android:layout_height="wrap_content"
-   	       	    
-   	   
-   	    
+   	    android:layout_height="wrap_content"   	    
         android:textColor="#FFFFFF"
-        android:textSize="500sp" />
-   	<!-- WORKAROUND: -->
+        android:textSize="500sp"
+                
+        
+        
+        android:gravity="center" />
+   	<!-- WORKAROUND FOR LONGER WORDS: -->
    	<TextView
         android:id="@+id/textviewspellgraphicsmall"
         android:layout_width="wrap_content"
    	    android:layout_height="wrap_content"
         android:textColor="#FFFFFF"
-        android:textSize="250sp" />	   	
+        android:textSize="250sp" 
+               
+        
+        
+        android:gravity="center" />	   	
    	
 
 </RelativeLayout>

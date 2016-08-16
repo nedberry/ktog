@@ -1164,7 +1164,7 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletobig);					  	  	  	
 	  	  	
-  	  	TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+  	  	TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
   	  	
   	  	mightyBlowGraphic.setVisibility(View.VISIBLE);
 	  	mightyBlowGraphic.bringToFront();
@@ -1186,7 +1186,7 @@ public class MainActivity2 extends ActionBarActivity {
   	  			
 	  	  		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletosmall);						  	  	  	
 	  	  	  	
-		  	  	final TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+		  	  	final TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
 		  	  	mightyBlowGraphic.setTypeface(typeFace);
 		  	  	mightyBlowGraphic.setText("Mighty Blow");
 	  	  	  	
@@ -1240,13 +1240,13 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletobig);					  	  	  	
 	  	  	
-  	  	TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+  	  	TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
   	  	
   	  	criticalHitGraphic.setVisibility(View.VISIBLE);
 	  	criticalHitGraphic.bringToFront();
   	  	
   	  	criticalHitGraphic.setTypeface(typeFace);
-  	  	criticalHitGraphic.setText("Critical" + "\n" + "Hit");  	  	
+  	  	criticalHitGraphic.setText("Critical Hit");  	  	
   	  	
   	  	criticalHitGraphic.clearAnimation();
   	  	criticalHitGraphic.startAnimation(a);
@@ -1262,9 +1262,9 @@ public class MainActivity2 extends ActionBarActivity {
   	  			
 	  	  		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletosmall);						  	  	  	
 	  	  	  	
-		  	  	final TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+		  	  	final TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
 		  	  	criticalHitGraphic.setTypeface(typeFace);
-		  	  	criticalHitGraphic.setText("Critical" + "\n" + "Hit");
+		  	  	criticalHitGraphic.setText("Critical Hit");
 	  	  	  	
 		  	  	criticalHitGraphic.clearAnimation();
 		  	  	criticalHitGraphic.startAnimation(a);
@@ -1278,13 +1278,13 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletobig);					  	  	  	
 	  	  	
-  	  	TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+  	  	TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
   	  	
   	  	criticalMissGraphic.setVisibility(View.VISIBLE);
 	  	criticalMissGraphic.bringToFront();
   	  	
   	  	criticalMissGraphic.setTypeface(typeFace);
-  	  	criticalMissGraphic.setText("Critical" + "\n" + "Miss");  	  	
+  	  	criticalMissGraphic.setText("Critical Miss");  	  	
   	  	
   	  	criticalMissGraphic.clearAnimation();
   	  	criticalMissGraphic.startAnimation(a);
@@ -1300,9 +1300,9 @@ public class MainActivity2 extends ActionBarActivity {
   	  			
 	  	  		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletosmall);						  	  	  	
 	  	  	  	
-		  	  	final TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+		  	  	final TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
 		  	  	criticalMissGraphic.setTypeface(typeFace);
-		  	  	criticalMissGraphic.setText("Critical" + "\n" + "Miss");
+		  	  	criticalMissGraphic.setText("Critical Miss");
 	  	  	  	
 		  	  	criticalMissGraphic.clearAnimation();
 		  	  	criticalMissGraphic.startAnimation(a);
@@ -4201,7 +4201,7 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  		@Override
 				  	  	  	public void run() {
 			  	  	  			
-				  	  	  		final TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+				  	  	  		final TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
 				  	  	  		criticalHitGraphic.setVisibility(View.INVISIBLE);
 			  	  	  			
 				  	  	  		if (dodgeBlowSpell[0] > 0) {
@@ -4365,7 +4365,7 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  		@Override
 				  	  	  	public void run() {
 			  	  	  			
-				  	  	  		final TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+				  	  	  		final TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
 				  	  	  		mightyBlowGraphic.setVisibility(View.INVISIBLE);
 			  	  	  			
 			  	  	  			computerRolls6SidedDie();
@@ -5292,113 +5292,127 @@ public class MainActivity2 extends ActionBarActivity {
 														  		centerscrolltext.startAnimation(animAlphaText);			  		
 																centerscrolltext.append("\n" + "> The computer's attack hits!");
 																
-																
-																/* Only one spell can be cast in a round (no spell can be cast in conjunction with another).
-																if (mightyBlowSpell[1] > 0) {
-																	
-																	int computerUseMightyBlow = (int) ((Math.random() * 20) + 1);
-																	// NEED 1 SCENARIO FOR HUMAN PLAYER HP ABOVE 12 AND 1 SCENARIO FOR HUMAN PLAYER HP BELOW 12
-																	
-																	if (ArrayOfHitPoints.hitpoints[0] >= 12) {
-																		// using 12 just because if comp roll 6 for damage * 2 = 12, comp can kill human player.
-																	
-																		if (computerUseMightyBlow >= 15) {
-																			// less likely for comp to use MB because human HP > 12.
-																			
+																final Handler h3 = new Handler();
+													  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
+													  	  	  			
+													  	  	  		@Override
+														  	  	  	public void run() {
+													  	  	  			
+														  	  	  		if (dodgeBlowSpell[0] > 0) {
+																			/*
 																			centerscrolltext.setVisibility(View.VISIBLE);													
 																	  		centerscrolltext.startAnimation(animAlphaText);			  		
-																			centerscrolltext.append("\n" + "> The computer uses mighty blow!");
+																			centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", do you want to dodge?");
+																			*/
 																			
+																			AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+																  			
+																  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", Do you want to use your Dodge spell?");
+																  	    	/*
+																  	    	alert.setMessage("something");
+																  	    	*/	  	    	
+																  	    	
+																  	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+																  		    	public void onClick(DialogInterface dialog, int whichButton) {	  		    		
+																  		    		
+																  		    		/*
+																  		    		//NEED THIS??????????????????
+																  		    		if (dodgeBlowSpell[0] < 1) {
+																  		    			
+																  		    			hideNavigation();
+																  						
+																  						centerscrolltext.setVisibility(View.VISIBLE);													
+																  				  		centerscrolltext.startAnimation(animAlphaText);			  		
+																  						centerscrolltext.append("\n" + "> You have already used your Dodge spell!");
+																  						
+																  						//break;
+																  					}
+																  		    		*/
+																  		    		
+																  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
+																  		    		
+																  		    		centerscrolltext.setVisibility(View.VISIBLE);													
+																			  		centerscrolltext.startAnimation(animAlphaText);
+																					centerscrolltext.append("\n" + "> You dodge the hit!");
+																  		    		
+																  		    		skillsCheck();
+																  		    		
+																  		    		dodgeGraphic();
+																  		    		
+																  		    		final Handler h = new Handler();
+																		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+																		  	  	  			
+																		  	  	  		@Override
+																			  	  	  	public void run() {
+																		  	  	  			
+																			  	  	  		final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+																		  	  	  			dodgeGraphic.setVisibility(View.INVISIBLE);
+																		  	  	  			
+																			  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
+																			  	    			
+																			  	    			gameEngineComputerFirst2();   							
+																			  				}
+														
+																						  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
+																						  						
+																						  		turn();
+																						  	}
+																						  									  		    		
+																		  					return;
+																			  	  	  	}
+																		  	  	  	}, 3000);														  		    		
+																  		    	}
+																  	    	});
+																  	    	
+																  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+																          	  public void onClick(DialogInterface dialog, int whichButton) {
+																          		  
+																          		  	hideNavigation();
+																          		  	
+																          		  	computerDamage();								          		  	
+																          		  	return;
+																          	  }
+																          	});	  	    	
+																  	    	
+																  	    	alert.show();
 																			
-																			//for (int x = 0; x < 1000; --x) {
-																			//}
+																			/*
+																			String s = input.next();
+																			char selection = s.charAt(0);
 																			
-																			
-																			
-																			mightyBlowSpell[1] = mightyBlowSpell[1] - 1;
-													
-																			
-																			//
-																			// 
-																			// Picture of swords clanging together:
-																			// 
-																			// 
-																			// swordsGraphic();
-																			// 
-																			//
-																			
-																			
-																			//System.out
-																					//.println("     /\\___________          ___________/\\");
-																			//System.out
-																					//.println("/|---||___________\\ MIGHTY /___________||---|\\");
-																			//System.out
-																					//.println("\\|---||___________/  BLOW  \\___________||---|/");
-																			//System.out
-																					//.println("     \\/                                \\/");
-																			//for (int x = 0; x < 1; --x) {
-																			//}
-																			
-																			
-																			computerMightyBlow();
-																			return;
-																		} else {
-																			computerDamage();
-																			return;
+																			switch (selection) {
+																			case 'y':
+																			case 'Y':
+																				
+																				if (dodgeBlowSpell[0] < 1) {
+																					
+																					centerscrolltext.setVisibility(View.VISIBLE);													
+																			  		centerscrolltext.startAnimation(animAlphaText);			  		
+																					centerscrolltext.append("\n" + "> You have already used your Dodge Blow spell!");
+																					
+																					break;
+																				}
+																				dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
+																				return dodgeBlowSpell;
+																			case 'n':
+																			case 'N':
+																				break;
+																			default:
+																				computerDamage(i, gameOn);
+																			}
+																			*/
 																		}
-																	}
-																	if (ArrayOfHitPoints.hitpoints[0] < 12)// see above for explanation
-																	{
-																		if (computerUseMightyBlow < 15) {
-																			// more likely for comp to use MB because human HP < 12.
-																			
-																			centerscrolltext.setVisibility(View.VISIBLE);													
-																	  		centerscrolltext.startAnimation(animAlphaText);			  		
-																			centerscrolltext.append("\n" + "> The computer uses mighty blow!");
-																			
-																			
-																			//for (int x = 0; x < 1000; --x) {
-																			//}
-																			
-																			
-																			
-																			mightyBlowSpell[1] = mightyBlowSpell[1] - 1;
-													
-																			
-																			//
-																			// 
-																			// Picture of swords clanging together:
-																			// 
-																			// 
-																			// swordsGraphic();
-																			// 
-																			//
-																			
-																			
-																			//System.out
-																					//.println("     /\\___________          ___________/\\");
-																			//System.out
-																					//.println("/|---||___________\\ MIGHTY /___________||---|\\");
-																			//System.out
-																					//.println("\\|---||___________/  BLOW  \\___________||---|/");
-																			//System.out
-																					//.println("     \\/                                \\/");
-																			//for (int x = 0; x < 1; --x) {
-																			//}
-																			
-													
-																			computerMightyBlow();
-																			return;
-																		} else {
-																			computerDamage();
-																			return;
-																		}
-																	}
-																}
-																*/
+														  	  	  		
+														  	  	  		else {
+														  	  	  			
+															  	  	  		computerDamage();
+																			return;						  	  	  			
+														  	  	  		}
+														  	  	  	}
+													  	  	  	}, 2000);															
 																
-																computerDamage();
-																return;
+																//computerDamage();
+																//return;
 												  	  	  	}
 											  	  	  	}, 2000);										
 													}
@@ -5503,112 +5517,127 @@ public class MainActivity2 extends ActionBarActivity {
 																centerscrolltext.append("\n" + "> The computer's attack hits!");
 																
 																
-																/* Only one spell can be cast in a round (no spell can be cast in conjunction with another).
-																if (mightyBlowSpell[1] > 0) {
-																	
-																	int computerUseMightyBlow = (int) ((Math.random() * 20) + 1);
-																	// NEED 1 SCENARIO FOR HUMAN PLAYER HP ABOVE 12 AND 1 SCENARIO FOR HUMAN PLAYER HP BELOW 12
-																	
-																	if (ArrayOfHitPoints.hitpoints[0] >= 12) {
-																		// using 12 just because if comp roll 6 for damage * 2 = 12, comp can kill human player.
-																	
-																		if (computerUseMightyBlow >= 15) {
-																			// less likely for comp to use MB because human HP > 12.
-																			
+																final Handler h3 = new Handler();
+													  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
+													  	  	  			
+													  	  	  		@Override
+														  	  	  	public void run() {
+													  	  	  			
+														  	  	  		if (dodgeBlowSpell[0] > 0) {
+																			/*
 																			centerscrolltext.setVisibility(View.VISIBLE);													
 																	  		centerscrolltext.startAnimation(animAlphaText);			  		
-																			centerscrolltext.append("\n" + "> The computer uses mighty blow!");
+																			centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", do you want to dodge?");
+																			*/
 																			
+																			AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+																  			
+																  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", Do you want to use your Dodge spell?");
+																  	    	/*
+																  	    	alert.setMessage("something");
+																  	    	*/	  	    	
+																  	    	
+																  	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+																  		    	public void onClick(DialogInterface dialog, int whichButton) {	  		    		
+																  		    		
+																  		    		/*
+																  		    		//NEED THIS??????????????????
+																  		    		if (dodgeBlowSpell[0] < 1) {
+																  		    			
+																  		    			hideNavigation();
+																  						
+																  						centerscrolltext.setVisibility(View.VISIBLE);													
+																  				  		centerscrolltext.startAnimation(animAlphaText);			  		
+																  						centerscrolltext.append("\n" + "> You have already used your Dodge spell!");
+																  						
+																  						//break;
+																  					}
+																  		    		*/
+																  		    		
+																  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
+																  		    		
+																  		    		centerscrolltext.setVisibility(View.VISIBLE);													
+																			  		centerscrolltext.startAnimation(animAlphaText);
+																					centerscrolltext.append("\n" + "> You dodge the hit!");
+																  		    		
+																  		    		skillsCheck();
+																  		    		
+																  		    		dodgeGraphic();
+																  		    		
+																  		    		final Handler h = new Handler();
+																		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+																		  	  	  			
+																		  	  	  		@Override
+																			  	  	  	public void run() {
+																		  	  	  			
+																			  	  	  		final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+																		  	  	  			dodgeGraphic.setVisibility(View.INVISIBLE);
+																		  	  	  			
+																			  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
+																			  	    			
+																			  	    			gameEngineComputerFirst2();   							
+																			  				}
+														
+																						  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
+																						  						
+																						  		turn();
+																						  	}
+																						  									  		    		
+																		  					return;
+																			  	  	  	}
+																		  	  	  	}, 3000);														  		    		
+																  		    	}
+																  	    	});
+																  	    	
+																  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+																          	  public void onClick(DialogInterface dialog, int whichButton) {
+																          		  
+																          		  	hideNavigation();
+																          		  	
+																          		  	computerDamage();								          		  	
+																          		  	return;
+																          	  }
+																          	});	  	    	
+																  	    	
+																  	    	alert.show();
 																			
-																			//for (int x = 0; x < 1000; --x) {
-																			//}
+																			/*
+																			String s = input.next();
+																			char selection = s.charAt(0);
 																			
-																			
-																			
-																			mightyBlowSpell[1] = mightyBlowSpell[1] - 1;
-													
-																			
-																			//
-																			// 
-																			// Picture of swords clanging together:
-																			// 
-																			// 
-																			// swordsGraphic();
-																			// 
-																			//
-																			
-																			
-																			//System.out
-																					//.println("     /\\___________          ___________/\\");
-																			//System.out
-																					//.println("/|---||___________\\ MIGHTY /___________||---|\\");
-																			//System.out
-																					//.println("\\|---||___________/  BLOW  \\___________||---|/");
-																			//System.out
-																					//.println("     \\/                                \\/");
-																			//for (int x = 0; x < 1; --x) {
-																			//}
-																			
-																			
-																			computerMightyBlow();
-																			return;
-																		} else {
-																			computerDamage();
-																			return;
+																			switch (selection) {
+																			case 'y':
+																			case 'Y':
+																				
+																				if (dodgeBlowSpell[0] < 1) {
+																					
+																					centerscrolltext.setVisibility(View.VISIBLE);													
+																			  		centerscrolltext.startAnimation(animAlphaText);			  		
+																					centerscrolltext.append("\n" + "> You have already used your Dodge Blow spell!");
+																					
+																					break;
+																				}
+																				dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
+																				return dodgeBlowSpell;
+																			case 'n':
+																			case 'N':
+																				break;
+																			default:
+																				computerDamage(i, gameOn);
+																			}
+																			*/
 																		}
-																	}
-																	if (ArrayOfHitPoints.hitpoints[0] < 12)// see above for explanation
-																	{
-																		if (computerUseMightyBlow < 15) {
-																			// more likely for comp to use MB because human HP < 12.
-																			
-																			centerscrolltext.setVisibility(View.VISIBLE);													
-																	  		centerscrolltext.startAnimation(animAlphaText);			  		
-																			centerscrolltext.append("\n" + "> The computer uses mighty blow!");
-																			
-																			
-																			//for (int x = 0; x < 1000; --x) {
-																			//}
-																			
-																			
-																			
-																			mightyBlowSpell[1] = mightyBlowSpell[1] - 1;
-													
-																			
-																			//
-																			// 
-																			// Picture of swords clanging together:
-																			// 
-																			// 
-																			// swordsGraphic();
-																			// 
-																			//
-																			
-																			
-																			//System.out
-																					//.println("     /\\___________          ___________/\\");
-																			//System.out
-																					//.println("/|---||___________\\ MIGHTY /___________||---|\\");
-																			//System.out
-																					//.println("\\|---||___________/  BLOW  \\___________||---|/");
-																			//System.out
-																					//.println("     \\/                                \\/");
-																			//for (int x = 0; x < 1; --x) {
-																			//}
-																			
-													
-																			computerMightyBlow();
-																			return;
-																		} else {
-																			computerDamage();
-																			return;
-																		}
-																	}
-																}
-																*/
+														  	  	  		
+														  	  	  		else {
+														  	  	  			
+															  	  	  		computerDamage();
+																			return;						  	  	  			
+														  	  	  		}
+														  	  	  	}
+													  	  	  	}, 2000);															
 																
-																computerDamage();
-																return;
+																//computerDamage();
+																//return;
 												  	  	  	}
 											  	  	  	}, 2000);										
 													}
@@ -5660,7 +5689,7 @@ public class MainActivity2 extends ActionBarActivity {
 						  	  	  	}, 2000);					
 								}
 				  	  	  	}
-			  	  	  	}, 6000); // CHANGED FROM 3000			  	  	  		  	  	  		
+			  	  	  	}, 6000); // CHANGED FROM 3000 WORKING?? MAY HAVE TO CHANGE DICEROLL HANDLER INSTEAD?		  	  	  		  	  	  		
 		  	  	  	}
 	  	  	  	}, 2000);							
   	  	    }
@@ -6965,7 +6994,7 @@ public class MainActivity2 extends ActionBarActivity {
 				  	  		@Override
 					  	  	public void run() {
 					  			
-					  	  		final TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+					  	  		final TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
 				  	  	  		criticalHitGraphic.setVisibility(View.INVISIBLE);
 					  			
 					  	  		if (dodgeBlowSpell[0] > 0) {
@@ -7086,7 +7115,7 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  		@Override
 				  	  	  	public void run() {
 			  	  	  			
-				  	  	  		final TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+				  	  	  		final TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
 				  	  	  		mightyBlowGraphic.setVisibility(View.INVISIBLE);
 			  	  	  			
 			  	  	  			computerRolls6SidedDie();
@@ -7812,7 +7841,7 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  		@Override
 				  	  	  	public void run() {
 			  	  	  			
-				  	  	  		final TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+				  	  	  		final TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
 				  	  	  		mightyBlowGraphic.setVisibility(View.INVISIBLE);
 			  	  	  			
 				  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
@@ -8107,7 +8136,7 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  		@Override
 				  	  	  	public void run() {
 			  	  	  			
-				  	  	  		final TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+				  	  	  		final TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
 				  	  	  		mightyBlowGraphic.setVisibility(View.INVISIBLE);
 			  	  	  			
 				  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
@@ -8713,7 +8742,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  		@Override
 		  	  	  	public void run() {
 	  	  	  			
-		  	  	  		final TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+		  	  	  		final TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
 		  	  	  		criticalMissGraphic.setVisibility(View.INVISIBLE);
 	  	  	  			
 		  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
@@ -9502,63 +9531,45 @@ public class MainActivity2 extends ActionBarActivity {
 					attackAgainstDisarmed();
 					return;
 				}
-				*/
+				*/				 
 				
-				
-				final Handler h1 = new Handler();
-	  	  	  	h1.postDelayed(new Runnable() {		  	  	  			
+  	  	  		final Handler h2 = new Handler();
+	  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
 	  	  	  			
 	  	  	  		@Override
 		  	  	  	public void run() {
 	  	  	  			
-	  	  	  			/*
-						 * 
-						 * ??????????????
-						 * 
-						 * attackGraphic();  ????????????
-						 * 
-						 */ 
-				
-		  	  	  		final Handler h2 = new Handler();
-			  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			// ROLLFROMLEFT (20-SIDED)
+	  	  	  			twentySidedRollFromLeft();				  	  	  		
+			  	  	  			
+		  	  	  		final Handler h3 = new Handler();
+			  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
 			  	  	  			
 			  	  	  		@Override
-				  	  	  	public void run() {
+				  	  	  	public void run() {				
 			  	  	  			
-			  	  	  			// ROLLFROMLEFT (20-SIDED)
-			  	  	  			twentySidedRollFromLeft();				  	  	  		
-					  	  	  			
-				  	  	  		final Handler h3 = new Handler();
-					  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
-					  	  	  			
-					  	  	  		@Override
-						  	  	  	public void run() {				
-					  	  	  			
-					  	  	  			twentySidedWobbleStart();
-					  	  	  			
-										centerscrolltext.setVisibility(View.VISIBLE);
-								  		centerscrolltext.startAnimation(animAlphaText);
-										centerscrolltext.append("\n" + "> Please slide the die...");
+			  	  	  			twentySidedWobbleStart();
+			  	  	  			
+								centerscrolltext.setVisibility(View.VISIBLE);
+						  		centerscrolltext.startAnimation(animAlphaText);
+								centerscrolltext.append("\n" + "> Please slide the die...");
+						
+								/*
+								 * 
+								 * 
+								 * SLIDE 20-SIDED DIE
+								 * 
+								 * 
+								 */
+						
+								attackResult = (int) ((Math.random() * 20) + 1);
+								//int attackResult = (int) ((Math.random() * 20) + 1);										
 								
-										/*
-										 * 
-										 * 
-										 * SLIDE 20-SIDED DIE
-										 * 
-										 * 
-										 */
-								
-										attackResult = (int) ((Math.random() * 20) + 1);
-										//int attackResult = (int) ((Math.random() * 20) + 1);										
-										
-										isattackrolled = "yes";
-										
-					  	  	  		}
-					  	  	  	}, 750);					  	  	  		
+								isattackrolled = "yes";								
 			  	  	  		}
-			  	  	  	}, 2000);
+			  	  	  	}, 750);					  	  	  		
 	  	  	  		}
-	  	  	  	}, 2000);												
+	  	  	  	}, 2000);	  	  	  														
   	  	    }
 		});
 		return playerNumberAttacked;
@@ -9947,7 +9958,7 @@ public class MainActivity2 extends ActionBarActivity {
 				  	  	  		@Override
 					  	  	  	public void run() {
 				  	  	  			
-					  	  	  		final TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+					  	  	  		final TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
 					  	  	  		mightyBlowGraphic.setVisibility(View.INVISIBLE);
 				  	  	  			
 				  	  	  			sixSidedRollFromLeft();				  	  	  		
@@ -10862,7 +10873,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  		@Override
 		  	  	  	public void run() {
 	  	  	  			
-		  	  	  		final TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+		  	  	  		final TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
 		  	  	  		criticalHitGraphic.setVisibility(View.INVISIBLE);
 	  	  	  			
 	  	  	  			// IF DODGE BLOW:
@@ -11433,7 +11444,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  		@Override
 		  	  	  	public void run() {
 	  	  	  			
-		  	  	  		final TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+		  	  	  		final TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
 		  	  	  		mightyBlowGraphic.setVisibility(View.INVISIBLE);
 	  	  	  			
 		  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
@@ -11756,7 +11767,7 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  		@Override
 				  	  	  	public void run() {			  	  	  			
 
-				  	  	  		final TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+				  	  	  		final TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
 				  	  	  		criticalMissGraphic.setVisibility(View.INVISIBLE);
 			  	  	  			
 				  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
@@ -14521,7 +14532,8 @@ public class MainActivity2 extends ActionBarActivity {
 				hasteRight1.setVisibility(View.VISIBLE);
 				ImageView hasteRight2 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste2);
 				hasteRight2.setVisibility(View.VISIBLE);				
-			}			
+			}
+						
 		}
 		
 		
