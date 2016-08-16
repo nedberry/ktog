@@ -53,7 +53,7 @@ public class MainActivity2 extends ActionBarActivity {
 	String onBackPressedOk = "no";
 	
 	int playerNumberAttacked;
-	int i;
+	//int i;
 	int turn = 1;
 	int gameOn;
 	int computerAction;
@@ -99,6 +99,7 @@ public class MainActivity2 extends ActionBarActivity {
 	String iscurerolled = "no";
 	String isattackdamagerolled = "no";
 	String ismightyblowdamagerolled = "no";
+	String iscriticalmissrolled = "no";
 	String iscriticalmissdamagerolled = "no";
 	String iscriticalhitfirstrollrolled = "no";
 	String iscriticalhitsecondrollrolled = "no";
@@ -428,22 +429,22 @@ public class MainActivity2 extends ActionBarActivity {
 				//sixSidedRollFromCenterToRight();
 				//determineInitiative();				
 				
-				if (ArrayOfInitiative.initiative[0] == 1 || cureResult == 1){
+				if (ArrayOfInitiative.initiative[0] == 1 || attackDamage == 1 || cureResult == 1){
 					sixSidedRollFromCenterToRight1();							  		  	  	
 				}
-				else if (ArrayOfInitiative.initiative[0] == 2 || cureResult == 2){
+				else if (ArrayOfInitiative.initiative[0] == 2 || attackDamage == 2 || cureResult == 2){
 					sixSidedRollFromCenterToRight2();
 				}
-				else if (ArrayOfInitiative.initiative[0] == 3 || cureResult == 3){
+				else if (ArrayOfInitiative.initiative[0] == 3 || attackDamage == 3 || cureResult == 3){
 					sixSidedRollFromCenterToRight3();
 				}
-				else if (ArrayOfInitiative.initiative[0] == 4 || cureResult == 4){
+				else if (ArrayOfInitiative.initiative[0] == 4 || attackDamage == 4 || cureResult == 4){
 					sixSidedRollFromCenterToRight4();
 				}
-				else if (ArrayOfInitiative.initiative[0] == 5 || cureResult == 5){
+				else if (ArrayOfInitiative.initiative[0] == 5 || attackDamage == 5 || cureResult == 5){
 					sixSidedRollFromCenterToRight5();
 				}
-				else if (ArrayOfInitiative.initiative[0] == 6 || cureResult == 6){
+				else if (ArrayOfInitiative.initiative[0] == 6 || attackDamage == 6 || cureResult == 6){
 					sixSidedRollFromCenterToRight6();
 				}
 				
@@ -484,22 +485,22 @@ public class MainActivity2 extends ActionBarActivity {
 				//sixSidedRollFromCenterToLeft();
 				//determineInitiative();				
 				
-				if (ArrayOfInitiative.initiative[0] == 1 || cureResult == 1){		  				
+				if (ArrayOfInitiative.initiative[0] == 1 || attackDamage == 1 || cureResult == 1){		  				
 					sixSidedRollFromCenterToLeft1();								  		  	  	
 				}
-				else if (ArrayOfInitiative.initiative[0] == 2 || cureResult == 2){
+				else if (ArrayOfInitiative.initiative[0] == 2 || attackDamage == 2 || cureResult == 2){
 					sixSidedRollFromCenterToLeft2();
 				}
-				else if (ArrayOfInitiative.initiative[0] == 3 || cureResult == 3){
+				else if (ArrayOfInitiative.initiative[0] == 3 || attackDamage == 3 || cureResult == 3){
 					sixSidedRollFromCenterToLeft3();
 				}
-				else if (ArrayOfInitiative.initiative[0] == 4 || cureResult == 4){
+				else if (ArrayOfInitiative.initiative[0] == 4 || attackDamage == 4 || cureResult == 4){
 					sixSidedRollFromCenterToLeft4();
 				}
-				else if (ArrayOfInitiative.initiative[0] == 5 || cureResult == 5){
+				else if (ArrayOfInitiative.initiative[0] == 5 || attackDamage == 5 || cureResult == 5){
 					sixSidedRollFromCenterToLeft5();
 				}
-				else if (ArrayOfInitiative.initiative[0] == 6 || cureResult == 6){
+				else if (ArrayOfInitiative.initiative[0] == 6 || attackDamage == 6 || cureResult == 6){
 					sixSidedRollFromCenterToLeft6();
 				}
 				
@@ -626,6 +627,9 @@ public class MainActivity2 extends ActionBarActivity {
 				if (isblessrolled.equals("yes")) {
 					blessResults();
 				}
+				if (iscriticalmissrolled.equals("yes")) {
+					criticalMissResults();
+				}				
 		    }		    
 		    public void onSwipeLeft() {		    		  				
 					
@@ -704,6 +708,9 @@ public class MainActivity2 extends ActionBarActivity {
 				}
 				if (isblessrolled.equals("yes")) {
 					blessResults();
+				}
+				if (iscriticalmissrolled.equals("yes")) {
+					criticalMissResults();
 				}
 		    }
 		    /*
@@ -1126,7 +1133,7 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletobig);					  	  	  	
 	  	  	
-  	  	TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+  	  	TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
   	  	
   	  	dodgeGraphic.setVisibility(View.VISIBLE);
 	  	dodgeGraphic.bringToFront();
@@ -1148,7 +1155,7 @@ public class MainActivity2 extends ActionBarActivity {
   	  			
 	  	  		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletosmall);						  	  	  	
 	  	  	  	
-		  	  	final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+		  	  	final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
 		  	  	dodgeGraphic.setTypeface(typeFace);
 		  	  	dodgeGraphic.setText("Dodge");
 	  	  	  	
@@ -3096,11 +3103,14 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
-						  	  	  			
+		// CRASHES IF USE THIS:
+		//img.setVisibility(View.INVISIBLE);
+		
   		// Use a blank drawable to hide the imageview animation:
-  		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
-		img.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
-		img.setImageResource(R.drawable.sixsixrightleftrotateblank);
+  		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
+  		img.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+		img.setImageResource(R.drawable.sixsixrightleftrotateblank);		
+  		
 		
 		// Re-enables ability to use srollbar:
 		centerscrolltext.bringToFront();												
@@ -3158,7 +3168,7 @@ public class MainActivity2 extends ActionBarActivity {
 	 */
 	
 	
-	public int computerAttack() {
+	public void computerAttack() { //WAS int
 		// player uses methods as normal, BUT computer must use new methods?	
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
@@ -3304,7 +3314,7 @@ public class MainActivity2 extends ActionBarActivity {
 																  	  	  		@Override
 																	  	  	  	public void run() {
 																  	  	  			
-																	  	  	  		final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+																	  	  	  		final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
 																  	  	  			dodgeGraphic.setVisibility(View.INVISIBLE);
 																  	  	  			
 																	  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
@@ -3509,7 +3519,7 @@ public class MainActivity2 extends ActionBarActivity {
 																  	  	  		@Override
 																	  	  	  	public void run() {
 																  	  	  			
-																	  	  	  		final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+																	  	  	  		final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
 																  	  	  			dodgeGraphic.setVisibility(View.INVISIBLE);
 																  	  	  			
 																	  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
@@ -3755,7 +3765,7 @@ public class MainActivity2 extends ActionBarActivity {
 																  	  	  		@Override
 																	  	  	  	public void run() {
 																  	  	  			
-																	  	  	  		final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+																	  	  	  		final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
 																  	  	  			dodgeGraphic.setVisibility(View.INVISIBLE);
 																  	  	  			
 																	  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
@@ -3956,7 +3966,7 @@ public class MainActivity2 extends ActionBarActivity {
 																  	  	  		@Override
 																	  	  	  	public void run() {
 																  	  	  			
-																	  	  	  		final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+																	  	  	  		final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
 																  	  	  			dodgeGraphic.setVisibility(View.INVISIBLE);
 																  	  	  			
 																	  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
@@ -4168,7 +4178,7 @@ public class MainActivity2 extends ActionBarActivity {
 				}
   	  	    }
 		});
-		return playerNumberAttacked;
+		//return playerNumberAttacked;
 	}		
 	
 	public void computerCriticalHit() { //WAS int					
@@ -4250,7 +4260,7 @@ public class MainActivity2 extends ActionBarActivity {
 			  					  	  	  		@Override
 			  						  	  	  	public void run() {
 			  					  	  	  			
-					  					  	  	  	final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+					  					  	  	  	final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
 								  	  	  			dodgeGraphic.setVisibility(View.INVISIBLE);
 			  					  	  	  			
 			  						  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
@@ -5345,7 +5355,7 @@ public class MainActivity2 extends ActionBarActivity {
 																		  	  	  		@Override
 																			  	  	  	public void run() {
 																		  	  	  			
-																			  	  	  		final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+																			  	  	  		final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
 																		  	  	  			dodgeGraphic.setVisibility(View.INVISIBLE);
 																		  	  	  			
 																			  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
@@ -5570,7 +5580,7 @@ public class MainActivity2 extends ActionBarActivity {
 																		  	  	  		@Override
 																			  	  	  	public void run() {
 																		  	  	  			
-																			  	  	  		final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+																			  	  	  		final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
 																		  	  	  			dodgeGraphic.setVisibility(View.INVISIBLE);
 																		  	  	  			
 																			  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
@@ -5759,7 +5769,7 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  	  			
 						  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 								  		centerscrolltext.startAnimation(animAlphaText);			  		
-										centerscrolltext.append("\n" + "> First Attack...");
+										centerscrolltext.append("\n" + "> FIRST ATTACK...");
 										
 										/*				
 										System.out.println();
@@ -5815,7 +5825,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  			
 	  			centerscrolltext.setVisibility(View.VISIBLE);													
 		  		centerscrolltext.startAnimation(animAlphaText);			  		
-				centerscrolltext.append("\n" + "> Second Attack...");
+				centerscrolltext.append("\n" + "> SECOND ATTACK...");
 				
 				/*
 				System.out.println("     /\\____________");
@@ -6400,7 +6410,7 @@ public class MainActivity2 extends ActionBarActivity {
 		return canHasDisarmed;
 	}
 	
-	public int computerDisarmedAction() {		
+	public void computerDisarmedAction() { // WAS int	
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
@@ -6467,7 +6477,7 @@ public class MainActivity2 extends ActionBarActivity {
 				}
   	  	    }
 		});
-		return playerNumberAttacked;
+		//return playerNumberAttacked;
 	}
 	
 	public void computerHasteDisarmed() {//WAS int[]
@@ -6650,7 +6660,7 @@ public class MainActivity2 extends ActionBarActivity {
 														  	  	  		@Override
 															  	  	  	public void run() {
 														  	  	  			
-															  	  	  		final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+															  	  	  		final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
 														  	  	  			dodgeGraphic.setVisibility(View.INVISIBLE);
 														  	  	  			
 															  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
@@ -6837,7 +6847,7 @@ public class MainActivity2 extends ActionBarActivity {
 														  	  	  		@Override
 															  	  	  	public void run() {
 														  	  	  			
-															  	  	  		final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+															  	  	  		final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
 														  	  	  			dodgeGraphic.setVisibility(View.INVISIBLE);
 														  	  	  			
 															  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
@@ -7030,7 +7040,7 @@ public class MainActivity2 extends ActionBarActivity {
 							    				@Override
 							    				public void run() {
 							    					
-							    					final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+							    					final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
 								  	  	  			dodgeGraphic.setVisibility(View.INVISIBLE);
 							    					
 							    					if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
@@ -8629,7 +8639,7 @@ public class MainActivity2 extends ActionBarActivity {
 																					*/
 																				}
 																		
-																				if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] < 0) {
+																				if (ArrayOfHitPoints.hitpoints[0] < 0) {
 																					
 																					
 																					/*
@@ -9577,6 +9587,10 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  	  		
 	public void attackResults() {
 		
+		// Here to prevent pre-mature (BUT STILL SEE ) roll
+		final ImageView twentySidedBlank = (ImageView) findViewById(R.id.twentysidedanimation);		
+		twentySidedBlank.setEnabled(false);
+		
 		isattackrolled = "no";
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
@@ -10331,7 +10345,7 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  	  		@Override
 						  	  	  	public void run() {
 					  	  	  			
-						  	  	  		if (mightyBlowSpell[i] > 0 && ishasteused.equals("no") && isblessrolled.equals("no")) {
+						  	  	  		if (mightyBlowSpell[0] > 0 && ishasteused.equals("no") && isblessrolled.equals("no")) {
 											/*
 											centerscrolltext.setVisibility(View.VISIBLE);													
 									  		centerscrolltext.startAnimation(animAlphaText);		  		
@@ -10340,7 +10354,7 @@ public class MainActivity2 extends ActionBarActivity {
 											
 											AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 								  			
-								  	    	alert.setTitle(ArrayOfPlayers.player[i] + ", do you want to use Mighty Blow?");
+								  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use Mighty Blow?");
 								  	    	/*
 								  	    	alert.setMessage("something");
 								  	    	*/	  	    	
@@ -10449,7 +10463,7 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  	  		@Override
 						  	  	  	public void run() {
 					  	  	  			
-						  	  	  		final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+						  	  	  		final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
 					  	  	  			dodgeGraphic.setVisibility(View.INVISIBLE);
 	
 						  	  	  		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
@@ -10490,7 +10504,7 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  	  		@Override
 			  	  	  	public void run() {
 		  	  	  			
-			  	  	  		if (mightyBlowSpell[i] > 0 && ishasteused.equals("no") && isblessrolled.equals("no")) {
+			  	  	  		if (mightyBlowSpell[0] > 0 && ishasteused.equals("no") && isblessrolled.equals("no")) {
 								/*
 								centerscrolltext.setVisibility(View.VISIBLE);													
 						  		centerscrolltext.startAnimation(animAlphaText);		  		
@@ -10499,7 +10513,7 @@ public class MainActivity2 extends ActionBarActivity {
 								
 								AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 					  			
-					  	    	alert.setTitle(ArrayOfPlayers.player[i] + ", do you want to use Mighty Blow?");
+					  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use Mighty Blow?");
 					  	    	/*
 					  	    	alert.setMessage("something");
 					  	    	*/	  	    	
@@ -10588,6 +10602,15 @@ public class MainActivity2 extends ActionBarActivity {
 	}
 	
 	public void damagePartTwo() {
+				
+		// Use a blank drawable to hide the imageview animation:
+		// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+  		ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
+		img.setBackgroundResource(R.drawable.twentytwentyblank);
+		img.setImageResource(R.drawable.twentytwentyblank);
+		
+		img.setEnabled(false);
+		
 		
 		isblessrolled = "no";
 		
@@ -10603,61 +10626,43 @@ public class MainActivity2 extends ActionBarActivity {
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);
 	  			
+	  			centerscrolltext.setVisibility(View.VISIBLE);
+		  		centerscrolltext.startAnimation(animAlphaText);
+				centerscrolltext.append("\n" + "> Roll for damage...");
 	  			
-	  			final Handler h1 = new Handler();
-	  	  	  	h1.postDelayed(new Runnable() {		  	  	  			
+				
+  	  	  		final Handler h2 = new Handler();
+	  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
 	  	  	  			
 	  	  	  		@Override
-		  	  	  	public void run() {
+		  	  	  	public void run() {					  	  	  			
 	  	  	  			
-	  	  	  			/*
-						 * 
-						 * ???????????????
-						 * 
-						 * damage Graphic(); ??????????????
-						 * 
-						 */
-						
-						// damageGraphic();
-				
-		  	  	  		final Handler h2 = new Handler();
-			  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			sixSidedRollFromLeft();				  	  	  		
+			  	  	  			
+		  	  	  		final Handler h3 = new Handler();
+			  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
 			  	  	  			
 			  	  	  		@Override
-				  	  	  	public void run() {					  	  	  			
+				  	  	  	public void run() {				
 			  	  	  			
-			  	  	  			sixSidedRollFromLeft();				  	  	  		
-					  	  	  			
-				  	  	  		final Handler h3 = new Handler();
-					  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
-					  	  	  			
-					  	  	  		@Override
-						  	  	  	public void run() {				
-					  	  	  			
-					  	  	  			sixSidedWobbleStart();
-					  	  	  			
-										centerscrolltext.setVisibility(View.VISIBLE);
-								  		centerscrolltext.startAnimation(animAlphaText);
-										centerscrolltext.append("\n" + "> Please slide the die...");
+			  	  	  			sixSidedWobbleStart();								
+						
+								/*
+								 * 
+								 * ROLL 6-SIDED DIE
+								 * 
+								 */
 								
-										/*
-										 * 
-										 * ROLL 6-SIDED DIE
-										 * 
-										 */
-										
-										attackDamage = (int)(Math.random()*6)+1;
-								        //(Math.random()*6) returns a number between 0 (inclusive) and 6 (exclusive)
-								        //same as: (int) Math.ceil(Math.random()*6); ?										
-										
-										isattackdamagerolled = "yes";
-										
-					  	  	  		}
-					  	  	  	}, 750);					  	  	  		
+								attackDamage = (int)(Math.random()*6)+1;
+						        //(Math.random()*6) returns a number between 0 (inclusive) and 6 (exclusive)
+						        //same as: (int) Math.ceil(Math.random()*6); ?										
+								
+								isattackdamagerolled = "yes";
+								
 			  	  	  		}
-			  	  	  	}, 2000);
+			  	  	  	}, 750);					  	  	  		
 	  	  	  		}
-	  	  	  	}, 2000);	  			
+	  	  	  	}, 2000);  	  	  			  			
   	  	    }
 		});	
 	}
@@ -10695,7 +10700,7 @@ public class MainActivity2 extends ActionBarActivity {
 							ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - attackDamage;
 						}
 							
-						if (canHasDisarmed[0].equals("yes")) {							
+		  	  	  		else if (canHasDisarmed[0].equals("yes")) {							
 							
 							int attackDamageDisarmed = (attackDamage - 2);
 							
@@ -10893,11 +10898,11 @@ public class MainActivity2 extends ActionBarActivity {
 	  				  	  	  		@Override
 	  					  	  	  	public void run() {
 	  				  	  	  			
-	  				  	  	  			if (mightyBlowSpell[i] > 0 && ishasteused.equals("no") && isblessrolled.equals("no")) {
+	  				  	  	  			if (mightyBlowSpell[0] > 0 && ishasteused.equals("no") && isblessrolled.equals("no")) {
 									
 											AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 								  			
-								  	    	alert.setTitle(ArrayOfPlayers.player[i] + ", do you want to use Mighty Blow?");
+								  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use Mighty Blow?");
 								  	    	/*
 								  	    	alert.setMessage("something");
 								  	    	*/	  	    	
@@ -10995,7 +11000,7 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  	  		@Override
 						  	  	  	public void run() {  	  		
 					  	  	  			
-						  	  	  		final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+						  	  	  		final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
 					  	  	  			dodgeGraphic.setVisibility(View.INVISIBLE);
 					  	  	  			
 						  	  	  		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
@@ -11034,11 +11039,11 @@ public class MainActivity2 extends ActionBarActivity {
 				  	  	  		@Override
 					  	  	  	public void run() {
 				  	  	  			
-				  	  	  			if (mightyBlowSpell[i] > 0 && ishasteused.equals("no") && isblessrolled.equals("no")) {
+				  	  	  			if (mightyBlowSpell[0] > 0 && ishasteused.equals("no") && isblessrolled.equals("no")) {
 								
 										AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 							  			
-							  	    	alert.setTitle(ArrayOfPlayers.player[i] + ", do you want to use Mighty Blow?");
+							  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use Mighty Blow?");
 							  	    	/*
 							  	    	alert.setMessage("something");
 							  	    	*/	  	    	
@@ -11772,7 +11777,7 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  			
 				  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 			  			  		centerscrolltext.startAnimation(animAlphaText);
-			  					centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[i] + ", you must roll to see if you hit yourself...");
+			  					centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you must roll to see if you hit yourself...");
 			  					
 			  					criticalMissAttack();
 			  			
@@ -11833,7 +11838,7 @@ public class MainActivity2 extends ActionBarActivity {
 								attackResult = (int) ((Math.random() * 20) + 1);
 								//int attackResult = (int) ((Math.random() * 20) + 1);										
 								
-								isattackrolled = "yes";								
+								iscriticalmissrolled = "yes";								
 			  	  	  		}
 			  	  	  	}, 750);					  	  	  		
 	  	  	  		}
@@ -11844,7 +11849,7 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	public void criticalMissResults() {
 		
-		isattackrolled = "no";
+		iscriticalmissrolled = "no";
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
@@ -11891,7 +11896,7 @@ public class MainActivity2 extends ActionBarActivity {
 						  	  	  			
 							  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 									  		centerscrolltext.startAnimation(animAlphaText);
-											centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[i] + ", roll for damage to yourself...");						  	  	  			
+											centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", roll for damage to yourself...");						  	  	  			
 						  	  	  			
 						  	  	  			criticalMissDamage();					  	  	  			
 							  	  	  	}
@@ -11902,7 +11907,7 @@ public class MainActivity2 extends ActionBarActivity {
 									
 									centerscrolltext.setVisibility(View.VISIBLE);
 							  		centerscrolltext.startAnimation(animAlphaText);
-							  		centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[i] + ", you did not hit yourself! But you must roll to see if you lose your weapon.");
+							  		centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you did not hit yourself! But you must roll to see if you lose your weapon.");
 																  		
 							  		criticalMissLoseWeapon();						  		
 								}		  	  	  			
@@ -12008,7 +12013,7 @@ public class MainActivity2 extends ActionBarActivity {
 				centerscrolltext.append("\n" + "> You roll a " + attackDamage + " for damage!");
 				
 
-				ArrayOfHitPoints.hitpoints[i] = ArrayOfHitPoints.hitpoints[i] - attackDamage;
+				ArrayOfHitPoints.hitpoints[0] = ArrayOfHitPoints.hitpoints[0] - attackDamage;
 
 
 				final Handler h = new Handler();
@@ -12017,7 +12022,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  		@Override
 		  	  	  	public void run() {
 				
-						if (ArrayOfHitPoints.hitpoints[i] == 0) {
+						if (ArrayOfHitPoints.hitpoints[0] == 0) {
 							
 							if (numberOfPlayers == 1) {
 								
@@ -12065,7 +12070,7 @@ public class MainActivity2 extends ActionBarActivity {
 							*/
 						}
 				
-						if (ArrayOfHitPoints.hitpoints[i] < 0) {
+						if (ArrayOfHitPoints.hitpoints[0] < 0) {
 							
 							/*
 							 * 
@@ -12090,7 +12095,7 @@ public class MainActivity2 extends ActionBarActivity {
 							    		
 							    		hideNavigation();
 							    		
-							    		playerDeadYet[i] = "yes";
+							    		playerDeadYet[0] = "yes";
 							    		
 							    		gameOverCheck();
 							    	}
@@ -12222,8 +12227,8 @@ public class MainActivity2 extends ActionBarActivity {
 						
 						if (attackResult >= 17) {
 							
-							canHasDisarmed[i] = "yes";
-							disarmedTurnStart[i] = turn;
+							canHasDisarmed[0] = "yes";
+							disarmedTurnStart[0] = turn;
 							
 							final Handler h2 = new Handler();
 				  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
@@ -12977,7 +12982,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);
 	  			
-	  			if (hasteSpell[i] > 0) {
+	  			if (hasteSpell[0] > 0) {
 	  				
 	  				if (numberOfPlayers == 1) {
 	  					
@@ -12991,7 +12996,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  		  	  	  			
 	  		  	  	  			skillsCheck();
 	  		  	  	  			
-	  		  	  	  			if (canHasDisarmed[i].equals("no")) {	  		  	  	  				
+	  		  	  	  			if (canHasDisarmed[0].equals("no")) {	  		  	  	  				
 	  		  	  	  				
 	  		  	  	  				ishasteused = "yes";
 	  	  	  				
@@ -13009,7 +13014,7 @@ public class MainActivity2 extends ActionBarActivity {
 						  	  	  			
 							  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 											centerscrolltext.startAnimation(animAlphaText);
-											centerscrolltext.append("\n" + "> Two Attacks!");
+											centerscrolltext.append("\n" + "> TWO ATTACKS!");
 											
 											final Handler h2 = new Handler();
 								  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
@@ -13019,7 +13024,7 @@ public class MainActivity2 extends ActionBarActivity {
 								  	  	  			
 									  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 											  		centerscrolltext.startAnimation(animAlphaText);
-													centerscrolltext.append("\n" + "> 1st Attack...");
+													centerscrolltext.append("\n" + "> FIRST ATTACK...");
 													
 													final Handler h3 = new Handler();
 										  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
@@ -13036,9 +13041,9 @@ public class MainActivity2 extends ActionBarActivity {
 						  	  	  	}, 3000);
 	  		  	  	  			}
 	  		  	  	  			
-			  		  	  	  	if (canHasDisarmed[i].equals("yes")) {
+			  		  	  	  	if (canHasDisarmed[0].equals("yes")) {
 			  		  	  	  		
-			  		  	  	  		canHasDisarmed[i] = "no";
+			  		  	  	  		canHasDisarmed[0] = "no";
 			  		  	  	  		
 			  		  	  	  		hasteGraphic();
 			  		  	  	  		
@@ -13083,6 +13088,24 @@ public class MainActivity2 extends ActionBarActivity {
 	  			
 	  			else {
   	  	  			
+	  				AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+				      
+					alert.setTitle(ArrayOfPlayers.player[0] + ", you have already used your Haste spells!");
+		  	    	/*
+		  	    	alert.setMessage("something");
+		  	    	*/	    	
+			    	
+			    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+				    	public void onClick(DialogInterface dialog, int whichButton) {
+				    		
+				    		hideNavigation();
+				    		
+				    		runActionsOnUi();							    														
+				    	}
+			    	});								    	
+			    	alert.show();	  				
+	  				
+	  				/* THIS DIDN'T WORK:
 					centerscrolltext.setVisibility(View.VISIBLE);
 			  		centerscrolltext.startAnimation(animAlphaText);
 			  		centerscrolltext.append("\n" + "> You have already used your Haste spells!");
@@ -13093,15 +13116,15 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  	  		@Override
 			  	  	  	public void run() {
 		  	  	  			
-		  	  	  			/*
-							 * 
-							 * THIS LETS HUMAN PLAYER CHOOSE WHAT THEY WANT TO DO (ACTION/ATTACK)
-							 * 
-							 * Bring Action To Front?
-							 * 
-							 * action(i, turn, gameOn);
-							 * 
-							 */			  		
+		  	  	  			//
+							// 
+							// THIS LETS HUMAN PLAYER CHOOSE WHAT THEY WANT TO DO (ACTION/ATTACK)
+							// 
+							// Bring Action To Front?
+							// 
+							// action(i, turn, gameOn);
+							// 
+							//			  		
 					  		
 					  		if (isInvokingService.equals("true")){
 								//NEED THIS?
@@ -13110,7 +13133,8 @@ public class MainActivity2 extends ActionBarActivity {
 								runActionsOnUi();
 					  		}										  	  	  							  	  	  	
 			  	  	  	}
-		  	  	  	}, 2000);											
+		  	  	  	}, 2000);
+		  	  	  	*/	  	  	  	
 				}	  	  	    				 
   	  	    }
 		});			
@@ -13155,7 +13179,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  			
 		  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 				  		centerscrolltext.startAnimation(animAlphaText);
-						centerscrolltext.append("\n" + "> 2nd Attack...");			  	  	  							  	  	  	
+						centerscrolltext.append("\n" + "> SECOND ATTACK...");			  	  	  							  	  	  	
 		  	  	  	}
 	  	  	  	}, 2000);
   				
@@ -13169,7 +13193,7 @@ public class MainActivity2 extends ActionBarActivity {
 		return;		
 	}
 	
-	public int bless() {
+	public void bless() { // WAS int
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
@@ -13184,7 +13208,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  			centerscrolltext.setTypeface(typeFace);
   	  	    	
 		
-				if (blessSpell[i] > 0) {
+				if (blessSpell[0] > 0) {
 					
 					if (numberOfPlayers == 1) {
 						
@@ -13341,29 +13365,49 @@ public class MainActivity2 extends ActionBarActivity {
 				
 				else {
 					
+					AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+				      
+					alert.setTitle(ArrayOfPlayers.player[0] + ", you have already used your Bless spell!");
+		  	    	/*
+		  	    	alert.setMessage("something");
+		  	    	*/	    	
+			    	
+			    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+				    	public void onClick(DialogInterface dialog, int whichButton) {
+				    		
+				    		hideNavigation();
+				    		
+				    		runActionsOnUi();							    														
+				    	}
+			    	});								    	
+			    	alert.show();					
+					
+					/* THIS DIDN'T WORK:
 					centerscrolltext.setVisibility(View.VISIBLE);
 			  		centerscrolltext.startAnimation(animAlphaText);
-			  		centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[i] + ", you have already used your bless spell!");								  		
+			  		centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you have already used your bless spell!");								  		
 			  		
-			  		/*
-					 * 
-					 * THIS LETS HUMAN PLAYER CHOOSE WHAT THEY WANT TO DO (ACTION/ATTACK)
-					 * 
-					 * Bring Action To Front?
-					 * 
-					 * action(i, turn, gameOn);
-					 * 
-					 */			  		
+			  		//
+					// 
+					// THIS LETS HUMAN PLAYER CHOOSE WHAT THEY WANT TO DO (ACTION/ATTACK)
+					// 
+					// Bring Action To Front?
+					// 
+					// action(i, turn, gameOn);
+					// 
+					//
+								  		
 			  		if (isInvokingService.equals("true")){
 						//NEED THIS?
 						SystemClock.sleep(1000);	        		
 							
 						runActionsOnUi();
 					}
+			  		*/		  		
 				}
   	  	    }
 		});
-		return playerNumberAttacked;		
+		//return playerNumberAttacked;		
 	}
 	
 	public int blessResults() {					
@@ -13750,7 +13794,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  			centerscrolltext.setTypeface(typeFace);
   	  	    	
 		
-				if (cureSpell[i] > 0) {
+				if (cureSpell[0] > 0) {
 					
 					if (numberOfPlayers == 1) {
 						
@@ -13846,20 +13890,38 @@ public class MainActivity2 extends ActionBarActivity {
 				
 				else {
 					
+					AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+				      
+					alert.setTitle(ArrayOfPlayers.player[0] + ", you have already used your Cure spell!");
+		  	    	/*
+		  	    	alert.setMessage("something");
+		  	    	*/	    	
+			    	
+			    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+				    	public void onClick(DialogInterface dialog, int whichButton) {
+				    		
+				    		hideNavigation();
+				    		
+				    		runActionsOnUi();							    														
+				    	}
+			    	});								    	
+			    	alert.show();				
+					
+					/*
 					centerscrolltext.setVisibility(View.VISIBLE);
 			  		centerscrolltext.startAnimation(animAlphaText);
-			  		centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[i] + ", you have already used your cure spell!");
+			  		centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you have already used your cure spell!");
 								  		
 			  		
-			  		/*
-					 * 
-					 * THIS LETS HUMAN PLAYER CHOOSE WHAT THEY WANT TO DO (ACTION/ATTACK)
-					 * 
-					 * Bring Action To Front?
-					 * 
-					 * action(i, turn, gameOn);
-					 * 
-					 */
+			  		//
+					// 
+					// THIS LETS HUMAN PLAYER CHOOSE WHAT THEY WANT TO DO (ACTION/ATTACK)
+					// 
+					// Bring Action To Front?
+					// 
+					// action(i, turn, gameOn);
+					// 
+					//
 			  		
 			  		if (isInvokingService.equals("true")){
 						//NEED THIS?
@@ -13867,6 +13929,7 @@ public class MainActivity2 extends ActionBarActivity {
 							
 						runActionsOnUi();
 					}
+			  		*/		  		
 				}
   	  	    }
 		});		 
@@ -13899,7 +13962,7 @@ public class MainActivity2 extends ActionBarActivity {
 				  		centerscrolltext.startAnimation(animAlphaText);
 						centerscrolltext.append("\n" + "> You roll a " + cureResult + "!");				
 		
-						ArrayOfHitPoints.hitpoints[i] = ArrayOfHitPoints.hitpoints[i] + cureResult;	  	  	  			
+						ArrayOfHitPoints.hitpoints[0] = ArrayOfHitPoints.hitpoints[0] + cureResult;	  	  	  			
 		  	  	  														
 						
 						final Handler h2 = new Handler();
@@ -13982,7 +14045,7 @@ public class MainActivity2 extends ActionBarActivity {
 												hideNavigation();
 												//isInvokingService = "true";												
 													
-												if (hasteSpell[i] < 1) {
+												if (hasteSpell[0] < 1) {
 													
 													centerscrolltext.setVisibility(View.VISIBLE);
 											  		centerscrolltext.startAnimation(animAlphaText);
@@ -13991,7 +14054,7 @@ public class MainActivity2 extends ActionBarActivity {
 													disarmedAction();
 												}
 												
-												if (hasteSpell[i] > 0) {
+												if (hasteSpell[0] > 0) {
 													
 													haste();
 												}																																																										
@@ -14094,7 +14157,7 @@ public class MainActivity2 extends ActionBarActivity {
 			
 			if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {
 				
-				int i = 0;			
+				//int i = 0;			
 				
 				computerCardStopFadeInFadeOut();
     			playerCardStartFadeInFadeOut();
@@ -14112,7 +14175,7 @@ public class MainActivity2 extends ActionBarActivity {
 			
 			if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {
 				
-				int i = 1;				
+				//int i = 1;				
 				
 				playerCardStopFadeInFadeOut();
     			computerCardStartFadeInFadeOut();
@@ -14237,7 +14300,10 @@ public class MainActivity2 extends ActionBarActivity {
 	  			
 	  			// FROM HERE (WAS NOT IN THREAD BEFORE)
 	  			
-	  			i = 1;
+	  			//i = 1;
+	  			//i = 0;
+	  			
+	  			
 	  			// NEED THIS?:
 	  			iscomputerhasteused.equals("no");// so computer doesn't use a haste during a haste.		
 	  			
@@ -14386,7 +14452,8 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	public void gameEngineComputerFirst2() {	
 		
-		i = 0;		
+		//i = 0;		
+		//i = 1;
 		
 		computerCardStopFadeInFadeOut();
 		playerCardStartFadeInFadeOut();

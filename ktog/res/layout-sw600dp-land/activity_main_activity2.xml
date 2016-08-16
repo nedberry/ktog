@@ -388,18 +388,23 @@
    	
    	
    	
-   	
+   	<!-- Textviews need to be customized for each word (2-word textviews use "small"): -->
    	<TextView
         android:id="@+id/textviewspellgraphic"
         android:layout_width="wrap_content"
    	    android:layout_height="wrap_content"   	    
         android:textColor="#FFFFFF"
-        android:textSize="500sp"
-                
-        
-        
+        android:textSize="500sp"        
         android:gravity="center" />
-   	<!-- WORKAROUND FOR LONGER WORDS: -->
+   	
+   	<TextView
+        android:id="@+id/textviewspellgraphicdodge"
+        android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"   	    
+        android:textColor="#FFFFFF"
+        android:textSize="450sp"        
+        android:gravity="center" />
+   	
    	<TextView
         android:id="@+id/textviewspellgraphicsmall"
         android:layout_width="wrap_content"
