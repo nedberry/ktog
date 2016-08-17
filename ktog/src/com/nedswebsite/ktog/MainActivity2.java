@@ -429,22 +429,22 @@ public class MainActivity2 extends ActionBarActivity {
 				//sixSidedRollFromCenterToRight();
 				//determineInitiative();				
 				
-				if (ArrayOfInitiative.initiative[0] == 1 || attackDamage == 1 || cureResult == 1){
+				if (ArrayOfInitiative.initiative[0] == 1 || attackDamage == 1 || criticalHitAttackDamageOne == 1 || criticalHitAttackDamageTwo == 1 || cureResult == 1) {
 					sixSidedRollFromCenterToRight1();							  		  	  	
 				}
-				else if (ArrayOfInitiative.initiative[0] == 2 || attackDamage == 2 || cureResult == 2){
+				else if (ArrayOfInitiative.initiative[0] == 2 || attackDamage == 2 || criticalHitAttackDamageOne == 2 || criticalHitAttackDamageTwo == 2 || cureResult == 2) {
 					sixSidedRollFromCenterToRight2();
 				}
-				else if (ArrayOfInitiative.initiative[0] == 3 || attackDamage == 3 || cureResult == 3){
+				else if (ArrayOfInitiative.initiative[0] == 3 || attackDamage == 3 || criticalHitAttackDamageOne == 3 || criticalHitAttackDamageTwo == 3 || cureResult == 3) {
 					sixSidedRollFromCenterToRight3();
 				}
-				else if (ArrayOfInitiative.initiative[0] == 4 || attackDamage == 4 || cureResult == 4){
+				else if (ArrayOfInitiative.initiative[0] == 4 || attackDamage == 4 || criticalHitAttackDamageOne == 4 || criticalHitAttackDamageTwo == 4 || cureResult == 4) {
 					sixSidedRollFromCenterToRight4();
 				}
-				else if (ArrayOfInitiative.initiative[0] == 5 || attackDamage == 5 || cureResult == 5){
+				else if (ArrayOfInitiative.initiative[0] == 5 || attackDamage == 5 || criticalHitAttackDamageOne == 5 || criticalHitAttackDamageTwo == 5 || cureResult == 5) {
 					sixSidedRollFromCenterToRight5();
 				}
-				else if (ArrayOfInitiative.initiative[0] == 6 || attackDamage == 6 || cureResult == 6){
+				else if (ArrayOfInitiative.initiative[0] == 6 || attackDamage == 6 || criticalHitAttackDamageOne == 6 || criticalHitAttackDamageTwo == 6 || cureResult == 6) {
 					sixSidedRollFromCenterToRight6();
 				}
 				
@@ -485,22 +485,22 @@ public class MainActivity2 extends ActionBarActivity {
 				//sixSidedRollFromCenterToLeft();
 				//determineInitiative();				
 				
-				if (ArrayOfInitiative.initiative[0] == 1 || attackDamage == 1 || cureResult == 1){		  				
+				if (ArrayOfInitiative.initiative[0] == 1 || attackDamage == 1 || criticalHitAttackDamageOne == 1 || criticalHitAttackDamageTwo == 1 || cureResult == 1) {		  				
 					sixSidedRollFromCenterToLeft1();								  		  	  	
 				}
-				else if (ArrayOfInitiative.initiative[0] == 2 || attackDamage == 2 || cureResult == 2){
+				else if (ArrayOfInitiative.initiative[0] == 2 || attackDamage == 2 || criticalHitAttackDamageOne == 2 || criticalHitAttackDamageTwo == 2 || cureResult == 2) {
 					sixSidedRollFromCenterToLeft2();
 				}
-				else if (ArrayOfInitiative.initiative[0] == 3 || attackDamage == 3 || cureResult == 3){
+				else if (ArrayOfInitiative.initiative[0] == 3 || attackDamage == 3 || criticalHitAttackDamageOne == 3 || criticalHitAttackDamageTwo == 3 || cureResult == 3){
 					sixSidedRollFromCenterToLeft3();
 				}
-				else if (ArrayOfInitiative.initiative[0] == 4 || attackDamage == 4 || cureResult == 4){
+				else if (ArrayOfInitiative.initiative[0] == 4 || attackDamage == 4 || criticalHitAttackDamageOne == 4 || criticalHitAttackDamageTwo == 4 || cureResult == 4){
 					sixSidedRollFromCenterToLeft4();
 				}
-				else if (ArrayOfInitiative.initiative[0] == 5 || attackDamage == 5 || cureResult == 5){
+				else if (ArrayOfInitiative.initiative[0] == 5 || attackDamage == 5 || criticalHitAttackDamageOne == 5 || criticalHitAttackDamageTwo == 5 || cureResult == 5){
 					sixSidedRollFromCenterToLeft5();
 				}
-				else if (ArrayOfInitiative.initiative[0] == 6 || attackDamage == 6 || cureResult == 6){
+				else if (ArrayOfInitiative.initiative[0] == 6 || attackDamage == 6 || criticalHitAttackDamageOne == 6 || criticalHitAttackDamageTwo == 6 || cureResult == 6){
 					sixSidedRollFromCenterToLeft6();
 				}
 				
@@ -5131,6 +5131,13 @@ public class MainActivity2 extends ActionBarActivity {
 	  			
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);	  			
+	  			
+	  			
+		  		// Use a blank drawable to hide the imageview animation:
+		  		// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+		  		ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
+		  		img.setBackgroundResource(R.drawable.twentytwentyblank);
+		  		img.setImageResource(R.drawable.twentytwentyblank);
 	  			
 	  			
 	  			// IF MB
@@ -10080,7 +10087,9 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  		@Override
 		  	  	  	public void run() {
 	  	  	  			
-	  	  	  			// ROLLFROMLEFT (20-SIDED)
+	  	  	  			ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
+	  	  	  			img.bringToFront();
+	  	  	  			
 	  	  	  			twentySidedRollFromLeft();				  	  	  		
 			  	  	  			
 		  	  	  		final Handler h3 = new Handler();
@@ -10106,7 +10115,10 @@ public class MainActivity2 extends ActionBarActivity {
 								attackResult = (int) ((Math.random() * 20) + 1);
 								//int attackResult = (int) ((Math.random() * 20) + 1);										
 								
-								isattackrolled = "yes";								
+								isattackrolled = "yes";
+								
+								// Re-enables ability to use srollbar:
+					  			centerscrolltext.bringToFront();
 			  	  	  		}
 			  	  	  	}, 750);					  	  	  		
 	  	  	  		}
@@ -11170,6 +11182,9 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  		@Override
 		  	  	  	public void run() {					  	  	  			
 	  	  	  			
+	  	  	  			ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
+	  	  	  			img.bringToFront();
+	  	  	  			
 	  	  	  			sixSidedRollFromLeft();				  	  	  		
 			  	  	  			
 		  	  	  		final Handler h3 = new Handler();
@@ -11767,6 +11782,11 @@ public class MainActivity2 extends ActionBarActivity {
 	  			centerscrolltext.setTypeface(typeFace);
 	  			
 	  			
+	  			centerscrolltext.setVisibility(View.VISIBLE);
+		  		centerscrolltext.startAnimation(animAlphaText);
+				centerscrolltext.append("\n" + "> You roll a " + criticalHitAttackDamageOne + " for damage!");  			
+	  			
+	  				  			
 	  			final Handler h1 = new Handler();
 	  	  	  	h1.postDelayed(new Runnable() {		  	  	  			
 	  	  	  			
@@ -11828,6 +11848,11 @@ public class MainActivity2 extends ActionBarActivity {
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);
   	  	    	
+	  			
+	  			centerscrolltext.setVisibility(View.VISIBLE);
+		  		centerscrolltext.startAnimation(animAlphaText);
+				centerscrolltext.append("\n" + "> You roll a " + criticalHitAttackDamageTwo + " for damage!");
+	  			
 	  			
 	  			final Handler h1 = new Handler();
 	  	  	  	h1.postDelayed(new Runnable() {		  	  	  			
@@ -12313,6 +12338,12 @@ public class MainActivity2 extends ActionBarActivity {
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);
   	  	    	
+	  			
+		  		// Use a blank drawable to hide the imageview animation:
+		  		// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+		  		ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
+		  		img.setBackgroundResource(R.drawable.twentytwentyblank);
+		  		img.setImageResource(R.drawable.twentytwentyblank);
 	  			
 	  			criticalMissGraphic();  				  					
 	  					
@@ -14823,7 +14854,19 @@ public class MainActivity2 extends ActionBarActivity {
 		// THIS THREAD IS BEING USED TO TEST ACCESS TO CENTERSCROLLTEXT
 		runOnUiThread(new Runnable() {
   	  	    @Override
-  	  	    public void run() {
+  	  	    public void run() {  	  	    	
+  	  	    	
+  	  	    	// Use a blank drawable to hide the imageview animation:
+				// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+				img1.setBackgroundResource(R.drawable.twentytwentyblank);
+				img1.setImageResource(R.drawable.twentytwentyblank);
+
+				// Use a blank drawable to hide the imageview animation:
+				ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
+				img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+  	  	    	
   	  	    	
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			// Re-enables ability to use srollbar:
@@ -14984,82 +15027,102 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	public void gameEngineComputerFirst2() {	
 		
-		//i = 0;		
-		//i = 1;
+		runOnUiThread(new Runnable() {//DID NOT NEED THIS BEFORE? USED IN CASE NEEDED FOR REF TO IMAGEVIEWS.
+  	  	    @Override
+  	  	    public void run() {
 		
-		computerCardStopFadeInFadeOut();
-		playerCardStartFadeInFadeOut();
+  	  	    	
+				//i = 0;		
+				//i = 1;
+				
+				
+				// Use a blank drawable to hide the imageview animation:
+				// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+				img1.setBackgroundResource(R.drawable.twentytwentyblank);
+				img1.setImageResource(R.drawable.twentytwentyblank);
 		
-		final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
-		//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
-			
-		Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-		centerscrolltext.setTypeface(typeFace);
-		
-		
-		// Re-enables ability to use srollbar:
-		//centerscrolltext.bringToFront();
-		
-		
-		TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
-		playerHitPointsTextView.setTypeface(typeFace);
-		playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
-		
-		if (ArrayOfHitPoints.hitpoints[0] <= 0) {
-			endGame(); // took out map
-		}
-		
-		else if (canHasDisarmed[0] == "yes") {
-			
-			/*
-			for (int x = 0; x < 1000; --x)// To give human player time
-											// to read.
-			{
-			}
-			*/
-			
-			
-			/*
-			 * NEED GRAPHICS HERE:
-			 * 
-			 * disarmGraphic();
-			 */
-			
-			
-			// player number whose turn it is is less than the player
-			// number of the player who disarmed him.
-
-			if (disarmedTurnStart[0] == (turn)) {
-				//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
-				disarmedAction();
-			} else if (disarmedTurnStart[0] + 1 == turn) {
-				//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
-				disarmedAction();
-			} else if (disarmedTurnStart[0] + 2 == turn) {
-				//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
-				disarmedAction();
-				canHasDisarmed[0] = "no";
-			}
-		}
-		
-		else {							
-			
-			/*
-			 * 
-			 * THIS LETS HUMAN PLAYER CHOOSE WHAT THEY WANT TO DO (ACTION/ATTACK)
-			 * 
-			 * Bring Action To Front?
-			 * 
-			 * action(i, turn, gameOn);
-			 * 
-			 */							
-			if (isInvokingService.equals("true")){
-				//NEED THIS?
-				SystemClock.sleep(1000);	        		
+				// Use a blank drawable to hide the imageview animation:
+				ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
+				img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+				
+				
+				computerCardStopFadeInFadeOut();
+				playerCardStartFadeInFadeOut();
+				
+				final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+				//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 					
-				runActionsOnUi();	
-			}
-		}
+				Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+				centerscrolltext.setTypeface(typeFace);
+				
+				
+				// Re-enables ability to use srollbar:
+				//centerscrolltext.bringToFront();
+				
+				
+				TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+				playerHitPointsTextView.setTypeface(typeFace);
+				playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+				
+				if (ArrayOfHitPoints.hitpoints[0] <= 0) {
+					endGame(); // took out map
+				}
+				
+				else if (canHasDisarmed[0] == "yes") {
+					
+					/*
+					for (int x = 0; x < 1000; --x)// To give human player time
+													// to read.
+					{
+					}
+					*/
+					
+					
+					/*
+					 * NEED GRAPHICS HERE:
+					 * 
+					 * disarmGraphic();
+					 */
+					
+					
+					// player number whose turn it is is less than the player
+					// number of the player who disarmed him.
+		
+					if (disarmedTurnStart[0] == (turn)) {
+						//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
+						disarmedAction();
+					} else if (disarmedTurnStart[0] + 1 == turn) {
+						//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
+						disarmedAction();
+					} else if (disarmedTurnStart[0] + 2 == turn) {
+						//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
+						disarmedAction();
+						canHasDisarmed[0] = "no";
+					}
+				}
+				
+				else {							
+					
+					/*
+					 * 
+					 * THIS LETS HUMAN PLAYER CHOOSE WHAT THEY WANT TO DO (ACTION/ATTACK)
+					 * 
+					 * Bring Action To Front?
+					 * 
+					 * action(i, turn, gameOn);
+					 * 
+					 */							
+					if (isInvokingService.equals("true")){
+						//NEED THIS?
+						SystemClock.sleep(1000);	        		
+							
+						runActionsOnUi();	
+					}
+				}
+  	  	    }
+		});
 	}
 	
 	public void skillsCheck() {
