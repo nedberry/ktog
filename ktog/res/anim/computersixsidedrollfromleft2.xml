@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="true" >     
+    
+    <item android:drawable="@drawable/sixtwoleft6" android:duration="75" />
+    <item android:drawable="@drawable/sixonetwoleft5" android:duration="75" />
+    <item android:drawable="@drawable/sixoneleft4" android:duration="75" />
+    <item android:drawable="@drawable/sixfiveoneleft3" android:duration="75" />
+    <item android:drawable="@drawable/sixfiveleft2" android:duration="75" />
+    <item android:drawable="@drawable/sixsixfiveleft1" android:duration="75" />
+    
+    <item android:drawable="@drawable/sixtworotate6" android:duration="75" />
+
+</animation-list>

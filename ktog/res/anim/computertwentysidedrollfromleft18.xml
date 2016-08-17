@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="true" >        
+    
+    <item android:drawable="@drawable/twentytwentyleft5" android:duration="75" />
+    <item android:drawable="@drawable/twentytwelveleft4" android:duration="75" />
+    <item android:drawable="@drawable/twentysevenleft3" android:duration="75" />
+    <item android:drawable="@drawable/twentynineteenleft2" android:duration="75" />
+    <item android:drawable="@drawable/twentysixleft1" android:duration="75" /> 
+    
+    <item android:drawable="@drawable/twentyeighteen" android:duration="75" />
+
+</animation-list>
