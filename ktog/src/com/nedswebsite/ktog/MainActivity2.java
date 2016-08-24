@@ -10,6 +10,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
@@ -19,6 +20,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.text.InputFilter;
 import android.text.Spannable;
@@ -68,11 +70,11 @@ public class MainActivity2 extends ActionBarActivity {
 	//static int playerNumberAttacked;
 	
 	// NEEDS TO BE GLOBAL??
-	int attackResult;
-	int attackDamage;
-	int criticalHitAttackDamageOne;
-	int criticalHitAttackDamageTwo;
-	int cureResult;
+	//int attackResult;
+	//int attackDamage;
+	//int criticalHitAttackDamageOne;
+	//int criticalHitAttackDamageTwo;
+	//int cureResult;
 	
 	//int computerAttackResultAgainstDisarmed;
 	
@@ -84,10 +86,17 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	String isInvokingService = "true";	
 	
-	String isinitiativestarted = "no";
+	String isinitiativestarted = "no";	
 	static String isinitiativestartedinterrupted = "no";
 	String issixsidedrolledforinitiative = "no";
 	String aretheredoubles = "yes";
+	
+	
+	
+	String preventinitiativediefromleaking = "on";	
+	String preventattackdamagediefromleaking = "on";
+	String preventcureresultdiefromleaking = "on";
+	
 	
 	
 	// ARRAYS?: (COMBINE W COMP BELOW?)
@@ -148,6 +157,13 @@ public class MainActivity2 extends ActionBarActivity {
 		setContentView(R.layout.activity_main_activity2);		
 		// For the little space between the action & attack button.
 		getWindow().getDecorView().setBackgroundColor(Color.BLACK);		
+		
+		
+		
+		
+		//Globals g = Globals.getInstance();
+		//g.setTest(BuildConfig.VERSION_CODE);
+		
 		
 		
 		
@@ -262,7 +278,7 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		// Here to prevent premature rolling (use ".setEnabled(false);" in "resultsInitiative()"):
 		final ImageView sixSidedBlank = (ImageView) findViewById(R.id.sixsidedanimation);
-		sixSidedBlank.setVisibility(View.INVISIBLE);
+		sixSidedBlank.setVisibility(View.INVISIBLE);		
 		
 		final ImageView twentySidedBlank = (ImageView) findViewById(R.id.twentysidedanimation);
 		twentySidedBlank.setVisibility(View.INVISIBLE);
@@ -364,7 +380,10 @@ public class MainActivity2 extends ActionBarActivity {
 				  		  			
 				  		  			//issixsidedrolledforinitiative = "yes";
 				  		  			isinitiativestarted = "yes";			  		  			
-				  		  			onBackPressedOk = "yes";			  		  			
+				  		  			onBackPressedOk = "yes";
+				  		  			
+				  		  			
+				  		  			preventinitiativediefromleaking = "off";
 			  	  	  		}
 			  	  	  	}, 750);
 	  	  	  		}
@@ -392,6 +411,8 @@ public class MainActivity2 extends ActionBarActivity {
             @Override
 			public void onClick(View v) {
             	
+            	SystemClock.sleep(1000);
+            	
             	if (isinitiativestarted.equals("no")) {
             		myInitiativeNotStarted();            		
             	}
@@ -418,50 +439,208 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		// USE android:background="@drawable/(SOME PNG)" TO SPECIFY AREA ON SCREEN ??
 		sixSidedBlank.setOnTouchListener(new OnSixSidedSwipeTouchListener(MainActivity2.this) {
+			
 		    /*
 			public void onSwipeTop() {
 		        Toast.makeText(MainActivity2.this, "top", Toast.LENGTH_SHORT).show();
+		        
 		    }
-		    */
+		    */			
+			
+			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+			//SharedPreferences.Editor editor = preferences.edit();
+			
+			
+			
+			
+			//Globals attackDamage = ((Globals)getApplicationContext());			
+			//Globals cureResult = ((Globals)getApplicationContext());			
+			
+			
+			
 		    public void onSwipeRight() {
+		    	/*
+		    	Toast.makeText(MainActivity2.this, "INITIATIVE ROLLED = " + issixsidedrolledforinitiative, Toast.LENGTH_SHORT).show();											  	  	  			
+				Toast.makeText(MainActivity2.this, "DAMAGE ROLLED = " + isattackdamagerolled, Toast.LENGTH_SHORT).show();
+				int attackDamage = preferences.getInt("attackDamage", 0);
+				Toast.makeText(MainActivity2.this, "DAMAGE = " + attackDamage, Toast.LENGTH_SHORT).show();
+		    	*/
 		    	//if (issixsidedrolledforinitiative.equals("yes")) {	  				
 					
 				sixSidedWobbleStop();
 				//sixSidedRollFromCenterToRight();
 				//determineInitiative();				
 				
-				if (ArrayOfInitiative.initiative[0] == 1 || attackDamage == 1 || criticalHitAttackDamageOne == 1 || criticalHitAttackDamageTwo == 1 || cureResult == 1) {
-					sixSidedRollFromCenterToRight1();							  		  	  	
+				
+				if (issixsidedrolledforinitiative.equals("no")) {
+				
+					if (ArrayOfInitiative.initiative[0] == 1) {
+						
+						sixSidedRollFromCenterToRight1();
+						
+						initiativeResults();
+					}
+					else if (ArrayOfInitiative.initiative[0] == 2) {
+						
+						sixSidedRollFromCenterToRight2();
+						
+						initiativeResults();
+					}
+					else if (ArrayOfInitiative.initiative[0] == 3) {
+						
+						sixSidedRollFromCenterToRight3();
+						
+						initiativeResults();
+					}
+					else if (ArrayOfInitiative.initiative[0] == 4) {
+						
+						sixSidedRollFromCenterToRight4();
+						
+						initiativeResults();
+					}
+					else if (ArrayOfInitiative.initiative[0] == 5) {
+						
+						sixSidedRollFromCenterToRight5();
+						
+						initiativeResults();
+					}
+					else if (ArrayOfInitiative.initiative[0] == 6) {
+						
+						sixSidedRollFromCenterToRight6();
+						
+						initiativeResults();
+					}					
+				}	
+				
+				//ArrayOfAttackDamage.attackDamage[0]
+				else if (isattackdamagerolled.equals("yes")) {
+					
+					int attackDamage = preferences.getInt("attackDamage", 0);
+					
+					if (attackDamage == 1) {
+						
+						sixSidedRollFromCenterToRight1();
+						
+						damageResults();
+					}
+					else if (attackDamage == 2) {
+						
+						sixSidedRollFromCenterToRight2();
+						
+						damageResults();
+					}
+					else if (attackDamage == 3) {
+						
+						sixSidedRollFromCenterToRight3();
+						
+						damageResults();
+					}
+					else if (attackDamage == 4) {
+						
+						sixSidedRollFromCenterToRight4();
+						
+						damageResults();
+					}
+					else if (attackDamage == 5) {
+						
+						sixSidedRollFromCenterToRight5();
+						
+						damageResults();
+					}
+					else if (attackDamage == 6) {
+						
+						sixSidedRollFromCenterToRight6();
+						
+						damageResults();
+					}
 				}
-				else if (ArrayOfInitiative.initiative[0] == 2 || attackDamage == 2 || criticalHitAttackDamageOne == 2 || criticalHitAttackDamageTwo == 2 || cureResult == 2) {
-					sixSidedRollFromCenterToRight2();
+				
+				else if (iscurerolled.equals("yes")) {
+					
+					int cureResult = preferences.getInt("cureResult", 0);
+					
+					if (cureResult == 1) {
+						
+						sixSidedRollFromCenterToRight1();
+						
+						cureResults();
+					}
+					else if (cureResult == 2) {
+						
+						sixSidedRollFromCenterToRight2();
+						
+						cureResults();
+					}
+					else if (cureResult == 3) {
+						
+						sixSidedRollFromCenterToRight3();
+						
+						cureResults();
+					}
+					else if (cureResult == 4) {
+						
+						sixSidedRollFromCenterToRight4();
+						
+						cureResults();
+					}
+					else if (cureResult == 5) {
+						
+						sixSidedRollFromCenterToRight5();
+						
+						cureResults();
+					}
+					else if (cureResult == 6) {
+						
+						sixSidedRollFromCenterToRight6();
+						
+						cureResults();
+					}
 				}
-				else if (ArrayOfInitiative.initiative[0] == 3 || attackDamage == 3 || criticalHitAttackDamageOne == 3 || criticalHitAttackDamageTwo == 3 || cureResult == 3) {
-					sixSidedRollFromCenterToRight3();
-				}
-				else if (ArrayOfInitiative.initiative[0] == 4 || attackDamage == 4 || criticalHitAttackDamageOne == 4 || criticalHitAttackDamageTwo == 4 || cureResult == 4) {
-					sixSidedRollFromCenterToRight4();
-				}
-				else if (ArrayOfInitiative.initiative[0] == 5 || attackDamage == 5 || criticalHitAttackDamageOne == 5 || criticalHitAttackDamageTwo == 5 || cureResult == 5) {
-					sixSidedRollFromCenterToRight5();
-				}
-				else if (ArrayOfInitiative.initiative[0] == 6 || attackDamage == 6 || criticalHitAttackDamageOne == 6 || criticalHitAttackDamageTwo == 6 || cureResult == 6) {
-					sixSidedRollFromCenterToRight6();
+				
+				else if (ismightyblowdamagerolled.equals("yes")) {
+					
+					int attackDamage = preferences.getInt("attackDamage", 0);
+					
+					if (attackDamage == 1) {
+						
+						sixSidedRollFromCenterToRight1();
+						
+						mightyBlowResults();
+					}
+					else if (attackDamage == 2) {
+						
+						sixSidedRollFromCenterToRight2();
+						
+						mightyBlowResults();
+					}
+					else if (attackDamage == 3) {
+						
+						sixSidedRollFromCenterToRight3();
+						
+						mightyBlowResults();
+					}
+					else if (attackDamage == 4) {
+						
+						sixSidedRollFromCenterToRight4();
+						
+						mightyBlowResults();
+					}
+					else if (attackDamage == 5) {
+						
+						sixSidedRollFromCenterToRight5();
+						
+						mightyBlowResults();
+					}
+					else if (attackDamage == 6) {
+						
+						sixSidedRollFromCenterToRight6();
+						
+						mightyBlowResults();
+					}					
 				}
 				
 				
-				if (issixsidedrolledforinitiative.equals("no")) {					
-					initiativeResults();
-				}
-				if (iscurerolled.equals("yes")) {
-					cureResults();
-				}
-				if (isattackdamagerolled.equals("yes")) {
-					damageResults();
-				}
-				if (ismightyblowdamagerolled.equals("yes")) {
-					damageResults();
-				}				
+				/*								
 				if (iscriticalmissdamagerolled.equals("yes")) {
 					criticalMissDamageResults();
 				}
@@ -476,48 +655,192 @@ public class MainActivity2 extends ActionBarActivity {
 				}
 				if (iscriticalhitmightyblowsecondrollrolled.equals("yes")) {
 					criticalHitMightyBlowDamageResults();
-				}				
+				}
+				*/				
 			//}
 		    }		    
 		    public void onSwipeLeft() {
+		    	/*
+		    	Toast.makeText(MainActivity2.this, "INITIATIVE ROLLED = " + issixsidedrolledforinitiative, Toast.LENGTH_SHORT).show();											  	  	  			
+				Toast.makeText(MainActivity2.this, "DAMAGE ROLLED = " + isattackdamagerolled, Toast.LENGTH_SHORT).show();
+				int attackDamage = preferences.getInt("attackDamage", 0);
+				Toast.makeText(MainActivity2.this, "DAMAGE = " + attackDamage, Toast.LENGTH_SHORT).show();
+		    	*/
+		    	
 		    	//if (issixsidedrolledforinitiative.equals("yes")) {	  				
 					
 				sixSidedWobbleStop();
 				//sixSidedRollFromCenterToLeft();
 				//determineInitiative();				
 				
-				if (ArrayOfInitiative.initiative[0] == 1 || attackDamage == 1 || criticalHitAttackDamageOne == 1 || criticalHitAttackDamageTwo == 1 || cureResult == 1) {		  				
-					sixSidedRollFromCenterToLeft1();								  		  	  	
-				}
-				else if (ArrayOfInitiative.initiative[0] == 2 || attackDamage == 2 || criticalHitAttackDamageOne == 2 || criticalHitAttackDamageTwo == 2 || cureResult == 2) {
-					sixSidedRollFromCenterToLeft2();
-				}
-				else if (ArrayOfInitiative.initiative[0] == 3 || attackDamage == 3 || criticalHitAttackDamageOne == 3 || criticalHitAttackDamageTwo == 3 || cureResult == 3){
-					sixSidedRollFromCenterToLeft3();
-				}
-				else if (ArrayOfInitiative.initiative[0] == 4 || attackDamage == 4 || criticalHitAttackDamageOne == 4 || criticalHitAttackDamageTwo == 4 || cureResult == 4){
-					sixSidedRollFromCenterToLeft4();
-				}
-				else if (ArrayOfInitiative.initiative[0] == 5 || attackDamage == 5 || criticalHitAttackDamageOne == 5 || criticalHitAttackDamageTwo == 5 || cureResult == 5){
-					sixSidedRollFromCenterToLeft5();
-				}
-				else if (ArrayOfInitiative.initiative[0] == 6 || attackDamage == 6 || criticalHitAttackDamageOne == 6 || criticalHitAttackDamageTwo == 6 || cureResult == 6){
-					sixSidedRollFromCenterToLeft6();
+				
+				if (issixsidedrolledforinitiative.equals("no")) {
+					
+					if (ArrayOfInitiative.initiative[0] == 1) {
+						
+						sixSidedRollFromCenterToLeft1();
+						
+						initiativeResults();
+					}
+					else if (ArrayOfInitiative.initiative[0] == 2) {
+						
+						sixSidedRollFromCenterToLeft2();
+						
+						initiativeResults();
+					}
+					else if (ArrayOfInitiative.initiative[0] == 3) {
+						
+						sixSidedRollFromCenterToLeft3();
+						
+						initiativeResults();
+					}
+					else if (ArrayOfInitiative.initiative[0] == 4) {
+						
+						sixSidedRollFromCenterToLeft4();
+						
+						initiativeResults();
+					}
+					else if (ArrayOfInitiative.initiative[0] == 5) {
+						
+						sixSidedRollFromCenterToLeft5();
+						
+						initiativeResults();
+					}
+					else if (ArrayOfInitiative.initiative[0] == 6) {
+						
+						sixSidedRollFromCenterToLeft6();
+						
+						initiativeResults();
+					}
 				}
 				
+				else if (isattackdamagerolled.equals("yes")) {
+					
+					int attackDamage = preferences.getInt("attackDamage", 0);
+					
+					if (attackDamage == 1) {
+						
+						sixSidedRollFromCenterToLeft1();
+						
+						damageResults();
+					}
+					else if (attackDamage == 2) {
+						
+						sixSidedRollFromCenterToLeft2();
+						
+						damageResults();
+					}
+					else if (attackDamage == 3) {
+						
+						sixSidedRollFromCenterToLeft3();
+						
+						damageResults();
+					}
+					else if (attackDamage == 4) {
+						
+						sixSidedRollFromCenterToLeft4();
+						
+						damageResults();
+					}
+					else if (attackDamage == 5) {
+						
+						sixSidedRollFromCenterToLeft5();
+						
+						damageResults();
+					}
+					else if (attackDamage == 6) {
+						
+						sixSidedRollFromCenterToLeft6();
+						
+						damageResults();
+					}
+				}
 				
-				if (issixsidedrolledforinitiative.equals("no")) {					
-					initiativeResults();
+				else if (iscurerolled.equals("yes")) {
+					
+					int cureResult = preferences.getInt("cureResult", 0);
+					
+					if (cureResult == 1) {
+						
+						sixSidedRollFromCenterToLeft1();
+						
+						cureResults();
+					}
+					else if (cureResult == 2) {
+						
+						sixSidedRollFromCenterToLeft2();
+						
+						cureResults();
+					}
+					else if (cureResult == 3) {
+						
+						sixSidedRollFromCenterToLeft3();
+						
+						cureResults();
+					}
+					else if (cureResult == 4) {
+						
+						sixSidedRollFromCenterToLeft4();
+						
+						cureResults();
+					}
+					else if (cureResult == 5) {
+						
+						sixSidedRollFromCenterToLeft5();
+						
+						cureResults();
+					}
+					else if (cureResult == 6) {
+						
+						sixSidedRollFromCenterToLeft6();
+						
+						cureResults();
+					}
 				}
-				if (iscurerolled.equals("yes")) {
-					cureResults();
+				
+				else if (ismightyblowdamagerolled.equals("yes")) {
+					
+					int attackDamage = preferences.getInt("attackDamage", 0);
+					
+					if (attackDamage == 1) {
+						
+						sixSidedRollFromCenterToLeft1();
+						
+						mightyBlowResults();
+					}
+					else if (attackDamage == 2) {
+						
+						sixSidedRollFromCenterToLeft2();
+						
+						mightyBlowResults();
+					}
+					else if (attackDamage == 3) {
+						
+						sixSidedRollFromCenterToLeft3();
+						
+						mightyBlowResults();
+					}
+					else if (attackDamage == 4) {
+						
+						sixSidedRollFromCenterToLeft4();
+						
+						mightyBlowResults();
+					}
+					else if (attackDamage == 5) {
+						
+						sixSidedRollFromCenterToLeft5();
+						
+						mightyBlowResults();
+					}
+					else if (attackDamage == 6) {
+						
+						sixSidedRollFromCenterToLeft6();
+						
+						mightyBlowResults();
+					}
 				}
-				if (isattackdamagerolled.equals("yes")) {
-					damageResults();
-				}
-				if (ismightyblowdamagerolled.equals("yes")) {
-					damageResults();
-				}
+				
+				/*				
 				if (iscriticalmissdamagerolled.equals("yes")) {
 					criticalMissDamageResults();
 				}
@@ -533,6 +856,7 @@ public class MainActivity2 extends ActionBarActivity {
 				if (iscriticalhitmightyblowsecondrollrolled.equals("yes")) {
 					criticalHitMightyBlowDamageResults();
 				}
+				*/
 			//}
 		    }
 		    /*
@@ -554,64 +878,64 @@ public class MainActivity2 extends ActionBarActivity {
 					
 				twentySidedWobbleStop();
 				
-				if (attackResult == 1) {
+				if (ArrayOfAttackResult.attackResult[0] == 1) {
 					twentySidedRollFromCenterToRight1();
 				}
-				if (attackResult == 2) {
+				if (ArrayOfAttackResult.attackResult[0] == 2) {
 					twentySidedRollFromCenterToRight2();
 				}
-				if (attackResult == 3) {
+				if (ArrayOfAttackResult.attackResult[0] == 3) {
 					twentySidedRollFromCenterToRight3();
 				}
-				if (attackResult == 4) {
+				if (ArrayOfAttackResult.attackResult[0] == 4) {
 					twentySidedRollFromCenterToRight4();
 				}
-				if (attackResult == 5) {
+				if (ArrayOfAttackResult.attackResult[0] == 5) {
 					twentySidedRollFromCenterToRight5();
 				}
-				if (attackResult == 6) {
+				if (ArrayOfAttackResult.attackResult[0] == 6) {
 					twentySidedRollFromCenterToRight6();
 				}
-				if (attackResult == 7) {
+				if (ArrayOfAttackResult.attackResult[0] == 7) {
 					twentySidedRollFromCenterToRight7();
 				}
-				if (attackResult == 8) {
+				if (ArrayOfAttackResult.attackResult[0] == 8) {
 					twentySidedRollFromCenterToRight8();
 				}
-				if (attackResult == 9) {
+				if (ArrayOfAttackResult.attackResult[0] == 9) {
 					twentySidedRollFromCenterToRight9();
 				}
-				if (attackResult == 10) {
+				if (ArrayOfAttackResult.attackResult[0] == 10) {
 					twentySidedRollFromCenterToRight10();
 				}
-				if (attackResult == 11) {
+				if (ArrayOfAttackResult.attackResult[0] == 11) {
 					twentySidedRollFromCenterToRight11();
 				}
-				if (attackResult == 12) {
+				if (ArrayOfAttackResult.attackResult[0] == 12) {
 					twentySidedRollFromCenterToRight12();
 				}
-				if (attackResult == 13) {
+				if (ArrayOfAttackResult.attackResult[0] == 13) {
 					twentySidedRollFromCenterToRight13();
 				}
-				if (attackResult == 14) {
+				if (ArrayOfAttackResult.attackResult[0] == 14) {
 					twentySidedRollFromCenterToRight14();
 				}
-				if (attackResult == 15) {
+				if (ArrayOfAttackResult.attackResult[0] == 15) {
 					twentySidedRollFromCenterToRight15();
 				}
-				if (attackResult == 16) {
+				if (ArrayOfAttackResult.attackResult[0] == 16) {
 					twentySidedRollFromCenterToRight16();
 				}
-				if (attackResult == 17) {
+				if (ArrayOfAttackResult.attackResult[0] == 17) {
 					twentySidedRollFromCenterToRight17();
 				}
-				if (attackResult == 18) {
+				if (ArrayOfAttackResult.attackResult[0] == 18) {
 					twentySidedRollFromCenterToRight18();
 				}
-				if (attackResult == 19) {
+				if (ArrayOfAttackResult.attackResult[0] == 19) {
 					twentySidedRollFromCenterToRight19();
 				}
-				if (attackResult == 20) {
+				if (ArrayOfAttackResult.attackResult[0] == 20) {
 					twentySidedRollFromCenterToRight20();
 				}
 				
@@ -639,64 +963,64 @@ public class MainActivity2 extends ActionBarActivity {
 					
 				twentySidedWobbleStop();
 				
-				if (attackResult == 1) {
+				if (ArrayOfAttackResult.attackResult[0] == 1) {
 					twentySidedRollFromCenterToLeft1();
 				}
-				if (attackResult == 2) {
+				if (ArrayOfAttackResult.attackResult[0] == 2) {
 					twentySidedRollFromCenterToLeft2();
 				}
-				if (attackResult == 3) {
+				if (ArrayOfAttackResult.attackResult[0] == 3) {
 					twentySidedRollFromCenterToLeft3();
 				}
-				if (attackResult == 4) {
+				if (ArrayOfAttackResult.attackResult[0] == 4) {
 					twentySidedRollFromCenterToLeft4();
 				}
-				if (attackResult == 5) {
+				if (ArrayOfAttackResult.attackResult[0] == 5) {
 					twentySidedRollFromCenterToLeft5();
 				}
-				if (attackResult == 6) {
+				if (ArrayOfAttackResult.attackResult[0] == 6) {
 					twentySidedRollFromCenterToLeft6();
 				}
-				if (attackResult == 7) {
+				if (ArrayOfAttackResult.attackResult[0] == 7) {
 					twentySidedRollFromCenterToLeft7();
 				}
-				if (attackResult == 8) {
+				if (ArrayOfAttackResult.attackResult[0] == 8) {
 					twentySidedRollFromCenterToLeft8();
 				}
-				if (attackResult == 9) {
+				if (ArrayOfAttackResult.attackResult[0] == 9) {
 					twentySidedRollFromCenterToLeft9();
 				}
-				if (attackResult == 10) {
+				if (ArrayOfAttackResult.attackResult[0] == 10) {
 					twentySidedRollFromCenterToLeft10();
 				}
-				if (attackResult == 11) {
+				if (ArrayOfAttackResult.attackResult[0] == 11) {
 					twentySidedRollFromCenterToLeft11();
 				}
-				if (attackResult == 12) {
+				if (ArrayOfAttackResult.attackResult[0] == 12) {
 					twentySidedRollFromCenterToLeft12();
 				}
-				if (attackResult == 13) {
+				if (ArrayOfAttackResult.attackResult[0] == 13) {
 					twentySidedRollFromCenterToLeft13();
 				}
-				if (attackResult == 14) {
+				if (ArrayOfAttackResult.attackResult[0] == 14) {
 					twentySidedRollFromCenterToLeft14();
 				}
-				if (attackResult == 15) {
+				if (ArrayOfAttackResult.attackResult[0] == 15) {
 					twentySidedRollFromCenterToLeft15();
 				}
-				if (attackResult == 16) {
+				if (ArrayOfAttackResult.attackResult[0] == 16) {
 					twentySidedRollFromCenterToLeft16();
 				}
-				if (attackResult == 17) {
+				if (ArrayOfAttackResult.attackResult[0] == 17) {
 					twentySidedRollFromCenterToLeft17();
 				}
-				if (attackResult == 18) {
+				if (ArrayOfAttackResult.attackResult[0] == 18) {
 					twentySidedRollFromCenterToLeft18();
 				}
-				if (attackResult == 19) {
+				if (ArrayOfAttackResult.attackResult[0] == 19) {
 					twentySidedRollFromCenterToLeft19();
 				}
-				if (attackResult == 20) {
+				if (ArrayOfAttackResult.attackResult[0] == 20) {
 					twentySidedRollFromCenterToLeft20();
 				}
 				
@@ -740,6 +1064,12 @@ public class MainActivity2 extends ActionBarActivity {
 	 */
 	
 	
+	protected int getDataAttackDamage() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
 	public void hideNavigation() {
 		
 		// This will hide the system bar until user swipes up from bottom or down from top.		
@@ -778,6 +1108,18 @@ public class MainActivity2 extends ActionBarActivity {
 	    			ArrayOfAvatars.avatar = new String[6];
 	    			ArrayOfHitPoints.hitpoints = new int[6];
 	    			ArrayOfInitiative.initiative = new int[6];
+	    			ArrayOfCureResult.cureResult = new int[6];
+	    			ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo = new int[1];
+	    			ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne = new int[1];
+	    			ArrayOfAttackResult.attackResult = new int[1];
+	    			ArrayOfAttackDamage.attackDamage = new int[1];
+	    			
+	    			
+	    			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+	    			SharedPreferences.Editor editor = preferences.edit();
+	    			editor.clear();
+	    			editor.commit();
+	    			
 	    			
 	    			Intent intent = new Intent(MainActivity2.this, MainActivity1.class);
 	    			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -808,6 +1150,29 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		//Toast.makeText(MainActivity2.this,"onBackPressed WORKING!!!!", Toast.LENGTH_SHORT).show();
     }
+	
+	public void onDestroy() {
+	    
+		//NOT SURE ARRAYS ARE GETTING WIPED COMPLETELY W THE INTENT CODE BELOW, SO ADDED THIS:
+		ArrayOfPlayers.player = new String[6];
+		ArrayOfAvatars.avatar = new String[6];
+		ArrayOfHitPoints.hitpoints = new int[6];
+		ArrayOfInitiative.initiative = new int[6];
+		ArrayOfCureResult.cureResult = new int[6];
+		ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo = new int[1];
+		ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne = new int[1];
+		ArrayOfAttackResult.attackResult = new int[1];
+		ArrayOfAttackDamage.attackDamage = new int[1];
+		
+		
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+		SharedPreferences.Editor editor = preferences.edit();
+		editor.clear();
+		editor.commit();
+		
+	    // Must always call the super method at the end.
+	    super.onDestroy();
+	}
 	/*
 	public void backMethodYes() {
 		
@@ -1360,88 +1725,99 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	public void computerRolls20SidedDie() {
 		
-		if (attackResult == 1) {
+		if (ArrayOfAttackResult.attackResult[0] == 1) {
 			computerTwentySidedRollFromLeft1();
 		}
-		if (attackResult == 2) {
+		if (ArrayOfAttackResult.attackResult[0] == 2) {
 			computerTwentySidedRollFromLeft2();
 		}
-		if (attackResult == 3) {
+		if (ArrayOfAttackResult.attackResult[0] == 3) {
 			computerTwentySidedRollFromLeft3();
 		}
-		if (attackResult == 4) {
+		if (ArrayOfAttackResult.attackResult[0] == 4) {
 			computerTwentySidedRollFromLeft4();
 		}
-		if (attackResult == 5) {
+		if (ArrayOfAttackResult.attackResult[0] == 5) {
 			computerTwentySidedRollFromLeft5();
 		}
-		if (attackResult == 6) {
+		if (ArrayOfAttackResult.attackResult[0] == 6) {
 			computerTwentySidedRollFromLeft6();
 		}
-		if (attackResult == 7) {
+		if (ArrayOfAttackResult.attackResult[0] == 7) {
 			computerTwentySidedRollFromLeft7();
 		}
-		if (attackResult == 8) {
+		if (ArrayOfAttackResult.attackResult[0] == 8) {
 			computerTwentySidedRollFromLeft8();
 		}
-		if (attackResult == 9) {
+		if (ArrayOfAttackResult.attackResult[0] == 9) {
 			computerTwentySidedRollFromLeft9();
 		}
-		if (attackResult == 10) {
+		if (ArrayOfAttackResult.attackResult[0] == 10) {
 			computerTwentySidedRollFromLeft10();
 		}
-		if (attackResult == 11) {
+		if (ArrayOfAttackResult.attackResult[0] == 11) {
 			computerTwentySidedRollFromLeft11();
 		}
-		if (attackResult == 12) {
+		if (ArrayOfAttackResult.attackResult[0] == 12) {
 			computerTwentySidedRollFromLeft12();
 		}
-		if (attackResult == 13) {
+		if (ArrayOfAttackResult.attackResult[0] == 13) {
 			computerTwentySidedRollFromLeft13();
 		}
-		if (attackResult == 14) {
+		if (ArrayOfAttackResult.attackResult[0] == 14) {
 			computerTwentySidedRollFromLeft14();
 		}
-		if (attackResult == 15) {
+		if (ArrayOfAttackResult.attackResult[0] == 15) {
 			computerTwentySidedRollFromLeft15();
 		}
-		if (attackResult == 16) {
+		if (ArrayOfAttackResult.attackResult[0] == 16) {
 			computerTwentySidedRollFromLeft16();
 		}
-		if (attackResult == 17) {
+		if (ArrayOfAttackResult.attackResult[0] == 17) {
 			computerTwentySidedRollFromLeft17();
 		}
-		if (attackResult == 18) {
+		if (ArrayOfAttackResult.attackResult[0] == 18) {
 			computerTwentySidedRollFromLeft18();
 		}
-		if (attackResult == 19) {
+		if (ArrayOfAttackResult.attackResult[0] == 19) {
 			computerTwentySidedRollFromLeft19();
 		}
-		if (attackResult == 20) {
+		if (ArrayOfAttackResult.attackResult[0] == 20) {
 			computerTwentySidedRollFromLeft20();
 		}
 	}
 	
-	public void computerRolls6SidedDie() {
+	public int computerRolls6SidedDie() {
 		
-		if (attackDamage == 1 || cureResult == 1) {
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+		//SharedPreferences.Editor editor = preferences.edit();
+		int attackDamage = preferences.getInt("attackDamage", 0);
+		int cureResult = preferences.getInt("cureResult", 0);		
+		
+		//Globals g = Globals.getInstance();
+		//int attackDamage=g.getDataAttackDamage();
+		//int cureResult=g.getDataCureResult();
+		
+		
+		if ((attackDamage == 1 && preventattackdamagediefromleaking.equals("off")) || (cureResult == 1 && preventcureresultdiefromleaking.equals("off"))) {
 			computerSixSidedRollFromLeft1();							  		  	  	
 		}
-		else if (attackDamage == 2 || cureResult == 2) {
+		else if ((attackDamage == 2 && preventattackdamagediefromleaking.equals("off")) || (cureResult == 2 && preventcureresultdiefromleaking.equals("off"))) {
 			computerSixSidedRollFromLeft2();
 		}
-		else if (attackDamage == 3 || cureResult == 3) {
+		else if ((attackDamage == 3 && preventattackdamagediefromleaking.equals("off")) || (cureResult == 3 && preventcureresultdiefromleaking.equals("off"))) {
 			computerSixSidedRollFromLeft3();
 		}
-		else if (attackDamage == 4 || cureResult == 4) {
+		else if ((attackDamage == 4 && preventattackdamagediefromleaking.equals("off")) || (cureResult == 4 && preventcureresultdiefromleaking.equals("off"))) {
 			computerSixSidedRollFromLeft4();
 		}
-		else if (attackDamage == 5 || cureResult == 5) {
+		else if ((attackDamage == 5 && preventattackdamagediefromleaking.equals("off")) || (cureResult == 5 && preventcureresultdiefromleaking.equals("off"))) {
 			computerSixSidedRollFromLeft5();
 		}
-		else if (attackDamage == 6 || cureResult == 6) {
+		else if ((attackDamage == 6 && preventattackdamagediefromleaking.equals("off")) || (cureResult == 6 && preventcureresultdiefromleaking.equals("off"))) {
 			computerSixSidedRollFromLeft6();
-		}		
+		}
+		return attackDamage;		
 	}
 	
 	
@@ -3764,6 +4140,10 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  			gameEngine();
 	  	  			
 	  	  			
+	  	  			
+	  	  			preventinitiativediefromleaking.equals("on");
+	  	  			
+	  	  			
 	  	  			//Thread myThread = new Thread(myRunnable);
 	  	  			//myThread.start();
   		  	  		
@@ -3831,7 +4211,7 @@ public class MainActivity2 extends ActionBarActivity {
 					
 					if (canHasDisarmed[1].equals("no")) {						
 			  	  	  			
-		  	  	  		attackResult = (int) (Math.random() * 20) + 1;					
+		  	  	  		ArrayOfAttackResult.attackResult[0] = (int) (Math.random() * 20) + 1;					
 						
 						centerscrolltext.setVisibility(View.VISIBLE);													
 				  		centerscrolltext.startAnimation(animAlphaText);
@@ -3859,10 +4239,10 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  	  			
 						  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 								  		centerscrolltext.startAnimation(animAlphaText);
-										centerscrolltext.append("\n" + "> The computer rolls a " + attackResult + "!");
+										centerscrolltext.append("\n" + "> The computer rolls a " + ArrayOfAttackResult.attackResult[0] + "!");
 										
 							
-										if (attackResult >= 20) {
+										if (ArrayOfAttackResult.attackResult[0] >= 20) {
 											
 											computerCriticalHit();
 											return;
@@ -3870,7 +4250,7 @@ public class MainActivity2 extends ActionBarActivity {
 										
 										if (canHasDisarmed[0].equals("no")) {
 										
-											if (attackResult >= 14 && attackResult <= 19) {
+											if (ArrayOfAttackResult.attackResult[0] >= 14 && ArrayOfAttackResult.attackResult[0] <= 19) {
 												
 												final Handler h = new Handler();
 									  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -4018,7 +4398,7 @@ public class MainActivity2 extends ActionBarActivity {
 									  	  	  	}, 2000);																				
 											}
 											
-											if (attackResult < 14 && attackResult > 1) {
+											if (ArrayOfAttackResult.attackResult[0] < 14 && ArrayOfAttackResult.attackResult[0] > 1) {
 												
 												final Handler h = new Handler();
 									  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -4061,7 +4441,7 @@ public class MainActivity2 extends ActionBarActivity {
 									  	  	  	}, 2000);												
 											}
 											
-											if (attackResult <= 1) {
+											if (ArrayOfAttackResult.attackResult[0] <= 1) {
 												
 												final Handler h = new Handler();
 									  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -4081,7 +4461,7 @@ public class MainActivity2 extends ActionBarActivity {
 										
 										if (canHasDisarmed[0].equals("yes")) {
 											
-											if (attackResult >= 12 && attackResult <= 19) {
+											if (ArrayOfAttackResult.attackResult[0] >= 12 && ArrayOfAttackResult.attackResult[0] <= 19) {
 												
 												final Handler h = new Handler();
 									  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -4229,7 +4609,7 @@ public class MainActivity2 extends ActionBarActivity {
 									  	  	  	}, 2000);																			
 											}
 											
-											if (attackResult < 12 && attackResult > 1) {
+											if (ArrayOfAttackResult.attackResult[0] < 12 && ArrayOfAttackResult.attackResult[0] > 1) {
 												
 												final Handler h = new Handler();
 									  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -4272,7 +4652,7 @@ public class MainActivity2 extends ActionBarActivity {
 									  	  	  	}, 2000);											
 											}
 											
-											if (attackResult <= 1) {
+											if (ArrayOfAttackResult.attackResult[0] <= 1) {
 												
 												final Handler h = new Handler();
 									  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -4297,7 +4677,7 @@ public class MainActivity2 extends ActionBarActivity {
 					
 					if (canHasDisarmed[1].equals("yes")) {						
 			  	  	  			
-		  	  	  		attackResult = (int) (Math.random() * 20) + 1;
+		  	  	  		ArrayOfAttackResult.attackResult[0] = (int) (Math.random() * 20) + 1;
 						
 						centerscrolltext.setVisibility(View.VISIBLE);													
 				  		centerscrolltext.startAnimation(animAlphaText);
@@ -4322,10 +4702,10 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  	  			
 						  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 								  		centerscrolltext.startAnimation(animAlphaText);
-										centerscrolltext.append("\n" + "> The computer rolls a " + attackResult + "!");
+										centerscrolltext.append("\n" + "> The computer rolls a " + ArrayOfAttackResult.attackResult[0] + "!");
 										
 							
-										if (attackResult >= 20) {
+										if (ArrayOfAttackResult.attackResult[0] >= 20) {
 											
 											computerCriticalHit();
 											return;
@@ -4333,7 +4713,7 @@ public class MainActivity2 extends ActionBarActivity {
 										
 										if (canHasDisarmed[0].equals("no")) {
 										
-											if (attackResult >= 15 && attackResult <= 19) { // -1 to-hit for being disarmed.
+											if (ArrayOfAttackResult.attackResult[0] >= 15 && ArrayOfAttackResult.attackResult[0] <= 19) { // -1 to-hit for being disarmed.
 												
 												final Handler h = new Handler();
 									  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -4481,7 +4861,7 @@ public class MainActivity2 extends ActionBarActivity {
 									  	  	  	}, 2000);																				
 											}
 											
-											if (attackResult < 15 && attackResult >= 1) {
+											if (ArrayOfAttackResult.attackResult[0] < 15 && ArrayOfAttackResult.attackResult[0] >= 1) {
 												
 												final Handler h = new Handler();
 									  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -4540,7 +4920,7 @@ public class MainActivity2 extends ActionBarActivity {
 										
 										if (canHasDisarmed[0].equals("yes")) {
 											
-											if (attackResult >= 13 && attackResult <= 19) { // -1 to-hit for being disarmed but, +2 because computer is disarmed (+1 total)
+											if (ArrayOfAttackResult.attackResult[0] >= 13 && ArrayOfAttackResult.attackResult[0] <= 19) { // -1 to-hit for being disarmed but, +2 because computer is disarmed (+1 total)
 												
 												final Handler h = new Handler();
 									  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -4688,7 +5068,7 @@ public class MainActivity2 extends ActionBarActivity {
 									  	  	  	}, 2000);												
 											}
 											
-											if (attackResult < 13 && attackResult >= 1) {
+											if (ArrayOfAttackResult.attackResult[0] < 13 && ArrayOfAttackResult.attackResult[0] >= 1) {
 												
 												final Handler h = new Handler();
 									  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -4979,6 +5359,14 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
+		//Globals g = Globals.getInstance();
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+		SharedPreferences.Editor editor = preferences.edit();		
+		editor.putInt("attackDamage", (int) ((Math.random() * 6) + 1));
+		editor.apply();
+		
+		//attackDamage = g.setDataAttackDamage((int) ((Math.random() * 6) + 1)); 
+		
 		runOnUiThread(new Runnable() {
   	  	    @Override
   	  	    public void run() {
@@ -4987,14 +5375,9 @@ public class MainActivity2 extends ActionBarActivity {
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 	  			
 	  			final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-	  			centerscrolltext.setTypeface(typeFace);		
-				
-				
-	  			attackDamage = (int) ((Math.random() * 6) + 1);
+	  			centerscrolltext.setTypeface(typeFace);				
 	  			
-				//int result = (int) ((Math.random() * 6) + 1);
-				//attackDamage = result;
-	  			
+	  			preventattackdamagediefromleaking = "off";
 	  			
 	  			mightyBlowGraphic();  					  	  	  	
 						  	  	
@@ -5006,8 +5389,9 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  	  	public void run() {
 	  	  	  			
 		  	  	  		final TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
-		  	  	  		mightyBlowGraphic.setVisibility(View.INVISIBLE);
-	  	  	  			
+		  	  	  		mightyBlowGraphic.setVisibility(View.INVISIBLE);		  	  	  	
+		  	  	  		
+		  	  	  		
 	  	  	  			computerRolls6SidedDie();
 	  	  	  			
 	  	  	  			
@@ -5015,7 +5399,13 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 			  	  	  			
 			  	  	  		@Override
-				  	  	  	public void run() {	  	  	  			
+				  	  	  	public void run() {
+			  	  	  			
+			  	  	  			preventattackdamagediefromleaking = "on";				  	  	  		
+			  	  	  			
+			  	  	  			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+			  	  	  			//SharedPreferences.Editor editor = preferences.edit();
+			  	  	  			int attackDamage = preferences.getInt("attackDamage", 0);
 			  	  	  			
 				  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 						  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -5026,6 +5416,10 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  	  			
 					  	  	  		@Override
 						  	  	  	public void run() {
+					  	  	  			
+					  	  	  			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+					  	  	  			//SharedPreferences.Editor editor = preferences.edit();
+					  	  	  			int attackDamage = preferences.getInt("attackDamage", 0);
 					  	  	  			
 						  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 								  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -5208,12 +5602,14 @@ public class MainActivity2 extends ActionBarActivity {
 						// NO MB
 						else {
 							
-							iscomputerblessrolled = "no";
+							iscomputerblessrolled = "no";			  				
 			  				
-			  				//int result = (int) ((Math.random() * 6) + 1);
-							//attackDamage = result;
+							SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+							SharedPreferences.Editor editor = preferences.edit();		
+							editor.putInt("attackDamage", (int) ((Math.random() * 6) + 1));
+							editor.apply();
 			  				
-			  				attackDamage = (int) ((Math.random() * 6) + 1);
+			  				preventattackdamagediefromleaking = "off";
 			  				
 			  				centerscrolltext.setVisibility(View.VISIBLE);													
 					  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -5233,6 +5629,13 @@ public class MainActivity2 extends ActionBarActivity {
 						  	  	  			
 						  	  	  		@Override
 							  	  	  	public void run() {
+						  	  	  			
+						  	  	  			preventattackdamagediefromleaking = "on";						  	  	  			
+						  	  	  			
+						  	  	  			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+						  	  	  			//SharedPreferences.Editor editor = preferences.edit();
+						  	  	  			int attackDamage = preferences.getInt("attackDamage", 0);
+						  	  	  			
 						  	  	  			
 							  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 									  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -5404,10 +5807,12 @@ public class MainActivity2 extends ActionBarActivity {
 							
 							iscomputerblessrolled = "no";
 			  				
-			  				//int result = (int) ((Math.random() * 6) + 1);
-							//attackDamage = result;
+							SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+							SharedPreferences.Editor editor = preferences.edit();		
+							editor.putInt("attackDamage", (int) ((Math.random() * 6) + 1));
+							editor.apply();
 			  				
-			  				attackDamage = (int) ((Math.random() * 6) + 1);
+			  				preventattackdamagediefromleaking = "off";
 			  				
 			  				centerscrolltext.setVisibility(View.VISIBLE);													
 					  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -5427,6 +5832,12 @@ public class MainActivity2 extends ActionBarActivity {
 						  	  	  			
 						  	  	  		@Override
 							  	  	  	public void run() {
+						  	  	  			
+						  	  	  			preventattackdamagediefromleaking = "on";
+						  	  	  			
+						  	  	  			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+						  	  	  			//SharedPreferences.Editor editor = preferences.edit();
+						  	  	  			int attackDamage = preferences.getInt("attackDamage", 0);
 						  	  	  			
 							  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 									  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -5577,10 +5988,12 @@ public class MainActivity2 extends ActionBarActivity {
 	  				
 	  				iscomputerblessrolled = "no";
 	  				
-	  				//int result = (int) ((Math.random() * 6) + 1);
-					//attackDamage = result;
+	  				SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+	  				SharedPreferences.Editor editor = preferences.edit();		
+	  				editor.putInt("attackDamage", (int) ((Math.random() * 6) + 1));
+	  				editor.apply();
 	  				
-	  				attackDamage = (int) ((Math.random() * 6) + 1);
+	  				preventattackdamagediefromleaking = "off";
 	  				
 	  				centerscrolltext.setVisibility(View.VISIBLE);													
 			  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -5600,6 +6013,12 @@ public class MainActivity2 extends ActionBarActivity {
 				  	  	  			
 				  	  	  		@Override
 					  	  	  	public void run() {
+				  	  	  			
+				  	  	  			preventattackdamagediefromleaking = "on";
+				  	  	  			
+				  	  	  			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+				  	  	  			//SharedPreferences.Editor editor = preferences.edit();
+				  	  	  			int attackDamage = preferences.getInt("attackDamage", 0);
 				  	  	  			
 					  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 							  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -5765,11 +6184,12 @@ public class MainActivity2 extends ActionBarActivity {
 				skillsCheck();
 				
 				
-				cureResult = (int)(Math.random()*6)+1;
+				SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+				SharedPreferences.Editor editor = preferences.edit();
+				editor.putInt("cureResult", (int) ((Math.random() * 6) + 1));
+				editor.apply();
 				
-				//int result = (int) ((Math.random() * 10) + 1);				
-				//cureResult = result;
-				//final int cure = result;
+				preventcureresultdiefromleaking = "off";
 				
 				
 				cureGraphic();	  	  					  	  	  	
@@ -5792,6 +6212,12 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  			
 			  	  	  		@Override
 				  	  	  	public void run() {
+			  	  	  			
+			  	  	  			preventcureresultdiefromleaking = "on";
+			  	  	  			
+			  	  	  			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+			  	  	  			//SharedPreferences.Editor editor = preferences.edit();
+			  	  	  			int cureResult = preferences.getInt("cureResult", 0);
 			  	  	  			
 				  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 						  		centerscrolltext.startAnimation(animAlphaText);
@@ -5841,7 +6267,7 @@ public class MainActivity2 extends ActionBarActivity {
 				  	  	  	}
 			  	  	  	}, 2000);
 		  	  	  	}
-	  	  	  	}, 3000);		  	  	  						  	  	  			
+	  	  	  	}, 6000);		  	  	  						  	  	  			
   	  	    }
 		});		
 	}
@@ -5881,7 +6307,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  			
 		  	  	  		if (canHasDisarmed[0].equals("no")) {
 		  					
-							attackResult = (int) ((Math.random() * 20) + 1);
+							ArrayOfAttackResult.attackResult[0] = (int) ((Math.random() * 20) + 1);
 							
 							centerscrolltext.setVisibility(View.VISIBLE);													
 					  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -5906,16 +6332,16 @@ public class MainActivity2 extends ActionBarActivity {
 						  	  	  			
 							  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 									  		centerscrolltext.startAnimation(animAlphaText);			  		
-											centerscrolltext.append("\n" + "> The computer player rolls a " + attackResult + ", +2 for the Bless Spell = " + (attackResult + 2));
+											centerscrolltext.append("\n" + "> The computer player rolls a " + ArrayOfAttackResult.attackResult[0] + ", +2 for the Bless Spell = " + (ArrayOfAttackResult.attackResult[0] + 2));
 											
 									
-											if (attackResult >= 20) {
+											if (ArrayOfAttackResult.attackResult[0] >= 20) {
 												
 												computerCriticalHit();
 												return;
 											}
 									
-											if (attackResult >= 12 && attackResult <= 19) {
+											if (ArrayOfAttackResult.attackResult[0] >= 12 && ArrayOfAttackResult.attackResult[0] <= 19) {
 												
 												final Handler h = new Handler();
 									  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -6058,7 +6484,7 @@ public class MainActivity2 extends ActionBarActivity {
 									  	  	  	}, 2000);										
 											}
 									
-											if (attackResult < 12 && attackResult > 0) {
+											if (ArrayOfAttackResult.attackResult[0] < 12 && ArrayOfAttackResult.attackResult[0] > 0) {
 												
 												final Handler h = new Handler();
 									  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -6107,9 +6533,9 @@ public class MainActivity2 extends ActionBarActivity {
 						
 						else if (canHasDisarmed[0].equals("yes")) {					
 							
-							attackResult = (int) ((Math.random() * 20) + 1);
+							ArrayOfAttackResult.attackResult[0] = (int) ((Math.random() * 20) + 1);
 							
-							int computerAttackResultAgainstDisarmed = (attackResult + 2);
+							int computerAttackResultAgainstDisarmed = (ArrayOfAttackResult.attackResult[0] + 2);
 							
 							final int computerAttackResultAgainstDisarmedPlusBless = (computerAttackResultAgainstDisarmed + 2);
 							
@@ -6136,16 +6562,16 @@ public class MainActivity2 extends ActionBarActivity {
 						  	  	  			
 							  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 									  		centerscrolltext.startAnimation(animAlphaText);			  		
-											centerscrolltext.append("\n" + "> The computer player rolls a " + attackResult + " +4 = " + computerAttackResultAgainstDisarmedPlusBless);
+											centerscrolltext.append("\n" + "> The computer player rolls a " + ArrayOfAttackResult.attackResult[0] + " +4 = " + computerAttackResultAgainstDisarmedPlusBless);
 											
 									
-											if (attackResult >= 20) {
+											if (ArrayOfAttackResult.attackResult[0] >= 20) {
 												
 												computerCriticalHit();
 												return;
 											}
 									
-											if (attackResult >= 10 && attackResult <= 19) {
+											if (ArrayOfAttackResult.attackResult[0] >= 10 && ArrayOfAttackResult.attackResult[0] <= 19) {
 												
 												final Handler h = new Handler();
 									  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -6289,7 +6715,7 @@ public class MainActivity2 extends ActionBarActivity {
 									  	  	  	}, 2000);										
 											}
 									
-											if (attackResult < 10 && attackResult > 0) {
+											if (ArrayOfAttackResult.attackResult[0] < 10 && ArrayOfAttackResult.attackResult[0] > 0) {
 												
 												final Handler h = new Handler();
 									  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -6377,7 +6803,7 @@ public class MainActivity2 extends ActionBarActivity {
 			  			
 			  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 				  		centerscrolltext.startAnimation(animAlphaText);			  		
-						centerscrolltext.append("\n" + "> TWO ATTACKS!");
+						centerscrolltext.append("\n" + "> TWO attacks!");
 						
 						/*
 						System.out.println("     /\\___________           ___________/\\");
@@ -6467,7 +6893,7 @@ public class MainActivity2 extends ActionBarActivity {
 				
 	  	  	  	
 				// COMPUTER MUST BE ARMED AT THIS POINT.
-				attackResult = (int) (Math.random() * 20) + 1;
+				ArrayOfAttackResult.attackResult[0] = (int) (Math.random() * 20) + 1;
 				
 				final Handler h = new Handler();
 	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -6498,10 +6924,10 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  	  			
 						  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 								  		centerscrolltext.startAnimation(animAlphaText);
-										centerscrolltext.append("\n" + "> The computer rolls a " + attackResult + "!");
+										centerscrolltext.append("\n" + "> The computer rolls a " + ArrayOfAttackResult.attackResult[0] + "!");
 										
 							
-										if (attackResult >= 20) {
+										if (ArrayOfAttackResult.attackResult[0] >= 20) {
 											
 											computerCriticalHit();
 											return;
@@ -6510,7 +6936,7 @@ public class MainActivity2 extends ActionBarActivity {
 										
 										if (canHasDisarmed[0].equals("no")) {
 										
-											if (attackResult >= 14 && attackResult <= 19) {
+											if (ArrayOfAttackResult.attackResult[0] >= 14 && ArrayOfAttackResult.attackResult[0] <= 19) {
 												
 												final Handler h = new Handler();
 									  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -6522,13 +6948,143 @@ public class MainActivity2 extends ActionBarActivity {
 												  		centerscrolltext.startAnimation(animAlphaText);
 														centerscrolltext.append("\n" + "> The computer's attack hits!");		
 														
-														computerDamage();
-														return;
+														final Handler h3 = new Handler();
+											  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
+											  	  	  			
+											  	  	  		@Override
+												  	  	  	public void run() {
+											  	  	  			
+												  	  	  		if (dodgeBlowSpell[0] > 0) {
+																	/*
+																	centerscrolltext.setVisibility(View.VISIBLE);													
+															  		centerscrolltext.startAnimation(animAlphaText);			  		
+																	centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", do you want to dodge?");
+																	*/
+																	
+																	AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+														  			
+														  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", Do you want to use your Dodge spell?");
+														  	    	/*
+														  	    	alert.setMessage("something");
+														  	    	*/	  	    	
+														  	    	
+														  	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+														  		    	public void onClick(DialogInterface dialog, int whichButton) {	  		    		
+														  		    		
+														  		    		/*
+														  		    		//NEED THIS??????????????????
+														  		    		if (dodgeBlowSpell[0] < 1) {
+														  		    			
+														  		    			hideNavigation();
+														  						
+														  						centerscrolltext.setVisibility(View.VISIBLE);													
+														  				  		centerscrolltext.startAnimation(animAlphaText);			  		
+														  						centerscrolltext.append("\n" + "> You have already used your Dodge spell!");
+														  						
+														  						//break;
+														  					}
+														  		    		*/
+														  		    		
+														  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
+														  		    		
+														  		    		centerscrolltext.setVisibility(View.VISIBLE);													
+																	  		centerscrolltext.startAnimation(animAlphaText);
+																			centerscrolltext.append("\n" + "> You dodge the hit!");
+														  		    		
+														  		    		skillsCheck();
+														  		    		
+															  		    	// Use a blank drawable to hide the imageview animation:
+															  		    	// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+															  		    	ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
+															  		    	img.setBackgroundResource(R.drawable.twentytwentyblank);
+															  		    	img.setImageResource(R.drawable.twentytwentyblank);
+														  		    		
+														  		    		dodgeGraphic();
+														  		    		
+														  		    		final Handler h = new Handler();
+																  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+																  	  	  			
+																  	  	  		@Override
+																	  	  	  	public void run() {
+																  	  	  			
+																	  	  	  		final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
+																  	  	  			dodgeGraphic.setVisibility(View.INVISIBLE);
+																  	  	  			
+																	  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
+																	  	    			
+																	  	    			gameEngineComputerFirst2();   							
+																	  				}
+												
+																				  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
+																				  						
+																				  		turn();    							
+																				  	}
+																				  	if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
+																				  	    			
+																				  		computerHastePartTwo();   							
+																				  	}
+															
+																				  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
+																				  						
+																				  		computerHastePartTwo();    							
+																				  	}								  		    		
+																  					return;
+																	  	  	  	}
+																  	  	  	}, 3000);														  		    		
+														  		    	}
+														  	    	});
+														  	    	
+														  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+														          	  public void onClick(DialogInterface dialog, int whichButton) {
+														          		  
+														          		  	hideNavigation();
+														          		  	
+														          		  	computerDamage();								          		  	
+														          		  	return;
+														          	  }
+														          	});	  	    	
+														  	    	
+														  	    	alert.show();
+																	
+																	/*
+																	String s = input.next();
+																	char selection = s.charAt(0);
+																	
+																	switch (selection) {
+																	case 'y':
+																	case 'Y':
+																		
+																		if (dodgeBlowSpell[0] < 1) {
+																			
+																			centerscrolltext.setVisibility(View.VISIBLE);													
+																	  		centerscrolltext.startAnimation(animAlphaText);			  		
+																			centerscrolltext.append("\n" + "> You have already used your Dodge Blow spell!");
+																			
+																			break;
+																		}
+																		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
+																		return dodgeBlowSpell;
+																	case 'n':
+																	case 'N':
+																		break;
+																	default:
+																		computerDamage(i, gameOn);
+																	}
+																	*/
+																}
+												  	  	  		
+												  	  	  		else {
+												  	  	  			
+													  	  	  		computerDamage();
+																	return;						  	  	  			
+												  	  	  		}
+												  	  	  	}
+											  	  	  	}, 2000);
 										  	  	  	}
 									  	  	  	}, 2000);												
 											}
 											
-											if (attackResult < 14 && attackResult > 1) {
+											if (ArrayOfAttackResult.attackResult[0] < 14 && ArrayOfAttackResult.attackResult[0] > 1) {
 												
 												final Handler h = new Handler();
 									  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -6562,7 +7118,7 @@ public class MainActivity2 extends ActionBarActivity {
 									  	  	  	}, 2000);											
 											}
 											
-											if (attackResult <= 1) {
+											if (ArrayOfAttackResult.attackResult[0] <= 1) {
 												
 												final Handler h = new Handler();
 									  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -6579,7 +7135,7 @@ public class MainActivity2 extends ActionBarActivity {
 										
 										if (canHasDisarmed[0].equals("yes")) {
 											
-											if (attackResult >= 12 && attackResult <= 19) {
+											if (ArrayOfAttackResult.attackResult[0] >= 12 && ArrayOfAttackResult.attackResult[0] <= 19) {
 												
 												final Handler h = new Handler();
 									  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -6591,13 +7147,143 @@ public class MainActivity2 extends ActionBarActivity {
 												  		centerscrolltext.startAnimation(animAlphaText);
 														centerscrolltext.append("\n" + "> The computer's attack hits!");			
 														
-														computerDamage();
-														return;
+														final Handler h5 = new Handler();
+											  	  	  	h5.postDelayed(new Runnable() {		  	  	  			
+											  	  	  			
+											  	  	  		@Override
+												  	  	  	public void run() {
+											  	  	  			
+												  	  	  		if (dodgeBlowSpell[0] > 0) {
+																	/*
+																	centerscrolltext.setVisibility(View.VISIBLE);													
+															  		centerscrolltext.startAnimation(animAlphaText);			  		
+																	centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", do you want to dodge?");
+																	*/
+																	
+																	AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+														  			
+														  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", Do you want to use your Dodge spell?");
+														  	    	/*
+														  	    	alert.setMessage("something");
+														  	    	*/	  	    	
+														  	    	
+														  	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+														  		    	public void onClick(DialogInterface dialog, int whichButton) {	  		    		
+														  		    		
+														  		    		/*
+														  		    		//NEED THIS??????????????????
+														  		    		if (dodgeBlowSpell[0] < 1) {
+														  		    			
+														  		    			hideNavigation();
+														  						
+														  						centerscrolltext.setVisibility(View.VISIBLE);													
+														  				  		centerscrolltext.startAnimation(animAlphaText);			  		
+														  						centerscrolltext.append("\n" + "> You have already used your Dodge spell!");
+														  						
+														  						//break;
+														  					}
+														  		    		*/
+														  		    		
+														  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
+														  		    		
+														  		    		centerscrolltext.setVisibility(View.VISIBLE);													
+																	  		centerscrolltext.startAnimation(animAlphaText);
+																			centerscrolltext.append("\n" + "> You dodge the hit!");
+														  		    		
+														  		    		skillsCheck();
+														  		    		
+															  		    	// Use a blank drawable to hide the imageview animation:
+															  		    	// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+															  		    	ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
+															  		    	img.setBackgroundResource(R.drawable.twentytwentyblank);
+															  		    	img.setImageResource(R.drawable.twentytwentyblank);
+														  		    		
+														  		    		dodgeGraphic();
+														  		    		
+														  		    		final Handler h = new Handler();
+																  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+																  	  	  			
+																  	  	  		@Override
+																	  	  	  	public void run() {
+																  	  	  			
+																	  	  	  		final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
+																  	  	  			dodgeGraphic.setVisibility(View.INVISIBLE);
+																  	  	  			
+																	  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
+																	  	    			
+																	  	    			gameEngineComputerFirst2();   							
+																	  				}
+												
+																				  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
+																				  						
+																				  		turn();    							
+																				  	}
+																				  	if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
+																				  	    			
+																				  		computerHastePartTwo();   							
+																				  	}
+															
+																				  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
+																				  						
+																				  		computerHastePartTwo();  							
+																				  	}								  		    		
+																  					//return;
+																	  	  	  	}
+																  	  	  	}, 3000);											  		    		
+														  		    	}
+														  	    	});
+														  	    	
+														  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+														          	  public void onClick(DialogInterface dialog, int whichButton) {
+														          		  
+														          		  	hideNavigation();
+														          		  	
+														          		  	computerDamage();								          		  	
+														          		  	//return;
+														          	  }
+														          	});	  	    	
+														  	    	
+														  	    	alert.show();
+																	
+																	/*
+																	String s = input.next();
+																	char selection = s.charAt(0);
+																	
+																	switch (selection) {
+																	case 'y':
+																	case 'Y':
+																		
+																		if (dodgeBlowSpell[0] < 1) {
+																			
+																			centerscrolltext.setVisibility(View.VISIBLE);													
+																	  		centerscrolltext.startAnimation(animAlphaText);			  		
+																			centerscrolltext.append("\n" + "> You have already used your Dodge Blow spell!");
+																			
+																			break;
+																		}
+																		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
+																		return dodgeBlowSpell;
+																	case 'n':
+																	case 'N':
+																		break;
+																	default:
+																		computerDamage(i, gameOn);
+																	}
+																	*/
+																}
+												  	  	  		
+												  	  	  		else {
+												  	  	  			
+													  	  	  		computerDamage();
+																	//return;						  	  	  			
+												  	  	  		}
+												  	  	  	}
+											  	  	  	}, 2000);
 										  	  	  	}
 									  	  	  	}, 2000);												
 											}
 											
-											if (attackResult < 12 && attackResult > 1) {
+											if (ArrayOfAttackResult.attackResult[0] < 12 && ArrayOfAttackResult.attackResult[0] > 1) {
 												
 												final Handler h = new Handler();
 									  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -6631,7 +7317,7 @@ public class MainActivity2 extends ActionBarActivity {
 									  	  	  	}, 2000);												
 											}
 											
-											if (attackResult <= 1) {
+											if (ArrayOfAttackResult.attackResult[0] <= 1) {
 												
 												final Handler h = new Handler();
 									  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -6698,7 +7384,7 @@ public class MainActivity2 extends ActionBarActivity {
 				  	  	  		final TextView blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
 			  	  	  			blessGraphic.setVisibility(View.INVISIBLE);
 			  	  	  			
-			  	  	  			attackResult = (int) ((Math.random() * 20) + 1);attackResult = (int) ((Math.random() * 20) + 1);
+			  	  	  			ArrayOfAttackResult.attackResult[0] = (int) ((Math.random() * 20) + 1);
 			  	  	  			
 			  	  	  			computerRolls20SidedDie();
 			  	  	  			
@@ -6710,10 +7396,10 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  	  			
 						  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 								  		centerscrolltext.startAnimation(animAlphaText);			  		
-										centerscrolltext.append("\n" + "> The computer rolls a " + attackResult + ", +2 for the Bless Spell = " + (attackResult + 2));
+										centerscrolltext.append("\n" + "> The computer rolls a " + ArrayOfAttackResult.attackResult[0] + ", +2 for the Bless Spell = " + (ArrayOfAttackResult.attackResult[0] + 2));
 										
 						
-										if (attackResult >= 15) {
+										if (ArrayOfAttackResult.attackResult[0] >= 15) {
 											
 											canHasDisarmed[0] = "yes";
 						
@@ -6755,7 +7441,7 @@ public class MainActivity2 extends ActionBarActivity {
 								  	  	  	}, 2000);											
 										}
 						
-										if (attackResult <= 14 && attackResult > 0) {
+										if (ArrayOfAttackResult.attackResult[0] <= 14 && ArrayOfAttackResult.attackResult[0] > 0) {
 											
 											final Handler h = new Handler();
 								  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -6810,7 +7496,7 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  		@Override
 				  	  	  	public void run() {
 			  	  	  			
-				  	  	  		attackResult = (int) ((Math.random() * 20) + 1);
+				  	  	  		ArrayOfAttackResult.attackResult[0] = (int) ((Math.random() * 20) + 1);
 								
 								computerRolls20SidedDie();
 								
@@ -6822,10 +7508,10 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  	  			
 						  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 								  		centerscrolltext.startAnimation(animAlphaText);			  		
-										centerscrolltext.append("\n" + "> The computer rolls a " + attackResult + "!");
+										centerscrolltext.append("\n" + "> The computer rolls a " + ArrayOfAttackResult.attackResult[0] + "!");
 										
 						
-										if (attackResult >= 17) {
+										if (ArrayOfAttackResult.attackResult[0] >= 17) {
 											
 											canHasDisarmed[0] = "yes";
 						
@@ -6867,7 +7553,7 @@ public class MainActivity2 extends ActionBarActivity {
 								  	  	  	}, 2000);								
 										}
 						
-										if (attackResult <= 16 && attackResult > 1) {
+										if (ArrayOfAttackResult.attackResult[0] <= 16 && ArrayOfAttackResult.attackResult[0] > 1) {
 											
 											final Handler h = new Handler();
 								  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -6902,7 +7588,7 @@ public class MainActivity2 extends ActionBarActivity {
 									  	  	  	}
 								  	  	  	}, 2000);									
 										}
-										if (attackResult <= 1) {
+										if (ArrayOfAttackResult.attackResult[0] <= 1) {
 											
 											final Handler h = new Handler();
 								  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -6932,7 +7618,7 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  	  		@Override
 			  	  	  	public void run() {
 		  	  	  			
-			  	  	  		attackResult = (int) ((Math.random() * 20) + 1);
+			  	  	  		ArrayOfAttackResult.attackResult[0] = (int) ((Math.random() * 20) + 1);
 							
 							computerRolls20SidedDie();
 							
@@ -6944,10 +7630,10 @@ public class MainActivity2 extends ActionBarActivity {
 				  	  	  			
 					  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 							  		centerscrolltext.startAnimation(animAlphaText);			  		
-									centerscrolltext.append("\n" + "> The computer rolls a " + attackResult + "!");
+									centerscrolltext.append("\n" + "> The computer rolls a " + ArrayOfAttackResult.attackResult[0] + "!");
 									
 						
-									if (attackResult >= 17) {
+									if (ArrayOfAttackResult.attackResult[0] >= 17) {
 										
 										canHasDisarmed[0] = "yes";
 						
@@ -6989,7 +7675,7 @@ public class MainActivity2 extends ActionBarActivity {
 							  	  	  	}, 2000);							
 									}
 						
-									if (attackResult <= 16 && attackResult > 1) {
+									if (ArrayOfAttackResult.attackResult[0] <= 16 && ArrayOfAttackResult.attackResult[0] > 1) {
 										
 										final Handler h = new Handler();
 							  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -7024,7 +7710,7 @@ public class MainActivity2 extends ActionBarActivity {
 							  	  	  	}, 2000);								
 									}
 									
-									if (attackResult <= 1) {
+									if (ArrayOfAttackResult.attackResult[0] <= 1) {
 										
 										final Handler h = new Handler();
 							  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -7193,7 +7879,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  			centerscrolltext.setTypeface(typeFace);
 	  			
 	  			
-	  			attackResult = (int) ((Math.random() * 20) + 1);
+	  			ArrayOfAttackResult.attackResult[0] = (int) ((Math.random() * 20) + 1);
   	  	    	
 	  			
 	  			final Handler h = new Handler();
@@ -7212,10 +7898,10 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  			
 				  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 						  		centerscrolltext.startAnimation(animAlphaText);
-								centerscrolltext.append("\n" + "> The computer rolls a " + attackResult + "!");
+								centerscrolltext.append("\n" + "> The computer rolls a " + ArrayOfAttackResult.attackResult[0] + "!");
 								
 								
-								if (attackResult >= 20) {
+								if (ArrayOfAttackResult.attackResult[0] >= 20) {
 									
 									computerCriticalHitDisarmed();
 									return;
@@ -7223,7 +7909,7 @@ public class MainActivity2 extends ActionBarActivity {
 								
 								if (canHasDisarmed[0].equals("no")) {
 									
-									if (attackResult >= 15 && attackResult <= 19) { // -1 to-hit for being disarmed.
+									if (ArrayOfAttackResult.attackResult[0] >= 15 && ArrayOfAttackResult.attackResult[0] <= 19) { // -1 to-hit for being disarmed.
 										
 										final Handler h = new Handler();
 							  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -7364,7 +8050,7 @@ public class MainActivity2 extends ActionBarActivity {
 							  	  	  	}, 2000);																		
 									}
 									
-									if (attackResult < 15 && attackResult >= 1) {
+									if (ArrayOfAttackResult.attackResult[0] < 15 && ArrayOfAttackResult.attackResult[0] >= 1) {
 										
 										final Handler h = new Handler();
 							  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -7415,7 +8101,7 @@ public class MainActivity2 extends ActionBarActivity {
 								
 								if (canHasDisarmed[0].equals("yes")) {
 									
-									if (attackResult >= 13 && attackResult <= 19) { // -1 to-hit for being disarmed but, +2 because computer is disarmed (+1 total)
+									if (ArrayOfAttackResult.attackResult[0] >= 13 && ArrayOfAttackResult.attackResult[0] <= 19) { // -1 to-hit for being disarmed but, +2 because computer is disarmed (+1 total)
 										
 										final Handler h = new Handler();
 							  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -7556,7 +8242,7 @@ public class MainActivity2 extends ActionBarActivity {
 							  	  	  	}, 2000);										
 									}
 									
-									if (attackResult < 13 && attackResult >= 1) {
+									if (ArrayOfAttackResult.attackResult[0] < 13 && ArrayOfAttackResult.attackResult[0] >= 1) {
 										
 										final Handler h = new Handler();
 							  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -7722,6 +8408,11 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	public void computerMightyBlowDisarmed() {// WAS int[]					
 		
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+		SharedPreferences.Editor editor = preferences.edit();		
+		editor.putInt("attackDamage", (int) ((Math.random() * 6) + 1));
+		editor.apply();
+		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
 		runOnUiThread(new Runnable() {
@@ -7732,13 +8423,15 @@ public class MainActivity2 extends ActionBarActivity {
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 	  			
 	  			final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-	  			centerscrolltext.setTypeface(typeFace);
+	  			centerscrolltext.setTypeface(typeFace);	  			
 	  			
-	  			
-	  			//int result = (int) ((Math.random() * 6) + 1);
-				//attackDamage = result;
 				
-				attackDamage = (int) ((Math.random() * 6) + 1);
+				preventattackdamagediefromleaking = "off";
+				
+				SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+				//SharedPreferences.Editor editor = preferences.edit();
+				int attackDamage = preferences.getInt("attackDamage", 0);
+				
 				computerAttackDamageDisarmed = (attackDamage - 2);
 				
 				if (computerAttackDamageDisarmed < 0) {
@@ -7766,6 +8459,12 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  			
 			  	  	  		@Override
 				  	  	  	public void run() {
+			  	  	  			
+			  	  	  			preventattackdamagediefromleaking = "on";
+			  	  	  			
+			  	  	  			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+			  	  	  			//SharedPreferences.Editor editor = preferences.edit();
+			  	  	  			int attackDamage = preferences.getInt("attackDamage", 0);
 			  	  	  			
 				  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 						  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -7908,6 +8607,11 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	public void computerDamageDisarmed() {// WAS int[]				
 		
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+		SharedPreferences.Editor editor = preferences.edit();		
+		editor.putInt("attackDamage", (int) ((Math.random() * 6) + 1));
+		editor.apply();
+		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
 		runOnUiThread(new Runnable() {
@@ -7948,13 +8652,14 @@ public class MainActivity2 extends ActionBarActivity {
 							return;
 						}
 						
-						else {
+						else {						
 							
-							//int result = (int) ((Math.random() * 6) + 1);
-							//int attackDamage = result;
-							//int attackDamageDisarmed = (result - 2);
+							preventattackdamagediefromleaking = "off";
 							
-							attackDamage = (int) ((Math.random() * 6) + 1);
+							SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+							//SharedPreferences.Editor editor = preferences.edit();
+							int attackDamage = preferences.getInt("attackDamage", 0);
+							
 							computerAttackDamageDisarmed = (attackDamage - 2);
 							
 							if (computerAttackDamageDisarmed < 0) {
@@ -7981,6 +8686,12 @@ public class MainActivity2 extends ActionBarActivity {
 						  	  	  			
 						  	  	  		@Override
 							  	  	  	public void run() {
+						  	  	  			
+						  	  	  			preventattackdamagediefromleaking = "on";
+						  	  	  			
+						  	  	  			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+						  	  	  			//SharedPreferences.Editor editor = preferences.edit();
+						  	  	  			int attackDamage = preferences.getInt("attackDamage", 0);
 						  	  	  			
 							  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 									  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -8131,11 +8842,15 @@ public class MainActivity2 extends ActionBarActivity {
 						
 						else {
 							
-							//int result = (int) ((Math.random() * 6) + 1);
-							//int attackDamage = result;
-							//int attackDamageDisarmed = (result - 2);
+							//Globals g = Globals.getInstance();
+							//g.setDataAttackDamage((int) ((Math.random() * 6) + 1));
 							
-							attackDamage = (int) ((Math.random() * 6) + 1);
+							preventattackdamagediefromleaking = "off";
+							
+							SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+							//SharedPreferences.Editor editor = preferences.edit();
+							int attackDamage = preferences.getInt("attackDamage", 0);
+							
 							computerAttackDamageDisarmed = (attackDamage - 2);
 							
 							if (computerAttackDamageDisarmed < 0) {
@@ -8162,6 +8877,12 @@ public class MainActivity2 extends ActionBarActivity {
 						  	  	  			
 						  	  	  		@Override
 							  	  	  	public void run() {
+						  	  	  			
+						  	  	  			preventattackdamagediefromleaking = "on";
+						  	  	  			
+						  	  	  			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+						  	  	  			//SharedPreferences.Editor editor = preferences.edit();
+						  	  	  			int attackDamage = preferences.getInt("attackDamage", 0);
 						  	  	  			
 							  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 									  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -8291,11 +9012,15 @@ public class MainActivity2 extends ActionBarActivity {
 	  			
 	  			else {	  				
 	  				
-	  				//int result = (int) ((Math.random() * 6) + 1);
-					//int attackDamage = result;
-					//int attackDamageDisarmed = (result - 2);
+	  				//Globals g = Globals.getInstance();
+		  			//int attackDamage = g.setDataAttackDamage((int) ((Math.random() * 6) + 1));
 					
-					attackDamage = (int) ((Math.random() * 6) + 1);
+					preventattackdamagediefromleaking = "off";
+					
+					SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+					//SharedPreferences.Editor editor = preferences.edit();
+					int attackDamage = preferences.getInt("attackDamage", 0);
+					
 					computerAttackDamageDisarmed = (attackDamage - 2);
 					
 					if (computerAttackDamageDisarmed < 0) {
@@ -8322,6 +9047,12 @@ public class MainActivity2 extends ActionBarActivity {
 				  	  	  			
 				  	  	  		@Override
 					  	  	  	public void run() {
+				  	  	  			
+				  	  	  			preventattackdamagediefromleaking = "on";
+				  	  	  			
+				  	  	  			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+				  	  	  			//SharedPreferences.Editor editor = preferences.edit();
+				  	  	  			int attackDamage = preferences.getInt("attackDamage", 0);
 				  	  	  			
 					  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 							  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -8451,6 +9182,11 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	public void computerCriticalHitMightyBlowDamageDisarmed() { // WAS int[]			
 		
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+		SharedPreferences.Editor editor = preferences.edit();		
+		editor.putInt("attackDamage", (int) ((Math.random() * 6) + 1));
+		editor.apply();
+		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
 		runOnUiThread(new Runnable() {
@@ -8492,8 +9228,16 @@ public class MainActivity2 extends ActionBarActivity {
 								centerscrolltext.append("\n" + "> The computer's first roll...");												
 								
 								
-								attackDamage = (int) ((Math.random() * 6) + 1);
-								final int resultOne = attackDamage;
+								//Globals g = Globals.getInstance();
+					  			//g.setDataAttackDamage((int) ((Math.random() * 6) + 1));
+								
+								preventattackdamagediefromleaking = "off";
+								
+								SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+								//SharedPreferences.Editor editor = preferences.edit();
+								int attackDamage = preferences.getInt("attackDamage", 0);
+								
+								int resultOne = attackDamage;
 								
 								attackDamageOneDisarmed[0] = (resultOne - 2);
 								
@@ -8515,7 +9259,13 @@ public class MainActivity2 extends ActionBarActivity {
 							  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 							  	  	  			
 							  	  	  		@Override
-								  	  	  	public void run() {												  	  	  		
+								  	  	  	public void run() {
+							  	  	  			
+							  	  	  			preventattackdamagediefromleaking = "on";
+							  	  	  			
+							  	  	  			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+							  	  	  			//SharedPreferences.Editor editor = preferences.edit();
+							  					int attackDamage = preferences.getInt("attackDamage", 0);
 							  	  	  			
 								  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 										  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -8533,14 +9283,12 @@ public class MainActivity2 extends ActionBarActivity {
 														centerscrolltext.append("\n" + "> The computer's second roll...");
 																																
 														
-														attackDamage = (int) ((Math.random() * 6) + 1);
-														int resultTwo = attackDamage;
+														SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+														SharedPreferences.Editor editor = preferences.edit();		
+														editor.putInt("attackDamage", (int) ((Math.random() * 6) + 1));
+														editor.apply();
 														
-														attackDamageTwoDisarmed[0] = (resultTwo - 2);
-														
-														if (attackDamageTwoDisarmed[0] < 0) {
-															attackDamageTwoDisarmed[0] = 0;
-														}
+														preventattackdamagediefromleaking = "off";														
 														
 														
 														final Handler h = new Handler();
@@ -8549,6 +9297,19 @@ public class MainActivity2 extends ActionBarActivity {
 											  	  	  		@Override
 												  	  	  	public void run() {
 											  	  	  			
+											  	  	  			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+											  	  	  			//SharedPreferences.Editor editor = preferences.edit();
+											  	  	  			int attackDamage = preferences.getInt("attackDamage", 0);
+
+																
+																int resultTwo = attackDamage;
+																
+																attackDamageTwoDisarmed[0] = (resultTwo - 2);
+																
+																if (attackDamageTwoDisarmed[0] < 0) {
+																	attackDamageTwoDisarmed[0] = 0;
+																}
+											  	  	  			
 											  	  	  			computerRolls6SidedDie();
 											  	  	  			
 											  	  	  			
@@ -8556,7 +9317,14 @@ public class MainActivity2 extends ActionBarActivity {
 													  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 													  	  	  			
 													  	  	  		@Override
-														  	  	  	public void run() {																		  	  	  		
+														  	  	  	public void run() {
+													  	  	  			
+													  	  	  			preventattackdamagediefromleaking = "on";
+													  	  	  			
+													  	  	  			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+													  	  	  			//SharedPreferences.Editor editor = preferences.edit();
+													  	  	  			int attackDamage = preferences.getInt("attackDamage", 0);
+
 													  	  	  			
 														  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 																  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -8782,8 +9550,12 @@ public class MainActivity2 extends ActionBarActivity {
 								//int resultOne = (int) ((Math.random() * 6) + 1);
 								//int attackDamageOne = resultOne;
 								
-								attackDamage = (int) ((Math.random() * 6) + 1);
-								final int resultOne = attackDamage;
+								SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+								SharedPreferences.Editor editor = preferences.edit();		
+								editor.putInt("attackDamage", (int) ((Math.random() * 6) + 1));
+								editor.apply();
+								
+								preventattackdamagediefromleaking = "off";							
 								
 								
 								final Handler h = new Handler();
@@ -8800,6 +9572,14 @@ public class MainActivity2 extends ActionBarActivity {
 							  	  	  			
 							  	  	  		@Override
 								  	  	  	public void run() {
+							  	  	  			
+							  	  	  			preventattackdamagediefromleaking = "on";
+							  	  	  			
+							  	  	  			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+							  	  	  			//SharedPreferences.Editor editor = preferences.edit();
+							  	  	  			int attackDamage = preferences.getInt("attackDamage", 0);
+							  	  	  			
+							  	  	  			final int resultOne = attackDamage;
 							  	  	  			
 								  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 										  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -8819,8 +9599,12 @@ public class MainActivity2 extends ActionBarActivity {
 														//int resultTwo = (int) ((Math.random() * 6) + 1);
 														//int attackDamageTwo = resultTwo;
 														
-														attackDamage = (int) ((Math.random() * 6) + 1);
-														final int resultTwo = attackDamage;
+														SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+														SharedPreferences.Editor editor = preferences.edit();		
+														editor.putInt("attackDamage", (int) ((Math.random() * 6) + 1));
+														editor.apply();
+														
+														preventattackdamagediefromleaking = "off";														
 														
 														
 														final Handler h = new Handler();
@@ -8837,6 +9621,14 @@ public class MainActivity2 extends ActionBarActivity {
 													  	  	  			
 													  	  	  		@Override
 														  	  	  	public void run() {
+													  	  	  			
+													  	  	  			preventattackdamagediefromleaking = "on";
+													  	  	  			
+													  	  	  			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+													  	  	  			//SharedPreferences.Editor editor = preferences.edit();
+													  	  	  			int attackDamage = preferences.getInt("attackDamage", 0);
+													  	  	  			
+													  	  	  			int resultTwo = attackDamage;
 													  	  	  			
 														  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 																  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -9121,8 +9913,12 @@ public class MainActivity2 extends ActionBarActivity {
 						//int resultOne = (int) ((Math.random() * 6) + 1);
 						//int attackDamageOne = resultOne;
 						
-						attackDamage = (int) ((Math.random() * 6) + 1);
-						final int resultOne = attackDamage;
+						SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+						SharedPreferences.Editor editor = preferences.edit();		
+						editor.putInt("attackDamage", (int) ((Math.random() * 6) + 1));
+						editor.apply();
+						
+						preventattackdamagediefromleaking = "off";
 						
 						
 						final Handler h = new Handler();
@@ -9139,6 +9935,14 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  	  			
 					  	  	  		@Override
 						  	  	  	public void run() {
+					  	  	  			
+					  	  	  			preventattackdamagediefromleaking = "on";
+					  	  	  			
+					  	  	  			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+					  	  	  			//SharedPreferences.Editor editor = preferences.edit();
+					  	  	  			int attackDamage = preferences.getInt("attackDamage", 0);
+					  	  	  			
+					  	  	  			final int resultOne = attackDamage;
 					  	  	  			
 						  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 								  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -9158,8 +9962,12 @@ public class MainActivity2 extends ActionBarActivity {
 												//int resultTwo = (int) ((Math.random() * 6) + 1);
 												//int attackDamageTwo = resultTwo;
 												
-												attackDamage = (int) ((Math.random() * 6) + 1);
-												final int resultTwo = attackDamage;
+												SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+												SharedPreferences.Editor editor = preferences.edit();		
+												editor.putInt("attackDamage", (int) ((Math.random() * 6) + 1));
+												editor.apply();
+												
+												preventattackdamagediefromleaking = "off";											
 												
 												
 												final Handler h = new Handler();
@@ -9168,7 +9976,7 @@ public class MainActivity2 extends ActionBarActivity {
 									  	  	  		@Override
 										  	  	  	public void run() {
 									  	  	  			
-									  	  	  			computerRolls6SidedDie();
+									  	  	  			computerRolls6SidedDie();				  	  	  			
 									  	  	  			
 									  	  	  			
 										  	  	  		final Handler h = new Handler();
@@ -9177,9 +9985,17 @@ public class MainActivity2 extends ActionBarActivity {
 											  	  	  		@Override
 												  	  	  	public void run() {
 											  	  	  			
+											  	  	  			preventattackdamagediefromleaking = "on";											  	  	  			
+											  	  	  			
+											  	  	  			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+											  	  	  			//SharedPreferences.Editor editor = preferences.edit();
+											  	  	  			int attackDamage = preferences.getInt("attackDamage", 0);
+										  	  	  			
+											  	  	  			int resultTwo = attackDamage;
+											  	  	  			
 												  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 														  		centerscrolltext.startAnimation(animAlphaText);			  		
-																centerscrolltext.append("\n" + "> The computer rolls a " + resultTwo	+ "!");
+																centerscrolltext.append("\n" + "> The computer rolls a " + resultTwo + "!");
 																
 																final int totalAttackDamage = (resultOne + resultTwo);
 																
@@ -9406,7 +10222,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  			
 	  			//int criticalMissAttackResult = (int) ((Math.random() * 20) + 1);
   	  	  		
-  	  			attackResult = (int) ((Math.random() * 20) + 1);
+  	  			ArrayOfAttackResult.attackResult[0] = (int) ((Math.random() * 20) + 1);
   	  			
 	  			
 	  			final Handler h = new Handler();
@@ -9426,10 +10242,10 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  			
 				  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 						  		centerscrolltext.startAnimation(animAlphaText);			  		
-								centerscrolltext.append("\n" + "> The computer rolls a " + attackResult + "!");
+								centerscrolltext.append("\n" + "> The computer rolls a " + ArrayOfAttackResult.attackResult[0] + "!");
 								
 								
-								if (attackResult >= 17) {
+								if (ArrayOfAttackResult.attackResult[0] >= 17) {
 									
 									final Handler h = new Handler();
 						  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -9461,7 +10277,7 @@ public class MainActivity2 extends ActionBarActivity {
 									  		centerscrolltext.startAnimation(animAlphaText);			  		
 											centerscrolltext.append("\n" + "> The computer did not hit itself. Now it must roll to see if it loses it's weapon...");
 											
-											attackResult = (int) ((Math.random() * 20) + 1);
+											ArrayOfAttackResult.attackResult[0] = (int) ((Math.random() * 20) + 1);
 											
 											
 											final Handler h = new Handler();
@@ -9481,10 +10297,10 @@ public class MainActivity2 extends ActionBarActivity {
 										  	  	  			
 											  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 													  		centerscrolltext.startAnimation(animAlphaText);			  		
-															centerscrolltext.append("\n" + "> The computer rolls a " + attackResult + "!");
+															centerscrolltext.append("\n" + "> The computer rolls a " + ArrayOfAttackResult.attackResult[0] + "!");
 															
 															
-															if (attackResult >= 17) {
+															if (ArrayOfAttackResult.attackResult[0] >= 17) {
 																
 																canHasDisarmed[1] = "yes";
 																
@@ -9620,7 +10436,13 @@ public class MainActivity2 extends ActionBarActivity {
 						//int result = (int) ((Math.random() * 6) + 1);
 						//int attackDamage = result;
 						
-						attackDamage = (int) ((Math.random() * 6) + 1);
+						SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+						SharedPreferences.Editor editor = preferences.edit();		
+						editor.putInt("attackDamage", (int) ((Math.random() * 6) + 1));
+						editor.apply();
+
+						
+						preventattackdamagediefromleaking = "off";
 						
 						
 						final Handler h = new Handler();
@@ -9637,6 +10459,12 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  	  			
 					  	  	  		@Override
 						  	  	  	public void run() {
+					  	  	  			
+					  	  	  			preventattackdamagediefromleaking = "on";
+					  	  	  			
+					  	  	  			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+					  	  	  			//SharedPreferences.Editor editor = preferences.edit();
+					  	  	  			int attackDamage = preferences.getInt("attackDamage", 0);
 					  	  	  			
 						  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 								  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -9846,6 +10674,11 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	public void computerCriticalHitDamageDisarmedResults() {
 		
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+		SharedPreferences.Editor editor = preferences.edit();		
+		editor.putInt("attackDamage", (int) ((Math.random() * 6) + 1));
+		editor.apply();
+		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
 		runOnUiThread(new Runnable() {
@@ -9882,7 +10715,15 @@ public class MainActivity2 extends ActionBarActivity {
 						//	attackDamageOneDisarmed = 0;
 						//}
 						
-						attackDamage = (int) ((Math.random() * 6) + 1);
+						//Globals g = Globals.getInstance();
+						//g.setDataAttackDamage((int) ((Math.random() * 6) + 1));
+						
+						preventattackdamagediefromleaking = "off";
+						
+						SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+						//SharedPreferences.Editor editor = preferences.edit();
+						int attackDamage = preferences.getInt("attackDamage", 0);
+						
 						final int resultOne = attackDamage;
 						
 						attackDamageOneDisarmed[0] = (resultOne - 2);
@@ -9906,6 +10747,12 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  	  			
 					  	  	  		@Override
 						  	  	  	public void run() {
+					  	  	  			
+					  	  	  			preventattackdamagediefromleaking = "on";
+					  	  	  			
+					  	  	  			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+					  	  	  			//SharedPreferences.Editor editor = preferences.edit();
+					  	  	  			int attackDamage = preferences.getInt("attackDamage", 0);
 					  	  	  			
 						  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 								  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -9931,14 +10778,12 @@ public class MainActivity2 extends ActionBarActivity {
 												//	attackDamageTwoDisarmed = 0;
 												//}
 												
-												attackDamage = (int) ((Math.random() * 6) + 1);
-												int resultTwo = attackDamage;
+												SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+												SharedPreferences.Editor editor = preferences.edit();		
+												editor.putInt("attackDamage", (int) ((Math.random() * 6) + 1));
+												editor.apply();
 												
-												attackDamageTwoDisarmed[0] = (resultTwo - 2);
-												
-												if (attackDamageTwoDisarmed[0] < 0) {
-													attackDamageTwoDisarmed[0] = 0;
-												}
+												preventattackdamagediefromleaking = "off";												
 												
 												
 												final Handler h = new Handler();
@@ -9946,6 +10791,18 @@ public class MainActivity2 extends ActionBarActivity {
 									  	  	  			
 									  	  	  		@Override
 										  	  	  	public void run() {
+									  	  	  			
+									  	  	  			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+									  	  	  			//SharedPreferences.Editor editor = preferences.edit();
+									  	  	  			int attackDamage = preferences.getInt("attackDamage", 0);
+														
+														int resultTwo = attackDamage;
+														
+														attackDamageTwoDisarmed[0] = (resultTwo - 2);
+														
+														if (attackDamageTwoDisarmed[0] < 0) {
+															attackDamageTwoDisarmed[0] = 0;
+														}
 									  	  	  			
 									  	  	  			computerRolls6SidedDie();
 									  	  	  			
@@ -9955,6 +10812,12 @@ public class MainActivity2 extends ActionBarActivity {
 											  	  	  			
 											  	  	  		@Override
 												  	  	  	public void run() {
+											  	  	  			
+											  	  	  			preventattackdamagediefromleaking = "on";
+											  	  	  			
+											  	  	  			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+											  	  	  			//SharedPreferences.Editor editor = preferences.edit();
+											  	  	  			int attackDamage = preferences.getInt("attackDamage", 0);
 											  	  	  			
 												  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 														  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -10193,7 +11056,7 @@ public class MainActivity2 extends ActionBarActivity {
 								 * 
 								 */
 						
-								attackResult = (int) ((Math.random() * 20) + 1);
+								ArrayOfAttackResult.attackResult[0] = (int) ((Math.random() * 20) + 1);
 								//int attackResult = (int) ((Math.random() * 20) + 1);										
 								
 								isattackrolled = "yes";
@@ -10242,14 +11105,14 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  			
 				  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 						  		centerscrolltext.startAnimation(animAlphaText);			  		
-								centerscrolltext.append("\n" + "> You roll " + attackResult + "!");			  	  	  			
+								centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0] + "!");			  	  	  			
 			  	  	  		}
 			  	  	  		
 				  	  	  	if (canHasDisarmed[playerNumberAttacked].equals("yes")) {				  	  	  		
 				  	  	  		
 					  	  	  	centerscrolltext.setVisibility(View.VISIBLE);													
 						  		centerscrolltext.startAnimation(animAlphaText);			  		
-								centerscrolltext.append("\n" + "> You roll " + attackResult + ", +2 for your opponent being disarmed = " + (attackResult + 2));			  	  	  			
+								centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0] + ", +2 for your opponent being disarmed = " + (ArrayOfAttackResult.attackResult[0] + 2));			  	  	  			
 			  	  	  		}												
 							
 							final Handler h2 = new Handler();
@@ -10258,7 +11121,7 @@ public class MainActivity2 extends ActionBarActivity {
 				  	  	  		@Override
 					  	  	  	public void run() {						
 					
-									if (attackResult >= 20) {
+									if (ArrayOfAttackResult.attackResult[0] >= 20) {
 										
 										criticalHit();
 										return;
@@ -10266,7 +11129,7 @@ public class MainActivity2 extends ActionBarActivity {
 									
 									if (canHasDisarmed[playerNumberAttacked].equals("no")) {
 										
-										if (attackResult >= 14 && attackResult <= 19) {
+										if (ArrayOfAttackResult.attackResult[0] >= 14 && ArrayOfAttackResult.attackResult[0] <= 19) {
 											
 											centerscrolltext.setVisibility(View.VISIBLE);													
 									  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -10276,7 +11139,7 @@ public class MainActivity2 extends ActionBarActivity {
 											return;
 										}
 										
-										if (attackResult < 14 && attackResult > 1) {
+										if (ArrayOfAttackResult.attackResult[0] < 14 && ArrayOfAttackResult.attackResult[0] > 1) {
 											
 											centerscrolltext.setVisibility(View.VISIBLE);
 									  		centerscrolltext.startAnimation(animAlphaText);
@@ -10313,7 +11176,7 @@ public class MainActivity2 extends ActionBarActivity {
 											return;
 										}
 										
-										if (attackResult <= 1) {
+										if (ArrayOfAttackResult.attackResult[0] <= 1) {
 											
 											criticalMiss();
 											return;
@@ -10322,7 +11185,7 @@ public class MainActivity2 extends ActionBarActivity {
 									
 									if (canHasDisarmed[playerNumberAttacked].equals("yes")) {
 										
-										if (attackResult >= 12 && attackResult <= 19) {
+										if (ArrayOfAttackResult.attackResult[0] >= 12 && ArrayOfAttackResult.attackResult[0] <= 19) {
 											
 											centerscrolltext.setVisibility(View.VISIBLE);													
 									  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -10332,7 +11195,7 @@ public class MainActivity2 extends ActionBarActivity {
 											return;
 										}
 										
-										if (attackResult < 12 && attackResult > 1) {
+										if (ArrayOfAttackResult.attackResult[0] < 12 && ArrayOfAttackResult.attackResult[0] > 1) {
 											
 											centerscrolltext.setVisibility(View.VISIBLE);
 									  		centerscrolltext.startAnimation(animAlphaText);
@@ -10369,7 +11232,7 @@ public class MainActivity2 extends ActionBarActivity {
 											return;
 										}
 										
-										if (attackResult <= 1) {
+										if (ArrayOfAttackResult.attackResult[0] <= 1) {
 											
 											criticalMiss();
 											return;
@@ -10393,14 +11256,14 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  			
 				  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 						  		centerscrolltext.startAnimation(animAlphaText);			  		
-								centerscrolltext.append("\n" + "> You roll " + attackResult + ", -1 for being disarmed = " + (attackResult - 1));			  	  	  			
+								centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0] + ", -1 for being disarmed = " + (ArrayOfAttackResult.attackResult[0] - 1));			  	  	  			
 			  	  	  		}
 			  	  	  		
 				  	  	  	if (canHasDisarmed[playerNumberAttacked].equals("yes")) {				  	  	  		
 				  	  	  		
 					  	  	  	centerscrolltext.setVisibility(View.VISIBLE);													
 						  		centerscrolltext.startAnimation(animAlphaText);			  		
-								centerscrolltext.append("\n" + "> You roll " + attackResult + ", +1 for being disarmed and your opponent being disarmed = " + (attackResult + 1));			  	  	  			
+								centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0] + ", +1 for being disarmed and your opponent being disarmed = " + (ArrayOfAttackResult.attackResult[0] + 1));			  	  	  			
 			  	  	  		}						
 							
 							final Handler h5 = new Handler();
@@ -10409,14 +11272,14 @@ public class MainActivity2 extends ActionBarActivity {
 				  	  	  		@Override
 					  	  	  	public void run() {						
 					
-									if (attackResult >= 20) {
+									if (ArrayOfAttackResult.attackResult[0] >= 20) {
 										criticalHit(); //ADJUSTED DAMAGE FOR BEING DISARMED
 										return;
 									}
 									
 									if (canHasDisarmed[playerNumberAttacked].equals("no")) {
 										
-										if (attackResult >= 15 && attackResult <= 19) { // -1 to-hit for being disarmed.
+										if (ArrayOfAttackResult.attackResult[0] >= 15 && ArrayOfAttackResult.attackResult[0] <= 19) { // -1 to-hit for being disarmed.
 											
 											centerscrolltext.setVisibility(View.VISIBLE);													
 									  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -10426,7 +11289,7 @@ public class MainActivity2 extends ActionBarActivity {
 											return;
 										}
 										
-										if (attackResult < 15 && attackResult >= 1) {
+										if (ArrayOfAttackResult.attackResult[0] < 15 && ArrayOfAttackResult.attackResult[0] >= 1) {
 											
 											centerscrolltext.setVisibility(View.VISIBLE);
 									  		centerscrolltext.startAnimation(animAlphaText);
@@ -10482,7 +11345,7 @@ public class MainActivity2 extends ActionBarActivity {
 									
 									if (canHasDisarmed[playerNumberAttacked].equals("yes")) {
 										
-										if (attackResult >= 13 && attackResult <= 19) { // -1 to-hit for being disarmed but, +2 because computer is disarmed (+1 total)
+										if (ArrayOfAttackResult.attackResult[0] >= 13 && ArrayOfAttackResult.attackResult[0] <= 19) { // -1 to-hit for being disarmed but, +2 because computer is disarmed (+1 total)
 											
 											centerscrolltext.setVisibility(View.VISIBLE);													
 									  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -10492,7 +11355,7 @@ public class MainActivity2 extends ActionBarActivity {
 											return;
 										}
 										
-										if (attackResult < 13 && attackResult >= 1) {
+										if (ArrayOfAttackResult.attackResult[0] < 13 && ArrayOfAttackResult.attackResult[0] >= 1) {
 											
 											centerscrolltext.setVisibility(View.VISIBLE);
 									  		centerscrolltext.startAnimation(animAlphaText);
@@ -10619,16 +11482,21 @@ public class MainActivity2 extends ActionBarActivity {
 										 * 
 										 */
 										
-										attackDamage = (int)(Math.random()*6)+1;
+										SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+										SharedPreferences.Editor editor = preferences.edit();		
+										editor.putInt("attackDamage", (int) ((Math.random() * 6) + 1));
+										editor.apply();
+										
 								        //(Math.random()*6) returns a number between 0 (inclusive) and 6 (exclusive)
 								        //same as: (int) Math.ceil(Math.random()*6); ?										
 										
-										isattackdamagerolled = "yes";
+										ismightyblowdamagerolled = "yes";
+										preventattackdamagediefromleaking = "off";
 										
 					  	  	  		}
 					  	  	  	}, 750);					  	  	  		
 			  	  	  		}
-			  	  	  	}, 3000);		  	  	  		
+			  	  	  	}, 6000);		  	  	  		
 					//}
 			  	  	/*  	
 		  	  	  	if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] <= 10 && ArrayOfHitPoints.hitpoints[playerNumberAttacked] > 0) {
@@ -10757,10 +11625,11 @@ public class MainActivity2 extends ActionBarActivity {
 	public void mightyBlowResults() {
 		
 		// Here to prevent pre-mature (BUT STILL SEE ) roll
-		final ImageView sixSidedBlank = (ImageView) findViewById(R.id.sixsidedanimation);		
-		sixSidedBlank.setEnabled(false);
+		final ImageView sixSidedBlankAttackDamage = (ImageView) findViewById(R.id.sixsidedanimation);		
+		sixSidedBlankAttackDamage.setEnabled(false);
 		
 		ismightyblowdamagerolled = "no";
+		preventattackdamagediefromleaking = "on";
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
@@ -10783,6 +11652,10 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  			
 		  	  	  		if (canHasDisarmed[0].equals("no")) {
 		  	  	  			
+		  	  	  			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+		  	  	  			//SharedPreferences.Editor editor = preferences.edit();
+		  	  	  			int attackDamage = preferences.getInt("attackDamage", 0);
+		  	  	  			
 			  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 					  		centerscrolltext.startAnimation(animAlphaText);
 							centerscrolltext.append("\n" + "> You roll " + attackDamage	+ " for damage!");
@@ -10791,7 +11664,11 @@ public class MainActivity2 extends ActionBarActivity {
 				  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 				  	  	  			
 				  	  	  		@Override
-					  	  	  	public void run() {
+					  	  	  	public void run() {				  	  	  			
+				  	  	  			
+				  	  	  			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+				  	  	  			//SharedPreferences.Editor editor = preferences.edit();
+				  	  	  			int attackDamage = preferences.getInt("attackDamage", 0);
 				  	  	  			
 					  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 							  		centerscrolltext.startAnimation(animAlphaText);
@@ -10806,6 +11683,10 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  	  		}
 						
 						if (canHasDisarmed[0].equals("yes")) {							
+							
+							SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+							//SharedPreferences.Editor editor = preferences.edit();
+							int attackDamage = preferences.getInt("attackDamage", 0);
 							
 							int attackDamageDisarmed = (attackDamage - 2);
 							
@@ -10823,6 +11704,10 @@ public class MainActivity2 extends ActionBarActivity {
 				  	  	  			
 				  	  	  		@Override
 					  	  	  	public void run() {
+				  	  	  			
+				  	  	  			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+				  	  	  			//SharedPreferences.Editor editor = preferences.edit();
+				  	  	  			int attackDamage = preferences.getInt("attackDamage", 0);
 				  	  	  			
 					  	  	  		int attackDamageDisarmed = (attackDamage - 2);
 									
@@ -11269,8 +12154,8 @@ public class MainActivity2 extends ActionBarActivity {
 		//return;
 	}
 	
-	public void damagePartTwo() {
-				
+	public void damagePartTwo() {		
+		
 		// Use a blank drawable to hide the imageview animation:
 		// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
   		ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
@@ -11324,11 +12209,18 @@ public class MainActivity2 extends ActionBarActivity {
 								 * 
 								 */
 								
-								attackDamage = (int)(Math.random()*6)+1;
+			  	  	  			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+			  	  	  			SharedPreferences.Editor editor = preferences.edit();		
+			  	  	  			editor.putInt("attackDamage", (int) ((Math.random() * 6) + 1));
+			  	  	  			editor.apply();
+			  	  	  			
 						        //(Math.random()*6) returns a number between 0 (inclusive) and 6 (exclusive)
 						        //same as: (int) Math.ceil(Math.random()*6); ?										
 								
 								isattackdamagerolled = "yes";
+								preventattackdamagediefromleaking = "off";
+								
+								
 								
 			  	  	  		}
 			  	  	  	}, 750);					  	  	  		
@@ -11341,10 +12233,11 @@ public class MainActivity2 extends ActionBarActivity {
 	public void damageResults() {
 		
 		// Here to prevent pre-mature (BUT STILL SEE ) roll
-		final ImageView sixSidedBlank = (ImageView) findViewById(R.id.sixsidedanimation);		
-		sixSidedBlank.setEnabled(false);
+		final ImageView img = (ImageView) findViewById(R.id.sixsidedanimation);		
+		img.setEnabled(false);
 		
 		isattackdamagerolled = "no";
+		preventattackdamagediefromleaking = "on";
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
@@ -11367,6 +12260,10 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  			
 		  	  	  		if (canHasDisarmed[0].equals("no")) {							
 							
+		  	  	  			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+		  	  	  			//SharedPreferences.Editor editor = preferences.edit();
+		  	  	  			int attackDamage = preferences.getInt("attackDamage", 0);
+		  	  	  			
 							centerscrolltext.setVisibility(View.VISIBLE);
 					  		centerscrolltext.startAnimation(animAlphaText);
 							centerscrolltext.append("\n" + "> You roll " + attackDamage + " for damage!");
@@ -11379,6 +12276,10 @@ public class MainActivity2 extends ActionBarActivity {
 							
 		  	  	  		else if (canHasDisarmed[0].equals("yes")) {							
 							
+		  	  	  			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+		  	  	  			//SharedPreferences.Editor editor = preferences.edit();
+		  	  	  			int attackDamage = preferences.getInt("attackDamage", 0);
+		  	  	  			
 							int attackDamageDisarmed = (attackDamage - 2);
 							
 							if (attackDamageDisarmed < 0) {
@@ -11889,7 +12790,7 @@ public class MainActivity2 extends ActionBarActivity {
 										 * 
 										 */
 										
-										criticalHitAttackDamageOne = (int)(Math.random()*6)+1;
+										ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] = (int)(Math.random()*6)+1;
 								        //(Math.random()*6) returns a number between 0 (inclusive) and 6 (exclusive)
 								        //same as: (int) Math.ceil(Math.random()*6); ?										
 										
@@ -11931,7 +12832,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  			
 	  			centerscrolltext.setVisibility(View.VISIBLE);
 		  		centerscrolltext.startAnimation(animAlphaText);
-				centerscrolltext.append("\n" + "> You roll " + criticalHitAttackDamageOne + " for damage!");  			
+				centerscrolltext.append("\n" + "> You roll " + ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + " for damage!");  			
 	  			
 	  				  			
 	  			final Handler h1 = new Handler();
@@ -11960,7 +12861,7 @@ public class MainActivity2 extends ActionBarActivity {
 								 * 
 								 */
 								
-								criticalHitAttackDamageTwo = (int)(Math.random()*6)+1;
+								ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] = (int)(Math.random()*6)+1;
 						        //(Math.random()*6) returns a number between 0 (inclusive) and 6 (exclusive)
 						        //same as: (int) Math.ceil(Math.random()*6); ?										
 								
@@ -11998,7 +12899,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  			
 	  			centerscrolltext.setVisibility(View.VISIBLE);
 		  		centerscrolltext.startAnimation(animAlphaText);
-				centerscrolltext.append("\n" + "> You roll " + criticalHitAttackDamageTwo + " for damage!");
+				centerscrolltext.append("\n" + "> You roll " + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] + " for damage!");
 	  			
 	  			
 	  			final Handler h1 = new Handler();
@@ -12011,29 +12912,22 @@ public class MainActivity2 extends ActionBarActivity {
 							
 							centerscrolltext.setVisibility(View.VISIBLE);
 					  		centerscrolltext.startAnimation(animAlphaText);
-							centerscrolltext.append("\n" + "> You roll a total " + (criticalHitAttackDamageOne + criticalHitAttackDamageTwo) + " for damage!");
+							centerscrolltext.append("\n" + "> You roll a total " + (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) + " for damage!");
 							
 		
-							ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - (criticalHitAttackDamageOne + criticalHitAttackDamageTwo);
+							ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]);
 							
 							criticalHitDamageResultsHandler();
 						}
 							
 						if (canHasDisarmed[0].equals("yes")) {							
 							
-							int attackDamageDisarmed = (attackDamage - 2);
-							
-							if (attackDamageDisarmed < 0) {
-								
-				                  attackDamageDisarmed = 0;					            
-							}
-							
 							centerscrolltext.setVisibility(View.VISIBLE);
 					  		centerscrolltext.startAnimation(animAlphaText);
-							centerscrolltext.append("\n" + "> You roll a total " + (criticalHitAttackDamageOne + criticalHitAttackDamageTwo) + " for damage, -2 damage for punch = " + ((criticalHitAttackDamageOne + criticalHitAttackDamageTwo) - 2) + " damage!");
+							centerscrolltext.append("\n" + "> You roll a total " + (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) + " for damage, -2 damage for punch = " + ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) + " damage!");
 							
 		
-							ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - ((criticalHitAttackDamageOne + criticalHitAttackDamageTwo) - 2);
+							ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2);
 							
 							criticalHitDamageResultsHandler();
 						}					
@@ -12219,12 +13113,11 @@ public class MainActivity2 extends ActionBarActivity {
 										 * 
 										 */
 										
-										criticalHitAttackDamageOne = (int)(Math.random()*6)+1;
+										ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] = (int)(Math.random()*6)+1;
 								        //(Math.random()*6) returns a number between 0 (inclusive) and 6 (exclusive)
 								        //same as: (int) Math.ceil(Math.random()*6); ?										
 										
-										iscriticalhitmightyblowfirstrollrolled = "yes";
-										
+										iscriticalhitmightyblowfirstrollrolled = "yes";										
 					  	  	  		}
 					  	  	  	}, 750);					  	  	  		
 			  	  	  		}
@@ -12261,7 +13154,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  			
 		  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 				  		centerscrolltext.startAnimation(animAlphaText);
-						centerscrolltext.append("\n" + "> You roll " + criticalHitAttackDamageOne + " for damage!");
+						centerscrolltext.append("\n" + "> You roll " + ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + " for damage!");
 	  	  	  			
 		  	  	  		final Handler h1 = new Handler();
 			  	  	  	h1.postDelayed(new Runnable() {		  	  	  			
@@ -12289,7 +13182,7 @@ public class MainActivity2 extends ActionBarActivity {
 										 * 
 										 */
 										
-										criticalHitAttackDamageTwo = (int)(Math.random()*6)+1;
+										ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] = (int)(Math.random()*6)+1;
 								        //(Math.random()*6) returns a number between 0 (inclusive) and 6 (exclusive)
 								        //same as: (int) Math.ceil(Math.random()*6); ?										
 										
@@ -12299,10 +13192,7 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  		}
 			  	  	  	}, 2000);
 		  	  	  	}
-	  	  	  	}, 2000);
-	  			
-	  			
-			  			
+	  	  	  	}, 2000);		  			
   	  	    }
   	  	});
 		// NEED THIS?:
@@ -12338,7 +13228,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  			
 		  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 				  		centerscrolltext.startAnimation(animAlphaText);
-						centerscrolltext.append("\n" + "> You roll " + criticalHitAttackDamageTwo + " for damage!");
+						centerscrolltext.append("\n" + "> You roll " + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] + " for damage!");
 	  	  	  			
 		  	  	  		final Handler h1 = new Handler();
 			  	  	  	h1.postDelayed(new Runnable() {		  	  	  			
@@ -12350,7 +13240,7 @@ public class MainActivity2 extends ActionBarActivity {
 									
 									centerscrolltext.setVisibility(View.VISIBLE);
 							  		centerscrolltext.startAnimation(animAlphaText);
-									centerscrolltext.append("\n" + "> You roll a total " + (criticalHitAttackDamageOne + criticalHitAttackDamageTwo) + " for damage!");
+									centerscrolltext.append("\n" + "> You roll a total " + (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) + " for damage!");
 									
 									final Handler h2 = new Handler();
 						  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
@@ -12360,10 +13250,10 @@ public class MainActivity2 extends ActionBarActivity {
 						  	  	  			
 							  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 									  		centerscrolltext.startAnimation(animAlphaText);
-											centerscrolltext.append("\n" + "> Double damage for Mighty Blow = " + ((criticalHitAttackDamageOne + criticalHitAttackDamageTwo) * 2) + "!");
+											centerscrolltext.append("\n" + "> Double damage for Mighty Blow = " + ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) * 2) + "!");
 											
 											
-											ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - ((criticalHitAttackDamageOne + criticalHitAttackDamageTwo) * 2);
+											ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) * 2);
 											
 											criticalHitMightyBlowDamageResultsHandler();
 						  	  	  			
@@ -12371,18 +13261,11 @@ public class MainActivity2 extends ActionBarActivity {
 						  	  	  	}, 2000);						
 								}
 									
-								if (canHasDisarmed[0].equals("yes")) {							
-									
-									int attackDamageDisarmed = (attackDamage - 2);
-									
-									if (attackDamageDisarmed < 0) {
-										
-						                  attackDamageDisarmed = 0;					            
-									}
+								if (canHasDisarmed[0].equals("yes")) {								
 									
 									centerscrolltext.setVisibility(View.VISIBLE);
 							  		centerscrolltext.startAnimation(animAlphaText);
-									centerscrolltext.append("\n" + "> You roll a total " + (criticalHitAttackDamageOne + criticalHitAttackDamageTwo) + " for damage, -2 damage for punch = " + ((criticalHitAttackDamageOne + criticalHitAttackDamageTwo) - 2) + " damage!");
+									centerscrolltext.append("\n" + "> You roll a total " + (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) + " for damage, -2 damage for punch = " + ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) + " damage!");
 									
 									final Handler h3 = new Handler();
 						  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
@@ -12392,10 +13275,10 @@ public class MainActivity2 extends ActionBarActivity {
 						  	  	  			
 						  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 								  		centerscrolltext.startAnimation(animAlphaText);
-										centerscrolltext.append("\n" + "> Double damage for Mighty Blow = " + (((criticalHitAttackDamageOne + criticalHitAttackDamageTwo) - 2) * 2) + "!");
+										centerscrolltext.append("\n" + "> Double damage for Mighty Blow = " + (((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) * 2) + "!");
 										
 										
-										ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - (((criticalHitAttackDamageOne + criticalHitAttackDamageTwo) - 2) * 2);
+										ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - (((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) * 2);
 										
 										criticalHitMightyBlowDamageResultsHandler();
 						  	  	  			
@@ -12613,14 +13496,14 @@ public class MainActivity2 extends ActionBarActivity {
 								 * 
 								 */
 						
-								attackResult = (int) ((Math.random() * 20) + 1);
+								ArrayOfAttackResult.attackResult[0] = (int) ((Math.random() * 20) + 1);
 								//int attackResult = (int) ((Math.random() * 20) + 1);										
 								
 								iscriticalmissrolled = "yes";								
 			  	  	  		}
 			  	  	  	}, 750);					  	  	  		
 	  	  	  		}
-	  	  	  	}, 2000);			
+	  	  	  	}, 3000);			
   	  	    }
 		});
 	}
@@ -12654,7 +13537,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  			
 		  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 				  		centerscrolltext.startAnimation(animAlphaText);
-				  		centerscrolltext.append("\n" + "> You roll " + attackResult + "!");
+				  		centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0] + "!");
 				  		
 				  		
 				  		final Handler h2 = new Handler();
@@ -12663,7 +13546,7 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  		@Override
 				  	  	  	public void run() {
 			  	  	  			
-				  	  	  		if (attackResult >= 17) {
+				  	  	  		if (ArrayOfAttackResult.attackResult[0] >= 17) {
 									
 									centerscrolltext.setVisibility(View.VISIBLE);
 							  		centerscrolltext.startAnimation(animAlphaText);
@@ -12748,11 +13631,16 @@ public class MainActivity2 extends ActionBarActivity {
 								 * 
 								 */
 						
-								attackDamage = (int)(Math.random()*6)+1;
+								SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+								SharedPreferences.Editor editor = preferences.edit();		
+								editor.putInt("attackDamage", (int) ((Math.random() * 6) + 1));
+								editor.apply();
+								
 						        //(Math.random()*6) returns a number between 0 (inclusive) and 6 (exclusive)
 						        //same as: (int) Math.ceil(Math.random()*6); ?
 								
 								iscriticalmissdamagerolled = "yes";
+								preventattackdamagediefromleaking = "off";
 			  	  	  		}
 			  	  	  	}, 750);					  	  	  		
 	  	  	  		}
@@ -12768,6 +13656,7 @@ public class MainActivity2 extends ActionBarActivity {
 		sixSidedBlank.setEnabled(false);
 		
 		iscriticalmissdamagerolled = "no";
+		preventattackdamagediefromleaking = "on";
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
@@ -12781,7 +13670,10 @@ public class MainActivity2 extends ActionBarActivity {
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);	  			
 	  			
-				
+	  			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+				//SharedPreferences.Editor editor = preferences.edit();
+				int attackDamage = preferences.getInt("attackDamage", 0);
+	  			
 				centerscrolltext.setVisibility(View.VISIBLE);
 		  		centerscrolltext.startAnimation(animAlphaText);
 				centerscrolltext.append("\n" + "> You roll " + attackDamage + " for damage!");
@@ -12960,7 +13852,7 @@ public class MainActivity2 extends ActionBarActivity {
 								 * 
 								 */
 						
-								attackResult = (int) ((Math.random() * 20) + 1);
+								ArrayOfAttackResult.attackResult[0] = (int) ((Math.random() * 20) + 1);
 								//int attackResult = (int) ((Math.random() * 20) + 1);										
 								
 								iscriticalmissloseweaponrolled = "yes";								
@@ -13001,9 +13893,9 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  			
 		  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 				  		centerscrolltext.startAnimation(animAlphaText);
-				  		centerscrolltext.append("\n" + "> You roll " + attackResult + "!");
+				  		centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0] + "!");
 						
-						if (attackResult >= 17) {
+						if (ArrayOfAttackResult.attackResult[0] >= 17) {
 							
 							canHasDisarmed[0] = "yes";
 							disarmedTurnStart[0] = turn;
@@ -13342,7 +14234,7 @@ public class MainActivity2 extends ActionBarActivity {
 								 * 
 								 */
 						  		
-						  		attackResult = (int) ((Math.random() * 20) + 1);
+						  		ArrayOfAttackResult.attackResult[0] = (int) ((Math.random() * 20) + 1);
 								//int attackResult = (int) ((Math.random() * 20) + 1);
 						  		
 						  		isdisarmwithblessrolled = "yes";
@@ -13417,7 +14309,7 @@ public class MainActivity2 extends ActionBarActivity {
 										
 						centerscrolltext.setVisibility(View.VISIBLE);
 				  		centerscrolltext.startAnimation(animAlphaText);
-				  		centerscrolltext.append("\n" + "> You roll " + attackResult	+ ", +2 for the Bless Spell = "	+ (attackResult + 2));
+				  		centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0]	+ ", +2 for the Bless Spell = "	+ (ArrayOfAttackResult.attackResult[0] + 2));
 						
 				  		final Handler h2 = new Handler();
 			  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
@@ -13425,7 +14317,7 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  		@Override
 				  	  	  	public void run() {
 			  	  	  			
-				  	  	  		if (attackResult >= 15) {
+				  	  	  		if (ArrayOfAttackResult.attackResult[0] >= 15) {
 									
 									AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 								      
@@ -13472,7 +14364,7 @@ public class MainActivity2 extends ActionBarActivity {
 									*/
 								}
 					
-								if (attackResult <= 14 && attackResult > 0) {
+								if (ArrayOfAttackResult.attackResult[0] <= 14 && ArrayOfAttackResult.attackResult[0] > 0) {
 									
 									AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 								      
@@ -13581,7 +14473,7 @@ public class MainActivity2 extends ActionBarActivity {
 									 * 
 									 */									  		
 									
-									attackResult = (int) ((Math.random() * 20) + 1);
+									ArrayOfAttackResult.attackResult[0] = (int) ((Math.random() * 20) + 1);
 									
 									isdisarmnoblessrolled = "yes";
 									
@@ -13620,7 +14512,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  			
 		  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 				  		centerscrolltext.startAnimation(animAlphaText);
-				  		centerscrolltext.append("\n" + "> You roll " + attackResult + "!");
+				  		centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0] + "!");
 						
 				  		
 				  		final Handler h2 = new Handler();
@@ -13629,7 +14521,7 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  		@Override
 				  	  	  	public void run() {
 			  	  	  			
-				  	  	  		if (attackResult >= 17) {
+				  	  	  		if (ArrayOfAttackResult.attackResult[0] >= 17) {
 									
 									AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 								      
@@ -13672,7 +14564,7 @@ public class MainActivity2 extends ActionBarActivity {
 									*/
 								}
 					
-								if (attackResult <= 16 && attackResult > 1) {
+								if (ArrayOfAttackResult.attackResult[0] <= 16 && ArrayOfAttackResult.attackResult[0] > 1) {
 									
 									AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 								      
@@ -13708,7 +14600,7 @@ public class MainActivity2 extends ActionBarActivity {
 									*/
 								}
 								
-								if (attackResult <= 1) {
+								if (ArrayOfAttackResult.attackResult[0] <= 1) {
 									
 									AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 								      
@@ -13783,7 +14675,7 @@ public class MainActivity2 extends ActionBarActivity {
 				  	  	  			
 					  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 									centerscrolltext.startAnimation(animAlphaText);
-									centerscrolltext.append("\n" + "> TWO ATTACKS!");
+									centerscrolltext.append("\n" + "> TWO attacks!");
 									
 									final Handler h2 = new Handler();
 						  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
@@ -14006,6 +14898,9 @@ public class MainActivity2 extends ActionBarActivity {
 				  	  	  		final TextView blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
 			  	  	  			blessGraphic.setVisibility(View.INVISIBLE);
 			  	  	  			
+			  	  	  			ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
+			  	  	  			img.bringToFront();
+			  	  	  			
 			  	  	  			// ROLLFROMLEFT (20-SIDED)
 			  	  	  			twentySidedRollFromLeft();				  	  	  		
 					  	  	  			
@@ -14029,7 +14924,7 @@ public class MainActivity2 extends ActionBarActivity {
 										 * 
 										 */
 								
-										attackResult = (int) ((Math.random() * 20) + 1);
+										ArrayOfAttackResult.attackResult[0] = (int) ((Math.random() * 20) + 1);
 										//int attackResult = (int) ((Math.random() * 20) + 1);										
 										
 										isblessrolled = "yes";
@@ -14203,14 +15098,14 @@ public class MainActivity2 extends ActionBarActivity {
 							
 							centerscrolltext.setVisibility(View.VISIBLE);
 					  		centerscrolltext.startAnimation(animAlphaText);
-					  		centerscrolltext.append("\n" + "> You roll " + attackResult	+ ", +2 for Bless Spell = " + (attackResult + 2));							
+					  		centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0]	+ ", +2 for Bless Spell = " + (ArrayOfAttackResult.attackResult[0] + 2));							
 						}
 						
 						if (canHasDisarmed[playerNumberAttacked].equals("yes")) {						
 							
 							centerscrolltext.setVisibility(View.VISIBLE);
 					  		centerscrolltext.startAnimation(animAlphaText);
-					  		centerscrolltext.append("\n" + "> You roll " + attackResult	+ ", +4 for Bless Spell and your opponent being disarmed = " + (attackResult + 4));						
+					  		centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0]	+ ", +4 for Bless Spell and your opponent being disarmed = " + (ArrayOfAttackResult.attackResult[0] + 4));						
 						}												
 						
 						final Handler h2 = new Handler();
@@ -14219,7 +15114,7 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  		@Override
 				  	  	  	public void run() {						
 				
-								if (attackResult >= 20) {
+								if (ArrayOfAttackResult.attackResult[0] >= 20) {
 									
 									criticalHit();
 									return;
@@ -14227,7 +15122,7 @@ public class MainActivity2 extends ActionBarActivity {
 								
 								if (canHasDisarmed[playerNumberAttacked].equals("no")) {
 									
-									if (attackResult >= 12 && attackResult <= 19) {
+									if (ArrayOfAttackResult.attackResult[0] >= 12 && ArrayOfAttackResult.attackResult[0] <= 19) {
 										
 										centerscrolltext.setVisibility(View.VISIBLE);													
 								  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -14349,7 +15244,7 @@ public class MainActivity2 extends ActionBarActivity {
 										return;
 									}
 									
-									if (attackResult < 12 && attackResult > 0) {
+									if (ArrayOfAttackResult.attackResult[0] < 12 && ArrayOfAttackResult.attackResult[0] > 0) {
 										
 										// don't critically miss when using bless.
 										
@@ -14383,7 +15278,7 @@ public class MainActivity2 extends ActionBarActivity {
 								
 								if (canHasDisarmed[playerNumberAttacked].equals("yes")) {
 									
-									if (attackResult >= 10 && attackResult <= 19) {
+									if (ArrayOfAttackResult.attackResult[0] >= 10 && ArrayOfAttackResult.attackResult[0] <= 19) {
 										
 										centerscrolltext.setVisibility(View.VISIBLE);													
 								  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -14505,7 +15400,7 @@ public class MainActivity2 extends ActionBarActivity {
 										return;
 									}
 									
-									if (attackResult < 10 && attackResult > 0) {
+									if (ArrayOfAttackResult.attackResult[0] < 10 && ArrayOfAttackResult.attackResult[0] > 0) {
 										
 										// don't critically miss when using bless.
 										
@@ -14580,7 +15475,7 @@ public class MainActivity2 extends ActionBarActivity {
 				  	  	  		final TextView cureGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
 			  	  	  			cureGraphic.setVisibility(View.INVISIBLE);
 			  	  	  			
-			  	  	  			ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
+			  	  	  			ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
 			  	  	  			img.bringToFront();
 			  	  	  			
 			  	  	  			sixSidedRollFromLeft();				  	  	  		
@@ -14603,9 +15498,15 @@ public class MainActivity2 extends ActionBarActivity {
 										 * 
 										 */
 								
-										cureResult = (int)(Math.random()*6)+1;
+										SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+										SharedPreferences.Editor editor = preferences.edit();
+										editor.putInt("cureResult", (int) ((Math.random() * 6) + 1));
+										editor.apply();
+
 								        //(Math.random()*6) returns a number between 0 (inclusive) and 6 (exclusive)
-								        //same as: (int) Math.ceil(Math.random()*6); ?										
+								        //same as: (int) Math.ceil(Math.random()*6); ?
+										
+										preventcureresultdiefromleaking = "off";
 										
 										iscurerolled = "yes";
 										
@@ -14700,6 +15601,8 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		iscurerolled = "no";
 		
+		preventcureresultdiefromleaking = "on";
+		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
 		runOnUiThread(new Runnable() {
@@ -14718,6 +15621,10 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  			
 	  	  	  		@Override
 		  	  	  	public void run() {
+	  	  	  			
+	  	  	  			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+	  	  	  			//SharedPreferences.Editor editor = preferences.edit();
+	  	  	  			int cureResult = preferences.getInt("cureResult", 0);
 	  	  	  			
 		  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 				  		centerscrolltext.startAnimation(animAlphaText);
@@ -14921,7 +15828,7 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		if (numberOfPlayers == 1) {
 			
-			if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {
+			if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {			
 				
 				//int i = 0;			
 				
@@ -14950,7 +15857,7 @@ public class MainActivity2 extends ActionBarActivity {
     			turn++;				
 			}
 			
-			if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {
+			if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
 				
 				//int i = 1;				
 				
@@ -15006,9 +15913,10 @@ public class MainActivity2 extends ActionBarActivity {
 	  			
 				
 				centerscrolltext.setVisibility(View.VISIBLE);													
-		  		centerscrolltext.startAnimation(animAlphaText);		  		
-				centerscrolltext.append("\n" + " Turn " + turn);
-				centerscrolltext.append("\n" + "---------------------------------");
+		  		centerscrolltext.startAnimation(animAlphaText);
+		  		centerscrolltext.append("\n");
+		  		centerscrolltext.append("\n" + ">>>>>>>>>>>   " + " Turn " + turn + "   <<<<<<<<<<<");				
+		  		centerscrolltext.append("\n");
 				
 				
 				final Handler h = new Handler();
@@ -15081,7 +15989,7 @@ public class MainActivity2 extends ActionBarActivity {
 		// THIS THREAD IS BEING USED TO TEST ACCESS TO CENTERSCROLLTEXT
 		runOnUiThread(new Runnable() {
   	  	    @Override
-  	  	    public void run() {  	  	    	
+  	  	    public void run() {	  	  	    
   	  	    	
   	  	    	// Use a blank drawable to hide the imageview animation:
 				// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
@@ -15193,9 +16101,11 @@ public class MainActivity2 extends ActionBarActivity {
 	  			
 				
 				centerscrolltext.setVisibility(View.VISIBLE);													
-		  		centerscrolltext.startAnimation(animAlphaText);		  		
-				centerscrolltext.append("\n" + "Turn " + turn);
-				centerscrolltext.append("\n" + "---------------------------------");
+		  		centerscrolltext.startAnimation(animAlphaText);
+		  		centerscrolltext.append("\n");
+		  		centerscrolltext.append("\n" + ">>>>>>>>>>>   " + " Turn " + turn + "   <<<<<<<<<<<");				
+		  		centerscrolltext.append("\n");
+				
 				
 				final Handler h = new Handler();
 	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -15258,9 +16168,8 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		runOnUiThread(new Runnable() {//DID NOT NEED THIS BEFORE? USED IN CASE NEEDED FOR REF TO IMAGEVIEWS.
   	  	    @Override
-  	  	    public void run() {
-		
-  	  	    	
+  	  	    public void run() {				
+				
 				//i = 0;		
 				//i = 1;
 				
