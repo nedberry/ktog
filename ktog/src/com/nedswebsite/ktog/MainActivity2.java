@@ -106,6 +106,7 @@ public class MainActivity2 extends ActionBarActivity {
 	String isdisarmnoblessrolled = "no";	
 	String isblessrolled = "no";	
 	String ishasteused = "no";
+	String issecondroundofhasteused = "no";
 	String iscurerolled = "no";
 	String isattackdamagerolled = "no";
 	String ismightyblowdamagerolled = "no";
@@ -5631,6 +5632,12 @@ public class MainActivity2 extends ActionBarActivity {
 	  			final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);
   	  	    	
+	  			
+		  		// Use a blank drawable to hide the imageview animation:
+		  		// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+		  		ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
+		  		img.setBackgroundResource(R.drawable.twentytwentyblank);
+		  		img.setImageResource(R.drawable.twentytwentyblank);
 				
 	  			criticalHitGraphic();					  	  	  		
 			  	  	  	
@@ -12415,7 +12422,7 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  	  		@Override
 						  	  	  	public void run() {
 					  	  	  			
-						  	  	  		if (mightyBlowSpell[0] > 0 && ishasteused.equals("no") && isblessrolled.equals("no")) {
+						  	  	  		if (mightyBlowSpell[0] > 0 && ishasteused.equals("no") && isblessrolled.equals("no") && issecondroundofhasteused.equals("no")) {
 											/*
 											centerscrolltext.setVisibility(View.VISIBLE);													
 									  		centerscrolltext.startAnimation(animAlphaText);		  		
@@ -12564,7 +12571,7 @@ public class MainActivity2 extends ActionBarActivity {
 											hastePartTwo();   							
 										}					  	  	  	
 						  	  	  	}
-					  	  	  	}, 3000);
+					  	  	  	}, 6000);
 								// NEED THIS?:
 								//return;
 				  	  	  	}
@@ -12582,7 +12589,7 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  	  		@Override
 			  	  	  	public void run() {
 		  	  	  			
-			  	  	  		if (mightyBlowSpell[0] > 0 && ishasteused.equals("no") && isblessrolled.equals("no")) {
+			  	  	  		if (mightyBlowSpell[0] > 0 && ishasteused.equals("no") && isblessrolled.equals("no") && issecondroundofhasteused.equals("no")) {
 								/*
 								centerscrolltext.setVisibility(View.VISIBLE);													
 						  		centerscrolltext.startAnimation(animAlphaText);		  		
@@ -12691,6 +12698,11 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		
 		isblessrolled = "no";
+		
+		if (issecondroundofhasteused.equals("yes")) {
+			
+			issecondroundofhasteused = "no";
+		}
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
@@ -13253,7 +13265,7 @@ public class MainActivity2 extends ActionBarActivity {
 				  	  	  	}, 2000);			  	  	  				
 	  	  	  			}
 		  	  	  	}
-	  	  	  	}, 3000);		  	  	  	  	  			  	  	  			
+	  	  	  	}, 6000);		  	  	  	  	  			  	  	  			
   	  	    }
 		});
 		
@@ -13658,7 +13670,7 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  		}
 			  	  	  	}, 2000);
 	  	  	  		}
-	  	  	  	}, 3000);		  	  	  					  			
+	  	  	  	}, 6000);		  	  	  					  			
 	  	    }  	  	    
 		});
 		// NEED THIS?:
@@ -15362,6 +15374,7 @@ public class MainActivity2 extends ActionBarActivity {
 	public void hastePartTwo() {
 		
 		ishasteused = "no";
+		issecondroundofhasteused = "yes";
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
@@ -16360,7 +16373,15 @@ public class MainActivity2 extends ActionBarActivity {
 											if (item == 2) {
 												//hideNavigation();
 												//isInvokingService = "true";
-												cure();
+												if (cureSpell[0] > 0) {
+													
+													cure();
+												}
+												
+												if (cureSpell[0] < 1) {
+													
+													disarmedAction();
+												}												
 											}										
 											
 											isInvokingService = "true";											
@@ -16676,15 +16697,18 @@ public class MainActivity2 extends ActionBarActivity {
 	  				} else if (disarmedTurnStart[1] + 1 == turn) {
 	  					//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
 	  					computerDisarmedAction();
-	  				} else if (disarmedTurnStart[1] + 2 == turn) {
+	  					canHasDisarmed[1] = "no";
+	  				}	
+	  				/*	
+	  				  else if (disarmedTurnStart[1] + 2 == turn) {
 	  					//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
 	  					computerDisarmedAction();
 	  					canHasDisarmed[1] = "no";
 	  				}
+	  				*/
 	  			}
 	  			
-	  			else {
-	  				
+	  			else {  				
 	  				
 	  				//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
 	  				
@@ -16766,8 +16790,7 @@ public class MainActivity2 extends ActionBarActivity {
 							}
 						}
 			  	  		
-			  	  		else {
-							
+			  	  		else {							
 							
 							//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
 							
@@ -16860,11 +16883,15 @@ public class MainActivity2 extends ActionBarActivity {
 					} else if (disarmedTurnStart[0] + 1 == turn) {
 						//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
 						disarmedAction();
-					} else if (disarmedTurnStart[0] + 2 == turn) {
+						canHasDisarmed[0] = "no";					
+					}
+					/*
+					  else if (disarmedTurnStart[0] + 2 == turn) {
 						//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
 						disarmedAction();
 						canHasDisarmed[0] = "no";
 					}
+					*/
 				}
 				
 				else {							
@@ -17290,13 +17317,15 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  	  			
 		  	  	  			centerscrolltext.append("\n" + "\n" + "> Game Over!");
 		  	  	  			
+		  	  	  			MediaPlayerWrapper.play(MainActivity2.this, R.raw.buttonsound6);
+		  	  	  			
 			  	  	  		final Handler h = new Handler();
 				  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 				  	  	  			
 				  	  	  		@Override
 					  	  	  	public void run() {
 				  	  	  			
-				  	  	  			MediaPlayerWrapper.play(MainActivity2.this, R.raw.buttonsound6);
+				  	  	  			//MediaPlayerWrapper.play(MainActivity2.this, R.raw.buttonsound6);
 				  	  	  			
 				  	  	  			foldScrolls();
 				  	  	  			
@@ -17363,13 +17392,15 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  	  			
 		  	  	  			centerscrolltext.append("\n" + "\n" + "> Game Over!");
 		  	  	  			
+		  	  	  			MediaPlayerWrapper.play(MainActivity2.this, R.raw.buttonsound6);
+		  	  	  			
 			  	  	  		final Handler h = new Handler();
 				  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 				  	  	  			
 				  	  	  		@Override
 					  	  	  	public void run() {
 				  	  	  			
-				  	  	  			MediaPlayerWrapper.play(MainActivity2.this, R.raw.buttonsound6);
+				  	  	  			//MediaPlayerWrapper.play(MainActivity2.this, R.raw.buttonsound6);
 				  	  	  			
 				  	  	  			foldScrolls();
 				  	  	  			
