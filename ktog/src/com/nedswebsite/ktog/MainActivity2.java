@@ -39,6 +39,7 @@ import android.view.View.OnTouchListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
+import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
 import android.widget.EditText;
@@ -93,7 +94,7 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	
 	
-	String preventinitiativediefromleaking = "on";	
+	//String preventinitiativediefromleaking = "on";	
 	String preventattackdamagediefromleaking = "on";
 	String preventcureresultdiefromleaking = "on";
 	
@@ -151,8 +152,7 @@ public class MainActivity2 extends ActionBarActivity {
 		WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		
 		// This will hide the system bar until user swipes up from bottom or down from top.		
-		getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_IMMERSIVE
-                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+		//getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_IMMERSIVE | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
 		
 		setContentView(R.layout.activity_main_activity2);		
 		// For the little space between the action & attack button.
@@ -383,7 +383,7 @@ public class MainActivity2 extends ActionBarActivity {
 				  		  			onBackPressedOk = "yes";
 				  		  			
 				  		  			
-				  		  			preventinitiativediefromleaking = "off";
+				  		  			//preventinitiativediefromleaking = "off";
 			  	  	  		}
 			  	  	  	}, 750);
 	  	  	  		}
@@ -411,7 +411,7 @@ public class MainActivity2 extends ActionBarActivity {
             @Override
 			public void onClick(View v) {
             	
-            	SystemClock.sleep(1000);
+            	//SystemClock.sleep(1000);
             	
             	if (isinitiativestarted.equals("no")) {
             		myInitiativeNotStarted();            		
@@ -442,20 +442,12 @@ public class MainActivity2 extends ActionBarActivity {
 			
 		    /*
 			public void onSwipeTop() {
-		        Toast.makeText(MainActivity2.this, "top", Toast.LENGTH_SHORT).show();
-		        
+		        Toast.makeText(MainActivity2.this, "top", Toast.LENGTH_SHORT).show();		        
 		    }
 		    */			
 			
 			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
-			//SharedPreferences.Editor editor = preferences.edit();
-			
-			
-			
-			
-			//Globals attackDamage = ((Globals)getApplicationContext());			
-			//Globals cureResult = ((Globals)getApplicationContext());			
-			
+			//SharedPreferences.Editor editor = preferences.edit();			
 			
 			
 		    public void onSwipeRight() {
@@ -467,7 +459,8 @@ public class MainActivity2 extends ActionBarActivity {
 		    	*/
 		    	//if (issixsidedrolledforinitiative.equals("yes")) {	  				
 					
-				sixSidedWobbleStop();
+				sixSidedWobbleStop();				
+				
 				//sixSidedRollFromCenterToRight();
 				//determineInitiative();				
 				
@@ -639,24 +632,215 @@ public class MainActivity2 extends ActionBarActivity {
 					}					
 				}
 				
+				else if (iscriticalmissdamagerolled.equals("yes")) {
+					
+					int attackDamage = preferences.getInt("attackDamage", 0);
+					
+					if (attackDamage == 1) {
+						
+						sixSidedRollFromCenterToRight1();
+						
+						criticalMissDamageResults();
+					}
+					else if (attackDamage == 2) {
+						
+						sixSidedRollFromCenterToRight2();
+						
+						criticalMissDamageResults();
+					}
+					else if (attackDamage == 3) {
+						
+						sixSidedRollFromCenterToRight3();
+						
+						criticalMissDamageResults();
+					}
+					else if (attackDamage == 4) {
+						
+						sixSidedRollFromCenterToRight4();
+						
+						criticalMissDamageResults();
+					}
+					else if (attackDamage == 5) {
+						
+						sixSidedRollFromCenterToRight5();
+						
+						criticalMissDamageResults();
+					}
+					else if (attackDamage == 6) {
+						
+						sixSidedRollFromCenterToRight6();
+						
+						criticalMissDamageResults();
+					}					
+				}
 				
-				/*								
-				if (iscriticalmissdamagerolled.equals("yes")) {
-					criticalMissDamageResults();
+				else if (iscriticalhitfirstrollrolled.equals("yes")) {
+					
+					//int attackDamage = preferences.getInt("attackDamage", 0);
+					
+					if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 1) {
+						
+						sixSidedRollFromCenterToRight1();
+						
+						criticalHitPartTwo();
+					}
+					else if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 2) {
+						
+						sixSidedRollFromCenterToRight2();
+						
+						criticalHitPartTwo();
+					}
+					else if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 3) {
+						
+						sixSidedRollFromCenterToRight3();
+						
+						criticalHitPartTwo();
+					}
+					else if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 4) {
+						
+						sixSidedRollFromCenterToRight4();
+						
+						criticalHitPartTwo();
+					}
+					else if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 5) {
+						
+						sixSidedRollFromCenterToRight5();
+						
+						criticalHitPartTwo();
+					}
+					else if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 6) {
+						
+						sixSidedRollFromCenterToRight6();
+						
+						criticalHitPartTwo();
+					}					
 				}
-				if (iscriticalhitfirstrollrolled.equals("yes")) {
-					criticalHitPartTwo();
+				
+				else if (iscriticalhitsecondrollrolled.equals("yes")) {
+					
+					//int attackDamage = preferences.getInt("attackDamage", 0);
+					
+					if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 1) {
+						
+						sixSidedRollFromCenterToRight1();
+						
+						criticalHitDamageResults();
+					}
+					else if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 2) {
+						
+						sixSidedRollFromCenterToRight2();
+						
+						criticalHitDamageResults();
+					}
+					else if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 3) {
+						
+						sixSidedRollFromCenterToRight3();
+						
+						criticalHitDamageResults();
+					}
+					else if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 4) {
+						
+						sixSidedRollFromCenterToRight4();
+						
+						criticalHitDamageResults();
+					}
+					else if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 5) {
+						
+						sixSidedRollFromCenterToRight5();
+						
+						criticalHitDamageResults();
+					}
+					else if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 6) {
+						
+						sixSidedRollFromCenterToRight6();
+						
+						criticalHitDamageResults();
+					}					
 				}
-				if (iscriticalhitsecondrollrolled.equals("yes")) {
-					criticalHitDamageResults();
+				
+				else if (iscriticalhitmightyblowfirstrollrolled.equals("yes")) {
+					
+					//int attackDamage = preferences.getInt("attackDamage", 0);
+					
+					if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 1) {
+						
+						sixSidedRollFromCenterToRight1();
+						
+						criticalHitMightyBlowPartTwo();
+					}
+					else if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 2) {
+						
+						sixSidedRollFromCenterToRight2();
+						
+						criticalHitMightyBlowPartTwo();
+					}
+					else if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 3) {
+						
+						sixSidedRollFromCenterToRight3();
+						
+						criticalHitMightyBlowPartTwo();
+					}
+					else if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 4) {
+						
+						sixSidedRollFromCenterToRight4();
+						
+						criticalHitMightyBlowPartTwo();
+					}
+					else if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 5) {
+						
+						sixSidedRollFromCenterToRight5();
+						
+						criticalHitMightyBlowPartTwo();
+					}
+					else if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 6) {
+						
+						sixSidedRollFromCenterToRight6();
+						
+						criticalHitMightyBlowPartTwo();
+					}					
 				}
-				if (iscriticalhitmightyblowfirstrollrolled.equals("yes")) {
-					criticalHitMightyBlowPartTwo();
-				}
-				if (iscriticalhitmightyblowsecondrollrolled.equals("yes")) {
-					criticalHitMightyBlowDamageResults();
-				}
-				*/				
+				
+				else if (iscriticalhitmightyblowsecondrollrolled.equals("yes")) {
+					
+					//int attackDamage = preferences.getInt("attackDamage", 0);
+					
+					if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 1) {
+						
+						sixSidedRollFromCenterToRight1();
+						
+						criticalHitMightyBlowDamageResults();
+					}
+					else if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 2) {
+						
+						sixSidedRollFromCenterToRight2();
+						
+						criticalHitMightyBlowDamageResults();
+					}
+					else if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 3) {
+						
+						sixSidedRollFromCenterToRight3();
+						
+						criticalHitMightyBlowDamageResults();
+					}
+					else if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 4) {
+						
+						sixSidedRollFromCenterToRight4();
+						
+						criticalHitMightyBlowDamageResults();
+					}
+					else if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 5) {
+						
+						sixSidedRollFromCenterToRight5();
+						
+						criticalHitMightyBlowDamageResults();
+					}
+					else if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 6) {
+						
+						sixSidedRollFromCenterToRight6();
+						
+						criticalHitMightyBlowDamageResults();
+					}					
+				}								
 			//}
 		    }		    
 		    public void onSwipeLeft() {
@@ -669,7 +853,8 @@ public class MainActivity2 extends ActionBarActivity {
 		    	
 		    	//if (issixsidedrolledforinitiative.equals("yes")) {	  				
 					
-				sixSidedWobbleStop();
+				sixSidedWobbleStop();				
+	  	  		
 				//sixSidedRollFromCenterToLeft();
 				//determineInitiative();				
 				
@@ -840,23 +1025,215 @@ public class MainActivity2 extends ActionBarActivity {
 					}
 				}
 				
-				/*				
-				if (iscriticalmissdamagerolled.equals("yes")) {
-					criticalMissDamageResults();
+				else if (iscriticalmissdamagerolled.equals("yes")) {
+					
+					int attackDamage = preferences.getInt("attackDamage", 0);
+					
+					if (attackDamage == 1) {
+						
+						sixSidedRollFromCenterToLeft1();
+						
+						criticalMissDamageResults();
+					}
+					else if (attackDamage == 2) {
+						
+						sixSidedRollFromCenterToLeft2();
+						
+						criticalMissDamageResults();
+					}
+					else if (attackDamage == 3) {
+						
+						sixSidedRollFromCenterToLeft3();
+						
+						criticalMissDamageResults();
+					}
+					else if (attackDamage == 4) {
+						
+						sixSidedRollFromCenterToLeft4();
+						
+						criticalMissDamageResults();
+					}
+					else if (attackDamage == 5) {
+						
+						sixSidedRollFromCenterToLeft5();
+						
+						criticalMissDamageResults();
+					}
+					else if (attackDamage == 6) {
+						
+						sixSidedRollFromCenterToLeft6();
+						
+						criticalMissDamageResults();
+					}					
 				}
-				if (iscriticalhitfirstrollrolled.equals("yes")) {
-					criticalHitPartTwo();
+				
+				else if (iscriticalhitfirstrollrolled.equals("yes")) {
+					
+					//int attackDamage = preferences.getInt("attackDamage", 0);
+					
+					if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 1) {
+						
+						sixSidedRollFromCenterToLeft1();
+						
+						criticalHitPartTwo();
+					}
+					else if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 2) {
+						
+						sixSidedRollFromCenterToLeft2();
+						
+						criticalHitPartTwo();
+					}
+					else if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 3) {
+						
+						sixSidedRollFromCenterToLeft3();
+						
+						criticalHitPartTwo();
+					}
+					else if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 4) {
+						
+						sixSidedRollFromCenterToLeft4();
+						
+						criticalHitPartTwo();
+					}
+					else if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 5) {
+						
+						sixSidedRollFromCenterToLeft5();
+						
+						criticalHitPartTwo();
+					}
+					else if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 6) {
+						
+						sixSidedRollFromCenterToLeft6();
+						
+						criticalHitPartTwo();
+					}					
 				}
-				if (iscriticalhitsecondrollrolled.equals("yes")) {
-					criticalHitDamageResults();
+				
+				else if (iscriticalhitsecondrollrolled.equals("yes")) {
+					
+					//int attackDamage = preferences.getInt("attackDamage", 0);
+					
+					if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 1) {
+						
+						sixSidedRollFromCenterToLeft1();
+						
+						criticalHitDamageResults();
+					}
+					else if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 2) {
+						
+						sixSidedRollFromCenterToLeft2();
+						
+						criticalHitDamageResults();
+					}
+					else if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 3) {
+						
+						sixSidedRollFromCenterToLeft3();
+						
+						criticalHitDamageResults();
+					}
+					else if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 4) {
+						
+						sixSidedRollFromCenterToLeft4();
+						
+						criticalHitDamageResults();
+					}
+					else if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 5) {
+						
+						sixSidedRollFromCenterToLeft5();
+						
+						criticalHitDamageResults();
+					}
+					else if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 6) {
+						
+						sixSidedRollFromCenterToLeft6();
+						
+						criticalHitDamageResults();
+					}					
 				}
-				if (iscriticalhitmightyblowfirstrollrolled.equals("yes")) {
-					criticalHitMightyBlowPartTwo();
+				
+				else if (iscriticalhitmightyblowfirstrollrolled.equals("yes")) {
+					
+					//int attackDamage = preferences.getInt("attackDamage", 0);
+					
+					if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 1) {
+						
+						sixSidedRollFromCenterToLeft1();
+						
+						criticalHitMightyBlowPartTwo();
+					}
+					else if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 2) {
+						
+						sixSidedRollFromCenterToLeft2();
+						
+						criticalHitMightyBlowPartTwo();
+					}
+					else if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 3) {
+						
+						sixSidedRollFromCenterToLeft3();
+						
+						criticalHitMightyBlowPartTwo();
+					}
+					else if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 4) {
+						
+						sixSidedRollFromCenterToLeft4();
+						
+						criticalHitMightyBlowPartTwo();
+					}
+					else if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 5) {
+						
+						sixSidedRollFromCenterToLeft5();
+						
+						criticalHitMightyBlowPartTwo();
+					}
+					else if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 6) {
+						
+						sixSidedRollFromCenterToLeft6();
+						
+						criticalHitMightyBlowPartTwo();
+					}					
 				}
-				if (iscriticalhitmightyblowsecondrollrolled.equals("yes")) {
-					criticalHitMightyBlowDamageResults();
-				}
-				*/
+				
+				else if (iscriticalhitmightyblowsecondrollrolled.equals("yes")) {
+					
+					//int attackDamage = preferences.getInt("attackDamage", 0);
+					
+					if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 1) {
+						
+						sixSidedRollFromCenterToLeft1();
+						
+						criticalHitMightyBlowDamageResults();
+					}
+					else if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 2) {
+						
+						sixSidedRollFromCenterToLeft2();
+						
+						criticalHitMightyBlowDamageResults();
+					}
+					else if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 3) {
+						
+						sixSidedRollFromCenterToLeft3();
+						
+						criticalHitMightyBlowDamageResults();
+					}
+					else if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 4) {
+						
+						sixSidedRollFromCenterToLeft4();
+						
+						criticalHitMightyBlowDamageResults();
+					}
+					else if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 5) {
+						
+						sixSidedRollFromCenterToLeft5();
+						
+						criticalHitMightyBlowDamageResults();
+					}
+					else if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 6) {
+						
+						sixSidedRollFromCenterToLeft6();
+						
+						criticalHitMightyBlowDamageResults();
+					}					
+				}			
 			//}
 		    }
 		    /*
@@ -876,7 +1253,7 @@ public class MainActivity2 extends ActionBarActivity {
 		    */
 		    public void onSwipeRight() {		    		  				
 					
-				twentySidedWobbleStop();
+				twentySidedWobbleStop();				
 				
 				if (ArrayOfAttackResult.attackResult[0] == 1) {
 					twentySidedRollFromCenterToRight1();
@@ -961,7 +1338,7 @@ public class MainActivity2 extends ActionBarActivity {
 		    }		    
 		    public void onSwipeLeft() {		    		  				
 					
-				twentySidedWobbleStop();
+				twentySidedWobbleStop();				
 				
 				if (ArrayOfAttackResult.attackResult[0] == 1) {
 					twentySidedRollFromCenterToLeft1();
@@ -1049,7 +1426,9 @@ public class MainActivity2 extends ActionBarActivity {
 		        Toast.makeText(MainActivity2.this, "bottom", Toast.LENGTH_SHORT).show();
 		    }
 		    */
-		});		
+		});			
+		
+		
 	}
 	
 	
@@ -1069,14 +1448,14 @@ public class MainActivity2 extends ActionBarActivity {
 		return 0;
 	}
 
-
+	/*
 	public void hideNavigation() {
 		
 		// This will hide the system bar until user swipes up from bottom or down from top.		
   		getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_IMMERSIVE
                   | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);		
 	}
-	
+	*/
 	
 	/*
 	 * 
@@ -1101,14 +1480,14 @@ public class MainActivity2 extends ActionBarActivity {
 	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 	    		public void onClick(DialogInterface dialog, int whichButton) {
 	    			
-	    			hideNavigation();
+	    			//hideNavigation();
 	    			
 	    			//NOT SURE ARRAYS ARE GETTING WIPED COMPLETELY W THE INTENT CODE BELOW, SO ADDED THIS:
 	    			ArrayOfPlayers.player = new String[6];
 	    			ArrayOfAvatars.avatar = new String[6];
 	    			ArrayOfHitPoints.hitpoints = new int[6];
 	    			ArrayOfInitiative.initiative = new int[6];
-	    			ArrayOfCureResult.cureResult = new int[6];
+	    			//ArrayOfCureResult.cureResult = new int[6];
 	    			ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo = new int[1];
 	    			ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne = new int[1];
 	    			ArrayOfAttackResult.attackResult = new int[1];
@@ -1143,7 +1522,7 @@ public class MainActivity2 extends ActionBarActivity {
 	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
 	    		public void onClick(DialogInterface dialog, int whichButton) {
 	    			
-	    			hideNavigation();		         		            		  
+	    			//hideNavigation();		         		            		  
 	    		}
 	    	});	  	    	
 	    	alert.show();				
@@ -1158,7 +1537,7 @@ public class MainActivity2 extends ActionBarActivity {
 		ArrayOfAvatars.avatar = new String[6];
 		ArrayOfHitPoints.hitpoints = new int[6];
 		ArrayOfInitiative.initiative = new int[6];
-		ArrayOfCureResult.cureResult = new int[6];
+		//ArrayOfCureResult.cureResult = new int[6];
 		ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo = new int[1];
 		ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne = new int[1];
 		ArrayOfAttackResult.attackResult = new int[1];
@@ -1248,7 +1627,7 @@ public class MainActivity2 extends ActionBarActivity {
 	 * 
 	 * 
 	 * 
-	 */
+	 */	
 	
 	
 	// OK IN THEIR OWN THREADS????
@@ -1269,12 +1648,12 @@ public class MainActivity2 extends ActionBarActivity {
 				img.setImageResource(R.drawable.leftscroll);
 			  	img.getBackground().setColorFilter(Color.parseColor("#ff0000"), PorterDuff.Mode.DARKEN);
 			  	*/
-				getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_IMMERSIVE
-		                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+				
+				//getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_IMMERSIVE | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
 			  	ImageView img = (ImageView)findViewById(R.id.playerturnbackgroundanimation);		  	
 			  	img.bringToFront();
 			  	final Animation animAlphaTextRepeat = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.anim_alpha_text_repeat);
-			  	img.startAnimation(animAlphaTextRepeat);			  	
+			  	img.startAnimation(animAlphaTextRepeat);		  	
 		    }
   		});			  		  	
 	}
@@ -1298,8 +1677,8 @@ public class MainActivity2 extends ActionBarActivity {
 				final Animation animAlphaTextRepeat = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.anim_alpha_text_repeat);
 				computerNameTextView.startAnimation(animAlphaTextRepeat);
 				*/
-				getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_IMMERSIVE
-		                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+				
+				//getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_IMMERSIVE | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
 				ImageView img = (ImageView)findViewById(R.id.computerturnbackgroundanimation);		  	
 			  	img.bringToFront();
 			  	final Animation animAlphaTextRepeat = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.anim_alpha_text_repeat);
@@ -1342,7 +1721,7 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	
 	//@SuppressWarnings("deprecation")
-	public void unfoldScrolls () {
+	public void unfoldScrolls() {
 		/*
 		// TO PERFORM FRAME ANIMATION PROGRAMMATICALLY:
 		AnimationDrawable animation;
@@ -1543,7 +1922,7 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletobig);					  	  	  	
 	  	  	
-  	  	TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
+  	  	TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
   	  	
   	  	mightyBlowGraphic.setVisibility(View.VISIBLE);
 	  	mightyBlowGraphic.bringToFront();
@@ -1565,7 +1944,7 @@ public class MainActivity2 extends ActionBarActivity {
   	  			
 	  	  		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletosmall);						  	  	  	
 	  	  	  	
-		  	  	final TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
+		  	  	final TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
 		  	  	mightyBlowGraphic.setTypeface(typeFace);
 		  	  	mightyBlowGraphic.setText("Mighty Blow");
 	  	  	  	
@@ -1619,13 +1998,13 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletobig);					  	  	  	
 	  	  	
-  	  	TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
+  	  	TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
   	  	
   	  	criticalHitGraphic.setVisibility(View.VISIBLE);
 	  	criticalHitGraphic.bringToFront();
   	  	
   	  	criticalHitGraphic.setTypeface(typeFace);
-  	  	criticalHitGraphic.setText("Critical Hit");  	  	
+  	  	criticalHitGraphic.setText("Critical     Hit");  	  	
   	  	
   	  	criticalHitGraphic.clearAnimation();
   	  	criticalHitGraphic.startAnimation(a);
@@ -1641,9 +2020,9 @@ public class MainActivity2 extends ActionBarActivity {
   	  			
 	  	  		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletosmall);						  	  	  	
 	  	  	  	
-		  	  	final TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
+		  	  	final TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
 		  	  	criticalHitGraphic.setTypeface(typeFace);
-		  	  	criticalHitGraphic.setText("Critical Hit");
+		  	  	criticalHitGraphic.setText("Critical     Hit");
 	  	  	  	
 		  	  	criticalHitGraphic.clearAnimation();
 		  	  	criticalHitGraphic.startAnimation(a);
@@ -1657,7 +2036,7 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletobig);					  	  	  	
 	  	  	
-  	  	TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
+  	  	TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
   	  	
   	  	criticalMissGraphic.setVisibility(View.VISIBLE);
 	  	criticalMissGraphic.bringToFront();
@@ -1679,7 +2058,7 @@ public class MainActivity2 extends ActionBarActivity {
   	  			
 	  	  		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletosmall);						  	  	  	
 	  	  	  	
-		  	  	final TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
+		  	  	final TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
 		  	  	criticalMissGraphic.setTypeface(typeFace);
 		  	  	criticalMissGraphic.setText("Critical Miss");
 	  	  	  	
@@ -1687,6 +2066,38 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  	criticalMissGraphic.startAnimation(a);
   	  		}	  	  		
   	  	}, 3000);		
+	}
+	
+	public void stopGraphics() {
+		
+		TextView blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+		TextView cureGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+		TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
+		TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+		TextView hasteGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+		TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+		TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+		
+		blessGraphic.clearAnimation();
+		blessGraphic.setVisibility(View.GONE);
+		
+		cureGraphic.clearAnimation();
+		cureGraphic.setVisibility(View.GONE);
+		
+		dodgeGraphic.clearAnimation();
+		dodgeGraphic.setVisibility(View.GONE);
+		
+		mightyBlowGraphic.clearAnimation();
+		mightyBlowGraphic.setVisibility(View.GONE);
+		
+		hasteGraphic.clearAnimation();
+		hasteGraphic.setVisibility(View.GONE);
+		
+		criticalHitGraphic.clearAnimation();
+		criticalHitGraphic.setVisibility(View.GONE);
+		
+		criticalMissGraphic.clearAnimation();
+		criticalMissGraphic.setVisibility(View.GONE);
 	}
 	
 	
@@ -1723,7 +2134,7 @@ public class MainActivity2 extends ActionBarActivity {
 	 */
 	
 	
-	public void computerRolls20SidedDie() {
+	public void computerRolls20SidedDie() {		
 		
 		if (ArrayOfAttackResult.attackResult[0] == 1) {
 			computerTwentySidedRollFromLeft1();
@@ -1796,8 +2207,7 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		//Globals g = Globals.getInstance();
 		//int attackDamage=g.getDataAttackDamage();
-		//int cureResult=g.getDataCureResult();
-		
+		//int cureResult=g.getDataCureResult();	
 		
 		if ((attackDamage == 1 && preventattackdamagediefromleaking.equals("off")) || (cureResult == 1 && preventcureresultdiefromleaking.equals("off"))) {
 			computerSixSidedRollFromLeft1();							  		  	  	
@@ -4077,7 +4487,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	  		    	public void onClick(DialogInterface dialog, int whichButton) {
 	  		    		
-	  		    		hideNavigation();
+	  		    		//hideNavigation();
 	  		    		
 	  		    		finishInitiative();
 	  		    	}
@@ -4141,7 +4551,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  			
 	  	  			
 	  	  			
-	  	  			preventinitiativediefromleaking.equals("on");
+	  	  			//preventinitiativediefromleaking.equals("on");
 	  	  			
 	  	  			
 	  	  			//Thread myThread = new Thread(myRunnable);
@@ -4321,8 +4731,10 @@ public class MainActivity2 extends ActionBarActivity {
 																  	  	  		@Override
 																	  	  	  	public void run() {
 																  	  	  			
-																	  	  	  		final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
-																  	  	  			dodgeGraphic.setVisibility(View.INVISIBLE);
+																	  	  	  		//final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
+																  	  	  			//dodgeGraphic.setVisibility(View.INVISIBLE);
+																  	  	  			
+																  	  	  			stopGraphics();
 																  	  	  			
 																	  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 																	  	    			
@@ -4344,14 +4756,14 @@ public class MainActivity2 extends ActionBarActivity {
 																				  	}								  		    		
 																  					return;
 																	  	  	  	}
-																  	  	  	}, 3000);														  		    		
+																  	  	  	}, 6000);														  		    		
 														  		    	}
 														  	    	});
 														  	    	
 														  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
 														          	  public void onClick(DialogInterface dialog, int whichButton) {
 														          		  
-														          		  	hideNavigation();
+														          		  	//hideNavigation();
 														          		  	
 														          		  	computerDamage();								          		  	
 														          		  	return;
@@ -4532,8 +4944,10 @@ public class MainActivity2 extends ActionBarActivity {
 																  	  	  		@Override
 																	  	  	  	public void run() {
 																  	  	  			
-																	  	  	  		final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
-																  	  	  			dodgeGraphic.setVisibility(View.INVISIBLE);
+																	  	  	  		//final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
+																  	  	  			//dodgeGraphic.setVisibility(View.INVISIBLE);
+																  	  	  			
+																  	  	  			stopGraphics();
 																  	  	  			
 																	  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 																	  	    			
@@ -4555,14 +4969,14 @@ public class MainActivity2 extends ActionBarActivity {
 																				  	}								  		    		
 																  					//return;
 																	  	  	  	}
-																  	  	  	}, 3000);											  		    		
+																  	  	  	}, 6000);											  		    		
 														  		    	}
 														  	    	});
 														  	    	
 														  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
 														          	  public void onClick(DialogInterface dialog, int whichButton) {
 														          		  
-														          		  	hideNavigation();
+														          		  	//hideNavigation();
 														          		  	
 														          		  	computerDamage();								          		  	
 														          		  	//return;
@@ -4784,8 +5198,10 @@ public class MainActivity2 extends ActionBarActivity {
 																  	  	  		@Override
 																	  	  	  	public void run() {
 																  	  	  			
-																	  	  	  		final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
-																  	  	  			dodgeGraphic.setVisibility(View.INVISIBLE);
+																	  	  	  		//final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
+																  	  	  			//dodgeGraphic.setVisibility(View.INVISIBLE);
+																  	  	  			
+																  	  	  			stopGraphics();
 																  	  	  			
 																	  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 																	  	    			
@@ -4807,14 +5223,14 @@ public class MainActivity2 extends ActionBarActivity {
 																				  	}								  		    		
 																  					//return;
 																	  	  	  	}
-																  	  	  	}, 3000);													  		    		
+																  	  	  	}, 6000);													  		    		
 														  		    	}
 														  	    	});
 														  	    	
 														  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
 														          	  public void onClick(DialogInterface dialog, int whichButton) {
 														          		  
-														          		  	hideNavigation();
+														          		  	//hideNavigation();
 														          		  	
 														          		  	computerDamage();								          		  	
 														          		  	//return;
@@ -4991,8 +5407,10 @@ public class MainActivity2 extends ActionBarActivity {
 																  	  	  		@Override
 																	  	  	  	public void run() {
 																  	  	  			
-																	  	  	  		final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
-																  	  	  			dodgeGraphic.setVisibility(View.INVISIBLE);
+																	  	  	  		//final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
+																  	  	  			//dodgeGraphic.setVisibility(View.INVISIBLE);
+																  	  	  			
+																  	  	  			stopGraphics();
 																  	  	  			
 																	  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 																	  	    			
@@ -5014,14 +5432,14 @@ public class MainActivity2 extends ActionBarActivity {
 																				  	}								  		    		
 																  					//return;
 																	  	  	  	}
-																  	  	  	}, 3000);													  		    		
+																  	  	  	}, 6000);													  		    		
 														  		    	}
 														  	    	});
 														  	    	
 														  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
 														          	  public void onClick(DialogInterface dialog, int whichButton) {
 														          		  
-														          		  	hideNavigation();
+														          		  	//hideNavigation();
 														          		  	
 														          		  	computerDamage();								          		  	
 														          		  	//return;
@@ -5223,8 +5641,10 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  		@Override
 		  	  	  	public void run() {
 	  	  	  			
-		  	  	  		final TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
-		  	  	  		criticalHitGraphic.setVisibility(View.INVISIBLE);
+		  	  	  		//final TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
+		  	  	  		//criticalHitGraphic.setVisibility(View.INVISIBLE);
+	  	  	  			
+	  	  	  			stopGraphics();
 	  	  	  			
 		  	  	  		if (dodgeBlowSpell[0] > 0) {
 	  						/*
@@ -5278,8 +5698,10 @@ public class MainActivity2 extends ActionBarActivity {
 	  					  	  	  		@Override
 	  						  	  	  	public void run() {
 	  					  	  	  			
-			  					  	  	  	final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
-						  	  	  			dodgeGraphic.setVisibility(View.INVISIBLE);
+			  					  	  	  	//final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
+						  	  	  			//dodgeGraphic.setVisibility(View.INVISIBLE);
+	  					  	  	  			
+	  					  	  	  			stopGraphics();
 	  					  	  	  			
 	  						  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 	  						  	    			
@@ -5300,7 +5722,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  									  		computerHastePartTwo();    							
 	  									  	}				  	  	  			
 	  						  	  	  	}
-	  					  	  	  	}, 3000);
+	  					  	  	  	}, 6000);
 	  			  		    		
 	  			  					//return;
 	  			  		    	}
@@ -5309,7 +5731,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  			  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
 	  			          	  public void onClick(DialogInterface dialog, int whichButton) {		          		  
 	  			          		  
-	  			          		  hideNavigation();	          		  	
+	  			          		  //hideNavigation();	          		  	
 	  			          		  	
 	  			          		  computerCriticalHitDamage();
 	  			          	  }
@@ -5349,7 +5771,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  		  				//return;	  				
 	  		  			}
 		  	  	  	}
-	  	  	  	}, 3000);	  	  	  		  			
+	  	  	  	}, 6000);	  	  	  		  			
   	  	    }
 		});		
 		//return playerNumberAttacked;
@@ -5388,8 +5810,10 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  		@Override
 		  	  	  	public void run() {
 	  	  	  			
-		  	  	  		final TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
-		  	  	  		mightyBlowGraphic.setVisibility(View.INVISIBLE);		  	  	  	
+		  	  	  		//final TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
+		  	  	  		//mightyBlowGraphic.setVisibility(View.INVISIBLE);
+		  	  	  		
+		  	  	  		stopGraphics();
 		  	  	  		
 		  	  	  		
 	  	  	  			computerRolls6SidedDie();
@@ -5457,7 +5881,7 @@ public class MainActivity2 extends ActionBarActivity {
 											    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 												    	public void onClick(DialogInterface dialog, int whichButton) {
 												    		
-												    		hideNavigation();
+												    		//hideNavigation();
 												    		
 												    		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 											  	    			
@@ -5507,7 +5931,7 @@ public class MainActivity2 extends ActionBarActivity {
 											    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 												    	public void onClick(DialogInterface dialog, int whichButton) {
 												    		
-												    		hideNavigation();
+												    		//hideNavigation();
 												    		
 												    		playerDeadYet[0] = "yes";
 												    		
@@ -5673,7 +6097,7 @@ public class MainActivity2 extends ActionBarActivity {
 												    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 													    	public void onClick(DialogInterface dialog, int whichButton) {
 													    		
-													    		hideNavigation();
+													    		//hideNavigation();
 													    		
 													    		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 												  	    			
@@ -5731,7 +6155,7 @@ public class MainActivity2 extends ActionBarActivity {
 												    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 													    	public void onClick(DialogInterface dialog, int whichButton) {
 													    		
-													    		hideNavigation();
+													    		//hideNavigation();
 													    		
 													    		playerDeadYet[0] = "yes";
 													    		
@@ -5875,7 +6299,7 @@ public class MainActivity2 extends ActionBarActivity {
 												    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 													    	public void onClick(DialogInterface dialog, int whichButton) {
 													    		
-													    		hideNavigation();
+													    		//hideNavigation();
 													    		
 													    		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 												  	    			
@@ -5933,7 +6357,7 @@ public class MainActivity2 extends ActionBarActivity {
 												    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 													    	public void onClick(DialogInterface dialog, int whichButton) {
 													    		
-													    		hideNavigation();
+													    		//hideNavigation();
 													    		
 													    		playerDeadYet[0] = "yes";
 													    		
@@ -6056,7 +6480,7 @@ public class MainActivity2 extends ActionBarActivity {
 										    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 											    	public void onClick(DialogInterface dialog, int whichButton) {
 											    		
-											    		hideNavigation();
+											    		//hideNavigation();
 											    		
 											    		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 										  	    			
@@ -6114,7 +6538,7 @@ public class MainActivity2 extends ActionBarActivity {
 										    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 											    	public void onClick(DialogInterface dialog, int whichButton) {
 											    		
-											    		hideNavigation();
+											    		//hideNavigation();
 											    		
 											    		playerDeadYet[0] = "yes";
 											    		
@@ -6201,8 +6625,10 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  		@Override
 		  	  	  	public void run() {
 	  	  	  			
-		  	  	  		final TextView cureGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
-	  	  	  			cureGraphic.setVisibility(View.INVISIBLE);
+		  	  	  		//final TextView cureGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+	  	  	  			//cureGraphic.setVisibility(View.INVISIBLE);
+	  	  	  			
+	  	  	  			stopGraphics();
 	  	  	  			
 		  	  	  		computerRolls6SidedDie();
 		  	  			
@@ -6302,8 +6728,10 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  		@Override
 		  	  	  	public void run() {
 	  	  	  			
-	  	  	  			final TextView blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
-	  	  	  			blessGraphic.setVisibility(View.INVISIBLE);			  	  	  			
+	  	  	  			//final TextView blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+	  	  	  			//blessGraphic.setVisibility(View.INVISIBLE);			  	  	  			
+	  	  	  			
+	  	  	  			stopGraphics();
 	  	  	  			
 		  	  	  		if (canHasDisarmed[0].equals("no")) {
 		  					
@@ -6321,6 +6749,9 @@ public class MainActivity2 extends ActionBarActivity {
 				  	  	  			
 				  	  	  		@Override
 					  	  	  	public void run() {
+				  	  	  			
+					  	  	  		//ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
+				  	  	  			//img.bringToFront();
 				  	  	  			
 				  	  	  			computerRolls20SidedDie();
 				  	  	  			
@@ -6380,7 +6811,7 @@ public class MainActivity2 extends ActionBarActivity {
 														  		    		//NEED THIS??????????????????
 														  		    		if (dodgeBlowSpell[0] < 1) {
 														  		    			
-														  		    			hideNavigation();
+														  		    			//hideNavigation();
 														  						
 														  						centerscrolltext.setVisibility(View.VISIBLE);													
 														  				  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -6412,8 +6843,10 @@ public class MainActivity2 extends ActionBarActivity {
 																  	  	  		@Override
 																	  	  	  	public void run() {
 																  	  	  			
-																	  	  	  		final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
-																  	  	  			dodgeGraphic.setVisibility(View.INVISIBLE);
+																	  	  	  		//final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
+																  	  	  			//dodgeGraphic.setVisibility(View.INVISIBLE);
+																  	  	  			
+																  	  	  			stopGraphics();
 																  	  	  			
 																	  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 																	  	    			
@@ -6427,14 +6860,14 @@ public class MainActivity2 extends ActionBarActivity {
 																				  									  		    		
 																  					//return;
 																	  	  	  	}
-																  	  	  	}, 3000);														  		    		
+																  	  	  	}, 6000);														  		    		
 														  		    	}
 														  	    	});
 														  	    	
 														  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
 														          	  public void onClick(DialogInterface dialog, int whichButton) {
 														          		  
-														          		  	hideNavigation();
+														          		  	//hideNavigation();
 														          		  	
 														          		  	computerDamage();								          		  	
 														          		  	//return;
@@ -6611,7 +7044,7 @@ public class MainActivity2 extends ActionBarActivity {
 														  		    		//NEED THIS??????????????????
 														  		    		if (dodgeBlowSpell[0] < 1) {
 														  		    			
-														  		    			hideNavigation();
+														  		    			//hideNavigation();
 														  						
 														  						centerscrolltext.setVisibility(View.VISIBLE);													
 														  				  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -6643,8 +7076,10 @@ public class MainActivity2 extends ActionBarActivity {
 																  	  	  		@Override
 																	  	  	  	public void run() {
 																  	  	  			
-																	  	  	  		final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
-																  	  	  			dodgeGraphic.setVisibility(View.INVISIBLE);
+																	  	  	  		//final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
+																  	  	  			//dodgeGraphic.setVisibility(View.INVISIBLE);
+																  	  	  			
+																  	  	  			stopGraphics();
 																  	  	  			
 																	  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 																	  	    			
@@ -6658,14 +7093,14 @@ public class MainActivity2 extends ActionBarActivity {
 																				  									  		    		
 																  					//return;
 																	  	  	  	}
-																  	  	  	}, 3000);														  		    		
+																  	  	  	}, 6000);														  		    		
 														  		    	}
 														  	    	});
 														  	    	
 														  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
 														          	  public void onClick(DialogInterface dialog, int whichButton) {
 														          		  
-														          		  	hideNavigation();
+														          		  	//hideNavigation();
 														          		  	
 														          		  	computerDamage();								          		  	
 														          		  	//return;
@@ -6762,7 +7197,7 @@ public class MainActivity2 extends ActionBarActivity {
 				  	  	  	}, 2000);					
 						}
 		  	  	  	}
-	  	  	  	}, 3000);	  	  	  								
+	  	  	  	}, 6000);	  	  	  								
   	  	    }
 		});	
 	}
@@ -6798,9 +7233,11 @@ public class MainActivity2 extends ActionBarActivity {
 					@Override
 			  	  	public void run() {
 			  			
-						final TextView hasteGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
-		  	  	  		hasteGraphic.setVisibility(View.INVISIBLE);
+						//final TextView hasteGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+		  	  	  		//hasteGraphic.setVisibility(View.INVISIBLE);
 			  			
+						stopGraphics();
+						
 			  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 				  		centerscrolltext.startAnimation(animAlphaText);			  		
 						centerscrolltext.append("\n" + "> TWO attacks!");
@@ -6847,7 +7284,7 @@ public class MainActivity2 extends ActionBarActivity {
 				  	  	  	}
 			  	  	  	}, 2000);
 			  	  	}
-			  	}, 3000);	  	  	  								
+			  	}, 6000);	  	  	  								
   	  	    }
 		});
 	}
@@ -6867,6 +7304,12 @@ public class MainActivity2 extends ActionBarActivity {
 	  			
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);
+	  			
+	  			// IN CASE DAMAGE IS ROLLED FROM 1ST ATTACK:
+	  			// Use a blank drawable to hide the imageview animation:
+	  			ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
+	  			img.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+	  			img.setImageResource(R.drawable.sixsixrightleftrotateblank);
 	  			
 	  			// THIS IS WRONG - CAN GET 2ND ATTACK, YOU'RE JUST DISARMED:
 				//if (canHasDisarmed[1] == "yes")// so if you critically miss & drop weapon you don't get 2nd attack.
@@ -6922,415 +7365,440 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  	  		@Override
 						  	  	  	public void run() {
 					  	  	  			
-						  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
-								  		centerscrolltext.startAnimation(animAlphaText);
-										centerscrolltext.append("\n" + "> The computer rolls a " + ArrayOfAttackResult.attackResult[0] + "!");
+					  	  	  			if (canHasDisarmed[0].equals("no")) {
+					  	  	  				
+						  	  	  			centerscrolltext.setVisibility(View.VISIBLE);													
+									  		centerscrolltext.startAnimation(animAlphaText);
+											centerscrolltext.append("\n" + "> The computer rolls a " + ArrayOfAttackResult.attackResult[0] + "!");
+					  	  	  			}
+					  	  	  			
+					  	  	  			if (canHasDisarmed[0].equals("yes")) {
+					  	  	  				
+						  	  	  			centerscrolltext.setVisibility(View.VISIBLE);													
+									  		centerscrolltext.startAnimation(animAlphaText);
+											centerscrolltext.append("\n" + "> The computer rolls a " + ArrayOfAttackResult.attackResult[0] + ", +2 for disarmed = " + (ArrayOfAttackResult.attackResult[0] + 2));
+					  	  	  			}
+					  	  	  			
+					  	  	  			
+						  	  	  		final Handler h = new Handler();
+							  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+							  	  	  			
+							  	  	  		@Override
+								  	  	  	public void run() {
+							  	  	  			
+								  	  	  		if (ArrayOfAttackResult.attackResult[0] >= 20) {
+													
+													computerCriticalHit();
+													return;
+												}
+												
+												
+												if (canHasDisarmed[0].equals("no")) {
+												
+													if (ArrayOfAttackResult.attackResult[0] >= 14 && ArrayOfAttackResult.attackResult[0] <= 19) {
+														
+														final Handler h = new Handler();
+											  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+											  	  	  			
+											  	  	  		@Override
+												  	  	  	public void run() {
+											  	  	  			
+												  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
+														  		centerscrolltext.startAnimation(animAlphaText);
+																centerscrolltext.append("\n" + "> The computer's attack hits!");		
+																
+																final Handler h3 = new Handler();
+													  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
+													  	  	  			
+													  	  	  		@Override
+														  	  	  	public void run() {
+													  	  	  			
+														  	  	  		if (dodgeBlowSpell[0] > 0) {
+																			/*
+																			centerscrolltext.setVisibility(View.VISIBLE);													
+																	  		centerscrolltext.startAnimation(animAlphaText);			  		
+																			centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", do you want to dodge?");
+																			*/
+																			
+																			AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+																  			
+																  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", Do you want to use your Dodge spell?");
+																  	    	/*
+																  	    	alert.setMessage("something");
+																  	    	*/	  	    	
+																  	    	
+																  	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+																  		    	public void onClick(DialogInterface dialog, int whichButton) {	  		    		
+																  		    		
+																  		    		/*
+																  		    		//NEED THIS??????????????????
+																  		    		if (dodgeBlowSpell[0] < 1) {
+																  		    			
+																  		    			//hideNavigation();
+																  						
+																  						centerscrolltext.setVisibility(View.VISIBLE);													
+																  				  		centerscrolltext.startAnimation(animAlphaText);			  		
+																  						centerscrolltext.append("\n" + "> You have already used your Dodge spell!");
+																  						
+																  						//break;
+																  					}
+																  		    		*/
+																  		    		
+																  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
+																  		    		
+																  		    		centerscrolltext.setVisibility(View.VISIBLE);													
+																			  		centerscrolltext.startAnimation(animAlphaText);
+																					centerscrolltext.append("\n" + "> You dodge the hit!");
+																  		    		
+																  		    		skillsCheck();
+																  		    		
+																	  		    	// Use a blank drawable to hide the imageview animation:
+																	  		    	// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+																	  		    	ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
+																	  		    	img.setBackgroundResource(R.drawable.twentytwentyblank);
+																	  		    	img.setImageResource(R.drawable.twentytwentyblank);
+																  		    		
+																  		    		dodgeGraphic();
+																  		    		
+																  		    		final Handler h = new Handler();
+																		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+																		  	  	  			
+																		  	  	  		@Override
+																			  	  	  	public void run() {
+																		  	  	  			
+																			  	  	  		//final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
+																		  	  	  			//dodgeGraphic.setVisibility(View.INVISIBLE);
+																		  	  	  			
+																		  	  	  			stopGraphics();
+																		  	  	  			
+																			  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
+																			  	    			
+																			  	    			gameEngineComputerFirst2();   							
+																			  				}
+														
+																						  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
+																						  						
+																						  		turn();    							
+																						  	}
+																						  	if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
+																						  	    			
+																						  		computerHastePartTwo();   							
+																						  	}
+																	
+																						  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
+																						  						
+																						  		computerHastePartTwo();    							
+																						  	}								  		    		
+																		  					return;
+																			  	  	  	}
+																		  	  	  	}, 6000);														  		    		
+																  		    	}
+																  	    	});
+																  	    	
+																  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+																          	  public void onClick(DialogInterface dialog, int whichButton) {
+																          		  
+																          		  	//hideNavigation();
+																          		  	
+																          		  	computerDamage();								          		  	
+																          		  	return;
+																          	  }
+																          	});	  	    	
+																  	    	
+																  	    	alert.show();
+																			
+																			/*
+																			String s = input.next();
+																			char selection = s.charAt(0);
+																			
+																			switch (selection) {
+																			case 'y':
+																			case 'Y':
+																				
+																				if (dodgeBlowSpell[0] < 1) {
+																					
+																					centerscrolltext.setVisibility(View.VISIBLE);													
+																			  		centerscrolltext.startAnimation(animAlphaText);			  		
+																					centerscrolltext.append("\n" + "> You have already used your Dodge Blow spell!");
+																					
+																					break;
+																				}
+																				dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
+																				return dodgeBlowSpell;
+																			case 'n':
+																			case 'N':
+																				break;
+																			default:
+																				computerDamage(i, gameOn);
+																			}
+																			*/
+																		}
+														  	  	  		
+														  	  	  		else {
+														  	  	  			
+															  	  	  		computerDamage();
+																			return;						  	  	  			
+														  	  	  		}
+														  	  	  	}
+													  	  	  	}, 2000);
+												  	  	  	}
+											  	  	  	}, 2000);												
+													}
+													
+													if (ArrayOfAttackResult.attackResult[0] < 14 && ArrayOfAttackResult.attackResult[0] > 1) {
+														
+														final Handler h = new Handler();
+											  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+											  	  	  			
+											  	  	  		@Override
+												  	  	  	public void run() {
+											  	  	  			
+												  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
+														  		centerscrolltext.startAnimation(animAlphaText);
+																centerscrolltext.append("\n" + "> The computer's attack misses!");
+																
+																final Handler h = new Handler();
+													  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+													  	  	  			
+													  	  	  		@Override
+														  	  	  	public void run() {
+													  	  	  			
+														  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+														  	    			
+														  	    			gameEngineComputerFirst2();   							
+														  				}
+														  	  	  		
+																	  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+																	  						
+																	  		turn();    							
+																	  	}								  						  	  	  			
+														  	  	  	}
+													  	  	  	}, 2000);						
+																return;
+												  	  	  	}
+											  	  	  	}, 2000);											
+													}
+													
+													if (ArrayOfAttackResult.attackResult[0] <= 1) {
+														
+														final Handler h = new Handler();
+											  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+											  	  	  			
+											  	  	  		@Override
+												  	  	  	public void run() {
+											  	  	  			
+												  	  	  		computerCriticalMiss();
+																return;
+												  	  	  	}
+											  	  	  	}, 2000);												
+													}				
+												}
+												
+												if (canHasDisarmed[0].equals("yes")) {
+													
+													if (ArrayOfAttackResult.attackResult[0] >= 12 && ArrayOfAttackResult.attackResult[0] <= 19) {
+														
+														final Handler h = new Handler();
+											  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+											  	  	  			
+											  	  	  		@Override
+												  	  	  	public void run() {
+											  	  	  			
+												  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
+														  		centerscrolltext.startAnimation(animAlphaText);
+																centerscrolltext.append("\n" + "> The computer's attack hits!");			
+																
+																final Handler h5 = new Handler();
+													  	  	  	h5.postDelayed(new Runnable() {		  	  	  			
+													  	  	  			
+													  	  	  		@Override
+														  	  	  	public void run() {
+													  	  	  			
+														  	  	  		if (dodgeBlowSpell[0] > 0) {
+																			/*
+																			centerscrolltext.setVisibility(View.VISIBLE);													
+																	  		centerscrolltext.startAnimation(animAlphaText);			  		
+																			centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", do you want to dodge?");
+																			*/
+																			
+																			AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+																  			
+																  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", Do you want to use your Dodge spell?");
+																  	    	/*
+																  	    	alert.setMessage("something");
+																  	    	*/	  	    	
+																  	    	
+																  	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+																  		    	public void onClick(DialogInterface dialog, int whichButton) {	  		    		
+																  		    		
+																  		    		/*
+																  		    		//NEED THIS??????????????????
+																  		    		if (dodgeBlowSpell[0] < 1) {
+																  		    			
+																  		    			//hideNavigation();
+																  						
+																  						centerscrolltext.setVisibility(View.VISIBLE);													
+																  				  		centerscrolltext.startAnimation(animAlphaText);			  		
+																  						centerscrolltext.append("\n" + "> You have already used your Dodge spell!");
+																  						
+																  						//break;
+																  					}
+																  		    		*/
+																  		    		
+																  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
+																  		    		
+																  		    		centerscrolltext.setVisibility(View.VISIBLE);													
+																			  		centerscrolltext.startAnimation(animAlphaText);
+																					centerscrolltext.append("\n" + "> You dodge the hit!");
+																  		    		
+																  		    		skillsCheck();
+																  		    		
+																	  		    	// Use a blank drawable to hide the imageview animation:
+																	  		    	// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+																	  		    	ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
+																	  		    	img.setBackgroundResource(R.drawable.twentytwentyblank);
+																	  		    	img.setImageResource(R.drawable.twentytwentyblank);
+																  		    		
+																  		    		dodgeGraphic();
+																  		    		
+																  		    		final Handler h = new Handler();
+																		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+																		  	  	  			
+																		  	  	  		@Override
+																			  	  	  	public void run() {
+																		  	  	  			
+																			  	  	  		//final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
+																		  	  	  			//dodgeGraphic.setVisibility(View.INVISIBLE);
+																		  	  	  			
+																		  	  	  			stopGraphics();
+																		  	  	  			
+																			  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
+																			  	    			
+																			  	    			gameEngineComputerFirst2();   							
+																			  				}
+														
+																						  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
+																						  						
+																						  		turn();    							
+																						  	}
+																						  	if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
+																						  	    			
+																						  		computerHastePartTwo();   							
+																						  	}
+																	
+																						  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
+																						  						
+																						  		computerHastePartTwo();  							
+																						  	}								  		    		
+																		  					//return;
+																			  	  	  	}
+																		  	  	  	}, 6000);											  		    		
+																  		    	}
+																  	    	});
+																  	    	
+																  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+																          	  public void onClick(DialogInterface dialog, int whichButton) {
+																          		  
+																          		  	//hideNavigation();
+																          		  	
+																          		  	computerDamage();								          		  	
+																          		  	//return;
+																          	  }
+																          	});	  	    	
+																  	    	
+																  	    	alert.show();
+																			
+																			/*
+																			String s = input.next();
+																			char selection = s.charAt(0);
+																			
+																			switch (selection) {
+																			case 'y':
+																			case 'Y':
+																				
+																				if (dodgeBlowSpell[0] < 1) {
+																					
+																					centerscrolltext.setVisibility(View.VISIBLE);													
+																			  		centerscrolltext.startAnimation(animAlphaText);			  		
+																					centerscrolltext.append("\n" + "> You have already used your Dodge Blow spell!");
+																					
+																					break;
+																				}
+																				dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
+																				return dodgeBlowSpell;
+																			case 'n':
+																			case 'N':
+																				break;
+																			default:
+																				computerDamage(i, gameOn);
+																			}
+																			*/
+																		}
+														  	  	  		
+														  	  	  		else {
+														  	  	  			
+															  	  	  		computerDamage();
+																			//return;						  	  	  			
+														  	  	  		}
+														  	  	  	}
+													  	  	  	}, 2000);
+												  	  	  	}
+											  	  	  	}, 2000);												
+													}
+													
+													if (ArrayOfAttackResult.attackResult[0] < 12 && ArrayOfAttackResult.attackResult[0] > 1) {
+														
+														final Handler h = new Handler();
+											  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+											  	  	  			
+											  	  	  		@Override
+												  	  	  	public void run() {
+											  	  	  			
+												  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
+														  		centerscrolltext.startAnimation(animAlphaText);
+																centerscrolltext.append("\n" + "> The computer's attack misses!");
+																
+																final Handler h = new Handler();
+													  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+													  	  	  			
+													  	  	  		@Override
+														  	  	  	public void run() {
+													  	  	  			
+														  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+														  	    			
+														  	    			gameEngineComputerFirst2();   							
+														  				}
+														  	  	  		
+																	  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+																	  						
+																	  		turn();
+																	  	}								  						  	  	  			
+														  	  	  	}
+													  	  	  	}, 2000);						
+																return;
+												  	  	  	}
+											  	  	  	}, 2000);												
+													}
+													
+													if (ArrayOfAttackResult.attackResult[0] <= 1) {
+														
+														final Handler h = new Handler();
+											  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+											  	  	  			
+											  	  	  		@Override
+												  	  	  	public void run() {
+											  	  	  			
+												  	  	  		computerCriticalMiss();
+																return;
+												  	  	  	}
+											  	  	  	}, 2000);												
+													}					
+												}
+								  	  	  	}
+							  	  	  	}, 2000);
 										
 							
-										if (ArrayOfAttackResult.attackResult[0] >= 20) {
-											
-											computerCriticalHit();
-											return;
-										}
 										
-										
-										if (canHasDisarmed[0].equals("no")) {
-										
-											if (ArrayOfAttackResult.attackResult[0] >= 14 && ArrayOfAttackResult.attackResult[0] <= 19) {
-												
-												final Handler h = new Handler();
-									  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-									  	  	  			
-									  	  	  		@Override
-										  	  	  	public void run() {
-									  	  	  			
-										  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
-												  		centerscrolltext.startAnimation(animAlphaText);
-														centerscrolltext.append("\n" + "> The computer's attack hits!");		
-														
-														final Handler h3 = new Handler();
-											  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
-											  	  	  			
-											  	  	  		@Override
-												  	  	  	public void run() {
-											  	  	  			
-												  	  	  		if (dodgeBlowSpell[0] > 0) {
-																	/*
-																	centerscrolltext.setVisibility(View.VISIBLE);													
-															  		centerscrolltext.startAnimation(animAlphaText);			  		
-																	centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", do you want to dodge?");
-																	*/
-																	
-																	AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-														  			
-														  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", Do you want to use your Dodge spell?");
-														  	    	/*
-														  	    	alert.setMessage("something");
-														  	    	*/	  	    	
-														  	    	
-														  	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-														  		    	public void onClick(DialogInterface dialog, int whichButton) {	  		    		
-														  		    		
-														  		    		/*
-														  		    		//NEED THIS??????????????????
-														  		    		if (dodgeBlowSpell[0] < 1) {
-														  		    			
-														  		    			hideNavigation();
-														  						
-														  						centerscrolltext.setVisibility(View.VISIBLE);													
-														  				  		centerscrolltext.startAnimation(animAlphaText);			  		
-														  						centerscrolltext.append("\n" + "> You have already used your Dodge spell!");
-														  						
-														  						//break;
-														  					}
-														  		    		*/
-														  		    		
-														  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
-														  		    		
-														  		    		centerscrolltext.setVisibility(View.VISIBLE);													
-																	  		centerscrolltext.startAnimation(animAlphaText);
-																			centerscrolltext.append("\n" + "> You dodge the hit!");
-														  		    		
-														  		    		skillsCheck();
-														  		    		
-															  		    	// Use a blank drawable to hide the imageview animation:
-															  		    	// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
-															  		    	ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
-															  		    	img.setBackgroundResource(R.drawable.twentytwentyblank);
-															  		    	img.setImageResource(R.drawable.twentytwentyblank);
-														  		    		
-														  		    		dodgeGraphic();
-														  		    		
-														  		    		final Handler h = new Handler();
-																  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-																  	  	  			
-																  	  	  		@Override
-																	  	  	  	public void run() {
-																  	  	  			
-																	  	  	  		final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
-																  	  	  			dodgeGraphic.setVisibility(View.INVISIBLE);
-																  	  	  			
-																	  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
-																	  	    			
-																	  	    			gameEngineComputerFirst2();   							
-																	  				}
-												
-																				  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
-																				  						
-																				  		turn();    							
-																				  	}
-																				  	if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
-																				  	    			
-																				  		computerHastePartTwo();   							
-																				  	}
-															
-																				  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
-																				  						
-																				  		computerHastePartTwo();    							
-																				  	}								  		    		
-																  					return;
-																	  	  	  	}
-																  	  	  	}, 3000);														  		    		
-														  		    	}
-														  	    	});
-														  	    	
-														  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
-														          	  public void onClick(DialogInterface dialog, int whichButton) {
-														          		  
-														          		  	hideNavigation();
-														          		  	
-														          		  	computerDamage();								          		  	
-														          		  	return;
-														          	  }
-														          	});	  	    	
-														  	    	
-														  	    	alert.show();
-																	
-																	/*
-																	String s = input.next();
-																	char selection = s.charAt(0);
-																	
-																	switch (selection) {
-																	case 'y':
-																	case 'Y':
-																		
-																		if (dodgeBlowSpell[0] < 1) {
-																			
-																			centerscrolltext.setVisibility(View.VISIBLE);													
-																	  		centerscrolltext.startAnimation(animAlphaText);			  		
-																			centerscrolltext.append("\n" + "> You have already used your Dodge Blow spell!");
-																			
-																			break;
-																		}
-																		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
-																		return dodgeBlowSpell;
-																	case 'n':
-																	case 'N':
-																		break;
-																	default:
-																		computerDamage(i, gameOn);
-																	}
-																	*/
-																}
-												  	  	  		
-												  	  	  		else {
-												  	  	  			
-													  	  	  		computerDamage();
-																	return;						  	  	  			
-												  	  	  		}
-												  	  	  	}
-											  	  	  	}, 2000);
-										  	  	  	}
-									  	  	  	}, 2000);												
-											}
-											
-											if (ArrayOfAttackResult.attackResult[0] < 14 && ArrayOfAttackResult.attackResult[0] > 1) {
-												
-												final Handler h = new Handler();
-									  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-									  	  	  			
-									  	  	  		@Override
-										  	  	  	public void run() {
-									  	  	  			
-										  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
-												  		centerscrolltext.startAnimation(animAlphaText);
-														centerscrolltext.append("\n" + "> The computer's attack misses!");
-														
-														final Handler h = new Handler();
-											  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-											  	  	  			
-											  	  	  		@Override
-												  	  	  	public void run() {
-											  	  	  			
-												  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
-												  	    			
-												  	    			gameEngineComputerFirst2();   							
-												  				}
-												  	  	  		
-															  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
-															  						
-															  		turn();    							
-															  	}								  						  	  	  			
-												  	  	  	}
-											  	  	  	}, 2000);						
-														return;
-										  	  	  	}
-									  	  	  	}, 2000);											
-											}
-											
-											if (ArrayOfAttackResult.attackResult[0] <= 1) {
-												
-												final Handler h = new Handler();
-									  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-									  	  	  			
-									  	  	  		@Override
-										  	  	  	public void run() {
-									  	  	  			
-										  	  	  		computerCriticalMiss();
-														return;
-										  	  	  	}
-									  	  	  	}, 2000);												
-											}				
-										}
-										
-										if (canHasDisarmed[0].equals("yes")) {
-											
-											if (ArrayOfAttackResult.attackResult[0] >= 12 && ArrayOfAttackResult.attackResult[0] <= 19) {
-												
-												final Handler h = new Handler();
-									  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-									  	  	  			
-									  	  	  		@Override
-										  	  	  	public void run() {
-									  	  	  			
-										  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
-												  		centerscrolltext.startAnimation(animAlphaText);
-														centerscrolltext.append("\n" + "> The computer's attack hits!");			
-														
-														final Handler h5 = new Handler();
-											  	  	  	h5.postDelayed(new Runnable() {		  	  	  			
-											  	  	  			
-											  	  	  		@Override
-												  	  	  	public void run() {
-											  	  	  			
-												  	  	  		if (dodgeBlowSpell[0] > 0) {
-																	/*
-																	centerscrolltext.setVisibility(View.VISIBLE);													
-															  		centerscrolltext.startAnimation(animAlphaText);			  		
-																	centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", do you want to dodge?");
-																	*/
-																	
-																	AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-														  			
-														  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", Do you want to use your Dodge spell?");
-														  	    	/*
-														  	    	alert.setMessage("something");
-														  	    	*/	  	    	
-														  	    	
-														  	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-														  		    	public void onClick(DialogInterface dialog, int whichButton) {	  		    		
-														  		    		
-														  		    		/*
-														  		    		//NEED THIS??????????????????
-														  		    		if (dodgeBlowSpell[0] < 1) {
-														  		    			
-														  		    			hideNavigation();
-														  						
-														  						centerscrolltext.setVisibility(View.VISIBLE);													
-														  				  		centerscrolltext.startAnimation(animAlphaText);			  		
-														  						centerscrolltext.append("\n" + "> You have already used your Dodge spell!");
-														  						
-														  						//break;
-														  					}
-														  		    		*/
-														  		    		
-														  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
-														  		    		
-														  		    		centerscrolltext.setVisibility(View.VISIBLE);													
-																	  		centerscrolltext.startAnimation(animAlphaText);
-																			centerscrolltext.append("\n" + "> You dodge the hit!");
-														  		    		
-														  		    		skillsCheck();
-														  		    		
-															  		    	// Use a blank drawable to hide the imageview animation:
-															  		    	// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
-															  		    	ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
-															  		    	img.setBackgroundResource(R.drawable.twentytwentyblank);
-															  		    	img.setImageResource(R.drawable.twentytwentyblank);
-														  		    		
-														  		    		dodgeGraphic();
-														  		    		
-														  		    		final Handler h = new Handler();
-																  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-																  	  	  			
-																  	  	  		@Override
-																	  	  	  	public void run() {
-																  	  	  			
-																	  	  	  		final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
-																  	  	  			dodgeGraphic.setVisibility(View.INVISIBLE);
-																  	  	  			
-																	  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
-																	  	    			
-																	  	    			gameEngineComputerFirst2();   							
-																	  				}
-												
-																				  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
-																				  						
-																				  		turn();    							
-																				  	}
-																				  	if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
-																				  	    			
-																				  		computerHastePartTwo();   							
-																				  	}
-															
-																				  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
-																				  						
-																				  		computerHastePartTwo();  							
-																				  	}								  		    		
-																  					//return;
-																	  	  	  	}
-																  	  	  	}, 3000);											  		    		
-														  		    	}
-														  	    	});
-														  	    	
-														  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
-														          	  public void onClick(DialogInterface dialog, int whichButton) {
-														          		  
-														          		  	hideNavigation();
-														          		  	
-														          		  	computerDamage();								          		  	
-														          		  	//return;
-														          	  }
-														          	});	  	    	
-														  	    	
-														  	    	alert.show();
-																	
-																	/*
-																	String s = input.next();
-																	char selection = s.charAt(0);
-																	
-																	switch (selection) {
-																	case 'y':
-																	case 'Y':
-																		
-																		if (dodgeBlowSpell[0] < 1) {
-																			
-																			centerscrolltext.setVisibility(View.VISIBLE);													
-																	  		centerscrolltext.startAnimation(animAlphaText);			  		
-																			centerscrolltext.append("\n" + "> You have already used your Dodge Blow spell!");
-																			
-																			break;
-																		}
-																		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
-																		return dodgeBlowSpell;
-																	case 'n':
-																	case 'N':
-																		break;
-																	default:
-																		computerDamage(i, gameOn);
-																	}
-																	*/
-																}
-												  	  	  		
-												  	  	  		else {
-												  	  	  			
-													  	  	  		computerDamage();
-																	//return;						  	  	  			
-												  	  	  		}
-												  	  	  	}
-											  	  	  	}, 2000);
-										  	  	  	}
-									  	  	  	}, 2000);												
-											}
-											
-											if (ArrayOfAttackResult.attackResult[0] < 12 && ArrayOfAttackResult.attackResult[0] > 1) {
-												
-												final Handler h = new Handler();
-									  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-									  	  	  			
-									  	  	  		@Override
-										  	  	  	public void run() {
-									  	  	  			
-										  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
-												  		centerscrolltext.startAnimation(animAlphaText);
-														centerscrolltext.append("\n" + "> The computer's attack misses!");
-														
-														final Handler h = new Handler();
-											  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-											  	  	  			
-											  	  	  		@Override
-												  	  	  	public void run() {
-											  	  	  			
-												  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
-												  	    			
-												  	    			gameEngineComputerFirst2();   							
-												  				}
-												  	  	  		
-															  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
-															  						
-															  		turn();
-															  	}								  						  	  	  			
-												  	  	  	}
-											  	  	  	}, 2000);						
-														return;
-										  	  	  	}
-									  	  	  	}, 2000);												
-											}
-											
-											if (ArrayOfAttackResult.attackResult[0] <= 1) {
-												
-												final Handler h = new Handler();
-									  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-									  	  	  			
-									  	  	  		@Override
-										  	  	  	public void run() {
-									  	  	  			
-										  	  	  		computerCriticalMiss();
-														return;
-										  	  	  	}
-									  	  	  	}, 2000);												
-											}					
-										}
 						  	  	  	}
 					  	  	  	}, 2000);			  	  	  		
 				  	  	  	}
@@ -7364,58 +7832,59 @@ public class MainActivity2 extends ActionBarActivity {
 					// IF BLESS AND COMP USES BLESS TO DISARM
 					if (result >= 51) {
 						
-						blessSpell[1] = blessSpell[1] - 1;
-						
-						skillsCheck();
-						
-						centerscrolltext.setVisibility(View.VISIBLE);													
-				  		centerscrolltext.startAnimation(animAlphaText);			  		
-						centerscrolltext.append("\n" + "> The computer uses it's bless spell...");
-						
-						blessGraphic();	  	  	  			
-				  	  	  		
-								
 						final Handler h = new Handler();
 			  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 			  	  	  			
 			  	  	  		@Override
 				  	  	  	public void run() {
 			  	  	  			
-				  	  	  		final TextView blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
-			  	  	  			blessGraphic.setVisibility(View.INVISIBLE);
-			  	  	  			
-			  	  	  			ArrayOfAttackResult.attackResult[0] = (int) ((Math.random() * 20) + 1);
-			  	  	  			
-			  	  	  			computerRolls20SidedDie();
-			  	  	  			
-				  	  	  		final Handler h = new Handler();
+				  	  	  		blessSpell[1] = blessSpell[1] - 1;
+								
+								skillsCheck();
+								
+								centerscrolltext.setVisibility(View.VISIBLE);													
+						  		centerscrolltext.startAnimation(animAlphaText);			  		
+								centerscrolltext.append("\n" + "> The computer uses it's bless spell...");
+								
+								blessGraphic();	  	  	  			
+						  	  	  		
+										
+								final Handler h = new Handler();
 					  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 					  	  	  			
 					  	  	  		@Override
 						  	  	  	public void run() {
 					  	  	  			
-						  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
-								  		centerscrolltext.startAnimation(animAlphaText);			  		
-										centerscrolltext.append("\n" + "> The computer rolls a " + ArrayOfAttackResult.attackResult[0] + ", +2 for the Bless Spell = " + (ArrayOfAttackResult.attackResult[0] + 2));
-										
-						
-										if (ArrayOfAttackResult.attackResult[0] >= 15) {
-											
-											canHasDisarmed[0] = "yes";
-						
-											disarmedTurnStart[0] = turn;
-						
-											// playerWhoDisarmed[0] = 1;// was i for the 1.
-											
-											final Handler h = new Handler();
-								  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-								  	  	  			
-								  	  	  		@Override
-									  	  	  	public void run() {
-								  	  	  			
-									  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
-											  		centerscrolltext.startAnimation(animAlphaText);			  		
-													centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you have been disarmed!");
+						  	  	  		//final TextView blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+					  	  	  			//blessGraphic.setVisibility(View.INVISIBLE);
+					  	  	  			
+					  	  	  			stopGraphics();
+					  	  	  			
+					  	  	  			ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
+					  	  	  			img.bringToFront();
+					  	  	  			
+					  	  	  			ArrayOfAttackResult.attackResult[0] = (int) ((Math.random() * 20) + 1);
+					  	  	  			
+					  	  	  			computerRolls20SidedDie();
+					  	  	  			
+						  	  	  		final Handler h = new Handler();
+							  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+							  	  	  			
+							  	  	  		@Override
+								  	  	  	public void run() {
+							  	  	  			
+								  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
+										  		centerscrolltext.startAnimation(animAlphaText);			  		
+												centerscrolltext.append("\n" + "> The computer rolls a " + ArrayOfAttackResult.attackResult[0] + ", +2 for the Bless Spell = " + (ArrayOfAttackResult.attackResult[0] + 2));
+												
+								
+												if (ArrayOfAttackResult.attackResult[0] >= 15) {
+													
+													canHasDisarmed[0] = "yes";
+								
+													disarmedTurnStart[0] = turn;
+								
+													// playerWhoDisarmed[0] = 1;// was i for the 1.
 													
 													final Handler h = new Handler();
 										  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -7423,35 +7892,35 @@ public class MainActivity2 extends ActionBarActivity {
 										  	  	  		@Override
 											  	  	  	public void run() {
 										  	  	  			
-											  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
-											  	    			
-											  	    			gameEngineComputerFirst2();   							
-											  				}
-							
-														  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
-														  						
-														  		turn();    							
-														  	}				  	  	  			
+											  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
+													  		centerscrolltext.startAnimation(animAlphaText);			  		
+															centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you have been disarmed!");
+															
+															final Handler h = new Handler();
+												  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+												  	  	  			
+												  	  	  		@Override
+													  	  	  	public void run() {
+												  	  	  			
+													  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+													  	    			
+													  	    			gameEngineComputerFirst2();   							
+													  				}
+									
+																  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+																  						
+																  		turn();    							
+																  	}				  	  	  			
+													  	  	  	}
+												  	  	  	}, 2000);
+															
+												  	  	  	//NEED THIS?:
+															//return;
 											  	  	  	}
-										  	  	  	}, 2000);
-													
-										  	  	  	//NEED THIS?:
-													//return;
-									  	  	  	}
-								  	  	  	}, 2000);											
-										}
-						
-										if (ArrayOfAttackResult.attackResult[0] <= 14 && ArrayOfAttackResult.attackResult[0] > 0) {
-											
-											final Handler h = new Handler();
-								  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-								  	  	  			
-								  	  	  		@Override
-									  	  	  	public void run() {
-								  	  	  			
-									  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
-											  		centerscrolltext.startAnimation(animAlphaText);			  		
-													centerscrolltext.append("\n" + "> The computer's attempt to disarm you misses!");
+										  	  	  	}, 2000);											
+												}
+								
+												if (ArrayOfAttackResult.attackResult[0] <= 14 && ArrayOfAttackResult.attackResult[0] > 0) {
 													
 													final Handler h = new Handler();
 										  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -7459,32 +7928,44 @@ public class MainActivity2 extends ActionBarActivity {
 										  	  	  		@Override
 											  	  	  	public void run() {
 										  	  	  			
-											  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
-											  	    			
-											  	    			gameEngineComputerFirst2();   							
-											  				}
-							
-														  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
-														  						
-														  		turn();    							
-														  	}				  	  	  			
+											  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
+													  		centerscrolltext.startAnimation(animAlphaText);			  		
+															centerscrolltext.append("\n" + "> The computer's attempt to disarm you misses!");
+															
+															final Handler h = new Handler();
+												  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+												  	  	  			
+												  	  	  		@Override
+													  	  	  	public void run() {
+												  	  	  			
+													  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+													  	    			
+													  	    			gameEngineComputerFirst2();   							
+													  				}
+									
+																  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+																  						
+																  		turn();    							
+																  	}				  	  	  			
+													  	  	  	}
+												  	  	  	}, 2000);
+															
+												  	  	  	//NEED THIS?:
+															//return;
 											  	  	  	}
-										  	  	  	}, 2000);
-													
-										  	  	  	//NEED THIS?:
-													//return;
-									  	  	  	}
-								  	  	  	}, 2000);											
-										}
-										// don't critically miss when using bless.
-										/*
-										 * if (attackResult <= 1) { computerCriticalMiss(i, turn);
-										 * return canHasDisarmed; }
-										 */
+										  	  	  	}, 2000);											
+												}
+												// don't critically miss when using bless.
+												/*
+												 * if (attackResult <= 1) { computerCriticalMiss(i, turn);
+												 * return canHasDisarmed; }
+												 */
+								  	  	  	}
+							  	  	  	}, 2000);				  	  	  		
 						  	  	  	}
-					  	  	  	}, 2000);				  	  	  		
+					  	  	  	}, 3000);
 				  	  	  	}
-			  	  	  	}, 3000);				  	  	  											
+			  	  	  	}, 4000);//2000 just wasn't enough to separate this text from text from computerAttack() - guess stuff going on in bkgrd?								  	  	  											
 					}					
 					
 					// IF BLESS AND COMP DOES NOT USE BLESS TO DISARM
@@ -7495,6 +7976,9 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  			
 			  	  	  		@Override
 				  	  	  	public void run() {
+			  	  	  			
+			  	  	  			ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
+			  	  	  			img.bringToFront();
 			  	  	  			
 				  	  	  		ArrayOfAttackResult.attackResult[0] = (int) ((Math.random() * 20) + 1);
 								
@@ -7604,7 +8088,7 @@ public class MainActivity2 extends ActionBarActivity {
 						  	  	  	}
 					  	  	  	}, 2000);
 				  	  	  	}
-			  	  	  	}, 2000);											
+			  	  	  	}, 3000);											
 					}					
 				} 
 				
@@ -7617,6 +8101,9 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  	  			
 		  	  	  		@Override
 			  	  	  	public void run() {
+		  	  	  			
+		  	  	  			ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
+		  	  	  			img.bringToFront();
 		  	  	  			
 			  	  	  		ArrayOfAttackResult.attackResult[0] = (int) ((Math.random() * 20) + 1);
 							
@@ -7751,53 +8238,60 @@ public class MainActivity2 extends ActionBarActivity {
 				centerscrolltext.setVisibility(View.VISIBLE);													
 		  		centerscrolltext.startAnimation(animAlphaText);
 				centerscrolltext.append("\n" + "> The computer is disarmed...");		
-						
-		
-				// CURE
-				if (ArrayOfHitPoints.hitpoints[1] <= 12 && cureSpell[1] > 0) {
-					
-					centerscrolltext.setVisibility(View.VISIBLE); 													
-			  		centerscrolltext.startAnimation(animAlphaText);
-					centerscrolltext.append("\n" + "> The computer uses it's cure spell...");			
-					
-					computerCure();
-					return;
-				}
-		
-				int computerDisarmedAction = (int) ((Math.random() * 100) + 1);
-		
-				// HASTE
-				if (computerDisarmedAction <= 50 && hasteSpell[1] > 0 && canHasDisarmed[1].equals("yes")) {
-					
-					centerscrolltext.setVisibility(View.VISIBLE); 													
-			  		centerscrolltext.startAnimation(animAlphaText);
-					centerscrolltext.append("\n" + "> The computer uses a haste spell...");
-								
-					computerHasteDisarmed();
-					return;
-				}
-		
-				// PUNCH A
-				if (computerDisarmedAction <= 50 && hasteSpell[1] < 1) {
-					
-					centerscrolltext.setVisibility(View.VISIBLE); 													
-			  		centerscrolltext.startAnimation(animAlphaText);
-					centerscrolltext.append("\n" + "> The computer attempts to punch you...");			
-					
-					computerPunch();
-					return;
-				}
-		
-				// PUNCH B
-				if (computerDisarmedAction >= 51) {
-					
-					centerscrolltext.setVisibility(View.VISIBLE); 													
-			  		centerscrolltext.startAnimation(animAlphaText);
-					centerscrolltext.append("\n" + "> The computer attempts to punch you...");			
-					
-					computerPunch();
-					return;
-				}
+				
+				final Handler h = new Handler();
+	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {
+	  	  	  			
+	  	  	  			// CURE
+	  					if (ArrayOfHitPoints.hitpoints[1] <= 12 && cureSpell[1] > 0) {
+	  						
+	  						centerscrolltext.setVisibility(View.VISIBLE); 													
+	  				  		centerscrolltext.startAnimation(animAlphaText);
+	  						centerscrolltext.append("\n" + "> The computer uses it's cure spell...");			
+	  						
+	  						computerCure();
+	  						return;
+	  					}
+	  			
+	  					int computerDisarmedAction = (int) ((Math.random() * 100) + 1);
+	  			
+	  					// HASTE
+	  					if (computerDisarmedAction <= 50 && hasteSpell[1] > 0 && canHasDisarmed[1].equals("yes")) {
+	  						
+	  						centerscrolltext.setVisibility(View.VISIBLE); 													
+	  				  		centerscrolltext.startAnimation(animAlphaText);
+	  						centerscrolltext.append("\n" + "> The computer uses a haste spell...");
+	  									
+	  						computerHasteDisarmed();
+	  						return;
+	  					}
+	  			
+	  					// PUNCH A
+	  					if (computerDisarmedAction <= 50 && hasteSpell[1] < 1) {
+	  						
+	  						centerscrolltext.setVisibility(View.VISIBLE); 													
+	  				  		centerscrolltext.startAnimation(animAlphaText);
+	  						centerscrolltext.append("\n" + "> The computer attempts to punch you...");			
+	  						
+	  						computerPunch();
+	  						return;
+	  					}
+	  			
+	  					// PUNCH B
+	  					if (computerDisarmedAction >= 51) {
+	  						
+	  						centerscrolltext.setVisibility(View.VISIBLE); 													
+	  				  		centerscrolltext.startAnimation(animAlphaText);
+	  						centerscrolltext.append("\n" + "> The computer attempts to punch you...");			
+	  						
+	  						computerPunch();
+	  						return;
+	  					}
+		  	  	  	}
+	  	  	  	}, 2000);			
   	  	    }
 		});
 		//return playerNumberAttacked;
@@ -7833,8 +8327,10 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  		@Override
 		  	  	  	public void run() {
 	  	  	  			
-		  	  	  		final TextView hasteGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
-		  	  	  		hasteGraphic.setVisibility(View.INVISIBLE);
+		  	  	  		//final TextView hasteGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+		  	  	  		//hasteGraphic.setVisibility(View.INVISIBLE);
+	  	  	  			
+	  	  	  			stopGraphics();
 	  	  	  			
 		  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 				  		centerscrolltext.startAnimation(animAlphaText);
@@ -7898,7 +8394,7 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  			
 				  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 						  		centerscrolltext.startAnimation(animAlphaText);
-								centerscrolltext.append("\n" + "> The computer rolls a " + ArrayOfAttackResult.attackResult[0] + "!");
+								centerscrolltext.append("\n" + "> The computer rolls a " + ArrayOfAttackResult.attackResult[0] + ", -1 for being disarmed = " + (ArrayOfAttackResult.attackResult[0] - 1));
 								
 								
 								if (ArrayOfAttackResult.attackResult[0] >= 20) {
@@ -7948,7 +8444,7 @@ public class MainActivity2 extends ActionBarActivity {
 												  		    		//NEED THIS??????????????????
 												  		    		if (dodgeBlowSpell[0] < 1) {
 												  		    			
-												  		    			hideNavigation();
+												  		    			//hideNavigation();
 												  						
 												  						centerscrolltext.setVisibility(View.VISIBLE);													
 												  				  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -7980,8 +8476,10 @@ public class MainActivity2 extends ActionBarActivity {
 														  	  	  		@Override
 															  	  	  	public void run() {
 														  	  	  			
-															  	  	  		final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
-														  	  	  			dodgeGraphic.setVisibility(View.INVISIBLE);
+															  	  	  		//final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
+														  	  	  			//dodgeGraphic.setVisibility(View.INVISIBLE);
+														  	  	  			
+														  	  	  			stopGraphics();
 														  	  	  			
 															  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
 															  	    			
@@ -7995,14 +8493,14 @@ public class MainActivity2 extends ActionBarActivity {
 																		  									  		    		
 														  					//return;
 															  	  	  	}
-														  	  	  	}, 3000);											  		    		
+														  	  	  	}, 6000);											  		    		
 												  		    	}
 												  	    	});
 												  	    	
 												  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
 												          	  public void onClick(DialogInterface dialog, int whichButton) {
 												          		  
-												          		  	hideNavigation();
+												          		  	//hideNavigation();
 												          		  	
 												          		  	computerDamageDisarmed();
 												          		  									          		  	
@@ -8140,7 +8638,7 @@ public class MainActivity2 extends ActionBarActivity {
 												  		    		//NEED THIS??????????????????
 												  		    		if (dodgeBlowSpell[0] < 1) {
 												  		    			
-												  		    			hideNavigation();
+												  		    			//hideNavigation();
 												  						
 												  						centerscrolltext.setVisibility(View.VISIBLE);													
 												  				  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -8172,8 +8670,10 @@ public class MainActivity2 extends ActionBarActivity {
 														  	  	  		@Override
 															  	  	  	public void run() {
 														  	  	  			
-															  	  	  		final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
-														  	  	  			dodgeGraphic.setVisibility(View.INVISIBLE);
+															  	  	  		//final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
+														  	  	  			//dodgeGraphic.setVisibility(View.INVISIBLE);
+														  	  	  			
+														  	  	  			stopGraphics();
 														  	  	  			
 															  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
 															  	    			
@@ -8187,14 +8687,14 @@ public class MainActivity2 extends ActionBarActivity {
 																		  									  		    		
 														  					//return;
 															  	  	  	}
-														  	  	  	}, 3000);						  		    		
+														  	  	  	}, 6000);						  		    		
 												  		    	}
 												  	    	});
 												  	    	
 												  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
 												          	  public void onClick(DialogInterface dialog, int whichButton) {
 												          		  
-												          		  	hideNavigation();
+												          		  	//hideNavigation();
 												          		  	
 												          		  	computerDamageDisarmed();
 												          		  	
@@ -8322,9 +8822,11 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  		@Override
 			  	  	public void run() {
 			  			
-			  	  		final TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
-		  	  	  		criticalHitGraphic.setVisibility(View.INVISIBLE);
+			  	  		//final TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
+		  	  	  		//criticalHitGraphic.setVisibility(View.INVISIBLE);
 			  			
+		  	  			stopGraphics();
+		  	  			
 			  	  		if (dodgeBlowSpell[0] > 0) {
 							/*
 							centerscrolltext.setVisibility(View.VISIBLE);													
@@ -8364,8 +8866,10 @@ public class MainActivity2 extends ActionBarActivity {
 					    				@Override
 					    				public void run() {
 					    					
-					    					final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
-						  	  	  			dodgeGraphic.setVisibility(View.INVISIBLE);
+					    					//final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
+						  	  	  			//dodgeGraphic.setVisibility(View.INVISIBLE);
+					    					
+					    					stopGraphics();
 					    					
 					    					if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
 					  	    			
@@ -8377,7 +8881,7 @@ public class MainActivity2 extends ActionBarActivity {
 					    						turn();    							
 					    					}								  					  	  	  			
 					    				}
-					    			}, 3000);
+					    			}, 6000);
 				    		
 					    			//return;
 					    		}
@@ -8386,7 +8890,7 @@ public class MainActivity2 extends ActionBarActivity {
 					    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
 					    		public void onClick(DialogInterface dialog, int whichButton) {		          		  
 			      		  
-					    			hideNavigation();
+					    			//hideNavigation();
 			      		  
 					    			computerCriticalHitDamageDisarmed();	          		  
 					    		}
@@ -8448,8 +8952,10 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  		@Override
 		  	  	  	public void run() {
 	  	  	  			
-		  	  	  		final TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
-		  	  	  		mightyBlowGraphic.setVisibility(View.INVISIBLE);
+		  	  	  		//final TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
+		  	  	  		//mightyBlowGraphic.setVisibility(View.INVISIBLE);
+	  	  	  			
+	  	  	  			stopGraphics();
 	  	  	  			
 	  	  	  			computerRolls6SidedDie();
 	  	  	  			
@@ -8513,7 +9019,7 @@ public class MainActivity2 extends ActionBarActivity {
 											    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 												    	public void onClick(DialogInterface dialog, int whichButton) {
 												    		
-												    		hideNavigation();
+												    		//hideNavigation();
 												    		
 												    		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 											  	    			
@@ -8563,7 +9069,7 @@ public class MainActivity2 extends ActionBarActivity {
 											    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 												    	public void onClick(DialogInterface dialog, int whichButton) {
 												    		
-												    		hideNavigation();
+												    		//hideNavigation();
 												    		
 												    		playerDeadYet[0] = "yes";
 												    		
@@ -8729,7 +9235,7 @@ public class MainActivity2 extends ActionBarActivity {
 												    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 													    	public void onClick(DialogInterface dialog, int whichButton) {
 													    		
-													    		hideNavigation();
+													    		//hideNavigation();
 													    		
 													    		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
 												  	    			
@@ -8778,7 +9284,7 @@ public class MainActivity2 extends ActionBarActivity {
 												    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 													    	public void onClick(DialogInterface dialog, int whichButton) {
 													    		
-													    		hideNavigation();
+													    		//hideNavigation();
 													    		
 													    		playerDeadYet[0] = "yes";
 													    		
@@ -8920,7 +9426,7 @@ public class MainActivity2 extends ActionBarActivity {
 												    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 													    	public void onClick(DialogInterface dialog, int whichButton) {
 													    		
-													    		hideNavigation();
+													    		//hideNavigation();
 													    		
 													    		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
 												  	    			
@@ -8969,7 +9475,7 @@ public class MainActivity2 extends ActionBarActivity {
 												    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 													    	public void onClick(DialogInterface dialog, int whichButton) {
 													    		
-													    		hideNavigation();
+													    		//hideNavigation();
 													    		
 													    		playerDeadYet[0] = "yes";
 													    		
@@ -9090,7 +9596,7 @@ public class MainActivity2 extends ActionBarActivity {
 										    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 											    	public void onClick(DialogInterface dialog, int whichButton) {
 											    		
-											    		hideNavigation();
+											    		//hideNavigation();
 											    		
 											    		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
 										  	    			
@@ -9139,7 +9645,7 @@ public class MainActivity2 extends ActionBarActivity {
 										    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 											    	public void onClick(DialogInterface dialog, int whichButton) {
 											    		
-											    		hideNavigation();
+											    		//hideNavigation();
 											    		
 											    		playerDeadYet[0] = "yes";
 											    		
@@ -9209,8 +9715,10 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  		@Override
 		  	  	  	public void run() {
 	  	  	  			
-		  	  	  		final TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
-		  	  	  		mightyBlowGraphic.setVisibility(View.INVISIBLE);
+		  	  	  		//final TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
+		  	  	  		//mightyBlowGraphic.setVisibility(View.INVISIBLE);
+	  	  	  			
+	  	  	  			stopGraphics();
 	  	  	  			
 		  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 				  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -9400,7 +9908,7 @@ public class MainActivity2 extends ActionBarActivity {
 																							    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 																								    	public void onClick(DialogInterface dialog, int whichButton) {
 																								    		
-																								    		hideNavigation();
+																								    		//hideNavigation();
 																								    		
 																								    		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 																							  	    			
@@ -9450,7 +9958,7 @@ public class MainActivity2 extends ActionBarActivity {
 																							    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 																								    	public void onClick(DialogInterface dialog, int whichButton) {
 																								    		
-																								    		hideNavigation();
+																								    		//hideNavigation();
 																								    		
 																								    		playerDeadYet[0] = "yes";
 																								    		
@@ -9529,8 +10037,10 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  		@Override
 		  	  	  	public void run() {
 	  	  	  			
-		  	  	  		final TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
-		  	  	  		mightyBlowGraphic.setVisibility(View.INVISIBLE);
+		  	  	  		//final TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
+		  	  	  		//mightyBlowGraphic.setVisibility(View.INVISIBLE);
+	  	  	  			
+	  	  	  			stopGraphics();
 	  	  	  			
 		  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 				  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -9685,7 +10195,7 @@ public class MainActivity2 extends ActionBarActivity {
 																							    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 																								    	public void onClick(DialogInterface dialog, int whichButton) {
 																								    		
-																								    		hideNavigation();
+																								    		//hideNavigation();
 																								    		
 																								    		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 																							  	    			
@@ -9743,7 +10253,7 @@ public class MainActivity2 extends ActionBarActivity {
 																							    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 																								    	public void onClick(DialogInterface dialog, int whichButton) {
 																								    		
-																								    		hideNavigation();
+																								    		//hideNavigation();
 																								    		
 																								    		playerDeadYet[0] = "yes";
 																								    		
@@ -10037,7 +10547,7 @@ public class MainActivity2 extends ActionBarActivity {
 																			    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 																				    	public void onClick(DialogInterface dialog, int whichButton) {
 																				    		
-																				    		hideNavigation();
+																				    		//hideNavigation();
 																				    		
 																				    		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 																			  	    			
@@ -10095,7 +10605,7 @@ public class MainActivity2 extends ActionBarActivity {
 																			    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 																				    	public void onClick(DialogInterface dialog, int whichButton) {
 																				    		
-																				    		hideNavigation();
+																				    		//hideNavigation();
 																				    		
 																				    		playerDeadYet[0] = "yes";
 																				    		
@@ -10187,8 +10697,10 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  		@Override
 		  	  	  	public void run() {
 	  	  	  			
-		  	  	  		final TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
-		  	  	  		criticalMissGraphic.setVisibility(View.INVISIBLE);
+		  	  	  		//final TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
+		  	  	  		//criticalMissGraphic.setVisibility(View.INVISIBLE);
+	  	  	  			
+	  	  	  			stopGraphics();
 	  	  	  			
 		  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 				  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -10444,6 +10956,12 @@ public class MainActivity2 extends ActionBarActivity {
 						
 						preventattackdamagediefromleaking = "off";
 						
+						// Use a blank drawable to hide the imageview animation:
+						// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+						ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
+						img.setBackgroundResource(R.drawable.twentytwentyblank);
+						img.setImageResource(R.drawable.twentytwentyblank);
+						
 						
 						final Handler h = new Handler();
 			  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -10497,7 +11015,7 @@ public class MainActivity2 extends ActionBarActivity {
 											    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 												    	public void onClick(DialogInterface dialog, int whichButton) {
 												    		
-												    		hideNavigation();
+												    		//hideNavigation();
 												    		
 												    		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 											  	    			
@@ -10554,7 +11072,7 @@ public class MainActivity2 extends ActionBarActivity {
 											    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 												    	public void onClick(DialogInterface dialog, int whichButton) {
 												    		
-												    		hideNavigation();
+												    		//hideNavigation();
 												    		
 												    		playerDeadYet[1] = "yes";
 												    		
@@ -10877,7 +11395,7 @@ public class MainActivity2 extends ActionBarActivity {
 																			    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 																				    	public void onClick(DialogInterface dialog, int whichButton) {
 																				    		
-																				    		hideNavigation();
+																				    		//hideNavigation();
 																				    		
 																				    		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
 																			  	    			
@@ -10926,7 +11444,7 @@ public class MainActivity2 extends ActionBarActivity {
 																			    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 																				    	public void onClick(DialogInterface dialog, int whichButton) {
 																				    		
-																				    		hideNavigation();
+																				    		//hideNavigation();
 																				    		
 																				    		playerDeadYet[0] = "yes";
 																				    		
@@ -11454,14 +11972,19 @@ public class MainActivity2 extends ActionBarActivity {
 						//centerscrolltext.append("\n" + "> The computer does not dodge.");	  	  	  			
 					
 		  	  	  		final Handler h2 = new Handler();
-			  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
+			  	  	  	h2.postDelayed(new Runnable() {	  	  	  			
 			  	  	  			
 			  	  	  		@Override
 				  	  	  	public void run() {
 			  	  	  			
-				  	  	  		final TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
-				  	  	  		mightyBlowGraphic.setVisibility(View.INVISIBLE);
+				  	  	  		//final TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
+				  	  	  		//mightyBlowGraphic.setVisibility(View.INVISIBLE);
 			  	  	  			
+			  	  	  			stopGraphics();
+			  	  	  			
+				  	  	  		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
+				  	  	  		img.bringToFront();
+				  	  	  		
 			  	  	  			sixSidedRollFromLeft();				  	  	  		
 					  	  	  			
 				  	  	  		final Handler h3 = new Handler();
@@ -11759,7 +12282,7 @@ public class MainActivity2 extends ActionBarActivity {
 					    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 						    	public void onClick(DialogInterface dialog, int whichButton) {
 						    		
-						    		hideNavigation();
+						    		//hideNavigation();
 						    		
 						    		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
 										
@@ -11795,7 +12318,7 @@ public class MainActivity2 extends ActionBarActivity {
 					    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 						    	public void onClick(DialogInterface dialog, int whichButton) {
 						    		
-						    		hideNavigation();
+						    		//hideNavigation();
 						    		
 						    		playerDeadYet[playerNumberAttacked] = "yes";
 						    		
@@ -11909,7 +12432,7 @@ public class MainActivity2 extends ActionBarActivity {
 								  	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 								  		    	public void onClick(DialogInterface dialog, int whichButton) {
 								  		    		
-								  		    		hideNavigation();
+								  		    		//hideNavigation();
 								  		    		
 								  		    		mightyBlowSpell[0] = mightyBlowSpell[0] - 1;
 								  		    		
@@ -11923,7 +12446,7 @@ public class MainActivity2 extends ActionBarActivity {
 								  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
 								          	  public void onClick(DialogInterface dialog, int whichButton) {
 								          		  
-								          		  hideNavigation();
+								          		  //hideNavigation();
 								          		  
 								          		  damagePartTwo();
 								          		  //return;
@@ -12016,9 +12539,11 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  	  		@Override
 						  	  	  	public void run() {
 					  	  	  			
-						  	  	  		final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
-					  	  	  			dodgeGraphic.setVisibility(View.INVISIBLE);
-	
+						  	  	  		//final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
+					  	  	  			//dodgeGraphic.setVisibility(View.INVISIBLE);
+					  	  	  			
+					  	  	  			stopGraphics();
+					  	  	  			
 						  	  	  		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
 											
 							    			gameEngineHumanFirst2();    							
@@ -12074,7 +12599,7 @@ public class MainActivity2 extends ActionBarActivity {
 					  	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 					  		    	public void onClick(DialogInterface dialog, int whichButton) {
 					  		    		
-					  		    		hideNavigation();
+					  		    		//hideNavigation();
 					  		    		
 					  		    		mightyBlowSpell[0] = mightyBlowSpell[0] - 1;
 					  		    		
@@ -12088,7 +12613,7 @@ public class MainActivity2 extends ActionBarActivity {
 					  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
 					          	  public void onClick(DialogInterface dialog, int whichButton) {
 					          		  
-					          		  hideNavigation();
+					          		  //hideNavigation();
 					          		  
 					          		  damagePartTwo();
 					          		  //return;
@@ -12328,7 +12853,7 @@ public class MainActivity2 extends ActionBarActivity {
 					    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 						    	public void onClick(DialogInterface dialog, int whichButton) {
 						    		
-						    		hideNavigation();
+						    		//hideNavigation();
 						    		
 						    		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
 										
@@ -12374,7 +12899,7 @@ public class MainActivity2 extends ActionBarActivity {
 					    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 						    	public void onClick(DialogInterface dialog, int whichButton) {
 						    		
-						    		hideNavigation();
+						    		//hideNavigation();
 						    		
 						    		playerDeadYet[playerNumberAttacked] = "yes";
 						    		
@@ -12463,6 +12988,7 @@ public class MainActivity2 extends ActionBarActivity {
 		  		img.setBackgroundResource(R.drawable.twentytwentyblank);
 		  		img.setImageResource(R.drawable.twentytwentyblank);
 	  			
+		  		
 	  			criticalHitGraphic();		
 	  	  	  	
 	  	  	  			
@@ -12472,8 +12998,10 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  		@Override
 		  	  	  	public void run() {
 	  	  	  			
-		  	  	  		final TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
-		  	  	  		criticalHitGraphic.setVisibility(View.INVISIBLE);
+		  	  	  		//final TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
+		  	  	  		//criticalHitGraphic.setVisibility(View.INVISIBLE);
+	  	  	  			
+	  	  	  			stopGraphics();
 	  	  	  			
 	  	  	  			// IF DODGE BLOW:
 	  	  			
@@ -12504,7 +13032,7 @@ public class MainActivity2 extends ActionBarActivity {
 								  	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 								  		    	public void onClick(DialogInterface dialog, int whichButton) {								  		    		
 								  		    		
-								  		    		hideNavigation();
+								  		    		//hideNavigation();
 								  		    		
 								  		    		mightyBlowSpell[0] = mightyBlowSpell[0] - 1;
 								  		    		
@@ -12518,7 +13046,7 @@ public class MainActivity2 extends ActionBarActivity {
 								  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
 								          	  public void onClick(DialogInterface dialog, int whichButton) {
 								          		
-								          		hideNavigation();
+								          		//hideNavigation();
 								          		  
 								          		criticalHitPartOne();
 												//return;
@@ -12600,8 +13128,10 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  	  		@Override
 						  	  	  	public void run() {  	  		
 					  	  	  			
-						  	  	  		final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
-					  	  	  			dodgeGraphic.setVisibility(View.INVISIBLE);
+						  	  	  		//final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
+					  	  	  			//dodgeGraphic.setVisibility(View.INVISIBLE);
+					  	  	  			
+					  	  	  			stopGraphics();
 					  	  	  			
 						  	  	  		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
 											
@@ -12623,7 +13153,7 @@ public class MainActivity2 extends ActionBarActivity {
 											hastePartTwo();   							
 										}					  	  	  	
 						  	  	  	}
-					  	  	  	}, 3000);
+					  	  	  	}, 6000);
 								// NEED THIS?:
 								//return;
 							}						
@@ -12651,7 +13181,7 @@ public class MainActivity2 extends ActionBarActivity {
 							  	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 							  		    	public void onClick(DialogInterface dialog, int whichButton) {							  		    		
 							  		    		
-							  		    		hideNavigation();
+							  		    		//hideNavigation();
 							  		    		
 							  		    		mightyBlowSpell[0] = mightyBlowSpell[0] - 1;
 							  		    		
@@ -12665,7 +13195,7 @@ public class MainActivity2 extends ActionBarActivity {
 							  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
 							          	  public void onClick(DialogInterface dialog, int whichButton) {
 							          		
-							          		hideNavigation();
+							          		//hideNavigation();
 							          		  
 							          		criticalHitPartOne();
 											//return;
@@ -12763,7 +13293,10 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 				  		centerscrolltext.startAnimation(animAlphaText);
 				  		centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you roll twice for critical hit damage.");
-				
+				  		
+				  		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
+	  	  	  			img.bringToFront();
+				  		
 		  	  	  		final Handler h2 = new Handler();
 			  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
 			  	  	  			
@@ -12963,7 +13496,7 @@ public class MainActivity2 extends ActionBarActivity {
 					    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 						    	public void onClick(DialogInterface dialog, int whichButton) {
 						    		
-						    		hideNavigation();
+						    		//hideNavigation();
 						    		
 						    		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
 										
@@ -13009,7 +13542,7 @@ public class MainActivity2 extends ActionBarActivity {
 					    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 						    	public void onClick(DialogInterface dialog, int whichButton) {
 						    		
-						    		hideNavigation();
+						    		//hideNavigation();
 						    		
 						    		playerDeadYet[playerNumberAttacked] = "yes";
 						    		
@@ -13080,8 +13613,10 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  		@Override
 		  	  	  	public void run() {
 	  	  	  			
-		  	  	  		final TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
-		  	  	  		mightyBlowGraphic.setVisibility(View.INVISIBLE);
+		  	  	  		//final TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
+		  	  	  		//mightyBlowGraphic.setVisibility(View.INVISIBLE);
+	  	  	  			
+	  	  	  			stopGraphics();
 	  	  	  			
 		  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 				  		centerscrolltext.startAnimation(animAlphaText);
@@ -13319,7 +13854,7 @@ public class MainActivity2 extends ActionBarActivity {
 					    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 						    	public void onClick(DialogInterface dialog, int whichButton) {
 						    		
-						    		hideNavigation();
+						    		//hideNavigation();
 						    		
 						    		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
 										
@@ -13365,7 +13900,7 @@ public class MainActivity2 extends ActionBarActivity {
 					    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 						    	public void onClick(DialogInterface dialog, int whichButton) {
 						    		
-						    		hideNavigation();
+						    		//hideNavigation();
 						    		
 						    		playerDeadYet[playerNumberAttacked] = "yes";
 						    		
@@ -13434,8 +13969,10 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  		@Override
 		  	  	  	public void run() {			  	  	  			
 
-		  	  	  		final TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
-		  	  	  		criticalMissGraphic.setVisibility(View.INVISIBLE);
+		  	  	  		//final TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicsmall);
+		  	  	  		//criticalMissGraphic.setVisibility(View.INVISIBLE);
+	  	  	  			
+	  	  	  			stopGraphics();
 	  	  	  			
 		  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 	  			  		centerscrolltext.startAnimation(animAlphaText);
@@ -13702,7 +14239,7 @@ public class MainActivity2 extends ActionBarActivity {
 						    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 							    	public void onClick(DialogInterface dialog, int whichButton) {
 							    		
-							    		hideNavigation();
+							    		//hideNavigation();
 							    		
 							    		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
 											
@@ -13759,7 +14296,7 @@ public class MainActivity2 extends ActionBarActivity {
 						    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 							    	public void onClick(DialogInterface dialog, int whichButton) {
 							    		
-							    		hideNavigation();
+							    		//hideNavigation();
 							    		
 							    		playerDeadYet[0] = "yes";
 							    		
@@ -14020,20 +14557,30 @@ public class MainActivity2 extends ActionBarActivity {
 			  	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 			  	    		public void onClick(DialogInterface dialog, int whichButton) {
 			  	    			
-			  	    			hideNavigation();
+			  	    			//hideNavigation();
 			  		    		
 			  		    		blessSpell[0] = blessSpell[0] - 1;
 			  		    		
 			  		    		skillsCheck();
 			  		    		
-			  		    		disarmWithBless();			  		    			  		    		
+			  		    		
+			  		    		// NEED THIS HANDLER OTHERWISE BLESS GRAPHIC GETS OFF-CENTER MID-WAY THRU.
+			  		    		final Handler h = new Handler();
+					  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+					  	  	  			
+					  	  	  		@Override
+						  	  	  	public void run() {
+					  	  	  			
+					  	  	  			disarmWithBless();
+						  	  	  	}
+					  	  	  	}, 1000);		  		    					  		    			  		    		
 			  		    	}
 			  	    	});
 			  	    	
 			  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
 			  	    		public void onClick(DialogInterface dialog, int whichButton) {
 			  	    			
-			  	    			hideNavigation();			  	    			
+			  	    			//hideNavigation();			  	    			
 			  	    				  	    			
 			  	    			disarmNoBless();			          		            		  
 			          	  }
@@ -14205,9 +14752,14 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  			
 	  	  	  		@Override
 		  	  	  	public void run() {			  	  	  			
-
-		  	  	  		final TextView blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
-	  	  	  			blessGraphic.setVisibility(View.INVISIBLE);
+	  	  	  			
+		  	  	  		ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
+	  	  	  			img.bringToFront();	  	  	  			
+	  	  	  			
+		  	  	  		//final TextView blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+	  	  	  			//blessGraphic.setVisibility(View.INVISIBLE);
+	  	  	  			
+	  	  	  			stopGraphics();
 	  	  	  			
 	  	  	  			// ROLLFROMLEFT (20-SIDED)
 	  	  	  			twentySidedRollFromLeft();				  	  	  		
@@ -14279,7 +14831,7 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  		}
 			  	  	  	}, 750);					  	  	  		
 	  	  	  		}
-	  	  	  	}, 3000);	  	  	  		
+	  	  	  	}, 6000);	  	  	  		
   	  	    }
 		});
 	}
@@ -14319,31 +14871,35 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  			
 				  	  	  		if (ArrayOfAttackResult.attackResult[0] >= 15) {
 									
-									AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-								      
-									alert.setTitle("Your opponent has been disarmed!");
-						  	    	/*
-						  	    	alert.setMessage("something");
-						  	    	*/	    	
-							    	
-							    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-								    	public void onClick(DialogInterface dialog, int whichButton) {
-								    		
-								    		hideNavigation();									    		
+					  	  	  		final Handler h = new Handler();
+						  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+						  	  	  			
+						  	  	  		@Override
+							  	  	  	public void run() {
+						  	  	  			
+							  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
+									  		centerscrolltext.startAnimation(animAlphaText);
+									  		centerscrolltext.append("\n" + "> Your opponent has been disarmed!");
+									  		
+									  		final Handler h = new Handler();
+								  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+								  	  	  			
+								  	  	  		@Override
+									  	  	  	public void run() {
+								  	  	  			
+									  	  	  		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
+														
+										    			gameEngineHumanFirst2();    							
+													}
 	
-								    		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
-												
-								    			gameEngineHumanFirst2();    							
-											}
-
-											if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
-								    			
-								    			turn();   							
-											}																						
-								    	}
-							    	});								    	
-							    	alert.show();
-							    	
+													if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
+										    			
+										    			turn();   							
+													}
+									  	  	  	}
+								  	  	  	}, 2000);
+							  	  	  	}
+						  	  	  	}, 2000);						    	
 									
 									canHasDisarmed[playerNumberAttacked] = "yes";
 					
@@ -14366,31 +14922,35 @@ public class MainActivity2 extends ActionBarActivity {
 					
 								if (ArrayOfAttackResult.attackResult[0] <= 14 && ArrayOfAttackResult.attackResult[0] > 0) {
 									
-									AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-								      
-									alert.setTitle("Your attempt to disarm misses!");
-						  	    	/*
-						  	    	alert.setMessage("something");
-						  	    	*/	    	
-							    	
-							    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-								    	public void onClick(DialogInterface dialog, int whichButton) {
-								    		
-								    		hideNavigation();									    		
+									final Handler h = new Handler();
+						  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+						  	  	  			
+						  	  	  		@Override
+							  	  	  	public void run() {
+						  	  	  			
+							  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
+									  		centerscrolltext.startAnimation(animAlphaText);
+									  		centerscrolltext.append("\n" + "> Your attempt to disarm misses!");
+									  		
+									  		final Handler h = new Handler();
+								  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+								  	  	  			
+								  	  	  		@Override
+									  	  	  	public void run() {
+								  	  	  			
+									  	  	  		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
+														
+										    			gameEngineHumanFirst2();    							
+													}
 	
-								    		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
-												
-								    			gameEngineHumanFirst2();    							
-											}
-
-											if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
-								    			
-								    			turn();   							
-											}																							
-								    	}
-							    	});								    	
-							    	alert.show();
-							    	
+													if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
+										    			
+										    			turn();   							
+													}
+									  	  	  	}
+								  	  	  	}, 2000);
+							  	  	  	}
+						  	  	  	}, 2000);		    	
 									
 									/*
 									centerscrolltext.setVisibility(View.VISIBLE);
@@ -14523,31 +15083,35 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  			
 				  	  	  		if (ArrayOfAttackResult.attackResult[0] >= 17) {
 									
-									AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-								      
-									alert.setTitle("The computer has been disarmed!");
-						  	    	/*
-						  	    	alert.setMessage("something");
-						  	    	*/	    	
-							    	
-							    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-								    	public void onClick(DialogInterface dialog, int whichButton) {
-								    		
-								    		hideNavigation();									    		
+					  	  	  		final Handler h = new Handler();
+						  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+						  	  	  			
+						  	  	  		@Override
+							  	  	  	public void run() {
+						  	  	  			
+							  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
+									  		centerscrolltext.startAnimation(animAlphaText);
+									  		centerscrolltext.append("\n" + "> Your opponent has been disarmed!");
+									  		
+									  		final Handler h = new Handler();
+								  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+								  	  	  			
+								  	  	  		@Override
+									  	  	  	public void run() {
+								  	  	  			
+									  	  	  		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
+														
+										    			gameEngineHumanFirst2();    							
+													}
 	
-								    		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
-												
-								    			gameEngineHumanFirst2();    							
-											}
-
-											if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
-								    			
-								    			turn();   							
-											}																							
-								    	}
-							    	});								    	
-							    	alert.show();
-							    	
+													if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
+										    			
+										    			turn();   							
+													}
+									  	  	  	}
+								  	  	  	}, 2000);
+							  	  	  	}
+						  	  	  	}, 2000);							    	
 									
 									canHasDisarmed[playerNumberAttacked] = "yes";
 					
@@ -14566,30 +15130,35 @@ public class MainActivity2 extends ActionBarActivity {
 					
 								if (ArrayOfAttackResult.attackResult[0] <= 16 && ArrayOfAttackResult.attackResult[0] > 1) {
 									
-									AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-								      
-									alert.setTitle("Your attempt to disarm misses!");
-						  	    	/*
-						  	    	alert.setMessage("something");
-						  	    	*/	    	
-							    	
-							    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-								    	public void onClick(DialogInterface dialog, int whichButton) {
-								    		
-								    		hideNavigation();									    		
+									final Handler h = new Handler();
+						  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+						  	  	  			
+						  	  	  		@Override
+							  	  	  	public void run() {
+						  	  	  			
+							  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
+									  		centerscrolltext.startAnimation(animAlphaText);
+									  		centerscrolltext.append("\n" + "> Your attempt to disarm misses!");
+									  		
+									  		final Handler h = new Handler();
+								  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+								  	  	  			
+								  	  	  		@Override
+									  	  	  	public void run() {
+								  	  	  			
+									  	  	  		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
+														
+										    			gameEngineHumanFirst2();    							
+													}
 	
-								    		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
-												
-								    			gameEngineHumanFirst2();    							
-											}
-
-											if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
-								    			
-								    			turn();   							
-											}																						
-								    	}
-							    	});								    	
-							    	alert.show();							
+													if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
+										    			
+										    			turn();   							
+													}
+									  	  	  	}
+								  	  	  	}, 2000);
+							  	  	  	}
+						  	  	  	}, 2000);							
 									
 									/*
 									centerscrolltext.setVisibility(View.VISIBLE);
@@ -14612,7 +15181,7 @@ public class MainActivity2 extends ActionBarActivity {
 							    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 								    	public void onClick(DialogInterface dialog, int whichButton) {
 								    		
-								    		hideNavigation();
+								    		//hideNavigation();
 								    		
 								    		criticalMiss();							    														
 								    	}
@@ -14663,7 +15232,9 @@ public class MainActivity2 extends ActionBarActivity {
 	  		  	  	  			
 	  		  	  	  			hasteSpell[0] = hasteSpell[0] - 1;
 	  		  	  	  			
-	  		  	  	  			skillsCheck();		  	  	  			
+	  		  	  	  			skillsCheck();
+	  		  	  	  			
+	  		  	  	  			stopGraphics();
 	  		  	  	  			
 	  		  	  	  			
 	  		  	  	  			if (canHasDisarmed[0].equals("no")) {	  		  	  	  				
@@ -14730,7 +15301,7 @@ public class MainActivity2 extends ActionBarActivity {
 						  	  	  	}, 2000);							  	  	  																						
 								}	  		  	  	  			
 	  		  	  	  		}
-	  		  	  	  	}, 3000);
+	  		  	  	  	}, 6000);
 	  				}
 	  			}	  			
 	  			
@@ -14746,7 +15317,7 @@ public class MainActivity2 extends ActionBarActivity {
 			    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 				    	public void onClick(DialogInterface dialog, int whichButton) {
 				    		
-				    		hideNavigation();
+				    		//hideNavigation();
 				    		
 				    		runActionsOnUi();							    														
 				    	}
@@ -14808,6 +15379,9 @@ public class MainActivity2 extends ActionBarActivity {
 	  			TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
 	  			computerHitPointsTextView.setTypeface(typeFace);
 	  			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));	  			
+	  			
+	  			// SO IF PLAYER KILLS/KNOCKS OUT COMP ON 1ST RD OF HASTE:
+	  			endGame();
 	  			
 	  			
 	  			// THIS IS WRONG - CAN GET 2ND ATTACK, YOU'RE JUST DISARMED:
@@ -14895,8 +15469,10 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  		@Override
 				  	  	  	public void run() {
 			  	  	  			
-				  	  	  		final TextView blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
-			  	  	  			blessGraphic.setVisibility(View.INVISIBLE);
+				  	  	  		//final TextView blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+			  	  	  			//blessGraphic.setVisibility(View.INVISIBLE);
+			  	  	  			
+			  	  	  			stopGraphics();
 			  	  	  			
 			  	  	  			ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
 			  	  	  			img.bringToFront();
@@ -15036,7 +15612,7 @@ public class MainActivity2 extends ActionBarActivity {
 			    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 				    	public void onClick(DialogInterface dialog, int whichButton) {
 				    		
-				    		hideNavigation();
+				    		//hideNavigation();
 				    		
 				    		runActionsOnUi();							    														
 				    	}
@@ -15472,8 +16048,10 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  		@Override
 				  	  	  	public void run() {
 			  	  	  			
-				  	  	  		final TextView cureGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
-			  	  	  			cureGraphic.setVisibility(View.INVISIBLE);
+				  	  	  		//final TextView cureGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+			  	  	  			//cureGraphic.setVisibility(View.INVISIBLE);
+			  	  	  			
+			  	  	  			stopGraphics();
 			  	  	  			
 			  	  	  			ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
 			  	  	  			img.bringToFront();
@@ -15562,7 +16140,7 @@ public class MainActivity2 extends ActionBarActivity {
 			    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 				    	public void onClick(DialogInterface dialog, int whichButton) {
 				    		
-				    		hideNavigation();
+				    		//hideNavigation();
 				    		
 				    		runActionsOnUi();							    														
 				    	}
@@ -15688,9 +16266,51 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  	  			
 		  	  	  		@Override
 			  	  	  	public void run() {
+		  	  	  			/* THIS WAS REPLACED BY 2ND "ELSE IF" FOR HASTE OPTION:
+		  	  	  			if (disarmedTurnStart[0] + 2 == turn) { // SO PLAYER DOESN'T HASTE ON 2ND TURN OF BEING DISARMED.
+		  	  	  				
+			  	  	  			final String[] items = new String[] { "Punch", "Cure" };
+					      		
+								AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity2.this);
+				
+								// if back pressed: DOES THIS WORK????????????
+								builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+									@Override
+									public void onCancel(DialogInterface dialog) {
+										
+										//GOTO SOME METHOD!!!!!!!!!!!!!!
+										
+										disarmedAction();
+									}
+								});					
+								
+								builder.setTitle("Choose Action").setItems(items,
+										new DialogInterface.OnClickListener() {
+											public void onClick(DialogInterface dialog,	int item) {							
+												
+												if (item == 0) {
+													//hideNavigation();
+													//isInvokingService = "true";
+													//punch();
+													attack();
+												}
+												
+												if (item == 1) {
+													//hideNavigation();
+													//isInvokingService = "true";
+													cure();
+												}										
+												
+												isInvokingService = "true";											
+											}
+										});
+								builder.create().show();	  	  	  				
+		  	  	  			}
 		  	  	  			
-			  	  	  		final String[] items = new String[] { "Punch", "Haste", "Cure" };
-				      		
+		  	  	  			else {(STUFF BELOW)}
+		  	  	  			*/	
+	  	  	  				final String[] items = new String[] { "Punch", "Haste", "Cure" };
+			      		
 							AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity2.this);
 			
 							// if back pressed: DOES THIS WORK????????????
@@ -15706,16 +16326,16 @@ public class MainActivity2 extends ActionBarActivity {
 							
 							builder.setTitle("Choose Action").setItems(items,
 									new DialogInterface.OnClickListener() {
-										public void onClick(DialogInterface dialog,	int item) {
-			
+										public void onClick(DialogInterface dialog,	int item) {							
+											
 											if (item == 0) {
-												hideNavigation();
+												//hideNavigation();
 												//isInvokingService = "true";
 												//punch();
 												attack();
 											}
 											if (item == 1) {
-												hideNavigation();
+												//hideNavigation();
 												//isInvokingService = "true";												
 													
 												if (hasteSpell[0] < 1) {
@@ -15727,13 +16347,18 @@ public class MainActivity2 extends ActionBarActivity {
 													disarmedAction();
 												}
 												
-												if (hasteSpell[0] > 0) {
+												else if (disarmedTurnStart[0] + 2 == turn) { // SO USER DOESN'T WASTE HASTE ON 2ND ROUND OF BEING DISARMED.														
+													
+													disarmedAction();														
+												}
+												
+												else if ((hasteSpell[0] > 0) && !(disarmedTurnStart[0] + 2 == turn)) {
 													
 													haste();
 												}																																																										
 											}
 											if (item == 2) {
-												hideNavigation();
+												//hideNavigation();
 												//isInvokingService = "true";
 												cure();
 											}										
@@ -15741,7 +16366,8 @@ public class MainActivity2 extends ActionBarActivity {
 											isInvokingService = "true";											
 										}
 									});
-							builder.create().show();							
+							builder.create().show();
+		  	  	  			
 			  	  	  	}
 		  	  	  	}, 2000);					
 	  	  	    }
@@ -15915,7 +16541,7 @@ public class MainActivity2 extends ActionBarActivity {
 				centerscrolltext.setVisibility(View.VISIBLE);													
 		  		centerscrolltext.startAnimation(animAlphaText);
 		  		centerscrolltext.append("\n");
-		  		centerscrolltext.append("\n" + ">>>>>>>>>>>   " + " Turn " + turn + "   <<<<<<<<<<<");				
+		  		centerscrolltext.append("\n" + " >>>>>>>>>>>   " + " Turn " + turn + "   <<<<<<<<<<<");				
 		  		centerscrolltext.append("\n");
 				
 				
@@ -16103,7 +16729,7 @@ public class MainActivity2 extends ActionBarActivity {
 				centerscrolltext.setVisibility(View.VISIBLE);													
 		  		centerscrolltext.startAnimation(animAlphaText);
 		  		centerscrolltext.append("\n");
-		  		centerscrolltext.append("\n" + ">>>>>>>>>>>   " + " Turn " + turn + "   <<<<<<<<<<<");				
+		  		centerscrolltext.append("\n" + " >>>>>>>>>>>   " + " Turn " + turn + "   <<<<<<<<<<<");				
 		  		centerscrolltext.append("\n");
 				
 				
@@ -16372,27 +16998,27 @@ public class MainActivity2 extends ActionBarActivity {
 								public void onClick(DialogInterface dialog,	int item) {
 	
 									if (item == 0) {
-										hideNavigation();
+										//hideNavigation();
 										//isInvokingService = "true";
 										attack();
 									}
 									if (item == 1) {
-										hideNavigation();
+										//hideNavigation();
 										//isInvokingService = "true";
 										disarm();
 									}
 									if (item == 2) {
-										hideNavigation();
+										//hideNavigation();
 										//isInvokingService = "true";
 										haste();
 									}
 									if (item == 3) {
-										hideNavigation();
+										//hideNavigation();
 										//isInvokingService = "true";
 										cure();
 									}
 									if (item == 4) {
-										hideNavigation();
+										//hideNavigation();
 										//isInvokingService = "true";
 										bless();
 									}
@@ -16428,95 +17054,204 @@ public class MainActivity2 extends ActionBarActivity {
 					//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
 					
 					
-					if (ArrayOfHitPoints.hitpoints[1] == 0) {			
+					if (ArrayOfHitPoints.hitpoints[0] < 0) {
+						
+						playerDeadYet[0] = "yes";
+						
+						gameOverCheck();
+						
+						// NEED THIS?:
+						//return;
+					}
+					
+					else if (ArrayOfHitPoints.hitpoints[1] < 0) {
+						
+						playerDeadYet[1] = "yes";
+						
+						gameOverCheck();
+						
+						// NEED THIS?:
+						//return;
+					}
+					
+					else if (ArrayOfHitPoints.hitpoints[1] == 0) {			
 						
 						centerscrolltext.setVisibility(View.VISIBLE);													
 		  	  	  		centerscrolltext.startAnimation(animAlphaText);
 		  	  			centerscrolltext.append("\n" + "> The computer is unconscious.");
 						
-						
-						if (cureSpell[1] > 0) {
-							
-							centerscrolltext.setVisibility(View.VISIBLE);												
-			  	  	  		centerscrolltext.startAnimation(animAlphaText);
-			  	  			centerscrolltext.append("\n" + "> The computer uses it's cure spell...");
-							
-							computerCure();
-						}
+			  	  		final Handler h = new Handler();
+			  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+			  	  	  			
+			  	  	  		@Override
+				  	  	  	public void run() {
+			  	  	  			
+				  	  	  		if (cureSpell[1] > 0) {
+									
+									centerscrolltext.setVisibility(View.VISIBLE);												
+					  	  	  		centerscrolltext.startAnimation(animAlphaText);
+					  	  			centerscrolltext.append("\n" + "> The computer uses it's cure spell...");
+									
+									computerCure();
+								}
+				  	  	  		
+				  	  	  		else {
+				  	  	  			
+				  	  	  			final String[] items = new String[] { "Slay", "Mercy" };
+					      		
+									AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity2.this);
+					
+									// if back pressed: DOES THIS WORK????????????
+									builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+										@Override
+										public void onCancel(DialogInterface dialog) {
+											
+											//GOTO SOME METHOD!!!!!!!!!!!!!!
+											
+											disarmedAction();
+										}
+									});					
+									
+									builder.setTitle("The computer is at your mercy.").setItems(items,
+											new DialogInterface.OnClickListener() {
+												public void onClick(DialogInterface dialog,	int item) {							
+													
+													if (item == 0) {
+														//hideNavigation();
+														
+														playerDeadYet[1] = "no";
+														playerDeadYet[0] = "yes";
+														
+														centerscrolltext.setVisibility(View.VISIBLE);												
+										  	  	  		centerscrolltext.startAnimation(animAlphaText);
+										  	  			centerscrolltext.append("\n" + "> Let it be so...");
+														
+														final Handler h = new Handler();
+											  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+											  	  	  			
+											  	  	  		@Override
+												  	  	  	public void run() {
+											  	  	  			
+											  	  	  			gameOverCheck();
+												  	  	  	}
+											  	  	  	}, 2000);													
+													}
+													
+													if (item == 1) {
+														//hideNavigation();
+														
+														playerDeadYet[1] = "no";
+														playerDeadYet[0] = "yes";
+														
+														centerscrolltext.setVisibility(View.VISIBLE);												
+										  	  	  		centerscrolltext.startAnimation(animAlphaText);
+										  	  			centerscrolltext.append("\n" + "> The old gods are pleased...");
+														
+														final Handler h = new Handler();
+											  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+											  	  	  			
+											  	  	  		@Override
+												  	  	  	public void run() {
+											  	  	  			
+											  	  	  			gameOverCheck();
+												  	  	  	}
+											  	  	  	}, 2000);
+													}																	
+												}
+											});
+									builder.create().show();				  	  	  			
+				  	  	  		}
+				  	  	  	}
+			  	  	  	}, 2000);						
 					}
 					
-					if (ArrayOfHitPoints.hitpoints[0] == 0) {				
+					else if (ArrayOfHitPoints.hitpoints[0] == 0) {				
 										
 						centerscrolltext.setVisibility(View.VISIBLE);												
 		  	  	  		centerscrolltext.startAnimation(animAlphaText);
 		  	  			centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you are unconscious.");				
 						
-		
-						if (cureSpell[0] > 0) {
-							
-							/*
-							centerscrolltext.setVisibility(View.VISIBLE);												
-			  	  	  		centerscrolltext.startAnimation(animAlphaText);
-			  	  			centerscrolltext.append("\n" + "> Do you want to use your cure spell?");
-			  	  			*/  	  			
-			  	  			
-				  	  		AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-				  			
-				  	    	alert.setTitle("Do you want to use your Cure spell?");
-				  	    	/*
-				  	    	alert.setMessage("something");
-				  	    	*/	  	    	
-				  	    	
-				  	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-				  		    	public void onClick(DialogInterface dialog, int whichButton) {
-				  		    		
-				  		    		hideNavigation();
-				  		    		
-				  		    		cure();
-				  		    	}
-				  	    	});
-				  	    	
-				  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
-				          	  public void onClick(DialogInterface dialog, int whichButton) {
-				          		  
-				          		  	hideNavigation();
-				          		  	
-				          		  	endGame();
-				          	  }
-				          	});				  	    	
-				  	    	alert.show();
-			  	  			
-			  	  			/*
-			  	  			String s = input.next();
-							char selection = s.charAt(0);
-			  	  			switch (selection) {
-							case 'y':
-							case 'Y':
-								cure(i, turn, gameOn);
-								break;
-							case 'n':
-							case 'N':
-								endGame(i, turn, gameOn);
-								break;
-							default:
-								endGame(i, turn, gameOn);
-								break;
-							}
-							*/
-						}
-					}
-					
-					if (ArrayOfHitPoints.hitpoints[0] < 0) {
-						playerDeadYet[0] = "yes";
-						// NEED THIS?:
-						//return;
-					}
-					
-					if (ArrayOfHitPoints.hitpoints[1] < 0) {
-						playerDeadYet[1] = "yes";
-						// NEED THIS?:
-						//return;
-					}
+			  	  		final Handler h = new Handler();
+			  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+			  	  	  			
+			  	  	  		@Override
+				  	  	  	public void run() {
+			  	  	  			
+				  	  	  		if (cureSpell[0] > 0) {
+									
+									/*
+									centerscrolltext.setVisibility(View.VISIBLE);												
+					  	  	  		centerscrolltext.startAnimation(animAlphaText);
+					  	  			centerscrolltext.append("\n" + "> Do you want to use your cure spell?");
+					  	  			*/  	  			
+					  	  			
+						  	  		AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+						  			
+						  	    	alert.setTitle("Do you want to use your Cure spell?");
+						  	    	/*
+						  	    	alert.setMessage("something");
+						  	    	*/	  	    	
+						  	    	
+						  	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+						  		    	public void onClick(DialogInterface dialog, int whichButton) {
+						  		    		
+						  		    		//hideNavigation();
+						  		    		
+						  		    		cure();
+						  		    	}
+						  	    	});
+						  	    	
+						  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+						          	  public void onClick(DialogInterface dialog, int whichButton) {
+						          		  
+						          		  	//hideNavigation();
+						          		  	
+						          		  	endGame();
+						          	  }
+						          	});				  	    	
+						  	    	alert.show();
+					  	  			
+					  	  			/*
+					  	  			String s = input.next();
+									char selection = s.charAt(0);
+					  	  			switch (selection) {
+									case 'y':
+									case 'Y':
+										cure(i, turn, gameOn);
+										break;
+									case 'n':
+									case 'N':
+										endGame(i, turn, gameOn);
+										break;
+									default:
+										endGame(i, turn, gameOn);
+										break;
+									}
+									*/
+								}
+								
+								else {
+									
+									centerscrolltext.setVisibility(View.VISIBLE);												
+					  	  	  		centerscrolltext.startAnimation(animAlphaText);
+					  	  			centerscrolltext.append("\n" + "> " + "The computer decides to let you live as an example to others.");
+					  	  			
+					  	  			playerDeadYet[1] = "no";
+					  	  			playerDeadYet[0] = "yes";
+					  	  			
+						  	  		final Handler h = new Handler();
+						  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+						  	  	  			
+						  	  	  		@Override
+							  	  	  	public void run() {
+						  	  	  			
+						  	  	  			gameOverCheck();
+							  	  	  	}
+						  	  	  	}, 2000);				  	  			
+								}
+				  	  	  	}
+			  	  	  	}, 2000);						
+					}					
 				}
   	  	    }
   	  	});
@@ -16545,9 +17280,45 @@ public class MainActivity2 extends ActionBarActivity {
 					
 					centerscrolltext.setVisibility(View.VISIBLE);												
 		  	  		centerscrolltext.startAnimation(animAlphaText);
-		  			centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you are victorious!!");
+		  			centerscrolltext.append("\n" + "\n" + "> " + ArrayOfPlayers.player[0] + ", you are victorious!!");
 		  			
-		  			centerscrolltext.append("\n" + "Game Over!");
+		  			final Handler h = new Handler();
+		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+		  	  	  			
+		  	  	  		@Override
+			  	  	  	public void run() {
+		  	  	  			
+		  	  	  			centerscrolltext.append("\n" + "\n" + "> Game Over!");
+		  	  	  			
+			  	  	  		final Handler h = new Handler();
+				  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+				  	  	  			
+				  	  	  		@Override
+					  	  	  	public void run() {
+				  	  	  			
+				  	  	  			MediaPlayerWrapper.play(MainActivity2.this, R.raw.buttonsound6);
+				  	  	  			
+				  	  	  			foldScrolls();
+				  	  	  			
+					  	  	  		final Handler h = new Handler();
+						  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+						  	  	  			
+						  	  	  		@Override
+							  	  	  	public void run() {
+						  	  	  			
+						  	  	  			finish();
+						  	  	  			
+						  	  	  			Intent i = new Intent(MainActivity2.this, MainActivity1.class);
+						  	  	  			MainActivity2.this.startActivity(i);
+						  	  	  			
+							  	  	  		//Intent openMainActivity1 = new Intent("com.nedswebsite.ktog.MAINACTIVITY2");
+						    	        	//startActivity(openMainActivity1);
+							  	  	  	}
+						  	  	  	}, 630);
+					  	  	  	}
+				  	  	  	}, 2000);
+			  	  	  	}
+		  	  	  	}, 2000);	  			
 		  			
 					/*
 					if (numberOfPlayers == 1) {
@@ -16582,9 +17353,45 @@ public class MainActivity2 extends ActionBarActivity {
 					
 					centerscrolltext.setVisibility(View.VISIBLE);												
 		  	  		centerscrolltext.startAnimation(animAlphaText);
-		  			centerscrolltext.append("\n" + "> The computer is victorious!!");
+		  			centerscrolltext.append("\n" + "\n" + "> The computer is victorious!!");
 		  			
-		  			centerscrolltext.append("\n" + "> Game Over!");
+		  			final Handler h = new Handler();
+		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+		  	  	  			
+		  	  	  		@Override
+			  	  	  	public void run() {
+		  	  	  			
+		  	  	  			centerscrolltext.append("\n" + "\n" + "> Game Over!");
+		  	  	  			
+			  	  	  		final Handler h = new Handler();
+				  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+				  	  	  			
+				  	  	  		@Override
+					  	  	  	public void run() {
+				  	  	  			
+				  	  	  			MediaPlayerWrapper.play(MainActivity2.this, R.raw.buttonsound6);
+				  	  	  			
+				  	  	  			foldScrolls();
+				  	  	  			
+					  	  	  		final Handler h = new Handler();
+						  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+						  	  	  			
+						  	  	  		@Override
+							  	  	  	public void run() {
+						  	  	  			
+						  	  	  			finish();
+						  	  	  			
+						  	  	  			Intent i = new Intent(MainActivity2.this, MainActivity1.class);
+						  	  	  			MainActivity2.this.startActivity(i);
+						  	  	  			
+							  	  	  		//Intent openMainActivity1 = new Intent("com.nedswebsite.ktog.MAINACTIVITY2");
+						    	        	//startActivity(openMainActivity1);
+							  	  	  	}
+						  	  	  	}, 630);
+					  	  	  	}
+				  	  	  	}, 2000);
+			  	  	  	}
+		  	  	  	}, 2000);
 		  			
 					/*
 					if (numberOfPlayers == 1) {
@@ -16649,6 +17456,28 @@ public class MainActivity2 extends ActionBarActivity {
 				*/
   	  	    }
 		});
-	}	
+	}
+	
+	public void foldScrolls() {		
+		
+		// USING "runOnUiThread(new Runnable() {}" TO SEE IF IT WORKS BETTER THAN NOT USING IT.
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				// Setting up scroll frame animation.
+				ImageView img = (ImageView)findViewById(R.id.scrollanimation);
+				img.setBackgroundResource(R.anim.scrollanimationdown);
+				
+				img.bringToFront();
+			
+				// Get the background, which has been compiled to an AnimationDrawable object.
+				AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+							
+				// Start the animation.
+				frameAnimation.stop();
+				frameAnimation.start();
+	  	    }
+  		});	
+	}
 
 }
