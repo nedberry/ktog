@@ -17506,7 +17506,32 @@ public class MainActivity2 extends ActionBarActivity {
 						          		  
 						          		  	//hideNavigation();
 						          		  	
-						          		  	endGame();
+						          		  	//endGame();
+						          		  	
+							          		final Handler h = new Handler();
+								  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+								  	  	  			
+								  	  	  		@Override
+									  	  	  	public void run() {
+								  	  	  			
+									  	  	  		centerscrolltext.setVisibility(View.VISIBLE);												
+									  	  	  		centerscrolltext.startAnimation(animAlphaText);
+									  	  			centerscrolltext.append("\n" + "> Yes, it is probably best if you stay down...");
+									  	  			
+										  	  		final Handler h = new Handler();
+										  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+										  	  	  			
+										  	  	  		@Override
+											  	  	  	public void run() {
+										  	  	  			
+											  	  	  		playerDeadYet[1] = "no";
+										          		  	playerDeadYet[0] = "yes";
+										          		  
+										          		  	gameOverCheck();
+											  	  	  	}
+										  	  	  	}, 2000);
+									  	  	  	}
+								  	  	  	}, 2000);						          		  	
 						          	  }
 						          	});				  	    	
 						  	    	alert.show();
