@@ -1853,7 +1853,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	cureGraphic.bringToFront();
   	  	
   	  	cureGraphic.setTypeface(typeFace);
-  	  	cureGraphic.setText("Cure");  	  	
+  	  	cureGraphic.setText(" Cure");  	  	
   	  	
   	  	cureGraphic.clearAnimation();
   	  	cureGraphic.startAnimation(a);
@@ -1871,7 +1871,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  	
 		  	  	final TextView cureGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
 		  	  	cureGraphic.setTypeface(typeFace);
-		  	  	cureGraphic.setText("Cure");
+		  	  	cureGraphic.setText(" Cure");
 	  	  	  	
 		  	  	cureGraphic.clearAnimation();
 		  	  	cureGraphic.startAnimation(a);
