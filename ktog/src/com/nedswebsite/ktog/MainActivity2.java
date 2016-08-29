@@ -4355,7 +4355,7 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  	  		{				  	  	  			
 						  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 							  	  		centerscrolltext.startAnimation(animAlphaText);
-							  			centerscrolltext.append("\n" + ">" + "\n" + "> The computer rolls a " + ArrayOfInitiative.initiative[1] + " for initiative.");								  			
+							  			centerscrolltext.append("\n" + ">" + "\n" + "> The computer rolls " + ArrayOfInitiative.initiative[1] + " for initiative.");								  			
 					  	  	  			
 							  			determineDoubles();
 					  	  	  		}
@@ -4671,7 +4671,7 @@ public class MainActivity2 extends ActionBarActivity {
 									  	  	  			
 										  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 												  		centerscrolltext.startAnimation(animAlphaText);
-														centerscrolltext.append("\n" + "> The computer rolls a " + ArrayOfAttackResult.attackResult[0] + ".");
+														centerscrolltext.append("\n" + "> The computer rolls " + ArrayOfAttackResult.attackResult[0] + ".");
 									  	  	  			
 														final Handler h = new Handler();
 											  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -4833,7 +4833,7 @@ public class MainActivity2 extends ActionBarActivity {
 									  	  	  			
 										  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 												  		centerscrolltext.startAnimation(animAlphaText);
-														centerscrolltext.append("\n" + "> The computer rolls a " + ArrayOfAttackResult.attackResult[0] + ".");
+														centerscrolltext.append("\n" + "> The computer rolls " + ArrayOfAttackResult.attackResult[0] + ".");
 									  	  	  			
 														final Handler h = new Handler();
 											  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -4908,7 +4908,7 @@ public class MainActivity2 extends ActionBarActivity {
 									  	  	  			
 										  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 												  		centerscrolltext.startAnimation(animAlphaText);
-														centerscrolltext.append("\n" + "> The computer rolls a " + ArrayOfAttackResult.attackResult[0] + ", + 2 = " + (ArrayOfAttackResult.attackResult[0] + 2) + ".");
+														centerscrolltext.append("\n" + "> The computer rolls " + ArrayOfAttackResult.attackResult[0] + ", + 2 = " + (ArrayOfAttackResult.attackResult[0] + 2) + ".");
 									  	  	  			
 														final Handler h = new Handler();
 											  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -5070,7 +5070,7 @@ public class MainActivity2 extends ActionBarActivity {
 									  	  	  			
 										  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 												  		centerscrolltext.startAnimation(animAlphaText);
-												  		centerscrolltext.append("\n" + "> The computer rolls a " + ArrayOfAttackResult.attackResult[0] + ", + 2 = " + (ArrayOfAttackResult.attackResult[0] + 2) + ".");
+												  		centerscrolltext.append("\n" + "> The computer rolls " + ArrayOfAttackResult.attackResult[0] + ", + 2 = " + (ArrayOfAttackResult.attackResult[0] + 2) + ".");
 									  	  	  			
 														final Handler h = new Handler();
 											  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -5186,7 +5186,7 @@ public class MainActivity2 extends ActionBarActivity {
 									  	  	  			
 										  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 												  		centerscrolltext.startAnimation(animAlphaText);
-														centerscrolltext.append("\n" + "> The computer rolls a " + ArrayOfAttackResult.attackResult[0] + ", - 1 = " + (ArrayOfAttackResult.attackResult[0] - 1) + ".");
+														centerscrolltext.append("\n" + "> The computer rolls " + ArrayOfAttackResult.attackResult[0] + ", - 1 = " + (ArrayOfAttackResult.attackResult[0] - 1) + ".");
 									  	  	  			
 														final Handler h = new Handler();
 											  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -5348,7 +5348,7 @@ public class MainActivity2 extends ActionBarActivity {
 									  	  	  			
 										  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 												  		centerscrolltext.startAnimation(animAlphaText);
-												  		centerscrolltext.append("\n" + "> The computer rolls a " + ArrayOfAttackResult.attackResult[0] + ", - 1 = " + (ArrayOfAttackResult.attackResult[0] - 1) + ".");
+												  		centerscrolltext.append("\n" + "> The computer rolls " + ArrayOfAttackResult.attackResult[0] + ", - 1 = " + (ArrayOfAttackResult.attackResult[0] - 1) + ".");
 									  	  	  			
 														final Handler h = new Handler();
 											  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -5419,7 +5419,7 @@ public class MainActivity2 extends ActionBarActivity {
 									  	  	  			
 										  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 												  		centerscrolltext.startAnimation(animAlphaText);
-												  		centerscrolltext.append("\n" + "> The computer rolls a " + ArrayOfAttackResult.attackResult[0] + ", + 1 = " + (ArrayOfAttackResult.attackResult[0] + 1) + ".");
+												  		centerscrolltext.append("\n" + "> The computer rolls " + ArrayOfAttackResult.attackResult[0] + ", + 1 = " + (ArrayOfAttackResult.attackResult[0] + 1) + ".");
 									  	  	  			
 												  		final Handler h = new Handler();
 											  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -5581,7 +5581,7 @@ public class MainActivity2 extends ActionBarActivity {
 									  	  	  			
 										  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 												  		centerscrolltext.startAnimation(animAlphaText);
-												  		centerscrolltext.append("\n" + "> The computer rolls a " + ArrayOfAttackResult.attackResult[0] + ", + 1 = " + (ArrayOfAttackResult.attackResult[0] + 1) + ".");
+												  		centerscrolltext.append("\n" + "> The computer rolls " + ArrayOfAttackResult.attackResult[0] + ", + 1 = " + (ArrayOfAttackResult.attackResult[0] + 1) + ".");
 									  	  	  			
 												  		final Handler h = new Handler();
 											  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -6750,7 +6750,7 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  			
 				  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 						  		centerscrolltext.startAnimation(animAlphaText);
-								centerscrolltext.append("\n" + "> The computer rolls a " + cureResult + "."); // WAS cure
+								centerscrolltext.append("\n" + "> The computer rolls " + cureResult + "."); // WAS cure
 								
 								/*
 								for (int x = 0; x < 1000; --x)// To give human time to read.
@@ -6866,7 +6866,7 @@ public class MainActivity2 extends ActionBarActivity {
 						  	  	  			
 							  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 									  		centerscrolltext.startAnimation(animAlphaText);			  		
-											centerscrolltext.append("\n" + "> The computer player rolls a " + ArrayOfAttackResult.attackResult[0] + ", +2 for the Bless Spell = " + (ArrayOfAttackResult.attackResult[0] + 2));
+											centerscrolltext.append("\n" + "> The computer player rolls " + ArrayOfAttackResult.attackResult[0] + ", +2 for the Bless Spell = " + (ArrayOfAttackResult.attackResult[0] + 2));
 											
 									
 											if (ArrayOfAttackResult.attackResult[0] >= 20) {
@@ -7098,7 +7098,7 @@ public class MainActivity2 extends ActionBarActivity {
 						  	  	  			
 							  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 									  		centerscrolltext.startAnimation(animAlphaText);			  		
-											centerscrolltext.append("\n" + "> The computer player rolls a " + ArrayOfAttackResult.attackResult[0] + " +4 = " + computerAttackResultAgainstDisarmedPlusBless);
+											centerscrolltext.append("\n" + "> The computer player rolls " + ArrayOfAttackResult.attackResult[0] + " +4 = " + computerAttackResultAgainstDisarmedPlusBless);
 											
 									
 											if (ArrayOfAttackResult.attackResult[0] >= 20) {
@@ -7472,14 +7472,14 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  	  				
 						  	  	  			centerscrolltext.setVisibility(View.VISIBLE);													
 									  		centerscrolltext.startAnimation(animAlphaText);
-											centerscrolltext.append("\n" + "> The computer rolls a " + ArrayOfAttackResult.attackResult[0] + ".");
+											centerscrolltext.append("\n" + "> The computer rolls " + ArrayOfAttackResult.attackResult[0] + ".");
 					  	  	  			}
 					  	  	  			
 					  	  	  			if (canHasDisarmed[0].equals("yes")) {
 					  	  	  				
 						  	  	  			centerscrolltext.setVisibility(View.VISIBLE);													
 									  		centerscrolltext.startAnimation(animAlphaText);
-											centerscrolltext.append("\n" + "> The computer rolls a " + ArrayOfAttackResult.attackResult[0] + ", +2 for disarmed = " + (ArrayOfAttackResult.attackResult[0] + 2));
+											centerscrolltext.append("\n" + "> The computer rolls " + ArrayOfAttackResult.attackResult[0] + ", +2 for disarmed = " + (ArrayOfAttackResult.attackResult[0] + 2));
 					  	  	  			}
 					  	  	  			
 					  	  	  			
@@ -7978,7 +7978,7 @@ public class MainActivity2 extends ActionBarActivity {
 							  	  	  			
 								  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 										  		centerscrolltext.startAnimation(animAlphaText);			  		
-												centerscrolltext.append("\n" + "> The computer rolls a " + ArrayOfAttackResult.attackResult[0] + ", +2 for the Bless Spell = " + (ArrayOfAttackResult.attackResult[0] + 2));
+												centerscrolltext.append("\n" + "> The computer rolls " + ArrayOfAttackResult.attackResult[0] + ", +2 for the Bless Spell = " + (ArrayOfAttackResult.attackResult[0] + 2));
 												
 								
 												if (ArrayOfAttackResult.attackResult[0] >= 15) {
@@ -8095,7 +8095,7 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  	  			
 						  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 								  		centerscrolltext.startAnimation(animAlphaText);			  		
-										centerscrolltext.append("\n" + "> The computer rolls a " + ArrayOfAttackResult.attackResult[0] + ".");
+										centerscrolltext.append("\n" + "> The computer rolls " + ArrayOfAttackResult.attackResult[0] + ".");
 										
 						
 										if (ArrayOfAttackResult.attackResult[0] >= 17) {
@@ -8220,7 +8220,7 @@ public class MainActivity2 extends ActionBarActivity {
 				  	  	  			
 					  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 							  		centerscrolltext.startAnimation(animAlphaText);			  		
-									centerscrolltext.append("\n" + "> The computer rolls a " + ArrayOfAttackResult.attackResult[0] + ".");
+									centerscrolltext.append("\n" + "> The computer rolls " + ArrayOfAttackResult.attackResult[0] + ".");
 									
 						
 									if (ArrayOfAttackResult.attackResult[0] >= 17) {
@@ -8497,7 +8497,7 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  			
 				  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 						  		centerscrolltext.startAnimation(animAlphaText);
-								centerscrolltext.append("\n" + "> The computer rolls a " + ArrayOfAttackResult.attackResult[0] + ", -1 for being disarmed = " + (ArrayOfAttackResult.attackResult[0] - 1));
+								centerscrolltext.append("\n" + "> The computer rolls " + ArrayOfAttackResult.attackResult[0] + ", -1 for being disarmed = " + (ArrayOfAttackResult.attackResult[0] - 1));
 								
 								
 								if (ArrayOfAttackResult.attackResult[0] >= 20) {
@@ -9886,7 +9886,7 @@ public class MainActivity2 extends ActionBarActivity {
 							  	  	  			
 								  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 										  		centerscrolltext.startAnimation(animAlphaText);			  		
-												centerscrolltext.append("\n" + "> The computer rolls a " + attackDamage	+ ", -2 damage for punch = " + attackDamageOneDisarmed[0] + " damage.");
+												centerscrolltext.append("\n" + "> The computer rolls " + attackDamage + ", -2 damage for punch = " + attackDamageOneDisarmed[0] + " damage.");
 												
 												
 												final Handler h = new Handler();
@@ -9945,7 +9945,7 @@ public class MainActivity2 extends ActionBarActivity {
 													  	  	  			
 														  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 																  		centerscrolltext.startAnimation(animAlphaText);			  		
-																		centerscrolltext.append("\n" + "> The computer rolls a " + attackDamage + ", -2 damage for punch = " + attackDamageTwoDisarmed[0] + " damage.");
+																		centerscrolltext.append("\n" + "> The computer rolls " + attackDamage + ", -2 damage for punch = " + attackDamageTwoDisarmed[0] + " damage.");
 																		
 																		final int totalAttackDamage = (attackDamageOneDisarmed[0] + attackDamageTwoDisarmed[0]);
 																		
@@ -10202,7 +10202,7 @@ public class MainActivity2 extends ActionBarActivity {
 							  	  	  			
 								  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 										  		centerscrolltext.startAnimation(animAlphaText);			  		
-												centerscrolltext.append("\n" + "> The computer rolls a " + resultOne + ".");
+												centerscrolltext.append("\n" + "> The computer rolls " + resultOne + ".");
 												
 												
 												final Handler h = new Handler();
@@ -10251,7 +10251,7 @@ public class MainActivity2 extends ActionBarActivity {
 													  	  	  			
 														  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 																  		centerscrolltext.startAnimation(animAlphaText);			  		
-																		centerscrolltext.append("\n" + "> The computer rolls a " + resultTwo	+ ".");
+																		centerscrolltext.append("\n" + "> The computer rolls " + resultTwo	+ ".");
 																		
 																		final int totalAttackDamage = (resultOne + resultTwo);
 																		
@@ -10579,7 +10579,7 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  	  			
 						  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 								  		centerscrolltext.startAnimation(animAlphaText);			  		
-										centerscrolltext.append("\n" + "> The computer rolls a " + resultOne + ".");
+										centerscrolltext.append("\n" + "> The computer rolls " + resultOne + ".");
 										
 										
 										final Handler h = new Handler();
@@ -10628,7 +10628,7 @@ public class MainActivity2 extends ActionBarActivity {
 											  	  	  			
 												  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 														  		centerscrolltext.startAnimation(animAlphaText);			  		
-																centerscrolltext.append("\n" + "> The computer rolls a " + resultTwo + ".");
+																centerscrolltext.append("\n" + "> The computer rolls " + resultTwo + ".");
 																
 																final int totalAttackDamage = (resultOne + resultTwo);
 																
@@ -10877,7 +10877,7 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  			
 				  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 						  		centerscrolltext.startAnimation(animAlphaText);			  		
-								centerscrolltext.append("\n" + "> The computer rolls a " + ArrayOfAttackResult.attackResult[0] + ".");
+								centerscrolltext.append("\n" + "> The computer rolls " + ArrayOfAttackResult.attackResult[0] + ".");
 								
 								
 								if (ArrayOfAttackResult.attackResult[0] >= 17) {
@@ -10932,7 +10932,7 @@ public class MainActivity2 extends ActionBarActivity {
 										  	  	  			
 											  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 													  		centerscrolltext.startAnimation(animAlphaText);			  		
-															centerscrolltext.append("\n" + "> The computer rolls a " + ArrayOfAttackResult.attackResult[0] + ".");
+															centerscrolltext.append("\n" + "> The computer rolls " + ArrayOfAttackResult.attackResult[0] + ".");
 															
 															
 															if (ArrayOfAttackResult.attackResult[0] >= 17) {
@@ -11109,7 +11109,7 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  	  			
 						  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 								  		centerscrolltext.startAnimation(animAlphaText);			  		
-										centerscrolltext.append("\n" + "> The computer rolls a " + attackDamage + " for damage.");										
+										centerscrolltext.append("\n" + "> The computer rolls " + attackDamage + " for damage.");										
 										
 										
 										ArrayOfHitPoints.hitpoints[1] = ArrayOfHitPoints.hitpoints[1] - attackDamage;
@@ -11402,7 +11402,7 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  	  			
 						  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 								  		centerscrolltext.startAnimation(animAlphaText);			  		
-										centerscrolltext.append("\n" + "> The computer rolls a " + attackDamage + ", -2 damage for punch = " + attackDamageOneDisarmed[0] + " damage.");
+										centerscrolltext.append("\n" + "> The computer rolls " + attackDamage + ", -2 damage for punch = " + attackDamageOneDisarmed[0] + " damage.");
 										
 										
 										final Handler h = new Handler();
@@ -11467,7 +11467,7 @@ public class MainActivity2 extends ActionBarActivity {
 											  	  	  			
 												  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 														  		centerscrolltext.startAnimation(animAlphaText);			  		
-																centerscrolltext.append("\n" + "> The computer rolls a " + attackDamage + ", -2 damage for punch = " + attackDamageTwoDisarmed[0] + " damage.");
+																centerscrolltext.append("\n" + "> The computer rolls " + attackDamage + ", -2 damage for punch = " + attackDamageTwoDisarmed[0] + " damage.");
 																
 																final int totalAttackDamage = (attackDamageOneDisarmed[0] + attackDamageTwoDisarmed[0]);
 																
