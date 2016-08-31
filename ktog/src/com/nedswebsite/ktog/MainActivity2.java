@@ -1553,6 +1553,23 @@ public class MainActivity2 extends ActionBarActivity {
 	    // Must always call the super method at the end.
 	    super.onDestroy();
 	}
+	
+	@Override
+	public void onResume(){
+	    super.onResume();
+	    // put your code here...
+	    
+	    unfoldScrolls();
+	    
+	    /*
+	    ImageView img1 = (ImageView)findViewById(R.id.imageviewscroll3b5left);
+  		img1.bringToFront();
+  		
+  		ImageView img2 = (ImageView)findViewById(R.id.imageviewscroll3b5right);
+  		img2.bringToFront();
+  		*/
+	}
+	
 	/*
 	public void backMethodYes() {
 		
@@ -4305,7 +4322,7 @@ public class MainActivity2 extends ActionBarActivity {
   	  		{  	  			
 	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 	  	  		centerscrolltext.startAnimation(animAlphaText);
-	  			centerscrolltext.append("\n" + ">" + "\n" + "> You roll " + ArrayOfInitiative.initiative[0] + " for initiative.");
+	  			centerscrolltext.append("\n" + "> You roll " + ArrayOfInitiative.initiative[0] + " for initiative.");
 	  			
 	  			final Handler h2 = new Handler();
 		  	  	h2.postDelayed(new Runnable() {
@@ -4355,7 +4372,7 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  	  		{				  	  	  			
 						  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 							  	  		centerscrolltext.startAnimation(animAlphaText);
-							  			centerscrolltext.append("\n" + ">" + "\n" + "> The computer rolls " + ArrayOfInitiative.initiative[1] + " for initiative.");								  			
+							  			centerscrolltext.append("\n" + "> The computer rolls " + ArrayOfInitiative.initiative[1] + " for initiative.");								  			
 					  	  	  			
 							  			determineDoubles();
 					  	  	  		}
@@ -4471,6 +4488,8 @@ public class MainActivity2 extends ActionBarActivity {
   	  			
 	  	  		AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 	  			
+	  	  		alert.setCancelable(false);
+	  	  		
 	  	    	alert.setTitle("Initiative Results");
 	  	    	/*
 	  	    	alert.setMessage(ArrayOfPlayers.player[0] + getString(R.string.tab) + ArrayOfPlayers.player[1]);
@@ -4522,7 +4541,7 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		centerscrolltext.setVisibility(View.VISIBLE);													
   		centerscrolltext.startAnimation(animAlphaText);
-		centerscrolltext.append("\n" +  ">" + "\n" + "> Let the battle begin...");  	  			
+		centerscrolltext.append("\n" + "> Let the battle begin...");  	  			
 		
 		myInitiativeTransition();	    	  	  							  	  	 	    	  	  			  	    	  	  			
 	  	  			  	    	  	  			
@@ -4698,6 +4717,8 @@ public class MainActivity2 extends ActionBarActivity {
 																			
 																			AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 																  			
+																			alert.setCancelable(false);
+																			
 																  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
 																  	    	/*
 																  	    	alert.setMessage("something");
@@ -4935,6 +4956,8 @@ public class MainActivity2 extends ActionBarActivity {
 																			
 																			AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 																  			
+																			alert.setCancelable(false);
+																			
 																  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
 																  	    	/*
 																  	    	alert.setMessage("something");
@@ -5213,6 +5236,8 @@ public class MainActivity2 extends ActionBarActivity {
 																			
 																			AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 																  			
+																			alert.setCancelable(false);
+																			
 																  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
 																  	    	/*
 																  	    	alert.setMessage("something");
@@ -5446,6 +5471,8 @@ public class MainActivity2 extends ActionBarActivity {
 																			
 																			AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 																  			
+																			alert.setCancelable(false);
+																			
 																  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
 																  	    	/*
 																  	    	alert.setMessage("something");
@@ -5758,6 +5785,8 @@ public class MainActivity2 extends ActionBarActivity {
 	  						
 	  						AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 	  			  			
+	  						alert.setCancelable(false);
+	  						
 	  			  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
 	  			  	    	/*
 	  			  	    	alert.setMessage("something");
@@ -5975,7 +6004,9 @@ public class MainActivity2 extends ActionBarActivity {
 													*/
 													
 													AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-												      
+												    
+													alert.setCancelable(false);
+													
 													alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
 										  	    	/*
 										  	    	alert.setMessage("something");
@@ -6026,6 +6057,8 @@ public class MainActivity2 extends ActionBarActivity {
 													
 													AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 												      
+													alert.setCancelable(false);
+													
 													alert.setTitle(ArrayOfPlayers.player[0] + ", you have been slain.");
 										  	    	/*
 										  	    	alert.setMessage("something");
@@ -6191,7 +6224,9 @@ public class MainActivity2 extends ActionBarActivity {
 														*/
 														
 														AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-													      
+													    
+														alert.setCancelable(false);
+														
 														alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
 											  	    	/*
 											  	    	alert.setMessage("something");
@@ -6249,7 +6284,9 @@ public class MainActivity2 extends ActionBarActivity {
 														*/
 														
 														AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-													      
+													    
+														alert.setCancelable(false);
+														
 														alert.setTitle(ArrayOfPlayers.player[0] + ", you have been slain.");
 											  	    	/*
 											  	    	alert.setMessage("something");
@@ -6393,7 +6430,9 @@ public class MainActivity2 extends ActionBarActivity {
 														*/
 														
 														AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-													      
+													    
+														alert.setCancelable(false);
+														
 														alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
 											  	    	/*
 											  	    	alert.setMessage("something");
@@ -6451,7 +6490,9 @@ public class MainActivity2 extends ActionBarActivity {
 														*/
 														
 														AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-													      
+													    
+														alert.setCancelable(false);
+														
 														alert.setTitle(ArrayOfPlayers.player[0] + ", you have been slain.");
 											  	    	/*
 											  	    	alert.setMessage("something");
@@ -6574,7 +6615,9 @@ public class MainActivity2 extends ActionBarActivity {
 												*/
 												
 												AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-											      
+											    
+												alert.setCancelable(false);
+												
 												alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
 									  	    	/*
 									  	    	alert.setMessage("something");
@@ -6632,7 +6675,9 @@ public class MainActivity2 extends ActionBarActivity {
 												*/
 												
 												AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-											      
+											    
+												alert.setCancelable(false);
+												
 												alert.setTitle(ArrayOfPlayers.player[0] + ", you have been slain.");
 									  	    	/*
 									  	    	alert.setMessage("something");
@@ -6853,8 +6898,8 @@ public class MainActivity2 extends ActionBarActivity {
 				  	  	  		@Override
 					  	  	  	public void run() {
 				  	  	  			
-					  	  	  		//ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
-				  	  	  			//img.bringToFront();
+					  	  	  		ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
+				  	  	  			img.bringToFront();
 				  	  	  			
 				  	  	  			computerRolls20SidedDie();
 				  	  	  			
@@ -6902,6 +6947,8 @@ public class MainActivity2 extends ActionBarActivity {
 																	
 																	AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 														  			
+																	alert.setCancelable(false);
+																	
 														  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
 														  	    	/*
 														  	    	alert.setMessage("something");
@@ -7135,6 +7182,8 @@ public class MainActivity2 extends ActionBarActivity {
 																	
 																	AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 														  			
+																	alert.setCancelable(false);
+																	
 														  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
 														  	    	/*
 														  	    	alert.setMessage("something");
@@ -7525,6 +7574,8 @@ public class MainActivity2 extends ActionBarActivity {
 																			
 																			AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 																  			
+																			alert.setCancelable(false);
+																			
 																  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
 																  	    	/*
 																  	    	alert.setMessage("something");
@@ -7726,6 +7777,8 @@ public class MainActivity2 extends ActionBarActivity {
 																			
 																			AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 																  			
+																			alert.setCancelable(false);
+																			
 																  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
 																  	    	/*
 																  	    	alert.setMessage("something");
@@ -8535,6 +8588,8 @@ public class MainActivity2 extends ActionBarActivity {
 															
 															AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 												  			
+															alert.setCancelable(false);
+															
 												  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
 												  	    	/*
 												  	    	alert.setMessage("something");
@@ -8729,6 +8784,8 @@ public class MainActivity2 extends ActionBarActivity {
 															
 															AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 												  			
+															alert.setCancelable(false);
+															
 												  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
 												  	    	/*
 												  	    	alert.setMessage("something");
@@ -8939,6 +8996,8 @@ public class MainActivity2 extends ActionBarActivity {
 							
 							AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 							
+							alert.setCancelable(false);
+							
 					    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
 					    	/*
 					    	alert.setMessage("something");
@@ -9113,7 +9172,9 @@ public class MainActivity2 extends ActionBarActivity {
 													*/
 													
 													AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-												      
+												    
+													alert.setCancelable(false);
+													
 													alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
 										  	    	/*
 										  	    	alert.setMessage("something");
@@ -9163,7 +9224,9 @@ public class MainActivity2 extends ActionBarActivity {
 													*/
 													
 													AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-												      
+												    
+													alert.setCancelable(false);
+													
 													alert.setTitle(ArrayOfPlayers.player[0] + ", you have been slain.");
 										  	    	/*
 										  	    	alert.setMessage("something");
@@ -9335,7 +9398,9 @@ public class MainActivity2 extends ActionBarActivity {
 														*/
 														
 														AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-													      
+													    
+														alert.setCancelable(false);
+														
 														alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
 											  	    	/*
 											  	    	alert.setMessage("something");
@@ -9384,7 +9449,9 @@ public class MainActivity2 extends ActionBarActivity {
 														*/
 														
 														AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-													      
+													    
+														alert.setCancelable(false);
+														
 														alert.setTitle(ArrayOfPlayers.player[0] + ", you have been slain.");
 											  	    	/*
 											  	    	alert.setMessage("something");
@@ -9526,7 +9593,9 @@ public class MainActivity2 extends ActionBarActivity {
 														*/
 														
 														AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-													      
+													    
+														alert.setCancelable(false);
+														
 														alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
 											  	    	/*
 											  	    	alert.setMessage("something");
@@ -9575,7 +9644,9 @@ public class MainActivity2 extends ActionBarActivity {
 														*/
 														
 														AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-													      
+													    
+														alert.setCancelable(false);
+														
 														alert.setTitle(ArrayOfPlayers.player[0] + ", you have been slain.");
 											  	    	/*
 											  	    	alert.setMessage("something");
@@ -9696,7 +9767,9 @@ public class MainActivity2 extends ActionBarActivity {
 												*/
 												
 												AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-											      
+											    
+												alert.setCancelable(false);
+												
 												alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
 									  	    	/*
 									  	    	alert.setMessage("something");
@@ -9745,7 +9818,9 @@ public class MainActivity2 extends ActionBarActivity {
 												*/
 												
 												AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-											      
+											    
+												alert.setCancelable(false);
+												
 												alert.setTitle(ArrayOfPlayers.player[0] + ", you have been slain.");
 									  	    	/*
 									  	    	alert.setMessage("something");
@@ -10008,7 +10083,9 @@ public class MainActivity2 extends ActionBarActivity {
 																									*/
 																									
 																									AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-																								      
+																								    
+																									alert.setCancelable(false);
+																									
 																									alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
 																						  	    	/*
 																						  	    	alert.setMessage("something");
@@ -10058,7 +10135,9 @@ public class MainActivity2 extends ActionBarActivity {
 																									*/
 																									
 																									AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-																								      
+																								    
+																									alert.setCancelable(false);
+																									
 																									alert.setTitle(ArrayOfPlayers.player[0] + ", you have been slain.");
 																						  	    	/*
 																						  	    	alert.setMessage("something");
@@ -10295,7 +10374,9 @@ public class MainActivity2 extends ActionBarActivity {
 																									*/
 																									
 																									AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-																								      
+																								    
+																									alert.setCancelable(false);
+																									
 																									alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
 																						  	    	/*
 																						  	    	alert.setMessage("something");
@@ -10353,7 +10434,9 @@ public class MainActivity2 extends ActionBarActivity {
 																									*/
 																									
 																									AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-																								      
+																								    
+																									alert.setCancelable(false);
+																									
 																									alert.setTitle(ArrayOfPlayers.player[0] + ", you have been slain.");
 																						  	    	/*
 																						  	    	alert.setMessage("something");
@@ -10661,7 +10744,9 @@ public class MainActivity2 extends ActionBarActivity {
 																					*/
 																					
 																					AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-																				      
+																				    
+																					alert.setCancelable(false);
+																					
 																					alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
 																		  	    	/*
 																		  	    	alert.setMessage("something");
@@ -10719,7 +10804,9 @@ public class MainActivity2 extends ActionBarActivity {
 																					*/
 																					
 																					AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-																				      
+																				    
+																					alert.setCancelable(false);
+																					
 																					alert.setTitle(ArrayOfPlayers.player[0] + ", you have been slain.");
 																		  	    	/*
 																		  	    	alert.setMessage("something");
@@ -11134,7 +11221,9 @@ public class MainActivity2 extends ActionBarActivity {
 													*/
 													
 													AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-												      
+												    
+													alert.setCancelable(false);
+													
 													alert.setTitle("The computer has been knocked unconscious.");
 										  	    	/*
 										  	    	alert.setMessage("something");
@@ -11191,7 +11280,9 @@ public class MainActivity2 extends ActionBarActivity {
 													*/
 													
 													AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-												      
+												    
+													alert.setCancelable(false);
+													
 													alert.setTitle("The computer has been slain.");
 										  	    	/*
 										  	    	alert.setMessage("something");
@@ -11514,7 +11605,9 @@ public class MainActivity2 extends ActionBarActivity {
 																					*/
 																					
 																					AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-																				      
+																				    
+																					alert.setCancelable(false);
+																					
 																					alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
 																		  	    	/*
 																		  	    	alert.setMessage("something");
@@ -11563,7 +11656,9 @@ public class MainActivity2 extends ActionBarActivity {
 																					*/
 																					
 																					AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-																				      
+																				    
+																					alert.setCancelable(false);
+																					
 																					alert.setTitle(ArrayOfPlayers.player[0] + ", you have been slain.");
 																		  	    	/*
 																		  	    	alert.setMessage("something");
@@ -11917,15 +12012,15 @@ public class MainActivity2 extends ActionBarActivity {
 				  	  	  			
 				  	  	  		@Override
 					  	  	  	public void run() {						
-					
+				  	  	  			/* CAN'T CRIT HIT WHEN DISARMED (20-1=19)..ALSO CHANGED THE ArrayOfAttackResult.attackResult[0] FROM 19S TO 20S BELOW.
 									if (ArrayOfAttackResult.attackResult[0] >= 20) {
-										criticalHit(); //ADJUSTED DAMAGE FOR BEING DISARMED
+										criticalHit();
 										return;
 									}
-									
+									*/
 									if (canHasDisarmed[playerNumberAttacked].equals("no")) {
 										
-										if (ArrayOfAttackResult.attackResult[0] >= 15 && ArrayOfAttackResult.attackResult[0] <= 19) { // -1 to-hit for being disarmed.
+										if (ArrayOfAttackResult.attackResult[0] >= 15 && ArrayOfAttackResult.attackResult[0] <= 20) { // -1 to-hit for being disarmed.
 											
 											centerscrolltext.setVisibility(View.VISIBLE);													
 									  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -11991,7 +12086,7 @@ public class MainActivity2 extends ActionBarActivity {
 									
 									if (canHasDisarmed[playerNumberAttacked].equals("yes")) {
 										
-										if (ArrayOfAttackResult.attackResult[0] >= 13 && ArrayOfAttackResult.attackResult[0] <= 19) { // -1 to-hit for being disarmed but, +2 because computer is disarmed (+1 total)
+										if (ArrayOfAttackResult.attackResult[0] >= 13 && ArrayOfAttackResult.attackResult[0] <= 20) { // -1 to-hit for being disarmed but, +2 because computer is disarmed (+1 total)
 											
 											centerscrolltext.setVisibility(View.VISIBLE);													
 									  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -12401,7 +12496,9 @@ public class MainActivity2 extends ActionBarActivity {
 						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] == 0) {
 							
 							AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-						      
+						    
+							alert.setCancelable(false);
+							
 							alert.setTitle("The computer has been knocked unconscious.");
 				  	    	/*
 				  	    	alert.setMessage("something");
@@ -12437,7 +12534,9 @@ public class MainActivity2 extends ActionBarActivity {
 							 */
 							
 							AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-						      
+						    
+							alert.setCancelable(false);							
+							
 							alert.setTitle("The computer has been slain.");
 				  	    	/*
 				  	    	alert.setMessage("something");
@@ -12552,6 +12651,8 @@ public class MainActivity2 extends ActionBarActivity {
 											
 											AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 								  			
+											alert.setCancelable(false);
+											
 								  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use Mighty Blow?");
 								  	    	/*
 								  	    	alert.setMessage("something");
@@ -12719,6 +12820,8 @@ public class MainActivity2 extends ActionBarActivity {
 								
 								AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 					  			
+								alert.setCancelable(false);
+								
 					  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use Mighty Blow?");
 					  	    	/*
 					  	    	alert.setMessage("something");
@@ -12977,7 +13080,9 @@ public class MainActivity2 extends ActionBarActivity {
 						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] == 0) {
 							
 							AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-						      
+						    
+							alert.setCancelable(false);
+							
 							alert.setTitle("The computer has been knocked unconscious.");
 				  	    	/*
 				  	    	alert.setMessage("something");
@@ -13023,7 +13128,9 @@ public class MainActivity2 extends ActionBarActivity {
 							 */
 							
 							AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-						      
+						    
+							alert.setCancelable(false);
+							
 							alert.setTitle("The computer has been slain.");
 				  	    	/*
 				  	    	alert.setMessage("something");
@@ -13157,6 +13264,8 @@ public class MainActivity2 extends ActionBarActivity {
 									
 											AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 								  			
+											alert.setCancelable(false);
+											
 								  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use Mighty Blow?");
 								  	    	/*
 								  	    	alert.setMessage("something");
@@ -13306,6 +13415,8 @@ public class MainActivity2 extends ActionBarActivity {
 								
 										AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 							  			
+										alert.setCancelable(false);
+										
 							  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use Mighty Blow?");
 							  	    	/*
 							  	    	alert.setMessage("something");
@@ -13592,7 +13703,7 @@ public class MainActivity2 extends ActionBarActivity {
 					  		centerscrolltext.startAnimation(animAlphaText);
 							centerscrolltext.append("\n" + "> You roll a total " + (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) + " for damage, -2 damage for punch = " + ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) + " damage.");
 							
-		
+							
 							ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2);
 							
 							criticalHitDamageResultsHandler();
@@ -13616,11 +13727,19 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  			
 		  	  		@Override
 		  	  		public void run() {
-			
+		  	  			
+		  	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+		  	  			
+			  	  		TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+		    			computerHitPointsTextView.setTypeface(typeFace);
+		    			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
+		  	  			
 						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] == 0) {
 							
 							AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-						      
+						    
+							alert.setCancelable(false);
+							
 							alert.setTitle("The computer has been knocked unconscious.");
 				  	    	/*
 				  	    	alert.setMessage("something");
@@ -13666,7 +13785,9 @@ public class MainActivity2 extends ActionBarActivity {
 							 */
 							
 							AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-						      
+						    
+							alert.setCancelable(false);
+							
 							alert.setTitle("The computer has been slain.");
 				  	    	/*
 				  	    	alert.setMessage("something");
@@ -13981,7 +14102,9 @@ public class MainActivity2 extends ActionBarActivity {
 						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] == 0) {
 							
 							AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-						      
+						    
+							alert.setCancelable(false);
+							
 							alert.setTitle("The computer has been knocked unconscious.");
 				  	    	/*
 				  	    	alert.setMessage("something");
@@ -14027,7 +14150,9 @@ public class MainActivity2 extends ActionBarActivity {
 							 */
 							
 							AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-						      
+						    
+							alert.setCancelable(false);
+							
 							alert.setTitle("The computer has been slain.");
 				  	    	/*
 				  	    	alert.setMessage("something");
@@ -14371,7 +14496,9 @@ public class MainActivity2 extends ActionBarActivity {
 				    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
 								
 								AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-							      
+							    
+								alert.setCancelable(false);
+								
 								alert.setTitle("You have been knocked unconscious.");
 					  	    	/*
 					  	    	alert.setMessage("something");
@@ -14428,7 +14555,9 @@ public class MainActivity2 extends ActionBarActivity {
 							if (numberOfPlayers == 1) {
 								
 								AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-							      
+							    
+								alert.setCancelable(false);
+								
 								alert.setTitle("You have been slain.");
 					  	    	/*
 					  	    	alert.setMessage("something");
@@ -14690,6 +14819,8 @@ public class MainActivity2 extends ActionBarActivity {
 							
 						AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 			  			
+						alert.setCancelable(false);
+						
 			  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use your bless spell?");
 			  	    	/*
 			  	    	alert.setMessage("something");
@@ -16406,7 +16537,11 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  	    final String[] items = new String[] { "Attack", "Disarm", "Haste", "Cure", "Bless" };
 		      		
 					AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity2.this);
-	
+					
+					builder.setCancelable(false);
+					//DOESN'T WORK:
+					//builder.setCanceledOnTouchOutside(false);
+					
 					// if back pressed: DOES THIS WORK????????????
 					builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
 						@Override
@@ -16594,7 +16729,11 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  				final String[] items = new String[] { "Punch", "Haste", "Cure" };
 			      		
 							AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity2.this);
-			
+							
+							builder.setCancelable(false);
+							//DOESN'T WORK:
+							//builder.setCanceledOnTouchOutside(false);
+							
 							// if back pressed: DOES THIS WORK????????????
 							builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
 								@Override
@@ -17400,7 +17539,9 @@ public class MainActivity2 extends ActionBarActivity {
 				  	  	  			final String[] items = new String[] { "Slay", "Mercy" };
 					      		
 									AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity2.this);
-					
+									
+									builder.setCancelable(false);
+									
 									// if back pressed: DOES THIS WORK????????????
 									builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
 										@Override
@@ -17487,6 +17628,8 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  			
 						  	  		AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 						  			
+						  	  		alert.setCancelable(false);
+						  	  		
 						  	    	alert.setTitle("Do you want to use your Cure spell?");
 						  	    	/*
 						  	    	alert.setMessage("something");
