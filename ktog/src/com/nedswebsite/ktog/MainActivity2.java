@@ -49,11 +49,7 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity2 extends ActionBarActivity {		
-	
-	//IS THIS WORKING NOW (W NEW onbackpressed CODE)????????????
-	// Using variable because was getting null pointer if onbackpressed before rollfromleft was completed:
-	String onBackPressedOk = "no";
+public class MainActivity2 extends ActionBarActivity {
 	
 	int playerNumberAttacked;
 	//int i;
@@ -84,20 +80,41 @@ public class MainActivity2 extends ActionBarActivity {
 	public static int[] attackDamageTwoDisarmed = new int[1];
 	
 	
+	//int turnhumandisarmedcomputer; ========= disarmedTurnStart[1] = turn;
+	//int turncomputercritmiss;=====disarmedTurnStart[0] = turn;
+	//int turncomputerdisarmedhuman; ========= disarmedTurnStart[0] = turn;
+	//int turnhumancritmiss;========disarmedTurnStart[1] = turn;	
+	
+	public static int[] disarmedTurnStart = new int[6];
+	String didHumanCriticalMiss = "no";
+	String didComputerCriticalMiss = "no";
+	
+	
+	// SOME OF THESE MAY NEED TO BE AN ARRAY-CLASS:
+	public static int[] blessSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
+	public static int[] cureSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
+	public static int[] dodgeBlowSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
+	public static int[] mightyBlowSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
+	public static int[] hasteSpell = new int[] {2, 2, 2, 2, 2, 2, 2};	
+	
+	
+	
+	
+	//IS THIS WORKING NOW (W NEW onbackpressed CODE)????????????
+	// Using variable because was getting null pointer if onbackpressed before rollfromleft was completed:
+	String onBackPressedOk = "no";
 	
 	String isInvokingService = "true";	
 	
 	String isinitiativestarted = "no";	
 	static String isinitiativestartedinterrupted = "no";
 	String issixsidedrolledforinitiative = "no";
-	String aretheredoubles = "yes";
-	
+	String aretheredoubles = "yes";	
 	
 	
 	//String preventinitiativediefromleaking = "on";	
 	String preventattackdamagediefromleaking = "on";
-	String preventcureresultdiefromleaking = "on";
-	
+	String preventcureresultdiefromleaking = "on";	
 	
 	
 	// ARRAYS?: (COMBINE W COMP BELOW?)
@@ -129,16 +146,7 @@ public class MainActivity2 extends ActionBarActivity {
 	// SOME OF THESE MAY NEED TO BE AN ARRAY-CLASS:
 	public static String[] playerDeadYet = new String[] {"yes", "yes", "yes", "yes", "yes", "yes"}; // NEED 6?????????	
 	//String playerDeadYet[] = {"yes", "yes", "yes", "yes", "yes", "yes"};
-	public static String[] canHasDisarmed = new String[] {"no", "no", "no", "no", "no", "no"}; // NEED 6?????????
-	public static int[] disarmedTurnStart = new int[6];	
-	
-	
-	// SOME OF THESE MAY NEED TO BE AN ARRAY-CLASS:
-	public static int[] blessSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
-	public static int[] cureSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
-	public static int[] dodgeBlowSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
-	public static int[] mightyBlowSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
-	public static int[] hasteSpell = new int[] {2, 2, 2, 2, 2, 2, 2};	
+	public static String[] canHasDisarmed = new String[] {"no", "no", "no", "no", "no", "no"}; // NEED 6?????????		
 	
 	
 		
@@ -6892,14 +6900,14 @@ public class MainActivity2 extends ActionBarActivity {
 							// for(int x = 0; x < 100; --x)
 							// {}
 							
+							ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
+		  	  	  			img.bringToFront();
+							
 							final Handler h = new Handler();
 				  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 				  	  	  			
 				  	  	  		@Override
-					  	  	  	public void run() {
-				  	  	  			
-					  	  	  		ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
-				  	  	  			img.bringToFront();
+					  	  	  	public void run() {					  	  	  		
 				  	  	  			
 				  	  	  			computerRolls20SidedDie();
 				  	  	  			
@@ -7128,6 +7136,9 @@ public class MainActivity2 extends ActionBarActivity {
 							
 							// for(int x = 0; x < 100; --x)
 							// {}
+							
+							ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
+		  	  	  			img.bringToFront();
 							
 							final Handler h = new Handler();
 				  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -11026,6 +11037,8 @@ public class MainActivity2 extends ActionBarActivity {
 																
 																canHasDisarmed[1] = "yes";
 																
+																didComputerCriticalMiss = "yes";
+																
 																disarmedTurnStart[1] = turn;
 																
 																
@@ -14705,6 +14718,9 @@ public class MainActivity2 extends ActionBarActivity {
 						if (ArrayOfAttackResult.attackResult[0] >= 17) {
 							
 							canHasDisarmed[0] = "yes";
+							
+							didHumanCriticalMiss = "yes";
+							
 							disarmedTurnStart[0] = turn;
 							
 							final Handler h2 = new Handler();
@@ -16989,10 +17005,9 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
-		if (disarmedTurnStart[1] + 2 == turn) {
 				
-			canHasDisarmed[1] = "no";
-		}
+		gameEngineHumanFirst1ComputerDisarmedCheck();		
+		
 		
 		runOnUiThread(new Runnable() {
   	  	    @Override
@@ -17041,7 +17056,7 @@ public class MainActivity2 extends ActionBarActivity {
 							 * disarmGraphic();
 							 */
 							
-							
+							/*
 							// following 3 steps will be followed for any given number of players.
 							if (disarmedTurnStart[0] == (turn)) {
 								//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
@@ -17054,6 +17069,50 @@ public class MainActivity2 extends ActionBarActivity {
 								disarmedAction();
 								canHasDisarmed[0] = "no";
 							}
+							*/
+			  	  			if (didHumanCriticalMiss.equals("yes")) {
+			  	  				
+			  	  				if (disarmedTurnStart[0] == turn) {// SAME WHETHER CRIT MISS OR COMP DISARMS
+								
+			  	  					disarmedAction();
+								}
+				  	  			
+				  	  			else if (disarmedTurnStart[0] + 1 == turn) {
+									
+									disarmedAction();
+								}
+			  	  				
+				  	  			else if (disarmedTurnStart[0] + 2 == turn) {
+								
+				  	  				canHasDisarmed[0] = "no";
+								
+				  	  				didHumanCriticalMiss = "no";
+				  	  				
+				  	  				runActionsOnUi();
+			  	  				}
+			  	  			}
+			  	  			
+			  	  			else if (didHumanCriticalMiss.equals("no")) {
+			  	  				
+			  	  				if (disarmedTurnStart[0] + 1 == turn) {// SAME WHETHER CRIT MISS OR COMP DISARMS
+								
+			  	  					disarmedAction();
+								}
+				  	  			
+				  	  			else if (disarmedTurnStart[0] + 2 == turn) {
+									
+									disarmedAction();
+								}
+			  	  				
+				  	  			else if (disarmedTurnStart[0] + 3 == turn) {
+								
+			  	  					canHasDisarmed[0] = "no";
+			  	  					
+			  	  					runActionsOnUi();
+								
+			  	  					//didHumanCriticalMiss = "no";
+			  	  				}
+			  	  			}				  	  		
 						}
 			  	  		
 			  	  		else {
@@ -17079,9 +17138,24 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  	}, 1000);				
   	  	    }
 		});
+	}	
+	
+	public void gameEngineHumanFirst1ComputerDisarmedCheck() {
+		
+		if (canHasDisarmed[1].equals("yes") && didComputerCriticalMiss.equals("yes")) {
+			
+			if (disarmedTurnStart[1] + 3 == turn) {
+				
+				canHasDisarmed[1] = "no";
+			
+				didComputerCriticalMiss = "no";
+			}
+		}
 	}
 	
 	public void gameEngineHumanFirst2() {		
+		
+		Toast.makeText(MainActivity2.this, "COMPUTER TURN START", Toast.LENGTH_SHORT).show();
 		
 		// THIS THREAD IS BEING USED TO TEST ACCESS TO CENTERSCROLLTEXT
 		runOnUiThread(new Runnable() {
@@ -17140,7 +17214,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  				
 	  				// player number whose turn it is is less than the player
 	  				// number of the player who disarmed him.
-
+	  				/*
 	  				if (disarmedTurnStart[1] == (turn)) {
 	  					//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
 	  					computerDisarmedAction();
@@ -17151,13 +17225,13 @@ public class MainActivity2 extends ActionBarActivity {
 	  					computerDisarmedAction();
 	  					//canHasDisarmed[1] = "no";//THIS HAS TO GO??????????
 	  				}	
-	  				/*OLD:
-	  				else if (disarmedTurnStart[1] + 2 == turn) {
+	  				//OLD:
+	  				//else if (disarmedTurnStart[1] + 2 == turn) {
 	  					//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
-	  					computerDisarmedAction();
-	  					canHasDisarmed[1] = "no";
-	  				}
-	  				*/
+	  				//	computerDisarmedAction();
+	  				//	canHasDisarmed[1] = "no";
+	  				//}
+	  				
 	  				
 	  				//NEED THIS? THIS IS IN gameEngineHumanFirst1().
 	  				else if (disarmedTurnStart[1] + 2 == turn) {
@@ -17165,6 +17239,43 @@ public class MainActivity2 extends ActionBarActivity {
 	  					canHasDisarmed[1] = "no";
 	  					gameEngineHumanFirst2();
 	  				}
+	  				*/
+	  				
+	  				if (didComputerCriticalMiss.equals("yes")) {
+	  	  				
+		  	  			if (disarmedTurnStart[1] + 1 == turn) {
+							
+		  	  				computerDisarmedAction();
+						}
+		  	  			
+		  	  			else if (disarmedTurnStart[1] + 2 == turn) {
+							
+		  	  				computerDisarmedAction();
+						}
+	  	  			}
+	  	  			
+	  	  			else if (didComputerCriticalMiss.equals("no")) { //HUMAN MUST HAVE DISARMED HUMAN
+	  	  				
+		  	  			if (disarmedTurnStart[1] == turn) {
+							
+		  	  				computerDisarmedAction();
+						}
+		  	  			
+		  	  			else if (disarmedTurnStart[1] + 1 == turn) {
+							
+		  	  				computerDisarmedAction();
+						}
+		  	  			
+		  	  			else if (disarmedTurnStart[1] + 2 == turn) {
+						
+		  	  				canHasDisarmed[1] = "no";
+		  	  				
+		  	  				computerAction = (int) (Math.random() * 100) + 1;	
+		  	  				computerAttack();
+					
+		  	  				//didComputerCriticalMiss = "no";
+		  	  			}
+	  	  			}
 	  			}
 	  			
 	  			else {  				
@@ -17194,10 +17305,9 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
-		if (disarmedTurnStart[0] + 2 == turn) {
-			
-			canHasDisarmed[0] = "no";			
-		}
+		
+		gameEngineComputerFirst1HumanDisarmedCheck();
+		
 		
 		runOnUiThread(new Runnable() {
   	  	    @Override
@@ -17240,7 +17350,7 @@ public class MainActivity2 extends ActionBarActivity {
 							 * disarmGraphic();
 							 */
 							
-							
+							/*
 							if (disarmedTurnStart[1] == (turn)) {
 								//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
 								computerDisarmedAction();
@@ -17252,6 +17362,53 @@ public class MainActivity2 extends ActionBarActivity {
 								computerDisarmedAction();
 								canHasDisarmed[1] = "no";
 							}
+							*/
+			  	  			
+				  	  		if (didComputerCriticalMiss.equals("yes")) {
+			  	  				
+			  	  				if (disarmedTurnStart[1] == turn) {// SAME WHETHER CRIT MISS OR COMP DISARMS
+								
+			  	  					computerDisarmedAction();
+								}
+				  	  			
+				  	  			else if (disarmedTurnStart[1] + 1 == turn) {
+									
+				  	  				computerDisarmedAction();
+								}
+			  	  				
+				  	  			else if (disarmedTurnStart[1] + 2 == turn) {
+								
+			  	  					canHasDisarmed[1] = "no";
+								
+			  	  					didComputerCriticalMiss = "no";
+			  	  					
+			  	  					computerAction = (int) (Math.random() * 100) + 1;
+			  	  					computerAttack();
+			  	  				}
+			  	  			}
+			  	  			
+			  	  			else if (didComputerCriticalMiss.equals("no")) {
+			  	  				
+			  	  				if (disarmedTurnStart[1] + 1 == turn) {// SAME WHETHER CRIT MISS OR COMP DISARMS
+								
+			  	  					computerDisarmedAction();
+								}
+				  	  			
+				  	  			else if (disarmedTurnStart[1] + 2 == turn) {
+									
+				  	  				computerDisarmedAction();
+								}
+			  	  				
+				  	  			else if (disarmedTurnStart[1] + 3 == turn) {
+								
+			  	  					canHasDisarmed[1] = "no";
+			  	  					
+			  	  					computerAction = (int) (Math.random() * 100) + 1;
+			  	  					computerAttack();
+								
+			  	  					//didComputerCriticalMiss = "no";
+			  	  				}
+			  	  			}		  	  			
 						}
 			  	  		
 			  	  		else {							
@@ -17277,7 +17434,23 @@ public class MainActivity2 extends ActionBarActivity {
 		});
 	}
 	
+	public void gameEngineComputerFirst1HumanDisarmedCheck() {
+		
+		if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss.equals("yes")) {
+			
+			if (disarmedTurnStart[0] + 3 == turn) {
+				
+				canHasDisarmed[0] = "no";
+				
+				didHumanCriticalMiss = "no";
+			}
+		}
+	}
+	
 	public void gameEngineComputerFirst2() {	
+		
+		
+		
 		
 		runOnUiThread(new Runnable() {//DID NOT NEED THIS BEFORE? USED IN CASE NEEDED FOR REF TO IMAGEVIEWS.
   	  	    @Override
@@ -17340,7 +17513,7 @@ public class MainActivity2 extends ActionBarActivity {
 					
 					// player number whose turn it is is less than the player
 					// number of the player who disarmed him.
-		
+					/*
 					if (disarmedTurnStart[0] == (turn)) {
 						//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
 						disarmedAction();
@@ -17351,20 +17524,55 @@ public class MainActivity2 extends ActionBarActivity {
 						disarmedAction();
 						//canHasDisarmed[0] = "no";//THIS HAS TO GO??????????					
 					}
-					/*OLD:
-					else if (disarmedTurnStart[0] + 2 == turn) {
+					//OLD:
+					//else if (disarmedTurnStart[0] + 2 == turn) {
 						//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
-						disarmedAction();
-						canHasDisarmed[0] = "no";
-					}
-					*/
-					
+					//	disarmedAction();
+					//	canHasDisarmed[0] = "no";
+					//}
+										
 					//NEED THIS? THIS IS IN gameEngineComputerFirst1().
 					else if (disarmedTurnStart[0] + 2 == turn) {
 						
 						canHasDisarmed[0] = "no";
 						gameEngineComputerFirst2();
 					}
+					*/
+					
+					if (didHumanCriticalMiss.equals("yes")) {
+	  	  				
+		  	  			if (disarmedTurnStart[0] + 1 == turn) {
+							
+							disarmedAction();
+						}
+		  	  			
+		  	  			else if (disarmedTurnStart[0] + 2 == turn) {
+							
+							disarmedAction();
+						}
+	  	  			}
+	  	  			
+	  	  			else if (didHumanCriticalMiss.equals("no")) { //COMPUTER MUST HAVE DISARMED HUMAN
+	  	  				
+		  	  			if (disarmedTurnStart[0] == turn) {
+							
+							disarmedAction();
+						}
+		  	  			
+		  	  			else if (disarmedTurnStart[0] + 1 == turn) {
+							
+							disarmedAction();
+						}
+		  	  			
+		  	  			else if (disarmedTurnStart[0] + 2 == turn) {
+						
+		  	  				canHasDisarmed[0] = "no";
+		  	  				
+		  	  				runActionsOnUi();
+					
+		  	  				//didHumanCriticalMiss = "no";
+		  	  			}
+	  	  			}
 				}
 				
 				else {							
@@ -17388,6 +17596,8 @@ public class MainActivity2 extends ActionBarActivity {
   	  	    }
 		});
 	}
+	
+	
 	
 	public void skillsCheck() {
 		
