@@ -1489,6 +1489,8 @@ public class MainActivity2 extends ActionBarActivity {
 	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 	    		public void onClick(DialogInterface dialog, int whichButton) {
 	    			
+	    			dialog.dismiss();
+	    			
 	    			//hideNavigation();
 	    			
 	    			//NOT SURE ARRAYS ARE GETTING WIPED COMPLETELY W THE INTENT CODE BELOW, SO ADDED THIS:
@@ -1524,12 +1526,14 @@ public class MainActivity2 extends ActionBarActivity {
 	    			else if (onBackPressedOk.equals("no")){	    			
 	    				backMethodNo();			
 	    			}
-	    			*/ 					  		    			  		    		
+	    			*/				  		    			  		    		
 	    		}
 	    	});
 	    	
 	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
 	    		public void onClick(DialogInterface dialog, int whichButton) {
+	    			
+	    			dialog.dismiss();
 	    			
 	    			//hideNavigation();		         		            		  
 	    		}
@@ -4499,10 +4503,10 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  		alert.setCancelable(false);
 	  	  		
 	  	    	alert.setTitle("Initiative Results");
-	  	    	/*
-	  	    	alert.setMessage(ArrayOfPlayers.player[0] + getString(R.string.tab) + ArrayOfPlayers.player[1]);
-	  	    	alert.setMessage(ArrayOfInitiative.initiative[0] + getString(R.string.tab) + ArrayOfInitiative.initiative[0]);
-	  	    	*/
+	  	    	
+	  	    	//alert.setMessage(ArrayOfPlayers.player[0] + getString(R.string.tab) + ArrayOfPlayers.player[1]);
+	  	    	//alert.setMessage(ArrayOfInitiative.initiative[0] + getString(R.string.tab) + ArrayOfInitiative.initiative[0]);
+	  	    	
 	  	    	for (int i = 0; i < 2; i++) {
 	  	    		// Was "numberOfPlayers", which = 2 up top.
 	  	        
@@ -4518,11 +4522,13 @@ public class MainActivity2 extends ActionBarActivity {
 	  		    		//hideNavigation();
 	  		    		
 	  		    		finishInitiative();
+	  		    		
+	  		    		dialog.dismiss();
 	  		    	}
 	  	    	});		  	    	
 	  	    	alert.show(); 	  	  							  	  	  	
   	  		}
-  	  	}, 2000);  			  	  			
+  	  	}, 2000);	  	
 	}
 	
 	public void finishInitiative() {
@@ -4748,6 +4754,7 @@ public class MainActivity2 extends ActionBarActivity {
 																  						//break;
 																  					}
 																  		    		*/
+																  		    		dialog.dismiss();
 																  		    		
 																  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
 																  		    		
@@ -4806,7 +4813,8 @@ public class MainActivity2 extends ActionBarActivity {
 																          		  	//hideNavigation();
 																          		  	
 																          		  	computerDamage();								          		  	
-																          		  	return;
+																          		  	
+																          		  	dialog.dismiss();
 																          	  }
 																          	});	  	    	
 																  	    	
@@ -4987,6 +4995,7 @@ public class MainActivity2 extends ActionBarActivity {
 																  						//break;
 																  					}
 																  		    		*/
+																  		    		dialog.dismiss();																  		    		
 																  		    		
 																  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
 																  		    		
@@ -5046,6 +5055,8 @@ public class MainActivity2 extends ActionBarActivity {
 																          		  	
 																          		  	computerDamage();								          		  	
 																          		  	//return;
+																          		  	
+																          		  	dialog.dismiss();
 																          	  }
 																          	});	  	    	
 																  	    	
@@ -5267,6 +5278,7 @@ public class MainActivity2 extends ActionBarActivity {
 																  						//break;
 																  					}
 																  		    		*/
+																  		    		dialog.dismiss();
 																  		    		
 																  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
 																  		    		
@@ -5326,6 +5338,8 @@ public class MainActivity2 extends ActionBarActivity {
 																          		  	
 																          		  	computerDamage();								          		  	
 																          		  	//return;
+																          		  	
+																          		  	dialog.dismiss();
 																          	  }
 																          	});	  	    	
 																  	    	
@@ -5502,6 +5516,7 @@ public class MainActivity2 extends ActionBarActivity {
 																  						//break;
 																  					}
 																  		    		*/
+																  		    		dialog.dismiss();																  		    		
 																  		    		
 																  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
 																  		    		
@@ -5561,6 +5576,8 @@ public class MainActivity2 extends ActionBarActivity {
 																          		  	
 																          		  	computerDamage();								          		  	
 																          		  	//return;
+																          		  	
+																          		  	dialog.dismiss();
 																          	  }
 																          	});	  	    	
 																  	    	
@@ -5816,6 +5833,8 @@ public class MainActivity2 extends ActionBarActivity {
 	  			  						//break;
 	  			  					}
 	  			  		    		*/
+	  			  		    		dialog.dismiss();
+	  			  		    		
 	  			  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
 	  			  		    		
 		  			  		    	centerscrolltext.setVisibility(View.VISIBLE);													
@@ -5874,6 +5893,8 @@ public class MainActivity2 extends ActionBarActivity {
 	  			          		  //hideNavigation();	          		  	
 	  			          		  	
 	  			          		  computerCriticalHitDamage();
+	  			          		  
+	  			          		  dialog.dismiss();
 	  			          	  }
 	  			          	});	  	    	
 	  			  	    	
@@ -6034,6 +6055,8 @@ public class MainActivity2 extends ActionBarActivity {
 														  						
 														  		turn();    							
 														  	}
+														  	
+														  	dialog.dismiss();
 												    	}
 											    	});
 											    	
@@ -6080,6 +6103,8 @@ public class MainActivity2 extends ActionBarActivity {
 												    		playerDeadYet[0] = "yes";
 												    		
 												    		gameOverCheck();
+												    		
+												    		dialog.dismiss();
 												    	}
 											    	});
 											    	
@@ -6263,6 +6288,8 @@ public class MainActivity2 extends ActionBarActivity {
 															  						
 															  		computerHastePartTwo();    							
 															  	}
+															  	
+															  	dialog.dismiss();
 													    	}
 												    	});
 												    	
@@ -6308,6 +6335,8 @@ public class MainActivity2 extends ActionBarActivity {
 													    		playerDeadYet[0] = "yes";
 													    		
 													    		gameOverCheck();
+													    		
+													    		dialog.dismiss();
 													    	}
 												    	});
 												    	
@@ -6469,6 +6498,8 @@ public class MainActivity2 extends ActionBarActivity {
 															  						
 															  		computerHastePartTwo();    							
 															  	}
+															  	
+															  	dialog.dismiss();
 													    	}
 												    	});
 												    	
@@ -6514,6 +6545,8 @@ public class MainActivity2 extends ActionBarActivity {
 													    		playerDeadYet[0] = "yes";
 													    		
 													    		gameOverCheck();
+													    		
+													    		dialog.dismiss();
 													    	}
 												    	});
 												    	
@@ -6654,6 +6687,8 @@ public class MainActivity2 extends ActionBarActivity {
 													  						
 													  		computerHastePartTwo();    							
 													  	}
+													  	
+													  	dialog.dismiss();
 											    	}
 										    	});
 										    	
@@ -6699,6 +6734,8 @@ public class MainActivity2 extends ActionBarActivity {
 											    		playerDeadYet[0] = "yes";
 											    		
 											    		gameOverCheck();
+											    		
+											    		dialog.dismiss();
 											    	}
 										    	});
 										    	
@@ -6978,6 +7015,7 @@ public class MainActivity2 extends ActionBarActivity {
 														  						//break;
 														  					}
 														  		    		*/
+														  		    		dialog.dismiss();
 														  		    		
 														  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
 														  		    		
@@ -7029,6 +7067,8 @@ public class MainActivity2 extends ActionBarActivity {
 														          		  	
 														          		  	computerDamage();								          		  	
 														          		  	//return;
+														          		  	
+														          		  	dialog.dismiss();
 														          	  }
 														          	});	  	    	
 														  	    	
@@ -7216,6 +7256,7 @@ public class MainActivity2 extends ActionBarActivity {
 														  						//break;
 														  					}
 														  		    		*/
+														  		    		dialog.dismiss();
 														  		    		
 														  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
 														  		    		
@@ -7267,6 +7308,8 @@ public class MainActivity2 extends ActionBarActivity {
 														          		  	
 														          		  	computerDamage();								          		  	
 														          		  	//return;
+														          		  	
+														          		  	dialog.dismiss();
 														          	  }
 														          	});	  	    	
 														  	    	
@@ -7608,6 +7651,7 @@ public class MainActivity2 extends ActionBarActivity {
 																  						//break;
 																  					}
 																  		    		*/
+																  		    		dialog.dismiss();
 																  		    		
 																  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
 																  		    		
@@ -7666,7 +7710,9 @@ public class MainActivity2 extends ActionBarActivity {
 																          		  	//hideNavigation();
 																          		  	
 																          		  	computerDamage();								          		  	
-																          		  	return;
+																          		  	//return;
+																          		  	
+																          		  	dialog.dismiss();
 																          	  }
 																          	});	  	    	
 																  	    	
@@ -7811,6 +7857,7 @@ public class MainActivity2 extends ActionBarActivity {
 																  						//break;
 																  					}
 																  		    		*/
+																  		    		dialog.dismiss();
 																  		    		
 																  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
 																  		    		
@@ -7870,6 +7917,8 @@ public class MainActivity2 extends ActionBarActivity {
 																          		  	
 																          		  	computerDamage();								          		  	
 																          		  	//return;
+																          		  	
+																          		  	dialog.dismiss();
 																          	  }
 																          	});	  	    	
 																  	    	
@@ -8013,7 +8062,10 @@ public class MainActivity2 extends ActionBarActivity {
 						  		centerscrolltext.startAnimation(animAlphaText);			  		
 								centerscrolltext.append("\n" + "> The computer uses it's bless spell...");
 								
-								blessGraphic();	  	  	  			
+								blessGraphic();
+								
+								ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
+			  	  	  			img.bringToFront();
 						  	  	  		
 										
 								final Handler h = new Handler();
@@ -8025,10 +8077,7 @@ public class MainActivity2 extends ActionBarActivity {
 						  	  	  		//final TextView blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
 					  	  	  			//blessGraphic.setVisibility(View.INVISIBLE);
 					  	  	  			
-					  	  	  			stopGraphics();
-					  	  	  			
-					  	  	  			ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
-					  	  	  			img.bringToFront();
+					  	  	  			stopGraphics();					  	  	  			
 					  	  	  			
 					  	  	  			ArrayOfAttackResult.attackResult[0] = (int) ((Math.random() * 20) + 1);
 					  	  	  			
@@ -8138,14 +8187,14 @@ public class MainActivity2 extends ActionBarActivity {
 					// IF BLESS AND COMP DOES NOT USE BLESS TO DISARM
 					if (result < 51) {
 						
+						ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
+	  	  	  			img.bringToFront();
+						
 						final Handler h = new Handler();
 			  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 			  	  	  			
 			  	  	  		@Override
-				  	  	  	public void run() {
-			  	  	  			
-			  	  	  			ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
-			  	  	  			img.bringToFront();
+				  	  	  	public void run() {	  	  			
 			  	  	  			
 				  	  	  		ArrayOfAttackResult.attackResult[0] = (int) ((Math.random() * 20) + 1);
 								
@@ -8263,14 +8312,14 @@ public class MainActivity2 extends ActionBarActivity {
 				// IF NO BLESS AND DISARM
 				else {
 					
+					ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
+  	  	  			img.bringToFront();
+					
 					final Handler h = new Handler();
 		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 		  	  	  			
 		  	  	  		@Override
-			  	  	  	public void run() {
-		  	  	  			
-		  	  	  			ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
-		  	  	  			img.bringToFront();
+			  	  	  	public void run() {		  	  	  			
 		  	  	  			
 			  	  	  		ArrayOfAttackResult.attackResult[0] = (int) ((Math.random() * 20) + 1);
 							
@@ -8426,7 +8475,10 @@ public class MainActivity2 extends ActionBarActivity {
 	  					int computerDisarmedAction = (int) ((Math.random() * 100) + 1);
 	  			
 	  					// HASTE
-	  					if (computerDisarmedAction <= 50 && hasteSpell[1] > 0 && canHasDisarmed[1].equals("yes")) {
+	  					if (((computerDisarmedAction <= 50 && hasteSpell[1] > 0 && canHasDisarmed[1].equals("yes")) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1] && didComputerCriticalMiss.equals("yes") && disarmedTurnStart[1] + 1 == turn)) || 
+	  							((computerDisarmedAction <= 50 && hasteSpell[1] > 0 && canHasDisarmed[1].equals("yes")) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1] && didComputerCriticalMiss.equals("no") && disarmedTurnStart[1] == turn)) ||
+	  							((computerDisarmedAction <= 50 && hasteSpell[1] > 0 && canHasDisarmed[1].equals("yes")) && (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1] && didComputerCriticalMiss.equals("yes") && disarmedTurnStart[1] == turn)) ||
+	  							((computerDisarmedAction <= 50 && hasteSpell[1] > 0 && canHasDisarmed[1].equals("yes")) && (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1] && didComputerCriticalMiss.equals("no") && disarmedTurnStart[1] + 1 == turn))) {
 	  						
 	  						centerscrolltext.setVisibility(View.VISIBLE); 													
 	  				  		centerscrolltext.startAnimation(animAlphaText);
@@ -8622,6 +8674,7 @@ public class MainActivity2 extends ActionBarActivity {
 												  						//break;
 												  					}
 												  		    		*/
+												  		    		dialog.dismiss();
 												  		    		
 												  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
 												  		    		
@@ -8671,9 +8724,10 @@ public class MainActivity2 extends ActionBarActivity {
 												          		  
 												          		  	//hideNavigation();
 												          		  	
-												          		  	computerDamageDisarmed();
-												          		  									          		  	
+												          		  	computerDamageDisarmed();												          		  									          		  	
 												          		  	//return;
+												          		  	
+												          		  	dialog.dismiss();
 												          	  }
 												          	});	  	    	
 												  	    	
@@ -8818,6 +8872,7 @@ public class MainActivity2 extends ActionBarActivity {
 												  						//break;
 												  					}
 												  		    		*/
+												  		    		dialog.dismiss();
 												  		    		
 												  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
 												  		    		
@@ -8867,9 +8922,10 @@ public class MainActivity2 extends ActionBarActivity {
 												          		  
 												          		  	//hideNavigation();
 												          		  	
-												          		  	computerDamageDisarmed();
-												          		  	
+												          		  	computerDamageDisarmed();												          		  	
 												          		  	//return;
+												          		  	
+												          		  	dialog.dismiss();
 												          	  }
 												          	});	  	    	
 												  	    	
@@ -9016,7 +9072,9 @@ public class MainActivity2 extends ActionBarActivity {
 					    	
 					    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 					    		public void onClick(DialogInterface dialog, int whichButton) {		  		    		
-				    		
+					    			
+					    			dialog.dismiss();
+					    			
 					    			dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
 					    			
 					    			centerscrolltext.setVisibility(View.VISIBLE);													
@@ -9065,7 +9123,9 @@ public class MainActivity2 extends ActionBarActivity {
 			      		  
 					    			//hideNavigation();
 			      		  
-					    			computerCriticalHitDamageDisarmed();	          		  
+					    			computerCriticalHitDamageDisarmed();
+					    			
+					    			dialog.dismiss();
 					    		}
 					    	});	  	    	
 			    	
@@ -9205,6 +9265,8 @@ public class MainActivity2 extends ActionBarActivity {
 														  						
 														  		turn();    							
 														  	}
+														  	
+														  	dialog.dismiss();
 												    	}
 											    	});
 											    	
@@ -9251,6 +9313,8 @@ public class MainActivity2 extends ActionBarActivity {
 												    		playerDeadYet[0] = "yes";
 												    		
 												    		gameOverCheck();
+												    		
+												    		dialog.dismiss();
 												    	}
 											    	});
 											    	
@@ -9430,7 +9494,9 @@ public class MainActivity2 extends ActionBarActivity {
 															  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
 															  						
 															  		turn();    							
-															  	}							  	
+															  	}
+															  	
+															  	dialog.dismiss();
 													    	}
 												    	});
 												    	
@@ -9476,6 +9542,8 @@ public class MainActivity2 extends ActionBarActivity {
 													    		playerDeadYet[0] = "yes";
 													    		
 													    		gameOverCheck();
+													    		
+													    		dialog.dismiss();
 													    	}
 												    	});
 												    	
@@ -9625,7 +9693,9 @@ public class MainActivity2 extends ActionBarActivity {
 															  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
 															  						
 															  		turn();    							
-															  	}							  	
+															  	}
+															  	
+															  	dialog.dismiss();
 													    	}
 												    	});
 												    	
@@ -9671,6 +9741,8 @@ public class MainActivity2 extends ActionBarActivity {
 													    		playerDeadYet[0] = "yes";
 													    		
 													    		gameOverCheck();
+													    		
+													    		dialog.dismiss();
 													    	}
 												    	});
 												    	
@@ -9799,7 +9871,9 @@ public class MainActivity2 extends ActionBarActivity {
 													  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
 													  						
 													  		turn();    							
-													  	}							  	
+													  	}
+													  	
+													  	dialog.dismiss();
 											    	}
 										    	});
 										    	
@@ -9845,6 +9919,8 @@ public class MainActivity2 extends ActionBarActivity {
 											    		playerDeadYet[0] = "yes";
 											    		
 											    		gameOverCheck();
+											    		
+											    		dialog.dismiss();
 											    	}
 										    	});
 										    	
@@ -10116,6 +10192,8 @@ public class MainActivity2 extends ActionBarActivity {
 																										  						
 																										  		turn();    							
 																										  	}
+																										  	
+																										  	dialog.dismiss();
 																								    	}
 																							    	});
 																							    	
@@ -10162,6 +10240,8 @@ public class MainActivity2 extends ActionBarActivity {
 																								    		playerDeadYet[0] = "yes";
 																								    		
 																								    		gameOverCheck();
+																								    		
+																								    		dialog.dismiss();
 																								    	}
 																							    	});
 																							    	
@@ -10416,6 +10496,8 @@ public class MainActivity2 extends ActionBarActivity {
 																										  						
 																										  		computerHastePartTwo();    							
 																										  	}
+																										  	
+																										  	dialog.dismiss();
 																								    	}
 																							    	});
 																							    	
@@ -10461,6 +10543,8 @@ public class MainActivity2 extends ActionBarActivity {
 																								    		playerDeadYet[0] = "yes";
 																								    		
 																											gameOverCheck();
+																											
+																											dialog.dismiss();
 																								    	}
 																							    	});
 																							    	
@@ -10786,6 +10870,8 @@ public class MainActivity2 extends ActionBarActivity {
 																						  						
 																						  		computerHastePartTwo();    							
 																						  	}
+																						  	
+																						  	dialog.dismiss();
 																				    	}
 																			    	});
 																			    	
@@ -10831,6 +10917,8 @@ public class MainActivity2 extends ActionBarActivity {
 																				    		playerDeadYet[0] = "yes";
 																				    		
 																							gameOverCheck();
+																							
+																							dialog.dismiss();
 																				    	}
 																			    	});
 																			    	
@@ -11265,6 +11353,8 @@ public class MainActivity2 extends ActionBarActivity {
 														  						
 														  		computerHastePartTwo();    							
 														  	}
+														  	
+														  	dialog.dismiss();
 												    	}
 											    	});
 											    	
@@ -11308,7 +11398,9 @@ public class MainActivity2 extends ActionBarActivity {
 												    		
 												    		playerDeadYet[1] = "yes";
 												    		
-															gameOverCheck();				    		
+															gameOverCheck();
+															
+															dialog.dismiss();
 												    	}
 											    	});
 											    	
@@ -11640,6 +11732,8 @@ public class MainActivity2 extends ActionBarActivity {
 																						  						
 																						  		turn();    							
 																						  	}
+																						  	
+																						  	dialog.dismiss();
 																				    	}
 																			    	});
 																			    	
@@ -11685,6 +11779,8 @@ public class MainActivity2 extends ActionBarActivity {
 																				    		playerDeadYet[0] = "yes";
 																				    		
 																							gameOverCheck();
+																							
+																							dialog.dismiss();
 																				    	}
 																			    	});
 																			    	
@@ -12530,7 +12626,9 @@ public class MainActivity2 extends ActionBarActivity {
 									if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
 						    			
 						    			turn();   							
-									}											
+									}
+									
+									dialog.dismiss();
 						    	}
 					    	});								    	
 					    	alert.show();						
@@ -12563,6 +12661,8 @@ public class MainActivity2 extends ActionBarActivity {
 						    		playerDeadYet[playerNumberAttacked] = "yes";
 						    		
 						    		gameOverCheck();
+						    		
+						    		dialog.dismiss();
 						    	}
 					    	});								    	
 					    	alert.show();																			
@@ -12682,6 +12782,8 @@ public class MainActivity2 extends ActionBarActivity {
 													
 								  		    		mightyBlow();
 													//return;
+								  		    		
+								  		    		dialog.dismiss();
 								  		    	}
 								  	    	});
 								  	    	
@@ -12692,6 +12794,8 @@ public class MainActivity2 extends ActionBarActivity {
 								          		  
 								          		  damagePartTwo();
 								          		  //return;
+								          		  
+								          		  dialog.dismiss();
 								          	  }
 								          	});	  	    	
 								  	    	
@@ -12851,6 +12955,8 @@ public class MainActivity2 extends ActionBarActivity {
 										
 					  		    		mightyBlow();
 										//return;
+					  		    		
+					  		    		dialog.dismiss();
 					  		    	}
 					  	    	});
 					  	    	
@@ -12861,6 +12967,8 @@ public class MainActivity2 extends ActionBarActivity {
 					          		  
 					          		  damagePartTwo();
 					          		  //return;
+					          		  
+					          		  dialog.dismiss();
 					          	  }
 					          	});	  	    	
 					  	    	
@@ -12956,16 +13064,16 @@ public class MainActivity2 extends ActionBarActivity {
 	  			centerscrolltext.setVisibility(View.VISIBLE);
 		  		centerscrolltext.startAnimation(animAlphaText);
 				centerscrolltext.append("\n" + "> Roll for damage...");
+				
+				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
+  	  			img.bringToFront();
 	  			
 				
   	  	  		final Handler h2 = new Handler();
 	  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
 	  	  	  			
 	  	  	  		@Override
-		  	  	  	public void run() {					  	  	  			
-	  	  	  			
-	  	  	  			ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
-	  	  	  			img.bringToFront();
+		  	  	  	public void run() {  			
 	  	  	  			
 	  	  	  			sixSidedRollFromLeft();				  	  	  		
 			  	  	  			
@@ -13084,12 +13192,22 @@ public class MainActivity2 extends ActionBarActivity {
   	  	    @Override
   	  	    public void run() {
   	  	    	
-	  	  	    final Handler h2 = new Handler();
-	  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
+	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+	  			
+	  			final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  			centerscrolltext.setTypeface(typeFace);
+  	  	    	
+	  	  	    final Handler h = new Handler();
+	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 	  	  	  			
 	  	  	  		@Override
 		  	  	  	public void run() {
-				
+	  	  	  			
+		  	  	  		TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+		    			playerHitPointsTextView.setTypeface(typeFace);
+		    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+	  	  	  			
 						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] == 0) {
 							
 							AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
@@ -13125,6 +13243,8 @@ public class MainActivity2 extends ActionBarActivity {
 						    			
 										hastePartTwo();   							
 									}
+									
+									dialog.dismiss();
 						    	}
 					    	});								    	
 					    	alert.show();						
@@ -13157,6 +13277,8 @@ public class MainActivity2 extends ActionBarActivity {
 						    		playerDeadYet[playerNumberAttacked] = "yes";
 						    		
 						    		gameOverCheck();
+						    		
+						    		dialog.dismiss();
 						    	}
 					    	});								    	
 					    	alert.show();																			
@@ -13294,7 +13416,9 @@ public class MainActivity2 extends ActionBarActivity {
 								  		    		skillsCheck();
 								  		    		
 								  		    		criticalHitMightyBlowPartOne();
-								  					//return;	  		    		
+								  					//return;
+								  		    		
+								  		    		dialog.dismiss();
 								  		    	}
 								  	    	});
 								  	    	
@@ -13305,6 +13429,8 @@ public class MainActivity2 extends ActionBarActivity {
 								          		  
 								          		criticalHitPartOne();
 												//return;
+								          		
+								          		dialog.dismiss();
 								          	  }
 								          	});		  	    	
 								  	    	alert.show();					
@@ -13445,7 +13571,9 @@ public class MainActivity2 extends ActionBarActivity {
 							  		    		skillsCheck();
 							  		    		
 							  		    		criticalHitMightyBlowPartOne();
-							  					//return;	  		    		
+							  					//return;
+							  		    		
+							  		    		dialog.dismiss();
 							  		    	}
 							  	    	});
 							  	    	
@@ -13456,6 +13584,8 @@ public class MainActivity2 extends ActionBarActivity {
 							          		  
 							          		criticalHitPartOne();
 											//return;
+							          		
+							          		dialog.dismiss();
 							          	  }
 							          	});		  	    	
 							  	    	alert.show();					
@@ -13782,6 +13912,8 @@ public class MainActivity2 extends ActionBarActivity {
 						    			
 										hastePartTwo();   							
 									}
+									
+									dialog.dismiss();
 						    	}
 					    	});								    	
 					    	alert.show();						
@@ -13814,6 +13946,8 @@ public class MainActivity2 extends ActionBarActivity {
 						    		playerDeadYet[playerNumberAttacked] = "yes";
 						    		
 						    		gameOverCheck();
+						    		
+						    		dialog.dismiss();
 						    	}
 					    	});								    	
 					    	alert.show();																			
@@ -14147,6 +14281,8 @@ public class MainActivity2 extends ActionBarActivity {
 						    			
 										hastePartTwo();   							
 									}
+									
+									dialog.dismiss();
 						    	}
 					    	});								    	
 					    	alert.show();						
@@ -14179,6 +14315,8 @@ public class MainActivity2 extends ActionBarActivity {
 						    		playerDeadYet[playerNumberAttacked] = "yes";
 						    		
 						    		gameOverCheck();
+						    		
+						    		dialog.dismiss();
 						    	}
 					    	});								    	
 					    	alert.show();																			
@@ -14499,14 +14637,14 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  			
 	  	  	  		@Override
 		  	  	  	public void run() {
+	  	  	  			
+		  	  	  		TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+		    			playerHitPointsTextView.setTypeface(typeFace);
+		    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
 				
 						if (ArrayOfHitPoints.hitpoints[0] == 0) {
 							
-							if (numberOfPlayers == 1) {
-								
-								TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
-				    			playerHitPointsTextView.setTypeface(typeFace);
-				    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+							if (numberOfPlayers == 1) {								
 								
 								AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 							    
@@ -14541,6 +14679,8 @@ public class MainActivity2 extends ActionBarActivity {
 							    			
 											hastePartTwo();   							
 										}
+										
+										dialog.dismiss();
 							    	}
 						    	});						    	
 						    	alert.show();				
@@ -14584,6 +14724,8 @@ public class MainActivity2 extends ActionBarActivity {
 							    		playerDeadYet[0] = "yes";
 							    		
 							    		gameOverCheck();
+							    		
+							    		dialog.dismiss();
 							    	}
 						    	});						    	
 						    	alert.show();				
@@ -14851,6 +14993,8 @@ public class MainActivity2 extends ActionBarActivity {
 			  		    		
 			  		    		skillsCheck();
 			  		    		
+			  		    		dialog.dismiss();
+			  		    		
 			  		    		
 			  		    		// NEED THIS HANDLER OTHERWISE BLESS GRAPHIC GETS OFF-CENTER MID-WAY THRU.
 			  		    		final Handler h = new Handler();
@@ -14870,7 +15014,9 @@ public class MainActivity2 extends ActionBarActivity {
 			  	    			
 			  	    			//hideNavigation();			  	    			
 			  	    				  	    			
-			  	    			disarmNoBless();			          		            		  
+			  	    			disarmNoBless();
+			  	    			
+			  	    			dialog.dismiss();
 			          	  }
 			          	});			  	    	
 			  	    	alert.show();						
@@ -15604,7 +15750,9 @@ public class MainActivity2 extends ActionBarActivity {
 				    		
 				    		//hideNavigation();
 				    		
-				    		runActionsOnUi();							    														
+				    		runActionsOnUi();
+				    		
+				    		dialog.dismiss();
 				    	}
 			    	});								    	
 			    	alert.show();	  				
@@ -15900,7 +16048,9 @@ public class MainActivity2 extends ActionBarActivity {
 				    		
 				    		//hideNavigation();
 				    		
-				    		runActionsOnUi();							    														
+				    		runActionsOnUi();
+				    		
+				    		dialog.dismiss();
 				    	}
 			    	});								    	
 			    	alert.show();					
@@ -16432,7 +16582,9 @@ public class MainActivity2 extends ActionBarActivity {
 				    		
 				    		//hideNavigation();
 				    		
-				    		runActionsOnUi();							    														
+				    		runActionsOnUi();
+				    		
+				    		dialog.dismiss();
 				    	}
 			    	});								    	
 			    	alert.show();				
@@ -16571,7 +16723,7 @@ public class MainActivity2 extends ActionBarActivity {
 	
 					builder.setTitle("Choose Action").setItems(items,
 							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,	int item) {
+								public void onClick(final DialogInterface dialog,	int item) {
 	
 									if (item == 0) {
 										
@@ -16588,6 +16740,8 @@ public class MainActivity2 extends ActionBarActivity {
 							  	  	  			//hideNavigation();
 												//isInvokingService = "true";
 												attack();
+												
+												dialog.dismiss();
 								  	  	  	}
 							  	  	  	}, 2000);										
 									}
@@ -16606,6 +16760,8 @@ public class MainActivity2 extends ActionBarActivity {
 							  	  	  			//hideNavigation();
 												//isInvokingService = "true";
 												disarm();
+												
+												dialog.dismiss();
 								  	  	  	}
 							  	  	  	}, 2000);										
 									}
@@ -16624,6 +16780,8 @@ public class MainActivity2 extends ActionBarActivity {
 							  	  	  			//hideNavigation();
 												//isInvokingService = "true";
 												haste();
+												
+												dialog.dismiss();
 								  	  	  	}
 							  	  	  	}, 2000);									
 									}
@@ -16642,6 +16800,8 @@ public class MainActivity2 extends ActionBarActivity {
 							  	  	  			//hideNavigation();
 												//isInvokingService = "true";
 												cure();
+												
+												dialog.dismiss();
 								  	  	  	}
 							  	  	  	}, 2000);										
 									}
@@ -16660,6 +16820,8 @@ public class MainActivity2 extends ActionBarActivity {
 							  	  	  			//hideNavigation();
 												//isInvokingService = "true";
 												bless();
+												
+												dialog.dismiss();
 								  	  	  	}
 							  	  	  	}, 2000);									
 									}
@@ -17003,15 +17165,22 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	public void gameEngineHumanFirst1() {
 		
-		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);			
 		
-				
-		gameEngineHumanFirst1ComputerDisarmedCheck();		
+		 	
+    	
+		
+		if (canHasDisarmed[1].equals("yes") && didComputerCriticalMiss.equals("yes") && disarmedTurnStart[1] + 3 == turn) {
+			
+			canHasDisarmed[1] = "no";
+		
+			didComputerCriticalMiss = "no";					
+		}	
 		
 		
 		runOnUiThread(new Runnable() {
   	  	    @Override
-  	  	    public void run() {
+  	  	    public void run() {  	  	    	
   	  	    	
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
@@ -17070,49 +17239,44 @@ public class MainActivity2 extends ActionBarActivity {
 								canHasDisarmed[0] = "no";
 							}
 							*/
-			  	  			if (didHumanCriticalMiss.equals("yes")) {
-			  	  				
-			  	  				if (disarmedTurnStart[0] == turn) {// SAME WHETHER CRIT MISS OR COMP DISARMS
-								
-			  	  					disarmedAction();
-								}
-				  	  			
-				  	  			else if (disarmedTurnStart[0] + 1 == turn) {
-									
-									disarmedAction();
-								}
-			  	  				
-				  	  			else if (disarmedTurnStart[0] + 2 == turn) {
-								
-				  	  				canHasDisarmed[0] = "no";
-								
-				  	  				didHumanCriticalMiss = "no";
-				  	  				
-				  	  				runActionsOnUi();
-			  	  				}
+			  	  			if ((didHumanCriticalMiss.equals("yes") && disarmedTurnStart[0] == turn) || (didHumanCriticalMiss.equals("yes") && disarmedTurnStart[0] + 1 == turn)) {			  	  				
+				  	  											
+			  	  				disarmedAction();				  	  			
 			  	  			}
 			  	  			
-			  	  			else if (didHumanCriticalMiss.equals("no")) {
-			  	  				
-			  	  				if (disarmedTurnStart[0] + 1 == turn) {// SAME WHETHER CRIT MISS OR COMP DISARMS
-								
-			  	  					disarmedAction();
+			  	  			else if ((didHumanCriticalMiss.equals("no") && disarmedTurnStart[0] + 1 == turn) || (didHumanCriticalMiss.equals("no") && disarmedTurnStart[0] + 2 == turn)) {
+			  	  						  	  											
+								disarmedAction();
+												  	  			
+			  	  			}
+			  	  			
+			  	  			else if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss.equals("yes") && disarmedTurnStart[0] + 2 == turn) {
+				  				
+				  				canHasDisarmed[0] = "no";				
+				  				
+				  				didHumanCriticalMiss = "no";
+				  				
+				  				if (isInvokingService.equals("true")){
+									//NEED THIS?
+									SystemClock.sleep(1000);	        		
+										
+									runActionsOnUi();
 								}
-				  	  			
-				  	  			else if (disarmedTurnStart[0] + 2 == turn) {
-									
-									disarmedAction();
+				  			}
+				  	    	
+				  			else if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss.equals("no") && disarmedTurnStart[0] + 3 == turn) {
+				  									
+				  				canHasDisarmed[0] = "no";				
+				  			
+				  				//didHumanCriticalMiss = "no";
+				  				
+				  				if (isInvokingService.equals("true")){
+									//NEED THIS?
+									SystemClock.sleep(1000);	        		
+										
+									runActionsOnUi();
 								}
-			  	  				
-				  	  			else if (disarmedTurnStart[0] + 3 == turn) {
-								
-			  	  					canHasDisarmed[0] = "no";
-			  	  					
-			  	  					runActionsOnUi();
-								
-			  	  					//didHumanCriticalMiss = "no";
-			  	  				}
-			  	  			}				  	  		
+				  			}
 						}
 			  	  		
 			  	  		else {
@@ -17140,27 +17304,21 @@ public class MainActivity2 extends ActionBarActivity {
 		});
 	}	
 	
-	public void gameEngineHumanFirst1ComputerDisarmedCheck() {
-		
-		if (canHasDisarmed[1].equals("yes") && didComputerCriticalMiss.equals("yes")) {
-			
-			if (disarmedTurnStart[1] + 3 == turn) {
-				
-				canHasDisarmed[1] = "no";
-			
-				didComputerCriticalMiss = "no";
-			}
-		}
-	}
-	
 	public void gameEngineHumanFirst2() {		
 		
-		Toast.makeText(MainActivity2.this, "COMPUTER TURN START", Toast.LENGTH_SHORT).show();
+		//Toast.makeText(MainActivity2.this, "COMPUTER TURN START", Toast.LENGTH_SHORT).show();	
+		
+    	
+    	if (canHasDisarmed[1].equals("yes") && didComputerCriticalMiss.equals("no") && disarmedTurnStart[1] + 2 == turn) {
+			
+			canHasDisarmed[1] = "no";	  		  				
+		}		
+		
 		
 		// THIS THREAD IS BEING USED TO TEST ACCESS TO CENTERSCROLLTEXT
 		runOnUiThread(new Runnable() {
   	  	    @Override
-  	  	    public void run() {	  	  	    
+  	  	    public void run() {  	  	    	
   	  	    	
   	  	    	// Use a blank drawable to hide the imageview animation:
 				// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
@@ -17197,104 +17355,87 @@ public class MainActivity2 extends ActionBarActivity {
 	  			TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
 	  			computerHitPointsTextView.setTypeface(typeFace);
 	  			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
-
-	  			if (ArrayOfHitPoints.hitpoints[1] <= 0) {
-	  				endGame(); // took out map
-	  			}
 	  			
-	  			else if (canHasDisarmed[1].equals("yes")) {
-	  				
-	  				
-	  				/*
-	  				 * NEED GRAPHICS HERE:
-	  				 * 
-	  				 * disarmGraphic();
-	  				 */
-	  				
-	  				
-	  				// player number whose turn it is is less than the player
-	  				// number of the player who disarmed him.
-	  				/*
-	  				if (disarmedTurnStart[1] == (turn)) {
-	  					//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
-	  					computerDisarmedAction();
-	  				}
-	  				
-	  				else if (disarmedTurnStart[1] + 1 == turn) {
-	  					//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
-	  					computerDisarmedAction();
-	  					//canHasDisarmed[1] = "no";//THIS HAS TO GO??????????
-	  				}	
-	  				//OLD:
-	  				//else if (disarmedTurnStart[1] + 2 == turn) {
-	  					//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
-	  				//	computerDisarmedAction();
-	  				//	canHasDisarmed[1] = "no";
-	  				//}
-	  				
-	  				
-	  				//NEED THIS? THIS IS IN gameEngineHumanFirst1().
-	  				else if (disarmedTurnStart[1] + 2 == turn) {
-	  					
-	  					canHasDisarmed[1] = "no";
-	  					gameEngineHumanFirst2();
-	  				}
-	  				*/
-	  				
-	  				if (didComputerCriticalMiss.equals("yes")) {
-	  	  				
-		  	  			if (disarmedTurnStart[1] + 1 == turn) {
-							
-		  	  				computerDisarmedAction();
-						}
-		  	  			
-		  	  			else if (disarmedTurnStart[1] + 2 == turn) {
-							
-		  	  				computerDisarmedAction();
-						}
-	  	  			}
-	  	  			
-	  	  			else if (didComputerCriticalMiss.equals("no")) { //HUMAN MUST HAVE DISARMED HUMAN
-	  	  				
-		  	  			if (disarmedTurnStart[1] == turn) {
-							
-		  	  				computerDisarmedAction();
-						}
-		  	  			
-		  	  			else if (disarmedTurnStart[1] + 1 == turn) {
-							
-		  	  				computerDisarmedAction();
-						}
-		  	  			
-		  	  			else if (disarmedTurnStart[1] + 2 == turn) {
-						
-		  	  				canHasDisarmed[1] = "no";
-		  	  				
-		  	  				computerAction = (int) (Math.random() * 100) + 1;	
-		  	  				computerAttack();
-					
-		  	  				//didComputerCriticalMiss = "no";
-		  	  			}
-	  	  			}
-	  			}
 	  			
-	  			else {  				
-	  				
-	  				//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
-	  				
-	  				
-	  				/*
-	  				 * 
-	  				 * Bring Action To Front?
-	  				 * 
-	  				 * actionTemplate();
-	  				 * 
-	  				 */
-	  				
-	  				
-	  				computerAction = (int) (Math.random() * 100) + 1;
-	  				computerAttack();					
-	  			}
+	  			final Handler h = new Handler();
+	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {
+	  	  	  			
+		  	  	  		if (ArrayOfHitPoints.hitpoints[1] <= 0) {
+			  				endGame(); // took out map
+			  			}
+			  			
+			  			else if (canHasDisarmed[1].equals("yes")) {
+			  				
+			  				
+			  				/*
+			  				 * NEED GRAPHICS HERE:
+			  				 * 
+			  				 * disarmGraphic();
+			  				 */
+			  				
+			  				
+			  				// player number whose turn it is is less than the player
+			  				// number of the player who disarmed him.
+			  				/*
+			  				if (disarmedTurnStart[1] == (turn)) {
+			  					//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
+			  					computerDisarmedAction();
+			  				}
+			  				
+			  				else if (disarmedTurnStart[1] + 1 == turn) {
+			  					//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
+			  					computerDisarmedAction();
+			  					//canHasDisarmed[1] = "no";//THIS HAS TO GO??????????
+			  				}	
+			  				//OLD:
+			  				//else if (disarmedTurnStart[1] + 2 == turn) {
+			  					//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
+			  				//	computerDisarmedAction();
+			  				//	canHasDisarmed[1] = "no";
+			  				//}
+			  				
+			  				
+			  				//NEED THIS? THIS IS IN gameEngineHumanFirst1().
+			  				else if (disarmedTurnStart[1] + 2 == turn) {
+			  					
+			  					canHasDisarmed[1] = "no";
+			  					gameEngineHumanFirst2();
+			  				}
+			  				*/
+			  				
+			  				if ((didComputerCriticalMiss.equals("yes") && disarmedTurnStart[1] + 1 == turn) || (didComputerCriticalMiss.equals("yes") && disarmedTurnStart[1] + 2 == turn)) {
+			  	  												
+			  	  				computerDisarmedAction();								
+			  	  			}
+			  	  			
+			  	  			else if ((didComputerCriticalMiss.equals("no") && disarmedTurnStart[1] == turn) || (didComputerCriticalMiss.equals("no") && disarmedTurnStart[1] + 1 == turn)) { //HUMAN MUST HAVE DISARMED HUMAN
+			  	  												
+			  	  				computerDisarmedAction();										  	  			
+			  	  			}
+			  			}
+			  			
+			  			else {  				
+			  				
+			  				//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
+			  				
+			  				
+			  				/*
+			  				 * 
+			  				 * Bring Action To Front?
+			  				 * 
+			  				 * actionTemplate();
+			  				 * 
+			  				 */
+			  				
+			  				
+			  				computerAction = (int) (Math.random() * 100) + 1;
+			  				computerAttack();					
+			  			}	  	  	  			
+	  	  	  		}
+	  	  	  	}, 2000);  			
 	  			
 	  			// TO HERE
   	  	    }
@@ -17303,15 +17444,22 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	public void gameEngineComputerFirst1() {
 		
-		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);			
 		
-		
-		gameEngineComputerFirst1HumanDisarmedCheck();
-		
+		   	
+    	
+    	
+		if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss.equals("yes") && disarmedTurnStart[0] + 3 == turn) {
+			
+			canHasDisarmed[0] = "no";
+			
+			didHumanCriticalMiss = "no";				
+		}
+    	
 		
 		runOnUiThread(new Runnable() {
   	  	    @Override
-  	  	    public void run() {
+  	  	    public void run() {  	    	
   	  	    	
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
@@ -17364,51 +17512,38 @@ public class MainActivity2 extends ActionBarActivity {
 							}
 							*/
 			  	  			
-				  	  		if (didComputerCriticalMiss.equals("yes")) {
-			  	  				
-			  	  				if (disarmedTurnStart[1] == turn) {// SAME WHETHER CRIT MISS OR COMP DISARMS
-								
-			  	  					computerDisarmedAction();
-								}
-				  	  			
-				  	  			else if (disarmedTurnStart[1] + 1 == turn) {
-									
-				  	  				computerDisarmedAction();
-								}
-			  	  				
-				  	  			else if (disarmedTurnStart[1] + 2 == turn) {
-								
-			  	  					canHasDisarmed[1] = "no";
-								
-			  	  					didComputerCriticalMiss = "no";
-			  	  					
-			  	  					computerAction = (int) (Math.random() * 100) + 1;
-			  	  					computerAttack();
-			  	  				}
+				  	  		if ((didComputerCriticalMiss.equals("yes") && disarmedTurnStart[1] == turn) || (didComputerCriticalMiss.equals("yes") && disarmedTurnStart[1] + 1 == turn)) {			
+			  	  												
+			  	  				computerDisarmedAction();				  	  			
 			  	  			}
 			  	  			
-			  	  			else if (didComputerCriticalMiss.equals("no")) {
-			  	  				
-			  	  				if (disarmedTurnStart[1] + 1 == turn) {// SAME WHETHER CRIT MISS OR COMP DISARMS
+			  	  			else if ((didComputerCriticalMiss.equals("no") && disarmedTurnStart[1] + 1 == turn) || (didComputerCriticalMiss.equals("no") && disarmedTurnStart[1] + 2 == turn)) {
+			  	  												
+			  	  				computerDisarmedAction();									  	  			
+			  	  			}
+				  	  		
+				  	  		
+				  	  		
+				  	  		
+			  	  			else if (canHasDisarmed[1].equals("yes") && didComputerCriticalMiss.equals("yes") && disarmedTurnStart[1] + 2 == turn) {
 								
-			  	  					computerDisarmedAction();
-								}
-				  	  			
-				  	  			else if (disarmedTurnStart[1] + 2 == turn) {
-									
-				  	  				computerDisarmedAction();
-								}
-			  	  				
-				  	  			else if (disarmedTurnStart[1] + 3 == turn) {
+								canHasDisarmed[1] = "no";
 								
-			  	  					canHasDisarmed[1] = "no";
-			  	  					
-			  	  					computerAction = (int) (Math.random() * 100) + 1;
-			  	  					computerAttack();
+								didComputerCriticalMiss = "no";	
 								
-			  	  					//didComputerCriticalMiss = "no";
-			  	  				}
-			  	  			}		  	  			
+								computerAction = (int) (Math.random() * 100) + 1;
+								computerAttack();
+							}
+					    	
+							else if (canHasDisarmed[1].equals("yes") && didComputerCriticalMiss.equals("no") && disarmedTurnStart[1] + 3 == turn) {
+													
+								canHasDisarmed[1] = "no";
+								
+								//didComputerCriticalMiss = "no";
+								
+								computerAction = (int) (Math.random() * 100) + 1;
+								computerAttack();
+							}
 						}
 			  	  		
 			  	  		else {							
@@ -17432,30 +17567,22 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  	}, 2000);
   	  	    }
 		});
-	}
+	}	
 	
-	public void gameEngineComputerFirst1HumanDisarmedCheck() {
+	public void gameEngineComputerFirst2() {
 		
-		if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss.equals("yes")) {
+		   	
+    	if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss.equals("no") && disarmedTurnStart[0] + 2 == turn) {
 			
-			if (disarmedTurnStart[0] + 3 == turn) {
-				
-				canHasDisarmed[0] = "no";
-				
-				didHumanCriticalMiss = "no";
-			}
-		}
-	}
-	
-	public void gameEngineComputerFirst2() {	
-		
-		
+			canHasDisarmed[0] = "no"; 		  				
+		}	
 		
 		
 		runOnUiThread(new Runnable() {//DID NOT NEED THIS BEFORE? USED IN CASE NEEDED FOR REF TO IMAGEVIEWS.
   	  	    @Override
-  	  	    public void run() {				
-				
+  	  	    public void run() {  				  	  	    
+  	  	    	
+  	  	    	
 				//i = 0;		
 				//i = 1;
 				
@@ -17490,114 +17617,95 @@ public class MainActivity2 extends ActionBarActivity {
 				playerHitPointsTextView.setTypeface(typeFace);
 				playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
 				
-				if (ArrayOfHitPoints.hitpoints[0] <= 0) {
-					endGame(); // took out map
-				}
-				
-				else if (canHasDisarmed[0].equals("yes")) {
-					
-					/*
-					for (int x = 0; x < 1000; --x)// To give human player time
-													// to read.
-					{
-					}
-					*/
-					
-					
-					/*
-					 * NEED GRAPHICS HERE:
-					 * 
-					 * disarmGraphic();
-					 */
-					
-					
-					// player number whose turn it is is less than the player
-					// number of the player who disarmed him.
-					/*
-					if (disarmedTurnStart[0] == (turn)) {
-						//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
-						disarmedAction();
-					}
-					
-					else if (disarmedTurnStart[0] + 1 == turn) {
-						//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
-						disarmedAction();
-						//canHasDisarmed[0] = "no";//THIS HAS TO GO??????????					
-					}
-					//OLD:
-					//else if (disarmedTurnStart[0] + 2 == turn) {
-						//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
-					//	disarmedAction();
-					//	canHasDisarmed[0] = "no";
-					//}
-										
-					//NEED THIS? THIS IS IN gameEngineComputerFirst1().
-					else if (disarmedTurnStart[0] + 2 == turn) {
+				final Handler h = new Handler();
+	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {
+	  	  	  			
+		  	  	  		if (ArrayOfHitPoints.hitpoints[0] <= 0) {
+							endGame(); // took out map
+						}
 						
-						canHasDisarmed[0] = "no";
-						gameEngineComputerFirst2();
-					}
-					*/
-					
-					if (didHumanCriticalMiss.equals("yes")) {
-	  	  				
-		  	  			if (disarmedTurnStart[0] + 1 == turn) {
+						else if (canHasDisarmed[0].equals("yes")) {
 							
-							disarmedAction();
-						}
-		  	  			
-		  	  			else if (disarmedTurnStart[0] + 2 == turn) {
+							/*
+							for (int x = 0; x < 1000; --x)// To give human player time
+															// to read.
+							{
+							}
+							*/
 							
-							disarmedAction();
-						}
-	  	  			}
-	  	  			
-	  	  			else if (didHumanCriticalMiss.equals("no")) { //COMPUTER MUST HAVE DISARMED HUMAN
-	  	  				
-		  	  			if (disarmedTurnStart[0] == turn) {
 							
-							disarmedAction();
-						}
-		  	  			
-		  	  			else if (disarmedTurnStart[0] + 1 == turn) {
+							/*
+							 * NEED GRAPHICS HERE:
+							 * 
+							 * disarmGraphic();
+							 */
 							
-							disarmedAction();
+							
+							// player number whose turn it is is less than the player
+							// number of the player who disarmed him.
+							/*
+							if (disarmedTurnStart[0] == (turn)) {
+								//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
+								disarmedAction();
+							}
+							
+							else if (disarmedTurnStart[0] + 1 == turn) {
+								//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
+								disarmedAction();
+								//canHasDisarmed[0] = "no";//THIS HAS TO GO??????????					
+							}
+							//OLD:
+							//else if (disarmedTurnStart[0] + 2 == turn) {
+								//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
+							//	disarmedAction();
+							//	canHasDisarmed[0] = "no";
+							//}
+												
+							//NEED THIS? THIS IS IN gameEngineComputerFirst1().
+							else if (disarmedTurnStart[0] + 2 == turn) {
+								
+								canHasDisarmed[0] = "no";
+								gameEngineComputerFirst2();
+							}
+							*/
+							
+							if ((didHumanCriticalMiss.equals("yes") && disarmedTurnStart[0] + 1 == turn) || (didHumanCriticalMiss.equals("yes") && disarmedTurnStart[0] + 2 == turn)) {
+			  	  													
+								disarmedAction();								
+			  	  			}
+			  	  			
+			  	  			else if ((didHumanCriticalMiss.equals("no") && disarmedTurnStart[0] == turn) || (didHumanCriticalMiss.equals("no") && disarmedTurnStart[0] + 1 == turn)) { //COMPUTER MUST HAVE DISARMED HUMAN
+			  	  													
+								disarmedAction();										  	  			
+			  	  			}
 						}
-		  	  			
-		  	  			else if (disarmedTurnStart[0] + 2 == turn) {
 						
-		  	  				canHasDisarmed[0] = "no";
-		  	  				
-		  	  				runActionsOnUi();
-					
-		  	  				//didHumanCriticalMiss = "no";
-		  	  			}
-	  	  			}
-				}
-				
-				else {							
-					
-					/*
-					 * 
-					 * THIS LETS HUMAN PLAYER CHOOSE WHAT THEY WANT TO DO (ACTION/ATTACK)
-					 * 
-					 * Bring Action To Front?
-					 * 
-					 * action(i, turn, gameOn);
-					 * 
-					 */							
-					if (isInvokingService.equals("true")){
-						//NEED THIS?
-						SystemClock.sleep(1000);	        		
+						else {							
 							
-						runActionsOnUi();	
-					}
-				}
+							/*
+							 * 
+							 * THIS LETS HUMAN PLAYER CHOOSE WHAT THEY WANT TO DO (ACTION/ATTACK)
+							 * 
+							 * Bring Action To Front?
+							 * 
+							 * action(i, turn, gameOn);
+							 * 
+							 */							
+							if (isInvokingService.equals("true")){
+								//NEED THIS?
+								SystemClock.sleep(1000);	        		
+									
+								runActionsOnUi();	
+							}
+						}	  	  	  			
+	  	  	  		}
+	  	  	  	}, 2000);				
   	  	    }
 		});
 	}
-	
-	
 	
 	public void skillsCheck() {
 		
@@ -17851,11 +17959,15 @@ public class MainActivity2 extends ActionBarActivity {
 						  		    		//hideNavigation();
 						  		    		
 						  		    		cure();
+						  		    		
+						  		    		dialog.dismiss();
 						  		    	}
 						  	    	});
 						  	    	
 						  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
 						          	  public void onClick(DialogInterface dialog, int whichButton) {
+						          		  	
+						          		  	dialog.dismiss();
 						          		  
 						          		  	//hideNavigation();
 						          		  	
