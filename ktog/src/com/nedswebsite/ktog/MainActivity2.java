@@ -429,7 +429,7 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  		}
 			  	  	  	}, 4000);
 		  	  	  	}
-	  	  	  	}, 2850);	  	  	  		  			
+	  	  	  	}, 2900);//MAINLY FINAGLING TO GET RIGHT  	  	  		  			
   	  		}
   	  	}, 2000);
   	  	
@@ -17391,6 +17391,9 @@ public class MainActivity2 extends ActionBarActivity {
 	  			// Re-enables ability to use srollbar:
 				//centerscrolltext.bringToFront();
 	  			
+	  			ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+  	  	    	titleBlankButton.bringToFront();
+	  			
 				
 				centerscrolltext.setVisibility(View.VISIBLE);													
 		  		centerscrolltext.startAnimation(animAlphaText);
@@ -17535,6 +17538,9 @@ public class MainActivity2 extends ActionBarActivity {
 	  			// Re-enables ability to use srollbar:
 	  			centerscrolltext.bringToFront();
 	  			
+	  			ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+  	  	    	titleBlankButton.bringToFront();
+	  			
 	  			
 	  			// FROM HERE (WAS NOT IN THREAD BEFORE)
 	  			
@@ -17643,9 +17649,7 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	public void gameEngineComputerFirst1() {
 		
-		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);			
-		
-		   	
+		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);  	
     	
     	
 		if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss.equals("yes") && disarmedTurnStart[0] + 3 == turn) {
@@ -17669,6 +17673,9 @@ public class MainActivity2 extends ActionBarActivity {
 	  			
 	  			// Re-enables ability to use srollbar:
 	  			centerscrolltext.bringToFront();
+	  			
+	  			ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+  	  	    	titleBlankButton.bringToFront();
 	  			
 				
 				centerscrolltext.setVisibility(View.VISIBLE);													
@@ -17810,6 +17817,9 @@ public class MainActivity2 extends ActionBarActivity {
 				
 				// Re-enables ability to use srollbar:
 				//centerscrolltext.bringToFront();
+				
+				ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+  	  	    	titleBlankButton.bringToFront();
 				
 				
 				TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
