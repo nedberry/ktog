@@ -26,6 +26,7 @@ import android.text.InputFilter;
 import android.text.Spannable;
 import android.text.method.ScrollingMovementMethod;
 import android.text.style.BackgroundColorSpan;
+import android.util.TypedValue;
 import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.GestureDetector.SimpleOnGestureListener;
@@ -319,7 +320,8 @@ public class MainActivity2 extends ActionBarActivity {
   	  	}, 800);        
     	*/		
 		
-		preInitiativeTitle();
+		preInitiativeTitle();				
+		
 		/*
 		Thread thread3 = new Thread() {
 		    @Override
@@ -347,7 +349,18 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		centerscrolltext.setTypeface(typeFace);				
 		
-		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);		
+		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+		
+		
+		
+		
+		final TextView titletext = (TextView) findViewById(R.id.textviewtitlektogtext);
+		
+		final TextView titleinitiativetext = (TextView) findViewById(R.id.textviewtitleinitiativetext);
+		titleinitiativetext.setVisibility(View.INVISIBLE);
+		
+		
+		
 		
 		// THESE RUN METHODS ARE THREAD-SAFE, SUPPOSEDLY.
 		final Handler h3 = new Handler(); // A handler is associated with the thread it is created in.
@@ -358,45 +371,65 @@ public class MainActivity2 extends ActionBarActivity {
   	  		{  	  			
   	  			centerscrolltext.setVisibility(View.VISIBLE);
   	  			centerscrolltext.startAnimation(animAlphaText);
-	  			centerscrolltext.append("> Welcome, " + ArrayOfPlayers.player[0] + ".");	  			
-	  			
-	  			final Handler h4 = new Handler();
-	  	  	  	h4.postDelayed(new Runnable() {
-	  	  	  		
+	  			centerscrolltext.append("> Welcome, " + ArrayOfPlayers.player[0] + ".");  	  	  				  	  	  			
+	  	  	  			
+	  	  	  			
+  	  	  		final Handler h = new Handler();
+	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			
 	  	  	  		@Override
-	  	  	  		public void run()
-	  	  	  		{
-	  	  	  			// Sets sixSidedBlank visible & enabled.
-	  	  	  			sixSidedRollFromLeft();  	  	  			
+		  	  	  	public void run() {
+	  	  	  			
+	  	  	  			titletext.setVisibility(View.INVISIBLE);
+	  	  	  			
+		  	  	  		Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+		  	  	  		titleinitiativetext.setTypeface(typeFace);
 	  		  			
-		  		  		final Handler h5 = new Handler();
-			  	  	  	h5.postDelayed(new Runnable() {
+		  				//titletext.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(100));
+		  					
+		  	  	  		titleinitiativetext.setVisibility(View.VISIBLE);				  		
+		  	  	  		titleinitiativetext.append("Initiative");
+		  				
+		  				
+		  				final Handler h4 = new Handler();
+			  	  	  	h4.postDelayed(new Runnable() {
+			  	  	  		
+			  	  	  		@Override
+			  	  	  		public void run() {				  				
 			  	  	  			
-			  	  	  			// Does this thread help:?
-				  	  	  		@Override
-				  	  	  		public void run()
-				  	  	  		{  	  			
-					  	  	  		sixSidedWobbleStart();
-					  	  	  		
-				  	  	  			centerscrolltext.setVisibility(View.VISIBLE);
-				  		  	  		centerscrolltext.startAnimation(animAlphaText);
-				  		  			centerscrolltext.append("\n" + "> Please slide the die...");			  		  			
-				  		  			
-				  		  			
-				  		  			playerCardStartFadeInFadeOut();
-				  		  			//playerTurnBackgroundStart();			  		  			
-				  		  			
-				  		  			
-				  		  			//issixsidedrolledforinitiative = "yes";
-				  		  			isinitiativestarted = "yes";			  		  			
-				  		  			onBackPressedOk = "yes";
-				  		  			
-				  		  			
-				  		  			//preventinitiativediefromleaking = "off";
+			  	  	  			// Sets sixSidedBlank visible & enabled.
+			  	  	  			sixSidedRollFromLeft();  	  	  			
+			  		  			
+			  	  	  			
+				  		  		final Handler h5 = new Handler();
+					  	  	  	h5.postDelayed(new Runnable() {
+					  	  	  			
+					  	  	  			// Does this thread help:?
+						  	  	  		@Override
+						  	  	  		public void run()
+						  	  	  		{  	  			
+							  	  	  		sixSidedWobbleStart();
+							  	  	  		
+						  	  	  			centerscrolltext.setVisibility(View.VISIBLE);
+						  		  	  		centerscrolltext.startAnimation(animAlphaText);
+						  		  			centerscrolltext.append("\n" + "> Please slide the die...");								  		  			
+						  		  			
+						  		  			playerCardStartFadeInFadeOut();
+						  		  			//playerTurnBackgroundStart();			  		  			
+						  		  			
+						  		  			
+						  		  			//issixsidedrolledforinitiative = "yes";
+						  		  			isinitiativestarted = "yes";			  		  			
+						  		  			onBackPressedOk = "yes";
+						  		  			
+						  		  			
+						  		  			//preventinitiativediefromleaking = "off";
+					  	  	  		}
+					  	  	  	}, 750);
 			  	  	  		}
-			  	  	  	}, 750);
-	  	  	  		}
-	  	  	  	}, 4000);
+			  	  	  	}, 4000);
+		  	  	  	}
+	  	  	  	}, 2850);	  	  	  		  			
   	  		}
   	  	}, 2000);
   	  	
@@ -423,7 +456,20 @@ public class MainActivity2 extends ActionBarActivity {
             	//SystemClock.sleep(1000);
             	
             	if (isinitiativestarted.equals("no")) {
-            		myInitiativeNotStarted();            		
+            		
+            		//myInitiativeNotStarted();
+            		
+            		TextView titletext = (TextView) findViewById(R.id.textviewtitlektogtext);	  					
+    	  			
+    	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+    	  			titletext.setTypeface(typeFace);
+    	  			
+    	  			//titletext.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(100));
+    	  			
+    	  			titletext.setVisibility(View.VISIBLE);    	  						  		
+    	  			titletext.append("KtOG");
+            		
+            		
             	}
             	
             	else if (isinitiativestarted.equals("yes") && aretheredoubles.equals("no")) {
@@ -433,14 +479,72 @@ public class MainActivity2 extends ActionBarActivity {
             			isinitiativestartedinterrupted = "yes";            		
                 		
                 		myInitiativeIsStarted();
+                		
+                		titleBlankButton.setEnabled(false);// HERE & BELOW BECUSE GETTING WEIRD BEHAVIOR WHEN BUTTON WAS HIT AN ODD NUMBER OF TIMES (EXCEPT THE FIRST TIME).
+                		
+                		
+                		final Handler h = new Handler();
+    		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+    		  	  	  			
+    		  	  	  		@Override
+    			  	  	  	public void run() {
+    		  	  	  			
+	    		  	  	  		final TextView titletext = (TextView) findViewById(R.id.textviewtitlektogtext);    			  	  		    						
+	    							
+		    		  	  	  	titletext.setVisibility(View.INVISIBLE);
+			  	  	  			
+	    		  	  	  		final TextView titlerulestext = (TextView) findViewById(R.id.textviewtitlerulestext);	
+	    							
+	    			  	  		titlerulestext.setVisibility(View.VISIBLE);
+	    			  	  		
+	    			  	  		
+		    			  	  	final Handler h = new Handler();
+		    		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+		    		  	  	  			
+		    		  	  	  		@Override
+		    			  	  	  	public void run() {
+		    		  	  	  			
+			    		  	  	  		titlerulestext.setVisibility(View.INVISIBLE);
+		    		  	  	  			
+			    		  	  	  		final TextView titletext = (TextView) findViewById(R.id.textviewtitlektogtext);    			  	  		    						
+		    							
+			    			  	  		titletext.setVisibility(View.VISIBLE);
+			    			  	  		
+			    			  	  		titleBlankButton.setEnabled(true);
+		    			  	  	  	}
+		    		  	  	  	}, 10975);
+    			  	  	  	}
+    		  	  	  	}, 600);
             		}
-            		
+            		/*
             		else if (isinitiativestartedinterrupted.equals("yes")) {
+            			
+            			isinitiativestartedinterrupted = "no";
             			
             			myInitiativeIsStartedTitleInterrupt();
             			
-            			isinitiativestartedinterrupted = "no";
-            		}            				
+            			
+            			final TextView titlerulestext = (TextView) findViewById(R.id.textviewtitlerulestext);	
+						
+			  	  		titlerulestext.setVisibility(View.VISIBLE);			  	  		
+	    			  	  		
+	    			  	  		
+    			  	  	final Handler h = new Handler();
+    		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+    		  	  	  			
+    		  	  	  		@Override
+    			  	  	  	public void run() {
+    		  	  	  			
+	    		  	  	  		titlerulestext.setVisibility(View.INVISIBLE);
+    		  	  	  			
+	    		  	  	  		TextView titletext = (TextView) findViewById(R.id.textviewtitlektogtext);    			  	  		    						
+    							
+	    			  	  		titletext.setVisibility(View.VISIBLE);		    			  	  	
+    			  	  	  	}
+    		  	  	  	}, 525);
+    			  	  	  	
+            		}
+            		*/            				
             	}            	
 			}            
 		});		
@@ -1816,6 +1920,16 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  	// Animation is just 1 slide so user can see title.
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
+		  	  	
+		  	  	TextView titletext = (TextView) findViewById(R.id.textviewtitlektogtext);
+		  	  	
+		  	  	Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  			titletext.setTypeface(typeFace);
+	  			
+	  			//titletext.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(100));
+	  				
+	  			titletext.setVisibility(View.VISIBLE);				  		
+	  			titletext.append("KtOG");
 	  	    }
   		});	
 	}
@@ -4214,7 +4328,7 @@ public class MainActivity2 extends ActionBarActivity {
 	 * 
 	 */
 		
-	
+	/*
 	public void myInitiativeNotStarted() {
 	    	  
 		final ImageView img = (ImageView)findViewById(R.id.titleanimation);		
@@ -4227,6 +4341,7 @@ public class MainActivity2 extends ActionBarActivity {
 		frameAnimation.stop();
 		frameAnimation.start();	      
 	}
+	*/
 	
 	public void myInitiativeTransition() {
 		
@@ -4275,7 +4390,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	
 	  	  	return isinitiativestartedinterrupted;	
 	}
-	
+	/*
 	public void  myInitiativeIsStartedTitleInterrupt() {
 		
 		final ImageView img = (ImageView)findViewById(R.id.titleanimation);		
@@ -4288,7 +4403,7 @@ public class MainActivity2 extends ActionBarActivity {
 		frameAnimation.stop();
 		frameAnimation.start();
 	}
-	
+	*/
 	public void  determineInitiative() {
 		
 		int result = (int)(Math.random()*6)+1;
@@ -4442,11 +4557,11 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  	  			
 					  	  	  			// need runOnUiThread?
 					  	  	  			runOnUiThread(new Runnable() {
-						  	  	  	    @Override
-						  	  	  	    public void run() {
-						  	  	  	    	
-						  	  	  	    	sixSidedWobbleStart();						  	  	  	    	
-							  	  	  	}
+							  	  	  	    @Override
+							  	  	  	    public void run() {
+							  	  	  	    	
+							  	  	  	    	sixSidedWobbleStart();						  	  	  	    	
+								  	  	  	}
 					  	  	  			});
 					  	  	  			
 					  	  	  			centerscrolltext.setVisibility(View.VISIBLE);
@@ -4456,8 +4571,7 @@ public class MainActivity2 extends ActionBarActivity {
 					  		  			playerCardStartFadeInFadeOut();
 					  		  			//playerTurnBackgroundStart();  		  			
 						  		  		
-						  		  		// NEED REF TO ONASWIPE CLASS?????????????????
-				  		  			
+						  		  		// NEED REF TO ONASWIPE CLASS?????????????????				  		  			
 					  	  	  		}
 				  	  	  	}, 1000);
 		  	  	  		}
@@ -4555,44 +4669,87 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		centerscrolltext.setVisibility(View.VISIBLE);													
   		centerscrolltext.startAnimation(animAlphaText);
-		centerscrolltext.append("\n" + "> Let the battle begin...");  	  			
+		centerscrolltext.append("\n" + "> Let the battle begin...");	
 		
-		myInitiativeTransition();	    	  	  							  	  	 	    	  	  			  	    	  	  			
-	  	  			  	    	  	  			
-  	  		final Handler h3 = new Handler();
-	  	  	h3.postDelayed(new Runnable() {
-
-	  	  		@Override
-	  	  		public void run()
-	  	  		{
-    	  	  		final ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
-	  	  			titleBlankButton.setVisibility(View.VISIBLE);
-	  	  			titleBlankButton.bringToFront();		  	  			
-	  	  			
-	  	  			
-	  	  			startGameNow ="yes";
-	  	  			
-	  	  			
-	  	  			/*
-	  	  			// Calls method from another class:
-  		  	  		Engine  engine = new Engine();
-  		  	  		Engine.gameEngine();
-  		  	  		*/
-  		  	  		
-	  	  					  	  			
-	  	  			//gameEngine(null, gameOn, gameOn);
-	  	  			gameEngine();
-	  	  			
-	  	  			
-	  	  			
-	  	  			//preventinitiativediefromleaking.equals("on");
-	  	  			
-	  	  			
-	  	  			//Thread myThread = new Thread(myRunnable);
-	  	  			//myThread.start();
-  		  	  		
-	  	  		}
-	  	  	}, 12400);  	    	  	  			  	  			
+		
+		
+		
+		myInitiativeTransition();	
+	  	  		
+	  	  		
+  	  	final Handler h = new Handler();
+  		h.postDelayed(new Runnable() {		  	  	  			
+  	  			
+  	  		@Override
+  	  	  	public void run() {
+  	  			
+  	  			TextView titleinitiativetext = (TextView) findViewById(R.id.textviewtitleinitiativetext);
+  	  			titleinitiativetext.setVisibility(View.INVISIBLE);
+  	  			
+  	  			final TextView titlerulestext = (TextView) findViewById(R.id.textviewtitlerulestext);
+  	  			
+	  	  		Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  	  		titlerulestext.setTypeface(typeFace);
+	  			
+				//titletext.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(100));
+					
+	  	  		titlerulestext.setVisibility(View.VISIBLE);				  		
+	  	  		titlerulestext.append("Instructions go here...");	  			
+  	  			
+  	  			
+	  	  		final Handler h3 = new Handler();
+		  	  	h3.postDelayed(new Runnable() {
+	
+		  	  		@Override
+		  	  		public void run()
+		  	  		{
+		  	  			titlerulestext.setVisibility(View.INVISIBLE);
+		  	  			
+		  	  			
+		  	  			TextView titletext = (TextView) findViewById(R.id.textviewtitlektogtext);
+		  	  			
+			  	  		Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+			  	  		titletext.setTypeface(typeFace);
+			  			
+						//titletext.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(100));
+							
+			  	  		titletext.setVisibility(View.VISIBLE);
+			  	  		//THIS IS ALREADY VISIBLE (NOT GONE):
+			  	  		//titletext.append("KtOG");
+			  	  		
+		  	  			
+		  	  			
+		  	  			
+		  	  			final ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+		  	  			titleBlankButton.setVisibility(View.VISIBLE);
+		  	  			titleBlankButton.bringToFront();		  	  			
+		  	  			
+		  	  			
+		  	  			startGameNow ="yes";
+		  	  			
+		  	  			
+		  	  			/*
+		  	  			// Calls method from another class:
+			  	  		Engine  engine = new Engine();
+			  	  		Engine.gameEngine();
+			  	  		*/
+			  	  		
+		  	  					  	  			
+		  	  			//gameEngine(null, gameOn, gameOn);
+		  	  			gameEngine();
+		  	  			
+		  	  			
+		  	  			
+		  	  			//preventinitiativediefromleaking.equals("on");
+		  	  			
+		  	  			
+		  	  			//Thread myThread = new Thread(myRunnable);
+		  	  			//myThread.start();
+			  	  		
+		  	  		}
+		  	  	}, 10050);		  	  			
+  	  	  	}
+  	  	}, 525);  		  	    	  	  			  	  			
 	
 	  	//Toast.makeText(MainActivity2.this,"isinitiativestarted = " +  isinitiativestarted + " aretheredoubles = " + aretheredoubles, Toast.LENGTH_SHORT).show();  	 	
 	  	  		
@@ -11858,7 +12015,7 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		runOnUiThread(new Runnable() {
   	  	    @Override
-  	  	    public void run() {
+  	  	    public void run() {  	  	    	
   	  	    	
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
@@ -11897,6 +12054,9 @@ public class MainActivity2 extends ActionBarActivity {
 								centerscrolltext.setVisibility(View.VISIBLE);
 						  		centerscrolltext.startAnimation(animAlphaText);
 								centerscrolltext.append("\n" + "> Please slide the die...");
+								
+								ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+				  	  	    	titleBlankButton.bringToFront();
 						
 								/*
 								 * 
@@ -12330,6 +12490,9 @@ public class MainActivity2 extends ActionBarActivity {
 										centerscrolltext.setVisibility(View.VISIBLE);
 								  		centerscrolltext.startAnimation(animAlphaText);
 										centerscrolltext.append("\n" + "> Please slide the die...");
+										
+										ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+						  	  	    	titleBlankButton.bringToFront();
 								
 										/*
 										 * 
@@ -13083,7 +13246,10 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  		@Override
 				  	  	  	public void run() {				
 			  	  	  			
-			  	  	  			sixSidedWobbleStart();								
+			  	  	  			sixSidedWobbleStart();
+			  	  	  			
+			  	  	  			ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+			  	  	  			titleBlankButton.bringToFront();
 						
 								/*
 								 * 
@@ -13703,6 +13869,9 @@ public class MainActivity2 extends ActionBarActivity {
 										centerscrolltext.setVisibility(View.VISIBLE);
 								  		centerscrolltext.startAnimation(animAlphaText);
 										centerscrolltext.append("\n" + "> Make your first roll...");
+										
+										ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+						  	  	    	titleBlankButton.bringToFront();
 								
 										/*
 										 * 
@@ -13774,6 +13943,9 @@ public class MainActivity2 extends ActionBarActivity {
 								centerscrolltext.setVisibility(View.VISIBLE);
 						  		centerscrolltext.startAnimation(animAlphaText);
 								centerscrolltext.append("\n" + "> Make your second roll...");
+								
+								ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+				  	  	    	titleBlankButton.bringToFront();
 						
 								/*
 								 * 
@@ -14045,6 +14217,9 @@ public class MainActivity2 extends ActionBarActivity {
 										centerscrolltext.setVisibility(View.VISIBLE);
 								  		centerscrolltext.startAnimation(animAlphaText);
 										centerscrolltext.append("\n" + "> Make your first roll...");
+										
+										ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+						  	  	    	titleBlankButton.bringToFront();
 								
 										/*
 										 * 
@@ -14114,6 +14289,9 @@ public class MainActivity2 extends ActionBarActivity {
 										centerscrolltext.setVisibility(View.VISIBLE);
 								  		centerscrolltext.startAnimation(animAlphaText);
 										centerscrolltext.append("\n" + "> Make your second roll...");
+										
+										ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+						  	  	    	titleBlankButton.bringToFront();
 								
 										/*
 										 * 
@@ -14437,6 +14615,9 @@ public class MainActivity2 extends ActionBarActivity {
 								centerscrolltext.setVisibility(View.VISIBLE);
 						  		centerscrolltext.startAnimation(animAlphaText);
 								centerscrolltext.append("\n" + "> Please slide the die...");
+								
+								ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+				  	  	    	titleBlankButton.bringToFront();
 						
 								/*
 								 * 
@@ -14574,6 +14755,9 @@ public class MainActivity2 extends ActionBarActivity {
 								centerscrolltext.setVisibility(View.VISIBLE);
 						  		centerscrolltext.startAnimation(animAlphaText);
 								centerscrolltext.append("\n" + "> Please slide the die...");
+								
+								ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+				  	  	    	titleBlankButton.bringToFront();
 						
 								/*
 								 * 
@@ -14805,6 +14989,9 @@ public class MainActivity2 extends ActionBarActivity {
 								centerscrolltext.setVisibility(View.VISIBLE);
 						  		centerscrolltext.startAnimation(animAlphaText);
 								centerscrolltext.append("\n" + "> Please slide the die...");
+								
+								ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+				  	  	    	titleBlankButton.bringToFront();
 						
 								/*
 								 * 
@@ -15214,6 +15401,9 @@ public class MainActivity2 extends ActionBarActivity {
 						  		centerscrolltext.startAnimation(animAlphaText);
 						  		centerscrolltext.append("\n" + "> Press slide the die... ");
 						  		
+						  		ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+				  	  	    	titleBlankButton.bringToFront();
+						  		
 						  		
 						  		/*
 								 * 
@@ -15459,6 +15649,9 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 					  		centerscrolltext.startAnimation(animAlphaText);
 					  		centerscrolltext.append("\n" + "> Press slide the die... ");
+					  		
+					  		ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+			  	  	    	titleBlankButton.bringToFront();
 					  		
 					  		
 					  		/*
@@ -15925,6 +16118,9 @@ public class MainActivity2 extends ActionBarActivity {
 										centerscrolltext.setVisibility(View.VISIBLE);
 								  		centerscrolltext.startAnimation(animAlphaText);
 										centerscrolltext.append("\n" + "> Please slide the die...");
+										
+										ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+						  	  	    	titleBlankButton.bringToFront();
 								
 										/*
 										 * 
@@ -16509,6 +16705,9 @@ public class MainActivity2 extends ActionBarActivity {
 										centerscrolltext.setVisibility(View.VISIBLE);
 								  		centerscrolltext.startAnimation(animAlphaText);
 										centerscrolltext.append("\n" + "> Please slide the die...");
+										
+										ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+						  	  	    	titleBlankButton.bringToFront();
 								
 										/*
 										 * 
