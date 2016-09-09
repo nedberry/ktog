@@ -149,6 +149,11 @@ public class MainActivity2 extends ActionBarActivity {
 	//String playerDeadYet[] = {"yes", "yes", "yes", "yes", "yes", "yes"};
 	public static String[] canHasDisarmed = new String[] {"no", "no", "no", "no", "no", "no"}; // NEED 6?????????		
 	
+	//FOR onResume
+	String isSixSidedReadyToBeRolled = "no";
+	String isTwentySidedReadyToBeRolled = "no";
+	String isInitiativeOver = "yes";
+	
 	
 		
 	
@@ -354,7 +359,13 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		
 		
-		final TextView titletext = (TextView) findViewById(R.id.textviewtitlektogtext);
+		final TextView titletext = (TextView) findViewById(R.id.textviewtitlektogtext);		
+		
+		titletext.setTypeface(typeFace);
+		
+		titletext.setVisibility(View.VISIBLE);				  		
+		titletext.append("KtOG");
+		
 		
 		final TextView titleinitiativetext = (TextView) findViewById(R.id.textviewtitleinitiativetext);
 		titleinitiativetext.setVisibility(View.INVISIBLE);
@@ -409,6 +420,9 @@ public class MainActivity2 extends ActionBarActivity {
 						  	  	  		public void run()
 						  	  	  		{  	  			
 							  	  	  		sixSidedWobbleStart();
+							  	  	  		
+							  	  	  		isSixSidedReadyToBeRolled = "yes";
+							  	  	  		isInitiativeOver = "no";
 							  	  	  		
 						  	  	  			centerscrolltext.setVisibility(View.VISIBLE);
 						  		  	  		centerscrolltext.startAnimation(animAlphaText);
@@ -1677,6 +1691,42 @@ public class MainActivity2 extends ActionBarActivity {
 	    
 	    unfoldScrolls();
 	    
+	    if (isSixSidedReadyToBeRolled.equals("yes")) {
+	    	
+	    	sixSidedRollFromLeft();
+	    	
+	    	//sixSidedWobbleStart();
+	    	
+	    	//isSixSidedReadyToBeRolled = "no";
+	    }
+	    
+	    if (isTwentySidedReadyToBeRolled.equals("yes")) {
+	    	
+	    	twentySidedRollFromLeft();
+	    	
+	    	//twentySidedWobbleStart();
+	    	
+	    	//isTwentySidedReadyToBeRolled = "no";
+	    }
+	    
+	    if (issixsidedrolledforinitiative.equals("no") && isInitiativeOver.equals("no")) {
+	    	
+	    	ImageView img = (ImageView)findViewById(R.id.titleanimation);
+	    	img.setBackgroundResource(R.anim.titleanimationnoinitiative);
+	    	img.bringToFront();
+	    	   	
+	    	
+	    	
+	    	TextView titleinitiativetext = (TextView) findViewById(R.id.textviewtitleinitiativetext);
+	    	//titleinitiativetext.bringToFront();
+			
+			//Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  	  	//titleinitiativetext.setTypeface(typeFace);			
+					
+  	  		titleinitiativetext.setVisibility(View.VISIBLE);				  		
+  	  		//titleinitiativetext.append("Initiative");
+	    }
+	    
 	    /*
 	    ImageView img1 = (ImageView)findViewById(R.id.imageviewscroll3b5left);
   		img1.bringToFront();
@@ -1921,15 +1971,15 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
 		  	  	
-		  	  	TextView titletext = (TextView) findViewById(R.id.textviewtitlektogtext);
+		  	  	//TextView titletext = (TextView) findViewById(R.id.textviewtitlektogtext);
 		  	  	
-		  	  	Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-	  			titletext.setTypeface(typeFace);
+		  	  	//Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  			//titletext.setTypeface(typeFace);
 	  			
 	  			//titletext.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(100));
 	  				
-	  			titletext.setVisibility(View.VISIBLE);				  		
-	  			titletext.append("KtOG");
+	  			//titletext.setVisibility(View.VISIBLE);				  		
+	  			//titletext.append("KtOG");
 	  	    }
   		});	
 	}
@@ -4426,6 +4476,8 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	public void initiativeResults() {
 		
+		isSixSidedReadyToBeRolled = "no";
+		
 		//Toast.makeText(MainActivity2.this,"At method determineDoubles().", Toast.LENGTH_SHORT).show();
 		
 		// Here to prevent pre-mature (BUT STILL SEE ) rolling:
@@ -4560,7 +4612,9 @@ public class MainActivity2 extends ActionBarActivity {
 							  	  	  	    @Override
 							  	  	  	    public void run() {
 							  	  	  	    	
-							  	  	  	    	sixSidedWobbleStart();						  	  	  	    	
+							  	  	  	    	sixSidedWobbleStart();
+							  	  	  	    	
+							  	  	  	    	isSixSidedReadyToBeRolled = "yes";
 								  	  	  	}
 					  	  	  			});
 					  	  	  			
@@ -4585,6 +4639,8 @@ public class MainActivity2 extends ActionBarActivity {
 			aretheredoubles = "no";
 			
 			issixsidedrolledforinitiative = "yes";
+			
+			isInitiativeOver = "yes";
 			
 			maxInitiative();  	  	  	
 		}
@@ -8182,7 +8238,7 @@ public class MainActivity2 extends ActionBarActivity {
 		});		
 	}
 	
-	public void computerDisarm() {// WAS String[]				
+	public void computerDisarm() {// WAS String[]			
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
@@ -8219,10 +8275,7 @@ public class MainActivity2 extends ActionBarActivity {
 						  		centerscrolltext.startAnimation(animAlphaText);			  		
 								centerscrolltext.append("\n" + "> The computer uses it's bless spell...");
 								
-								blessGraphic();
-								
-								ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
-			  	  	  			img.bringToFront();
+								blessGraphic();								
 						  	  	  		
 										
 								final Handler h = new Handler();
@@ -8237,6 +8290,9 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  	  			stopGraphics();					  	  	  			
 					  	  	  			
 					  	  	  			ArrayOfAttackResult.attackResult[0] = (int) ((Math.random() * 20) + 1);
+					  	  	  			
+					  	  	  			ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
+					  	  	  			img.bringToFront();
 					  	  	  			
 					  	  	  			computerRolls20SidedDie();
 					  	  	  			
@@ -8342,10 +8398,7 @@ public class MainActivity2 extends ActionBarActivity {
 					}					
 					
 					// IF BLESS AND COMP DOES NOT USE BLESS TO DISARM
-					if (result < 51) {
-						
-						ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
-	  	  	  			img.bringToFront();
+					if (result < 51) {					
 						
 						final Handler h = new Handler();
 			  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -8355,6 +8408,9 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  			
 				  	  	  		ArrayOfAttackResult.attackResult[0] = (int) ((Math.random() * 20) + 1);
 								
+				  	  	  		ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
+				  	  	  		img.bringToFront();
+				  	  	  		
 								computerRolls20SidedDie();
 								
 								final Handler h = new Handler();
@@ -8467,10 +8523,7 @@ public class MainActivity2 extends ActionBarActivity {
 				
 				
 				// IF NO BLESS AND DISARM
-				else {
-					
-					ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
-  	  	  			img.bringToFront();
+				else {				
 					
 					final Handler h = new Handler();
 		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -8480,6 +8533,9 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  	  			
 			  	  	  		ArrayOfAttackResult.attackResult[0] = (int) ((Math.random() * 20) + 1);
 							
+			  	  	  		ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
+			  	  	  		img.bringToFront();
+			  	  	  		
 							computerRolls20SidedDie();
 							
 							final Handler h = new Handler();
@@ -12051,6 +12107,8 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  			
 			  	  	  			twentySidedWobbleStart();
 			  	  	  			
+			  	  	  			isTwentySidedReadyToBeRolled = "yes";
+			  	  	  			
 								centerscrolltext.setVisibility(View.VISIBLE);
 						  		centerscrolltext.startAnimation(animAlphaText);
 								centerscrolltext.append("\n" + "> Please slide the die...");
@@ -12083,6 +12141,8 @@ public class MainActivity2 extends ActionBarActivity {
 	}
 					  	  	  		
 	public void attackResults() {
+		
+		isTwentySidedReadyToBeRolled = "no";
 		
 		// Here to prevent pre-mature (BUT STILL SEE ) roll
 		final ImageView twentySidedBlank = (ImageView) findViewById(R.id.twentysidedanimation);		
@@ -12487,6 +12547,8 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  	  			
 					  	  	  			sixSidedWobbleStart();
 					  	  	  			
+					  	  	  			isSixSidedReadyToBeRolled = "yes";
+					  	  	  			
 										centerscrolltext.setVisibility(View.VISIBLE);
 								  		centerscrolltext.startAnimation(animAlphaText);
 										centerscrolltext.append("\n" + "> Please slide the die...");
@@ -12641,6 +12703,8 @@ public class MainActivity2 extends ActionBarActivity {
 	}							
 	
 	public void mightyBlowResults() {
+		
+		isSixSidedReadyToBeRolled = "no";
 		
 		// Here to prevent pre-mature (BUT STILL SEE ) roll
 		final ImageView sixSidedBlankAttackDamage = (ImageView) findViewById(R.id.sixsidedanimation);		
@@ -13248,6 +13312,8 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  			
 			  	  	  			sixSidedWobbleStart();
 			  	  	  			
+			  	  	  			isSixSidedReadyToBeRolled = "yes";
+			  	  	  			
 			  	  	  			ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
 			  	  	  			titleBlankButton.bringToFront();
 						
@@ -13279,6 +13345,8 @@ public class MainActivity2 extends ActionBarActivity {
 	}
 	
 	public void damageResults() {
+		
+		isSixSidedReadyToBeRolled = "no";
 		
 		// Here to prevent pre-mature (BUT STILL SEE ) roll
 		final ImageView img = (ImageView) findViewById(R.id.sixsidedanimation);		
@@ -13866,6 +13934,8 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  	  			
 					  	  	  			sixSidedWobbleStart();
 					  	  	  			
+					  	  	  			isSixSidedReadyToBeRolled = "yes";
+					  	  	  			
 										centerscrolltext.setVisibility(View.VISIBLE);
 								  		centerscrolltext.startAnimation(animAlphaText);
 										centerscrolltext.append("\n" + "> Make your first roll...");
@@ -13904,6 +13974,8 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	public void criticalHitPartTwo() {
 		
+		isSixSidedReadyToBeRolled = "no";
+		
 		iscriticalhitfirstrollrolled = "no";
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
@@ -13940,6 +14012,8 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  			
 			  	  	  			sixSidedWobbleStart();
 			  	  	  			
+			  	  	  			isSixSidedReadyToBeRolled = "yes";
+			  	  	  			
 								centerscrolltext.setVisibility(View.VISIBLE);
 						  		centerscrolltext.startAnimation(animAlphaText);
 								centerscrolltext.append("\n" + "> Make your second roll...");
@@ -13969,6 +14043,8 @@ public class MainActivity2 extends ActionBarActivity {
 	}
 
 	public void criticalHitDamageResults() {
+		
+		isSixSidedReadyToBeRolled = "no";
 		
 		// Here to prevent pre-mature (BUT STILL SEE ) roll
 		final ImageView sixSidedBlank = (ImageView) findViewById(R.id.sixsidedanimation);		
@@ -14214,6 +14290,8 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  	  			
 					  	  	  			sixSidedWobbleStart();
 					  	  	  			
+					  	  	  			isSixSidedReadyToBeRolled = "yes";
+					  	  	  			
 										centerscrolltext.setVisibility(View.VISIBLE);
 								  		centerscrolltext.startAnimation(animAlphaText);
 										centerscrolltext.append("\n" + "> Make your first roll...");
@@ -14245,6 +14323,8 @@ public class MainActivity2 extends ActionBarActivity {
 	}
 	
 	public void criticalHitMightyBlowPartTwo() {
+		
+		isSixSidedReadyToBeRolled = "no";
 		
 		iscriticalhitmightyblowfirstrollrolled = "no";
 		
@@ -14286,6 +14366,8 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  	  			
 					  	  	  			sixSidedWobbleStart();
 					  	  	  			
+					  	  	  			isSixSidedReadyToBeRolled = "yes";
+					  	  	  			
 										centerscrolltext.setVisibility(View.VISIBLE);
 								  		centerscrolltext.startAnimation(animAlphaText);
 										centerscrolltext.append("\n" + "> Make your second roll...");
@@ -14317,6 +14399,8 @@ public class MainActivity2 extends ActionBarActivity {
 	}
 	
 	public void criticalHitMightyBlowDamageResults() {
+		
+		isSixSidedReadyToBeRolled = "no";
 		
 		// Here to prevent pre-mature (BUT STILL SEE ) roll
 		final ImageView sixSidedBlank = (ImageView) findViewById(R.id.sixsidedanimation);		
@@ -14612,6 +14696,8 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  			
 			  	  	  			twentySidedWobbleStart();
 			  	  	  			
+			  	  	  			isTwentySidedReadyToBeRolled = "yes";
+			  	  	  			
 								centerscrolltext.setVisibility(View.VISIBLE);
 						  		centerscrolltext.startAnimation(animAlphaText);
 								centerscrolltext.append("\n" + "> Please slide the die...");
@@ -14640,6 +14726,8 @@ public class MainActivity2 extends ActionBarActivity {
 	}
 	
 	public void criticalMissResults() {
+		
+		isTwentySidedReadyToBeRolled = "no";
 		
 		// Here to prevent pre-mature (BUT STILL SEE ) roll
 		final ImageView twentySidedBlank = (ImageView) findViewById(R.id.twentysidedanimation);		
@@ -14752,6 +14840,8 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  			
 			  	  	  			sixSidedWobbleStart();
 			  	  	  			
+			  	  	  			isSixSidedReadyToBeRolled = "yes";
+			  	  	  			
 								centerscrolltext.setVisibility(View.VISIBLE);
 						  		centerscrolltext.startAnimation(animAlphaText);
 								centerscrolltext.append("\n" + "> Please slide the die...");
@@ -14784,6 +14874,8 @@ public class MainActivity2 extends ActionBarActivity {
 	}
 	
 	public void criticalMissDamageResults() {// WAS int[]
+		
+		isSixSidedReadyToBeRolled = "no";
 		
 		// Here to prevent pre-mature (BUT STILL SEE ) roll
 		final ImageView sixSidedBlank = (ImageView) findViewById(R.id.sixsidedanimation);		
@@ -14986,6 +15078,8 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  			
 			  	  	  			twentySidedWobbleStart();
 			  	  	  			
+			  	  	  			isTwentySidedReadyToBeRolled = "yes";
+			  	  	  			
 								centerscrolltext.setVisibility(View.VISIBLE);
 						  		centerscrolltext.startAnimation(animAlphaText);
 								centerscrolltext.append("\n" + "> Please slide the die...");
@@ -15014,6 +15108,8 @@ public class MainActivity2 extends ActionBarActivity {
 	}
   	
   	public void criticalMissLoseWeaponResults() {
+  		
+  		isTwentySidedReadyToBeRolled = "no";
   		
   		// Here to prevent pre-mature (BUT STILL SEE ) roll
   		final ImageView twentySidedBlank = (ImageView) findViewById(R.id.twentysidedanimation);		
@@ -15397,6 +15493,8 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  			
 			  	  	  			twentySidedWobbleStart();
 			  	  	  			
+			  	  	  			isTwentySidedReadyToBeRolled = "yes";
+			  	  	  			
 								centerscrolltext.setVisibility(View.VISIBLE);
 						  		centerscrolltext.startAnimation(animAlphaText);
 						  		centerscrolltext.append("\n" + "> Press slide the die... ");
@@ -15465,6 +15563,8 @@ public class MainActivity2 extends ActionBarActivity {
 	}
 	
 	public void disarmWithBlessResults() {
+		
+		isTwentySidedReadyToBeRolled = "no";
 		
 		isdisarmwithblessrolled = "no";
 		
@@ -15646,6 +15746,8 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  		
 			  	  	  		twentySidedWobbleStart();
 			  	  	  		
+			  	  	  		isTwentySidedReadyToBeRolled = "yes";
+			  	  	  		
 			  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 					  		centerscrolltext.startAnimation(animAlphaText);
 					  		centerscrolltext.append("\n" + "> Press slide the die... ");
@@ -15675,6 +15777,8 @@ public class MainActivity2 extends ActionBarActivity {
 	}
 	
 	public void disarmNoBlessResults() {
+		
+		isTwentySidedReadyToBeRolled = "no";
 		
 		isdisarmnoblessrolled = "no";
 		
@@ -16115,6 +16219,8 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  	  			
 					  	  	  			twentySidedWobbleStart();
 					  	  	  			
+					  	  	  			isTwentySidedReadyToBeRolled = "yes";
+					  	  	  			
 										centerscrolltext.setVisibility(View.VISIBLE);
 								  		centerscrolltext.startAnimation(animAlphaText);
 										centerscrolltext.append("\n" + "> Please slide the die...");
@@ -16280,6 +16386,8 @@ public class MainActivity2 extends ActionBarActivity {
 	}
 	
 	public void blessResults() {//WAS int				
+		
+		isTwentySidedReadyToBeRolled = "no";
 		
 		// Here to prevent pre-mature (BUT STILL SEE ) roll
 		final ImageView twentySidedBlank = (ImageView) findViewById(R.id.twentysidedanimation);		
@@ -16702,6 +16810,8 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  	  			
 					  	  	  			sixSidedWobbleStart();
 					  	  	  			
+					  	  	  			isSixSidedReadyToBeRolled = "yes";
+					  	  	  			
 										centerscrolltext.setVisibility(View.VISIBLE);
 								  		centerscrolltext.startAnimation(animAlphaText);
 										centerscrolltext.append("\n" + "> Please slide the die...");
@@ -16817,6 +16927,8 @@ public class MainActivity2 extends ActionBarActivity {
 	}
 	
 	public void cureResults() {
+		
+		isSixSidedReadyToBeRolled = "no";
 		
 		// Here to prevent pre-mature (BUT STILL SEE ) roll
 		final ImageView twentySidedBlank = (ImageView) findViewById(R.id.twentysidedanimation);		
