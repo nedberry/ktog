@@ -153,6 +153,7 @@ public class MainActivity2 extends ActionBarActivity {
 	String isSixSidedReadyToBeRolled = "no";
 	String isTwentySidedReadyToBeRolled = "no";
 	String isInitiativeOver = "yes";
+	String istitlerulesopen = "no";
 	
 	
 		
@@ -443,7 +444,7 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  		}
 			  	  	  	}, 4000);
 		  	  	  	}
-	  	  	  	}, 2900);//MAINLY FINAGLING TO GET RIGHT  	  	  		  			
+	  	  	  	}, 2925);//MAINLY FINAGLING TO GET RIGHT  	  	  		  			
   	  		}
   	  	}, 2000);
   	  	
@@ -490,7 +491,9 @@ public class MainActivity2 extends ActionBarActivity {
             		
             		if (isinitiativestartedinterrupted.equals("no")) {
             			
-            			isinitiativestartedinterrupted = "yes";            		
+            			isinitiativestartedinterrupted = "yes";
+            			
+            			istitlerulesopen = "yes";
                 		
                 		myInitiativeIsStarted();
                 		
@@ -525,6 +528,8 @@ public class MainActivity2 extends ActionBarActivity {
 			    			  	  		titletext.setVisibility(View.VISIBLE);
 			    			  	  		
 			    			  	  		titleBlankButton.setEnabled(true);
+			    			  	  		
+			    			  	  		istitlerulesopen = "no";
 		    			  	  	  	}
 		    		  	  	  	}, 10975);
     			  	  	  	}
@@ -1691,6 +1696,7 @@ public class MainActivity2 extends ActionBarActivity {
 	    
 	    unfoldScrolls();
 	    
+	    //ONE OF THE 1ST 2-IFS & THE 3RD-IF COULD HAPPEN AT SAME TIME ON onResume.(WORKING-MULTIPLE IFS CAN HAPPEN AT SAME TIME)
 	    if (isSixSidedReadyToBeRolled.equals("yes")) {
 	    	
 	    	sixSidedRollFromLeft();
@@ -1725,6 +1731,24 @@ public class MainActivity2 extends ActionBarActivity {
 					
   	  		titleinitiativetext.setVisibility(View.VISIBLE);				  		
   	  		//titleinitiativetext.append("Initiative");
+	    }
+	    
+	    //THIS IF IS EXCLUSIVE FROM THE ABOVE IF
+	    if (istitlerulesopen.equals("yes")) {
+	    	
+	    	ImageView img = (ImageView)findViewById(R.id.titleanimation);
+	    	img.setBackgroundResource(R.anim.titleanimationnoinitiative);
+	    	img.bringToFront();
+	    	
+	    	TextView titletext = (TextView) findViewById(R.id.textviewtitlektogtext);			
+			//titletext.bringToFront();			
+			titletext.setVisibility(View.VISIBLE);
+			
+			TextView titlerulestext = (TextView) findViewById(R.id.textviewtitlerulestext);	
+			titlerulestext.setVisibility(View.INVISIBLE);			
+			
+	    	
+	    	istitlerulesopen = "no";
 	    }
 	    
 	    /*
