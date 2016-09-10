@@ -193,7 +193,7 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		
 		// Crashes if this is put up top.
-		Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
+		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
 		
 		
 		TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);		
@@ -205,12 +205,12 @@ public class MainActivity2 extends ActionBarActivity {
 		computerNameTextView.setText(ArrayOfPlayers.player[1]);
 		
 		
-		ArrayOfHitPoints.hitpoints[0] = 20;		
+		ArrayOfHitPoints.hitpoints[0] = 1;		
 		final TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
 		playerHitPointsTextView.setTypeface(typeFace);
 		playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));		
 		
-		ArrayOfHitPoints.hitpoints[1] = 20;
+		ArrayOfHitPoints.hitpoints[1] = 1;
 		final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
 		computerHitPointsTextView.setTypeface(typeFace);
 		computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));		
@@ -394,7 +394,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  			
 	  	  	  			titletext.setVisibility(View.INVISIBLE);
 	  	  	  			
-		  	  	  		Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+		  	  	  		//Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 		  	  	  		titleinitiativetext.setTypeface(typeFace);
 	  		  			
 		  				//titletext.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(100));
@@ -460,8 +460,6 @@ public class MainActivity2 extends ActionBarActivity {
 		};
 		thread4.start();
 		*/		
-				
-		
 		
 				
 		titleBlankButton.setOnClickListener(new View.OnClickListener() {
@@ -18156,6 +18154,19 @@ public class MainActivity2 extends ActionBarActivity {
 					//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
 					
 					
+					// HERE & IN gameOverCheck SO DONT HAVE MULTIPLE REFS TO IT IN DIALOGS?:
+					TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+	    			playerHitPointsTextView.setTypeface(typeFace);
+	    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+	    			//playerHitPointsTextView.bringToFront();
+
+	    			TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+	    			computerHitPointsTextView.setTypeface(typeFace);
+	    			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
+	    			//computerHitPointsTextView.bringToFront();
+					
+					
+	    			// DONT THINK THESE 2 (THE ONES FOR BELOW 0) EVER GET USED?:
 					if (ArrayOfHitPoints.hitpoints[0] < 0) {
 						
 						playerDeadYet[0] = "yes";
@@ -18399,7 +18410,24 @@ public class MainActivity2 extends ActionBarActivity {
 		runOnUiThread(new Runnable() {
   	  	    @Override
   	  	    public void run() {
-		
+  	  	    	
+  	  	    	Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+  	  	    	
+  	  	    	// HERE & IN endGame SO DONT HAVE MULTIPLE REFS TO IT IN DIALOGS?:
+				TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+    			playerHitPointsTextView.setTypeface(typeFace);
+    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+    			//playerHitPointsTextView.bringToFront();
+
+    			TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+    			computerHitPointsTextView.setTypeface(typeFace);
+    			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
+    			//computerHitPointsTextView.bringToFront();
+  	  	    	
+    			
+  	  	    	victoryDefeatAnimation();
+  	  	    	
+  	  	    	
 				if (playerDeadYet[0] == "no" && playerDeadYet[1] == "yes") {
 				/*&& playerDeadYet[2] == "yes" && playerDeadYet[3] == "yes"	&& playerDeadYet[4] == "yes" && playerDeadYet[5] == "yes"*/
 					
@@ -18409,7 +18437,7 @@ public class MainActivity2 extends ActionBarActivity {
 					final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 					//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 					
-					Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+					//Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 					centerscrolltext.setTypeface(typeFace);					
 					
 					
@@ -18485,7 +18513,7 @@ public class MainActivity2 extends ActionBarActivity {
 					final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 					//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 					
-					Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+					//Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 					centerscrolltext.setTypeface(typeFace);				
 					
 					//final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
@@ -18601,6 +18629,53 @@ public class MainActivity2 extends ActionBarActivity {
 		});
 	}
 	
+	public void victoryDefeatAnimation() {
+		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				
+				ImageView img = (ImageView)findViewById(R.id.titleanimation);		
+				img.setBackgroundResource(R.anim.victorydefeatanimation);		  	  
+		  	  	
+		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();				
+		  	  	
+		  	  	frameAnimation.stop();
+		  	  	frameAnimation.start();
+		  	  	
+		  	  	final Handler h = new Handler();
+	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {
+	  	  	  			
+	  	  	  			TextView titletext = (TextView) findViewById(R.id.textviewtitlektogtext);	  	  	  			
+	  	  	  			titletext.setVisibility(View.INVISIBLE);
+	  	  	  			
+	  	  	  			
+		  	  	  		TextView titlevictorydefeat = (TextView) findViewById(R.id.textviewtitlevictorydefeattext);		
+						
+						Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+						titlevictorydefeat.setTypeface(typeFace);
+						
+						titlevictorydefeat.setVisibility(View.VISIBLE);
+						
+						
+						if (playerDeadYet[0] == "no" && playerDeadYet[1] == "yes") {
+							
+							titlevictorydefeat.append("Victory");
+						}
+						
+						if (playerDeadYet[1] == "no" && playerDeadYet[0] == "yes") {
+							
+							titlevictorydefeat.append("Defeat");
+						}					
+		  	  	  	}
+	  	  	  	}, 600);	  	  	
+			}
+  		});
+	}
+	
 	public void foldScrolls() {		
 		
 		// USING "runOnUiThread(new Runnable() {}" TO SEE IF IT WORKS BETTER THAN NOT USING IT.
@@ -18642,7 +18717,7 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  	  		ImageView img2 = (ImageView) findViewById(R.id.imageviewplayerbox4right);
 		  	  	  		img2.setVisibility(View.INVISIBLE);		  	  	  		
 		  	  	  	}
-	  	  	  	}, 630);
+	  	  	  	}, 600);
 	  	    }
   		});	
 	}
