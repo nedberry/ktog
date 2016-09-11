@@ -94,7 +94,7 @@ public class MainActivity2 extends ActionBarActivity {
 	// SOME OF THESE MAY NEED TO BE AN ARRAY-CLASS:
 	public static int[] blessSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
 	public static int[] cureSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
-	public static int[] dodgeBlowSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
+	public static int[] dodgeBlowSpell = new int[] {0, 0, 1, 1, 1, 1, 1};
 	public static int[] mightyBlowSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
 	public static int[] hasteSpell = new int[] {2, 2, 2, 2, 2, 2, 2};	
 	
@@ -444,7 +444,7 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  		}
 			  	  	  	}, 4000);
 		  	  	  	}
-	  	  	  	}, 2925);//MAINLY FINAGLING TO GET RIGHT  	  	  		  			
+	  	  	  	}, 2900);//MAINLY FINAGLING TO GET RIGHT  	  	  		  			
   	  		}
   	  	}, 2000);
   	  	
@@ -1624,6 +1624,13 @@ public class MainActivity2 extends ActionBarActivity {
 	    			ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne = new int[1];
 	    			ArrayOfAttackResult.attackResult = new int[1];
 	    			ArrayOfAttackDamage.attackDamage = new int[1];
+	    				    			
+	    			
+	    			blessSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
+	    			cureSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
+	    			dodgeBlowSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
+	    			mightyBlowSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
+	    			hasteSpell = new int[] {2, 2, 2, 2, 2, 2, 2};
 	    			
 	    			
 	    			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
@@ -1676,6 +1683,13 @@ public class MainActivity2 extends ActionBarActivity {
 		ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne = new int[1];
 		ArrayOfAttackResult.attackResult = new int[1];
 		ArrayOfAttackDamage.attackDamage = new int[1];
+		
+		
+		blessSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
+		cureSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
+		dodgeBlowSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
+		mightyBlowSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
+		hasteSpell = new int[] {2, 2, 2, 2, 2, 2, 2};
 		
 		
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
@@ -4875,7 +4889,7 @@ public class MainActivity2 extends ActionBarActivity {
 					
 					centerscrolltext.setVisibility(View.VISIBLE);													
 			  		centerscrolltext.startAnimation(animAlphaText);
-					centerscrolltext.append("\n" + "> The computer uses it's cure spell...");
+					centerscrolltext.append("\n" + "> The computer uses cure spell...");
 					
 					// for(int x = 0; x < 100; --x)
 					// {}				
@@ -6254,6 +6268,12 @@ public class MainActivity2 extends ActionBarActivity {
 										ArrayOfHitPoints.hitpoints[0] = ArrayOfHitPoints.hitpoints[0] - (attackDamage * 2);
 										
 										
+										TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+						    			playerHitPointsTextView.setTypeface(typeFace);
+						    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+						    			//playerHitPointsTextView.bringToFront();
+						    			
+										
 										final Handler h = new Handler();
 							  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 							  	  	  			
@@ -6261,27 +6281,33 @@ public class MainActivity2 extends ActionBarActivity {
 								  	  	  	public void run() {
 							  	  	  			
 								  	  	  		if (ArrayOfHitPoints.hitpoints[0] == 0) {
-													/*
+													
 													centerscrolltext.setVisibility(View.VISIBLE);													
 											  		centerscrolltext.startAnimation(animAlphaText);			  		
 													centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you have been knocked unconscious!");
-													*/
 													
+													/*
 													AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 												    
 													alert.setCancelable(false);
 													
 													alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
-										  	    	/*
-										  	    	alert.setMessage("something");
-										  	    	*/	    	
+										  	    	
+										  	    	//alert.setMessage("something");
+										  	    		    	
 											    	
 											    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 												    	public void onClick(DialogInterface dialog, int whichButton) {
-												    		
+												    */		
 												    		//hideNavigation();
-												    		
-												    		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
+												    
+													final Handler h = new Handler();
+										  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+										  	  	  			
+										  	  	  		@Override
+											  	  	  	public void run() {
+										  	  	  			
+											  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 											  	    			
 											  	    			gameEngineComputerFirst2();   							
 											  				}
@@ -6290,12 +6316,14 @@ public class MainActivity2 extends ActionBarActivity {
 														  						
 														  		turn();    							
 														  	}
+											  	  	  	}
+										  	  	  	}, 2000);									    		
 														  	
-														  	dialog.dismiss();
-												    	}
-											    	});
+														  	//dialog.dismiss();
+												    	//}
+											    	//});
 											    	
-											    	alert.show(); 
+											    	//alert.show(); 
 													
 											    	/*
 													System.out.print("Press a key to continue... ");
@@ -6388,7 +6416,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 	  			
-	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  			final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);	  			
 	  			
 	  			
@@ -6478,6 +6506,12 @@ public class MainActivity2 extends ActionBarActivity {
 											ArrayOfHitPoints.hitpoints[0] = ArrayOfHitPoints.hitpoints[0] - attackDamage;
 											
 											
+											TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+							    			playerHitPointsTextView.setTypeface(typeFace);
+							    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+							    			//playerHitPointsTextView.bringToFront();
+							    			
+											
 											final Handler h = new Handler();
 								  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 								  	  	  			
@@ -6485,27 +6519,33 @@ public class MainActivity2 extends ActionBarActivity {
 									  	  	  	public void run() {
 								  	  	  			
 									  	  	  		if (ArrayOfHitPoints.hitpoints[0] == 0) {
-														/*
+														
 														centerscrolltext.setVisibility(View.VISIBLE);													
 												  		centerscrolltext.startAnimation(animAlphaText);			  		
 														centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0]	+ ", you have been knocked unconscious!");
-														*/
 														
+														/*
 														AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 													    
 														alert.setCancelable(false);
 														
 														alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
-											  	    	/*
-											  	    	alert.setMessage("something");
-											  	    	*/	    	
+											  	    	
+											  	    	//alert.setMessage("something");
+											  	    		    	
 												    	
 												    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 													    	public void onClick(DialogInterface dialog, int whichButton) {
-													    		
+													    */		
 													    		//hideNavigation();
-													    		
-													    		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
+													    
+														final Handler h = new Handler();
+											  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+											  	  	  			
+											  	  	  		@Override
+												  	  	  	public void run() {
+											  	  	  			
+												  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 												  	    			
 												  	    			gameEngineComputerFirst2();   							
 												  				}
@@ -6523,12 +6563,14 @@ public class MainActivity2 extends ActionBarActivity {
 															  						
 															  		computerHastePartTwo();    							
 															  	}
+												  	  	  	}
+											  	  	  	}, 2000);											    		
 															  	
-															  	dialog.dismiss();
-													    	}
-												    	});
+															  	//dialog.dismiss();
+													    	//}
+												    	//});
 												    	
-												    	alert.show();
+												    	//alert.show();
 														
 														/*
 														System.out.print("Press a key to continue... ");
@@ -6688,6 +6730,12 @@ public class MainActivity2 extends ActionBarActivity {
 											ArrayOfHitPoints.hitpoints[0] = ArrayOfHitPoints.hitpoints[0] - attackDamage;
 											
 											
+											TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+							    			playerHitPointsTextView.setTypeface(typeFace);
+							    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+							    			//playerHitPointsTextView.bringToFront();
+							    			
+											
 											final Handler h = new Handler();
 								  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 								  	  	  			
@@ -6695,27 +6743,33 @@ public class MainActivity2 extends ActionBarActivity {
 									  	  	  	public void run() {
 								  	  	  			
 									  	  	  		if (ArrayOfHitPoints.hitpoints[0] == 0) {
-														/*
+														
 														centerscrolltext.setVisibility(View.VISIBLE);													
 												  		centerscrolltext.startAnimation(animAlphaText);			  		
 														centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0]	+ ", you have been knocked unconscious!");
-														*/
 														
+														/*
 														AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 													    
 														alert.setCancelable(false);
 														
 														alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
-											  	    	/*
-											  	    	alert.setMessage("something");
-											  	    	*/	    	
+											  	    	
+											  	    	//alert.setMessage("something");
+											  	    		    	
 												    	
 												    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 													    	public void onClick(DialogInterface dialog, int whichButton) {
-													    		
+													    */		
 													    		//hideNavigation();
-													    		
-													    		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
+													    
+														final Handler h = new Handler();
+											  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+											  	  	  			
+											  	  	  		@Override
+												  	  	  	public void run() {
+											  	  	  			
+												  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 												  	    			
 												  	    			gameEngineComputerFirst2();   							
 												  				}
@@ -6733,12 +6787,14 @@ public class MainActivity2 extends ActionBarActivity {
 															  						
 															  		computerHastePartTwo();    							
 															  	}
+												  	  	  	}
+											  	  	  	}, 2000);										    		
 															  	
-															  	dialog.dismiss();
-													    	}
-												    	});
+															  	//dialog.dismiss();
+													    	//}
+												    	//});
 												    	
-												    	alert.show();
+												    	//alert.show();
 														
 														/*
 														System.out.print("Press a key to continue... ");
@@ -6877,6 +6933,12 @@ public class MainActivity2 extends ActionBarActivity {
 									ArrayOfHitPoints.hitpoints[0] = ArrayOfHitPoints.hitpoints[0] - attackDamage;
 									
 									
+									TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+					    			playerHitPointsTextView.setTypeface(typeFace);
+					    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+					    			//playerHitPointsTextView.bringToFront();
+					    			
+									
 									final Handler h = new Handler();
 						  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 						  	  	  			
@@ -6884,27 +6946,33 @@ public class MainActivity2 extends ActionBarActivity {
 							  	  	  	public void run() {
 						  	  	  			
 							  	  	  		if (ArrayOfHitPoints.hitpoints[0] == 0) {
-												/*
+												
 												centerscrolltext.setVisibility(View.VISIBLE);													
 										  		centerscrolltext.startAnimation(animAlphaText);			  		
 												centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0]	+ ", you have been knocked unconscious!");
-												*/
 												
+												/*
 												AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 											    
 												alert.setCancelable(false);
 												
 												alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
-									  	    	/*
-									  	    	alert.setMessage("something");
-									  	    	*/	    	
+									  	    	
+									  	    	//alert.setMessage("something");
+									  	    		    	
 										    	
 										    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 											    	public void onClick(DialogInterface dialog, int whichButton) {
-											    		
+											    */		
 											    		//hideNavigation();
 											    		
-											    		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
+												final Handler h = new Handler();
+									  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+									  	  	  			
+									  	  	  		@Override
+										  	  	  	public void run() {
+									  	  	  			
+										  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 										  	    			
 										  	    			gameEngineComputerFirst2();   							
 										  				}
@@ -6922,12 +6990,14 @@ public class MainActivity2 extends ActionBarActivity {
 													  						
 													  		computerHastePartTwo();    							
 													  	}
+										  	  	  	}
+									  	  	  	}, 2000);											
 													  	
-													  	dialog.dismiss();
-											    	}
-										    	});
+													  	//dialog.dismiss();
+											    	//}
+										    	//});
 										    	
-										    	alert.show();
+										    	//alert.show();
 												
 												/*
 												System.out.print("Press a key to continue... ");
@@ -7086,16 +7156,17 @@ public class MainActivity2 extends ActionBarActivity {
 								ArrayOfHitPoints.hitpoints[1] = ArrayOfHitPoints.hitpoints[1] + cureResult; // WAS cure
 								
 								
+								TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+				    			computerHitPointsTextView.setTypeface(typeFace);
+				    			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
+				    			//computerHitPointsTextView.bringToFront();
+				    			
+								
 								final Handler h = new Handler();
 					  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 					  	  	  			
 					  	  	  		@Override
-						  	  	  	public void run() {
-					  	  	  			
-						  	  	  		TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
-						    			playerHitPointsTextView.setTypeface(typeFace);
-						    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
-					  	  	  			
+						  	  	  	public void run() {					  	  	  			
 					  	  	  			
 						  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 						  	    			
@@ -8295,7 +8366,7 @@ public class MainActivity2 extends ActionBarActivity {
 								
 								centerscrolltext.setVisibility(View.VISIBLE);													
 						  		centerscrolltext.startAnimation(animAlphaText);			  		
-								centerscrolltext.append("\n" + "> The computer uses it's bless spell...");
+								centerscrolltext.append("\n" + "> The computer uses bless spell...");
 								
 								blessGraphic();								
 						  	  	  		
@@ -8701,7 +8772,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  						
 	  						centerscrolltext.setVisibility(View.VISIBLE); 													
 	  				  		centerscrolltext.startAnimation(animAlphaText);
-	  						centerscrolltext.append("\n" + "> The computer uses it's cure spell...");			
+	  						centerscrolltext.append("\n" + "> The computer uses cure spell...");			
 	  						
 	  						computerCure();
 	  						return;
@@ -9464,6 +9535,12 @@ public class MainActivity2 extends ActionBarActivity {
 										ArrayOfHitPoints.hitpoints[0] = ArrayOfHitPoints.hitpoints[0] - (computerAttackDamageDisarmed * 2);
 							  			
 							  			
+										TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+						    			playerHitPointsTextView.setTypeface(typeFace);
+						    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+						    			//playerHitPointsTextView.bringToFront();
+						    			
+										
 										final Handler h = new Handler();
 							  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 							  	  	  			
@@ -9471,27 +9548,33 @@ public class MainActivity2 extends ActionBarActivity {
 								  	  	  	public void run() {
 							  	  	  			
 								  	  	  		if (ArrayOfHitPoints.hitpoints[0] == 0) {
-													/*
+													
 													centerscrolltext.setVisibility(View.VISIBLE);													
 											  		centerscrolltext.startAnimation(animAlphaText);			  		
 													centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you have been knocked unconscious!");
-													*/
 													
+													/*
 													AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 												    
 													alert.setCancelable(false);
 													
 													alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
-										  	    	/*
-										  	    	alert.setMessage("something");
-										  	    	*/	    	
+										  	    	
+										  	    	//alert.setMessage("something");
+										  	    		    	
 											    	
 											    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 												    	public void onClick(DialogInterface dialog, int whichButton) {
-												    		
+												    */		
 												    		//hideNavigation();
-												    		
-												    		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
+												    
+													final Handler h = new Handler();
+										  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+										  	  	  			
+										  	  	  		@Override
+											  	  	  	public void run() {
+										  	  	  			
+											  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 											  	    			
 											  	    			gameEngineComputerFirst2();   							
 											  				}
@@ -9500,12 +9583,14 @@ public class MainActivity2 extends ActionBarActivity {
 														  						
 														  		turn();    							
 														  	}
+											  	  	  	}
+										  	  	  	}, 2000);									    		
 														  	
-														  	dialog.dismiss();
-												    	}
-											    	});
+														  	//dialog.dismiss();
+												    	//}
+											    	//});
 											    	
-											    	alert.show(); 
+											    	//alert.show(); 
 													
 											    	/*
 													System.out.print("Press a key to continue... ");
@@ -9609,7 +9694,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 	  			
-	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  			final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);
 	  			
 	  			
@@ -9694,6 +9779,12 @@ public class MainActivity2 extends ActionBarActivity {
 											ArrayOfHitPoints.hitpoints[0] = ArrayOfHitPoints.hitpoints[0] - computerAttackDamageDisarmed;
 											
 											
+											TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+							    			playerHitPointsTextView.setTypeface(typeFace);
+							    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+							    			//playerHitPointsTextView.bringToFront();
+											
+											
 											final Handler h = new Handler();
 								  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 								  	  	  			
@@ -9701,27 +9792,33 @@ public class MainActivity2 extends ActionBarActivity {
 									  	  	  	public void run() {
 								  	  	  			
 									  	  	  		if (ArrayOfHitPoints.hitpoints[0] == 0) {
-														/*
+														
 														centerscrolltext.setVisibility(View.VISIBLE);													
 												  		centerscrolltext.startAnimation(animAlphaText);			  		
 														centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0]	+ ", you have been knocked unconscious!");
-														*/
 														
+														/*
 														AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 													    
 														alert.setCancelable(false);
 														
 														alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
-											  	    	/*
-											  	    	alert.setMessage("something");
-											  	    	*/	    	
+											  	    	
+											  	    	//alert.setMessage("something");
+											  	    		    	
 												    	
 												    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 													    	public void onClick(DialogInterface dialog, int whichButton) {
-													    		
+													    */		
 													    		//hideNavigation();
 													    		
-													    		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+														final Handler h = new Handler();
+											  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+											  	  	  			
+											  	  	  		@Override
+												  	  	  	public void run() {
+											  	  	  			
+												  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
 												  	    			
 												  	    			gameEngineComputerFirst2();   							
 												  				}
@@ -9730,12 +9827,14 @@ public class MainActivity2 extends ActionBarActivity {
 															  						
 															  		turn();    							
 															  	}
+												  	  	  	}
+											  	  	  	}, 2000);													
 															  	
-															  	dialog.dismiss();
-													    	}
-												    	});
+															  	//dialog.dismiss();
+													    	//}
+												    	//});
 												    	
-												    	alert.show();
+												    	//alert.show();
 														
 														/*
 														System.out.print("Press a key to continue... ");
@@ -9893,6 +9992,12 @@ public class MainActivity2 extends ActionBarActivity {
 											ArrayOfHitPoints.hitpoints[0] = ArrayOfHitPoints.hitpoints[0] - computerAttackDamageDisarmed;
 											
 											
+											TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+							    			playerHitPointsTextView.setTypeface(typeFace);
+							    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+							    			//playerHitPointsTextView.bringToFront();
+											
+											
 											final Handler h = new Handler();
 								  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 								  	  	  			
@@ -9900,27 +10005,33 @@ public class MainActivity2 extends ActionBarActivity {
 									  	  	  	public void run() {
 								  	  	  			
 									  	  	  		if (ArrayOfHitPoints.hitpoints[0] == 0) {
-														/*
+														
 														centerscrolltext.setVisibility(View.VISIBLE);													
 												  		centerscrolltext.startAnimation(animAlphaText);			  		
 														centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0]	+ ", you have been knocked unconscious!");
-														*/
 														
+														/*
 														AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 													    
 														alert.setCancelable(false);
 														
 														alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
-											  	    	/*
-											  	    	alert.setMessage("something");
-											  	    	*/	    	
+											  	    	
+											  	    	//alert.setMessage("something");
+											  	    		    	
 												    	
 												    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 													    	public void onClick(DialogInterface dialog, int whichButton) {
-													    		
+													    */		
 													    		//hideNavigation();
-													    		
-													    		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+													    
+														final Handler h = new Handler();
+											  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+											  	  	  			
+											  	  	  		@Override
+												  	  	  	public void run() {
+											  	  	  			
+												  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
 												  	    			
 												  	    			gameEngineComputerFirst2();   							
 												  				}
@@ -9929,12 +10040,14 @@ public class MainActivity2 extends ActionBarActivity {
 															  						
 															  		turn();    							
 															  	}
+												  	  	  	}
+											  	  	  	}, 2000);											    		
 															  	
-															  	dialog.dismiss();
-													    	}
-												    	});
+															  	//dialog.dismiss();
+													    	//}
+												    	//});
 												    	
-												    	alert.show();
+												    	//alert.show();
 														
 														/*
 														System.out.print("Press a key to continue... ");
@@ -10071,6 +10184,12 @@ public class MainActivity2 extends ActionBarActivity {
 									ArrayOfHitPoints.hitpoints[0] = ArrayOfHitPoints.hitpoints[0] - computerAttackDamageDisarmed;
 									
 									
+									TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+					    			playerHitPointsTextView.setTypeface(typeFace);
+					    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+					    			//playerHitPointsTextView.bringToFront();
+									
+									
 									final Handler h = new Handler();
 						  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 						  	  	  			
@@ -10078,27 +10197,33 @@ public class MainActivity2 extends ActionBarActivity {
 							  	  	  	public void run() {
 						  	  	  			
 							  	  	  		if (ArrayOfHitPoints.hitpoints[0] == 0) {
-												/*
+												
 												centerscrolltext.setVisibility(View.VISIBLE);													
 										  		centerscrolltext.startAnimation(animAlphaText);			  		
 												centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0]	+ ", you have been knocked unconscious!");
-												*/
 												
+												/*
 												AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 											    
 												alert.setCancelable(false);
 												
 												alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
-									  	    	/*
-									  	    	alert.setMessage("something");
-									  	    	*/	    	
+									  	    	
+									  	    	//alert.setMessage("something");
+									  	    		    	
 										    	
 										    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 											    	public void onClick(DialogInterface dialog, int whichButton) {
-											    		
+											    */		
 											    		//hideNavigation();
-											    		
-											    		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+											    
+												final Handler h = new Handler();
+									  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+									  	  	  			
+									  	  	  		@Override
+										  	  	  	public void run() {
+									  	  	  			
+										  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
 										  	    			
 										  	    			gameEngineComputerFirst2();   							
 										  				}
@@ -10107,12 +10232,14 @@ public class MainActivity2 extends ActionBarActivity {
 													  						
 													  		turn();    							
 													  	}
+										  	  	  	}
+									  	  	  	}, 2000);								    		
 													  	
-													  	dialog.dismiss();
-											    	}
-										    	});
+													  	//dialog.dismiss();
+											    	//}
+										    	//});
 										    	
-										    	alert.show();
+										    	//alert.show();
 												
 												/*
 												System.out.print("Press a key to continue... ");
@@ -10371,6 +10498,12 @@ public class MainActivity2 extends ActionBarActivity {
 																																																
 																						ArrayOfHitPoints.hitpoints[0] = ArrayOfHitPoints.hitpoints[0] - (totalAttackDamage * 2);
 																						
+																						
+																						TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+																		    			playerHitPointsTextView.setTypeface(typeFace);
+																		    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+																		    			//playerHitPointsTextView.bringToFront();
+																						
 																				
 																						/*
 																						 * FIXED CRITICAL HIT SO DELETE??? System.out.println();
@@ -10398,27 +10531,33 @@ public class MainActivity2 extends ActionBarActivity {
 																				  	  	  	public void run() {
 																			  	  	  			
 																				  	  	  		if (ArrayOfHitPoints.hitpoints[0] == 0) {
-																									/*
+																									
 																									centerscrolltext.setVisibility(View.VISIBLE);													
 																							  		centerscrolltext.startAnimation(animAlphaText);			  		
 																									centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you have been knocked unconscious!");
-																									*/
 																									
+																									/*
 																									AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 																								    
 																									alert.setCancelable(false);
 																									
 																									alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
-																						  	    	/*
-																						  	    	alert.setMessage("something");
-																						  	    	*/	    	
+																						  	    	
+																						  	    	//alert.setMessage("something");
+																						  	    		    	
 																							    	
 																							    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 																								    	public void onClick(DialogInterface dialog, int whichButton) {
-																								    		
+																								    */		
 																								    		//hideNavigation();
 																								    		
-																								    		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
+																									final Handler h = new Handler();
+																						  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+																						  	  	  			
+																						  	  	  		@Override
+																							  	  	  	public void run() {
+																						  	  	  			
+																							  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 																							  	    			
 																							  	    			gameEngineComputerFirst2();   							
 																							  				}
@@ -10427,12 +10566,14 @@ public class MainActivity2 extends ActionBarActivity {
 																										  						
 																										  		turn();    							
 																										  	}
+																							  	  	  	}
+																						  	  	  	}, 2000);																								
 																										  	
-																										  	dialog.dismiss();
-																								    	}
-																							    	});
+																										  	//dialog.dismiss();
+																								    	//}
+																							    	//});
 																							    	
-																							    	alert.show(); 
+																							    	//alert.show(); 
 																									
 																							    	/*
 																									System.out.print("Press a key to continue... ");
@@ -10686,6 +10827,12 @@ public class MainActivity2 extends ActionBarActivity {
 																						ArrayOfHitPoints.hitpoints[0] = ArrayOfHitPoints.hitpoints[0] - (totalAttackDamage * 2);
 																						
 																						
+																						TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+																		    			playerHitPointsTextView.setTypeface(typeFace);
+																		    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+																		    			//playerHitPointsTextView.bringToFront();
+																						
+																						
 																						final Handler h = new Handler();
 																			  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 																			  	  	  			
@@ -10693,27 +10840,33 @@ public class MainActivity2 extends ActionBarActivity {
 																				  	  	  	public void run() {
 																			  	  	  			
 																				  	  	  		if (ArrayOfHitPoints.hitpoints[0] == 0) {
-																									/*
+																									
 																									centerscrolltext.setVisibility(View.VISIBLE);													
 																							  		centerscrolltext.startAnimation(animAlphaText);			  		
 																									centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0]	+ ", you have been knocked unconscious!");
-																									*/
 																									
+																									/*
 																									AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 																								    
 																									alert.setCancelable(false);
 																									
 																									alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
-																						  	    	/*
-																						  	    	alert.setMessage("something");
-																						  	    	*/	    	
+																						  	    	
+																						  	    	//alert.setMessage("something");
+																						  	    		    	
 																							    	
 																							    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 																								    	public void onClick(DialogInterface dialog, int whichButton) {
-																								    		
+																								    */		
 																								    		//hideNavigation();
 																								    		
-																								    		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
+																									final Handler h = new Handler();
+																						  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+																						  	  	  			
+																						  	  	  		@Override
+																							  	  	  	public void run() {
+																						  	  	  			
+																							  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 																							  	    			
 																							  	    			gameEngineComputerFirst2();   							
 																							  				}
@@ -10731,12 +10884,14 @@ public class MainActivity2 extends ActionBarActivity {
 																										  						
 																										  		computerHastePartTwo();    							
 																										  	}
+																							  	  	  	}
+																						  	  	  	}, 2000);																								
 																										  	
-																										  	dialog.dismiss();
-																								    	}
-																							    	});
+																										  	//dialog.dismiss();
+																								    	//}
+																							    	//});
 																							    	
-																							    	alert.show();	
+																							    	//alert.show();	
 																									
 																									/*
 																									System.out.print("Press a key to continue... ");
@@ -10937,7 +11092,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 	  			
-	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  			final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);
 	  			
 	  			
@@ -11060,6 +11215,12 @@ public class MainActivity2 extends ActionBarActivity {
 																		ArrayOfHitPoints.hitpoints[0] = ArrayOfHitPoints.hitpoints[0] - totalAttackDamage;
 																		
 																		
+																		TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+														    			playerHitPointsTextView.setTypeface(typeFace);
+														    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+														    			//playerHitPointsTextView.bringToFront();
+																		
+																		
 																		final Handler h = new Handler();
 															  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 															  	  	  			
@@ -11067,27 +11228,33 @@ public class MainActivity2 extends ActionBarActivity {
 																  	  	  	public void run() {
 															  	  	  			
 																  	  	  		if (ArrayOfHitPoints.hitpoints[0] == 0) {
-																					/*
+																					
 																					centerscrolltext.setVisibility(View.VISIBLE);													
 																			  		centerscrolltext.startAnimation(animAlphaText);			  		
 																					centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0]	+ ", you have been knocked unconscious!");
-																					*/
 																					
+																					/*
 																					AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 																				    
 																					alert.setCancelable(false);
 																					
 																					alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
-																		  	    	/*
-																		  	    	alert.setMessage("something");
-																		  	    	*/	    	
+																		  	    	
+																		  	    	//alert.setMessage("something");
+																		  	    		    	
 																			    	
 																			    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 																				    	public void onClick(DialogInterface dialog, int whichButton) {
-																				    		
+																				    */		
 																				    		//hideNavigation();
-																				    		
-																				    		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
+																				    
+																					final Handler h = new Handler();
+																		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+																		  	  	  			
+																		  	  	  		@Override
+																			  	  	  	public void run() {
+																		  	  	  			
+																			  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 																			  	    			
 																			  	    			gameEngineComputerFirst2();   							
 																			  				}
@@ -11105,12 +11272,14 @@ public class MainActivity2 extends ActionBarActivity {
 																						  						
 																						  		computerHastePartTwo();    							
 																						  	}
+																			  	  	  	}
+																		  	  	  	}, 2000);																	    		
 																						  	
-																						  	dialog.dismiss();
-																				    	}
-																			    	});
+																						  	//dialog.dismiss();
+																				    	//}
+																			    	//});
 																			    	
-																			    	alert.show();
+																			    	//alert.show();
 																					
 																					/*
 																					System.out.print("Press a key to continue... ");
@@ -11331,7 +11500,7 @@ public class MainActivity2 extends ActionBarActivity {
 						  	  	  			
 							  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 									  		centerscrolltext.startAnimation(animAlphaText);			  		
-											centerscrolltext.append("\n" + "> The computer did not hit itself. Now it must roll to see if it loses it's weapon...");
+											centerscrolltext.append("\n" + "> The computer did not hit itself... now it must roll to see if it loses it's weapon...");
 											
 											ArrayOfAttackResult.attackResult[0] = (int) ((Math.random() * 20) + 1);
 											
@@ -11538,39 +11707,48 @@ public class MainActivity2 extends ActionBarActivity {
 										ArrayOfHitPoints.hitpoints[1] = ArrayOfHitPoints.hitpoints[1] - attackDamage;
 										
 										
+										TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+						    			computerHitPointsTextView.setTypeface(typeFace);
+						    			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
+						    			//computerHitPointsTextView.bringToFront();
+										
+										
 										final Handler h = new Handler();
 							  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 							  	  	  			
 							  	  	  		@Override
-								  	  	  	public void run() {
-							  	  	  			
-								  	  	  		TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
-								    			computerHitPointsTextView.setTypeface(typeFace);
-								    			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
-							  	  	  			
+								  	  	  	public void run() {							  	  	  			
 								    			
 								  	  	  		if (ArrayOfHitPoints.hitpoints[1] == 0) {
-													/*
+													
 													centerscrolltext.setVisibility(View.VISIBLE);													
 											  		centerscrolltext.startAnimation(animAlphaText);			  		
 													centerscrolltext.append("\n" + "> The computer has been knocked unconscious!");
-													*/
 													
+													/*
 													AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 												    
 													alert.setCancelable(false);
 													
 													alert.setTitle("The computer has been knocked unconscious.");
-										  	    	/*
-										  	    	alert.setMessage("something");
-										  	    	*/	    	
+										  	    	
+										  	    	//alert.setMessage("something");										  	    		    	
 											    	
+													
+													
 											    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 												    	public void onClick(DialogInterface dialog, int whichButton) {
-												    		
+												    */		
 												    		//hideNavigation();
-												    		
-												    		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
+													
+												    
+													final Handler h = new Handler();
+										  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+										  	  	  			
+										  	  	  		@Override
+											  	  	  	public void run() {
+										  	  	  			
+											  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 											  	    			
 											  	    			gameEngineComputerFirst2();   							
 											  				}
@@ -11588,18 +11766,16 @@ public class MainActivity2 extends ActionBarActivity {
 														  						
 														  		computerHastePartTwo();    							
 														  	}
+											  	  	  	}
+										  	  	  	}, 2000);										    		
 														  	
-														  	dialog.dismiss();
-												    	}
-											    	});
+														  	//dialog.dismiss();
+												    	//}
+											    	//});
 											    	
-											    	alert.show();
-													
-													/*
-													System.out.print("Press a key to continue... ");
-													input.nextLine();
-													*/
+											    	//alert.show();												
 												}
+								  	  	  		
 												if (ArrayOfHitPoints.hitpoints[1] < 0) {
 													
 													
@@ -11765,7 +11941,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 	  			
-	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  			final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);	  			
 	  			
 		
@@ -11931,6 +12107,12 @@ public class MainActivity2 extends ActionBarActivity {
 																		ArrayOfHitPoints.hitpoints[0] = ArrayOfHitPoints.hitpoints[0] - totalAttackDamage;
 																		
 																		
+																		TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+														    			playerHitPointsTextView.setTypeface(typeFace);
+														    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+														    			//playerHitPointsTextView.bringToFront();
+																		
+																		
 																		final Handler h = new Handler();
 															  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 															  	  	  			
@@ -11938,27 +12120,33 @@ public class MainActivity2 extends ActionBarActivity {
 																  	  	  	public void run() {
 															  	  	  			
 																  	  	  		if (ArrayOfHitPoints.hitpoints[0] == 0) {
-																					/*
+																					
 																					centerscrolltext.setVisibility(View.VISIBLE);													
 																			  		centerscrolltext.startAnimation(animAlphaText);			  		
 																					centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0]	+ ", you have been knocked unconscious!");
-																					*/
 																					
+																					/*
 																					AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 																				    
 																					alert.setCancelable(false);
 																					
 																					alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
-																		  	    	/*
-																		  	    	alert.setMessage("something");
-																		  	    	*/	    	
+																		  	    	
+																		  	    	//alert.setMessage("something");
+																		  	    		    	
 																			    	
 																			    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 																				    	public void onClick(DialogInterface dialog, int whichButton) {
-																				    		
+																				    */		
 																				    		//hideNavigation();
-																				    		
-																				    		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+																				    
+																					final Handler h = new Handler();
+																		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+																		  	  	  			
+																		  	  	  		@Override
+																			  	  	  	public void run() {
+																		  	  	  			
+																			  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
 																			  	    			
 																			  	    			gameEngineComputerFirst2();   							
 																			  				}
@@ -11967,12 +12155,14 @@ public class MainActivity2 extends ActionBarActivity {
 																						  						
 																						  		turn();    							
 																						  	}
+																			  	  	  	}
+																		  	  	  	}, 2000);																	    		
 																						  	
-																						  	dialog.dismiss();
-																				    	}
-																			    	});
+																						  	//dialog.dismiss();
+																				    	//}
+																			    	//});
 																			    	
-																			    	alert.show();
+																			    	//alert.show();
 																					
 																					/*
 																					System.out.print("Press a key to continue... ");
@@ -12744,7 +12934,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 	  			
-	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  			final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);
   	  	    	
 	  			
@@ -12780,6 +12970,13 @@ public class MainActivity2 extends ActionBarActivity {
 									
 				
 									ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked]	- (attackDamage * 2);
+									
+									
+									TextView playerNumberAttackedHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+									playerNumberAttackedHitPointsTextView.setTypeface(typeFace);
+									playerNumberAttackedHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[playerNumberAttacked]));
+									//playerNumberAttackedHitPointsTextView.bringToFront();
+									
 									
 									mightyBlowResultsHandler();
 					  	  	  	}
@@ -12827,6 +13024,13 @@ public class MainActivity2 extends ActionBarActivity {
 				
 									ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked]	- (attackDamageDisarmed * 2);
 									
+									
+									TextView playerNumberAttackedHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+									playerNumberAttackedHitPointsTextView.setTypeface(typeFace);
+									playerNumberAttackedHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[playerNumberAttacked]));
+									//playerNumberAttackedHitPointsTextView.bringToFront();
+									
+									
 									mightyBlowResultsHandler();
 					  	  	  	}
 				  	  	  	}, 2000);						
@@ -12841,10 +13045,19 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	public void mightyBlowResultsHandler() {
 		
+		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+		
 		runOnUiThread(new Runnable() {
   	  	    @Override
   	  	    public void run() {
   	  	    	
+	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+	  			
+	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  			centerscrolltext.setTypeface(typeFace);
+  	  	    	
+	  			
 	  	  	    final Handler h2 = new Handler();
 	  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
 	  	  	  			
@@ -12853,21 +13066,32 @@ public class MainActivity2 extends ActionBarActivity {
 				
 						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] == 0) {
 							
+							centerscrolltext.setVisibility(View.VISIBLE);													
+					  		centerscrolltext.startAnimation(animAlphaText);			  		
+							centerscrolltext.append("\n" + "> The computer has been knocked unconscious!");
+							
+							/*
 							AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 						    
 							alert.setCancelable(false);
 							
 							alert.setTitle("The computer has been knocked unconscious.");
-				  	    	/*
-				  	    	alert.setMessage("something");
-				  	    	*/	    	
+				  	    	
+				  	    	//alert.setMessage("something");
+				  	    		    	
 					    	
 					    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 						    	public void onClick(DialogInterface dialog, int whichButton) {
-						    		
+						    */		
 						    		//hideNavigation();
-						    		
-						    		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
+						    
+							final Handler h = new Handler();
+				  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+				  	  	  			
+				  	  	  		@Override
+					  	  	  	public void run() {
+				  	  	  			
+					  	  	  		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
 										
 						    			gameEngineHumanFirst2();    							
 									}
@@ -12876,11 +13100,13 @@ public class MainActivity2 extends ActionBarActivity {
 						    			
 						    			turn();   							
 									}
+					  	  	  	}
+				  	  	  	}, 2000);			    		
 									
-									dialog.dismiss();
-						    	}
-					    	});								    	
-					    	alert.show();						
+									//dialog.dismiss();
+						    	//}
+					    	//});								    	
+					    	//alert.show();						
 						}
 	
 						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] < 0) {
@@ -13114,7 +13340,7 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  			
 				  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 						  		centerscrolltext.startAnimation(animAlphaText);
-								centerscrolltext.append("\n" + "> The computer uses it's dodge.");
+								centerscrolltext.append("\n" + "> The computer uses dodge.");
 								
 								dodgeBlowSpell[playerNumberAttacked] = dodgeBlowSpell[playerNumberAttacked] - 1;
 								
@@ -13386,7 +13612,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 	  			
-	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  			final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);
   	  	    	
 	  			
@@ -13408,6 +13634,13 @@ public class MainActivity2 extends ActionBarActivity {
 							
 		
 							ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - attackDamage;
+							
+							
+							TextView playerNumberAttackedHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+							playerNumberAttackedHitPointsTextView.setTypeface(typeFace);
+							playerNumberAttackedHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[playerNumberAttacked]));
+							//playerNumberAttackedHitPointsTextView.bringToFront();
+							
 							
 							damageResultsHandler();
 						}
@@ -13432,6 +13665,13 @@ public class MainActivity2 extends ActionBarActivity {
 		
 							ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - attackDamageDisarmed;
 							
+							
+							TextView playerNumberAttackedHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+							playerNumberAttackedHitPointsTextView.setTypeface(typeFace);
+							playerNumberAttackedHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[playerNumberAttacked]));
+							//playerNumberAttackedHitPointsTextView.bringToFront();
+							
+							
 							damageResultsHandler();
 						}					
 			  	  	  	// NEED THIS?:
@@ -13444,6 +13684,8 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	public void damageResultsHandler() {
 		
+		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+		
 		runOnUiThread(new Runnable() {
   	  	    @Override
   	  	    public void run() {
@@ -13454,33 +13696,41 @@ public class MainActivity2 extends ActionBarActivity {
 	  			final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);
   	  	    	
+	  			
 	  	  	    final Handler h = new Handler();
 	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 	  	  	  			
 	  	  	  		@Override
-		  	  	  	public void run() {
-	  	  	  			
-		  	  	  		TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
-		    			playerHitPointsTextView.setTypeface(typeFace);
-		    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+		  	  	  	public void run() {	  	  	  		
 	  	  	  			
 						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] == 0) {
 							
+							centerscrolltext.setVisibility(View.VISIBLE);													
+					  		centerscrolltext.startAnimation(animAlphaText);			  		
+							centerscrolltext.append("\n" + "> The computer has been knocked unconscious!");
+							
+							/*
 							AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 						    
 							alert.setCancelable(false);
 							
 							alert.setTitle("The computer has been knocked unconscious.");
-				  	    	/*
-				  	    	alert.setMessage("something");
-				  	    	*/	    	
+				  	    	
+				  	    	//alert.setMessage("something");
+				  	    		    	
 					    	
 					    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 						    	public void onClick(DialogInterface dialog, int whichButton) {
-						    		
+						    */		
 						    		//hideNavigation();
-						    		
-						    		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
+						    
+							final Handler h = new Handler();
+				  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+				  	  	  			
+				  	  	  		@Override
+					  	  	  	public void run() {
+				  	  	  			
+					  	  	  		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
 										
 						    			gameEngineHumanFirst2();    							
 									}
@@ -13499,11 +13749,13 @@ public class MainActivity2 extends ActionBarActivity {
 						    			
 										hastePartTwo();   							
 									}
+					  	  	  	}
+				  	  	  	}, 2000); 		
 									
-									dialog.dismiss();
-						    	}
-					    	});								    	
-					    	alert.show();						
+									//dialog.dismiss();
+						    	//}
+					    	//});								    	
+					    	//alert.show();						
 						}
 	
 						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] < 0) {
@@ -13745,7 +13997,7 @@ public class MainActivity2 extends ActionBarActivity {
 								
 								centerscrolltext.setVisibility(View.VISIBLE);
 						  		centerscrolltext.startAnimation(animAlphaText);
-						  		centerscrolltext.append("\n" + "> The computer uses it's dodge.");					
+						  		centerscrolltext.append("\n" + "> The computer uses dodge.");					
 			
 								dodgeBlowSpell[playerNumberAttacked] = dodgeBlowSpell[playerNumberAttacked] - 1;
 								
@@ -14083,7 +14335,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 	  			
-	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  			final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);
   	  	    	
 	  			
@@ -14107,6 +14359,13 @@ public class MainActivity2 extends ActionBarActivity {
 		
 							ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]);
 							
+							
+							TextView playerNumberAttackedHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+							playerNumberAttackedHitPointsTextView.setTypeface(typeFace);
+							playerNumberAttackedHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[playerNumberAttacked]));
+							//playerNumberAttackedHitPointsTextView.bringToFront();
+							
+							
 							criticalHitDamageResultsHandler();
 						}
 							
@@ -14118,6 +14377,13 @@ public class MainActivity2 extends ActionBarActivity {
 							
 							
 							ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2);
+							
+							
+							TextView playerNumberAttackedHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+							playerNumberAttackedHitPointsTextView.setTypeface(typeFace);
+							playerNumberAttackedHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[playerNumberAttacked]));
+							//playerNumberAttackedHitPointsTextView.bringToFront();
+							
 							
 							criticalHitDamageResultsHandler();
 						}					
@@ -14131,43 +14397,57 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	public void criticalHitDamageResultsHandler() {
 		
+		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+		
 		runOnUiThread(new Runnable() {
   	  	    @Override
   	  	    public void run() {
-		
+  	  	    	
+	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+	  			
+	  			final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  			centerscrolltext.setTypeface(typeFace);
+	  			
+  	  	    	
   	    		final Handler h2 = new Handler();
 		  	  	h2.postDelayed(new Runnable() {		  	  	  			
 		  	  			
 		  	  		@Override
-		  	  		public void run() {
-		  	  			
-		  	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-		  	  			
-			  	  		TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
-		    			computerHitPointsTextView.setTypeface(typeFace);
-		    			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
+		  	  		public void run() {		  	  		
 		  	  			
 						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] == 0) {
 							
+							centerscrolltext.setVisibility(View.VISIBLE);													
+					  		centerscrolltext.startAnimation(animAlphaText);			  		
+							centerscrolltext.append("\n" + "> The computer has been knocked unconscious!");
+							
+							/*
 							AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 						    
 							alert.setCancelable(false);
 							
 							alert.setTitle("The computer has been knocked unconscious.");
-				  	    	/*
-				  	    	alert.setMessage("something");
-				  	    	*/	    	
+				  	    	
+				  	    	//alert.setMessage("something");
+				  	    		    	
 					    	
 					    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 						    	public void onClick(DialogInterface dialog, int whichButton) {
-						    		
+						    */		
 						    		//hideNavigation();
-						    		
-						    		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
+						    
+							final Handler h = new Handler();
+				  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+				  	  	  			
+				  	  	  		@Override
+					  	  	  	public void run() {
+				  	  	  			
+					  	  	  		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
 										
 						    			gameEngineHumanFirst2();    							
 									}
-		
+	
 									if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
 						    			
 						    			turn();   							
@@ -14177,16 +14457,18 @@ public class MainActivity2 extends ActionBarActivity {
 										
 						    			hastePartTwo();    							
 									}
-		
+	
 									if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
 						    			
 										hastePartTwo();   							
 									}
+					  	  	  	}
+				  	  	  	}, 2000);			    		
 									
-									dialog.dismiss();
-						    	}
-					    	});								    	
-					    	alert.show();						
+									//dialog.dismiss();
+						    	//}
+					    	//});								    	
+					    	//alert.show();						
 						}
 		
 						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] < 0) {
@@ -14439,7 +14721,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 	  			
-	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  			final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);
   	  	    	
 	  			
@@ -14478,6 +14760,13 @@ public class MainActivity2 extends ActionBarActivity {
 											
 											ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) * 2);
 											
+											
+											TextView playerNumberAttackedHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+											playerNumberAttackedHitPointsTextView.setTypeface(typeFace);
+											playerNumberAttackedHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[playerNumberAttacked]));
+											//playerNumberAttackedHitPointsTextView.bringToFront();
+							    			
+											
 											criticalHitMightyBlowDamageResultsHandler();
 						  	  	  			
 							  	  	  	}
@@ -14503,6 +14792,13 @@ public class MainActivity2 extends ActionBarActivity {
 										
 										ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - (((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) * 2);
 										
+										
+										TextView playerNumberAttackedHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+										playerNumberAttackedHitPointsTextView.setTypeface(typeFace);
+										playerNumberAttackedHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[playerNumberAttacked]));
+										//playerNumberAttackedHitPointsTextView.bringToFront();
+										
+										
 										criticalHitMightyBlowDamageResultsHandler();
 						  	  	  			
 							  	  	  	}
@@ -14520,10 +14816,19 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	public void criticalHitMightyBlowDamageResultsHandler() {
 		
+		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+		
 		runOnUiThread(new Runnable() {
   	  	    @Override
   	  	    public void run() {
-		
+  	  	    	
+	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+	  			
+	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  			centerscrolltext.setTypeface(typeFace);
+  	  	    	
+	  			
   	    		final Handler h4 = new Handler();
 		  	  	h4.postDelayed(new Runnable() {		  	  	  			
 		  	  			
@@ -14532,25 +14837,36 @@ public class MainActivity2 extends ActionBarActivity {
 			
 						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] == 0) {
 							
+							centerscrolltext.setVisibility(View.VISIBLE);													
+					  		centerscrolltext.startAnimation(animAlphaText);			  		
+							centerscrolltext.append("\n" + "> The computer has been knocked unconscious!");
+							
+							/*
 							AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 						    
 							alert.setCancelable(false);
 							
 							alert.setTitle("The computer has been knocked unconscious.");
-				  	    	/*
-				  	    	alert.setMessage("something");
-				  	    	*/	    	
+				  	    	
+				  	    	//alert.setMessage("something");
+				  	    		    	
 					    	
 					    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 						    	public void onClick(DialogInterface dialog, int whichButton) {
-						    		
+						    */		
 						    		//hideNavigation();
-						    		
-						    		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
+						    
+							final Handler h = new Handler();
+				  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+				  	  	  			
+				  	  	  		@Override
+					  	  	  	public void run() {
+				  	  	  			
+					  	  	  		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
 										
 						    			gameEngineHumanFirst2();    							
 									}
-		
+	
 									if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
 						    			
 						    			turn();   							
@@ -14560,16 +14876,18 @@ public class MainActivity2 extends ActionBarActivity {
 										
 						    			hastePartTwo();    							
 									}
-		
+	
 									if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
 						    			
 										hastePartTwo();   							
 									}
+					  	  	  	}
+				  	  	  	}, 2000);			    		
 									
-									dialog.dismiss();
-						    	}
-					    	});								    	
-					    	alert.show();						
+									//dialog.dismiss();
+						    	//}
+					    	//});								    	
+					    	//alert.show();						
 						}
 		
 						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] < 0) {
@@ -14813,7 +15131,7 @@ public class MainActivity2 extends ActionBarActivity {
 									
 									centerscrolltext.setVisibility(View.VISIBLE);
 							  		centerscrolltext.startAnimation(animAlphaText);
-							  		centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you did not hit yourself. But you must roll to see if you lose your weapon.");
+							  		centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you did not hit yourself... now you must roll to see if you lose your weapon...");
 																  		
 							  		criticalMissLoseWeapon();						  		
 								}		  	  	  			
@@ -14928,41 +15246,54 @@ public class MainActivity2 extends ActionBarActivity {
 				
 
 				ArrayOfHitPoints.hitpoints[0] = ArrayOfHitPoints.hitpoints[0] - attackDamage;
+				
+				
+				TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+    			playerHitPointsTextView.setTypeface(typeFace);
+    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+    			//playerHitPointsTextView.bringToFront();
 
 
 				final Handler h = new Handler();
   	  	  		h.postDelayed(new Runnable() {		  	  	  			
 	  	  	  			
 	  	  	  		@Override
-		  	  	  	public void run() {
-	  	  	  			
-		  	  	  		TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
-		    			playerHitPointsTextView.setTypeface(typeFace);
-		    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+		  	  	  	public void run() {	  	  	  		
 				
 						if (ArrayOfHitPoints.hitpoints[0] == 0) {
 							
 							if (numberOfPlayers == 1) {								
 								
+								centerscrolltext.setVisibility(View.VISIBLE);													
+						  		centerscrolltext.startAnimation(animAlphaText);			  		
+								centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you have been knocked unconscious!");
+								
+								/*
 								AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 							    
 								alert.setCancelable(false);
 								
 								alert.setTitle("You have been knocked unconscious.");
-					  	    	/*
-					  	    	alert.setMessage("something");
-					  	    	*/	    	
+					  	    	
+					  	    	//alert.setMessage("something");
+					  	    		    	
 						    	
 						    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 							    	public void onClick(DialogInterface dialog, int whichButton) {
-							    		
+							    */		
 							    		//hideNavigation();
-							    		
-							    		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
+							    
+								final Handler h = new Handler();
+					  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+					  	  	  			
+					  	  	  		@Override
+						  	  	  	public void run() {
+					  	  	  			
+						  	  	  		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
 											
 							    			gameEngineHumanFirst2();    							
 										}
-
+	
 										if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
 							    			
 							    			turn();   							
@@ -14972,16 +15303,18 @@ public class MainActivity2 extends ActionBarActivity {
 											
 							    			hastePartTwo();    							
 										}
-
+	
 										if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
 							    			
 											hastePartTwo();   							
 										}
+						  	  	  	}
+					  	  	  	}, 2000);				    		
 										
-										dialog.dismiss();
-							    	}
-						    	});						    	
-						    	alert.show();				
+										//dialog.dismiss();
+							    	//}
+						    	//});						    	
+						    	//alert.show();				
 							}
 							/*
 							if (numberOfPlayers > 1) {
@@ -16456,7 +16789,7 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  		@Override
 				  	  	  	public void run() {						
 				
-								if (ArrayOfAttackResult.attackResult[0] >= 20) {
+								if (ArrayOfAttackResult.attackResult[0] == 20) {//WAS >= 20
 									
 									criticalHit();
 									return;
@@ -16986,20 +17319,22 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 				  		centerscrolltext.startAnimation(animAlphaText);
 						centerscrolltext.append("\n" + "> You roll " + cureResult + ".");				
-		
+						
+						
 						ArrayOfHitPoints.hitpoints[0] = ArrayOfHitPoints.hitpoints[0] + cureResult;	  	  	  			
-		  	  	  														
+		  	  	  		
+						
+						TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+		    			playerHitPointsTextView.setTypeface(typeFace);
+		    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+		    			//playerHitPointsTextView.bringToFront();
+						
 						
 						final Handler h2 = new Handler();
 			  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
 			  	  	  			
 			  	  	  		@Override
-				  	  	  	public void run() {
-			  	  	  			
-				  	  	  		TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
-				    			playerHitPointsTextView.setTypeface(typeFace);
-				    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
-			  	  	  			
+				  	  	  	public void run() {  	  	  			
 			  	  	  			
 				  	  	  		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
 									
@@ -17451,6 +17786,7 @@ public class MainActivity2 extends ActionBarActivity {
     			
     			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
     			
+    			//NEED THIS??
     			TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
     			playerHitPointsTextView.setTypeface(typeFace);
     			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
@@ -17480,6 +17816,7 @@ public class MainActivity2 extends ActionBarActivity {
     			
     			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
     			
+    			//NEED THIS??
     			TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
     			computerHitPointsTextView.setTypeface(typeFace);
     			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
@@ -17543,7 +17880,8 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  	  	public void run() {
 	  	  	  			
 		  	  	  		if (ArrayOfHitPoints.hitpoints[0] <= 0) {
-							endGame(); // took out map
+							endGame(); 	// took out map
+										//REALLY JUST CHECK FOR UNCONSCIOUS..HOW TO WORK W numberofplayers>1??)
 						}
 			  	  		
 			  	  		else if (canHasDisarmed[0].equals("yes")) {
@@ -17690,7 +18028,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  			
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			
-	  			
+	  			//NEED THIS??
 	  			TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
 	  			computerHitPointsTextView.setTypeface(typeFace);
 	  			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
@@ -17703,7 +18041,8 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  	  	public void run() {
 	  	  	  			
 		  	  	  		if (ArrayOfHitPoints.hitpoints[1] <= 0) {
-			  				endGame(); // took out map
+			  				endGame(); 	// took out map
+			  							//REALLY JUST CHECK FOR UNCONSCIOUS..HOW TO WORK W numberofplayers>1??)
 			  			}
 			  			
 			  			else if (canHasDisarmed[1].equals("yes")) {
@@ -17826,7 +18165,8 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  	  	public void run() {
 	  	  	  			
 		  	  	  		if (ArrayOfHitPoints.hitpoints[1] <= 0) {
-							endGame(); // took out map
+							endGame();	// took out map
+										//REALLY JUST CHECK FOR UNCONSCIOUS..HOW TO WORK W numberofplayers>1??)
 						}
 			  	  		
 			  	  		else if (canHasDisarmed[1].equals("yes")) {
@@ -17955,7 +18295,7 @@ public class MainActivity2 extends ActionBarActivity {
 				ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
   	  	    	titleBlankButton.bringToFront();
 				
-				
+  	  	    	//NEED THIS??
 				TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
 				playerHitPointsTextView.setTypeface(typeFace);
 				playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
@@ -17967,7 +18307,8 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  	  	public void run() {
 	  	  	  			
 		  	  	  		if (ArrayOfHitPoints.hitpoints[0] <= 0) {
-							endGame(); // took out map
+							endGame(); 	// took out map
+										//REALLY JUST CHECK FOR UNCONSCIOUS..HOW TO WORK W numberofplayers>1??)
 						}
 						
 						else if (canHasDisarmed[0].equals("yes")) {
@@ -18131,7 +18472,7 @@ public class MainActivity2 extends ActionBarActivity {
 		*/
 	}	
 		
-	public void endGame() {
+	public void endGame() {//REALLY JUST CHECK FOR UNCONSCIOUS..HOW TO WORK W numberofplayers>1??)
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);		
 		
@@ -18151,19 +18492,7 @@ public class MainActivity2 extends ActionBarActivity {
 					// TEMPLATE???????????????????????????????????????????????????????????????
 					
 					
-					//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT
-					
-					
-					// HERE & IN gameOverCheck SO DONT HAVE MULTIPLE REFS TO IT IN DIALOGS?:
-					TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
-	    			playerHitPointsTextView.setTypeface(typeFace);
-	    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
-	    			//playerHitPointsTextView.bringToFront();
-
-	    			TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
-	    			computerHitPointsTextView.setTypeface(typeFace);
-	    			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
-	    			//computerHitPointsTextView.bringToFront();
+					//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT				
 					
 					
 	    			// DONT THINK THESE 2 (THE ONES FOR BELOW 0) EVER GET USED?:
@@ -18203,7 +18532,7 @@ public class MainActivity2 extends ActionBarActivity {
 									
 									centerscrolltext.setVisibility(View.VISIBLE);												
 					  	  	  		centerscrolltext.startAnimation(animAlphaText);
-					  	  			centerscrolltext.append("\n" + "> The computer uses it's cure spell...");
+					  	  			centerscrolltext.append("\n" + "> The computer uses cure spell...");
 									
 									computerCure();
 								}
@@ -18224,6 +18553,8 @@ public class MainActivity2 extends ActionBarActivity {
 											//GOTO SOME METHOD!!!!!!!!!!!!!!
 											
 											endGame();
+											
+											dialog.dismiss();
 										}
 									});					
 									
@@ -18233,6 +18564,8 @@ public class MainActivity2 extends ActionBarActivity {
 													
 													if (item == 0) {
 														//hideNavigation();
+														
+														dialog.dismiss();
 														
 														playerDeadYet[1] = "no";
 														playerDeadYet[0] = "yes";
@@ -18254,6 +18587,8 @@ public class MainActivity2 extends ActionBarActivity {
 													
 													if (item == 1) {
 														//hideNavigation();
+														
+														dialog.dismiss();
 														
 														playerDeadYet[1] = "no";
 														playerDeadYet[0] = "yes";
@@ -18411,18 +18746,7 @@ public class MainActivity2 extends ActionBarActivity {
   	  	    @Override
   	  	    public void run() {
   	  	    	
-  	  	    	Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-  	  	    	
-  	  	    	// HERE & IN endGame SO DONT HAVE MULTIPLE REFS TO IT IN DIALOGS?:
-				TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
-    			playerHitPointsTextView.setTypeface(typeFace);
-    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
-    			//playerHitPointsTextView.bringToFront();
-
-    			TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
-    			computerHitPointsTextView.setTypeface(typeFace);
-    			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
-    			//computerHitPointsTextView.bringToFront();
+  	  	    	Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");				
   	  	    	
     			
   	  	    	victoryDefeatAnimation();
