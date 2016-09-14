@@ -21,4 +21,10 @@
         
     </style>
     
+    <style name="AlertDialogThemeTitle" parent="android:Theme.Dialog">
+    	<item name="android:gravity">center_horizontal</item>
+    	<item name="android:textColor">#FFFFFF</item>
+    	<item name="android:background">#000000</item>
+	</style>
+    
 </resources>

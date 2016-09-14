@@ -7,6 +7,7 @@ import android.animation.PropertyValuesHolder;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
@@ -15,6 +16,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
@@ -31,6 +33,8 @@ import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.ContextThemeWrapper;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -43,12 +47,15 @@ import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.view.ViewGroup;
 
 public class MainActivity2 extends ActionBarActivity {
 	
@@ -95,7 +102,7 @@ public class MainActivity2 extends ActionBarActivity {
 	public static int[] blessSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
 	public static int[] cureSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
 	public static int[] dodgeBlowSpell = new int[] {0, 0, 1, 1, 1, 1, 1};
-	public static int[] mightyBlowSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
+	public static int[] mightyBlowSpell = new int[] {0, 0, 1, 1, 1, 1, 1};
 	public static int[] hasteSpell = new int[] {2, 2, 2, 2, 2, 2, 2};	
 	
 	
@@ -154,6 +161,10 @@ public class MainActivity2 extends ActionBarActivity {
 	String isTwentySidedReadyToBeRolled = "no";
 	String isInitiativeOver = "yes";
 	String istitlerulesopen = "no";
+	
+	
+	//Dialog mydialog = null;
+	String endGameAfterFirstHaste = "no";
 	
 	
 		
@@ -442,7 +453,7 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  	  		}
 					  	  	  	}, 750);
 			  	  	  		}
-			  	  	  	}, 4000);
+			  	  	  	}, 2000);
 		  	  	  	}
 	  	  	  	}, 2900);//MAINLY FINAGLING TO GET RIGHT  	  	  		  			
   	  		}
@@ -15170,6 +15181,9 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  		@Override
 		  	  	  	public void run() {					  	  	  			
 	  	  	  			
+		  	  	  		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
+	  	  	  			img.bringToFront();
+	  	  	  			
 	  	  	  			sixSidedRollFromLeft();				  	  	  		
 			  	  	  			
 		  	  	  		final Handler h3 = new Handler();
@@ -15236,166 +15250,174 @@ public class MainActivity2 extends ActionBarActivity {
 	  			final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);	  			
 	  			
-	  			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
-				//SharedPreferences.Editor editor = preferences.edit();
-				int attackDamage = preferences.getInt("attackDamage", 0);
-	  			
-				centerscrolltext.setVisibility(View.VISIBLE);
-		  		centerscrolltext.startAnimation(animAlphaText);
-				centerscrolltext.append("\n" + "> You roll " + attackDamage + " for damage.");
-				
-
-				ArrayOfHitPoints.hitpoints[0] = ArrayOfHitPoints.hitpoints[0] - attackDamage;
-				
-				
-				TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
-    			playerHitPointsTextView.setTypeface(typeFace);
-    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
-    			//playerHitPointsTextView.bringToFront();
-
-
-				final Handler h = new Handler();
-  	  	  		h.postDelayed(new Runnable() {		  	  	  			
+	  			final Handler h = new Handler();
+	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 	  	  	  			
 	  	  	  		@Override
-		  	  	  	public void run() {	  	  	  		
-				
-						if (ArrayOfHitPoints.hitpoints[0] == 0) {
-							
-							if (numberOfPlayers == 1) {								
-								
-								centerscrolltext.setVisibility(View.VISIBLE);													
-						  		centerscrolltext.startAnimation(animAlphaText);			  		
-								centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you have been knocked unconscious!");
-								
-								/*
-								AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-							    
-								alert.setCancelable(false);
-								
-								alert.setTitle("You have been knocked unconscious.");
-					  	    	
-					  	    	//alert.setMessage("something");
-					  	    		    	
-						    	
-						    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-							    	public void onClick(DialogInterface dialog, int whichButton) {
-							    */		
-							    		//hideNavigation();
-							    
-								final Handler h = new Handler();
-					  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-					  	  	  			
-					  	  	  		@Override
-						  	  	  	public void run() {
-					  	  	  			
-						  	  	  		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
-											
-							    			gameEngineHumanFirst2();    							
-										}
-	
-										if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
-							    			
-							    			turn();   							
-										}
-										
-										if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
-											
-							    			hastePartTwo();    							
-										}
-	
-										if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
-							    			
-											hastePartTwo();   							
-										}
-						  	  	  	}
-					  	  	  	}, 2000);				    		
-										
-										//dialog.dismiss();
-							    	//}
-						    	//});						    	
-						    	//alert.show();				
-							}
-							/*
-							if (numberOfPlayers > 1) {
-								System.out.println("Player " + (playerNumberAttacked + 1) + ", you have been knocked unconscious!");
-							}
-							System.out.print("Press a key to continue... ");
-							input.nextLine();
-							*/
-						}
-				
-						if (ArrayOfHitPoints.hitpoints[0] < 0) {
-							
-							/*
-							 * 
-							 * Picture of one sword destroying another.
-							 * 
-							 * deathGraphic();
-							 * 
-							 */
-							
-							
-							if (numberOfPlayers == 1) {
-								
-								AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-							    
-								alert.setCancelable(false);
-								
-								alert.setTitle("You have been slain.");
-					  	    	/*
-					  	    	alert.setMessage("something");
-					  	    	*/	    	
-						    	
-						    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-							    	public void onClick(DialogInterface dialog, int whichButton) {
-							    		
-							    		//hideNavigation();
-							    		
-							    		playerDeadYet[0] = "yes";
-							    		
-							    		gameOverCheck();
-							    		
-							    		dialog.dismiss();
-							    	}
-						    	});						    	
-						    	alert.show();				
-							}
-							/*
-							if (numberOfPlayers > 1) {
-								System.out.println("Player " + (playerNumberAttacked + 1) + ", you have been slain!");
-							}
-							System.out.print("Press a key to continue... ");
-							input.nextLine();
-							*/														
-						}
+		  	  	  	public void run() {
+	  	  	  			
+		  	  	  		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
+						//SharedPreferences.Editor editor = preferences.edit();
+						int attackDamage = preferences.getInt("attackDamage", 0);
+			  			
+						centerscrolltext.setVisibility(View.VISIBLE);
+				  		centerscrolltext.startAnimation(animAlphaText);
+						centerscrolltext.append("\n" + "> You roll " + attackDamage + " for damage.");
 						
-						else {						
-
-							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
+	
+						ArrayOfHitPoints.hitpoints[0] = ArrayOfHitPoints.hitpoints[0] - attackDamage;
+						
+						
+						TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+		    			playerHitPointsTextView.setTypeface(typeFace);
+		    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+		    			//playerHitPointsTextView.bringToFront();
+	
+	
+						final Handler h = new Handler();
+		  	  	  		h.postDelayed(new Runnable() {		  	  	  			
+			  	  	  			
+			  	  	  		@Override
+				  	  	  	public void run() {	  	  	  		
+						
+								if (ArrayOfHitPoints.hitpoints[0] == 0) {
+									
+									if (numberOfPlayers == 1) {								
+										
+										centerscrolltext.setVisibility(View.VISIBLE);													
+								  		centerscrolltext.startAnimation(animAlphaText);			  		
+										centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you have been knocked unconscious!");
+										
+										/*
+										AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+									    
+										alert.setCancelable(false);
+										
+										alert.setTitle("You have been knocked unconscious.");
+							  	    	
+							  	    	//alert.setMessage("something");
+							  	    		    	
+								    	
+								    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+									    	public void onClick(DialogInterface dialog, int whichButton) {
+									    */		
+									    		//hideNavigation();
+									    
+										final Handler h = new Handler();
+							  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+							  	  	  			
+							  	  	  		@Override
+								  	  	  	public void run() {
+							  	  	  			
+								  	  	  		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
+													
+									    			gameEngineHumanFirst2();    							
+												}
+			
+												if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
+									    			
+									    			turn();   							
+												}
+												
+												if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
+													
+									    			hastePartTwo();    							
+												}
+			
+												if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
+									    			
+													hastePartTwo();   							
+												}
+								  	  	  	}
+							  	  	  	}, 2000);				    		
+												
+												//dialog.dismiss();
+									    	//}
+								    	//});						    	
+								    	//alert.show();				
+									}
+									/*
+									if (numberOfPlayers > 1) {
+										System.out.println("Player " + (playerNumberAttacked + 1) + ", you have been knocked unconscious!");
+									}
+									System.out.print("Press a key to continue... ");
+									input.nextLine();
+									*/
+								}
+						
+								if (ArrayOfHitPoints.hitpoints[0] < 0) {
+									
+									/*
+									 * 
+									 * Picture of one sword destroying another.
+									 * 
+									 * deathGraphic();
+									 * 
+									 */
+									
+									
+									if (numberOfPlayers == 1) {
+										
+										AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+									    
+										alert.setCancelable(false);
+										
+										alert.setTitle("You have been slain.");
+							  	    	/*
+							  	    	alert.setMessage("something");
+							  	    	*/	    	
+								    	
+								    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+									    	public void onClick(DialogInterface dialog, int whichButton) {
+									    		
+									    		//hideNavigation();
+									    		
+									    		playerDeadYet[0] = "yes";
+									    		
+									    		gameOverCheck();
+									    		
+									    		dialog.dismiss();
+									    	}
+								    	});						    	
+								    	alert.show();				
+									}
+									/*
+									if (numberOfPlayers > 1) {
+										System.out.println("Player " + (playerNumberAttacked + 1) + ", you have been slain!");
+									}
+									System.out.print("Press a key to continue... ");
+									input.nextLine();
+									*/														
+								}
 								
-				    			gameEngineHumanFirst2();    							
-							}
-
-							if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
-				    			
-				    			turn();   							
-							}
-							
-							// TAKE THIS OUT?:
-							
-							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
-								
-				    			hastePartTwo();    							
-							}
-
-							if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
-				    			
-								hastePartTwo();   							
-							}
-						}
+								else {						
+	
+									if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
+										
+						    			gameEngineHumanFirst2();    							
+									}
+	
+									if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
+						    			
+						    			turn();   							
+									}
+									
+									// TAKE THIS OUT?:
+									
+									if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
+										
+						    			hastePartTwo();    							
+									}
+	
+									if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
+						    			
+										hastePartTwo();   							
+									}
+								}
+				  	  	  	}
+			  	  	  	}, 2000);
 		  	  	  	}
-	  	  	  	}, 2000);			
+	  	  	  	}, 2000);  						
   	  	    }
 		});
 		//return ArrayOfHitPoints.hitpoints;
@@ -16446,79 +16468,120 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	public void hastePartTwo() {
 		
-		ishasteused = "no";
-		issecondroundofhasteused = "yes";
+		if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] < 0) {
+			
+			endGame();
+		}
 		
-		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
-		
-		runOnUiThread(new Runnable() {
-  	  	    @Override
-  	  	    public void run() {
-  	  	    	
-	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
-	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
-	  			
-	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-	  			centerscrolltext.setTypeface(typeFace);	
-	  			
-	  			
-	  			TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
-	  			computerHitPointsTextView.setTypeface(typeFace);
-	  			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));	  			
-	  			
-	  			// SO IF PLAYER KILLS/KNOCKS OUT COMP ON 1ST RD OF HASTE:
-	  			endGame();
-	  			
-	  			
-	  			// THIS IS WRONG - CAN GET 2ND ATTACK, YOU'RE JUST DISARMED:
-				//if (canHasDisarmed[i] == "yes")// so if you critically miss & drop weapon you don't get 2nd attack.
-				//{
-				//	return;
-				//}	  			
-	  				
-  				/*
-				System.out.println("     /\\____________");
-				System.out.println("/|---||_2nd Attack_\\");
-				System.out.println("\\|---||____________/");
-				System.out.println("     \\/           ");
-				System.out.println();
-				*/
+		else if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] == 0 && cureSpell[1] < 1) {		
+			
+			ishasteused = "no";
+			issecondroundofhasteused = "yes";
+			
+			if (isInvokingService.equals("true")){
+				//NEED THIS?
+				SystemClock.sleep(1000);
 				
-				final Handler h = new Handler();
-	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-	  	  	  			
-	  	  	  		@Override
-		  	  	  	public void run() {
-	  	  	  			
-			  	  	  	// Use a blank drawable to hide the imageview animation:
-			  	  	  	// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
-			  	  	  	ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
-			  	  	  	img1.setBackgroundResource(R.drawable.twentytwentyblank);
-			  	  	  	img1.setImageResource(R.drawable.twentytwentyblank);
+				endGameAfterFirstHaste = "yes";
+				
+				endGame();
+			}
+			
+			
+			/*
+			if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
+				
+    			gameEngineHumanFirst2();    							
+			}
+
+			if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
+    			
+    			turn();   							
+			}
+			*/
+		}
 		
-			  	  	  	// Use a blank drawable to hide the imageview animation:
-			  	  	  	ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
-			  	  	  	img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
-			  	  	  	img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
-	  	  	  			
-	  	  	  			
-		  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
-				  		centerscrolltext.startAnimation(animAlphaText);
-						centerscrolltext.append("\n" + "> SECOND attack...");			  	  	  							  	  	  	
-		  	  	  	}
-	  	  	  	}, 2000);
-  				
-	  	  	  	// CAN'T USE CURE OR ANOTHER HASTE WITH A HASTE:
-  				//punch(); // SAME AS ATTACK
-	  	  	  	
-  				attack();
-	  	  	  	
-  				// NEED THIS?:
-  				//return;  											 
-  	  	    }
-		});
-		// NEED THIS?:
-		//return;		
+		else {
+			
+			ishasteused = "no";
+			issecondroundofhasteused = "yes";
+			
+			final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+			
+			runOnUiThread(new Runnable() {
+	  	  	    @Override
+	  	  	    public void run() {
+	  	  	    	
+		  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+		  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+		  			
+		  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+		  			centerscrolltext.setTypeface(typeFace);	
+		  			
+		  			
+		  			TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+		  			computerHitPointsTextView.setTypeface(typeFace);
+		  			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));	  			
+		  			
+		  			
+		  			
+		  			
+		  			// SO IF PLAYER KILLS/KNOCKS OUT COMP ON 1ST RD OF HASTE:
+		  			//endGame();
+		  			
+		  			
+		  			
+		  			
+		  			// THIS IS WRONG - CAN GET 2ND ATTACK, YOU'RE JUST DISARMED:
+					//if (canHasDisarmed[i] == "yes")// so if you critically miss & drop weapon you don't get 2nd attack.
+					//{
+					//	return;
+					//}	  			
+		  				
+	  				/*
+					System.out.println("     /\\____________");
+					System.out.println("/|---||_2nd Attack_\\");
+					System.out.println("\\|---||____________/");
+					System.out.println("     \\/           ");
+					System.out.println();
+					*/
+					
+					final Handler h = new Handler();
+		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+		  	  	  			
+		  	  	  		@Override
+			  	  	  	public void run() {
+		  	  	  			
+				  	  	  	// Use a blank drawable to hide the imageview animation:
+				  	  	  	// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+				  	  	  	ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+				  	  	  	img1.setBackgroundResource(R.drawable.twentytwentyblank);
+				  	  	  	img1.setImageResource(R.drawable.twentytwentyblank);
+			
+				  	  	  	// Use a blank drawable to hide the imageview animation:
+				  	  	  	ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
+				  	  	  	img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+				  	  	  	img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+		  	  	  			
+		  	  	  			
+			  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
+					  		centerscrolltext.startAnimation(animAlphaText);
+							centerscrolltext.append("\n" + "> SECOND attack...");			  	  	  							  	  	  	
+			  	  	  	}
+		  	  	  	}, 2000);
+	  				
+		  	  	  	// CAN'T USE CURE OR ANOTHER HASTE WITH A HASTE:
+	  				//punch(); // SAME AS ATTACK
+		  	  	  	
+	  				attack();
+		  	  	  	
+	  				// NEED THIS?:
+	  				//return;  											 
+	  	  	    }
+			});
+			// NEED THIS?:
+			//return;			
+		}			
 	}
 	
 	public void bless() { // WAS int
@@ -17360,6 +17423,244 @@ public class MainActivity2 extends ActionBarActivity {
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
 		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {
+  	  	    	
+	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+	  			
+	  			final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  			centerscrolltext.setTypeface(typeFace);	  			
+	  			
+	  			
+	  			// NEW WAY TO DO DIALOG (MORE CONTROL 
+		  		final String[] items = {"Attack", "Disarm", "Haste", "Cure", "Bless"};
+	
+		  		// Instead of String[] items, Here you can also use ArrayList for your custom object..
+	
+		  		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.list_row, R.id.title,items) {
+	
+		  		    ViewHolder holder;
+		  		    Drawable icon;
+	
+		  		    class ViewHolder {
+		  		        ImageView icon;
+		  		        TextView title;						
+		  		    }
+	
+		  		    public View getView(int position, View convertView, ViewGroup parent) {
+		  		        final LayoutInflater inflater = (LayoutInflater) getApplicationContext()
+		  		                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		  		        
+		  		        //THIS STUFF DID NOT WORK:
+		  		        //TextView textView = (TextView) findViewById(R.layout.list_row);
+		  		        //textView.setGravity(Gravity.CENTER);
+		  		        //textView.setLayoutParams(new ListView.LayoutParams(AbsListView.LayoutParams.MATCH_PARENT, 32 /* this is item height */));
+		  		        
+	
+		  		        if (convertView == null) {
+		  		            convertView = inflater.inflate(R.layout.list_row, null);
+	
+		  		            holder = new ViewHolder();
+		  		            holder.icon = (ImageView) convertView.findViewById(R.id.icon);
+		  		            holder.title = (TextView) convertView.findViewById(R.id.title);		  		           
+		  		            
+		  		            convertView.setTag(holder);
+		  		        } else {
+		  		            // view already defined, retrieve view holder
+		  		            holder = (ViewHolder) convertView.getTag();
+		  		        }       
+	
+		  		       // Drawable drawable = getResources().getDrawable(R.drawable.list_icon); //this is an image from the drawables folder
+	
+		  		        holder.title.setText(items[position]);
+		  		        //holder.icon.setImageDrawable(drawable);     
+		  		        
+	
+		  		        return convertView;
+		  		    }
+		  		};		  		
+		  		
+		  		
+		  		// ALTERNATIVE TO SET TEXT SIZE/ROW HEIGHT (CAN CENTER BUT MESSES UP EVERYTHING ELSE):
+		  		//ContextThemeWrapper cw = new ContextThemeWrapper(MainActivity2.this, R.style.AlertDialogThemeTitle);
+		  		//AlertDialog.Builder builder = new AlertDialog.Builder(cw);
+		  		
+	  			AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity2.this);
+	  			
+	  			builder.setCancelable(false);	  			
+	  			
+	  			builder.setTitle("Choose Action");
+	  			
+	  			
+	  			
+	  			
+	  			
+	  			// if back pressed: DOES THIS WORK????????????
+				builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+					@Override
+					public void onCancel(DialogInterface dialog) {
+						
+						//GOTO SOME METHOD!!!!!!!!!!!!!!
+						
+						runActionsOnUi();
+					}
+				});
+	  			
+				
+	            builder.setAdapter(adapter,
+	                    new DialogInterface.OnClickListener() {
+	                        @Override
+	                        public void onClick(final DialogInterface dialog,
+	                                int item) {
+	                        	if (item == 0) {										
+									
+									centerscrolltext.setVisibility(View.VISIBLE);													
+							  		centerscrolltext.startAnimation(animAlphaText);
+									centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + " attacks...");
+									
+									final Handler h = new Handler();
+						  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+						  	  	  			
+						  	  	  		@Override
+							  	  	  	public void run() {
+						  	  	  			
+						  	  	  			//hideNavigation();
+											//isInvokingService = "true";
+											attack();
+											
+											dialog.dismiss();
+							  	  	  	}
+						  	  	  	}, 1000);										
+								}
+								if (item == 1) {
+									
+									centerscrolltext.setVisibility(View.VISIBLE);													
+							  		centerscrolltext.startAnimation(animAlphaText);
+									centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + " attempts to disarm...");
+									
+									final Handler h = new Handler();
+						  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+						  	  	  			
+						  	  	  		@Override
+							  	  	  	public void run() {
+						  	  	  			
+						  	  	  			//hideNavigation();
+											//isInvokingService = "true";
+											disarm();
+											
+											dialog.dismiss();
+							  	  	  	}
+						  	  	  	}, 1000);										
+								}
+								if (item == 2) {
+									
+									centerscrolltext.setVisibility(View.VISIBLE);													
+							  		centerscrolltext.startAnimation(animAlphaText);
+									centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + " casts haste...");
+									
+									final Handler h = new Handler();
+						  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+						  	  	  			
+						  	  	  		@Override
+							  	  	  	public void run() {
+						  	  	  			
+						  	  	  			//hideNavigation();
+											//isInvokingService = "true";
+											haste();
+											
+											dialog.dismiss();
+							  	  	  	}
+						  	  	  	}, 1000);									
+								}
+								if (item == 3) {
+									
+									centerscrolltext.setVisibility(View.VISIBLE);													
+							  		centerscrolltext.startAnimation(animAlphaText);
+									centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + " casts cure...");
+									
+									final Handler h = new Handler();
+						  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+						  	  	  			
+						  	  	  		@Override
+							  	  	  	public void run() {
+						  	  	  			
+						  	  	  			//hideNavigation();
+											//isInvokingService = "true";
+											cure();
+											
+											dialog.dismiss();
+							  	  	  	}
+						  	  	  	}, 1000);										
+								}
+								if (item == 4) {
+									
+									centerscrolltext.setVisibility(View.VISIBLE);													
+							  		centerscrolltext.startAnimation(animAlphaText);
+									centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + " casts bless...");
+									
+									final Handler h = new Handler();
+						  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+						  	  	  			
+						  	  	  		@Override
+							  	  	  	public void run() {
+						  	  	  			
+						  	  	  			//hideNavigation();
+											//isInvokingService = "true";
+											bless();
+											
+											dialog.dismiss();
+							  	  	  	}
+						  	  	  	}, 1000);									
+								}
+								
+								//((AlertDialog) dialog).getButton(dialog.BUTTON1).setGravity(Gravity.CENTER);
+								//SET TEXT SIXE IN XML						
+								//View messageText = ((TextView) dialog).findViewById(R.id.title);		  		
+					            //((TextView) messageText).setGravity(Gravity.CENTER);
+					            //messageText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
+								
+								isInvokingService = "true";
+	                        	
+	                            dialog.dismiss();
+	                        }
+	                    });	            
+	            
+	            AlertDialog alert = builder.create();
+	            alert.show();	            
+	            
+	            
+	            WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+
+	            lp.copyFrom(alert.getWindow().getAttributes());
+	            lp.width = 1050;	            
+	            alert.getWindow().setAttributes(lp);
+	            
+	            /* CAN ADJUST DIALOGS HEIGHT & WIDTH
+	            WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+	            lp.copyFrom(alert.getWindow().getAttributes());
+	            lp.width = 2000;
+	            lp.height = 1000;
+	            lp.x=-170;
+	            lp.y=100;
+	            alert.getWindow().setAttributes(lp);
+	            */
+  	  	    }
+
+			private LayoutInflater getSystemService(String layoutInflaterService) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+		});
+		
+		
+		// OLD WAY (STANDARD - CAN'T ADJUST ANYTHING):
+		/*
+		isInvokingService = "false";
+		
+		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+		
+		runOnUiThread(new Runnable() {
 	  	  	    @Override
 	  	  	    public void run() {
 	  	  	    	
@@ -17372,11 +17673,12 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	    	
 		  	  	    final String[] items = new String[] { "Attack", "Disarm", "Haste", "Cure", "Bless" };
 		      		
-					AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity2.this);
+					final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity2.this);					
 					
 					builder.setCancelable(false);
 					//DOESN'T WORK:
 					//builder.setCanceledOnTouchOutside(false);
+					
 					
 					// if back pressed: DOES THIS WORK????????????
 					builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
@@ -17388,12 +17690,12 @@ public class MainActivity2 extends ActionBarActivity {
 							runActionsOnUi();
 						}
 					});
-	
+					
 					builder.setTitle("Choose Action").setItems(items,
 							new DialogInterface.OnClickListener() {
 								public void onClick(final DialogInterface dialog,	int item) {
 	
-									if (item == 0) {
+									if (item == 0) {										
 										
 										centerscrolltext.setVisibility(View.VISIBLE);													
 								  		centerscrolltext.startAnimation(animAlphaText);
@@ -17411,7 +17713,7 @@ public class MainActivity2 extends ActionBarActivity {
 												
 												dialog.dismiss();
 								  	  	  	}
-							  	  	  	}, 2000);										
+							  	  	  	}, 1000);										
 									}
 									if (item == 1) {
 										
@@ -17431,7 +17733,7 @@ public class MainActivity2 extends ActionBarActivity {
 												
 												dialog.dismiss();
 								  	  	  	}
-							  	  	  	}, 2000);										
+							  	  	  	}, 1000);										
 									}
 									if (item == 2) {
 										
@@ -17451,7 +17753,7 @@ public class MainActivity2 extends ActionBarActivity {
 												
 												dialog.dismiss();
 								  	  	  	}
-							  	  	  	}, 2000);									
+							  	  	  	}, 1000);									
 									}
 									if (item == 3) {
 										
@@ -17471,7 +17773,7 @@ public class MainActivity2 extends ActionBarActivity {
 												
 												dialog.dismiss();
 								  	  	  	}
-							  	  	  	}, 2000);										
+							  	  	  	}, 1000);										
 									}
 									if (item == 4) {
 										
@@ -17491,15 +17793,19 @@ public class MainActivity2 extends ActionBarActivity {
 												
 												dialog.dismiss();
 								  	  	  	}
-							  	  	  	}, 2000);									
+							  	  	  	}, 1000);									
 									}
 									
-									isInvokingService = "true";
+									//((AlertDialog) dialog).getButton(dialog.BUTTON1).setGravity(Gravity.CENTER);
+									
+									
+									isInvokingService = "true";								
 								}
 							});
-					builder.create().show();					
+					builder.create().show();				
 	  	  	    }
 		});
+		*/
 	}
 	
 	public void disarmedAction() {
@@ -17581,6 +17887,7 @@ public class MainActivity2 extends ActionBarActivity {
 							//builder.setCanceledOnTouchOutside(false);
 							
 							// if back pressed: DOES THIS WORK????????????
+							
 							builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
 								@Override
 								public void onCancel(DialogInterface dialog) {
@@ -17612,7 +17919,7 @@ public class MainActivity2 extends ActionBarActivity {
 														//punch();
 														attack();
 										  	  	  	}
-									  	  	  	}, 2000);											
+									  	  	  	}, 1000);											
 											}
 											if (item == 1) {
 												//hideNavigation();
@@ -17641,7 +17948,7 @@ public class MainActivity2 extends ActionBarActivity {
 										  	  	  			
 										  	  	  			haste();
 											  	  	  	}
-										  	  	  	}, 2000);												
+										  	  	  	}, 1000);												
 												}
 												
 												else {
@@ -17666,7 +17973,7 @@ public class MainActivity2 extends ActionBarActivity {
 										  	  	  			
 										  	  	  			cure();
 											  	  	  	}
-										  	  	  	}, 2000);													
+										  	  	  	}, 1000);													
 												}
 												
 												if (cureSpell[0] < 1) {
@@ -17678,8 +17985,8 @@ public class MainActivity2 extends ActionBarActivity {
 											isInvokingService = "true";											
 										}
 									});
-							builder.create().show();
-		  	  	  			
+							
+							builder.create().show();		  	  	  			
 			  	  	  	}
 		  	  	  	}, 2000);					
 	  	  	    }
@@ -17835,10 +18142,8 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	public void gameEngineHumanFirst1() {
 		
-		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);			
+		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
-		 	
-    	
 		
 		if (canHasDisarmed[1].equals("yes") && didComputerCriticalMiss.equals("yes") && disarmedTurnStart[1] + 3 == turn) {
 			
@@ -17879,11 +18184,25 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  		@Override
 		  	  	  	public void run() {
 	  	  	  			
-		  	  	  		if (ArrayOfHitPoints.hitpoints[0] <= 0) {
-							endGame(); 	// took out map
-										//REALLY JUST CHECK FOR UNCONSCIOUS..HOW TO WORK W numberofplayers>1??)
+		  	  	  		if (ArrayOfHitPoints.hitpoints[0] == 0 && endGameAfterFirstHaste.equals("no")) {
+		  	  	  			
+	  	  	  				//isInvokingService = "true";
+	  	  	  				
+	  	  	  				//NEED THIS?
+	  	  	  				//SystemClock.sleep(1000);
+		  	  	  			
+			  	  	  		if (isInvokingService.equals("true")) {
+								//NEED THIS?
+								SystemClock.sleep(1000);
+		  	  	  				endGame(); 	// took out map
+			  	  	  		}
 						}
-			  	  		
+			  	  		/*
+			  	  	  	else if (ArrayOfHitPoints.hitpoints[0] == 0 && endGameAfterFirstHaste.equals("yes")) {
+		  	  	  			
+		  	  	  			endGameAfterFirstHasteMethod();
+		  	  	  		}
+		  	  	  		*/
 			  	  		else if (canHasDisarmed[0].equals("yes")) {
 							
 							/*
@@ -18040,11 +18359,27 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  		@Override
 		  	  	  	public void run() {
 	  	  	  			
-		  	  	  		if (ArrayOfHitPoints.hitpoints[1] <= 0) {
-			  				endGame(); 	// took out map
-			  							//REALLY JUST CHECK FOR UNCONSCIOUS..HOW TO WORK W numberofplayers>1??)
+		  	  	  		if (ArrayOfHitPoints.hitpoints[1] == 0 && endGameAfterFirstHaste.equals("no")) {
+		  	  	  			
+			  	  	  		//isInvokingService = "true";
+	  	  	  				
+	  	  	  				//NEED THIS?
+	  	  	  				//SystemClock.sleep(1000);
+	  	  	  			
+			  	  	  		if (isInvokingService.equals("true")) {
+								//NEED THIS?
+								SystemClock.sleep(1000);
+		  	  	  				endGame(); 	// took out map
+			  	  	  		}									
 			  			}
-			  			
+		  	  	  		
+		  	  	  		//TEST
+		  	  	  		//SO TEXT/DIALOG/INSTANCE DOSENT GET REPEATED WHEN COMP IS AT HP = 0 & NO CURE:
+		  	  	  		else if (ArrayOfHitPoints.hitpoints[1] == 0 && endGameAfterFirstHaste.equals("yes")) {
+		  	  	  			
+		  	  	  			endGameAfterFirstHasteMethod();
+		  	  	  		}
+								  	  	  		
 			  			else if (canHasDisarmed[1].equals("yes")) {
 			  				
 			  				
@@ -18164,11 +18499,27 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  		@Override
 		  	  	  	public void run() {
 	  	  	  			
-		  	  	  		if (ArrayOfHitPoints.hitpoints[1] <= 0) {
-							endGame();	// took out map
-										//REALLY JUST CHECK FOR UNCONSCIOUS..HOW TO WORK W numberofplayers>1??)
+		  	  	  		if (ArrayOfHitPoints.hitpoints[1] == 0 && endGameAfterFirstHaste.equals("no")) {
+		  	  	  			
+			  	  	  		//isInvokingService = "true";
+	  	  	  				
+	  	  	  				//NEED THIS?
+	  	  	  				//SystemClock.sleep(1000);
+	  	  	  			
+			  	  	  		if (isInvokingService.equals("true")) {
+								//NEED THIS?
+								SystemClock.sleep(1000);
+		  	  	  				endGame(); 	// took out map
+			  	  	  		}										
 						}
-			  	  		
+		  	  	  		
+		  	  	  		//TEST
+		  	  	  		//SO TEXT/DIALOG/INSTANCE DOSENT GET REPEATED WHEN COMP IS AT HP = 0 & NO CURE:
+			  	  	  	else if (ArrayOfHitPoints.hitpoints[1] == 0 && endGameAfterFirstHaste.equals("yes")) {
+		  	  	  			
+		  	  	  			endGameAfterFirstHasteMethod();
+		  	  	  		}
+		  	  	  		
 			  	  		else if (canHasDisarmed[1].equals("yes")) {
 							
 							
@@ -18306,11 +18657,25 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  		@Override
 		  	  	  	public void run() {
 	  	  	  			
-		  	  	  		if (ArrayOfHitPoints.hitpoints[0] <= 0) {
-							endGame(); 	// took out map
-										//REALLY JUST CHECK FOR UNCONSCIOUS..HOW TO WORK W numberofplayers>1??)
+		  	  	  		if (ArrayOfHitPoints.hitpoints[0] == 0 && endGameAfterFirstHaste.equals("no")) {
+		  	  	  			
+			  	  	  		//isInvokingService = "true";
+	  	  	  				
+	  	  	  				//NEED THIS?
+	  	  	  				//SystemClock.sleep(1000);
+	  	  	  			
+			  	  	  		if (isInvokingService.equals("true")) {
+								//NEED THIS?
+								SystemClock.sleep(1000);
+		  	  	  				endGame(); 	// took out map
+			  	  	  		}									
 						}
-						
+		  	  	  		/*
+		  	  	  		else if (ArrayOfHitPoints.hitpoints[0] == 0 && endGameAfterFirstHaste.equals("yes")) {
+		  	  	  			
+		  	  	  			endGameAfterFirstHasteMethod();
+		  	  	  		}
+						*/
 						else if (canHasDisarmed[0].equals("yes")) {
 							
 							/*
@@ -18472,7 +18837,9 @@ public class MainActivity2 extends ActionBarActivity {
 		*/
 	}	
 		
-	public void endGame() {//REALLY JUST CHECK FOR UNCONSCIOUS..HOW TO WORK W numberofplayers>1??)
+	public void endGame() {
+		
+		isInvokingService = "false";
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);		
 		
@@ -18495,12 +18862,14 @@ public class MainActivity2 extends ActionBarActivity {
 					//playersTemplate(navigableMap); THIS JUST SHOWS PLAYERS HP & SKILLS LEFT				
 					
 					
-	    			// DONT THINK THESE 2 (THE ONES FOR BELOW 0) EVER GET USED?:
+	    			// USED BY HASTE PART TWO?:
 					if (ArrayOfHitPoints.hitpoints[0] < 0) {
 						
 						playerDeadYet[0] = "yes";
 						
 						gameOverCheck();
+						
+						//isInvokingService = "true";
 						
 						// NEED THIS?:
 						//return;
@@ -18511,6 +18880,8 @@ public class MainActivity2 extends ActionBarActivity {
 						playerDeadYet[1] = "yes";
 						
 						gameOverCheck();
+						
+						//isInvokingService = "true";
 						
 						// NEED THIS?:
 						//return;
@@ -18535,81 +18906,91 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  			centerscrolltext.append("\n" + "> The computer uses cure spell...");
 									
 									computerCure();
+									
+									isInvokingService = "true";																		
 								}
 				  	  	  		
 				  	  	  		else {
 				  	  	  			
-				  	  	  			final String[] items = new String[] { "Slay", "Mercy" };
-					      		
-									AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity2.this);
-									
-									builder.setCancelable(false);
-									
-									// if back pressed: DOES THIS WORK????????????
-									builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
-										@Override
-										public void onCancel(DialogInterface dialog) {
-											
-											//GOTO SOME METHOD!!!!!!!!!!!!!!
-											
-											endGame();
-											
-											dialog.dismiss();
-										}
-									});					
-									
-									builder.setTitle("The computer is at your mercy...").setItems(items,
-											new DialogInterface.OnClickListener() {
-												public void onClick(DialogInterface dialog,	int item) {							
-													
-													if (item == 0) {
-														//hideNavigation();
+				  	  	  			//isInvokingService = "false";
+				  	  	  			
+				  	  	  			// DIALOG WAS SHOWING TWICE (NOT SURE WHY isInvokingService ISNT WORKING) SO USED THIS:
+				  	  	  			//if ((mydialog == null) || !mydialog.isShowing()) {
+				  	  	  				
+					  	  	  			final String[] items = new String[] { "Slay", "Mercy" };
+							      		
+										AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity2.this);
+										
+										builder.setCancelable(false);
+										
+										// if back pressed: DOES THIS WORK????????????
+										
+										builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+											@Override
+											public void onCancel(DialogInterface mydialog) {
+												
+												//GOTO SOME METHOD!!!!!!!!!!!!!!
+												
+												endGame();										
+											}
+										});					
+										
+										builder.setTitle("The computer is at your mercy...").setItems(items,
+												new DialogInterface.OnClickListener() {
+													public void onClick(DialogInterface mydialog, int item) {							
 														
-														dialog.dismiss();
+														if (item == 0) {
+															//hideNavigation();
+															
+															//mydialog.dismiss();
+															
+															playerDeadYet[1] = "yes";
+															playerDeadYet[0] = "no";
+															
+															centerscrolltext.setVisibility(View.VISIBLE);												
+											  	  	  		centerscrolltext.startAnimation(animAlphaText);
+											  	  			centerscrolltext.append("\n" + "> Let it be so...");
+															
+															final Handler h = new Handler();
+												  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+												  	  	  			
+												  	  	  		@Override
+													  	  	  	public void run() {
+												  	  	  			
+												  	  	  			gameOverCheck();
+													  	  	  	}
+												  	  	  	}, 2000);													
+														}
 														
-														playerDeadYet[1] = "no";
-														playerDeadYet[0] = "yes";
+														if (item == 1) {
+															//hideNavigation();
+															
+															//mydialog.dismiss();
+															
+															playerDeadYet[1] = "yes";
+															playerDeadYet[0] = "no";
+															
+															centerscrolltext.setVisibility(View.VISIBLE);												
+											  	  	  		centerscrolltext.startAnimation(animAlphaText);
+											  	  			centerscrolltext.append("\n" + "> The old gods are pleased...");
+															
+															final Handler h = new Handler();
+												  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+												  	  	  			
+												  	  	  		@Override
+													  	  	  	public void run() {
+												  	  	  			
+												  	  	  			gameOverCheck();
+													  	  	  	}
+												  	  	  	}, 2000);
+														}
 														
-														centerscrolltext.setVisibility(View.VISIBLE);												
-										  	  	  		centerscrolltext.startAnimation(animAlphaText);
-										  	  			centerscrolltext.append("\n" + "> Let it be so...");
-														
-														final Handler h = new Handler();
-											  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-											  	  	  			
-											  	  	  		@Override
-												  	  	  	public void run() {
-											  	  	  			
-											  	  	  			gameOverCheck();
-												  	  	  	}
-											  	  	  	}, 2000);													
+														mydialog.dismiss();
+														//isInvokingService = "true";
 													}
-													
-													if (item == 1) {
-														//hideNavigation();
-														
-														dialog.dismiss();
-														
-														playerDeadYet[1] = "no";
-														playerDeadYet[0] = "yes";
-														
-														centerscrolltext.setVisibility(View.VISIBLE);												
-										  	  	  		centerscrolltext.startAnimation(animAlphaText);
-										  	  			centerscrolltext.append("\n" + "> The old gods are pleased...");
-														
-														final Handler h = new Handler();
-											  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-											  	  	  			
-											  	  	  		@Override
-												  	  	  	public void run() {
-											  	  	  			
-											  	  	  			gameOverCheck();
-												  	  	  	}
-											  	  	  	}, 2000);
-													}																	
-												}
-											});
-									builder.create().show();				  	  	  			
+												});
+										builder.create().show();
+				  	  	  			//}				  	  	  							  	  	  			
 				  	  	  		}
 				  	  	  	}
 			  	  	  	}, 2000);						
@@ -18629,6 +19010,8 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  			
 				  	  	  		if (cureSpell[0] > 0) {
 									
+				  	  	  			//isInvokingService = "false";
+				  	  	  			
 									/*
 									centerscrolltext.setVisibility(View.VISIBLE);												
 					  	  	  		centerscrolltext.startAnimation(animAlphaText);
@@ -18651,7 +19034,9 @@ public class MainActivity2 extends ActionBarActivity {
 						  		    		
 						  		    		cure();
 						  		    		
-						  		    		dialog.dismiss();
+						  		    		isInvokingService = "true";
+						  		    		
+						  		    		dialog.dismiss();					  		    		
 						  		    	}
 						  	    	});
 						  	    	
@@ -18682,7 +19067,9 @@ public class MainActivity2 extends ActionBarActivity {
 										  	  	  			
 											  	  	  		playerDeadYet[1] = "no";
 										          		  	playerDeadYet[0] = "yes";
-										          		  
+										          		  	
+										          		  	//isInvokingService = "true";
+										          		  	
 										          		  	gameOverCheck();
 											  	  	  	}
 										  	  	  	}, 2000);
@@ -18726,6 +19113,8 @@ public class MainActivity2 extends ActionBarActivity {
 						  	  	  		@Override
 							  	  	  	public void run() {
 						  	  	  			
+						  	  	  			//isInvokingService = "true";
+						  	  	  			
 						  	  	  			gameOverCheck();
 							  	  	  	}
 						  	  	  	}, 2000);				  	  			
@@ -18736,6 +19125,11 @@ public class MainActivity2 extends ActionBarActivity {
 				}
   	  	    }
   	  	});
+	}
+	
+	public void endGameAfterFirstHasteMethod() {
+		
+		Toast.makeText(MainActivity2.this, "IT'S FUCKING LOOPING", Toast.LENGTH_SHORT).show();
 	}
 	
 	public void gameOverCheck() {

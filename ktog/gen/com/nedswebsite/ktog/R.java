@@ -1469,7 +1469,8 @@ containing a value of this type.
         public static final int activity_rules=0x7f03001a;
         public static final int activity_video=0x7f03001b;
         public static final int avatar_adapter=0x7f03001c;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001d;
+        public static final int list_row=0x7f03001d;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001e;
     }
     public static final class menu {
         public static final int main_activity1=0x7f0d0000;
@@ -1545,6 +1546,7 @@ containing a value of this type.
         public static final int title_activity_video=0x7f0b000f;
     }
     public static final class style {
+        public static final int AlertDialogThemeTitle=0x7f0c008d;
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.

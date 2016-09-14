@@ -489,7 +489,7 @@
    	    android:layout_height="wrap_content"
         android:textColor="#FFFFFF"
         android:textSize="225sp"        
-        android:gravity="center" />	
+        android:gravity="center" />
    	
 
 </RelativeLayout>

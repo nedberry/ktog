@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:gravity="center"
+   	android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="48px"
+        android:layout_height="48px"
+        android:layout_gravity="left" />
+
+    <TextView
+        android:id="@+id/title"
+        android:textColor="#FFFFFF"        
+        android:paddingRight="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:textSize="25sp"
+        android:gravity="center" />
+    
+    <!-- 
+    Android is indenting list items so had to add padding.
+    Changing android:layout_width didn't do anything.
+    
+    android:layout_width="wrap_content"   
+    android:text=""
+    android:layout_gravity="center"
+    android:layout_height="match_parent"
+    android:paddingLeft="10dip" -->
+    
+</LinearLayout>
