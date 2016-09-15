@@ -101,8 +101,8 @@ public class MainActivity2 extends ActionBarActivity {
 	// SOME OF THESE MAY NEED TO BE AN ARRAY-CLASS:
 	public static int[] blessSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
 	public static int[] cureSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
-	public static int[] dodgeBlowSpell = new int[] {0, 0, 1, 1, 1, 1, 1};
-	public static int[] mightyBlowSpell = new int[] {0, 0, 1, 1, 1, 1, 1};
+	public static int[] dodgeBlowSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
+	public static int[] mightyBlowSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
 	public static int[] hasteSpell = new int[] {2, 2, 2, 2, 2, 2, 2};	
 	
 	
@@ -216,12 +216,12 @@ public class MainActivity2 extends ActionBarActivity {
 		computerNameTextView.setText(ArrayOfPlayers.player[1]);
 		
 		
-		ArrayOfHitPoints.hitpoints[0] = 1;		
+		ArrayOfHitPoints.hitpoints[0] = 20;		
 		final TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
 		playerHitPointsTextView.setTypeface(typeFace);
 		playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));		
 		
-		ArrayOfHitPoints.hitpoints[1] = 1;
+		ArrayOfHitPoints.hitpoints[1] = 20;
 		final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
 		computerHitPointsTextView.setTypeface(typeFace);
 		computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));		
@@ -380,7 +380,21 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		
 		final TextView titleinitiativetext = (TextView) findViewById(R.id.textviewtitleinitiativetext);
-		titleinitiativetext.setVisibility(View.INVISIBLE);
+		titleinitiativetext.setVisibility(View.INVISIBLE);		
+		
+		
+		
+		
+		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);		
+		disarmedtextleft.setTypeface(typeFace);		
+		disarmedtextleft.setVisibility(View.INVISIBLE);		
+		disarmedtextleft.append("Disarmed");
+		
+		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);		
+		disarmedtextright.setTypeface(typeFace);		
+		disarmedtextright.setVisibility(View.INVISIBLE);		
+		disarmedtextright.append("Disarmed");
+		
 		
 		
 		
@@ -1643,6 +1657,9 @@ public class MainActivity2 extends ActionBarActivity {
 	    			mightyBlowSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
 	    			hasteSpell = new int[] {2, 2, 2, 2, 2, 2, 2};
 	    			
+	    			playerDeadYet = new String[] {"yes", "yes", "yes", "yes", "yes", "yes"};	    			
+	    			canHasDisarmed = new String[] {"no", "no", "no", "no", "no", "no"};
+	    			
 	    			
 	    			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
 	    			SharedPreferences.Editor editor = preferences.edit();
@@ -1701,6 +1718,9 @@ public class MainActivity2 extends ActionBarActivity {
 		dodgeBlowSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
 		mightyBlowSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
 		hasteSpell = new int[] {2, 2, 2, 2, 2, 2, 2};
+		
+		playerDeadYet = new String[] {"yes", "yes", "yes", "yes", "yes", "yes"};	    			
+		canHasDisarmed = new String[] {"no", "no", "no", "no", "no", "no"};
 		
 		
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
@@ -8872,6 +8892,8 @@ public class MainActivity2 extends ActionBarActivity {
 				  		centerscrolltext.startAnimation(animAlphaText);
 						centerscrolltext.append("\n" + "> The computer picks up it's weapon.");
 						
+						TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+				  		disarmedtextright.setVisibility(View.INVISIBLE);
 						
 						final Handler h2 = new Handler();
 			  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
@@ -11118,6 +11140,9 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  		@Override
 		  	  	  	public void run() {
 	  	  	  			
+	  	  	  			ImageView twentySidedBlank = (ImageView) findViewById(R.id.twentysidedanimation);		
+	  	  	  			twentySidedBlank.setEnabled(false);
+	  	  	  			
 		  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 				  		centerscrolltext.startAnimation(animAlphaText);			  		
 						centerscrolltext.append("\n" + "> The computer's first roll...");					
@@ -11542,8 +11567,12 @@ public class MainActivity2 extends ActionBarActivity {
 																
 																didComputerCriticalMiss = "yes";
 																
-																disarmedTurnStart[1] = turn;
+																disarmedTurnStart[1] = turn;																
 																
+																TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+											  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
+													  	  	  	disarmedtextright.bringToFront();
+													  	  	  	
 																
 																final Handler h = new Handler();
 													  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -15525,6 +15554,11 @@ public class MainActivity2 extends ActionBarActivity {
 							
 							disarmedTurnStart[0] = turn;
 							
+							TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+		  	  	  			disarmedtextleft.setVisibility(View.VISIBLE);
+				  	  	  	disarmedtextleft.bringToFront();
+				  	  	  	
+							
 							final Handler h2 = new Handler();
 				  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
 				  	  	  			
@@ -16386,6 +16420,9 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 							  		centerscrolltext.startAnimation(animAlphaText);
 									centerscrolltext.append("\n" + "> You are no longer disarmed.");
+									
+									TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+							  		disarmedtextleft.setVisibility(View.INVISIBLE);
 									
 									final Handler h = new Handler();
 						  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -18330,6 +18367,9 @@ public class MainActivity2 extends ActionBarActivity {
 		if (canHasDisarmed[1].equals("yes") && didComputerCriticalMiss.equals("yes") && disarmedTurnStart[1] + 3 == turn) {
 			
 			canHasDisarmed[1] = "no";
+			
+			TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+	  		disarmedtextright.setVisibility(View.INVISIBLE);
 		
 			didComputerCriticalMiss = "no";					
 		}	
@@ -18368,6 +18408,10 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  			
 		  	  	  		if (ArrayOfHitPoints.hitpoints[0] == 0 && endGameAfterFirstHaste.equals("no")) {
 		  	  	  			
+		  	  	  			TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+		  	  	  			disarmedtextleft.setVisibility(View.VISIBLE);
+				  	  	  	disarmedtextleft.bringToFront();
+		  	  	  			
 	  	  	  				//isInvokingService = "true";
 	  	  	  				
 	  	  	  				//NEED THIS?
@@ -18387,6 +18431,10 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  	  		*/
 			  	  		else if (canHasDisarmed[0].equals("yes")) {
 							
+				  	  		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+		  	  	  			disarmedtextleft.setVisibility(View.VISIBLE);
+				  	  	  	disarmedtextleft.bringToFront();
+			  	  			
 							/*
 							for (int x = 0; x < 1000; --x) // To give human player time to read.
 							{
@@ -18429,7 +18477,9 @@ public class MainActivity2 extends ActionBarActivity {
 				  				
 				  				canHasDisarmed[0] = "no";				
 				  				
-				  				didHumanCriticalMiss = "no";
+				  				didHumanCriticalMiss = "no";				  				
+				  				
+				  		  		disarmedtextleft.setVisibility(View.INVISIBLE);
 				  				
 				  				if (isInvokingService.equals("true")){
 									//NEED THIS?
@@ -18443,7 +18493,9 @@ public class MainActivity2 extends ActionBarActivity {
 				  									
 				  				canHasDisarmed[0] = "no";				
 				  			
-				  				//didHumanCriticalMiss = "no";
+				  				//didHumanCriticalMiss = "no";				  				
+				  				
+				  		  		disarmedtextleft.setVisibility(View.INVISIBLE);
 				  				
 				  				if (isInvokingService.equals("true")){
 									//NEED THIS?
@@ -18466,6 +18518,9 @@ public class MainActivity2 extends ActionBarActivity {
 							 * 
 							 */
 			  	  			
+				  	  		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+					  		disarmedtextleft.setVisibility(View.INVISIBLE);
+			  	  			
 							if (isInvokingService.equals("true")){
 								//NEED THIS?
 								SystemClock.sleep(1000);	        		
@@ -18486,6 +18541,9 @@ public class MainActivity2 extends ActionBarActivity {
     	
     	if (canHasDisarmed[1].equals("yes") && didComputerCriticalMiss.equals("no") && disarmedTurnStart[1] + 2 == turn) {
 			
+    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+	  		disarmedtextright.setVisibility(View.INVISIBLE);
+    		
 			canHasDisarmed[1] = "no";	  		  				
 		}		
 		
@@ -18543,6 +18601,10 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  			
 		  	  	  		if (ArrayOfHitPoints.hitpoints[1] == 0 && endGameAfterFirstHaste.equals("no")) {
 		  	  	  			
+		  	  	  			TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+		  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
+				  	  	  	disarmedtextright.bringToFront();
+		  	  	  			
 			  	  	  		//isInvokingService = "true";
 	  	  	  				
 	  	  	  				//NEED THIS?
@@ -18559,11 +18621,18 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  	  		//SO TEXT/DIALOG/INSTANCE DOSENT GET REPEATED WHEN COMP IS AT HP = 0 & NO CURE:
 		  	  	  		else if (ArrayOfHitPoints.hitpoints[1] == 0 && endGameAfterFirstHaste.equals("yes")) {
 		  	  	  			
+			  	  	  		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+		  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
+				  	  	  	disarmedtextright.bringToFront();
+		  	  	  			
 		  	  	  			endGameAfterFirstHasteMethod();
 		  	  	  		}
 								  	  	  		
 			  			else if (canHasDisarmed[1].equals("yes")) {
 			  				
+			  				TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+		  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
+				  	  	  	disarmedtextright.bringToFront();
 			  				
 			  				/*
 			  				 * NEED GRAPHICS HERE:
@@ -18625,6 +18694,8 @@ public class MainActivity2 extends ActionBarActivity {
 			  				 * 
 			  				 */
 			  				
+			  				TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+		  	  	  			disarmedtextright.setVisibility(View.INVISIBLE);
 			  				
 			  				computerAction = (int) (Math.random() * 100) + 1;
 			  				computerAttack();					
@@ -18645,6 +18716,9 @@ public class MainActivity2 extends ActionBarActivity {
 		if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss.equals("yes") && disarmedTurnStart[0] + 3 == turn) {
 			
 			canHasDisarmed[0] = "no";
+			
+			TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+	  		disarmedtextleft.setVisibility(View.INVISIBLE);
 			
 			didHumanCriticalMiss = "no";				
 		}
@@ -18683,6 +18757,10 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  			
 		  	  	  		if (ArrayOfHitPoints.hitpoints[1] == 0 && endGameAfterFirstHaste.equals("no")) {
 		  	  	  			
+			  	  	  		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+		  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
+				  	  	  	disarmedtextright.bringToFront();
+		  	  	  			
 			  	  	  		//isInvokingService = "true";
 	  	  	  				
 	  	  	  				//NEED THIS?
@@ -18699,11 +18777,18 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  	  		//SO TEXT/DIALOG/INSTANCE DOSENT GET REPEATED WHEN COMP IS AT HP = 0 & NO CURE:
 			  	  	  	else if (ArrayOfHitPoints.hitpoints[1] == 0 && endGameAfterFirstHaste.equals("yes")) {
 		  	  	  			
+				  	  	  	TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+		  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
+				  	  	  	disarmedtextright.bringToFront();
+			  	  	  		
 		  	  	  			endGameAfterFirstHasteMethod();
 		  	  	  		}
 		  	  	  		
 			  	  		else if (canHasDisarmed[1].equals("yes")) {
 							
+				  	  		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+		  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
+				  	  	  	disarmedtextright.bringToFront();
 							
 							/*
 							 * NEED GRAPHICS HERE:
@@ -18742,7 +18827,9 @@ public class MainActivity2 extends ActionBarActivity {
 								
 								canHasDisarmed[1] = "no";
 								
-								didComputerCriticalMiss = "no";	
+								didComputerCriticalMiss = "no";									
+								
+			  	  	  			disarmedtextright.setVisibility(View.INVISIBLE);
 								
 								computerAction = (int) (Math.random() * 100) + 1;
 								computerAttack();
@@ -18752,7 +18839,9 @@ public class MainActivity2 extends ActionBarActivity {
 													
 								canHasDisarmed[1] = "no";
 								
-								//didComputerCriticalMiss = "no";
+								//didComputerCriticalMiss = "no";								
+								
+			  	  	  			disarmedtextright.setVisibility(View.INVISIBLE);
 								
 								computerAction = (int) (Math.random() * 100) + 1;
 								computerAttack();
@@ -18771,7 +18860,9 @@ public class MainActivity2 extends ActionBarActivity {
 							 * actionTemplate();
 							 * 
 							 */
-							
+			  	  			
+				  	  		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+		  	  	  			disarmedtextright.setVisibility(View.INVISIBLE);
 							
 							computerAction = (int) (Math.random() * 100) + 1;
 							computerAttack();					
@@ -18787,7 +18878,10 @@ public class MainActivity2 extends ActionBarActivity {
 		   	
     	if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss.equals("no") && disarmedTurnStart[0] + 2 == turn) {
 			
-			canHasDisarmed[0] = "no"; 		  				
+			canHasDisarmed[0] = "no";
+			
+			TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+	  		disarmedtextleft.setVisibility(View.INVISIBLE);
 		}	
 		
 		
@@ -18841,6 +18935,10 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  			
 		  	  	  		if (ArrayOfHitPoints.hitpoints[0] == 0 && endGameAfterFirstHaste.equals("no")) {
 		  	  	  			
+		  	  	  			TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+		  	  	  			disarmedtextleft.setVisibility(View.VISIBLE);
+				  	  	  	disarmedtextleft.bringToFront();
+		  	  	  			
 			  	  	  		//isInvokingService = "true";
 	  	  	  				
 	  	  	  				//NEED THIS?
@@ -18859,6 +18957,10 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  	  		}
 						*/
 						else if (canHasDisarmed[0].equals("yes")) {
+							
+							TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+		  	  	  			disarmedtextleft.setVisibility(View.VISIBLE);
+				  	  	  	disarmedtextleft.bringToFront();
 							
 							/*
 							for (int x = 0; x < 1000; --x)// To give human player time
@@ -18924,7 +19026,10 @@ public class MainActivity2 extends ActionBarActivity {
 							 * 
 							 * action(i, turn, gameOn);
 							 * 
-							 */							
+							 */
+							TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+					  		disarmedtextleft.setVisibility(View.INVISIBLE);
+							
 							if (isInvokingService.equals("true")){
 								//NEED THIS?
 								SystemClock.sleep(1000);	        		

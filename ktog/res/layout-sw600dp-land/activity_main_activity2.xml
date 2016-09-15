@@ -151,6 +151,19 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/imagebuttontitleblank" >
+        
+        <TextView
+            android:id="@+id/textdisarmedright"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/imageviewavatarright"
+            android:layout_alignParentBottom="true"
+            android:layout_alignRight="@+id/imageviewavatarright"
+            android:layout_alignTop="@+id/imageviewavatarright"
+            android:gravity="center"
+            android:textColor="#F80202"
+            android:rotation="-45"
+            android:textSize="29sp" />
 
         <ImageView
             android:id="@+id/imageviewavatarright"
@@ -172,6 +185,19 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_toLeftOf="@+id/imagebuttontitleblank" >
+        
+        <TextView
+            android:id="@+id/textdisarmedleft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/imageviewavatarleft1"
+            android:layout_alignParentBottom="true"
+            android:layout_alignRight="@+id/imageviewavatarleft1"
+            android:layout_alignTop="@+id/imageviewavatarleft1"
+            android:gravity="center"
+            android:textColor="#F80202"
+            android:rotation="-45"
+            android:textSize="29sp" />
 
         <ImageView
             android:id="@+id/imageviewavatarleft1"

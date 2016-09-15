@@ -1310,7 +1310,7 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f060016;
         public static final int action_menu_presenter=0x7f060017;
         public static final int action_mode_close_button=0x7f060024;
-        public static final int action_settings=0x7f060071;
+        public static final int action_settings=0x7f060073;
         public static final int activity_chooser_view_content=0x7f060025;
         public static final int always=0x7f06000b;
         public static final int beginning=0x7f060011;
@@ -1334,27 +1334,27 @@ containing a value of this type.
         public static final int imagebuttonmultiplayer=0x7f06003e;
         public static final int imagebuttononeplayer=0x7f06003d;
         public static final int imagebuttontitleblank=0x7f060042;
-        public static final int imageviewavatarleft1=0x7f060050;
-        public static final int imageviewavatarleft2=0x7f060051;
-        public static final int imageviewavatarleft3=0x7f060052;
-        public static final int imageviewavatarright=0x7f06004e;
+        public static final int imageviewavatarleft1=0x7f060052;
+        public static final int imageviewavatarleft2=0x7f060053;
+        public static final int imageviewavatarleft3=0x7f060054;
+        public static final int imageviewavatarright=0x7f06004f;
         public static final int imageviewcenterscroll=0x7f060043;
-        public static final int imageviewhitpointsleft=0x7f060053;
-        public static final int imageviewhitpointsright=0x7f060055;
-        public static final int imageviewplayerbox4left=0x7f060057;
-        public static final int imageviewplayerbox4leftbless=0x7f060058;
-        public static final int imageviewplayerbox4leftcure=0x7f060059;
-        public static final int imageviewplayerbox4leftdodge=0x7f06005a;
-        public static final int imageviewplayerbox4lefthaste1=0x7f06005c;
-        public static final int imageviewplayerbox4lefthaste2=0x7f06005d;
-        public static final int imageviewplayerbox4leftmb=0x7f06005b;
-        public static final int imageviewplayerbox4right=0x7f060056;
-        public static final int imageviewplayerbox4rightbless=0x7f06005e;
-        public static final int imageviewplayerbox4rightcure=0x7f06005f;
-        public static final int imageviewplayerbox4rightdodge=0x7f060060;
-        public static final int imageviewplayerbox4righthaste1=0x7f060062;
-        public static final int imageviewplayerbox4righthaste2=0x7f060063;
-        public static final int imageviewplayerbox4rightmb=0x7f060061;
+        public static final int imageviewhitpointsleft=0x7f060055;
+        public static final int imageviewhitpointsright=0x7f060057;
+        public static final int imageviewplayerbox4left=0x7f060059;
+        public static final int imageviewplayerbox4leftbless=0x7f06005a;
+        public static final int imageviewplayerbox4leftcure=0x7f06005b;
+        public static final int imageviewplayerbox4leftdodge=0x7f06005c;
+        public static final int imageviewplayerbox4lefthaste1=0x7f06005e;
+        public static final int imageviewplayerbox4lefthaste2=0x7f06005f;
+        public static final int imageviewplayerbox4leftmb=0x7f06005d;
+        public static final int imageviewplayerbox4right=0x7f060058;
+        public static final int imageviewplayerbox4rightbless=0x7f060060;
+        public static final int imageviewplayerbox4rightcure=0x7f060061;
+        public static final int imageviewplayerbox4rightdodge=0x7f060062;
+        public static final int imageviewplayerbox4righthaste1=0x7f060064;
+        public static final int imageviewplayerbox4righthaste2=0x7f060065;
+        public static final int imageviewplayerbox4rightmb=0x7f060063;
         public static final int imageviewscroll3b5left=0x7f060040;
         public static final int imageviewscroll3b5right=0x7f06004a;
         public static final int listMode=0x7f060001;
@@ -1368,10 +1368,10 @@ containing a value of this type.
         public static final int progress_circular=0x7f060018;
         public static final int progress_horizontal=0x7f060019;
         public static final int radio=0x7f06002f;
-        public static final int relativeLayout=0x7f06006d;
-        public static final int relativeLayout1=0x7f06004f;
+        public static final int relativeLayout=0x7f06006f;
+        public static final int relativeLayout1=0x7f060050;
         public static final int relativeLayout2=0x7f06004d;
-        public static final int scrollanimation=0x7f060065;
+        public static final int scrollanimation=0x7f060067;
         public static final int search_badge=0x7f060032;
         public static final int search_bar=0x7f060031;
         public static final int search_button=0x7f060033;
@@ -1386,32 +1386,34 @@ containing a value of this type.
         public static final int showCustom=0x7f060007;
         public static final int showHome=0x7f060004;
         public static final int showTitle=0x7f060006;
-        public static final int sixsidedanimation=0x7f060067;
+        public static final int sixsidedanimation=0x7f060069;
         public static final int split_action_bar=0x7f06001e;
         public static final int submit_area=0x7f060039;
         public static final int tabMode=0x7f060002;
-        public static final int textviewcenterscrolltext=0x7f060064;
-        public static final int textviewhitpointsleft=0x7f060054;
+        public static final int textdisarmedleft=0x7f060051;
+        public static final int textdisarmedright=0x7f06004e;
+        public static final int textviewcenterscrolltext=0x7f060066;
+        public static final int textviewhitpointsleft=0x7f060056;
         public static final int textviewhitpointsright=0x7f060044;
         public static final int textviewnameleft=0x7f060049;
         public static final int textviewnameright=0x7f06004c;
-        public static final int textviewspellgraphic=0x7f060069;
-        public static final int textviewspellgraphicdodge=0x7f06006a;
-        public static final int textviewspellgraphicextrasmall=0x7f06006c;
-        public static final int textviewspellgraphicsmall=0x7f06006b;
+        public static final int textviewspellgraphic=0x7f06006b;
+        public static final int textviewspellgraphicdodge=0x7f06006c;
+        public static final int textviewspellgraphicextrasmall=0x7f06006e;
+        public static final int textviewspellgraphicsmall=0x7f06006d;
         public static final int textviewtitleinitiativetext=0x7f060046;
         public static final int textviewtitlektogtext=0x7f060045;
         public static final int textviewtitlerulestext=0x7f060047;
         public static final int textviewtitlevictorydefeattext=0x7f060048;
         public static final int title=0x7f06002b;
-        public static final int titleanimation=0x7f060066;
+        public static final int titleanimation=0x7f060068;
         public static final int top_action_bar=0x7f060020;
-        public static final int twentysidedanimation=0x7f060068;
+        public static final int twentysidedanimation=0x7f06006a;
         public static final int up=0x7f060021;
         public static final int useLogo=0x7f060003;
-        public static final int videobutton1=0x7f060070;
-        public static final int videoview=0x7f06006f;
-        public static final int viewFlipper=0x7f06006e;
+        public static final int videobutton1=0x7f060072;
+        public static final int videoview=0x7f060071;
+        public static final int viewFlipper=0x7f060070;
         public static final int withText=0x7f06000c;
     }
     public static final class integer {
@@ -1686,7 +1688,11 @@ containing a value of this type.
         /**  Base platform-dependent theme providing a light-themed activity. 
          */
         public static final int Theme_Base_Light=0x7f0c007f;
-        /**  Local copy of android:Theme.Holo.Dialog.Alert 
+        /**  The base AlertDialog theme is Theme.Holo.Dialog.Alert, but it is private! 
+    No worries, we can copy the source code from the same link to “recreate” this default theme. 
+    If we copy only Theme.Holo.Dialog.Alert we’ll get an error, because DialogWindowTitle.Holo
+    is also a private style. We do the same trick here: copy it from the source. 
+ Local copy of android:Theme.Holo.Dialog.Alert 
          */
         public static final int Theme_Holo_Dialog_Alert=0x7f0c008e;
         /**  Styles in here can be extended for customisation in your application. Each utilises
