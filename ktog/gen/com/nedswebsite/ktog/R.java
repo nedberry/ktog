@@ -1546,6 +1546,8 @@ containing a value of this type.
         public static final int title_activity_video=0x7f0b000f;
     }
     public static final class style {
+        /**  First try at styling alert dialog: 
+         */
         public static final int AlertDialogThemeTitle=0x7f0c008d;
         /** 
         Base application theme, dependent on API level. This theme is replaced
@@ -1554,8 +1556,7 @@ containing a value of this type.
 
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-            
+            backward-compatibility can go here.            
         
 
         Base application theme for API 11+. This theme completely replaces
@@ -1574,6 +1575,9 @@ containing a value of this type.
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f0c008c;
+        /**  Local copy of android:DialogWindowTitle.Holo 
+         */
+        public static final int DialogWindowTitle_Holo=0x7f0c008f;
         /**  Mimic text appearance in select_dialog_item.xml 
          */
         public static final int TextAppearance_AppCompat_Base_CompactMenu_Dialog=0x7f0c0063;
@@ -1682,6 +1686,9 @@ containing a value of this type.
         /**  Base platform-dependent theme providing a light-themed activity. 
          */
         public static final int Theme_Base_Light=0x7f0c007f;
+        /**  Local copy of android:Theme.Holo.Dialog.Alert 
+         */
+        public static final int Theme_Holo_Dialog_Alert=0x7f0c008e;
         /**  Styles in here can be extended for customisation in your application. Each utilises
          one of the Base styles. If Holo themes are available on the current platform version
          they will be used instead of the compat styles. 

@@ -455,7 +455,7 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  		}
 			  	  	  	}, 2000);
 		  	  	  	}
-	  	  	  	}, 2900);//MAINLY FINAGLING TO GET RIGHT  	  	  		  			
+	  	  	  	}, 2800);//MAINLY FINAGLING TO GET RIGHT - should be 4700?	  	  		  			
   	  		}
   	  	}, 2000);
   	  	
@@ -17433,7 +17433,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  			centerscrolltext.setTypeface(typeFace);	  			
 	  			
 	  			
-	  			// NEW WAY TO DO DIALOG (MORE CONTROL 
+	  			// NEW WAY TO DO DIALOG
 		  		final String[] items = {"Attack", "Disarm", "Haste", "Cure", "Bless"};
 	
 		  		// Instead of String[] items, Here you can also use ArrayList for your custom object..
@@ -17482,18 +17482,16 @@ public class MainActivity2 extends ActionBarActivity {
 		  		};		  		
 		  		
 		  		
-		  		// ALTERNATIVE TO SET TEXT SIZE/ROW HEIGHT (CAN CENTER BUT MESSES UP EVERYTHING ELSE):
-		  		//ContextThemeWrapper cw = new ContextThemeWrapper(MainActivity2.this, R.style.AlertDialogThemeTitle);
-		  		//AlertDialog.Builder builder = new AlertDialog.Builder(cw);
+		  		// THIS WAY ALLOWS YOU TO STYLE THE DIALOG:
+		  		ContextThemeWrapper cw = new ContextThemeWrapper(MainActivity2.this, R.style.DialogWindowTitle_Holo);
+		  		AlertDialog.Builder builder = new AlertDialog.Builder(cw);
 		  		
-	  			AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity2.this);
+		  		//ORIGINAL WAY TO DO IT:
+	  			//AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity2.this);
 	  			
 	  			builder.setCancelable(false);	  			
 	  			
-	  			builder.setTitle("Choose Action");
-	  			
-	  			
-	  			
+	  			builder.setTitle("Choose Action");	  			
 	  			
 	  			
 	  			// if back pressed: DOES THIS WORK????????????
@@ -17646,7 +17644,8 @@ public class MainActivity2 extends ActionBarActivity {
 	            alert.getWindow().setAttributes(lp);
 	            */
   	  	    }
-
+  	  	    
+  	  	    // IS THIS USED?:
 			private LayoutInflater getSystemService(String layoutInflaterService) {
 				// TODO Auto-generated method stub
 				return null;
@@ -17877,7 +17876,189 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  	  			}
 		  	  	  			
 		  	  	  			else {(STUFF BELOW)}
-		  	  	  			*/	
+		  	  	  			*/
+		  	  	  			
+		  	  	  			
+		  	  	  			// NEW WAY TO DO DIALOG
+		  			  		final String[] items = {"Punch", "Haste", "Cure"};
+		  		
+		  			  		// Instead of String[] items, Here you can also use ArrayList for your custom object..
+		  		
+		  			  		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.list_row, R.id.title,items) {
+		  		
+		  			  		    ViewHolder holder;
+		  			  		    Drawable icon;
+		  		
+		  			  		    class ViewHolder {
+		  			  		        ImageView icon;
+		  			  		        TextView title;						
+		  			  		    }
+		  		
+		  			  		    public View getView(int position, View convertView, ViewGroup parent) {
+		  			  		        final LayoutInflater inflater = (LayoutInflater) getApplicationContext()
+		  			  		                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		  			  		        
+		  			  		        //THIS STUFF DID NOT WORK:
+		  			  		        //TextView textView = (TextView) findViewById(R.layout.list_row);
+		  			  		        //textView.setGravity(Gravity.CENTER);
+		  			  		        //textView.setLayoutParams(new ListView.LayoutParams(AbsListView.LayoutParams.MATCH_PARENT, 32 /* this is item height */));
+		  			  		        
+		  		
+		  			  		        if (convertView == null) {
+		  			  		            convertView = inflater.inflate(R.layout.list_row, null);
+		  		
+		  			  		            holder = new ViewHolder();
+		  			  		            holder.icon = (ImageView) convertView.findViewById(R.id.icon);
+		  			  		            holder.title = (TextView) convertView.findViewById(R.id.title);		  		           
+		  			  		            
+		  			  		            convertView.setTag(holder);
+		  			  		        } else {
+		  			  		            // view already defined, retrieve view holder
+		  			  		            holder = (ViewHolder) convertView.getTag();
+		  			  		        }       
+		  		
+		  			  		       // Drawable drawable = getResources().getDrawable(R.drawable.list_icon); //this is an image from the drawables folder
+		  		
+		  			  		        holder.title.setText(items[position]);
+		  			  		        //holder.icon.setImageDrawable(drawable);     
+		  			  		        
+		  		
+		  			  		        return convertView;
+		  			  		    }
+		  			  		};		  		
+		  			  		
+		  			  		
+		  			  		// THIS WAY ALLOWS YOU TO STYLE THE DIALOG:
+		  			  		ContextThemeWrapper cw = new ContextThemeWrapper(MainActivity2.this, R.style.DialogWindowTitle_Holo);
+		  			  		AlertDialog.Builder builder = new AlertDialog.Builder(cw);
+		  			  		
+		  			  		//ORIGINAL WAY TO DO IT:
+		  		  			//AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity2.this);
+		  		  			
+		  		  			builder.setCancelable(false);	  			
+		  		  			
+		  		  			builder.setTitle("Choose Action");	  			
+		  		  			
+		  		  			
+		  		  			// if back pressed: DOES THIS WORK????????????
+		  					builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+		  						@Override
+		  						public void onCancel(DialogInterface dialog) {
+		  							
+		  							//GOTO SOME METHOD!!!!!!!!!!!!!!
+		  							
+		  							runActionsOnUi();
+		  						}
+		  					});
+		  		  			
+		  					
+		  		            builder.setAdapter(adapter,
+		  		                    new DialogInterface.OnClickListener() {
+		  		                        @Override
+		  		                        public void onClick(final DialogInterface dialog,
+		  		                                int item) {
+		  		                        	if (item == 0) {										
+		  										
+		  		                        		centerscrolltext.setVisibility(View.VISIBLE);													
+										  		centerscrolltext.startAnimation(animAlphaText);
+												centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + " attacks...");
+												
+												final Handler h = new Handler();
+									  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+									  	  	  			
+									  	  	  		@Override
+										  	  	  	public void run() {
+									  	  	  			
+									  	  	  			//hideNavigation();
+														//isInvokingService = "true";
+														//punch();
+														attack();
+										  	  	  	}
+									  	  	  	}, 1000);										
+		  									}
+		  									if (item == 1) {
+		  										
+		  									//hideNavigation();
+												//isInvokingService = "true";												
+													
+												if (hasteSpell[0] < 1) {
+													
+													centerscrolltext.setVisibility(View.VISIBLE);
+											  		centerscrolltext.startAnimation(animAlphaText);
+											  		centerscrolltext.append("\n" + "> You have already used your Haste spells.");
+													
+													disarmedAction();
+												}												
+												
+												else if ((hasteSpell[0] > 0) && !(disarmedTurnStart[0] + 2 == turn)) {
+													
+													centerscrolltext.setVisibility(View.VISIBLE);													
+											  		centerscrolltext.startAnimation(animAlphaText);
+													centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + " casts haste...");
+													
+													final Handler h = new Handler();
+										  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+										  	  	  			
+										  	  	  		@Override
+											  	  	  	public void run() {
+										  	  	  			
+										  	  	  			haste();
+											  	  	  	}
+										  	  	  	}, 1000);												
+												}
+												
+												else {
+													
+													disarmedAction();
+												}										
+		  									}
+		  									if (item == 2) {
+		  										
+		  									//hideNavigation();
+												//isInvokingService = "true";
+												if (cureSpell[0] > 0) {
+													
+													centerscrolltext.setVisibility(View.VISIBLE);													
+											  		centerscrolltext.startAnimation(animAlphaText);
+													centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + " casts cure...");
+													
+													final Handler h = new Handler();
+										  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+										  	  	  			
+										  	  	  		@Override
+											  	  	  	public void run() {
+										  	  	  			
+										  	  	  			cure();
+											  	  	  	}
+										  	  	  	}, 1000);													
+												}
+												
+												if (cureSpell[0] < 1) {
+													
+													disarmedAction();
+												}									
+		  									}						
+		  									
+		  									
+		  									isInvokingService = "true";
+		  		                        	
+		  		                            dialog.dismiss();
+		  		                        }
+		  		                    });	            
+		  		            
+		  		            AlertDialog alert = builder.create();
+		  		            alert.show();	            
+		  		            
+		  		            
+		  		            WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+
+		  		            lp.copyFrom(alert.getWindow().getAttributes());
+		  		            lp.width = 1050;	            
+		  		            alert.getWindow().setAttributes(lp);	  	  			
+		  	  	  			
+		  	  	  			
+		  	  	  			// OLD DIALOG BUILDER:
+		  	  	  			/*
 	  	  	  				final String[] items = new String[] { "Punch", "Haste", "Cure" };
 			      		
 							AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity2.this);
@@ -17986,7 +18167,8 @@ public class MainActivity2 extends ActionBarActivity {
 										}
 									});
 							
-							builder.create().show();		  	  	  			
+							builder.create().show();
+							*/		  	  	  			
 			  	  	  	}
 		  	  	  	}, 2000);					
 	  	  	    }

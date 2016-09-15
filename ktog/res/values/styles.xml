@@ -1,5 +1,4 @@
 <resources>
-
        
     <!--
         Base application theme, dependent on API level. This theme is replaced
@@ -10,21 +9,55 @@
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-            
+            backward-compatibility can go here.            
         -->
     </style>
 
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
-        
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->        
     </style>
     
+    
+    
+    
+    <!-- First try at styling alert dialog: -->
     <style name="AlertDialogThemeTitle" parent="android:Theme.Dialog">
     	<item name="android:gravity">center_horizontal</item>
     	<item name="android:textColor">#FFFFFF</item>
     	<item name="android:background">#000000</item>
+	</style>	
+    
+    <!-- The base AlertDialog theme is Theme.Holo.Dialog.Alert, but it is private! 
+    No worries, we can copy the source code from the same link to “recreate” this default theme. 
+    If we copy only Theme.Holo.Dialog.Alert we’ll get an error, because DialogWindowTitle.Holo
+    is also a private style. We do the same trick here: copy it from the source. -->
+    
+    <!-- Local copy of android:Theme.Holo.Dialog.Alert -->
+	<style name="Theme_Holo_Dialog_Alert" parent="@android:style/Theme.Holo.Dialog">
+		<item name="android:windowBackground">@android:color/transparent</item>
+		<item name="android:windowTitleStyle">@style/DialogWindowTitle_Holo</item>
+		<item name="android:windowContentOverlay">@null</item>
+		<item name="android:windowMinWidthMajor">@android:dimen/dialog_min_width_major</item>
+		<item name="android:windowMinWidthMinor">@android:dimen/dialog_min_width_minor</item>
 	</style>
+ 
+	<!-- Local copy of android:DialogWindowTitle.Holo -->
+	<style name="DialogWindowTitle_Holo">
+	    
+	    <item name="android:gravity">center_horizontal</item>
+	    
+		<item name="android:maxLines">1</item>
+		<item name="android:scrollHorizontally">true</item>
+		<item name="android:textAppearance">@android:style/TextAppearance.Holo.DialogWindowTitle</item>
+	</style>
+	
+	
+    
+    
+    
+    
+    
+    
     
 </resources>

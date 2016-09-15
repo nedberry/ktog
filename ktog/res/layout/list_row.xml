@@ -15,15 +15,17 @@
     <TextView
         android:id="@+id/title"
         android:textColor="#FFFFFF"        
-        android:paddingRight="20dp"
+        android:paddingRight="30dp"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:textSize="25sp"
+        android:textSize="20sp"
         android:gravity="center" />
     
     <!-- 
     Android is indenting list items so had to add padding.
     Changing android:layout_width didn't do anything.
+    
+    
     
     android:layout_width="wrap_content"   
     android:text=""
