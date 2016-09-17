@@ -53,6 +53,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.view.ViewGroup;
@@ -469,7 +470,7 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  		}
 			  	  	  	}, 2000);
 		  	  	  	}
-	  	  	  	}, 2800);//MAINLY FINAGLING TO GET RIGHT - should be 4700?	  	  		  			
+	  	  	  	}, 2900);//FINAGLING TO GET RIGHT - should be 4700?	  	  		  			
   	  		}
   	  	}, 2000);
   	  	
@@ -521,7 +522,7 @@ public class MainActivity2 extends ActionBarActivity {
                 		myInitiativeIsStarted();
                 		
                 		titleBlankButton.setEnabled(false);// HERE & BELOW BECUSE GETTING WEIRD BEHAVIOR WHEN BUTTON WAS HIT AN ODD NUMBER OF TIMES (EXCEPT THE FIRST TIME).
-                		
+                		               		
                 		
                 		final Handler h = new Handler();
     		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -533,9 +534,11 @@ public class MainActivity2 extends ActionBarActivity {
 	    							
 		    		  	  	  	titletext.setVisibility(View.INVISIBLE);
 			  	  	  			
-	    		  	  	  		final TextView titlerulestext = (TextView) findViewById(R.id.textviewtitlerulestext);	
-	    							
-	    			  	  		titlerulestext.setVisibility(View.VISIBLE);
+	    		  	  	  		//final TextView titlerulestext = (TextView) findViewById(R.id.textviewtitlerulestext);	    							
+	    			  	  		//titlerulestext.setVisibility(View.VISIBLE);
+			    		  	  	final TableLayout summaryTableLayout = (TableLayout) findViewById(R.id.summaryTable);
+			    				summaryTableLayout.setVisibility(View.VISIBLE);
+	    			  	  		
 	    			  	  		
 	    			  	  		
 		    			  	  	final Handler h = new Handler();
@@ -544,7 +547,8 @@ public class MainActivity2 extends ActionBarActivity {
 		    		  	  	  		@Override
 		    			  	  	  	public void run() {
 		    		  	  	  			
-			    		  	  	  		titlerulestext.setVisibility(View.INVISIBLE);
+			    		  	  	  		//titlerulestext.setVisibility(View.INVISIBLE);
+			    		  	  	  		summaryTableLayout.setVisibility(View.INVISIBLE);
 		    		  	  	  			
 			    		  	  	  		final TextView titletext = (TextView) findViewById(R.id.textviewtitlektogtext);    			  	  		    						
 		    							
@@ -1787,8 +1791,11 @@ public class MainActivity2 extends ActionBarActivity {
 			//titletext.bringToFront();			
 			titletext.setVisibility(View.VISIBLE);
 			
-			TextView titlerulestext = (TextView) findViewById(R.id.textviewtitlerulestext);	
-			titlerulestext.setVisibility(View.INVISIBLE);			
+			//TextView titlerulestext = (TextView) findViewById(R.id.textviewtitlerulestext);	
+			//titlerulestext.setVisibility(View.INVISIBLE);
+			
+			TableLayout summaryTableLayout = (TableLayout) findViewById(R.id.summaryTable);
+			summaryTableLayout.setVisibility(View.INVISIBLE);
 			
 	    	
 	    	istitlerulesopen = "no";
@@ -4792,9 +4799,7 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		centerscrolltext.setVisibility(View.VISIBLE);													
   		centerscrolltext.startAnimation(animAlphaText);
-		centerscrolltext.append("\n" + "> Let the battle begin...");	
-		
-		
+		centerscrolltext.append("\n" + "> Let the battle begin...");		
 		
 		
 		myInitiativeTransition();	
@@ -4809,25 +4814,62 @@ public class MainActivity2 extends ActionBarActivity {
   	  			TextView titleinitiativetext = (TextView) findViewById(R.id.textviewtitleinitiativetext);
   	  			titleinitiativetext.setVisibility(View.INVISIBLE);
   	  			
-  	  			final TextView titlerulestext = (TextView) findViewById(R.id.textviewtitlerulestext);
+  	  			
+  	  			final TableLayout summaryTableLayout = (TableLayout) findViewById(R.id.summaryTable);
   	  			
 	  	  		Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-	  	  		titlerulestext.setTypeface(typeFace);
+	  	  		//titlerulestext.setTypeface(typeFace);
 	  			
 				//titletext.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(100));
 					
-	  	  		titlerulestext.setVisibility(View.VISIBLE);				  		
-	  	  		titlerulestext.append("Instructions go here...");	  			
-  	  			
-  	  			
+	  	  		summaryTableLayout.setVisibility(View.VISIBLE);
+	  	  		/*
+	  	  		titlerulestext.append("Quick Instructions" + "\n" + "==================" + "\n" +
+	  	  		"1. Determine who goes first (Initiative)." + "\n" + 
+	  	  		"2. Take an action when prompted." + "\n" +
+	  	  		"3. Win by reducing opponent's hit points to zero or below.");
+	  	  		*/
+	  	  		TextView hitpointstextview = (TextView) findViewById(R.id.hitpoints);
+	  	  		hitpointstextview.setTypeface(typeFace);
+	  	  		hitpointstextview.append("Hit Points");
+	  	  		hitpointstextview.setVisibility(View.VISIBLE);
+	  	  		
+		  	  	TextView player1textview = (TextView) findViewById(R.id.player1);
+		  	  	player1textview.setTypeface(typeFace);
+		  	  	player1textview.append(ArrayOfPlayers.player[0]);
+		  	  	player1textview.setVisibility(View.VISIBLE);
+		  	  	
+		  	  	TextView player2textview = (TextView) findViewById(R.id.player2);
+		  	  	player2textview.setTypeface(typeFace);
+		  	  	player2textview.append(ArrayOfPlayers.player[1]);
+		  	  	player2textview.setVisibility(View.VISIBLE);
+		  	  	
+		  	  	TextView hitpoints1textview = (TextView) findViewById(R.id.hitpoints1);
+		  	  	hitpoints1textview.setTypeface(typeFace);
+		  	  	String hitpoints1String = Integer.toString(ArrayOfHitPoints.hitpoints[0]);
+		  	  	hitpoints1textview.append(hitpoints1String);
+		  	  	hitpoints1textview.setVisibility(View.VISIBLE);
+		  	  	
+		  	  	TextView hitpoints2textview = (TextView) findViewById(R.id.hitpoints2);
+		  	  	hitpoints2textview.setTypeface(typeFace);
+		  	  	String hitpoints2String = Integer.toString(ArrayOfHitPoints.hitpoints[1]);
+		  	  	hitpoints2textview.append(hitpoints2String);
+		  	  	hitpoints2textview.setVisibility(View.VISIBLE);
+	  	  		
+	  	  		
+	  	  		
+	  	  		
+	  	  		//titlerulestext.bringToFront();
+	  	  		
+  	  			  	  			
 	  	  		final Handler h3 = new Handler();
 		  	  	h3.postDelayed(new Runnable() {
 	
 		  	  		@Override
 		  	  		public void run()
 		  	  		{
-		  	  			titlerulestext.setVisibility(View.INVISIBLE);
-		  	  			
+		  	  			//titlerulestext.setVisibility(View.INVISIBLE);
+		  	  			summaryTableLayout.setVisibility(View.INVISIBLE);
 		  	  			
 		  	  			TextView titletext = (TextView) findViewById(R.id.textviewtitlektogtext);
 		  	  			
@@ -19423,6 +19465,9 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
+		ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+		titleBlankButton.setEnabled(false);
+		
 		runOnUiThread(new Runnable() {
   	  	    @Override
   	  	    public void run() {
@@ -19478,11 +19523,16 @@ public class MainActivity2 extends ActionBarActivity {
 						  	  	  		@Override
 							  	  	  	public void run() {
 						  	  	  			
+							  	  	  		Intent intent = new Intent(MainActivity2.this, MainActivity1.class);
+								  	  	  	startActivity(intent);
+								  	  	  	finish();
+						  	  	  			
+						  	  	  			/*
 						  	  	  			finish();
 						  	  	  			
 						  	  	  			Intent i = new Intent(MainActivity2.this, MainActivity1.class);
 						  	  	  			MainActivity2.this.startActivity(i);
-						  	  	  			
+						  	  	  			*/
 							  	  	  		//Intent openMainActivity1 = new Intent("com.nedswebsite.ktog.MAINACTIVITY2");
 						    	        	//startActivity(openMainActivity1);
 							  	  	  	}
@@ -19555,11 +19605,16 @@ public class MainActivity2 extends ActionBarActivity {
 						  	  	  		@Override
 							  	  	  	public void run() {
 						  	  	  			
+							  	  	  		Intent intent = new Intent(MainActivity2.this, MainActivity1.class);
+								  	  	  	startActivity(intent);
+								  	  	  	finish();
+						  	  	  			
+						  	  	  			/*
 						  	  	  			finish();
 						  	  	  			
 						  	  	  			Intent i = new Intent(MainActivity2.this, MainActivity1.class);
 						  	  	  			MainActivity2.this.startActivity(i);
-						  	  	  			
+						  	  	  			*/
 							  	  	  		//Intent openMainActivity1 = new Intent("com.nedswebsite.ktog.MAINACTIVITY2");
 						    	        	//startActivity(openMainActivity1);
 							  	  	  	}

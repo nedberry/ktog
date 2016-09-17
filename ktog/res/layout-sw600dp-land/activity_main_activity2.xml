@@ -68,21 +68,92 @@
    	    android:textColor="#FFFFFF"   	    
    	    android:gravity="center"
    	    android:textSize="75sp"  	    
-   	     android:paddingBottom="38dp" />
+   	    android:paddingBottom="38dp" />
      
-     <TextView
-   	    android:id="@+id/textviewtitlerulestext"
-   	    android:layout_width="340dp"
+     
+	<TableLayout
+	    android:id="@+id/summaryTable"
+	    android:layout_width="340dp"
    	    android:layout_height="220dp"
    	    android:layout_alignLeft="@+id/imageviewcenterscroll"        
         android:layout_toLeftOf="@+id/textviewhitpointsright"        
-        android:layout_marginTop="20dp"        
+        android:layout_marginTop="20dp"
+        android:textColor="#FFFFFF"   	    
+   	    android:gravity="top"   	    
+   	    android:textSize="20sp"
+   	    android:paddingTop="20dp" 	    
+   	    android:paddingBottom="66dp"
+   	    android:paddingRight="74dp"
+   	    android:paddingLeft="64dp"
    	    android:fadeScrollbars="false"   	    
-   	    android:scrollbars="vertical"
-   	    android:textColor="#FFFFFF"   	    
-   	    android:gravity="center"
-   	    android:textSize="25sp"  	    
-   	    android:paddingBottom="38dp" />
+	   	    android:scrollbars="vertical">
+	   	    
+	    <TableRow
+       	>
+        <TextView
+            android:id="@+id/hitpoints"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+             />	        
+    	</TableRow>
+    	
+	    <TableRow
+       	>
+        <TextView
+            android:id="@+id/player1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+             />
+        <TextView
+            android:id="@+id/player2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+             />	        
+    	</TableRow>
+    	
+	    <TableRow
+       	>
+        <TextView
+            android:id="@+id/hitpoints1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+             />
+        <TextView
+            android:id="@+id/hitpoints2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+             />	        
+    	</TableRow>			
+		    
+	</TableLayout> 
+     
+     <!--	
+     
+     <TextView
+   	    android:id="@+id/textviewtitlerulestext" />      
+     
+     android:lineSpacingExtra="1dp"
+    		android:layout_width="340dp"
+	   	    android:layout_height="220dp"
+	   	    android:layout_alignLeft="@+id/imageviewcenterscroll"        
+	        android:layout_toLeftOf="@+id/textviewhitpointsright"        
+	        android:layout_marginTop="20dp"        
+	   	    android:fadeScrollbars="false"   	    
+	   	    android:scrollbars="vertical"
+	   	    android:textColor="#FFFFFF"   	    
+	   	    android:gravity="top"   	    
+	   	    
+	   	    android:textSize="20sp"
+	   	    android:paddingTop="20dp" 	    
+	   	    android:paddingBottom="66dp"
+	   	    android:paddingRight="74dp"
+	   	    android:paddingLeft="64dp"
+       -->    
      
      <TextView
    	    android:id="@+id/textviewtitlevictorydefeattext"
