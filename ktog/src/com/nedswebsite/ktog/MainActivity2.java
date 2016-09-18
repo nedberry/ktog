@@ -161,7 +161,7 @@ public class MainActivity2 extends ActionBarActivity {
 	String isSixSidedReadyToBeRolled = "no";
 	String isTwentySidedReadyToBeRolled = "no";
 	String isInitiativeOver = "yes";
-	String istitlerulesopen = "no";
+	String istitlestatsopen = "no";
 	
 	
 	//Dialog mydialog = null;
@@ -367,23 +367,17 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		centerscrolltext.setTypeface(typeFace);				
 		
-		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);		
 		
 		
-		
-		
-		final TextView titletext = (TextView) findViewById(R.id.textviewtitlektogtext);		
-		
-		titletext.setTypeface(typeFace);
-		
+		final TextView titletext = (TextView) findViewById(R.id.textviewtitlektogtext);	
+		titletext.setTypeface(typeFace);		
 		titletext.setVisibility(View.VISIBLE);				  		
 		titletext.append("KtOG");
 		
 		
 		final TextView titleinitiativetext = (TextView) findViewById(R.id.textviewtitleinitiativetext);
-		titleinitiativetext.setVisibility(View.INVISIBLE);		
-		
-		
+		titleinitiativetext.setVisibility(View.INVISIBLE);	
 		
 		
 		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);		
@@ -396,7 +390,8 @@ public class MainActivity2 extends ActionBarActivity {
 		disarmedtextright.setVisibility(View.INVISIBLE);		
 		disarmedtextright.append("Disarmed");
 		
-		
+		View lineInSummaryTableLayout = (View) findViewById(R.id.line);
+		lineInSummaryTableLayout.setVisibility(View.INVISIBLE);
 		
 		
 		
@@ -470,7 +465,7 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  		}
 			  	  	  	}, 2000);
 		  	  	  	}
-	  	  	  	}, 2900);//FINAGLING TO GET RIGHT - should be 4700?	  	  		  			
+	  	  	  	}, 2950);//FINAGLING TO GET RIGHT - should be 4700?	  	  		  			
   	  		}
   	  	}, 2000);
   	  	
@@ -506,9 +501,7 @@ public class MainActivity2 extends ActionBarActivity {
     	  			//titletext.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(100));
     	  			
     	  			titletext.setVisibility(View.VISIBLE);    	  						  		
-    	  			titletext.append("KtOG");
-            		
-            		
+    	  			titletext.append("KtOG");           		
             	}
             	
             	else if (isinitiativestarted.equals("yes") && aretheredoubles.equals("no")) {
@@ -517,7 +510,7 @@ public class MainActivity2 extends ActionBarActivity {
             			
             			isinitiativestartedinterrupted = "yes";
             			
-            			istitlerulesopen = "yes";
+            			istitlestatsopen = "yes";
                 		
                 		myInitiativeIsStarted();
                 		
@@ -538,7 +531,134 @@ public class MainActivity2 extends ActionBarActivity {
 	    			  	  		//titlerulestext.setVisibility(View.VISIBLE);
 			    		  	  	final TableLayout summaryTableLayout = (TableLayout) findViewById(R.id.summaryTable);
 			    				summaryTableLayout.setVisibility(View.VISIBLE);
-	    			  	  		
+			    				
+			    				View lineInSummaryTableLayout = (View) findViewById(R.id.line);
+			    				lineInSummaryTableLayout.setVisibility(View.VISIBLE);
+			    				
+			    				// NOTICE THESE HAVE setText:
+			    				TextView statisticstextview = (TextView) findViewById(R.id.statisticstext);
+			    	  	  		statisticstextview.setTypeface(typeFace);
+			    	  	  		statisticstextview.setText("Statistics");
+			    	  	  		statisticstextview.setVisibility(View.VISIBLE);
+			    	  	  		
+				    	  	  	TextView blanktextview = (TextView) findViewById(R.id.blanktext);
+						  	  	blanktextview.setTypeface(typeFace);
+						  	  	blanktextview.setText("");
+						  	  	blanktextview.setVisibility(View.VISIBLE);
+			    	  	  		
+			    	  	  		TextView hitpointstextview = (TextView) findViewById(R.id.hitpointstext);
+			    	  	  		hitpointstextview.setTypeface(typeFace);
+			    	  	  		hitpointstextview.setText("HP");
+			    	  	  		hitpointstextview.setVisibility(View.VISIBLE);
+			    	  	  		
+			    		  	  	TextView blesstextview = (TextView) findViewById(R.id.blesstext);
+			    		  	  	blesstextview.setTypeface(typeFace);
+			    		  	  	blesstextview.setText("Bless");
+			    		  	  	blesstextview.setVisibility(View.VISIBLE);
+			    	  	  		
+			    		  	  	TextView curetextview = (TextView) findViewById(R.id.curetext);
+			    		  	  	curetextview.setTypeface(typeFace);
+			    		  	  	curetextview.setText("Cure");
+			    		  	  	curetextview.setVisibility(View.VISIBLE);
+			    	  	  		
+			    		  	  	TextView dodgetextview = (TextView) findViewById(R.id.dodgetext);
+			    		  	  	dodgetextview.setTypeface(typeFace);
+			    		  	  	dodgetextview.setText("Dodge");
+			    		  	  	dodgetextview.setVisibility(View.VISIBLE);
+			    	  	  		
+			    		  	  	TextView mightyblowtextview = (TextView) findViewById(R.id.mightyblowtext);
+			    		  	  	mightyblowtextview.setTypeface(typeFace);
+			    		  	  	mightyblowtextview.setText("MB");
+			    		  	  	mightyblowtextview.setVisibility(View.VISIBLE);
+			    		  	  	
+			    		  	  	TextView hastetextview = (TextView) findViewById(R.id.hastetext);
+			    		  	  	hastetextview.setTypeface(typeFace);
+			    		  	  	hastetextview.setText("Haste");
+			    		  	  	hastetextview.setVisibility(View.VISIBLE);
+			    		  	  	
+			    	  	  		
+			    		  	  	TextView player1textview = (TextView) findViewById(R.id.player1);
+			    		  	  	player1textview.setTypeface(typeFace);
+			    		  	  	player1textview.setText(ArrayOfPlayers.player[0]);
+			    		  	  	player1textview.setVisibility(View.VISIBLE);
+			    		  	  	
+			    		  	  	TextView hitpointsplayer1textview = (TextView) findViewById(R.id.hitpointsplayer1);
+			    		  	  	hitpointsplayer1textview.setTypeface(typeFace);
+			    		  	  	String hitpointsplayer1String = Integer.toString(ArrayOfHitPoints.hitpoints[0]);
+			    		  	  	hitpointsplayer1textview.setText(hitpointsplayer1String);
+			    		  		hitpointsplayer1textview.setVisibility(View.VISIBLE);
+			    		  	  	
+			    		  	  	TextView blessplayer1textview = (TextView) findViewById(R.id.blessplayer1);
+			    		  	  	blessplayer1textview.setTypeface(typeFace);
+			    		  	  	String blessplayer1String = Integer.toString(blessSpell[0]);
+			    		  	  	blessplayer1textview.setText(blessplayer1String);
+			    		  	  	blessplayer1textview.setVisibility(View.VISIBLE);
+			    		  	  	
+			    		  	  	TextView cureplayer1textview = (TextView) findViewById(R.id.cureplayer1);
+			    		  	  	cureplayer1textview.setTypeface(typeFace);
+			    		  	  	String cureplayer1String = Integer.toString(cureSpell[0]);
+			    		  	  	cureplayer1textview.setText(cureplayer1String);
+			    		  	  	cureplayer1textview.setVisibility(View.VISIBLE);
+			    		  	  	
+			    		  	  	TextView dodgeplayer1textview = (TextView) findViewById(R.id.dodgeplayer1);
+			    		  	  	dodgeplayer1textview.setTypeface(typeFace);
+			    		  	  	String dodgeplayer1String = Integer.toString(dodgeBlowSpell[0]);
+			    		  	  	dodgeplayer1textview.setText(dodgeplayer1String);
+			    		  	  	dodgeplayer1textview.setVisibility(View.VISIBLE);
+			    		  	  	
+			    		  	  	TextView mightyblowplayer1textview = (TextView) findViewById(R.id.mightyblowplayer1);
+			    		  	  	mightyblowplayer1textview.setTypeface(typeFace);
+			    		  	  	String mightyblowplayer1String = Integer.toString(mightyBlowSpell[0]);
+			    		  	  	mightyblowplayer1textview.setText(mightyblowplayer1String);
+			    		  	  	mightyblowplayer1textview.setVisibility(View.VISIBLE);
+			    		  	  	
+			    		  	  	TextView hasteplayer1textview = (TextView) findViewById(R.id.hasteplayer1);
+			    		  	  	hasteplayer1textview.setTypeface(typeFace);
+			    		  	  	String hasteplayer1String = Integer.toString(hasteSpell[0]);
+			    		  	  	hasteplayer1textview.setText(hasteplayer1String);
+			    		  	  	hasteplayer1textview.setVisibility(View.VISIBLE);  	
+			    		  	  	
+			    		  	  	
+			    		  	  	TextView player2textview = (TextView) findViewById(R.id.player2);
+			    		  	  	player2textview.setTypeface(typeFace);
+			    		  	  	player2textview.setText(ArrayOfPlayers.player[1]);
+			    		  	  	player2textview.setVisibility(View.VISIBLE);		  	  	
+			    		  	  	
+			    		  	  	TextView hitpoints2textview = (TextView) findViewById(R.id.hitpointsplayer2);
+			    		  	  	hitpoints2textview.setTypeface(typeFace);
+			    		  	  	String hitpoints2String = Integer.toString(ArrayOfHitPoints.hitpoints[1]);
+			    		  	  	hitpoints2textview.setText(hitpoints2String);
+			    		  	  	hitpoints2textview.setVisibility(View.VISIBLE);
+			    		  	  	
+			    		  	  	TextView blessplayer2textview = (TextView) findViewById(R.id.blessplayer2);
+			    		  	  	blessplayer2textview.setTypeface(typeFace);
+			    		  	  	String blessplayer2String = Integer.toString(blessSpell[1]);
+			    		  	  	blessplayer2textview.setText(blessplayer2String);
+			    		  	  	blessplayer2textview.setVisibility(View.VISIBLE);
+			    		  	  	
+			    		  	  	TextView cureplayer2textview = (TextView) findViewById(R.id.cureplayer2);
+			    		  	  	cureplayer2textview.setTypeface(typeFace);
+			    		  	  	String cureplayer2String = Integer.toString(cureSpell[1]);
+			    		  	  	cureplayer2textview.setText(cureplayer2String);
+			    		  	  	cureplayer2textview.setVisibility(View.VISIBLE);
+			    		  	  	
+			    		  	  	TextView dodgeplayer2textview = (TextView) findViewById(R.id.dodgeplayer2);
+			    		  	  	dodgeplayer2textview.setTypeface(typeFace);
+			    		  	  	String dodgeplayer2String = Integer.toString(dodgeBlowSpell[1]);
+			    		  	  	dodgeplayer2textview.setText(dodgeplayer2String);
+			    		  	  	dodgeplayer2textview.setVisibility(View.VISIBLE);
+			    		  	  	
+			    		  	  	TextView mightyblowplayer2textview = (TextView) findViewById(R.id.mightyblowplayer2);
+			    		  	  	mightyblowplayer2textview.setTypeface(typeFace);
+			    		  	  	String mightyblowplayer2String = Integer.toString(mightyBlowSpell[1]);
+			    		  	  	mightyblowplayer2textview.setText(mightyblowplayer2String);
+			    		  	  	mightyblowplayer2textview.setVisibility(View.VISIBLE);
+			    		  	  	
+			    		  	  	TextView hasteplayer2textview = (TextView) findViewById(R.id.hasteplayer2);
+			    		  	  	hasteplayer2textview.setTypeface(typeFace);
+			    		  	  	String hasteplayer2String = Integer.toString(hasteSpell[1]);
+			    		  	  	hasteplayer2textview.setText(hasteplayer2String);
+			    		  	  	hasteplayer2textview.setVisibility(View.VISIBLE);	    			  	  		
 	    			  	  		
 	    			  	  		
 		    			  	  	final Handler h = new Handler();
@@ -549,6 +669,9 @@ public class MainActivity2 extends ActionBarActivity {
 		    		  	  	  			
 			    		  	  	  		//titlerulestext.setVisibility(View.INVISIBLE);
 			    		  	  	  		summaryTableLayout.setVisibility(View.INVISIBLE);
+			    		  	  	  		
+			    		  	  	  		View lineInSummaryTableLayout = (View) findViewById(R.id.line);
+			    		  	  	  		lineInSummaryTableLayout.setVisibility(View.INVISIBLE);
 		    		  	  	  			
 			    		  	  	  		final TextView titletext = (TextView) findViewById(R.id.textviewtitlektogtext);    			  	  		    						
 		    							
@@ -556,7 +679,7 @@ public class MainActivity2 extends ActionBarActivity {
 			    			  	  		
 			    			  	  		titleBlankButton.setEnabled(true);
 			    			  	  		
-			    			  	  		istitlerulesopen = "no";
+			    			  	  		istitlestatsopen = "no";
 		    			  	  	  	}
 		    		  	  	  	}, 10975);
     			  	  	  	}
@@ -1781,7 +1904,7 @@ public class MainActivity2 extends ActionBarActivity {
 	    }
 	    
 	    //THIS IF IS EXCLUSIVE FROM THE ABOVE IF
-	    if (istitlerulesopen.equals("yes")) {
+	    if (istitlestatsopen.equals("yes")) {
 	    	
 	    	ImageView img = (ImageView)findViewById(R.id.titleanimation);
 	    	img.setBackgroundResource(R.anim.titleanimationnoinitiative);
@@ -1797,8 +1920,11 @@ public class MainActivity2 extends ActionBarActivity {
 			TableLayout summaryTableLayout = (TableLayout) findViewById(R.id.summaryTable);
 			summaryTableLayout.setVisibility(View.INVISIBLE);
 			
+			View lineInSummaryTableLayout = (View) findViewById(R.id.line);
+	  	  	lineInSummaryTableLayout.setVisibility(View.INVISIBLE);
+			
 	    	
-	    	istitlerulesopen = "no";
+	    	istitlestatsopen = "no";
 	    }
 	    
 	    /*
@@ -4815,48 +4941,147 @@ public class MainActivity2 extends ActionBarActivity {
   	  			titleinitiativetext.setVisibility(View.INVISIBLE);
   	  			
   	  			
+  	  			// NOTICE THE append's BELOW, JUST FOR INTRO (USED setText IN TITLE BUTTON):
   	  			final TableLayout summaryTableLayout = (TableLayout) findViewById(R.id.summaryTable);
+  	  			final View lineInSummaryTableLayout = (View) findViewById(R.id.line);	  	  		
   	  			
 	  	  		Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  	  		//titlerulestext.setTypeface(typeFace);
 	  			
 				//titletext.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(100));
 					
-	  	  		summaryTableLayout.setVisibility(View.VISIBLE);
+	  	  		summaryTableLayout.setVisibility(View.VISIBLE);	  	  	
+	  	  		lineInSummaryTableLayout.setVisibility(View.VISIBLE);
 	  	  		/*
 	  	  		titlerulestext.append("Quick Instructions" + "\n" + "==================" + "\n" +
 	  	  		"1. Determine who goes first (Initiative)." + "\n" + 
 	  	  		"2. Take an action when prompted." + "\n" +
 	  	  		"3. Win by reducing opponent's hit points to zero or below.");
 	  	  		*/
-	  	  		TextView hitpointstextview = (TextView) findViewById(R.id.hitpoints);
+	  	  		
+		  	  	TextView statisticstextview = (TextView) findViewById(R.id.statisticstext);
+	  	  		statisticstextview.setTypeface(typeFace);
+	  	  		statisticstextview.append("Statistics");
+	  	  		statisticstextview.setVisibility(View.VISIBLE);
+	  	  		
+		  	  	TextView blanktextview = (TextView) findViewById(R.id.blanktext);
+		  	  	blanktextview.setTypeface(typeFace);
+		  	  	blanktextview.append("");
+		  	  	blanktextview.setVisibility(View.VISIBLE);
+	  	  		
+	  	  		TextView hitpointstextview = (TextView) findViewById(R.id.hitpointstext);
 	  	  		hitpointstextview.setTypeface(typeFace);
-	  	  		hitpointstextview.append("Hit Points");
+	  	  		hitpointstextview.append("HP");
 	  	  		hitpointstextview.setVisibility(View.VISIBLE);
+	  	  		
+		  	  	TextView blesstextview = (TextView) findViewById(R.id.blesstext);
+		  	  	blesstextview.setTypeface(typeFace);
+		  	  	blesstextview.append("Bless");
+		  	  	blesstextview.setVisibility(View.VISIBLE);
+	  	  		
+		  	  	TextView curetextview = (TextView) findViewById(R.id.curetext);
+		  	  	curetextview.setTypeface(typeFace);
+		  	  	curetextview.append("Cure");
+		  	  	curetextview.setVisibility(View.VISIBLE);
+	  	  		
+		  	  	TextView dodgetextview = (TextView) findViewById(R.id.dodgetext);
+		  	  	dodgetextview.setTypeface(typeFace);
+		  	  	dodgetextview.append("Dodge");
+		  	  	dodgetextview.setVisibility(View.VISIBLE);
+	  	  		
+		  	  	TextView mightyblowtextview = (TextView) findViewById(R.id.mightyblowtext);
+		  	  	mightyblowtextview.setTypeface(typeFace);
+		  	  	mightyblowtextview.append("MB");
+		  	  	mightyblowtextview.setVisibility(View.VISIBLE);
+		  	  	
+		  	  	TextView hastetextview = (TextView) findViewById(R.id.hastetext);
+		  	  	hastetextview.setTypeface(typeFace);
+		  	  	hastetextview.append("Haste");
+		  	  	hastetextview.setVisibility(View.VISIBLE);
+		  	  	
 	  	  		
 		  	  	TextView player1textview = (TextView) findViewById(R.id.player1);
 		  	  	player1textview.setTypeface(typeFace);
 		  	  	player1textview.append(ArrayOfPlayers.player[0]);
 		  	  	player1textview.setVisibility(View.VISIBLE);
 		  	  	
+		  	  	TextView hitpointsplayer1textview = (TextView) findViewById(R.id.hitpointsplayer1);
+		  	  	hitpointsplayer1textview.setTypeface(typeFace);
+		  	  	String hitpointsplayer1String = Integer.toString(ArrayOfHitPoints.hitpoints[0]);
+		  	  	hitpointsplayer1textview.append(hitpointsplayer1String);
+		  		hitpointsplayer1textview.setVisibility(View.VISIBLE);
+		  	  	
+		  	  	TextView blessplayer1textview = (TextView) findViewById(R.id.blessplayer1);
+		  	  	blessplayer1textview.setTypeface(typeFace);
+		  	  	String blessplayer1String = Integer.toString(blessSpell[0]);
+		  	  	blessplayer1textview.append(blessplayer1String);
+		  	  	blessplayer1textview.setVisibility(View.VISIBLE);
+		  	  	
+		  	  	TextView cureplayer1textview = (TextView) findViewById(R.id.cureplayer1);
+		  	  	cureplayer1textview.setTypeface(typeFace);
+		  	  	String cureplayer1String = Integer.toString(cureSpell[0]);
+		  	  	cureplayer1textview.append(cureplayer1String);
+		  	  	cureplayer1textview.setVisibility(View.VISIBLE);
+		  	  	
+		  	  	TextView dodgeplayer1textview = (TextView) findViewById(R.id.dodgeplayer1);
+		  	  	dodgeplayer1textview.setTypeface(typeFace);
+		  	  	String dodgeplayer1String = Integer.toString(dodgeBlowSpell[0]);
+		  	  	dodgeplayer1textview.append(dodgeplayer1String);
+		  	  	dodgeplayer1textview.setVisibility(View.VISIBLE);
+		  	  	
+		  	  	TextView mightyblowplayer1textview = (TextView) findViewById(R.id.mightyblowplayer1);
+		  	  	mightyblowplayer1textview.setTypeface(typeFace);
+		  	  	String mightyblowplayer1String = Integer.toString(mightyBlowSpell[0]);
+		  	  	mightyblowplayer1textview.append(mightyblowplayer1String);
+		  	  	mightyblowplayer1textview.setVisibility(View.VISIBLE);
+		  	  	
+		  	  	TextView hasteplayer1textview = (TextView) findViewById(R.id.hasteplayer1);
+		  	  	hasteplayer1textview.setTypeface(typeFace);
+		  	  	String hasteplayer1String = Integer.toString(hasteSpell[0]);
+		  	  	hasteplayer1textview.append(hasteplayer1String);
+		  	  	hasteplayer1textview.setVisibility(View.VISIBLE);  	
+		  	  	
+		  	  	
 		  	  	TextView player2textview = (TextView) findViewById(R.id.player2);
 		  	  	player2textview.setTypeface(typeFace);
 		  	  	player2textview.append(ArrayOfPlayers.player[1]);
-		  	  	player2textview.setVisibility(View.VISIBLE);
+		  	  	player2textview.setVisibility(View.VISIBLE);		  	  	
 		  	  	
-		  	  	TextView hitpoints1textview = (TextView) findViewById(R.id.hitpoints1);
-		  	  	hitpoints1textview.setTypeface(typeFace);
-		  	  	String hitpoints1String = Integer.toString(ArrayOfHitPoints.hitpoints[0]);
-		  	  	hitpoints1textview.append(hitpoints1String);
-		  	  	hitpoints1textview.setVisibility(View.VISIBLE);
-		  	  	
-		  	  	TextView hitpoints2textview = (TextView) findViewById(R.id.hitpoints2);
+		  	  	TextView hitpoints2textview = (TextView) findViewById(R.id.hitpointsplayer2);
 		  	  	hitpoints2textview.setTypeface(typeFace);
 		  	  	String hitpoints2String = Integer.toString(ArrayOfHitPoints.hitpoints[1]);
 		  	  	hitpoints2textview.append(hitpoints2String);
 		  	  	hitpoints2textview.setVisibility(View.VISIBLE);
-	  	  		
-	  	  		
+		  	  	
+		  	  	TextView blessplayer2textview = (TextView) findViewById(R.id.blessplayer2);
+		  	  	blessplayer2textview.setTypeface(typeFace);
+		  	  	String blessplayer2String = Integer.toString(blessSpell[1]);
+		  	  	blessplayer2textview.append(blessplayer2String);
+		  	  	blessplayer2textview.setVisibility(View.VISIBLE);
+		  	  	
+		  	  	TextView cureplayer2textview = (TextView) findViewById(R.id.cureplayer2);
+		  	  	cureplayer2textview.setTypeface(typeFace);
+		  	  	String cureplayer2String = Integer.toString(cureSpell[1]);
+		  	  	cureplayer2textview.append(cureplayer2String);
+		  	  	cureplayer2textview.setVisibility(View.VISIBLE);
+		  	  	
+		  	  	TextView dodgeplayer2textview = (TextView) findViewById(R.id.dodgeplayer2);
+		  	  	dodgeplayer2textview.setTypeface(typeFace);
+		  	  	String dodgeplayer2String = Integer.toString(dodgeBlowSpell[1]);
+		  	  	dodgeplayer2textview.append(dodgeplayer2String);
+		  	  	dodgeplayer2textview.setVisibility(View.VISIBLE);
+		  	  	
+		  	  	TextView mightyblowplayer2textview = (TextView) findViewById(R.id.mightyblowplayer2);
+		  	  	mightyblowplayer2textview.setTypeface(typeFace);
+		  	  	String mightyblowplayer2String = Integer.toString(mightyBlowSpell[1]);
+		  	  	mightyblowplayer2textview.append(mightyblowplayer2String);
+		  	  	mightyblowplayer2textview.setVisibility(View.VISIBLE);
+		  	  	
+		  	  	TextView hasteplayer2textview = (TextView) findViewById(R.id.hasteplayer2);
+		  	  	hasteplayer2textview.setTypeface(typeFace);
+		  	  	String hasteplayer2String = Integer.toString(hasteSpell[1]);
+		  	  	hasteplayer2textview.append(hasteplayer2String);
+		  	  	hasteplayer2textview.setVisibility(View.VISIBLE);
 	  	  		
 	  	  		
 	  	  		//titlerulestext.bringToFront();
@@ -4869,7 +5094,9 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  		public void run()
 		  	  		{
 		  	  			//titlerulestext.setVisibility(View.INVISIBLE);
-		  	  			summaryTableLayout.setVisibility(View.INVISIBLE);
+		  	  			summaryTableLayout.setVisibility(View.INVISIBLE);		  	  			
+			  	  		
+		  	  	  		lineInSummaryTableLayout.setVisibility(View.INVISIBLE);
 		  	  			
 		  	  			TextView titletext = (TextView) findViewById(R.id.textviewtitlektogtext);
 		  	  			

@@ -85,18 +85,71 @@
    	    android:paddingBottom="66dp"
    	    android:paddingRight="74dp"
    	    android:paddingLeft="64dp"
-   	    android:fadeScrollbars="false"   	    
+   	    	android:fadeScrollbars="false"   	    
 	   	    android:scrollbars="vertical">
-	   	    
+   	    
+	    
+	   	<TableRow
+       	>
+        <TextView
+            android:id="@+id/statisticstext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />	        
+    	</TableRow>
+    	
+	    <View
+	        android:id="@+id/line"
+	        android:layout_height="2dip"
+	        android:background="#FF0000" />
+	    	    
+	    
 	    <TableRow
        	>
         <TextView
-            android:id="@+id/hitpoints"
+            android:id="@+id/blanktext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-             />	        
-    	</TableRow>
+            android:layout_weight="1" />
+	        
+        <TextView
+            android:id="@+id/hitpointstext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />   	
+    	
+	    <TextView
+            android:id="@+id/blesstext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />   	
+    	
+		<TextView
+            android:id="@+id/curetext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+		
+		<TextView
+            android:id="@+id/dodgetext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />	        
+    	
+		<TextView
+            android:id="@+id/mightyblowtext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+		
+		<TextView
+            android:id="@+id/hastetext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+		
+    	</TableRow>    	
+	    
     	
 	    <TableRow
        	>
@@ -104,31 +157,92 @@
             android:id="@+id/player1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-             />
+            android:layout_weight="1" />
+        
+        <TextView
+            android:id="@+id/hitpointsplayer1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />   	
+    	
+	    <TextView
+            android:id="@+id/blessplayer1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />   	
+    	
+		<TextView
+            android:id="@+id/cureplayer1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+		
+		<TextView
+            android:id="@+id/dodgeplayer1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />	        
+    	
+		<TextView
+            android:id="@+id/mightyblowplayer1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+		
+		<TextView
+            android:id="@+id/hasteplayer1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+		
+		</TableRow>
+		
+        
+        <TableRow
+       	>
         <TextView
             android:id="@+id/player2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-             />	        
-    	</TableRow>
+            android:layout_weight="1" />
+        
+        <TextView
+            android:id="@+id/hitpointsplayer2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />   	
     	
-	    <TableRow
-       	>
-        <TextView
-            android:id="@+id/hitpoints1"
+	    <TextView
+            android:id="@+id/blessplayer2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-             />
-        <TextView
-            android:id="@+id/hitpoints2"
+            android:layout_weight="1" />   	
+    	
+		<TextView
+            android:id="@+id/cureplayer2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-             />	        
-    	</TableRow>			
+            android:layout_weight="1" />
+		
+		<TextView
+            android:id="@+id/dodgeplayer2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />	        
+    	
+		<TextView
+            android:id="@+id/mightyblowplayer2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+		
+		<TextView
+            android:id="@+id/hasteplayer2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+        	        
+    	</TableRow>    		
 		    
 	</TableLayout> 
      
