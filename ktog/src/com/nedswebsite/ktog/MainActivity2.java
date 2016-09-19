@@ -465,7 +465,7 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  		}
 			  	  	  	}, 2000);
 		  	  	  	}
-	  	  	  	}, 2950);//FINAGLING TO GET RIGHT - should be 4700?	  	  		  			
+	  	  	  	}, 2950);//FINAGLING TO GET RIGHT (MAINLY 1ST TIME) - should be 4700?	  	  		  			
   	  		}
   	  	}, 2000);
   	  	
@@ -536,9 +536,9 @@ public class MainActivity2 extends ActionBarActivity {
 			    				lineInSummaryTableLayout.setVisibility(View.VISIBLE);
 			    				
 			    				// NOTICE THESE HAVE setText:
-			    				TextView statisticstextview = (TextView) findViewById(R.id.statisticstext);
+			    				TextView statisticstextview = (TextView) findViewById(R.id.summarytext);
 			    	  	  		statisticstextview.setTypeface(typeFace);
-			    	  	  		statisticstextview.setText("Statistics");
+			    	  	  		statisticstextview.setText("Player Summary");
 			    	  	  		statisticstextview.setVisibility(View.VISIBLE);
 			    	  	  		
 				    	  	  	TextView blanktextview = (TextView) findViewById(R.id.blanktext);
@@ -4959,9 +4959,9 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  		"3. Win by reducing opponent's hit points to zero or below.");
 	  	  		*/
 	  	  		
-		  	  	TextView statisticstextview = (TextView) findViewById(R.id.statisticstext);
+		  	  	TextView statisticstextview = (TextView) findViewById(R.id.summarytext);
 	  	  		statisticstextview.setTypeface(typeFace);
-	  	  		statisticstextview.append("Statistics");
+	  	  		statisticstextview.append("Player Summary");
 	  	  		statisticstextview.setVisibility(View.VISIBLE);
 	  	  		
 		  	  	TextView blanktextview = (TextView) findViewById(R.id.blanktext);
@@ -5162,6 +5162,8 @@ public class MainActivity2 extends ActionBarActivity {
 	public void computerAttack() { //WAS int
 		// player uses methods as normal, BUT computer must use new methods?	
 		
+		//isInvokingService = "false";
+		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
 		runOnUiThread(new Runnable() {
@@ -5202,8 +5204,10 @@ public class MainActivity2 extends ActionBarActivity {
 				else if ((computerAction <= 40 && iscomputerhasteused.equals("no")) || (computerAction >= 1 && iscomputerhasteused.equals("yes")) || ((computerAction >= 51 && computerAction <= 75) && (hasteSpell[1] < 1 && iscomputerhasteused.equals("no"))) || ((computerAction >= 41 && computerAction <= 50) && (blessSpell[1] < 1 && iscomputerhasteused.equals("no")))
 					|| ((computerAction > 75 && computerAction <= 100) && iscomputerhasteused.equals("no") && canHasDisarmed[0].equals("yes"))) {
 					
-					if (canHasDisarmed[1].equals("no")) {						
-			  	  	  			
+					isInvokingService = "false";
+					
+					if (canHasDisarmed[1].equals("no")) {					
+						
 		  	  	  		ArrayOfAttackResult.attackResult[0] = (int) (Math.random() * 20) + 1;					
 						
 						centerscrolltext.setVisibility(View.VISIBLE);													
@@ -5303,6 +5307,8 @@ public class MainActivity2 extends ActionBarActivity {
 																  						//break;
 																  					}
 																  		    		*/
+																  		    		isInvokingService = "true";
+																  		    		
 																  		    		dialog.dismiss();
 																  		    		
 																  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
@@ -5437,6 +5443,8 @@ public class MainActivity2 extends ActionBarActivity {
 													  	  	  		@Override
 														  	  	  	public void run() {
 													  	  	  			
+													  	  	  			isInvokingService = "true";
+													  	  	  			
 														  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 														  	    			
 														  	    			gameEngineComputerFirst2();   							
@@ -5544,6 +5552,8 @@ public class MainActivity2 extends ActionBarActivity {
 																  						//break;
 																  					}
 																  		    		*/
+																  		    		isInvokingService = "true";
+																  		    		
 																  		    		dialog.dismiss();																  		    		
 																  		    		
 																  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
@@ -5678,6 +5688,8 @@ public class MainActivity2 extends ActionBarActivity {
 													  	  	  			
 													  	  	  		@Override
 														  	  	  	public void run() {
+													  	  	  			
+													  	  	  			isInvokingService = "true";
 													  	  	  			
 														  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 														  	    			
@@ -5827,6 +5839,8 @@ public class MainActivity2 extends ActionBarActivity {
 																  						//break;
 																  					}
 																  		    		*/
+																  		    		isInvokingService = "true";
+																  		    		
 																  		    		dialog.dismiss();
 																  		    		
 																  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
@@ -5962,6 +5976,8 @@ public class MainActivity2 extends ActionBarActivity {
 													  	  	  		@Override
 														  	  	  	public void run() {
 													  	  	  			
+													  	  	  			isInvokingService = "true";
+													  	  	  			
 														  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 														  	    			
 														  	    			gameEngineComputerFirst2();   							
@@ -6065,6 +6081,8 @@ public class MainActivity2 extends ActionBarActivity {
 																  						//break;
 																  					}
 																  		    		*/
+																  		    		isInvokingService = "true";
+																  		    		
 																  		    		dialog.dismiss();																  		    		
 																  		    		
 																  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
@@ -6199,6 +6217,8 @@ public class MainActivity2 extends ActionBarActivity {
 													  	  	  			
 													  	  	  		@Override
 														  	  	  	public void run() {
+													  	  	  			
+													  	  	  			isInvokingService = "true";
 													  	  	  			
 														  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 														  	    			
@@ -6382,6 +6402,8 @@ public class MainActivity2 extends ActionBarActivity {
 	  			  						//break;
 	  			  					}
 	  			  		    		*/
+	  			  		    		isInvokingService = "true";
+	  			  		    		
 	  			  		    		dialog.dismiss();
 	  			  		    		
 	  			  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
@@ -6811,6 +6833,9 @@ public class MainActivity2 extends ActionBarActivity {
 							    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
 							    			//playerHitPointsTextView.bringToFront();
 							    			
+							    			
+							    			isInvokingService = "true";
+							    			
 											
 											final Handler h = new Handler();
 								  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -7035,6 +7060,9 @@ public class MainActivity2 extends ActionBarActivity {
 							    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
 							    			//playerHitPointsTextView.bringToFront();
 							    			
+							    			
+							    			isInvokingService = "true";
+							    			
 											
 											final Handler h = new Handler();
 								  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -7237,6 +7265,9 @@ public class MainActivity2 extends ActionBarActivity {
 					    			playerHitPointsTextView.setTypeface(typeFace);
 					    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
 					    			//playerHitPointsTextView.bringToFront();
+					    			
+					    			
+					    			isInvokingService = "true";
 					    			
 									
 									final Handler h = new Handler();
@@ -8087,9 +8118,9 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 					  	  	  			
 					  	  	  		@Override
-						  	  	  	public void run() {
-					  	  	  			
-						  	  	  		computerAttack();								
+						  	  	  	public void run() { 	  	  						  	  	  			
+						  	  	  		
+						  	  	  		computerAttack();
 										//return;
 						  	  	  	}
 					  	  	  	}, 2000);						
@@ -8103,532 +8134,538 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	public void computerHastePartTwo() {		
 		
-		iscomputerhasteused = "no";
-		
-		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
-		
-		runOnUiThread(new Runnable() {
-  	  	    @Override
-  	  	    public void run() {
-  	  	    	
-	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
-	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
-	  			
-	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-	  			centerscrolltext.setTypeface(typeFace);
-	  			
-	  			// IN CASE DAMAGE IS ROLLED FROM 1ST ATTACK:
-	  			// Use a blank drawable to hide the imageview animation:
-	  			ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
-	  			img.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
-	  			img.setImageResource(R.drawable.sixsixrightleftrotateblank);
-	  			
-	  			// THIS IS WRONG - CAN GET 2ND ATTACK, YOU'RE JUST DISARMED:
-				//if (canHasDisarmed[1] == "yes")// so if you critically miss & drop weapon you don't get 2nd attack.
-				//{
-				//	return;
-				//}				  			
-	  			
-	  			TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
-    			playerHitPointsTextView.setTypeface(typeFace);
-    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
-	  			
-	  			
-	  			centerscrolltext.setVisibility(View.VISIBLE);													
-		  		centerscrolltext.startAnimation(animAlphaText);			  		
-				centerscrolltext.append("\n" + "> SECOND attack...");
-				
-				/*
-				System.out.println("     /\\____________");
-				System.out.println("/|---||_2nd Attack_\\");
-				System.out.println("\\|---||____________/");
-				System.out.println("     \\/           ");
-				System.out.println();
-				*/				
-				
-	  	  	  	
-				// COMPUTER MUST BE ARMED AT THIS POINT.
-				ArrayOfAttackResult.attackResult[0] = (int) (Math.random() * 20) + 1;
-				
-				final Handler h = new Handler();
-	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-	  	  	  			
-	  	  	  		@Override
-		  	  	  	public void run() {
-	  	  	  			
-		  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
-				  		centerscrolltext.startAnimation(animAlphaText);
-						centerscrolltext.append("\n" + "> The computer attacks...");
-						
-						// for(int x = 0; x < 100; --x)
-						// {}
-						
-						final Handler h = new Handler();
-			  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-			  	  	  			
-			  	  	  		@Override
-				  	  	  	public void run() {
-			  	  	  			
-			  	  	  			computerRolls20SidedDie();
-			  	  	  			
-				  	  	  		final Handler h = new Handler();
-					  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-					  	  	  			
-					  	  	  		@Override
-						  	  	  	public void run() {
-					  	  	  			
-					  	  	  			if (canHasDisarmed[0].equals("no")) {
-					  	  	  				
-						  	  	  			centerscrolltext.setVisibility(View.VISIBLE);													
-									  		centerscrolltext.startAnimation(animAlphaText);
-											centerscrolltext.append("\n" + "> The computer rolls " + ArrayOfAttackResult.attackResult[0] + ".");
-					  	  	  			}
-					  	  	  			
-					  	  	  			if (canHasDisarmed[0].equals("yes")) {
-					  	  	  				
-						  	  	  			centerscrolltext.setVisibility(View.VISIBLE);													
-									  		centerscrolltext.startAnimation(animAlphaText);
-											centerscrolltext.append("\n" + "> The computer rolls " + ArrayOfAttackResult.attackResult[0] + ", +2 for disarmed = " + (ArrayOfAttackResult.attackResult[0] + 2));
-					  	  	  			}
-					  	  	  			
-					  	  	  			
-						  	  	  		final Handler h = new Handler();
-							  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-							  	  	  			
-							  	  	  		@Override
-								  	  	  	public void run() {
-							  	  	  			
-								  	  	  		if (ArrayOfAttackResult.attackResult[0] >= 20) {
-													
-													computerCriticalHit();
-													return;
-												}
-												
-												
-												if (canHasDisarmed[0].equals("no")) {
-												
-													if (ArrayOfAttackResult.attackResult[0] >= 14 && ArrayOfAttackResult.attackResult[0] <= 19) {
-														
-														final Handler h = new Handler();
-											  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-											  	  	  			
-											  	  	  		@Override
-												  	  	  	public void run() {
-											  	  	  			
-												  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
-														  		centerscrolltext.startAnimation(animAlphaText);
-																centerscrolltext.append("\n" + "> The computer's attack hits.");		
-																
-																final Handler h3 = new Handler();
-													  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
-													  	  	  			
-													  	  	  		@Override
-														  	  	  	public void run() {
-													  	  	  			
-														  	  	  		if (dodgeBlowSpell[0] > 0) {
-																			/*
-																			centerscrolltext.setVisibility(View.VISIBLE);													
-																	  		centerscrolltext.startAnimation(animAlphaText);			  		
-																			centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", do you want to dodge?");
-																			*/
-																			
-																			AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-																  			
-																			alert.setCancelable(false);
-																			
-																  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
-																  	    	/*
-																  	    	alert.setMessage("something");
-																  	    	*/	  	    	
-																  	    	
-																  	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-																  		    	public void onClick(DialogInterface dialog, int whichButton) {	  		    		
-																  		    		
-																  		    		/*
-																  		    		//NEED THIS??????????????????
-																  		    		if (dodgeBlowSpell[0] < 1) {
-																  		    			
-																  		    			//hideNavigation();
-																  						
-																  						centerscrolltext.setVisibility(View.VISIBLE);													
-																  				  		centerscrolltext.startAnimation(animAlphaText);			  		
-																  						centerscrolltext.append("\n" + "> You have already used your Dodge spell!");
-																  						
-																  						//break;
-																  					}
-																  		    		*/
-																  		    		dialog.dismiss();
-																  		    		
-																  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
-																  		    		
-																  		    		centerscrolltext.setVisibility(View.VISIBLE);													
-																			  		centerscrolltext.startAnimation(animAlphaText);
-																					centerscrolltext.append("\n" + "> You dodge the hit.");
-																  		    		
-																  		    		skillsCheck();
-																  		    		
-																	  		    	// Use a blank drawable to hide the imageview animation:
-																	  		    	// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
-																	  		    	ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
-																	  		    	img.setBackgroundResource(R.drawable.twentytwentyblank);
-																	  		    	img.setImageResource(R.drawable.twentytwentyblank);
-																  		    		
-																  		    		dodgeGraphic();
-																  		    		
-																  		    		final Handler h = new Handler();
-																		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-																		  	  	  			
-																		  	  	  		@Override
-																			  	  	  	public void run() {
-																		  	  	  			
-																			  	  	  		//final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
-																		  	  	  			//dodgeGraphic.setVisibility(View.INVISIBLE);
-																		  	  	  			
-																		  	  	  			stopGraphics();
-																		  	  	  			
-																			  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
-																			  	    			
-																			  	    			gameEngineComputerFirst2();   							
-																			  				}
-														
-																						  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
-																						  						
-																						  		turn();    							
-																						  	}
-																						  	if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
-																						  	    			
-																						  		computerHastePartTwo();   							
-																						  	}
-																	
-																						  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
-																						  						
-																						  		computerHastePartTwo();    							
-																						  	}								  		    		
-																		  					return;
-																			  	  	  	}
-																		  	  	  	}, 6000);														  		    		
-																  		    	}
-																  	    	});
-																  	    	
-																  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
-																          	  public void onClick(DialogInterface dialog, int whichButton) {
-																          		  
-																          		  	//hideNavigation();
-																          		  	
-																          		  	computerDamage();								          		  	
-																          		  	//return;
-																          		  	
-																          		  	dialog.dismiss();
-																          	  }
-																          	});	  	    	
-																  	    	
-																  	    	alert.show();
-																			
-																			/*
-																			String s = input.next();
-																			char selection = s.charAt(0);
-																			
-																			switch (selection) {
-																			case 'y':
-																			case 'Y':
-																				
-																				if (dodgeBlowSpell[0] < 1) {
-																					
-																					centerscrolltext.setVisibility(View.VISIBLE);													
-																			  		centerscrolltext.startAnimation(animAlphaText);			  		
-																					centerscrolltext.append("\n" + "> You have already used your Dodge Blow spell!");
-																					
-																					break;
-																				}
-																				dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
-																				return dodgeBlowSpell;
-																			case 'n':
-																			case 'N':
-																				break;
-																			default:
-																				computerDamage(i, gameOn);
-																			}
-																			*/
-																		}
-														  	  	  		
-														  	  	  		else {
-														  	  	  			
-															  	  	  		computerDamage();
-																			return;						  	  	  			
-														  	  	  		}
-														  	  	  	}
-													  	  	  	}, 2000);
-												  	  	  	}
-											  	  	  	}, 2000);												
-													}
-													
-													if (ArrayOfAttackResult.attackResult[0] < 14 && ArrayOfAttackResult.attackResult[0] > 1) {
-														
-														final Handler h = new Handler();
-											  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-											  	  	  			
-											  	  	  		@Override
-												  	  	  	public void run() {
-											  	  	  			
-												  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
-														  		centerscrolltext.startAnimation(animAlphaText);
-																centerscrolltext.append("\n" + "> The computer's attack misses.");
-																
-																final Handler h = new Handler();
-													  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-													  	  	  			
-													  	  	  		@Override
-														  	  	  	public void run() {
-													  	  	  			
-														  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
-														  	    			
-														  	    			gameEngineComputerFirst2();   							
-														  				}
-														  	  	  		
-																	  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
-																	  						
-																	  		turn();    							
-																	  	}								  						  	  	  			
-														  	  	  	}
-													  	  	  	}, 2000);						
-																return;
-												  	  	  	}
-											  	  	  	}, 2000);											
-													}
-													
-													if (ArrayOfAttackResult.attackResult[0] <= 1) {
-														
-														final Handler h = new Handler();
-											  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-											  	  	  			
-											  	  	  		@Override
-												  	  	  	public void run() {
-											  	  	  			
-												  	  	  		computerCriticalMiss();
-																return;
-												  	  	  	}
-											  	  	  	}, 2000);												
-													}				
-												}
-												
-												if (canHasDisarmed[0].equals("yes")) {
-													
-													if (ArrayOfAttackResult.attackResult[0] >= 12 && ArrayOfAttackResult.attackResult[0] <= 19) {
-														
-														final Handler h = new Handler();
-											  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-											  	  	  			
-											  	  	  		@Override
-												  	  	  	public void run() {
-											  	  	  			
-												  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
-														  		centerscrolltext.startAnimation(animAlphaText);
-																centerscrolltext.append("\n" + "> The computer's attack hits.");			
-																
-																final Handler h5 = new Handler();
-													  	  	  	h5.postDelayed(new Runnable() {		  	  	  			
-													  	  	  			
-													  	  	  		@Override
-														  	  	  	public void run() {
-													  	  	  			
-														  	  	  		if (dodgeBlowSpell[0] > 0) {
-																			/*
-																			centerscrolltext.setVisibility(View.VISIBLE);													
-																	  		centerscrolltext.startAnimation(animAlphaText);			  		
-																			centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", do you want to dodge?");
-																			*/
-																			
-																			AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-																  			
-																			alert.setCancelable(false);
-																			
-																  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
-																  	    	/*
-																  	    	alert.setMessage("something");
-																  	    	*/	  	    	
-																  	    	
-																  	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-																  		    	public void onClick(DialogInterface dialog, int whichButton) {	  		    		
-																  		    		
-																  		    		/*
-																  		    		//NEED THIS??????????????????
-																  		    		if (dodgeBlowSpell[0] < 1) {
-																  		    			
-																  		    			//hideNavigation();
-																  						
-																  						centerscrolltext.setVisibility(View.VISIBLE);													
-																  				  		centerscrolltext.startAnimation(animAlphaText);			  		
-																  						centerscrolltext.append("\n" + "> You have already used your Dodge spell!");
-																  						
-																  						//break;
-																  					}
-																  		    		*/
-																  		    		dialog.dismiss();
-																  		    		
-																  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
-																  		    		
-																  		    		centerscrolltext.setVisibility(View.VISIBLE);													
-																			  		centerscrolltext.startAnimation(animAlphaText);
-																					centerscrolltext.append("\n" + "> You dodge the hit.");
-																  		    		
-																  		    		skillsCheck();
-																  		    		
-																	  		    	// Use a blank drawable to hide the imageview animation:
-																	  		    	// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
-																	  		    	ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
-																	  		    	img.setBackgroundResource(R.drawable.twentytwentyblank);
-																	  		    	img.setImageResource(R.drawable.twentytwentyblank);
-																  		    		
-																  		    		dodgeGraphic();
-																  		    		
-																  		    		final Handler h = new Handler();
-																		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-																		  	  	  			
-																		  	  	  		@Override
-																			  	  	  	public void run() {
-																		  	  	  			
-																			  	  	  		//final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
-																		  	  	  			//dodgeGraphic.setVisibility(View.INVISIBLE);
-																		  	  	  			
-																		  	  	  			stopGraphics();
-																		  	  	  			
-																			  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
-																			  	    			
-																			  	    			gameEngineComputerFirst2();   							
-																			  				}
-														
-																						  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
-																						  						
-																						  		turn();    							
-																						  	}
-																						  	if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
-																						  	    			
-																						  		computerHastePartTwo();   							
-																						  	}
-																	
-																						  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
-																						  						
-																						  		computerHastePartTwo();  							
-																						  	}								  		    		
-																		  					//return;
-																			  	  	  	}
-																		  	  	  	}, 6000);											  		    		
-																  		    	}
-																  	    	});
-																  	    	
-																  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
-																          	  public void onClick(DialogInterface dialog, int whichButton) {
-																          		  
-																          		  	//hideNavigation();
-																          		  	
-																          		  	computerDamage();								          		  	
-																          		  	//return;
-																          		  	
-																          		  	dialog.dismiss();
-																          	  }
-																          	});	  	    	
-																  	    	
-																  	    	alert.show();
-																			
-																			/*
-																			String s = input.next();
-																			char selection = s.charAt(0);
-																			
-																			switch (selection) {
-																			case 'y':
-																			case 'Y':
-																				
-																				if (dodgeBlowSpell[0] < 1) {
-																					
-																					centerscrolltext.setVisibility(View.VISIBLE);													
-																			  		centerscrolltext.startAnimation(animAlphaText);			  		
-																					centerscrolltext.append("\n" + "> You have already used your Dodge Blow spell!");
-																					
-																					break;
-																				}
-																				dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
-																				return dodgeBlowSpell;
-																			case 'n':
-																			case 'N':
-																				break;
-																			default:
-																				computerDamage(i, gameOn);
-																			}
-																			*/
-																		}
-														  	  	  		
-														  	  	  		else {
-														  	  	  			
-															  	  	  		computerDamage();
-																			//return;						  	  	  			
-														  	  	  		}
-														  	  	  	}
-													  	  	  	}, 2000);
-												  	  	  	}
-											  	  	  	}, 2000);												
-													}
-													
-													if (ArrayOfAttackResult.attackResult[0] < 12 && ArrayOfAttackResult.attackResult[0] > 1) {
-														
-														final Handler h = new Handler();
-											  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-											  	  	  			
-											  	  	  		@Override
-												  	  	  	public void run() {
-											  	  	  			
-												  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
-														  		centerscrolltext.startAnimation(animAlphaText);
-																centerscrolltext.append("\n" + "> The computer's attack misses.");
-																
-																final Handler h = new Handler();
-													  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-													  	  	  			
-													  	  	  		@Override
-														  	  	  	public void run() {
-													  	  	  			
-														  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
-														  	    			
-														  	    			gameEngineComputerFirst2();   							
-														  				}
-														  	  	  		
-																	  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
-																	  						
-																	  		turn();
-																	  	}								  						  	  	  			
-														  	  	  	}
-													  	  	  	}, 2000);						
-																return;
-												  	  	  	}
-											  	  	  	}, 2000);												
-													}
-													
-													if (ArrayOfAttackResult.attackResult[0] <= 1) {
-														
-														final Handler h = new Handler();
-											  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-											  	  	  			
-											  	  	  		@Override
-												  	  	  	public void run() {
-											  	  	  			
-												  	  	  		computerCriticalMiss();
-																return;
-												  	  	  	}
-											  	  	  	}, 2000);												
-													}					
-												}
-								  	  	  	}
-							  	  	  	}, 2000);
-										
+		if (isInvokingService.equals("true")){
+			//NEED THIS?
+			SystemClock.sleep(1000);
+			
+			
+			iscomputerhasteused = "no";
+			
+			final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+			
+			runOnUiThread(new Runnable() {
+	  	  	    @Override
+	  	  	    public void run() {
+	  	  	    	
+		  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+		  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+		  			
+		  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+		  			centerscrolltext.setTypeface(typeFace);
+		  			
+		  			// IN CASE DAMAGE IS ROLLED FROM 1ST ATTACK:
+		  			// Use a blank drawable to hide the imageview animation:
+		  			ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
+		  			img.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+		  			img.setImageResource(R.drawable.sixsixrightleftrotateblank);
+		  			
+		  			// THIS IS WRONG - CAN GET 2ND ATTACK, YOU'RE JUST DISARMED:
+					//if (canHasDisarmed[1] == "yes")// so if you critically miss & drop weapon you don't get 2nd attack.
+					//{
+					//	return;
+					//}				  			
+		  			
+		  			TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+	    			playerHitPointsTextView.setTypeface(typeFace);
+	    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+		  			
+		  			
+		  			centerscrolltext.setVisibility(View.VISIBLE);													
+			  		centerscrolltext.startAnimation(animAlphaText);			  		
+					centerscrolltext.append("\n" + "> SECOND attack...");
+					
+					/*
+					System.out.println("     /\\____________");
+					System.out.println("/|---||_2nd Attack_\\");
+					System.out.println("\\|---||____________/");
+					System.out.println("     \\/           ");
+					System.out.println();
+					*/				
+					
+		  	  	  	
+					// COMPUTER MUST BE ARMED AT THIS POINT.
+					ArrayOfAttackResult.attackResult[0] = (int) (Math.random() * 20) + 1;
+					
+					final Handler h = new Handler();
+		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+		  	  	  			
+		  	  	  		@Override
+			  	  	  	public void run() {
+		  	  	  			
+			  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
+					  		centerscrolltext.startAnimation(animAlphaText);
+							centerscrolltext.append("\n" + "> The computer attacks...");
 							
-										
-						  	  	  	}
-					  	  	  	}, 2000);			  	  	  		
-				  	  	  	}
-			  	  	  	}, 2000);					
-		  	  	  	}
-	  	  	  	}, 2000);								
-  	  	    }
-		});		
+							// for(int x = 0; x < 100; --x)
+							// {}
+							
+							final Handler h = new Handler();
+				  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+				  	  	  			
+				  	  	  		@Override
+					  	  	  	public void run() {
+				  	  	  			
+				  	  	  			computerRolls20SidedDie();
+				  	  	  			
+					  	  	  		final Handler h = new Handler();
+						  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+						  	  	  			
+						  	  	  		@Override
+							  	  	  	public void run() {
+						  	  	  			
+						  	  	  			if (canHasDisarmed[0].equals("no")) {
+						  	  	  				
+							  	  	  			centerscrolltext.setVisibility(View.VISIBLE);													
+										  		centerscrolltext.startAnimation(animAlphaText);
+												centerscrolltext.append("\n" + "> The computer rolls " + ArrayOfAttackResult.attackResult[0] + ".");
+						  	  	  			}
+						  	  	  			
+						  	  	  			if (canHasDisarmed[0].equals("yes")) {
+						  	  	  				
+							  	  	  			centerscrolltext.setVisibility(View.VISIBLE);													
+										  		centerscrolltext.startAnimation(animAlphaText);
+												centerscrolltext.append("\n" + "> The computer rolls " + ArrayOfAttackResult.attackResult[0] + ", +2 for disarmed = " + (ArrayOfAttackResult.attackResult[0] + 2));
+						  	  	  			}
+						  	  	  			
+						  	  	  			
+							  	  	  		final Handler h = new Handler();
+								  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+								  	  	  			
+								  	  	  		@Override
+									  	  	  	public void run() {
+								  	  	  			
+									  	  	  		if (ArrayOfAttackResult.attackResult[0] >= 20) {
+														
+														computerCriticalHit();
+														return;
+													}
+													
+													
+													if (canHasDisarmed[0].equals("no")) {
+													
+														if (ArrayOfAttackResult.attackResult[0] >= 14 && ArrayOfAttackResult.attackResult[0] <= 19) {
+															
+															final Handler h = new Handler();
+												  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+												  	  	  			
+												  	  	  		@Override
+													  	  	  	public void run() {
+												  	  	  			
+													  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
+															  		centerscrolltext.startAnimation(animAlphaText);
+																	centerscrolltext.append("\n" + "> The computer's attack hits.");		
+																	
+																	final Handler h3 = new Handler();
+														  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
+														  	  	  			
+														  	  	  		@Override
+															  	  	  	public void run() {
+														  	  	  			
+															  	  	  		if (dodgeBlowSpell[0] > 0) {
+																				/*
+																				centerscrolltext.setVisibility(View.VISIBLE);													
+																		  		centerscrolltext.startAnimation(animAlphaText);			  		
+																				centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", do you want to dodge?");
+																				*/
+																				
+																				AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+																	  			
+																				alert.setCancelable(false);
+																				
+																	  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
+																	  	    	/*
+																	  	    	alert.setMessage("something");
+																	  	    	*/	  	    	
+																	  	    	
+																	  	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+																	  		    	public void onClick(DialogInterface dialog, int whichButton) {	  		    		
+																	  		    		
+																	  		    		/*
+																	  		    		//NEED THIS??????????????????
+																	  		    		if (dodgeBlowSpell[0] < 1) {
+																	  		    			
+																	  		    			//hideNavigation();
+																	  						
+																	  						centerscrolltext.setVisibility(View.VISIBLE);													
+																	  				  		centerscrolltext.startAnimation(animAlphaText);			  		
+																	  						centerscrolltext.append("\n" + "> You have already used your Dodge spell!");
+																	  						
+																	  						//break;
+																	  					}
+																	  		    		*/
+																	  		    		dialog.dismiss();
+																	  		    		
+																	  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
+																	  		    		
+																	  		    		centerscrolltext.setVisibility(View.VISIBLE);													
+																				  		centerscrolltext.startAnimation(animAlphaText);
+																						centerscrolltext.append("\n" + "> You dodge the hit.");
+																	  		    		
+																	  		    		skillsCheck();
+																	  		    		
+																		  		    	// Use a blank drawable to hide the imageview animation:
+																		  		    	// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+																		  		    	ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
+																		  		    	img.setBackgroundResource(R.drawable.twentytwentyblank);
+																		  		    	img.setImageResource(R.drawable.twentytwentyblank);
+																	  		    		
+																	  		    		dodgeGraphic();
+																	  		    		
+																	  		    		final Handler h = new Handler();
+																			  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+																			  	  	  			
+																			  	  	  		@Override
+																				  	  	  	public void run() {
+																			  	  	  			
+																				  	  	  		//final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
+																			  	  	  			//dodgeGraphic.setVisibility(View.INVISIBLE);
+																			  	  	  			
+																			  	  	  			stopGraphics();
+																			  	  	  			
+																				  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
+																				  	    			
+																				  	    			gameEngineComputerFirst2();   							
+																				  				}
+															
+																							  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
+																							  						
+																							  		turn();    							
+																							  	}
+																							  	if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
+																							  	    			
+																							  		computerHastePartTwo();   							
+																							  	}
+																		
+																							  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
+																							  						
+																							  		computerHastePartTwo();    							
+																							  	}								  		    		
+																			  					return;
+																				  	  	  	}
+																			  	  	  	}, 6000);														  		    		
+																	  		    	}
+																	  	    	});
+																	  	    	
+																	  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+																	          	  public void onClick(DialogInterface dialog, int whichButton) {
+																	          		  
+																	          		  	//hideNavigation();
+																	          		  	
+																	          		  	computerDamage();								          		  	
+																	          		  	//return;
+																	          		  	
+																	          		  	dialog.dismiss();
+																	          	  }
+																	          	});	  	    	
+																	  	    	
+																	  	    	alert.show();
+																				
+																				/*
+																				String s = input.next();
+																				char selection = s.charAt(0);
+																				
+																				switch (selection) {
+																				case 'y':
+																				case 'Y':
+																					
+																					if (dodgeBlowSpell[0] < 1) {
+																						
+																						centerscrolltext.setVisibility(View.VISIBLE);													
+																				  		centerscrolltext.startAnimation(animAlphaText);			  		
+																						centerscrolltext.append("\n" + "> You have already used your Dodge Blow spell!");
+																						
+																						break;
+																					}
+																					dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
+																					return dodgeBlowSpell;
+																				case 'n':
+																				case 'N':
+																					break;
+																				default:
+																					computerDamage(i, gameOn);
+																				}
+																				*/
+																			}
+															  	  	  		
+															  	  	  		else {
+															  	  	  			
+																  	  	  		computerDamage();
+																				return;						  	  	  			
+															  	  	  		}
+															  	  	  	}
+														  	  	  	}, 2000);
+													  	  	  	}
+												  	  	  	}, 2000);												
+														}
+														
+														if (ArrayOfAttackResult.attackResult[0] < 14 && ArrayOfAttackResult.attackResult[0] > 1) {
+															
+															final Handler h = new Handler();
+												  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+												  	  	  			
+												  	  	  		@Override
+													  	  	  	public void run() {
+												  	  	  			
+													  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
+															  		centerscrolltext.startAnimation(animAlphaText);
+																	centerscrolltext.append("\n" + "> The computer's attack misses.");
+																	
+																	final Handler h = new Handler();
+														  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+														  	  	  			
+														  	  	  		@Override
+															  	  	  	public void run() {
+														  	  	  			
+															  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+															  	    			
+															  	    			gameEngineComputerFirst2();   							
+															  				}
+															  	  	  		
+																		  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+																		  						
+																		  		turn();    							
+																		  	}								  						  	  	  			
+															  	  	  	}
+														  	  	  	}, 2000);						
+																	return;
+													  	  	  	}
+												  	  	  	}, 2000);											
+														}
+														
+														if (ArrayOfAttackResult.attackResult[0] <= 1) {
+															
+															final Handler h = new Handler();
+												  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+												  	  	  			
+												  	  	  		@Override
+													  	  	  	public void run() {
+												  	  	  			
+													  	  	  		computerCriticalMiss();
+																	return;
+													  	  	  	}
+												  	  	  	}, 2000);												
+														}				
+													}
+													
+													if (canHasDisarmed[0].equals("yes")) {
+														
+														if (ArrayOfAttackResult.attackResult[0] >= 12 && ArrayOfAttackResult.attackResult[0] <= 19) {
+															
+															final Handler h = new Handler();
+												  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+												  	  	  			
+												  	  	  		@Override
+													  	  	  	public void run() {
+												  	  	  			
+													  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
+															  		centerscrolltext.startAnimation(animAlphaText);
+																	centerscrolltext.append("\n" + "> The computer's attack hits.");			
+																	
+																	final Handler h5 = new Handler();
+														  	  	  	h5.postDelayed(new Runnable() {		  	  	  			
+														  	  	  			
+														  	  	  		@Override
+															  	  	  	public void run() {
+														  	  	  			
+															  	  	  		if (dodgeBlowSpell[0] > 0) {
+																				/*
+																				centerscrolltext.setVisibility(View.VISIBLE);													
+																		  		centerscrolltext.startAnimation(animAlphaText);			  		
+																				centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", do you want to dodge?");
+																				*/
+																				
+																				AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+																	  			
+																				alert.setCancelable(false);
+																				
+																	  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
+																	  	    	/*
+																	  	    	alert.setMessage("something");
+																	  	    	*/	  	    	
+																	  	    	
+																	  	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+																	  		    	public void onClick(DialogInterface dialog, int whichButton) {	  		    		
+																	  		    		
+																	  		    		/*
+																	  		    		//NEED THIS??????????????????
+																	  		    		if (dodgeBlowSpell[0] < 1) {
+																	  		    			
+																	  		    			//hideNavigation();
+																	  						
+																	  						centerscrolltext.setVisibility(View.VISIBLE);													
+																	  				  		centerscrolltext.startAnimation(animAlphaText);			  		
+																	  						centerscrolltext.append("\n" + "> You have already used your Dodge spell!");
+																	  						
+																	  						//break;
+																	  					}
+																	  		    		*/
+																	  		    		dialog.dismiss();
+																	  		    		
+																	  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
+																	  		    		
+																	  		    		centerscrolltext.setVisibility(View.VISIBLE);													
+																				  		centerscrolltext.startAnimation(animAlphaText);
+																						centerscrolltext.append("\n" + "> You dodge the hit.");
+																	  		    		
+																	  		    		skillsCheck();
+																	  		    		
+																		  		    	// Use a blank drawable to hide the imageview animation:
+																		  		    	// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+																		  		    	ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
+																		  		    	img.setBackgroundResource(R.drawable.twentytwentyblank);
+																		  		    	img.setImageResource(R.drawable.twentytwentyblank);
+																	  		    		
+																	  		    		dodgeGraphic();
+																	  		    		
+																	  		    		final Handler h = new Handler();
+																			  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+																			  	  	  			
+																			  	  	  		@Override
+																				  	  	  	public void run() {
+																			  	  	  			
+																				  	  	  		//final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
+																			  	  	  			//dodgeGraphic.setVisibility(View.INVISIBLE);
+																			  	  	  			
+																			  	  	  			stopGraphics();
+																			  	  	  			
+																				  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
+																				  	    			
+																				  	    			gameEngineComputerFirst2();   							
+																				  				}
+															
+																							  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
+																							  						
+																							  		turn();    							
+																							  	}
+																							  	if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
+																							  	    			
+																							  		computerHastePartTwo();   							
+																							  	}
+																		
+																							  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
+																							  						
+																							  		computerHastePartTwo();  							
+																							  	}								  		    		
+																			  					//return;
+																				  	  	  	}
+																			  	  	  	}, 6000);											  		    		
+																	  		    	}
+																	  	    	});
+																	  	    	
+																	  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+																	          	  public void onClick(DialogInterface dialog, int whichButton) {
+																	          		  
+																	          		  	//hideNavigation();
+																	          		  	
+																	          		  	computerDamage();								          		  	
+																	          		  	//return;
+																	          		  	
+																	          		  	dialog.dismiss();
+																	          	  }
+																	          	});	  	    	
+																	  	    	
+																	  	    	alert.show();
+																				
+																				/*
+																				String s = input.next();
+																				char selection = s.charAt(0);
+																				
+																				switch (selection) {
+																				case 'y':
+																				case 'Y':
+																					
+																					if (dodgeBlowSpell[0] < 1) {
+																						
+																						centerscrolltext.setVisibility(View.VISIBLE);													
+																				  		centerscrolltext.startAnimation(animAlphaText);			  		
+																						centerscrolltext.append("\n" + "> You have already used your Dodge Blow spell!");
+																						
+																						break;
+																					}
+																					dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
+																					return dodgeBlowSpell;
+																				case 'n':
+																				case 'N':
+																					break;
+																				default:
+																					computerDamage(i, gameOn);
+																				}
+																				*/
+																			}
+															  	  	  		
+															  	  	  		else {
+															  	  	  			
+																  	  	  		computerDamage();
+																				//return;						  	  	  			
+															  	  	  		}
+															  	  	  	}
+														  	  	  	}, 2000);
+													  	  	  	}
+												  	  	  	}, 2000);												
+														}
+														
+														if (ArrayOfAttackResult.attackResult[0] < 12 && ArrayOfAttackResult.attackResult[0] > 1) {
+															
+															final Handler h = new Handler();
+												  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+												  	  	  			
+												  	  	  		@Override
+													  	  	  	public void run() {
+												  	  	  			
+													  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
+															  		centerscrolltext.startAnimation(animAlphaText);
+																	centerscrolltext.append("\n" + "> The computer's attack misses.");
+																	
+																	final Handler h = new Handler();
+														  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+														  	  	  			
+														  	  	  		@Override
+															  	  	  	public void run() {
+														  	  	  			
+															  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+															  	    			
+															  	    			gameEngineComputerFirst2();   							
+															  				}
+															  	  	  		
+																		  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+																		  						
+																		  		turn();
+																		  	}								  						  	  	  			
+															  	  	  	}
+														  	  	  	}, 2000);						
+																	return;
+													  	  	  	}
+												  	  	  	}, 2000);												
+														}
+														
+														if (ArrayOfAttackResult.attackResult[0] <= 1) {
+															
+															final Handler h = new Handler();
+												  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+												  	  	  			
+												  	  	  		@Override
+													  	  	  	public void run() {
+												  	  	  			
+													  	  	  		computerCriticalMiss();
+																	return;
+													  	  	  	}
+												  	  	  	}, 2000);												
+														}					
+													}
+									  	  	  	}
+								  	  	  	}, 2000);
+											
+								
+											
+							  	  	  	}
+						  	  	  	}, 2000);			  	  	  		
+					  	  	  	}
+				  	  	  	}, 2000);					
+			  	  	  	}
+		  	  	  	}, 2000);								
+	  	  	    }
+			});			
+		}		
 	}
 	
 	public void computerDisarm() {// WAS String[]			
@@ -9067,6 +9104,8 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  		@Override
 		  	  	  	public void run() {
 	  	  	  			
+	  	  	  			int computerDisarmedAction = (int) ((Math.random() * 100) + 1);
+	  	  	  			
 	  	  	  			// CURE
 	  					if (ArrayOfHitPoints.hitpoints[1] <= 12 && cureSpell[1] > 0) {
 	  						
@@ -9076,45 +9115,94 @@ public class MainActivity2 extends ActionBarActivity {
 	  						
 	  						computerCure();
 	  						return;
-	  					}
-	  			
-	  					int computerDisarmedAction = (int) ((Math.random() * 100) + 1);
-	  			
-	  					// HASTE
-	  					if (((computerDisarmedAction <= 50 && hasteSpell[1] > 0 && canHasDisarmed[1].equals("yes")) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1] && didComputerCriticalMiss.equals("yes") && disarmedTurnStart[1] + 1 == turn)) || 
-	  							((computerDisarmedAction <= 50 && hasteSpell[1] > 0 && canHasDisarmed[1].equals("yes")) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1] && didComputerCriticalMiss.equals("no") && disarmedTurnStart[1] == turn)) ||
-	  							((computerDisarmedAction <= 50 && hasteSpell[1] > 0 && canHasDisarmed[1].equals("yes")) && (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1] && didComputerCriticalMiss.equals("yes") && disarmedTurnStart[1] == turn)) ||
-	  							((computerDisarmedAction <= 50 && hasteSpell[1] > 0 && canHasDisarmed[1].equals("yes")) && (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1] && didComputerCriticalMiss.equals("no") && disarmedTurnStart[1] + 1 == turn))) {
+	  					}	  					
+	  					
+	  					else {
 	  						
-	  						centerscrolltext.setVisibility(View.VISIBLE); 													
-	  				  		centerscrolltext.startAnimation(animAlphaText);
-	  						centerscrolltext.append("\n" + "> The computer uses a haste spell...");
-	  									
-	  						computerHasteDisarmed();
-	  						return;
-	  					}
-	  			
-	  					// PUNCH A
-	  					if (computerDisarmedAction <= 50 && hasteSpell[1] < 1) {
-	  						
-	  						centerscrolltext.setVisibility(View.VISIBLE); 													
-	  				  		centerscrolltext.startAnimation(animAlphaText);
-	  						centerscrolltext.append("\n" + "> The computer attempts to punch you...");			
-	  						
-	  						computerPunch();
-	  						return;
-	  					}
-	  			
-	  					// PUNCH B
-	  					if (computerDisarmedAction >= 51) {
-	  						
-	  						centerscrolltext.setVisibility(View.VISIBLE); 													
-	  				  		centerscrolltext.startAnimation(animAlphaText);
-	  						centerscrolltext.append("\n" + "> The computer attempts to punch you...");			
-	  						
-	  						computerPunch();
-	  						return;
-	  					}
+	  						// HASTE
+		  					if (computerDisarmedAction <= 50 && hasteSpell[1] > 0 && canHasDisarmed[1].equals("yes")) {		  						
+		  						
+		  						if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {
+		  							
+		  							if (didComputerCriticalMiss.equals("yes") && disarmedTurnStart[1] + 1 == turn) {
+		  								
+		  								centerscrolltext.setVisibility(View.VISIBLE); 													
+				  				  		centerscrolltext.startAnimation(animAlphaText);
+				  						centerscrolltext.append("\n" + "> The computer uses a haste spell...");
+				  									
+				  						computerHasteDisarmed();
+				  						return;
+		  							}
+		  							
+		  							else if (didComputerCriticalMiss.equals("no") && disarmedTurnStart[1] == turn) {
+		  								
+		  								centerscrolltext.setVisibility(View.VISIBLE); 													
+				  				  		centerscrolltext.startAnimation(animAlphaText);
+				  						centerscrolltext.append("\n" + "> The computer uses a haste spell...");
+				  									
+				  						computerHasteDisarmed();
+				  						return;
+		  							}
+		  							
+		  							else {
+			  							
+			  							computerPunch();
+				  						return;
+			  						}	
+		  						}
+		  						
+		  						else if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {
+		  							
+		  							if (didComputerCriticalMiss.equals("yes") && disarmedTurnStart[1] == turn) {
+		  								
+		  								centerscrolltext.setVisibility(View.VISIBLE); 													
+				  				  		centerscrolltext.startAnimation(animAlphaText);
+				  						centerscrolltext.append("\n" + "> The computer uses a haste spell...");
+				  									
+				  						computerHasteDisarmed();
+				  						return;
+		  							}
+		  							
+		  							else if (didComputerCriticalMiss.equals("no") && disarmedTurnStart[1] + 1 == turn) {
+		  								
+		  								centerscrolltext.setVisibility(View.VISIBLE); 													
+				  				  		centerscrolltext.startAnimation(animAlphaText);
+				  						centerscrolltext.append("\n" + "> The computer uses a haste spell...");
+				  									
+				  						computerHasteDisarmed();
+				  						return;
+		  							}
+		  							
+		  							else {
+			  							
+			  							computerPunch();
+				  						return;
+			  						}	
+		  						}		  											
+		  					}
+		  			
+		  					// PUNCH A
+		  					else if (computerDisarmedAction <= 50 && hasteSpell[1] < 1) {
+		  						
+		  						centerscrolltext.setVisibility(View.VISIBLE); 													
+		  				  		centerscrolltext.startAnimation(animAlphaText);
+		  						centerscrolltext.append("\n" + "> The computer attempts to punch you...");			
+		  						
+		  						computerPunch();
+		  						return;
+		  					}
+		  			
+		  					// PUNCH B
+		  					else if (computerDisarmedAction >= 51) {
+		  						
+		  						centerscrolltext.setVisibility(View.VISIBLE); 													
+		  				  		centerscrolltext.startAnimation(animAlphaText);
+		  						centerscrolltext.append("\n" + "> The computer attempts to punch you...");			
+		  						
+		  						computerPunch();
+		  						return;
+		  					}  						
+	  					}					
 		  	  	  	}
 	  	  	  	}, 2000);			
   	  	    }
@@ -11132,8 +11220,8 @@ public class MainActivity2 extends ActionBarActivity {
 																						TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
 																		    			playerHitPointsTextView.setTypeface(typeFace);
 																		    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
-																		    			//playerHitPointsTextView.bringToFront();
-																						
+																		    			//playerHitPointsTextView.bringToFront();																		    																				    			
+																		    			
 																						
 																						final Handler h = new Handler();
 																			  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -11524,6 +11612,9 @@ public class MainActivity2 extends ActionBarActivity {
 														    			playerHitPointsTextView.setTypeface(typeFace);
 														    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
 														    			//playerHitPointsTextView.bringToFront();
+														    			
+														    			
+														    			isInvokingService = "true";
 																		
 																		
 																		final Handler h = new Handler();
@@ -11860,6 +11951,8 @@ public class MainActivity2 extends ActionBarActivity {
 															  	  	  		@Override
 																  	  	  	public void run() {
 															  	  	  			
+															  	  	  			isInvokingService = "true";
+															  	  	  			
 																  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 																  	    			
 																  	    			gameEngineComputerFirst2();   							
@@ -11902,6 +11995,8 @@ public class MainActivity2 extends ActionBarActivity {
 															  	  	  			
 															  	  	  		@Override
 																  	  	  	public void run() {
+															  	  	  			
+															  	  	  			isInvokingService = "true";
 															  	  	  			
 																  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 																  	    			
@@ -12021,6 +12116,9 @@ public class MainActivity2 extends ActionBarActivity {
 						    			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
 						    			//computerHitPointsTextView.bringToFront();
 										
+						    			
+						    			isInvokingService = "true";
+						    			
 										
 										final Handler h = new Handler();
 							  	  	  	h.postDelayed(new Runnable() {		  	  	  			

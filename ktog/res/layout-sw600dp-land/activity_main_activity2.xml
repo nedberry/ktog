@@ -86,18 +86,27 @@
    	    android:paddingRight="74dp"
    	    android:paddingLeft="64dp"
    	    	android:fadeScrollbars="false"   	    
-	   	    android:scrollbars="vertical">
+	   	    android:scrollbars="vertical"
+	   	android:stretchColumns="*">
    	    
 	    
 	   	<TableRow
        	>
         <TextView
-            android:id="@+id/statisticstext"
+            android:id="@+id/summarytext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />	        
-    	</TableRow>
-    	
+            android:layout_span="7"
+            android:layout_gravity="center_horizontal"           
+            android:textSize="24sp" />	        
+    	</TableRow>    	
+	   	<!-- 
+	   	NEED android:stretchColumns (ABOVE) TO CENTER TEXT HERE.
+	   	  	
+    	android:layout_weight="7"
+    	android:layout_gravity="center"    	 
+     	-->
+     	
 	    <View
 	        android:id="@+id/line"
 	        android:layout_height="2dip"
@@ -116,36 +125,42 @@
             android:id="@+id/hitpointstext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_weight="1" />   	
     	
 	    <TextView
             android:id="@+id/blesstext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_weight="1" />   	
     	
 		<TextView
             android:id="@+id/curetext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_weight="1" />
 		
 		<TextView
             android:id="@+id/dodgetext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_weight="1" />	        
     	
 		<TextView
             android:id="@+id/mightyblowtext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_weight="1" />
 		
 		<TextView
             android:id="@+id/hastetext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_weight="1" />
 		
     	</TableRow>    	
@@ -163,36 +178,42 @@
             android:id="@+id/hitpointsplayer1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_weight="1" />   	
     	
 	    <TextView
             android:id="@+id/blessplayer1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_weight="1" />   	
     	
 		<TextView
             android:id="@+id/cureplayer1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_weight="1" />
 		
 		<TextView
             android:id="@+id/dodgeplayer1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_weight="1" />	        
     	
 		<TextView
             android:id="@+id/mightyblowplayer1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_weight="1" />
 		
 		<TextView
             android:id="@+id/hasteplayer1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_weight="1" />
 		
 		</TableRow>
@@ -210,36 +231,42 @@
             android:id="@+id/hitpointsplayer2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_weight="1" />   	
     	
 	    <TextView
             android:id="@+id/blessplayer2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_weight="1" />   	
     	
 		<TextView
             android:id="@+id/cureplayer2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_weight="1" />
 		
 		<TextView
             android:id="@+id/dodgeplayer2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_weight="1" />	        
     	
 		<TextView
             android:id="@+id/mightyblowplayer2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_weight="1" />
 		
 		<TextView
             android:id="@+id/hasteplayer2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_weight="1" />
         	        
     	</TableRow>    		

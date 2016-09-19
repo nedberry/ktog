@@ -565,9 +565,9 @@ int id showHome 0x7f060004
 int id showTitle 0x7f060006
 int id sixsidedanimation 0x7f060080
 int id split_action_bar 0x7f06001e
-int id statisticstext 0x7f060048
 int id submit_area 0x7f060039
 int id summaryTable 0x7f060047
+int id summarytext 0x7f060048
 int id tabMode 0x7f060002
 int id textdisarmedleft 0x7f060068
 int id textdisarmedright 0x7f060065

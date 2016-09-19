@@ -135,6 +135,10 @@ public class MainActivity1 extends ActionBarActivity {
 	    				
 	    				Intent openMainActivity2 = new Intent("com.nedswebsite.ktog.MAINACTIVITY2");
 	    	        	startActivity(openMainActivity2);
+	    	        	
+	    	        	dialog.dismiss();
+	    	        	
+	    	        	//finish();
         	  		}
 	    		});	    		
 	        	
@@ -330,6 +334,10 @@ public class MainActivity1 extends ActionBarActivity {
     	    				
     	    				Intent openMainActivity2 = new Intent("com.nedswebsite.ktog.MAINACTIVITY2");
     	                	startActivity(openMainActivity2);
+    	                	
+    	                	dialog.dismiss();
+    	                	
+    	                	//finish();
             	  		}
     	    		});	    		
     	        	
@@ -442,6 +450,10 @@ public class MainActivity1 extends ActionBarActivity {
     	    				
     	    				Intent openMainActivity2 = new Intent("com.nedswebsite.ktog.MAINACTIVITY2");
     	                	startActivity(openMainActivity2);
+    	                	
+    	                	dialog.dismiss();
+    	                	
+    	                	//finish();
             	  		}
     	    		});	    		
     	        	

@@ -1410,9 +1410,9 @@ containing a value of this type.
         public static final int showTitle=0x7f060006;
         public static final int sixsidedanimation=0x7f060080;
         public static final int split_action_bar=0x7f06001e;
-        public static final int statisticstext=0x7f060048;
         public static final int submit_area=0x7f060039;
         public static final int summaryTable=0x7f060047;
+        public static final int summarytext=0x7f060048;
         public static final int tabMode=0x7f060002;
         public static final int textdisarmedleft=0x7f060068;
         public static final int textdisarmedright=0x7f060065;
