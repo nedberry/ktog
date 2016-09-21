@@ -133,8 +133,9 @@ public class MainActivity1 extends ActionBarActivity {
 	    				
 	    				stopService(svc);	    				
 	    				
-	    				Intent openMainActivity2 = new Intent("com.nedswebsite.ktog.MAINACTIVITY2");
-	    	        	startActivity(openMainActivity2);
+	    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+	    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+	    				startActivity(intent);
 	    	        	
 	    	        	dialog.dismiss();
 	    	        	
@@ -332,8 +333,9 @@ public class MainActivity1 extends ActionBarActivity {
     	    				
     	    				stopService(svc);
     	    				
-    	    				Intent openMainActivity2 = new Intent("com.nedswebsite.ktog.MAINACTIVITY2");
-    	                	startActivity(openMainActivity2);
+    	    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+    	    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+    	    				startActivity(intent);
     	                	
     	                	dialog.dismiss();
     	                	
@@ -448,8 +450,9 @@ public class MainActivity1 extends ActionBarActivity {
     	    				
     	    				stopService(svc);
     	    				
-    	    				Intent openMainActivity2 = new Intent("com.nedswebsite.ktog.MAINACTIVITY2");
-    	                	startActivity(openMainActivity2);
+    	    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+    	    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+    	    				startActivity(intent);
     	                	
     	                	dialog.dismiss();
     	                	

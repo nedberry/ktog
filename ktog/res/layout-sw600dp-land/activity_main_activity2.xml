@@ -70,208 +70,219 @@
    	    android:textSize="75sp"  	    
    	    android:paddingBottom="38dp" />
      
-     
-	<TableLayout
-	    android:id="@+id/summaryTable"
-	    android:layout_width="340dp"
+	<ScrollView
+		android:layout_width="340dp"
    	    android:layout_height="220dp"
    	    android:layout_alignLeft="@+id/imageviewcenterscroll"        
         android:layout_toLeftOf="@+id/textviewhitpointsright"        
         android:layout_marginTop="20dp"
-        android:textColor="#FFFFFF"   	    
-   	    android:gravity="top"   	    
-   	    android:textSize="20sp"
-   	    android:paddingTop="20dp" 	    
-   	    android:paddingBottom="66dp"
-   	    android:paddingRight="74dp"
-   	    android:paddingLeft="64dp"
-   	    	android:fadeScrollbars="false"   	    
-	   	    android:scrollbars="vertical"
-	   	android:stretchColumns="*">
-   	    
+        android:gravity="top"  	   
+		android:scrollbars="none"
+		android:layout_weight="1">
+	  	<!--
+		SCROLLVIEW IS WHAT WILL ENABLE SCROLLBARS FOR THE TABLE LAYOUT.    	
+		-->    
 	    
-	   	<TableRow
-       	>
-        <TextView
-            android:id="@+id/summarytext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_span="7"
-            android:layout_gravity="center_horizontal"           
-            android:textSize="24sp" />	        
-    	</TableRow>    	
-	   	<!-- 
-	   	NEED android:stretchColumns (ABOVE) TO CENTER TEXT HERE.
-	   	  	
-    	android:layout_weight="7"
-    	android:layout_gravity="center"    	 
-     	-->
-     	
-	    <View
-	        android:id="@+id/line"
-	        android:layout_height="2dip"
-	        android:background="#FF0000" />
-	    	    
-	    
-	    <TableRow
-       	>
-        <TextView
-            android:id="@+id/blanktext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-	        
-        <TextView
-            android:id="@+id/hitpointstext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1" />   	
-    	
-	    <TextView
-            android:id="@+id/blesstext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1" />   	
-    	
-		<TextView
-            android:id="@+id/curetext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1" />
-		
-		<TextView
-            android:id="@+id/dodgetext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1" />	        
-    	
-		<TextView
-            android:id="@+id/mightyblowtext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1" />
-		
-		<TextView
-            android:id="@+id/hastetext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1" />
-		
-    	</TableRow>    	
-	    
-    	
-	    <TableRow
-       	>
-        <TextView
-            android:id="@+id/player1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-        
-        <TextView
-            android:id="@+id/hitpointsplayer1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1" />   	
-    	
-	    <TextView
-            android:id="@+id/blessplayer1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1" />   	
-    	
-		<TextView
-            android:id="@+id/cureplayer1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1" />
-		
-		<TextView
-            android:id="@+id/dodgeplayer1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1" />	        
-    	
-		<TextView
-            android:id="@+id/mightyblowplayer1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1" />
-		
-		<TextView
-            android:id="@+id/hasteplayer1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1" />
-		
-		</TableRow>
-		
-        
-        <TableRow
-       	>
-        <TextView
-            android:id="@+id/player2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-        
-        <TextView
-            android:id="@+id/hitpointsplayer2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1" />   	
-    	
-	    <TextView
-            android:id="@+id/blessplayer2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1" />   	
-    	
-		<TextView
-            android:id="@+id/cureplayer2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1" />
-		
-		<TextView
-            android:id="@+id/dodgeplayer2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1" />	        
-    	
-		<TextView
-            android:id="@+id/mightyblowplayer2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1" />
-		
-		<TextView
-            android:id="@+id/hasteplayer2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1" />
-        	        
-    	</TableRow>    		
+		<TableLayout
+		    android:id="@+id/summaryTable"
+		    android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textColor="#FFFFFF"   	    
+	   	    android:gravity="top"   	    
+	   	    android:textSize="20sp"
+	   	    android:paddingTop="20dp" 	    
+	   	    android:paddingBottom="66dp"
+	   	    android:paddingRight="66dp"
+	   	    android:paddingLeft="64dp"   	    	
+		   	android:stretchColumns="*" >
+	   	    <!--
+		    	android:fadeScrollbars="false"   	    
+		   		android:scrollbars="vertical"
+		    -->
 		    
-	</TableLayout> 
+		   	<TableRow
+	       	>
+	        <TextView
+	            android:id="@+id/summarytext"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_span="7"
+	            android:layout_gravity="center_horizontal"           
+	            android:textSize="24sp" />	        
+	    	</TableRow>    	
+		   	<!-- 
+		   	NEED android:stretchColumns (ABOVE) TO CENTER TEXT HERE.
+		   	  	
+	    	android:layout_weight="7"
+	    	android:layout_gravity="center"    	 
+	     	-->
+	     	
+		    <View
+		        android:id="@+id/line"
+		        android:layout_height="2dip"
+		        android:background="#FF0000" />
+		    	    
+		    
+		    <TableRow
+	       	>
+	        <TextView
+	            android:id="@+id/blanktext"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="1" />
+		        
+	        <TextView
+	            android:id="@+id/hitpointstext"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center_horizontal"
+	            android:layout_weight="1" />   	
+	    	
+		    <TextView
+	            android:id="@+id/blesstext"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center_horizontal"
+	            android:layout_weight="1" />   	
+	    	
+			<TextView
+	            android:id="@+id/curetext"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center_horizontal"
+	            android:layout_weight="1" />
+			
+			<TextView
+	            android:id="@+id/dodgetext"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center_horizontal"
+	            android:layout_weight="1" />	        
+	    	
+			<TextView
+	            android:id="@+id/mightyblowtext"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center_horizontal"
+	            android:layout_weight="1" />
+			
+			<TextView
+	            android:id="@+id/hastetext"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center_horizontal"
+	            android:layout_weight="1" />
+			
+	    	</TableRow>    	
+		    
+	    	
+		    <TableRow
+	       	>
+	        <TextView
+	            android:id="@+id/player1"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="1" />
+	        
+	        <TextView
+	            android:id="@+id/hitpointsplayer1"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center_horizontal"
+	            android:layout_weight="1" />   	
+	    	
+		    <TextView
+	            android:id="@+id/blessplayer1"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center_horizontal"
+	            android:layout_weight="1" />   	
+	    	
+			<TextView
+	            android:id="@+id/cureplayer1"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center_horizontal"
+	            android:layout_weight="1" />
+			
+			<TextView
+	            android:id="@+id/dodgeplayer1"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center_horizontal"
+	            android:layout_weight="1" />	        
+	    	
+			<TextView
+	            android:id="@+id/mightyblowplayer1"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center_horizontal"
+	            android:layout_weight="1" />
+			
+			<TextView
+	            android:id="@+id/hasteplayer1"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center_horizontal"
+	            android:layout_weight="1" />
+			
+			</TableRow>
+			
+	        
+	        <TableRow
+	       	>
+	        <TextView
+	            android:id="@+id/player2"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="1" />
+	        
+	        <TextView
+	            android:id="@+id/hitpointsplayer2"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center_horizontal"
+	            android:layout_weight="1" />   	
+	    	
+		    <TextView
+	            android:id="@+id/blessplayer2"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center_horizontal"
+	            android:layout_weight="1" />   	
+	    	
+			<TextView
+	            android:id="@+id/cureplayer2"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center_horizontal"
+	            android:layout_weight="1" />
+			
+			<TextView
+	            android:id="@+id/dodgeplayer2"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center_horizontal"
+	            android:layout_weight="1" />	        
+	    	
+			<TextView
+	            android:id="@+id/mightyblowplayer2"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center_horizontal"
+	            android:layout_weight="1" />
+			
+			<TextView
+	            android:id="@+id/hasteplayer2"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center_horizontal"
+	            android:layout_weight="1" />
+	        	        
+	    	</TableRow>    		
+			    
+		</TableLayout>
+	</ScrollView>		
      
      <!--	
      
