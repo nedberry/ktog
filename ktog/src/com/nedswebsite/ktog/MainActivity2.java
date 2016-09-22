@@ -168,6 +168,10 @@ public class MainActivity2 extends ActionBarActivity {
 	String endGameAfterFirstHaste = "no";
 	
 	
+	
+	//Intent svc = new Intent(this, Badonk2SoundService.class);
+	//svc.setAction("com.nedswebsite.ktog.Badonk2SoundService");
+	
 		
 	
 	@Override
@@ -465,7 +469,7 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  		}
 			  	  	  	}, 2000);
 		  	  	  	}
-	  	  	  	}, 2950);//FINAGLING TO GET RIGHT (MAINLY 1ST TIME) - should be 4700?	  	  		  			
+	  	  	  	}, 3100);//FINAGLING TO GET RIGHT (MAINLY 1ST TIME) - should be 4700?	  	  		  			
   	  		}
   	  	}, 2000);
   	  	
@@ -682,7 +686,7 @@ public class MainActivity2 extends ActionBarActivity {
 			    			  	  		
 			    			  	  		istitlestatsopen = "no";
 		    			  	  	  	}
-		    		  	  	  	}, 10975);
+		    		  	  	  	}, 11200);
     			  	  	  	}
     		  	  	  	}, 600);
             		}
@@ -5150,7 +5154,7 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  			//myThread.start();
 			  	  		
 		  	  		}
-		  	  	}, 10050);		  	  			
+		  	  	}, 10325);		  	  			
   	  	  	}
   	  	}, 525);  		  	    	  	  			  	  			
 	
@@ -17319,14 +17323,14 @@ public class MainActivity2 extends ActionBarActivity {
 							
 							centerscrolltext.setVisibility(View.VISIBLE);
 					  		centerscrolltext.startAnimation(animAlphaText);
-					  		centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0]	+ ", +2 for Bless Spell = " + (ArrayOfAttackResult.attackResult[0] + 2));							
+					  		centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0]	+ ", +2 for Bless Spell = " + (ArrayOfAttackResult.attackResult[0] + 2) + ".");							
 						}
 						
 						if (canHasDisarmed[playerNumberAttacked].equals("yes")) {						
 							
 							centerscrolltext.setVisibility(View.VISIBLE);
 					  		centerscrolltext.startAnimation(animAlphaText);
-					  		centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0]	+ ", +4 for Bless Spell and your opponent being disarmed = " + (ArrayOfAttackResult.attackResult[0] + 4));						
+					  		centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0]	+ ", +4 for Bless Spell and your opponent being disarmed = " + (ArrayOfAttackResult.attackResult[0] + 4) + ".");						
 						}												
 						
 						final Handler h2 = new Handler();
@@ -19932,7 +19936,27 @@ public class MainActivity2 extends ActionBarActivity {
 						  	  	  			
 							  	  	  		//Intent intent = new Intent(MainActivity2.this, MainActivity1.class);
 								  	  	  	//startActivity(intent);
-								  	  	  	finish();
+								  	  	  	
+						  	  	  			//startService(svc);
+						  	  	  			
+						  	  	  			
+						  	  	  			
+						  	  	  			
+						  	  	  			
+						  	  	  			//finish();
+						  	  	  			
+							  	  	  		Intent intent = new Intent(MainActivity2.this, MainActivity1.class);
+							    			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+							    			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);  //this combination of flags would start a new instance even if the instance of same Activity exists.
+							    			intent.addFlags(Intent.FLAG_ACTIVITY_TASK_ON_HOME);
+							    			finish();
+							    			startActivity(intent);
+						  	  	  			
+						  	  	  			
+						  	  	  			
+						  	  	  			
+						  	  	  			
+						  	  	  			
 						  	  	  			
 						  	  	  			/*
 						  	  	  			finish();
@@ -20014,7 +20038,30 @@ public class MainActivity2 extends ActionBarActivity {
 						  	  	  			
 							  	  	  		//Intent intent = new Intent(MainActivity2.this, MainActivity1.class);
 								  	  	  	//startActivity(intent);
-								  	  	  	finish();
+								  	  	  	
+						  	  	  			//startService(svc);
+						  	  	  			
+						  	  	  			
+						  	  	  			
+						  	  	  			
+						  	  	  			
+						  	  	  			
+						  	  	  			
+						  	  	  			
+						  	  	  			//finish();
+						  	  	  			
+							  	  	  		Intent intent = new Intent(MainActivity2.this, MainActivity1.class);
+							    			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+							    			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);  //this combination of flags would start a new instance even if the instance of same Activity exists.
+							    			intent.addFlags(Intent.FLAG_ACTIVITY_TASK_ON_HOME);
+							    			finish();
+							    			startActivity(intent);
+						  	  	  			
+						  	  	  			
+						  	  	  			
+						  	  	  			
+						  	  	  			
+						  	  	  			
 						  	  	  			
 						  	  	  			/*
 						  	  	  			finish();

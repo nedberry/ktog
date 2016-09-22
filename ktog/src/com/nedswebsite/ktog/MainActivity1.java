@@ -210,7 +210,6 @@ public class MainActivity1 extends ActionBarActivity {
     }
 	
 	// DESTROYS EVERYTHING (EXCEPT SERVICE?)
-	
 	@Override
 	protected void onDestroy() {
 	    android.os.Process.killProcess(android.os.Process.myPid());

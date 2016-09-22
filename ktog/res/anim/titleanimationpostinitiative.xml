@@ -11,6 +11,8 @@
     <item android:drawable="@drawable/title7blank" android:duration="75" />
     <item android:drawable="@drawable/title8blank" android:duration="75" />
     <item android:drawable="@drawable/scrollclosed" android:duration="75" />
+    <item android:drawable="@drawable/scrollclosed" android:duration="75" />
+    <item android:drawable="@drawable/scrollclosed" android:duration="75" />
     
     <item android:drawable="@drawable/title8blank" android:duration="75" />
     <item android:drawable="@drawable/title7blank" android:duration="75" />
@@ -29,6 +31,8 @@
     <item android:drawable="@drawable/title6blank" android:duration="75" />
     <item android:drawable="@drawable/title7blank" android:duration="75" />
     <item android:drawable="@drawable/title8blank" android:duration="75" />
+    <item android:drawable="@drawable/scrollclosed" android:duration="75" />
+    <item android:drawable="@drawable/scrollclosed" android:duration="75" />
     <item android:drawable="@drawable/scrollclosed" android:duration="75" />
     
     <item android:drawable="@drawable/title8blank" android:duration="75" />
