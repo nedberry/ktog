@@ -5154,7 +5154,7 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  			//myThread.start();
 			  	  		
 		  	  		}
-		  	  	}, 10325);		  	  			
+		  	  	}, 10325); // FINAGELED!	  	  			
   	  	  	}
   	  	}, 525);  		  	    	  	  			  	  			
 	
