@@ -1,6 +1,9 @@
 package com.nedswebsite.ktog;
 
 import java.util.Arrays;
+import java.util.Map;
+import java.util.NavigableMap;
+import java.util.TreeMap;
 
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
@@ -100,11 +103,16 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	
 	// SOME OF THESE MAY NEED TO BE AN ARRAY-CLASS:
-	public static int[] blessSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
-	public static int[] cureSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
-	public static int[] dodgeBlowSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
-	public static int[] mightyBlowSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
-	public static int[] hasteSpell = new int[] {2, 2, 2, 2, 2, 2, 2};	
+	public static int[] blessSpell = new int[] {1, 1, 1, 1, 1, 1, 1};// {1, 1, 1, 1, 1, 1, 1};
+	public static int[] cureSpell = new int[] {1, 1, 1, 1, 1, 1, 1};// {1, 1, 1, 1, 1, 1, 1};
+	public static int[] dodgeBlowSpell = new int[] {1, 1, 1, 1, 1, 1, 1};// {1, 1, 1, 1, 1, 1, 1};
+	public static int[] mightyBlowSpell = new int[] {1, 1, 1, 1, 1, 1, 1};// {1, 1, 1, 1, 1, 1, 1};
+	public static int[] hasteSpell = new int[] {2, 2, 2, 2, 2, 2, 2};//	{2, 2, 2, 2, 2, 2, 2};
+	
+	
+	// FOR ORDERING PURPOSES IN TITLE:
+	int firstsubscript;
+	int secondsubscript;
 	
 	
 	
@@ -169,10 +177,12 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	
 	
+	
 	//Intent svc = new Intent(this, Badonk2SoundService.class);
 	//svc.setAction("com.nedswebsite.ktog.Badonk2SoundService");
 	
 		
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -221,12 +231,12 @@ public class MainActivity2 extends ActionBarActivity {
 		computerNameTextView.setText(ArrayOfPlayers.player[1]);
 		
 		
-		ArrayOfHitPoints.hitpoints[0] = 20;		
+		ArrayOfHitPoints.hitpoints[0] = 20;//20		
 		final TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
 		playerHitPointsTextView.setTypeface(typeFace);
 		playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));		
 		
-		ArrayOfHitPoints.hitpoints[1] = 20;
+		ArrayOfHitPoints.hitpoints[1] = 20;//20
 		final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
 		computerHitPointsTextView.setTypeface(typeFace);
 		computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));		
@@ -254,6 +264,9 @@ public class MainActivity2 extends ActionBarActivity {
 	  	    }
   		});
 		*/
+		
+		//TO MAKE HIT POINTS PULSATE, USE THIS:
+		
 		final Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);
 		playerHitPointsTextView.startAnimation(animPulsingAnimation);		
 		computerHitPointsTextView.startAnimation(animPulsingAnimation);
@@ -427,6 +440,10 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  	  		titleinitiativetext.setVisibility(View.VISIBLE);				  		
 		  	  	  		titleinitiativetext.append("Initiative");
 		  				
+		  	  	  		
+		  	  	  		playerHitPointsTextView.clearAnimation();		
+		  	  	  		computerHitPointsTextView.clearAnimation();
+		  	  	  		
 		  				
 		  				final Handler h4 = new Handler();
 			  	  	  	h4.postDelayed(new Runnable() {
@@ -469,7 +486,7 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  		}
 			  	  	  	}, 2000);
 		  	  	  	}
-	  	  	  	}, 3100);//FINAGLING TO GET RIGHT (MAINLY 1ST TIME) - should be 4700?	  	  		  			
+	  	  	  	}, 2925);//FINAGLING TO GET RIGHT (MAINLY 1ST TIME) - should be 4700?	  	  		  			
   	  		}
   	  	}, 2000);
   	  	
@@ -519,13 +536,26 @@ public class MainActivity2 extends ActionBarActivity {
                 		myInitiativeIsStarted();
                 		
                 		titleBlankButton.setEnabled(false);// HERE & BELOW BECUSE GETTING WEIRD BEHAVIOR WHEN BUTTON WAS HIT AN ODD NUMBER OF TIMES (EXCEPT THE FIRST TIME).
-                		               		
+                		
+                		
+                		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {
+                			
+                			firstsubscript = 0;
+                			secondsubscript = 1;
+                		}
+                		
+                		else if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {
+                			
+                			firstsubscript = 1;
+                			secondsubscript = 0;
+                		}
+                		
                 		
                 		final Handler h = new Handler();
     		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
     		  	  	  			
     		  	  	  		@Override
-    			  	  	  	public void run() {
+    			  	  	  	public void run() {    		  	  	  			
     		  	  	  			
 	    		  	  	  		final TextView titletext = (TextView) findViewById(R.id.textviewtitlektogtext);    			  	  		    						
 	    							
@@ -579,89 +609,89 @@ public class MainActivity2 extends ActionBarActivity {
 			    		  	  	TextView hastetextview = (TextView) findViewById(R.id.hastetext);
 			    		  	  	hastetextview.setTypeface(typeFace);
 			    		  	  	hastetextview.setText("Haste");
-			    		  	  	hastetextview.setVisibility(View.VISIBLE);
-			    		  	  	
+			    		  	  	hastetextview.setVisibility(View.VISIBLE);			    		  	  	
+			    		  	 
 			    	  	  		
 			    		  	  	TextView player1textview = (TextView) findViewById(R.id.player1);
 			    		  	  	player1textview.setTypeface(typeFace);
-			    		  	  	player1textview.setText(ArrayOfPlayers.player[0]);
+			    		  	  	player1textview.setText(ArrayOfPlayers.player[firstsubscript]);
 			    		  	  	player1textview.setVisibility(View.VISIBLE);
 			    		  	  	
 			    		  	  	TextView hitpointsplayer1textview = (TextView) findViewById(R.id.hitpointsplayer1);
 			    		  	  	hitpointsplayer1textview.setTypeface(typeFace);
-			    		  	  	String hitpointsplayer1String = Integer.toString(ArrayOfHitPoints.hitpoints[0]);
+			    		  	  	String hitpointsplayer1String = Integer.toString(ArrayOfHitPoints.hitpoints[firstsubscript]);
 			    		  	  	hitpointsplayer1textview.setText(hitpointsplayer1String);
 			    		  		hitpointsplayer1textview.setVisibility(View.VISIBLE);
 			    		  	  	
 			    		  	  	TextView blessplayer1textview = (TextView) findViewById(R.id.blessplayer1);
 			    		  	  	blessplayer1textview.setTypeface(typeFace);
-			    		  	  	String blessplayer1String = Integer.toString(blessSpell[0]);
+			    		  	  	String blessplayer1String = Integer.toString(blessSpell[firstsubscript]);
 			    		  	  	blessplayer1textview.setText(blessplayer1String);
 			    		  	  	blessplayer1textview.setVisibility(View.VISIBLE);
 			    		  	  	
 			    		  	  	TextView cureplayer1textview = (TextView) findViewById(R.id.cureplayer1);
 			    		  	  	cureplayer1textview.setTypeface(typeFace);
-			    		  	  	String cureplayer1String = Integer.toString(cureSpell[0]);
+			    		  	  	String cureplayer1String = Integer.toString(cureSpell[firstsubscript]);
 			    		  	  	cureplayer1textview.setText(cureplayer1String);
 			    		  	  	cureplayer1textview.setVisibility(View.VISIBLE);
 			    		  	  	
 			    		  	  	TextView dodgeplayer1textview = (TextView) findViewById(R.id.dodgeplayer1);
 			    		  	  	dodgeplayer1textview.setTypeface(typeFace);
-			    		  	  	String dodgeplayer1String = Integer.toString(dodgeBlowSpell[0]);
+			    		  	  	String dodgeplayer1String = Integer.toString(dodgeBlowSpell[firstsubscript]);
 			    		  	  	dodgeplayer1textview.setText(dodgeplayer1String);
 			    		  	  	dodgeplayer1textview.setVisibility(View.VISIBLE);
 			    		  	  	
 			    		  	  	TextView mightyblowplayer1textview = (TextView) findViewById(R.id.mightyblowplayer1);
 			    		  	  	mightyblowplayer1textview.setTypeface(typeFace);
-			    		  	  	String mightyblowplayer1String = Integer.toString(mightyBlowSpell[0]);
+			    		  	  	String mightyblowplayer1String = Integer.toString(mightyBlowSpell[firstsubscript]);
 			    		  	  	mightyblowplayer1textview.setText(mightyblowplayer1String);
 			    		  	  	mightyblowplayer1textview.setVisibility(View.VISIBLE);
 			    		  	  	
 			    		  	  	TextView hasteplayer1textview = (TextView) findViewById(R.id.hasteplayer1);
 			    		  	  	hasteplayer1textview.setTypeface(typeFace);
-			    		  	  	String hasteplayer1String = Integer.toString(hasteSpell[0]);
+			    		  	  	String hasteplayer1String = Integer.toString(hasteSpell[firstsubscript]);
 			    		  	  	hasteplayer1textview.setText(hasteplayer1String);
 			    		  	  	hasteplayer1textview.setVisibility(View.VISIBLE);  	
 			    		  	  	
 			    		  	  	
 			    		  	  	TextView player2textview = (TextView) findViewById(R.id.player2);
 			    		  	  	player2textview.setTypeface(typeFace);
-			    		  	  	player2textview.setText(ArrayOfPlayers.player[1]);
+			    		  	  	player2textview.setText(ArrayOfPlayers.player[secondsubscript]);
 			    		  	  	player2textview.setVisibility(View.VISIBLE);		  	  	
 			    		  	  	
 			    		  	  	TextView hitpoints2textview = (TextView) findViewById(R.id.hitpointsplayer2);
 			    		  	  	hitpoints2textview.setTypeface(typeFace);
-			    		  	  	String hitpoints2String = Integer.toString(ArrayOfHitPoints.hitpoints[1]);
+			    		  	  	String hitpoints2String = Integer.toString(ArrayOfHitPoints.hitpoints[secondsubscript]);
 			    		  	  	hitpoints2textview.setText(hitpoints2String);
 			    		  	  	hitpoints2textview.setVisibility(View.VISIBLE);
 			    		  	  	
 			    		  	  	TextView blessplayer2textview = (TextView) findViewById(R.id.blessplayer2);
 			    		  	  	blessplayer2textview.setTypeface(typeFace);
-			    		  	  	String blessplayer2String = Integer.toString(blessSpell[1]);
+			    		  	  	String blessplayer2String = Integer.toString(blessSpell[secondsubscript]);
 			    		  	  	blessplayer2textview.setText(blessplayer2String);
 			    		  	  	blessplayer2textview.setVisibility(View.VISIBLE);
 			    		  	  	
 			    		  	  	TextView cureplayer2textview = (TextView) findViewById(R.id.cureplayer2);
 			    		  	  	cureplayer2textview.setTypeface(typeFace);
-			    		  	  	String cureplayer2String = Integer.toString(cureSpell[1]);
+			    		  	  	String cureplayer2String = Integer.toString(cureSpell[secondsubscript]);
 			    		  	  	cureplayer2textview.setText(cureplayer2String);
 			    		  	  	cureplayer2textview.setVisibility(View.VISIBLE);
 			    		  	  	
 			    		  	  	TextView dodgeplayer2textview = (TextView) findViewById(R.id.dodgeplayer2);
 			    		  	  	dodgeplayer2textview.setTypeface(typeFace);
-			    		  	  	String dodgeplayer2String = Integer.toString(dodgeBlowSpell[1]);
+			    		  	  	String dodgeplayer2String = Integer.toString(dodgeBlowSpell[secondsubscript]);
 			    		  	  	dodgeplayer2textview.setText(dodgeplayer2String);
 			    		  	  	dodgeplayer2textview.setVisibility(View.VISIBLE);
 			    		  	  	
 			    		  	  	TextView mightyblowplayer2textview = (TextView) findViewById(R.id.mightyblowplayer2);
 			    		  	  	mightyblowplayer2textview.setTypeface(typeFace);
-			    		  	  	String mightyblowplayer2String = Integer.toString(mightyBlowSpell[1]);
+			    		  	  	String mightyblowplayer2String = Integer.toString(mightyBlowSpell[secondsubscript]);
 			    		  	  	mightyblowplayer2textview.setText(mightyblowplayer2String);
 			    		  	  	mightyblowplayer2textview.setVisibility(View.VISIBLE);
 			    		  	  	
 			    		  	  	TextView hasteplayer2textview = (TextView) findViewById(R.id.hasteplayer2);
 			    		  	  	hasteplayer2textview.setTypeface(typeFace);
-			    		  	  	String hasteplayer2String = Integer.toString(hasteSpell[1]);
+			    		  	  	String hasteplayer2String = Integer.toString(hasteSpell[secondsubscript]);
 			    		  	  	hasteplayer2textview.setText(hasteplayer2String);
 			    		  	  	hasteplayer2textview.setVisibility(View.VISIBLE);	    			  	  		
 	    			  	  		
@@ -4942,7 +4972,20 @@ public class MainActivity2 extends ActionBarActivity {
 		centerscrolltext.append("\n" + "> Let the battle begin...");		
 		
 		
-		myInitiativeTransition();	
+		myInitiativeTransition();
+		
+		
+		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {
+			
+			firstsubscript = 0;
+			secondsubscript = 1;
+		}
+		
+		else if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {
+			
+			firstsubscript = 1;
+			secondsubscript = 0;
+		}
 	  	  		
 	  	  		
   	  	final Handler h = new Handler();
@@ -5017,84 +5060,84 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  		
 		  	  	TextView player1textview = (TextView) findViewById(R.id.player1);
 		  	  	player1textview.setTypeface(typeFace);
-		  	  	player1textview.append(ArrayOfPlayers.player[0]);
+		  	  	player1textview.append(ArrayOfPlayers.player[firstsubscript]);
 		  	  	player1textview.setVisibility(View.VISIBLE);
 		  	  	
 		  	  	TextView hitpointsplayer1textview = (TextView) findViewById(R.id.hitpointsplayer1);
 		  	  	hitpointsplayer1textview.setTypeface(typeFace);
-		  	  	String hitpointsplayer1String = Integer.toString(ArrayOfHitPoints.hitpoints[0]);
+		  	  	String hitpointsplayer1String = Integer.toString(ArrayOfHitPoints.hitpoints[firstsubscript]);
 		  	  	hitpointsplayer1textview.append(hitpointsplayer1String);
 		  		hitpointsplayer1textview.setVisibility(View.VISIBLE);
 		  	  	
 		  	  	TextView blessplayer1textview = (TextView) findViewById(R.id.blessplayer1);
 		  	  	blessplayer1textview.setTypeface(typeFace);
-		  	  	String blessplayer1String = Integer.toString(blessSpell[0]);
+		  	  	String blessplayer1String = Integer.toString(blessSpell[firstsubscript]);
 		  	  	blessplayer1textview.append(blessplayer1String);
 		  	  	blessplayer1textview.setVisibility(View.VISIBLE);
 		  	  	
 		  	  	TextView cureplayer1textview = (TextView) findViewById(R.id.cureplayer1);
 		  	  	cureplayer1textview.setTypeface(typeFace);
-		  	  	String cureplayer1String = Integer.toString(cureSpell[0]);
+		  	  	String cureplayer1String = Integer.toString(cureSpell[firstsubscript]);
 		  	  	cureplayer1textview.append(cureplayer1String);
 		  	  	cureplayer1textview.setVisibility(View.VISIBLE);
 		  	  	
 		  	  	TextView dodgeplayer1textview = (TextView) findViewById(R.id.dodgeplayer1);
 		  	  	dodgeplayer1textview.setTypeface(typeFace);
-		  	  	String dodgeplayer1String = Integer.toString(dodgeBlowSpell[0]);
+		  	  	String dodgeplayer1String = Integer.toString(dodgeBlowSpell[firstsubscript]);
 		  	  	dodgeplayer1textview.append(dodgeplayer1String);
 		  	  	dodgeplayer1textview.setVisibility(View.VISIBLE);
 		  	  	
 		  	  	TextView mightyblowplayer1textview = (TextView) findViewById(R.id.mightyblowplayer1);
 		  	  	mightyblowplayer1textview.setTypeface(typeFace);
-		  	  	String mightyblowplayer1String = Integer.toString(mightyBlowSpell[0]);
+		  	  	String mightyblowplayer1String = Integer.toString(mightyBlowSpell[firstsubscript]);
 		  	  	mightyblowplayer1textview.append(mightyblowplayer1String);
 		  	  	mightyblowplayer1textview.setVisibility(View.VISIBLE);
 		  	  	
 		  	  	TextView hasteplayer1textview = (TextView) findViewById(R.id.hasteplayer1);
 		  	  	hasteplayer1textview.setTypeface(typeFace);
-		  	  	String hasteplayer1String = Integer.toString(hasteSpell[0]);
+		  	  	String hasteplayer1String = Integer.toString(hasteSpell[firstsubscript]);
 		  	  	hasteplayer1textview.append(hasteplayer1String);
 		  	  	hasteplayer1textview.setVisibility(View.VISIBLE);  	
 		  	  	
 		  	  	
 		  	  	TextView player2textview = (TextView) findViewById(R.id.player2);
 		  	  	player2textview.setTypeface(typeFace);
-		  	  	player2textview.append(ArrayOfPlayers.player[1]);
+		  	  	player2textview.append(ArrayOfPlayers.player[secondsubscript]);
 		  	  	player2textview.setVisibility(View.VISIBLE);		  	  	
 		  	  	
 		  	  	TextView hitpoints2textview = (TextView) findViewById(R.id.hitpointsplayer2);
 		  	  	hitpoints2textview.setTypeface(typeFace);
-		  	  	String hitpoints2String = Integer.toString(ArrayOfHitPoints.hitpoints[1]);
+		  	  	String hitpoints2String = Integer.toString(ArrayOfHitPoints.hitpoints[secondsubscript]);
 		  	  	hitpoints2textview.append(hitpoints2String);
 		  	  	hitpoints2textview.setVisibility(View.VISIBLE);
 		  	  	
 		  	  	TextView blessplayer2textview = (TextView) findViewById(R.id.blessplayer2);
 		  	  	blessplayer2textview.setTypeface(typeFace);
-		  	  	String blessplayer2String = Integer.toString(blessSpell[1]);
+		  	  	String blessplayer2String = Integer.toString(blessSpell[secondsubscript]);
 		  	  	blessplayer2textview.append(blessplayer2String);
 		  	  	blessplayer2textview.setVisibility(View.VISIBLE);
 		  	  	
 		  	  	TextView cureplayer2textview = (TextView) findViewById(R.id.cureplayer2);
 		  	  	cureplayer2textview.setTypeface(typeFace);
-		  	  	String cureplayer2String = Integer.toString(cureSpell[1]);
+		  	  	String cureplayer2String = Integer.toString(cureSpell[secondsubscript]);
 		  	  	cureplayer2textview.append(cureplayer2String);
 		  	  	cureplayer2textview.setVisibility(View.VISIBLE);
 		  	  	
 		  	  	TextView dodgeplayer2textview = (TextView) findViewById(R.id.dodgeplayer2);
 		  	  	dodgeplayer2textview.setTypeface(typeFace);
-		  	  	String dodgeplayer2String = Integer.toString(dodgeBlowSpell[1]);
+		  	  	String dodgeplayer2String = Integer.toString(dodgeBlowSpell[secondsubscript]);
 		  	  	dodgeplayer2textview.append(dodgeplayer2String);
 		  	  	dodgeplayer2textview.setVisibility(View.VISIBLE);
 		  	  	
 		  	  	TextView mightyblowplayer2textview = (TextView) findViewById(R.id.mightyblowplayer2);
 		  	  	mightyblowplayer2textview.setTypeface(typeFace);
-		  	  	String mightyblowplayer2String = Integer.toString(mightyBlowSpell[1]);
+		  	  	String mightyblowplayer2String = Integer.toString(mightyBlowSpell[secondsubscript]);
 		  	  	mightyblowplayer2textview.append(mightyblowplayer2String);
 		  	  	mightyblowplayer2textview.setVisibility(View.VISIBLE);
 		  	  	
 		  	  	TextView hasteplayer2textview = (TextView) findViewById(R.id.hasteplayer2);
 		  	  	hasteplayer2textview.setTypeface(typeFace);
-		  	  	String hasteplayer2String = Integer.toString(hasteSpell[1]);
+		  	  	String hasteplayer2String = Integer.toString(hasteSpell[secondsubscript]);
 		  	  	hasteplayer2textview.append(hasteplayer2String);
 		  	  	hasteplayer2textview.setVisibility(View.VISIBLE);
 	  	  		
@@ -6633,10 +6676,12 @@ public class MainActivity2 extends ActionBarActivity {
 										ArrayOfHitPoints.hitpoints[0] = ArrayOfHitPoints.hitpoints[0] - (attackDamage * 2);
 										
 										
-										TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+										final TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
 						    			playerHitPointsTextView.setTypeface(typeFace);
 						    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
 						    			//playerHitPointsTextView.bringToFront();
+						    			Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);
+						    			playerHitPointsTextView.startAnimation(animPulsingAnimation);
 						    			
 						    			
 						    			isInvokingService = "true";
@@ -6647,6 +6692,8 @@ public class MainActivity2 extends ActionBarActivity {
 							  	  	  			
 							  	  	  		@Override
 								  	  	  	public void run() {
+							  	  	  			
+							  	  	  			playerHitPointsTextView.clearAnimation();
 							  	  	  			
 								  	  	  		if (ArrayOfHitPoints.hitpoints[0] == 0) {
 													
@@ -6874,10 +6921,12 @@ public class MainActivity2 extends ActionBarActivity {
 											ArrayOfHitPoints.hitpoints[0] = ArrayOfHitPoints.hitpoints[0] - attackDamage;
 											
 											
-											TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+											final TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
 							    			playerHitPointsTextView.setTypeface(typeFace);
 							    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
 							    			//playerHitPointsTextView.bringToFront();
+							    			Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);
+							    			playerHitPointsTextView.startAnimation(animPulsingAnimation);
 							    			
 							    			
 							    			isInvokingService = "true";
@@ -6888,6 +6937,8 @@ public class MainActivity2 extends ActionBarActivity {
 								  	  	  			
 								  	  	  		@Override
 									  	  	  	public void run() {
+								  	  	  			
+								  	  	  			playerHitPointsTextView.clearAnimation();
 								  	  	  			
 									  	  	  		if (ArrayOfHitPoints.hitpoints[0] == 0) {
 														
@@ -7101,10 +7152,12 @@ public class MainActivity2 extends ActionBarActivity {
 											ArrayOfHitPoints.hitpoints[0] = ArrayOfHitPoints.hitpoints[0] - attackDamage;
 											
 											
-											TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+											final TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
 							    			playerHitPointsTextView.setTypeface(typeFace);
 							    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
 							    			//playerHitPointsTextView.bringToFront();
+							    			Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);
+							    			playerHitPointsTextView.startAnimation(animPulsingAnimation);
 							    			
 							    			
 							    			isInvokingService = "true";
@@ -7115,6 +7168,8 @@ public class MainActivity2 extends ActionBarActivity {
 								  	  	  			
 								  	  	  		@Override
 									  	  	  	public void run() {
+								  	  	  			
+								  	  	  			playerHitPointsTextView.clearAnimation();
 								  	  	  			
 									  	  	  		if (ArrayOfHitPoints.hitpoints[0] == 0) {
 														
@@ -7307,10 +7362,12 @@ public class MainActivity2 extends ActionBarActivity {
 									ArrayOfHitPoints.hitpoints[0] = ArrayOfHitPoints.hitpoints[0] - attackDamage;
 									
 									
-									TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+									final TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
 					    			playerHitPointsTextView.setTypeface(typeFace);
 					    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
 					    			//playerHitPointsTextView.bringToFront();
+					    			Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);
+					    			playerHitPointsTextView.startAnimation(animPulsingAnimation);
 					    			
 					    			
 					    			isInvokingService = "true";
@@ -7321,6 +7378,8 @@ public class MainActivity2 extends ActionBarActivity {
 						  	  	  			
 						  	  	  		@Override
 							  	  	  	public void run() {
+						  	  	  			
+						  	  	  			playerHitPointsTextView.clearAnimation();
 						  	  	  			
 							  	  	  		if (ArrayOfHitPoints.hitpoints[0] == 0) {
 												
@@ -7533,10 +7592,12 @@ public class MainActivity2 extends ActionBarActivity {
 								ArrayOfHitPoints.hitpoints[1] = ArrayOfHitPoints.hitpoints[1] + cureResult; // WAS cure
 								
 								
-								TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+								final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
 				    			computerHitPointsTextView.setTypeface(typeFace);
 				    			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
 				    			//computerHitPointsTextView.bringToFront();
+				    			Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);				
+				    			computerHitPointsTextView.startAnimation(animPulsingAnimation);
 				    			
 								
 								final Handler h = new Handler();
@@ -7544,6 +7605,8 @@ public class MainActivity2 extends ActionBarActivity {
 					  	  	  			
 					  	  	  		@Override
 						  	  	  	public void run() {					  	  	  			
+					  	  	  			
+					  	  	  			computerHitPointsTextView.clearAnimation();
 					  	  	  			
 						  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 						  	    			
@@ -8240,11 +8303,13 @@ public class MainActivity2 extends ActionBarActivity {
 					//	return;
 					//}				  			
 		  			
-		  			TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+		  			final TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
 	    			playerHitPointsTextView.setTypeface(typeFace);
 	    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+	    			Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);
+	    			playerHitPointsTextView.startAnimation(animPulsingAnimation);
 		  			
-		  			
+	    			
 		  			centerscrolltext.setVisibility(View.VISIBLE);													
 			  		centerscrolltext.startAnimation(animAlphaText);			  		
 					centerscrolltext.append("\n" + "> SECOND attack...");
@@ -8266,6 +8331,8 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  	  			
 		  	  	  		@Override
 			  	  	  	public void run() {
+		  	  	  			
+		  	  	  			playerHitPointsTextView.clearAnimation();
 		  	  	  			
 			  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 					  		centerscrolltext.startAnimation(animAlphaText);
@@ -9986,17 +10053,21 @@ public class MainActivity2 extends ActionBarActivity {
 										ArrayOfHitPoints.hitpoints[0] = ArrayOfHitPoints.hitpoints[0] - (computerAttackDamageDisarmed * 2);
 							  			
 							  			
-										TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+										final TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
 						    			playerHitPointsTextView.setTypeface(typeFace);
 						    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
 						    			//playerHitPointsTextView.bringToFront();
-						    			
+						    			Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);
+						    			playerHitPointsTextView.startAnimation(animPulsingAnimation);
 										
+						    			
 										final Handler h = new Handler();
 							  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 							  	  	  			
 							  	  	  		@Override
 								  	  	  	public void run() {
+							  	  	  			
+							  	  	  			playerHitPointsTextView.clearAnimation();
 							  	  	  			
 								  	  	  		if (ArrayOfHitPoints.hitpoints[0] == 0) {
 													
@@ -10230,17 +10301,21 @@ public class MainActivity2 extends ActionBarActivity {
 											ArrayOfHitPoints.hitpoints[0] = ArrayOfHitPoints.hitpoints[0] - computerAttackDamageDisarmed;
 											
 											
-											TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+											final TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
 							    			playerHitPointsTextView.setTypeface(typeFace);
 							    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
 							    			//playerHitPointsTextView.bringToFront();
+							    			Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);
+							    			playerHitPointsTextView.startAnimation(animPulsingAnimation);
 											
-											
+							    			
 											final Handler h = new Handler();
 								  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 								  	  	  			
 								  	  	  		@Override
 									  	  	  	public void run() {
+								  	  	  			
+								  	  	  			playerHitPointsTextView.clearAnimation();
 								  	  	  			
 									  	  	  		if (ArrayOfHitPoints.hitpoints[0] == 0) {
 														
@@ -10443,17 +10518,21 @@ public class MainActivity2 extends ActionBarActivity {
 											ArrayOfHitPoints.hitpoints[0] = ArrayOfHitPoints.hitpoints[0] - computerAttackDamageDisarmed;
 											
 											
-											TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+											final TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
 							    			playerHitPointsTextView.setTypeface(typeFace);
 							    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
 							    			//playerHitPointsTextView.bringToFront();
+							    			Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);
+							    			playerHitPointsTextView.startAnimation(animPulsingAnimation);
 											
-											
+							    			
 											final Handler h = new Handler();
 								  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 								  	  	  			
 								  	  	  		@Override
 									  	  	  	public void run() {
+								  	  	  			
+								  	  	  			playerHitPointsTextView.clearAnimation();
 								  	  	  			
 									  	  	  		if (ArrayOfHitPoints.hitpoints[0] == 0) {
 														
@@ -10635,17 +10714,21 @@ public class MainActivity2 extends ActionBarActivity {
 									ArrayOfHitPoints.hitpoints[0] = ArrayOfHitPoints.hitpoints[0] - computerAttackDamageDisarmed;
 									
 									
-									TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+									final TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
 					    			playerHitPointsTextView.setTypeface(typeFace);
 					    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
 					    			//playerHitPointsTextView.bringToFront();
+					    			Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);
+					    			playerHitPointsTextView.startAnimation(animPulsingAnimation);
 									
-									
+					    			
 									final Handler h = new Handler();
 						  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 						  	  	  			
 						  	  	  		@Override
 							  	  	  	public void run() {
+						  	  	  			
+						  	  	  			playerHitPointsTextView.clearAnimation();
 						  	  	  			
 							  	  	  		if (ArrayOfHitPoints.hitpoints[0] == 0) {
 												
@@ -11281,17 +11364,21 @@ public class MainActivity2 extends ActionBarActivity {
 																						ArrayOfHitPoints.hitpoints[0] = ArrayOfHitPoints.hitpoints[0] - (totalAttackDamage * 2);
 																						
 																						
-																						TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+																						final TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
 																		    			playerHitPointsTextView.setTypeface(typeFace);
 																		    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
 																		    			//playerHitPointsTextView.bringToFront();																		    																				    			
-																		    			
+																		    			Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);
+																		    			playerHitPointsTextView.startAnimation(animPulsingAnimation);
 																						
+																		    			
 																						final Handler h = new Handler();
 																			  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 																			  	  	  			
 																			  	  	  		@Override
 																				  	  	  	public void run() {
+																			  	  	  			
+																			  	  	  			playerHitPointsTextView.clearAnimation();
 																			  	  	  			
 																				  	  	  		if (ArrayOfHitPoints.hitpoints[0] == 0) {
 																									
@@ -11672,10 +11759,12 @@ public class MainActivity2 extends ActionBarActivity {
 																		ArrayOfHitPoints.hitpoints[0] = ArrayOfHitPoints.hitpoints[0] - totalAttackDamage;
 																		
 																		
-																		TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+																		final TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
 														    			playerHitPointsTextView.setTypeface(typeFace);
 														    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
 														    			//playerHitPointsTextView.bringToFront();
+														    			Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);
+														    			playerHitPointsTextView.startAnimation(animPulsingAnimation);
 														    			
 														    			
 														    			isInvokingService = "true";
@@ -11686,6 +11775,8 @@ public class MainActivity2 extends ActionBarActivity {
 															  	  	  			
 															  	  	  		@Override
 																  	  	  	public void run() {
+															  	  	  			
+															  	  	  			playerHitPointsTextView.clearAnimation();
 															  	  	  			
 																  	  	  		if (ArrayOfHitPoints.hitpoints[0] == 0) {
 																					
@@ -12175,11 +12266,13 @@ public class MainActivity2 extends ActionBarActivity {
 										ArrayOfHitPoints.hitpoints[1] = ArrayOfHitPoints.hitpoints[1] - attackDamage;
 										
 										
-										TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+										final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
 						    			computerHitPointsTextView.setTypeface(typeFace);
 						    			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
 						    			//computerHitPointsTextView.bringToFront();
-										
+						    			Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);				
+						    			computerHitPointsTextView.startAnimation(animPulsingAnimation);
+						    			
 						    			
 						    			isInvokingService = "true";
 						    			
@@ -12190,6 +12283,8 @@ public class MainActivity2 extends ActionBarActivity {
 							  	  	  		@Override
 								  	  	  	public void run() {							  	  	  			
 								    			
+							  	  	  			computerHitPointsTextView.clearAnimation();
+							  	  	  			
 								  	  	  		if (ArrayOfHitPoints.hitpoints[1] == 0) {
 													
 													centerscrolltext.setVisibility(View.VISIBLE);													
@@ -13453,6 +13548,8 @@ public class MainActivity2 extends ActionBarActivity {
 									playerNumberAttackedHitPointsTextView.setTypeface(typeFace);
 									playerNumberAttackedHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[playerNumberAttacked]));
 									//playerNumberAttackedHitPointsTextView.bringToFront();
+									Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);				
+									playerNumberAttackedHitPointsTextView.startAnimation(animPulsingAnimation);
 									
 									
 									mightyBlowResultsHandler();
@@ -13506,6 +13603,8 @@ public class MainActivity2 extends ActionBarActivity {
 									playerNumberAttackedHitPointsTextView.setTypeface(typeFace);
 									playerNumberAttackedHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[playerNumberAttacked]));
 									//playerNumberAttackedHitPointsTextView.bringToFront();
+									Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);				
+									playerNumberAttackedHitPointsTextView.startAnimation(animPulsingAnimation);
 									
 									
 									mightyBlowResultsHandler();
@@ -13540,7 +13639,10 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  			
 	  	  	  		@Override
 		  	  	  	public void run() {
-				
+	  	  	  			
+	  	  	  			TextView playerNumberAttackedHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+	  	  	  			playerNumberAttackedHitPointsTextView.clearAnimation();
+	  	  	  			
 						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] == 0) {
 							
 							centerscrolltext.setVisibility(View.VISIBLE);													
@@ -14120,6 +14222,8 @@ public class MainActivity2 extends ActionBarActivity {
 							playerNumberAttackedHitPointsTextView.setTypeface(typeFace);
 							playerNumberAttackedHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[playerNumberAttacked]));
 							//playerNumberAttackedHitPointsTextView.bringToFront();
+							Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);				
+							playerNumberAttackedHitPointsTextView.startAnimation(animPulsingAnimation);
 							
 							
 							damageResultsHandler();
@@ -14150,6 +14254,8 @@ public class MainActivity2 extends ActionBarActivity {
 							playerNumberAttackedHitPointsTextView.setTypeface(typeFace);
 							playerNumberAttackedHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[playerNumberAttacked]));
 							//playerNumberAttackedHitPointsTextView.bringToFront();
+							Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);				
+							playerNumberAttackedHitPointsTextView.startAnimation(animPulsingAnimation);
 							
 							
 							damageResultsHandler();
@@ -14182,6 +14288,9 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  			
 	  	  	  		@Override
 		  	  	  	public void run() {	  	  	  		
+	  	  	  			
+	  	  	  			TextView playerNumberAttackedHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+	  	  	  			playerNumberAttackedHitPointsTextView.clearAnimation();
 	  	  	  			
 						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] == 0) {
 							
@@ -14846,6 +14955,8 @@ public class MainActivity2 extends ActionBarActivity {
 							playerNumberAttackedHitPointsTextView.setTypeface(typeFace);
 							playerNumberAttackedHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[playerNumberAttacked]));
 							//playerNumberAttackedHitPointsTextView.bringToFront();
+							Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);				
+							playerNumberAttackedHitPointsTextView.startAnimation(animPulsingAnimation);
 							
 							
 							criticalHitDamageResultsHandler();
@@ -14865,6 +14976,8 @@ public class MainActivity2 extends ActionBarActivity {
 							playerNumberAttackedHitPointsTextView.setTypeface(typeFace);
 							playerNumberAttackedHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[playerNumberAttacked]));
 							//playerNumberAttackedHitPointsTextView.bringToFront();
+							Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);				
+							playerNumberAttackedHitPointsTextView.startAnimation(animPulsingAnimation);
 							
 							
 							criticalHitDamageResultsHandler();
@@ -14897,6 +15010,9 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  			
 		  	  		@Override
 		  	  		public void run() {		  	  		
+		  	  			
+		  	  			TextView playerNumberAttackedHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+		  	  			playerNumberAttackedHitPointsTextView.clearAnimation();
 		  	  			
 						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] == 0) {
 							
@@ -15249,7 +15365,9 @@ public class MainActivity2 extends ActionBarActivity {
 											playerNumberAttackedHitPointsTextView.setTypeface(typeFace);
 											playerNumberAttackedHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[playerNumberAttacked]));
 											//playerNumberAttackedHitPointsTextView.bringToFront();
-							    			
+											Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);				
+											playerNumberAttackedHitPointsTextView.startAnimation(animPulsingAnimation);
+											
 											
 											criticalHitMightyBlowDamageResultsHandler();
 						  	  	  			
@@ -15281,6 +15399,8 @@ public class MainActivity2 extends ActionBarActivity {
 										playerNumberAttackedHitPointsTextView.setTypeface(typeFace);
 										playerNumberAttackedHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[playerNumberAttacked]));
 										//playerNumberAttackedHitPointsTextView.bringToFront();
+										Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);				
+										playerNumberAttackedHitPointsTextView.startAnimation(animPulsingAnimation);
 										
 										
 										criticalHitMightyBlowDamageResultsHandler();
@@ -15318,7 +15438,10 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  			
 		  	  		@Override
 		  	  		public void run() {
-			
+		  	  			
+		  	  			TextView playerNumberAttackedHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+		  	  			playerNumberAttackedHitPointsTextView.clearAnimation();
+		  	  			
 						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] == 0) {
 							
 							centerscrolltext.setVisibility(View.VISIBLE);													
@@ -15743,18 +15866,22 @@ public class MainActivity2 extends ActionBarActivity {
 						ArrayOfHitPoints.hitpoints[0] = ArrayOfHitPoints.hitpoints[0] - attackDamage;
 						
 						
-						TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+						final TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
 		    			playerHitPointsTextView.setTypeface(typeFace);
 		    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
 		    			//playerHitPointsTextView.bringToFront();
-	
-	
+		    			Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);
+		    			playerHitPointsTextView.startAnimation(animPulsingAnimation);
+		    			
+		    			
 						final Handler h = new Handler();
 		  	  	  		h.postDelayed(new Runnable() {		  	  	  			
 			  	  	  			
 			  	  	  		@Override
 				  	  	  	public void run() {	  	  	  		
-						
+			  	  	  			
+			  	  	  			playerHitPointsTextView.clearAnimation();
+			  	  	  			
 								if (ArrayOfHitPoints.hitpoints[0] == 0) {
 									
 									if (numberOfPlayers == 1) {								
@@ -17004,10 +17131,11 @@ public class MainActivity2 extends ActionBarActivity {
 		  			centerscrolltext.setTypeface(typeFace);	
 		  			
 		  			
-		  			TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+		  			final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
 		  			computerHitPointsTextView.setTypeface(typeFace);
 		  			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));	  			
-		  			
+		  			Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);				
+		  			computerHitPointsTextView.startAnimation(animPulsingAnimation);
 		  			
 		  			
 		  			
@@ -17036,6 +17164,8 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  	  			
 		  	  	  		@Override
 			  	  	  	public void run() {
+		  	  	  			
+		  	  	  			computerHitPointsTextView.clearAnimation();
 		  	  	  			
 				  	  	  	// Use a blank drawable to hide the imageview animation:
 				  	  	  	// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
@@ -17875,17 +18005,21 @@ public class MainActivity2 extends ActionBarActivity {
 						ArrayOfHitPoints.hitpoints[0] = ArrayOfHitPoints.hitpoints[0] + cureResult;	  	  	  			
 		  	  	  		
 						
-						TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+						final TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
 		    			playerHitPointsTextView.setTypeface(typeFace);
 		    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
 		    			//playerHitPointsTextView.bringToFront();
+		    			Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);
+		    			playerHitPointsTextView.startAnimation(animPulsingAnimation);
 						
-						
+		    			
 						final Handler h2 = new Handler();
 			  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
 			  	  	  			
 			  	  	  		@Override
 				  	  	  	public void run() {  	  	  			
+			  	  	  			
+			  	  	  			playerHitPointsTextView.clearAnimation();
 			  	  	  			
 				  	  	  		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
 									
@@ -18767,8 +18901,10 @@ public class MainActivity2 extends ActionBarActivity {
     			TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
     			playerHitPointsTextView.setTypeface(typeFace);
     			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
-        		
-    			gameEngineHumanFirst1();    			
+    			//Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);
+    			//playerHitPointsTextView.startAnimation(animPulsingAnimation);
+    			
+    			gameEngineHumanFirst1();			
     			
     			turn++;				
 			}
@@ -18797,6 +18933,8 @@ public class MainActivity2 extends ActionBarActivity {
     			TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
     			computerHitPointsTextView.setTypeface(typeFace);
     			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
+    			//Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);				
+    			//computerHitPointsTextView.startAnimation(animPulsingAnimation);
     			
     			gameEngineComputerFirst1();    			
 				
@@ -18857,6 +18995,9 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  			
 	  	  	  		@Override
 		  	  	  	public void run() {
+	  	  	  			
+	  	  	  			//TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+	  	  	  			//playerHitPointsTextView.clearAnimation();
 	  	  	  			
 		  	  	  		if (ArrayOfHitPoints.hitpoints[0] == 0 && endGameAfterFirstHaste.equals("no")) {
 		  	  	  			
@@ -19040,9 +19181,11 @@ public class MainActivity2 extends ActionBarActivity {
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			
 	  			//NEED THIS??
-	  			TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+	  			final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
 	  			computerHitPointsTextView.setTypeface(typeFace);
 	  			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
+	  			//Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);				
+	  			//computerHitPointsTextView.startAnimation(animPulsingAnimation);
 	  			
 	  			
 	  			final Handler h = new Handler();
@@ -19050,6 +19193,8 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  			
 	  	  	  		@Override
 		  	  	  	public void run() {
+	  	  	  			
+	  	  	  			//computerHitPointsTextView.clearAnimation();
 	  	  	  			
 		  	  	  		if (ArrayOfHitPoints.hitpoints[1] == 0 && endGameAfterFirstHaste.equals("no")) {
 		  	  	  			
@@ -19206,6 +19351,9 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  			
 	  	  	  		@Override
 		  	  	  	public void run() {
+	  	  	  			
+	  	  	  			//TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+	  	  	  			//computerHitPointsTextView.clearAnimation();
 	  	  	  			
 		  	  	  		if (ArrayOfHitPoints.hitpoints[1] == 0 && endGameAfterFirstHaste.equals("no")) {
 		  	  	  			
@@ -19376,15 +19524,20 @@ public class MainActivity2 extends ActionBarActivity {
   	  	    	titleBlankButton.bringToFront();
 				
   	  	    	//NEED THIS??
-				TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+				final TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
 				playerHitPointsTextView.setTypeface(typeFace);
 				playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+				//Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);
+				//playerHitPointsTextView.startAnimation(animPulsingAnimation);
+				
 				
 				final Handler h = new Handler();
 	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 	  	  	  			
 	  	  	  		@Override
 		  	  	  	public void run() {
+	  	  	  			
+	  	  	  			//playerHitPointsTextView.clearAnimation();
 	  	  	  			
 		  	  	  		if (ArrayOfHitPoints.hitpoints[0] == 0 && endGameAfterFirstHaste.equals("no")) {
 		  	  	  			
@@ -19967,7 +20120,7 @@ public class MainActivity2 extends ActionBarActivity {
 							  	  	  		//Intent openMainActivity1 = new Intent("com.nedswebsite.ktog.MAINACTIVITY2");
 						    	        	//startActivity(openMainActivity1);
 							  	  	  	}
-						  	  	  	}, 630);
+						  	  	  	}, 500);
 					  	  	  	}
 				  	  	  	}, 2000);
 			  	  	  	}
@@ -20072,7 +20225,7 @@ public class MainActivity2 extends ActionBarActivity {
 							  	  	  		//Intent openMainActivity1 = new Intent("com.nedswebsite.ktog.MAINACTIVITY2");
 						    	        	//startActivity(openMainActivity1);
 							  	  	  	}
-						  	  	  	}, 630);
+						  	  	  	}, 500);
 					  	  	  	}
 				  	  	  	}, 2000);
 			  	  	  	}
@@ -20143,49 +20296,106 @@ public class MainActivity2 extends ActionBarActivity {
 		});
 	}
 	
-	public void victoryDefeatAnimation() {
+public void victoryDefeatAnimation() {
 		
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
 				
-				ImageView img = (ImageView)findViewById(R.id.titleanimation);		
-				img.setBackgroundResource(R.anim.victorydefeatanimation);		  	  
-		  	  	
-		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();				
-		  	  	
-		  	  	frameAnimation.stop();
-		  	  	frameAnimation.start();
-		  	  	
-		  	  	final Handler h = new Handler();
-	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-	  	  	  			
-	  	  	  		@Override
-		  	  	  	public void run() {
-	  	  	  			
-	  	  	  			TextView titletext = (TextView) findViewById(R.id.textviewtitlektogtext);	  	  	  			
-	  	  	  			titletext.setVisibility(View.INVISIBLE);
-	  	  	  			
-	  	  	  			
-		  	  	  		TextView titlevictorydefeat = (TextView) findViewById(R.id.textviewtitlevictorydefeattext);		
-						
-						Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-						titlevictorydefeat.setTypeface(typeFace);
-						
-						titlevictorydefeat.setVisibility(View.VISIBLE);
-						
-						
-						if (playerDeadYet[0] == "no" && playerDeadYet[1] == "yes") {
+				if (istitlestatsopen.equals("yes")) {
+					
+					// CLOSING ON SUMMARY TABLE
+					ImageView img = (ImageView)findViewById(R.id.titleanimation);		
+					img.setBackgroundResource(R.anim.victorydefeatanimation);		  	  
+			  	  	
+			  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();				
+			  	  	
+			  	  	frameAnimation.stop();
+			  	  	frameAnimation.start();
+					
+					
+					final Handler h = new Handler();
+		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+		  	  	  			
+		  	  	  		@Override
+			  	  	  	public void run() {
+		  	  	  			
+			  	  	  		TextView titletext = (TextView) findViewById(R.id.textviewtitlektogtext);	  	  	  			
+		  	  	  			titletext.setVisibility(View.INVISIBLE);
+		  	  	  			
+		  	  	  			TableLayout summaryTableLayout = (TableLayout) findViewById(R.id.summaryTable);
+			  	  	  		summaryTableLayout.setVisibility(View.GONE);
+			  	  	  		
+			  	  	  		View lineInSummaryTableLayout = (View) findViewById(R.id.line);
+			  	  	  		lineInSummaryTableLayout.setVisibility(View.GONE);
+			  	  	  		
+				  	  	  	TextView titlevictorydefeat = (TextView) findViewById(R.id.textviewtitlevictorydefeattext);		
 							
-							titlevictorydefeat.append("Victory");
-						}
-						
-						if (playerDeadYet[1] == "no" && playerDeadYet[0] == "yes") {
+							Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+							titlevictorydefeat.setTypeface(typeFace);
 							
-							titlevictorydefeat.append("Defeat");
-						}					
-		  	  	  	}
-	  	  	  	}, 600);	  	  	
+							titlevictorydefeat.setVisibility(View.VISIBLE);
+							
+							
+							if (playerDeadYet[0] == "no" && playerDeadYet[1] == "yes") {
+								
+								titlevictorydefeat.append("Victory");
+								
+								istitlestatsopen = "no";
+							}
+							
+							if (playerDeadYet[1] == "no" && playerDeadYet[0] == "yes") {
+								
+								titlevictorydefeat.append("Defeat");
+								
+								istitlestatsopen = "no";
+							}			  	  	  	
+			  	  	  	}
+		  	  	  	}, 600);					
+				}
+				
+				else {				
+					
+					// CLOSING ON TITLE
+					ImageView img = (ImageView)findViewById(R.id.titleanimation);		
+					img.setBackgroundResource(R.anim.victorydefeatanimation);		  	  
+			  	  	
+			  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();				
+			  	  	
+			  	  	frameAnimation.stop();
+			  	  	frameAnimation.start();
+			  	  	
+			  	  	
+			  	  	final Handler h = new Handler();
+		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+		  	  	  			
+		  	  	  		@Override
+			  	  	  	public void run() {
+		  	  	  			
+		  	  	  			TextView titletext = (TextView) findViewById(R.id.textviewtitlektogtext);	  	  	  			
+		  	  	  			titletext.setVisibility(View.INVISIBLE);
+		  	  	  			
+		  	  	  			
+			  	  	  		TextView titlevictorydefeat = (TextView) findViewById(R.id.textviewtitlevictorydefeattext);		
+							
+							Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+							titlevictorydefeat.setTypeface(typeFace);
+							
+							titlevictorydefeat.setVisibility(View.VISIBLE);
+							
+							
+							if (playerDeadYet[0] == "no" && playerDeadYet[1] == "yes") {
+								
+								titlevictorydefeat.append("Victory");
+							}
+							
+							if (playerDeadYet[1] == "no" && playerDeadYet[0] == "yes") {
+								
+								titlevictorydefeat.append("Defeat");
+							}					
+			  	  	  	}
+		  	  	  	}, 600);
+				}
 			}
   		});
 	}
@@ -20209,31 +20419,12 @@ public class MainActivity2 extends ActionBarActivity {
 				frameAnimation.stop();
 				frameAnimation.start();
 				
-				final Handler h = new Handler();
-	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-	  	  	  			
-	  	  	  		@Override
-		  	  	  	public void run() {
-	  	  	  			
-		  	  	  		ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
-		  	  	  		hasteLeft1.setVisibility(View.INVISIBLE);
-		  	  	  		ImageView hasteLeft2 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste2);
-		  	  	  		hasteLeft2.setVisibility(View.INVISIBLE);
-	
-		  	  	  		ImageView hasteRight1 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste1);
-		  	  	  		hasteRight1.setVisibility(View.INVISIBLE);
-		  	  	  		ImageView hasteRight2 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste2);
-		  	  	  		hasteRight2.setVisibility(View.INVISIBLE);
-		  	  	  		
-		  	  	  		ImageView img1 = (ImageView) findViewById(R.id.imageviewplayerbox4left);
-		  	  	  		img1.setVisibility(View.INVISIBLE);
-		  	  	  		
-		  	  	  		ImageView img2 = (ImageView) findViewById(R.id.imageviewplayerbox4right);
-		  	  	  		img2.setVisibility(View.INVISIBLE);		  	  	  		
-		  	  	  	}
-	  	  	  	}, 600);
+				
 	  	    }
   		});	
 	}
+	
+	
+	
 
 }
