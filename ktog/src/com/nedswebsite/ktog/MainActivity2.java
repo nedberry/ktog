@@ -176,7 +176,8 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	
 	//Dialog mydialog = null;
-	String endGameAfterFirstHaste = "no";
+	
+	//String endGameAfterFirstHaste = "no";
 	
 	
 	
@@ -234,12 +235,12 @@ public class MainActivity2 extends ActionBarActivity {
 		computerNameTextView.setText(ArrayOfPlayers.player[1]);
 		
 		
-		ArrayOfHitPoints.hitpoints[0] = 20;//20		
+		ArrayOfHitPoints.hitpoints[0] = 5;//20		
 		final TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
 		playerHitPointsTextView.setTypeface(typeFace);
 		playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));		
 		
-		ArrayOfHitPoints.hitpoints[1] = 20;//20
+		ArrayOfHitPoints.hitpoints[1] = 5;//20
 		final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
 		computerHitPointsTextView.setTypeface(typeFace);
 		computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));		
@@ -6698,25 +6699,26 @@ public class MainActivity2 extends ActionBarActivity {
 							  	  	  			
 							  	  	  			playerHitPointsTextView.clearAnimation();
 							  	  	  			
+							  	  	  			/*
 								  	  	  		if (ArrayOfHitPoints.hitpoints[0] == 0) {
 													
 													centerscrolltext.setVisibility(View.VISIBLE);													
 											  		centerscrolltext.startAnimation(animAlphaText);			  		
 													centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you have been knocked unconscious!");
 													
-													/*
-													AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-												    
-													alert.setCancelable(false);
 													
-													alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
+													//AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+												    
+													//alert.setCancelable(false);
+													
+													//alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
 										  	    	
 										  	    	//alert.setMessage("something");
 										  	    		    	
 											    	
-											    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-												    	public void onClick(DialogInterface dialog, int whichButton) {
-												    */		
+											    	//alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+												    	//public void onClick(DialogInterface dialog, int whichButton) {
+												    		
 												    		//hideNavigation();
 												    
 													final Handler h = new Handler();
@@ -6741,15 +6743,11 @@ public class MainActivity2 extends ActionBarActivity {
 												    	//}
 											    	//});
 											    	
-											    	//alert.show(); 
-													
-											    	/*
-													System.out.print("Press a key to continue... ");
-													input.nextLine();
-													*/
+											    	//alert.show(); 										    	
 												}
-										
-								  	  	  		else if (ArrayOfHitPoints.hitpoints[0] < 0) {
+												*/
+							  	  	  			
+								  	  	  		if (ArrayOfHitPoints.hitpoints[0] <= 0) {
 													
 													
 													/*
@@ -6805,7 +6803,7 @@ public class MainActivity2 extends ActionBarActivity {
 									  	    			gameEngineComputerFirst2();   							
 									  				}
 					
-												  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
+													else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
 												  						
 												  		turn();    							
 												  	}
@@ -6943,25 +6941,26 @@ public class MainActivity2 extends ActionBarActivity {
 								  	  	  			
 								  	  	  			playerHitPointsTextView.clearAnimation();
 								  	  	  			
+								  	  	  			/*
 									  	  	  		if (ArrayOfHitPoints.hitpoints[0] == 0) {
 														
 														centerscrolltext.setVisibility(View.VISIBLE);													
 												  		centerscrolltext.startAnimation(animAlphaText);			  		
 														centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0]	+ ", you have been knocked unconscious!");
 														
-														/*
-														AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-													    
-														alert.setCancelable(false);
 														
-														alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
+														//AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+													    
+														//alert.setCancelable(false);
+														
+														//alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
 											  	    	
 											  	    	//alert.setMessage("something");
 											  	    		    	
 												    	
-												    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-													    	public void onClick(DialogInterface dialog, int whichButton) {
-													    */		
+												    	//alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+													    	//public void onClick(DialogInterface dialog, int whichButton) {
+													    		
 													    		//hideNavigation();
 													    
 														final Handler h = new Handler();
@@ -6995,15 +6994,11 @@ public class MainActivity2 extends ActionBarActivity {
 													    	//}
 												    	//});
 												    	
-												    	//alert.show();
-														
-														/*
-														System.out.print("Press a key to continue... ");
-														input.nextLine();
-														*/
+												    	//alert.show();													
 													}
-											
-													else if (ArrayOfHitPoints.hitpoints[0] < 0) {
+													*/
+								  	  	  			
+													if (ArrayOfHitPoints.hitpoints[0] <= 0) {
 														
 														
 														/*
@@ -7056,18 +7051,16 @@ public class MainActivity2 extends ActionBarActivity {
 														if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 										  	    			
 										  	    			gameEngineComputerFirst2();   							
-										  				}
-							
-													  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
+										  				}							
+														else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
 													  						
 													  		turn();    							
 													  	}
-													  	if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
+														else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
 													  	    			
 													  		computerHastePartTwo();   							
-													  	}
-							
-													  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
+													  	}							
+														else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
 													  						
 													  		computerHastePartTwo();    							
 													  	}
@@ -7174,25 +7167,26 @@ public class MainActivity2 extends ActionBarActivity {
 								  	  	  			
 								  	  	  			playerHitPointsTextView.clearAnimation();
 								  	  	  			
+								  	  	  			/*
 									  	  	  		if (ArrayOfHitPoints.hitpoints[0] == 0) {
 														
 														centerscrolltext.setVisibility(View.VISIBLE);													
 												  		centerscrolltext.startAnimation(animAlphaText);			  		
 														centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0]	+ ", you have been knocked unconscious!");
 														
-														/*
-														AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-													    
-														alert.setCancelable(false);
 														
-														alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
+														//AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+													    
+														//alert.setCancelable(false);
+														
+														//alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
 											  	    	
 											  	    	//alert.setMessage("something");
 											  	    		    	
 												    	
-												    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-													    	public void onClick(DialogInterface dialog, int whichButton) {
-													    */		
+												    	//alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+													    	//public void onClick(DialogInterface dialog, int whichButton) {
+													    		
 													    		//hideNavigation();
 													    
 														final Handler h = new Handler();
@@ -7226,15 +7220,11 @@ public class MainActivity2 extends ActionBarActivity {
 													    	//}
 												    	//});
 												    	
-												    	//alert.show();
-														
-														/*
-														System.out.print("Press a key to continue... ");
-														input.nextLine();
-														*/
+												    	//alert.show();													
 													}
-											
-													else if (ArrayOfHitPoints.hitpoints[0] < 0) {
+													*/
+								  	  	  			
+													if (ArrayOfHitPoints.hitpoints[0] <= 0) {
 														
 														
 														/*
@@ -7287,18 +7277,16 @@ public class MainActivity2 extends ActionBarActivity {
 														if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 										  	    			
 										  	    			gameEngineComputerFirst2();   							
-										  				}
-							
-													  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
+										  				}							
+														else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
 													  						
 													  		turn();    							
 													  	}
-													  	if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
+														else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
 													  	    			
 													  		computerHastePartTwo();   							
-													  	}
-							
-													  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
+													  	}							
+														else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
 													  						
 													  		computerHastePartTwo();    							
 													  	}
@@ -7384,25 +7372,26 @@ public class MainActivity2 extends ActionBarActivity {
 						  	  	  			
 						  	  	  			playerHitPointsTextView.clearAnimation();
 						  	  	  			
+						  	  	  			/*
 							  	  	  		if (ArrayOfHitPoints.hitpoints[0] == 0) {
 												
 												centerscrolltext.setVisibility(View.VISIBLE);													
 										  		centerscrolltext.startAnimation(animAlphaText);			  		
 												centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0]	+ ", you have been knocked unconscious!");
 												
-												/*
-												AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-											    
-												alert.setCancelable(false);
 												
-												alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
+												//AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+											    
+												//alert.setCancelable(false);
+												
+												//alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
 									  	    	
 									  	    	//alert.setMessage("something");
 									  	    		    	
 										    	
-										    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-											    	public void onClick(DialogInterface dialog, int whichButton) {
-											    */		
+										    	//alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+											    	//public void onClick(DialogInterface dialog, int whichButton) {
+											    		
 											    		//hideNavigation();
 											    		
 												final Handler h = new Handler();
@@ -7436,15 +7425,11 @@ public class MainActivity2 extends ActionBarActivity {
 											    	//}
 										    	//});
 										    	
-										    	//alert.show();
-												
-												/*
-												System.out.print("Press a key to continue... ");
-												input.nextLine();
-												*/
+										    	//alert.show();										
 											}
-									
-											else if (ArrayOfHitPoints.hitpoints[0] < 0) {
+											*/
+						  	  	  			
+											if (ArrayOfHitPoints.hitpoints[0] <= 0) {
 												
 												
 												/*
@@ -7497,18 +7482,16 @@ public class MainActivity2 extends ActionBarActivity {
 												if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 								  	    			
 								  	    			gameEngineComputerFirst2();   							
-								  				}
-					
-											  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
+								  				}					
+												else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
 											  						
 											  		turn();    							
 											  	}
-											  	if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
+												else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
 											  	    			
 											  		computerHastePartTwo();   							
-											  	}
-					
-											  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
+											  	}					
+												else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
 											  						
 											  		computerHastePartTwo();    							
 											  	}
@@ -10072,25 +10055,26 @@ public class MainActivity2 extends ActionBarActivity {
 							  	  	  			
 							  	  	  			playerHitPointsTextView.clearAnimation();
 							  	  	  			
+							  	  	  			/*
 								  	  	  		if (ArrayOfHitPoints.hitpoints[0] == 0) {
 													
 													centerscrolltext.setVisibility(View.VISIBLE);													
 											  		centerscrolltext.startAnimation(animAlphaText);			  		
 													centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you have been knocked unconscious!");
 													
-													/*
-													AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-												    
-													alert.setCancelable(false);
 													
-													alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
+													//AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+												    
+													//alert.setCancelable(false);
+													
+													//alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
 										  	    	
 										  	    	//alert.setMessage("something");
 										  	    		    	
 											    	
-											    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-												    	public void onClick(DialogInterface dialog, int whichButton) {
-												    */		
+											    	//alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+												    	//public void onClick(DialogInterface dialog, int whichButton) {
+												    		
 												    		//hideNavigation();
 												    
 													final Handler h = new Handler();
@@ -10115,15 +10099,11 @@ public class MainActivity2 extends ActionBarActivity {
 												    	//}
 											    	//});
 											    	
-											    	//alert.show(); 
-													
-											    	/*
-													System.out.print("Press a key to continue... ");
-													input.nextLine();
-													*/
+											    	//alert.show();					    	
 												}
-										
-												if (ArrayOfHitPoints.hitpoints[0] < 0) {
+												*/
+							  	  	  			
+												if (ArrayOfHitPoints.hitpoints[0] <= 0) {
 													
 													
 													/*
@@ -10177,9 +10157,8 @@ public class MainActivity2 extends ActionBarActivity {
 													if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 									  	    			
 									  	    			gameEngineComputerFirst2();   							
-									  				}
-					
-												  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
+									  				}					
+													else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
 												  						
 												  		turn();    							
 												  	}
@@ -10320,25 +10299,26 @@ public class MainActivity2 extends ActionBarActivity {
 								  	  	  			
 								  	  	  			playerHitPointsTextView.clearAnimation();
 								  	  	  			
+								  	  	  			/*
 									  	  	  		if (ArrayOfHitPoints.hitpoints[0] == 0) {
 														
 														centerscrolltext.setVisibility(View.VISIBLE);													
 												  		centerscrolltext.startAnimation(animAlphaText);			  		
 														centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0]	+ ", you have been knocked unconscious!");
 														
-														/*
-														AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-													    
-														alert.setCancelable(false);
 														
-														alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
+														//AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+													    
+														//alert.setCancelable(false);
+														
+														//alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
 											  	    	
 											  	    	//alert.setMessage("something");
 											  	    		    	
 												    	
-												    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-													    	public void onClick(DialogInterface dialog, int whichButton) {
-													    */		
+												    	//alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+													    	//public void onClick(DialogInterface dialog, int whichButton) {
+													    		
 													    		//hideNavigation();
 													    		
 														final Handler h = new Handler();
@@ -10363,15 +10343,11 @@ public class MainActivity2 extends ActionBarActivity {
 													    	//}
 												    	//});
 												    	
-												    	//alert.show();
-														
-														/*
-														System.out.print("Press a key to continue... ");
-														input.nextLine();
-														*/
+												    	//alert.show();													
 													}
-											
-													else if (ArrayOfHitPoints.hitpoints[0] < 0) {
+													*/
+								  	  	  			
+													if (ArrayOfHitPoints.hitpoints[0] <= 0) {
 														
 														
 														/*
@@ -10424,9 +10400,8 @@ public class MainActivity2 extends ActionBarActivity {
 														if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
 										  	    			
 										  	    			gameEngineComputerFirst2();   							
-										  				}
-							
-													  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+										  				}							
+														else if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
 													  						
 													  		turn();    							
 													  	}					  	
@@ -10537,25 +10512,26 @@ public class MainActivity2 extends ActionBarActivity {
 								  	  	  			
 								  	  	  			playerHitPointsTextView.clearAnimation();
 								  	  	  			
+								  	  	  			/*
 									  	  	  		if (ArrayOfHitPoints.hitpoints[0] == 0) {
 														
 														centerscrolltext.setVisibility(View.VISIBLE);													
 												  		centerscrolltext.startAnimation(animAlphaText);			  		
 														centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0]	+ ", you have been knocked unconscious!");
 														
-														/*
-														AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-													    
-														alert.setCancelable(false);
 														
-														alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
+														//AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+													    
+														//alert.setCancelable(false);
+														
+														//alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
 											  	    	
 											  	    	//alert.setMessage("something");
 											  	    		    	
 												    	
-												    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-													    	public void onClick(DialogInterface dialog, int whichButton) {
-													    */		
+												    	//alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+													    	//public void onClick(DialogInterface dialog, int whichButton) {
+													    		
 													    		//hideNavigation();
 													    
 														final Handler h = new Handler();
@@ -10580,15 +10556,11 @@ public class MainActivity2 extends ActionBarActivity {
 													    	//}
 												    	//});
 												    	
-												    	//alert.show();
-														
-														/*
-														System.out.print("Press a key to continue... ");
-														input.nextLine();
-														*/
+												    	//alert.show();									
 													}
-											
-													else if (ArrayOfHitPoints.hitpoints[0] < 0) {
+													*/
+								  	  	  			
+													if (ArrayOfHitPoints.hitpoints[0] <= 0) {
 														
 														
 														/*
@@ -10641,9 +10613,8 @@ public class MainActivity2 extends ActionBarActivity {
 														if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
 										  	    			
 										  	    			gameEngineComputerFirst2();   							
-										  				}
-							
-													  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+										  				}							
+														else if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
 													  						
 													  		turn();    							
 													  	}					  	
@@ -10733,25 +10704,26 @@ public class MainActivity2 extends ActionBarActivity {
 						  	  	  			
 						  	  	  			playerHitPointsTextView.clearAnimation();
 						  	  	  			
+						  	  	  			/*
 							  	  	  		if (ArrayOfHitPoints.hitpoints[0] == 0) {
 												
 												centerscrolltext.setVisibility(View.VISIBLE);													
 										  		centerscrolltext.startAnimation(animAlphaText);			  		
 												centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0]	+ ", you have been knocked unconscious!");
 												
-												/*
-												AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-											    
-												alert.setCancelable(false);
 												
-												alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
+												//AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+											    
+												//alert.setCancelable(false);
+												
+												//alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
 									  	    	
 									  	    	//alert.setMessage("something");
 									  	    		    	
 										    	
-										    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-											    	public void onClick(DialogInterface dialog, int whichButton) {
-											    */		
+										    	//alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+											    	//public void onClick(DialogInterface dialog, int whichButton) {
+											    		
 											    		//hideNavigation();
 											    
 												final Handler h = new Handler();
@@ -10776,15 +10748,11 @@ public class MainActivity2 extends ActionBarActivity {
 											    	//}
 										    	//});
 										    	
-										    	//alert.show();
-												
-												/*
-												System.out.print("Press a key to continue... ");
-												input.nextLine();
-												*/
+										    	//alert.show();									
 											}
-									
-											else if (ArrayOfHitPoints.hitpoints[0] < 0) {
+											*/
+						  	  	  			
+											if (ArrayOfHitPoints.hitpoints[0] <= 0) {
 												
 												
 												/*
@@ -10837,9 +10805,8 @@ public class MainActivity2 extends ActionBarActivity {
 												if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
 								  	    			
 								  	    			gameEngineComputerFirst2();   							
-								  				}
-					
-											  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+								  				}					
+												else if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
 											  						
 											  		turn();    							
 											  	}					  	
@@ -11383,25 +11350,26 @@ public class MainActivity2 extends ActionBarActivity {
 																			  	  	  			
 																			  	  	  			playerHitPointsTextView.clearAnimation();
 																			  	  	  			
+																			  	  	  			/*
 																				  	  	  		if (ArrayOfHitPoints.hitpoints[0] == 0) {
 																									
 																									centerscrolltext.setVisibility(View.VISIBLE);													
 																							  		centerscrolltext.startAnimation(animAlphaText);			  		
 																									centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0]	+ ", you have been knocked unconscious!");
 																									
-																									/*
-																									AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-																								    
-																									alert.setCancelable(false);
 																									
-																									alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
+																									//AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+																								    
+																									//alert.setCancelable(false);
+																									
+																									//alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
 																						  	    	
 																						  	    	//alert.setMessage("something");
 																						  	    		    	
 																							    	
-																							    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-																								    	public void onClick(DialogInterface dialog, int whichButton) {
-																								    */		
+																							    	//alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+																								    	//public void onClick(DialogInterface dialog, int whichButton) {
+																								    		
 																								    		//hideNavigation();
 																								    		
 																									final Handler h = new Handler();
@@ -11435,15 +11403,11 @@ public class MainActivity2 extends ActionBarActivity {
 																								    	//}
 																							    	//});
 																							    	
-																							    	//alert.show();	
-																									
-																									/*
-																									System.out.print("Press a key to continue... ");
-																									input.nextLine();
-																									*/
+																							    	//alert.show();																									
 																								}
-																						
-																								if (ArrayOfHitPoints.hitpoints[0] < 0) {
+																								*/
+																			  	  	  			
+																								if (ArrayOfHitPoints.hitpoints[0] <= 0) {
 																									
 																									
 																									/*
@@ -11500,18 +11464,16 @@ public class MainActivity2 extends ActionBarActivity {
 																									if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 																					  	    			
 																					  	    			gameEngineComputerFirst2();   							
-																					  				}
-																			
-																								  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
+																					  				}																			
+																									else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
 																								  						
 																								  		turn();    							
 																								  	}
-																								  	if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
+																									else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
 																								  	    			
 																								  		computerHastePartTwo();   							
-																								  	}
-																			
-																								  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
+																								  	}																			
+																									else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
 																								  						
 																								  		computerHastePartTwo();    							
 																								  	}
@@ -11781,25 +11743,26 @@ public class MainActivity2 extends ActionBarActivity {
 															  	  	  			
 															  	  	  			playerHitPointsTextView.clearAnimation();
 															  	  	  			
+															  	  	  			/*
 																  	  	  		if (ArrayOfHitPoints.hitpoints[0] == 0) {
 																					
 																					centerscrolltext.setVisibility(View.VISIBLE);													
 																			  		centerscrolltext.startAnimation(animAlphaText);			  		
 																					centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0]	+ ", you have been knocked unconscious!");
 																					
-																					/*
-																					AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-																				    
-																					alert.setCancelable(false);
 																					
-																					alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
+																					//AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+																				    
+																					//alert.setCancelable(false);
+																					
+																					//alert.setTitle(ArrayOfPlayers.player[0] + ", you have been knocked unconscious.");
 																		  	    	
 																		  	    	//alert.setMessage("something");
 																		  	    		    	
 																			    	
-																			    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-																				    	public void onClick(DialogInterface dialog, int whichButton) {
-																				    */		
+																			    	//alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+																				    	//public void onClick(DialogInterface dialog, int whichButton) {
+																				    		
 																				    		//hideNavigation();
 																				    
 																					final Handler h = new Handler();
@@ -11833,15 +11796,11 @@ public class MainActivity2 extends ActionBarActivity {
 																				    	//}
 																			    	//});
 																			    	
-																			    	//alert.show();
-																					
-																					/*
-																					System.out.print("Press a key to continue... ");
-																					input.nextLine();
-																					*/
+																			    	//alert.show();																				
 																				}
-																		
-																				if (ArrayOfHitPoints.hitpoints[0] < 0) {
+																				*/
+															  	  	  			
+																				if (ArrayOfHitPoints.hitpoints[0] <= 0) {
 																					
 																					
 																					/*
@@ -11898,18 +11857,16 @@ public class MainActivity2 extends ActionBarActivity {
 																					if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 																	  	    			
 																	  	    			gameEngineComputerFirst2();   							
-																	  				}
-															
-																				  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
+																	  				}															
+																					else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
 																				  						
 																				  		turn();    							
 																				  	}
-																				  	if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
+																					else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
 																				  	    			
 																				  		computerHastePartTwo();   							
-																				  	}
-															
-																				  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
+																				  	}															
+																					else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
 																				  						
 																				  		computerHastePartTwo();    							
 																				  	}				
@@ -12056,7 +12013,7 @@ public class MainActivity2 extends ActionBarActivity {
 									  		centerscrolltext.startAnimation(animAlphaText);			  		
 											centerscrolltext.append("\n" + "> The computer did not hit itself... now it must roll to see if it loses it's weapon...");
 											
-											ArrayOfAttackResult.attackResult[0] = (int) ((Math.random() * 20) + 1);
+											ArrayOfAttackResult.attackResult[0] = (int) ((Math.random() * 20) + 1);//(int) ((Math.random() * 20) + 1)
 											
 											
 											final Handler h = new Handler();
@@ -12288,26 +12245,26 @@ public class MainActivity2 extends ActionBarActivity {
 								    			
 							  	  	  			computerHitPointsTextView.clearAnimation();
 							  	  	  			
+							  	  	  			/*
 								  	  	  		if (ArrayOfHitPoints.hitpoints[1] == 0) {
 													
 													centerscrolltext.setVisibility(View.VISIBLE);													
 											  		centerscrolltext.startAnimation(animAlphaText);			  		
 													centerscrolltext.append("\n" + "> The computer has been knocked unconscious!");
 													
-													/*
-													AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+													
+													//AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 												    
-													alert.setCancelable(false);
+													//alert.setCancelable(false);
 													
-													alert.setTitle("The computer has been knocked unconscious.");
+													//alert.setTitle("The computer has been knocked unconscious.");
 										  	    	
-										  	    	//alert.setMessage("something");										  	    		    	
-											    	
+										  	    	//alert.setMessage("something");												
 													
 													
-											    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-												    	public void onClick(DialogInterface dialog, int whichButton) {
-												    */		
+											    	//alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+												    	//public void onClick(DialogInterface dialog, int whichButton) {
+												    		
 												    		//hideNavigation();
 													
 												    
@@ -12344,8 +12301,9 @@ public class MainActivity2 extends ActionBarActivity {
 											    	
 											    	//alert.show();												
 												}
-								  	  	  		
-												if (ArrayOfHitPoints.hitpoints[1] < 0) {
+								  	  	  		*/
+							  	  	  			
+												if (ArrayOfHitPoints.hitpoints[1] <= 0) {
 													
 													
 													/*
@@ -12398,18 +12356,16 @@ public class MainActivity2 extends ActionBarActivity {
 													if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 									  	    			
 									  	    			gameEngineComputerFirst2();   							
-									  				}
-							
-												  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
+									  				}							
+													else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
 												  						
 												  		turn();    							
 												  	}
-												  	if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
+													else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
 												  	    			
 												  		computerHastePartTwo();   							
-												  	}
-							
-												  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
+												  	}							
+													else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
 												  						
 												  		computerHastePartTwo();    							
 												  	}
@@ -13646,25 +13602,26 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  			TextView playerNumberAttackedHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
 	  	  	  			playerNumberAttackedHitPointsTextView.clearAnimation();
 	  	  	  			
+	  	  	  			/*
 						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] == 0) {
 							
 							centerscrolltext.setVisibility(View.VISIBLE);													
 					  		centerscrolltext.startAnimation(animAlphaText);			  		
 							centerscrolltext.append("\n" + "> The computer has been knocked unconscious!");
 							
-							/*
-							AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-						    
-							alert.setCancelable(false);
 							
-							alert.setTitle("The computer has been knocked unconscious.");
+							//AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+						    
+							//alert.setCancelable(false);
+							
+							//alert.setTitle("The computer has been knocked unconscious.");
 				  	    	
 				  	    	//alert.setMessage("something");
 				  	    		    	
 					    	
-					    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-						    	public void onClick(DialogInterface dialog, int whichButton) {
-						    */		
+					    	//alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+						    	//public void onClick(DialogInterface dialog, int whichButton) {
+						    		
 						    		//hideNavigation();
 						    
 							final Handler h = new Handler();
@@ -13690,8 +13647,9 @@ public class MainActivity2 extends ActionBarActivity {
 					    	//});								    	
 					    	//alert.show();						
 						}
-	
-						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] < 0) {
+						*/
+	  	  	  			
+						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] <= 0) {
 							
 							/*
 							 * 
@@ -13730,9 +13688,8 @@ public class MainActivity2 extends ActionBarActivity {
 							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
 								
 				    			gameEngineHumanFirst2();    							
-							}
-	
-							if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
+							}	
+							else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
 				    			
 				    			turn();   							
 							}									
@@ -14295,25 +14252,26 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  			TextView playerNumberAttackedHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
 	  	  	  			playerNumberAttackedHitPointsTextView.clearAnimation();
 	  	  	  			
+	  	  	  			/*
 						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] == 0) {
 							
 							centerscrolltext.setVisibility(View.VISIBLE);													
 					  		centerscrolltext.startAnimation(animAlphaText);			  		
 							centerscrolltext.append("\n" + "> The computer has been knocked unconscious!");
 							
-							/*
-							AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-						    
-							alert.setCancelable(false);
 							
-							alert.setTitle("The computer has been knocked unconscious.");
+							//AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+						    
+							//alert.setCancelable(false);
+							
+							//alert.setTitle("The computer has been knocked unconscious.");
 				  	    	
 				  	    	//alert.setMessage("something");
 				  	    		    	
 					    	
-					    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-						    	public void onClick(DialogInterface dialog, int whichButton) {
-						    */		
+					    	//alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+						    	//public void onClick(DialogInterface dialog, int whichButton) {
+						    		
 						    		//hideNavigation();
 						    
 							final Handler h = new Handler();
@@ -14349,8 +14307,9 @@ public class MainActivity2 extends ActionBarActivity {
 					    	//});								    	
 					    	//alert.show();						
 						}
-	
-						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] < 0) {
+						*/
+	  	  	  			
+						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] <= 0) {
 							
 							/*
 							 * 
@@ -14389,19 +14348,16 @@ public class MainActivity2 extends ActionBarActivity {
 							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
 								
 				    			gameEngineHumanFirst2();    							
-							}
-	
-							if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
+							}	
+							else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
 				    			
 				    			turn();   							
-							}
-							
-							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
+							}							
+							else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
 								
 				    			hastePartTwo();    							
-							}
-	
-							if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
+							}	
+							else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
 				    			
 								hastePartTwo();   							
 							}										
@@ -15017,25 +14973,26 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  			TextView playerNumberAttackedHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
 		  	  			playerNumberAttackedHitPointsTextView.clearAnimation();
 		  	  			
+		  	  			/*
 						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] == 0) {
 							
 							centerscrolltext.setVisibility(View.VISIBLE);													
 					  		centerscrolltext.startAnimation(animAlphaText);			  		
 							centerscrolltext.append("\n" + "> The computer has been knocked unconscious!");
 							
-							/*
-							AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-						    
-							alert.setCancelable(false);
 							
-							alert.setTitle("The computer has been knocked unconscious.");
+							//AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+						    
+							//alert.setCancelable(false);
+							
+							//alert.setTitle("The computer has been knocked unconscious.");
 				  	    	
 				  	    	//alert.setMessage("something");
 				  	    		    	
 					    	
-					    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-						    	public void onClick(DialogInterface dialog, int whichButton) {
-						    */		
+					    	//alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+						    	//public void onClick(DialogInterface dialog, int whichButton) {
+						    		
 						    		//hideNavigation();
 						    
 							final Handler h = new Handler();
@@ -15071,8 +15028,9 @@ public class MainActivity2 extends ActionBarActivity {
 					    	//});								    	
 					    	//alert.show();						
 						}
-		
-						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] < 0) {
+						*/
+		  	  			
+						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] <= 0) {
 							
 							/*
 							 * 
@@ -15111,19 +15069,16 @@ public class MainActivity2 extends ActionBarActivity {
 							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
 								
 				    			gameEngineHumanFirst2();    							
-							}
-		
-							if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
+							}		
+							else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
 				    			
 				    			turn();   							
-							}
-							
-							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
+							}							
+							else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
 								
 				    			hastePartTwo();    							
-							}
-		
-							if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
+							}		
+							else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
 				    			
 								hastePartTwo();   							
 							}										
@@ -15445,25 +15400,26 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  			TextView playerNumberAttackedHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
 		  	  			playerNumberAttackedHitPointsTextView.clearAnimation();
 		  	  			
+		  	  			/*
 						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] == 0) {
 							
 							centerscrolltext.setVisibility(View.VISIBLE);													
 					  		centerscrolltext.startAnimation(animAlphaText);			  		
 							centerscrolltext.append("\n" + "> The computer has been knocked unconscious!");
 							
-							/*
-							AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-						    
-							alert.setCancelable(false);
 							
-							alert.setTitle("The computer has been knocked unconscious.");
+							//AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+						    
+							//alert.setCancelable(false);
+							
+							//alert.setTitle("The computer has been knocked unconscious.");
 				  	    	
 				  	    	//alert.setMessage("something");
 				  	    		    	
 					    	
-					    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-						    	public void onClick(DialogInterface dialog, int whichButton) {
-						    */		
+					    	//alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+						    	//public void onClick(DialogInterface dialog, int whichButton) {
+						    		
 						    		//hideNavigation();
 						    
 							final Handler h = new Handler();
@@ -15499,8 +15455,9 @@ public class MainActivity2 extends ActionBarActivity {
 					    	//});								    	
 					    	//alert.show();						
 						}
-		
-						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] < 0) {
+						*/
+		  	  			
+						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] <= 0) {
 							
 							/*
 							 * 
@@ -15539,19 +15496,16 @@ public class MainActivity2 extends ActionBarActivity {
 							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
 								
 				    			gameEngineHumanFirst2();    							
-							}
-		
-							if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
+							}		
+							else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
 				    			
 				    			turn();   							
-							}
-							
-							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
+							}							
+							else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
 								
 				    			hastePartTwo();    							
-							}
-		
-							if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
+							}		
+							else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
 				    			
 								hastePartTwo();   							
 							}										
@@ -15885,6 +15839,7 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  			
 			  	  	  			playerHitPointsTextView.clearAnimation();
 			  	  	  			
+			  	  	  			/*
 								if (ArrayOfHitPoints.hitpoints[0] == 0) {
 									
 									if (numberOfPlayers == 1) {								
@@ -15893,19 +15848,19 @@ public class MainActivity2 extends ActionBarActivity {
 								  		centerscrolltext.startAnimation(animAlphaText);			  		
 										centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you have been knocked unconscious!");
 										
-										/*
-										AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
-									    
-										alert.setCancelable(false);
 										
-										alert.setTitle("You have been knocked unconscious.");
+										//AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+									    
+										//alert.setCancelable(false);
+										
+										//alert.setTitle("You have been knocked unconscious.");
 							  	    	
 							  	    	//alert.setMessage("something");
 							  	    		    	
 								    	
-								    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-									    	public void onClick(DialogInterface dialog, int whichButton) {
-									    */		
+								    	//alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+									    	//public void onClick(DialogInterface dialog, int whichButton) {
+									    		
 									    		//hideNavigation();
 									    
 										final Handler h = new Handler();
@@ -15940,17 +15895,11 @@ public class MainActivity2 extends ActionBarActivity {
 									    	//}
 								    	//});						    	
 								    	//alert.show();				
-									}
-									/*
-									if (numberOfPlayers > 1) {
-										System.out.println("Player " + (playerNumberAttacked + 1) + ", you have been knocked unconscious!");
-									}
-									System.out.print("Press a key to continue... ");
-									input.nextLine();
-									*/
+									}									
 								}
-						
-								if (ArrayOfHitPoints.hitpoints[0] < 0) {
+								*/
+			  	  	  			
+								if (ArrayOfHitPoints.hitpoints[0] <= 0) {
 									
 									/*
 									 * 
@@ -16000,21 +15949,18 @@ public class MainActivity2 extends ActionBarActivity {
 									if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
 										
 						    			gameEngineHumanFirst2();    							
-									}
-	
-									if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
+									}	
+									else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
 						    			
 						    			turn();   							
 									}
 									
-									// TAKE THIS OUT?:
-									
-									if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
+									// TAKE THIS OUT?:									
+									else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
 										
 						    			hastePartTwo();    							
-									}
-	
-									if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
+									}	
+									else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
 						    			
 										hastePartTwo();   							
 									}
@@ -17083,11 +17029,12 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	public void hastePartTwo() {
 		
-		if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] < 0) {
+		if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] <= 0) {
 			
 			endGame();
 		}
 		
+		/*
 		else if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] == 0 && cureSpell[1] < 1) {		
 			
 			ishasteused = "no";
@@ -17101,20 +17048,8 @@ public class MainActivity2 extends ActionBarActivity {
 				
 				endGame();
 			}
-			
-			
-			/*
-			if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
-				
-    			gameEngineHumanFirst2();    							
-			}
-
-			if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
-    			
-    			turn();   							
-			}
-			*/
 		}
+		*/
 		
 		else {
 			
@@ -19012,6 +18947,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  			//TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
 	  	  	  			//playerHitPointsTextView.clearAnimation();
 	  	  	  			
+	  	  	  			/*
 		  	  	  		if (ArrayOfHitPoints.hitpoints[0] == 0 && endGameAfterFirstHaste.equals("no")) {
 		  	  	  			
 		  	  	  			TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
@@ -19029,13 +18965,15 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  	  				endGame(); 	// took out map
 			  	  	  		}
 						}
+						*/
+						
 			  	  		/*
 			  	  	  	else if (ArrayOfHitPoints.hitpoints[0] == 0 && endGameAfterFirstHaste.equals("yes")) {
 		  	  	  			
 		  	  	  			endGameAfterFirstHasteMethod();
 		  	  	  		}
 		  	  	  		*/
-			  	  		else if (canHasDisarmed[0].equals("yes")) {
+			  	  		if (canHasDisarmed[0].equals("yes")) {
 							
 				  	  		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
 		  	  	  			disarmedtextleft.setVisibility(View.VISIBLE);
@@ -19205,6 +19143,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  			
 	  	  	  			//computerHitPointsTextView.clearAnimation();
 	  	  	  			
+	  	  	  			/*
 		  	  	  		if (ArrayOfHitPoints.hitpoints[1] == 0 && endGameAfterFirstHaste.equals("no")) {
 		  	  	  			
 		  	  	  			TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
@@ -19222,10 +19161,12 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  	  				endGame(); 	// took out map
 			  	  	  		}									
 			  			}
+			  			*/
 		  	  	  		
 		  	  	  		//TEST
 		  	  	  		//SO TEXT/DIALOG/INSTANCE DOSENT GET REPEATED WHEN COMP IS AT HP = 0 & NO CURE:
-		  	  	  		else if (ArrayOfHitPoints.hitpoints[1] == 0 && endGameAfterFirstHaste.equals("yes")) {
+		  	  	  		/*
+	  	  	  			else if (ArrayOfHitPoints.hitpoints[1] == 0 && endGameAfterFirstHaste.equals("yes")) {
 		  	  	  			
 			  	  	  		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
 		  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
@@ -19233,8 +19174,9 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  	  			
 		  	  	  			//endGameAfterFirstHasteMethod();
 		  	  	  		}
+						*/
 								  	  	  		
-			  			else if (canHasDisarmed[1].equals("yes")) {
+			  			if (canHasDisarmed[1].equals("yes")) {
 			  				
 			  				TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
 		  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
@@ -19371,6 +19313,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  			//TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
 	  	  	  			//computerHitPointsTextView.clearAnimation();
 	  	  	  			
+	  	  	  			/*
 		  	  	  		if (ArrayOfHitPoints.hitpoints[1] == 0 && endGameAfterFirstHaste.equals("no")) {
 		  	  	  			
 			  	  	  		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
@@ -19388,10 +19331,12 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  	  				endGame(); 	// took out map
 			  	  	  		}										
 						}
+						*/
 		  	  	  		
 		  	  	  		//TEST
 		  	  	  		//SO TEXT/DIALOG/INSTANCE DOSENT GET REPEATED WHEN COMP IS AT HP = 0 & NO CURE:
-			  	  	  	else if (ArrayOfHitPoints.hitpoints[1] == 0 && endGameAfterFirstHaste.equals("yes")) {
+			  	  	  	/*
+	  	  	  			else if (ArrayOfHitPoints.hitpoints[1] == 0 && endGameAfterFirstHaste.equals("yes")) {
 		  	  	  			
 				  	  	  	TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
 		  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
@@ -19399,8 +19344,9 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  		
 		  	  	  			//endGameAfterFirstHasteMethod();
 		  	  	  		}
+		  	  	  		*/
 		  	  	  		
-			  	  		else if (canHasDisarmed[1].equals("yes")) {
+			  	  		if (canHasDisarmed[1].equals("yes")) {
 							
 				  	  		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
 		  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
@@ -19553,6 +19499,7 @@ public class MainActivity2 extends ActionBarActivity {
 	  	  	  			
 	  	  	  			//playerHitPointsTextView.clearAnimation();
 	  	  	  			
+	  	  	  			/*
 		  	  	  		if (ArrayOfHitPoints.hitpoints[0] == 0 && endGameAfterFirstHaste.equals("no")) {
 		  	  	  			
 		  	  	  			TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
@@ -19570,13 +19517,16 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  	  				endGame(); 	// took out map
 			  	  	  		}									
 						}
+						*/
+						
 		  	  	  		/*
 		  	  	  		else if (ArrayOfHitPoints.hitpoints[0] == 0 && endGameAfterFirstHaste.equals("yes")) {
 		  	  	  			
 		  	  	  			endGameAfterFirstHasteMethod();
 		  	  	  		}
 						*/
-						else if (canHasDisarmed[0].equals("yes")) {
+						
+	  	  	  			if (canHasDisarmed[0].equals("yes")) {
 							
 							TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
 		  	  	  			disarmedtextleft.setVisibility(View.VISIBLE);
@@ -19770,7 +19720,7 @@ public class MainActivity2 extends ActionBarActivity {
 					
 					
 	    			// USED BY HASTE PART TWO?:
-					if (ArrayOfHitPoints.hitpoints[0] < 0) {
+					if (ArrayOfHitPoints.hitpoints[0] <= 0) {
 						
 						playerDeadYet[0] = "yes";
 						
@@ -19782,7 +19732,7 @@ public class MainActivity2 extends ActionBarActivity {
 						//return;
 					}
 					
-					else if (ArrayOfHitPoints.hitpoints[1] < 0) {
+					else if (ArrayOfHitPoints.hitpoints[1] <= 0) {
 						
 						playerDeadYet[1] = "yes";
 						
@@ -19794,6 +19744,7 @@ public class MainActivity2 extends ActionBarActivity {
 						//return;
 					}
 					
+					/*
 					else if (ArrayOfHitPoints.hitpoints[1] == 0) {			
 						
 						centerscrolltext.setVisibility(View.VISIBLE);													
@@ -19919,20 +19870,20 @@ public class MainActivity2 extends ActionBarActivity {
 									
 				  	  	  			//isInvokingService = "false";
 				  	  	  			
-									/*
-									centerscrolltext.setVisibility(View.VISIBLE);												
-					  	  	  		centerscrolltext.startAnimation(animAlphaText);
-					  	  			centerscrolltext.append("\n" + "> Do you want to use your cure spell?");
-					  	  			*/  	  			
+									
+									//centerscrolltext.setVisibility(View.VISIBLE);												
+					  	  	  		//centerscrolltext.startAnimation(animAlphaText);
+					  	  			//centerscrolltext.append("\n" + "> Do you want to use your cure spell?");
+					  	  			  	  			
 					  	  			
 						  	  		AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 						  			
 						  	  		alert.setCancelable(false);
 						  	  		
 						  	    	alert.setTitle("Do you want to use your Cure spell?");
-						  	    	/*
-						  	    	alert.setMessage("something");
-						  	    	*/	  	    	
+						  	    	
+						  	    	//alert.setMessage("something");
+						  	    		  	    	
 						  	    	
 						  	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 						  		    	public void onClick(DialogInterface dialog, int whichButton) {
@@ -19984,25 +19935,7 @@ public class MainActivity2 extends ActionBarActivity {
 								  	  	  	}, 2000);						          		  	
 						          	  }
 						          	});				  	    	
-						  	    	alert.show();
-					  	  			
-					  	  			/*
-					  	  			String s = input.next();
-									char selection = s.charAt(0);
-					  	  			switch (selection) {
-									case 'y':
-									case 'Y':
-										cure(i, turn, gameOn);
-										break;
-									case 'n':
-									case 'N':
-										endGame(i, turn, gameOn);
-										break;
-									default:
-										endGame(i, turn, gameOn);
-										break;
-									}
-									*/
+						  	    	alert.show();				  	  			
 								}
 								
 								else {
@@ -20028,7 +19961,8 @@ public class MainActivity2 extends ActionBarActivity {
 								}
 				  	  	  	}
 			  	  	  	}, 2000);						
-					}					
+					}
+					*/
 				}
   	  	    }
   	  	});
