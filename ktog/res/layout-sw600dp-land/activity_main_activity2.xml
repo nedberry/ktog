@@ -447,7 +447,22 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:background="@drawable/stonedead2"
-            android:gravity="center" />        
+            android:gravity="center" />
+        
+        <ImageView
+            android:id="@+id/imageviewavatarleft4"
+            android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"    		
+    		android:layout_alignParentBottom="true"
+    		android:layout_centerHorizontal="true"
+            android:background="@drawable/blank"
+            android:gravity="center"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            
+    		
+    		 />
+        
     </RelativeLayout>
     
     

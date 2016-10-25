@@ -15,12 +15,14 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -185,7 +187,9 @@ public class MainActivity2 extends ActionBarActivity {
 	//Intent svc = new Intent(this, Badonk2SoundService.class);
 	//svc.setAction("com.nedswebsite.ktog.Badonk2SoundService");
 	
-		
+	
+	//String path = getIntent().getStringExtra("imagePath");
+	//Uri uri = getIntent().getParcelableExtra("imagePath");
 	
 	
 	@Override
@@ -280,19 +284,55 @@ public class MainActivity2 extends ActionBarActivity {
 		ImageView crossedswords2 = (ImageView) findViewById(R.id.imageviewavatarleft2);
 		ImageView stonedead2 = (ImageView) findViewById(R.id.imageviewavatarleft3);
 		
+		ImageView customImage = (ImageView) findViewById(R.id.imageviewavatarleft4);
+		customImage.getLayoutParams().height = 100;
+		customImage.getLayoutParams().width = 100;
+		if (getIntent().getExtras() != null) {			
+				
+			Intent intent = getIntent(); 
+			String image_path= intent.getStringExtra("imageUri"); 
+			Uri fileUri = Uri.parse(image_path);
+			customImage.setImageURI(fileUri);
+		}
+		
+		//Bundle b = getIntent().getExtras();
+		/*
+        String uri_Str= getIntent().getStringExtra("imageUri");
+        Uri uri = Uri.parse(uri_Str);
+        ImageView customImage = (ImageView) findViewById(R.id.imageviewavatarleft4);
+        customImage.setImageURI(uri);
+        */
+		//String path = getIntent().getStringExtra("imagePath");		
+	    //Drawable image = Drawable.createFromPath(path);
+	    //customImage.setImageDrawable(image);
+		/*
+		Intent intent=getIntent();
+		Bitmap bitmap = (Bitmap) intent.getParcelableExtra("CustomImage");
+		ImageView customImage = (ImageView) findViewById(R.id.imageviewavatarleft4);
+		customImage.setImageBitmap(bitmap);		
+		*/
+		
+		
 		if (ArrayOfAvatars.avatar[0].equals("computer")){
 			crossedswords2.setVisibility(View.INVISIBLE);
-			stonedead2.setVisibility(View.INVISIBLE);			
+			stonedead2.setVisibility(View.INVISIBLE);
+			customImage.setVisibility(View.INVISIBLE);
 		}
 		else if (ArrayOfAvatars.avatar[0].equals("crossedswords")){
 			computerAvatar.setVisibility(View.INVISIBLE);
 			stonedead2.setVisibility(View.INVISIBLE);
+			customImage.setVisibility(View.INVISIBLE);
 		}
 		else if (ArrayOfAvatars.avatar[0].equals("stonedead")){
 			crossedswords2.setVisibility(View.INVISIBLE);
 			computerAvatar.setVisibility(View.INVISIBLE);
+			customImage.setVisibility(View.INVISIBLE);
 		}
-		
+		else if (ArrayOfAvatars.avatar[0].equals("custom")){
+			crossedswords2.setVisibility(View.INVISIBLE);
+			stonedead2.setVisibility(View.INVISIBLE);
+			computerAvatar.setVisibility(View.INVISIBLE);
+		}
 		
 		ImageView blessLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftbless);
 		blessLeft.setVisibility(View.INVISIBLE);

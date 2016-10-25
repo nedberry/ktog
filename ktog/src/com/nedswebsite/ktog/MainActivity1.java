@@ -22,9 +22,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -37,6 +40,9 @@ import android.widget.ListAdapter;
 import android.widget.Toast;
 
 public class MainActivity1 extends ActionBarActivity {			
+	
+	public static final int PICK_IMAGE = 100;
+	public ImageView customImageView;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -109,8 +115,8 @@ public class MainActivity1 extends ActionBarActivity {
 	        	
 	        	// ARRAY ADAPTER WITH ICON STUFF:	        	
 	        	
-	        	final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead"};
-	    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2};
+	        	final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead", "Custom"};
+	    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2, R.drawable.computer};
 	    		
 	    		ListAdapter adapter = new ArrayAdapterWithIcon(MainActivity1.this, items, avatars);
 	    		
@@ -124,21 +130,48 @@ public class MainActivity1 extends ActionBarActivity {
 	    								
 	    				if (item == 0) {
 	    					ArrayOfAvatars.avatar[0] = "computer";
+	    					
+	    					stopService(svc);	    				
+		    				
+		    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+		    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+		    				startActivity(intent);
+		    	        	
+		    	        	dialog.dismiss();
 	    				}
-	    				if (item == 1) {
+	    				else if (item == 1) {
 	    					ArrayOfAvatars.avatar[0] = "crossedswords";
+	    					
+	    					stopService(svc);	    				
+		    				
+		    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+		    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+		    				startActivity(intent);
+		    	        	
+		    	        	dialog.dismiss();
 	    				}
-	    				if (item == 2) {
+	    				else if (item == 2) {
 	    					ArrayOfAvatars.avatar[0] = "stonedead";
+	    					
+	    					stopService(svc);	    				
+		    				
+		    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+		    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+		    				startActivity(intent);
+		    	        	
+		    	        	dialog.dismiss();
+	    				}
+	    				else if (item == 3) {
+	    					ArrayOfAvatars.avatar[0] = "custom";
+	    					
+	    					stopService(svc);
+	    					
+	    					openGallery();
+	    					
+	    					dialog.dismiss();
 	    				}
 	    				
-	    				stopService(svc);	    				
 	    				
-	    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
-	    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-	    				startActivity(intent);
-	    	        	
-	    	        	dialog.dismiss();
 	    	        	
 	    	        	//finish();
         	  		}
@@ -196,6 +229,34 @@ public class MainActivity1 extends ActionBarActivity {
 		});
 	}
 	
+	public void openGallery() {
+		
+		Intent gallery = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+		startActivityForResult(gallery, PICK_IMAGE);
+	}
+	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+			if (resultCode == RESULT_OK && requestCode == PICK_IMAGE) {
+				Uri imageUri = data.getData();
+				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+			    intent.putExtra("imageUri", imageUri.toString());
+				//intent.putExtra("imageUri", imageUri);
+			    startActivity(intent);
+				/*
+				customImageView.setImageURI(imageUri);
+				
+				customImageView.buildDrawingCache();
+			    Bitmap bitmap = customImageView.getDrawingCache();
+
+			    Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+			    intent.putExtra("CustomImage", bitmap);
+			    */
+			    
+			    			       	
+			}
+	}
 	
 	//===================================================================================================
 	// SEPERATOR
@@ -335,8 +396,8 @@ public class MainActivity1 extends ActionBarActivity {
     	        	
     	        	// ARRAY ADAPTER WITH ICON STUFF:    	        	
     	        	
-    	        	final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead"};
-    	    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2};
+                	final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead", "Custom"};
+    	    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2, R.drawable.computer};
     	    		
     	    		ListAdapter adapter = new ArrayAdapterWithIcon(MainActivity1.this, items, avatars);
     	    		
@@ -350,21 +411,48 @@ public class MainActivity1 extends ActionBarActivity {
     	    								
     	    				if (item == 0) {
     	    					ArrayOfAvatars.avatar[0] = "computer";
+    	    					
+    	    					stopService(svc);
+        	    				
+        	    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+        	    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        	    				startActivity(intent);
+        	                	
+        	                	dialog.dismiss();
     	    				}
-    	    				if (item == 1) {
+    	    				else if (item == 1) {
     	    					ArrayOfAvatars.avatar[0] = "crossedswords";
+    	    					
+    	    					stopService(svc);
+        	    				
+        	    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+        	    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        	    				startActivity(intent);
+        	                	
+        	                	dialog.dismiss();
     	    				}
-    	    				if (item == 2) {
+    	    				else if (item == 2) {
     	    					ArrayOfAvatars.avatar[0] = "stonedead";
+    	    					
+    	    					stopService(svc);
+        	    				
+        	    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+        	    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        	    				startActivity(intent);
+        	                	
+        	                	dialog.dismiss();
+    	    				}
+    	    				else if (item == 3) {
+    	    					ArrayOfAvatars.avatar[0] = "custom";
+    	    					
+    	    					stopService(svc);
+    	    					
+    	    					openGallery();
+    	    					
+    	    					dialog.dismiss();
     	    				}
     	    				
-    	    				stopService(svc);
     	    				
-    	    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
-    	    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-    	    				startActivity(intent);
-    	                	
-    	                	dialog.dismiss();
     	                	
     	                	//finish();
             	  		}
@@ -455,8 +543,8 @@ public class MainActivity1 extends ActionBarActivity {
     	        	
     	        	// ARRAY ADAPTER WITH ICON STUFF:    	        	
     	        	
-    	        	final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead"};
-    	    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2};
+                	final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead", "Custom"};
+    	    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2, R.drawable.computer};
     	    		
     	    		ListAdapter adapter = new ArrayAdapterWithIcon(MainActivity1.this, items, avatars);
     	    		
@@ -470,21 +558,48 @@ public class MainActivity1 extends ActionBarActivity {
     	    								
     	    				if (item == 0) {
     	    					ArrayOfAvatars.avatar[0] = "computer";
+    	    					
+    	    					stopService(svc);
+        	    				
+        	    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+        	    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        	    				startActivity(intent);
+        	                	
+        	                	dialog.dismiss();
     	    				}
-    	    				if (item == 1) {
+    	    				else if (item == 1) {
     	    					ArrayOfAvatars.avatar[0] = "crossedswords";
+    	    					
+    	    					stopService(svc);
+        	    				
+        	    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+        	    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        	    				startActivity(intent);
+        	                	
+        	                	dialog.dismiss();
     	    				}
-    	    				if (item == 2) {
+    	    				else if (item == 2) {
     	    					ArrayOfAvatars.avatar[0] = "stonedead";
+    	    					
+    	    					stopService(svc);
+        	    				
+        	    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+        	    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        	    				startActivity(intent);
+        	                	
+        	                	dialog.dismiss();
+    	    				}
+    	    				else if (item == 3) {
+    	    					ArrayOfAvatars.avatar[0] = "custom";
+    	    					
+    	    					stopService(svc);
+    	    					
+    	    					openGallery();
+    	    					
+    	    					dialog.dismiss();
     	    				}
     	    				
-    	    				stopService(svc);
     	    				
-    	    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
-    	    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-    	    				startActivity(intent);
-    	                	
-    	                	dialog.dismiss();
     	                	
     	                	//finish();
             	  		}
