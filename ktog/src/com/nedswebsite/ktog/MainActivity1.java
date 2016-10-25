@@ -64,6 +64,7 @@ public class MainActivity1 extends ActionBarActivity {
 		final MediaPlayer buttonSound = MediaPlayer.create(MainActivity1.this, R.raw.swordswing);
 		
 		final Intent svc=new Intent(this, Badonk2SoundService.class);
+		//stopService(svc);
 		startService(svc);
 		
 		onePlayerButton.setOnClickListener(new View.OnClickListener() {
@@ -181,6 +182,8 @@ public class MainActivity1 extends ActionBarActivity {
         	//Think I need this so user doesn't have to push 'back' more than once (possibly)?
         	//finish();
         	
+        	stopService(svc);
+        	
         	Intent i = new Intent(MainActivity1.this, Rules.class);
         	MainActivity1.this.startActivity(i);
         	
@@ -212,8 +215,33 @@ public class MainActivity1 extends ActionBarActivity {
 	// DESTROYS EVERYTHING (EXCEPT SERVICE?)
 	@Override
 	protected void onDestroy() {
+		
 	    android.os.Process.killProcess(android.os.Process.myPid());
+	    
+	    super.onDestroy();
+	}	
+	
+	public void onPause() {
+		
+		super.onPause();
+		
+		Intent svc=new Intent(this, Badonk2SoundService.class);
+		stopService(svc);		
 	}
+	
+	public void onResume() {
+		
+		super.onResume();
+		
+		Intent svc=new Intent(this, Badonk2SoundService.class);
+		startService(svc);		
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 	public static void insertToDatabase(final String player){
@@ -376,7 +404,10 @@ public class MainActivity1 extends ActionBarActivity {
     			public void onClick(View v) {    			                    	
             	buttonSound1.start();            	
             	//Think I need this so user doesn't have to push 'back' more than once (possibly)?
-            	//finish();            	
+            	//finish();
+            	
+            	stopService(svc);
+            	
             	Intent i = new Intent(MainActivity1.this, Rules.class);
             	MainActivity1.this.startActivity(i);            	
             	//USE THIS WHEN READY??:
@@ -493,7 +524,10 @@ public class MainActivity1 extends ActionBarActivity {
     			public void onClick(View v) {    			                    	
             	buttonSound1.start();            	
             	//Think I need this so user doesn't have to push 'back' more than once (possibly)?
-            	//finish();            	
+            	//finish();
+            	
+            	stopService(svc);
+            	
             	Intent i = new Intent(MainActivity1.this, Rules.class);
             	MainActivity1.this.startActivity(i);            	
             	//USE THIS WHEN READY??:

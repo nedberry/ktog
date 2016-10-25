@@ -115,8 +115,13 @@ public class Rules extends Activity {
            
     @Override
     public void onBackPressed() {
-        finish();
-        Intent i = new Intent(Rules.this, MainActivity1.class);
-        Rules.this.startActivity(i);
+        
+    	Intent intent = new Intent(Rules.this, MainActivity1.class);
+    	intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);  //this combination of flags would start a new instance even if the instance of same Activity exists.
+		intent.addFlags(Intent.FLAG_ACTIVITY_TASK_ON_HOME);
+    	finish();
+    	startActivity(intent);
+        //Rules.this.startActivity(i);
     }
 }

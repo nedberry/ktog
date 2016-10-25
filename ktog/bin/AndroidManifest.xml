@@ -50,7 +50,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity2"
+            android:name=".MainActivity2"            
             android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="com.nedswebsite.ktog.MAINACTIVITY2" />

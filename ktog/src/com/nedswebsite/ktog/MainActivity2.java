@@ -106,11 +106,11 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	
 	// SOME OF THESE MAY NEED TO BE AN ARRAY-CLASS:
-	public static int[] blessSpell = new int[] {0, 0, 1, 1, 1, 1, 1};// {1, 1, 1, 1, 1, 1, 1};
-	public static int[] cureSpell = new int[] {0, 0, 1, 1, 1, 1, 1};// {1, 1, 1, 1, 1, 1, 1};
-	public static int[] dodgeBlowSpell = new int[] {0, 0, 1, 1, 1, 1, 1};// {1, 1, 1, 1, 1, 1, 1};
-	public static int[] mightyBlowSpell = new int[] {0, 0, 1, 1, 1, 1, 1};// {1, 1, 1, 1, 1, 1, 1};
-	public static int[] hasteSpell = new int[] {0, 0, 2, 2, 2, 2, 2};//	{2, 2, 2, 2, 2, 2, 2};
+	public static int[] blessSpell = new int[] {1, 1, 1, 1, 1, 1, 1};// {1, 1, 1, 1, 1, 1, 1};
+	public static int[] cureSpell = new int[] {1, 1, 1, 1, 1, 1, 1};// {1, 1, 1, 1, 1, 1, 1};
+	public static int[] dodgeBlowSpell = new int[] {1, 1, 1, 1, 1, 1, 1};// {1, 1, 1, 1, 1, 1, 1};
+	public static int[] mightyBlowSpell = new int[] {1, 1, 1, 1, 1, 1, 1};// {1, 1, 1, 1, 1, 1, 1};
+	public static int[] hasteSpell = new int[] {2, 2, 2, 2, 2, 2, 2};//	{2, 2, 2, 2, 2, 2, 2};
 	
 	
 	// FOR ORDERING PURPOSES IN TITLE:
@@ -235,12 +235,12 @@ public class MainActivity2 extends ActionBarActivity {
 		computerNameTextView.setText(ArrayOfPlayers.player[1]);
 		
 		
-		ArrayOfHitPoints.hitpoints[0] = 5;//20		
+		ArrayOfHitPoints.hitpoints[0] = 20;//20		
 		final TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
 		playerHitPointsTextView.setTypeface(typeFace);
 		playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));		
 		
-		ArrayOfHitPoints.hitpoints[1] = 5;//20
+		ArrayOfHitPoints.hitpoints[1] = 20;//20
 		final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
 		computerHitPointsTextView.setTypeface(typeFace);
 		computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));		
@@ -1579,84 +1579,92 @@ public class MainActivity2 extends ActionBarActivity {
 				if (ArrayOfAttackResult.attackResult[0] == 1) {
 					twentySidedRollFromCenterToRight1();
 				}
-				if (ArrayOfAttackResult.attackResult[0] == 2) {
+				else if (ArrayOfAttackResult.attackResult[0] == 2) {
 					twentySidedRollFromCenterToRight2();
 				}
-				if (ArrayOfAttackResult.attackResult[0] == 3) {
+				else if (ArrayOfAttackResult.attackResult[0] == 3) {
 					twentySidedRollFromCenterToRight3();
 				}
-				if (ArrayOfAttackResult.attackResult[0] == 4) {
+				else if (ArrayOfAttackResult.attackResult[0] == 4) {
 					twentySidedRollFromCenterToRight4();
 				}
-				if (ArrayOfAttackResult.attackResult[0] == 5) {
+				else if (ArrayOfAttackResult.attackResult[0] == 5) {
 					twentySidedRollFromCenterToRight5();
 				}
-				if (ArrayOfAttackResult.attackResult[0] == 6) {
+				else if (ArrayOfAttackResult.attackResult[0] == 6) {
 					twentySidedRollFromCenterToRight6();
 				}
-				if (ArrayOfAttackResult.attackResult[0] == 7) {
+				else if (ArrayOfAttackResult.attackResult[0] == 7) {
 					twentySidedRollFromCenterToRight7();
 				}
-				if (ArrayOfAttackResult.attackResult[0] == 8) {
+				else if (ArrayOfAttackResult.attackResult[0] == 8) {
 					twentySidedRollFromCenterToRight8();
 				}
-				if (ArrayOfAttackResult.attackResult[0] == 9) {
+				else if (ArrayOfAttackResult.attackResult[0] == 9) {
 					twentySidedRollFromCenterToRight9();
 				}
-				if (ArrayOfAttackResult.attackResult[0] == 10) {
+				else if (ArrayOfAttackResult.attackResult[0] == 10) {
 					twentySidedRollFromCenterToRight10();
 				}
-				if (ArrayOfAttackResult.attackResult[0] == 11) {
+				else if (ArrayOfAttackResult.attackResult[0] == 11) {
 					twentySidedRollFromCenterToRight11();
 				}
-				if (ArrayOfAttackResult.attackResult[0] == 12) {
+				else if (ArrayOfAttackResult.attackResult[0] == 12) {
 					twentySidedRollFromCenterToRight12();
 				}
-				if (ArrayOfAttackResult.attackResult[0] == 13) {
+				else if (ArrayOfAttackResult.attackResult[0] == 13) {
 					twentySidedRollFromCenterToRight13();
 				}
-				if (ArrayOfAttackResult.attackResult[0] == 14) {
+				else if (ArrayOfAttackResult.attackResult[0] == 14) {
 					twentySidedRollFromCenterToRight14();
 				}
-				if (ArrayOfAttackResult.attackResult[0] == 15) {
+				else if (ArrayOfAttackResult.attackResult[0] == 15) {
 					twentySidedRollFromCenterToRight15();
 				}
-				if (ArrayOfAttackResult.attackResult[0] == 16) {
+				else if (ArrayOfAttackResult.attackResult[0] == 16) {
 					twentySidedRollFromCenterToRight16();
 				}
-				if (ArrayOfAttackResult.attackResult[0] == 17) {
+				else if (ArrayOfAttackResult.attackResult[0] == 17) {
 					twentySidedRollFromCenterToRight17();
 				}
-				if (ArrayOfAttackResult.attackResult[0] == 18) {
+				else if (ArrayOfAttackResult.attackResult[0] == 18) {
 					twentySidedRollFromCenterToRight18();
 				}
-				if (ArrayOfAttackResult.attackResult[0] == 19) {
+				else if (ArrayOfAttackResult.attackResult[0] == 19) {
 					twentySidedRollFromCenterToRight19();
 				}
-				if (ArrayOfAttackResult.attackResult[0] == 20) {
+				else if (ArrayOfAttackResult.attackResult[0] == 20) {
 					twentySidedRollFromCenterToRight20();
-				}
-				
-				
-				if (isattackrolled.equals("yes")) {
-					attackResults();
-				}
-				if (isdisarmwithblessrolled.equals("yes")) {					
-					disarmWithBlessResults();
-				}
-				if (isdisarmnoblessrolled.equals("yes")) {					
-					disarmNoBlessResults();
-				}
-				if (isblessrolled.equals("yes")) {
-					blessResults();
-				}
-				if (iscriticalmissrolled.equals("yes")) {
-					criticalMissResults();
-				}
-				if (iscriticalmissloseweaponrolled.equals("yes")) {
-					criticalMissLoseWeaponResults();
 				}				
-		    }		    
+				
+				final Handler h = new Handler();
+	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {
+	  	  	  			
+		  	  	  		if (isattackrolled.equals("yes")) {
+							attackResults();
+						}
+		  	  	  		else if (isdisarmwithblessrolled.equals("yes")) {					
+							disarmWithBlessResults();
+						}
+		  	  	  		else if (isdisarmnoblessrolled.equals("yes")) {					
+							disarmNoBlessResults();
+						}
+		  	  	  		else if (isblessrolled.equals("yes")) {
+							blessResults();
+						}
+		  	  	  		else if (iscriticalmissrolled.equals("yes")) {
+							criticalMissResults();
+						}
+		  	  	  		else if (iscriticalmissloseweaponrolled.equals("yes")) {
+							criticalMissLoseWeaponResults();
+						}
+		  	  	  	}
+	  	  	  	}, 50);								
+		    }
+		    
 		    public void onSwipeLeft() {		    		  				
 					
 				twentySidedWobbleStop();				
@@ -1664,92 +1672,97 @@ public class MainActivity2 extends ActionBarActivity {
 				if (ArrayOfAttackResult.attackResult[0] == 1) {
 					twentySidedRollFromCenterToLeft1();
 				}
-				if (ArrayOfAttackResult.attackResult[0] == 2) {
+				else if (ArrayOfAttackResult.attackResult[0] == 2) {
 					twentySidedRollFromCenterToLeft2();
 				}
-				if (ArrayOfAttackResult.attackResult[0] == 3) {
+				else if (ArrayOfAttackResult.attackResult[0] == 3) {
 					twentySidedRollFromCenterToLeft3();
 				}
-				if (ArrayOfAttackResult.attackResult[0] == 4) {
+				else if (ArrayOfAttackResult.attackResult[0] == 4) {
 					twentySidedRollFromCenterToLeft4();
 				}
-				if (ArrayOfAttackResult.attackResult[0] == 5) {
+				else if (ArrayOfAttackResult.attackResult[0] == 5) {
 					twentySidedRollFromCenterToLeft5();
 				}
-				if (ArrayOfAttackResult.attackResult[0] == 6) {
+				else if (ArrayOfAttackResult.attackResult[0] == 6) {
 					twentySidedRollFromCenterToLeft6();
 				}
-				if (ArrayOfAttackResult.attackResult[0] == 7) {
+				else if (ArrayOfAttackResult.attackResult[0] == 7) {
 					twentySidedRollFromCenterToLeft7();
 				}
-				if (ArrayOfAttackResult.attackResult[0] == 8) {
+				else if (ArrayOfAttackResult.attackResult[0] == 8) {
 					twentySidedRollFromCenterToLeft8();
 				}
-				if (ArrayOfAttackResult.attackResult[0] == 9) {
+				else if (ArrayOfAttackResult.attackResult[0] == 9) {
 					twentySidedRollFromCenterToLeft9();
 				}
-				if (ArrayOfAttackResult.attackResult[0] == 10) {
+				else if (ArrayOfAttackResult.attackResult[0] == 10) {
 					twentySidedRollFromCenterToLeft10();
 				}
-				if (ArrayOfAttackResult.attackResult[0] == 11) {
+				else if (ArrayOfAttackResult.attackResult[0] == 11) {
 					twentySidedRollFromCenterToLeft11();
 				}
-				if (ArrayOfAttackResult.attackResult[0] == 12) {
+				else if (ArrayOfAttackResult.attackResult[0] == 12) {
 					twentySidedRollFromCenterToLeft12();
 				}
-				if (ArrayOfAttackResult.attackResult[0] == 13) {
+				else if (ArrayOfAttackResult.attackResult[0] == 13) {
 					twentySidedRollFromCenterToLeft13();
 				}
-				if (ArrayOfAttackResult.attackResult[0] == 14) {
+				else if (ArrayOfAttackResult.attackResult[0] == 14) {
 					twentySidedRollFromCenterToLeft14();
 				}
-				if (ArrayOfAttackResult.attackResult[0] == 15) {
+				else if (ArrayOfAttackResult.attackResult[0] == 15) {
 					twentySidedRollFromCenterToLeft15();
 				}
-				if (ArrayOfAttackResult.attackResult[0] == 16) {
+				else if (ArrayOfAttackResult.attackResult[0] == 16) {
 					twentySidedRollFromCenterToLeft16();
 				}
-				if (ArrayOfAttackResult.attackResult[0] == 17) {
+				else if (ArrayOfAttackResult.attackResult[0] == 17) {
 					twentySidedRollFromCenterToLeft17();
 				}
-				if (ArrayOfAttackResult.attackResult[0] == 18) {
+				else if (ArrayOfAttackResult.attackResult[0] == 18) {
 					twentySidedRollFromCenterToLeft18();
 				}
-				if (ArrayOfAttackResult.attackResult[0] == 19) {
+				else if (ArrayOfAttackResult.attackResult[0] == 19) {
 					twentySidedRollFromCenterToLeft19();
 				}
-				if (ArrayOfAttackResult.attackResult[0] == 20) {
+				else if (ArrayOfAttackResult.attackResult[0] == 20) {
 					twentySidedRollFromCenterToLeft20();
-				}
+				}				
 				
-				
-				if (isattackrolled.equals("yes")) {
-					attackResults();
-				}
-				if (isdisarmwithblessrolled.equals("yes")) {					
-					disarmWithBlessResults();
-				}
-				if (isdisarmnoblessrolled.equals("yes")) {					
-					disarmNoBlessResults();
-				}
-				if (isblessrolled.equals("yes")) {
-					blessResults();
-				}
-				if (iscriticalmissrolled.equals("yes")) {
-					criticalMissResults();
-				}
-				if (iscriticalmissloseweaponrolled.equals("yes")) {
-					criticalMissLoseWeaponResults();
-				}
+				final Handler h = new Handler();
+	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {
+	  	  	  			
+		  	  	  		if (isattackrolled.equals("yes")) {
+							attackResults();
+						}
+		  	  	  		else if (isdisarmwithblessrolled.equals("yes")) {					
+							disarmWithBlessResults();
+						}
+		  	  	  		else if (isdisarmnoblessrolled.equals("yes")) {					
+							disarmNoBlessResults();
+						}
+		  	  	  		else if (isblessrolled.equals("yes")) {
+							blessResults();
+						}
+		  	  	  		else if (iscriticalmissrolled.equals("yes")) {
+							criticalMissResults();
+						}
+		  	  	  		else if (iscriticalmissloseweaponrolled.equals("yes")) {
+							criticalMissLoseWeaponResults();
+						}
+		  	  	  	}
+	  	  	  	}, 50);			
 		    }
 		    /*
 		    public void onSwipeBottom() {
 		        Toast.makeText(MainActivity2.this, "bottom", Toast.LENGTH_SHORT).show();
 		    }
 		    */
-		});			
-		
-		
+		});	
 	}
 	
 	
@@ -2577,61 +2590,61 @@ public class MainActivity2 extends ActionBarActivity {
 		if (ArrayOfAttackResult.attackResult[0] == 1) {
 			computerTwentySidedRollFromLeft1();
 		}
-		if (ArrayOfAttackResult.attackResult[0] == 2) {
+		else if (ArrayOfAttackResult.attackResult[0] == 2) {
 			computerTwentySidedRollFromLeft2();
 		}
-		if (ArrayOfAttackResult.attackResult[0] == 3) {
+		else if (ArrayOfAttackResult.attackResult[0] == 3) {
 			computerTwentySidedRollFromLeft3();
 		}
-		if (ArrayOfAttackResult.attackResult[0] == 4) {
+		else if (ArrayOfAttackResult.attackResult[0] == 4) {
 			computerTwentySidedRollFromLeft4();
 		}
-		if (ArrayOfAttackResult.attackResult[0] == 5) {
+		else if (ArrayOfAttackResult.attackResult[0] == 5) {
 			computerTwentySidedRollFromLeft5();
 		}
-		if (ArrayOfAttackResult.attackResult[0] == 6) {
+		else if (ArrayOfAttackResult.attackResult[0] == 6) {
 			computerTwentySidedRollFromLeft6();
 		}
-		if (ArrayOfAttackResult.attackResult[0] == 7) {
+		else if (ArrayOfAttackResult.attackResult[0] == 7) {
 			computerTwentySidedRollFromLeft7();
 		}
-		if (ArrayOfAttackResult.attackResult[0] == 8) {
+		else if (ArrayOfAttackResult.attackResult[0] == 8) {
 			computerTwentySidedRollFromLeft8();
 		}
-		if (ArrayOfAttackResult.attackResult[0] == 9) {
+		else if (ArrayOfAttackResult.attackResult[0] == 9) {
 			computerTwentySidedRollFromLeft9();
 		}
-		if (ArrayOfAttackResult.attackResult[0] == 10) {
+		else if (ArrayOfAttackResult.attackResult[0] == 10) {
 			computerTwentySidedRollFromLeft10();
 		}
-		if (ArrayOfAttackResult.attackResult[0] == 11) {
+		else if (ArrayOfAttackResult.attackResult[0] == 11) {
 			computerTwentySidedRollFromLeft11();
 		}
-		if (ArrayOfAttackResult.attackResult[0] == 12) {
+		else if (ArrayOfAttackResult.attackResult[0] == 12) {
 			computerTwentySidedRollFromLeft12();
 		}
-		if (ArrayOfAttackResult.attackResult[0] == 13) {
+		else if (ArrayOfAttackResult.attackResult[0] == 13) {
 			computerTwentySidedRollFromLeft13();
 		}
-		if (ArrayOfAttackResult.attackResult[0] == 14) {
+		else if (ArrayOfAttackResult.attackResult[0] == 14) {
 			computerTwentySidedRollFromLeft14();
 		}
-		if (ArrayOfAttackResult.attackResult[0] == 15) {
+		else if (ArrayOfAttackResult.attackResult[0] == 15) {
 			computerTwentySidedRollFromLeft15();
 		}
-		if (ArrayOfAttackResult.attackResult[0] == 16) {
+		else if (ArrayOfAttackResult.attackResult[0] == 16) {
 			computerTwentySidedRollFromLeft16();
 		}
-		if (ArrayOfAttackResult.attackResult[0] == 17) {
+		else if (ArrayOfAttackResult.attackResult[0] == 17) {
 			computerTwentySidedRollFromLeft17();
 		}
-		if (ArrayOfAttackResult.attackResult[0] == 18) {
+		else if (ArrayOfAttackResult.attackResult[0] == 18) {
 			computerTwentySidedRollFromLeft18();
 		}
-		if (ArrayOfAttackResult.attackResult[0] == 19) {
+		else if (ArrayOfAttackResult.attackResult[0] == 19) {
 			computerTwentySidedRollFromLeft19();
 		}
-		if (ArrayOfAttackResult.attackResult[0] == 20) {
+		else if (ArrayOfAttackResult.attackResult[0] == 20) {
 			computerTwentySidedRollFromLeft20();
 		}
 	}
@@ -5580,7 +5593,7 @@ public class MainActivity2 extends ActionBarActivity {
 									  	  	  			
 										  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 												  		centerscrolltext.startAnimation(animAlphaText);
-														centerscrolltext.append("\n" + "> The computer rolls " + ArrayOfAttackResult.attackResult[0] + ", + 2 = " + (ArrayOfAttackResult.attackResult[0] + 2) + ".");
+														centerscrolltext.append("\n" + "> The computer rolls " + ArrayOfAttackResult.attackResult[0] + ", +2 = " + (ArrayOfAttackResult.attackResult[0] + 2) + ".");
 									  	  	  			
 														final Handler h = new Handler();
 											  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -5749,7 +5762,7 @@ public class MainActivity2 extends ActionBarActivity {
 									  	  	  			
 										  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 												  		centerscrolltext.startAnimation(animAlphaText);
-												  		centerscrolltext.append("\n" + "> The computer rolls " + ArrayOfAttackResult.attackResult[0] + ", + 2 = " + (ArrayOfAttackResult.attackResult[0] + 2) + ".");
+												  		centerscrolltext.append("\n" + "> The computer rolls " + ArrayOfAttackResult.attackResult[0] + ", +2 = " + (ArrayOfAttackResult.attackResult[0] + 2) + ".");
 									  	  	  			
 														final Handler h = new Handler();
 											  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -5772,8 +5785,7 @@ public class MainActivity2 extends ActionBarActivity {
 														  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 														  	    			
 														  	    			gameEngineComputerFirst2();   							
-														  				}
-									
+														  				}									
 														  	  	  		else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
 																	  						
 																	  		turn();    							
@@ -5781,8 +5793,7 @@ public class MainActivity2 extends ActionBarActivity {
 														  	  	  		else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
 																	  	    			
 																	  		computerHastePartTwo();   							
-																	  	}
-												
+																	  	}												
 														  	  	  		else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
 																	  						
 																	  		computerHastePartTwo();    							
@@ -5963,8 +5974,7 @@ public class MainActivity2 extends ActionBarActivity {
 																			  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 																			  	    			
 																			  	    			gameEngineComputerFirst2();   							
-																			  				}
-														
+																			  				}														
 																			  	  	  		else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
 																						  						
 																						  		turn();    							
@@ -5972,8 +5982,7 @@ public class MainActivity2 extends ActionBarActivity {
 																			  	  	  		else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
 																						  	    			
 																						  		computerHastePartTwo();   							
-																						  	}
-																	
+																						  	}																	
 																			  	  	  		else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
 																						  						
 																						  		computerHastePartTwo();    							
@@ -6071,8 +6080,7 @@ public class MainActivity2 extends ActionBarActivity {
 														  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 														  	    			
 														  	    			gameEngineComputerFirst2();   							
-														  				}
-									
+														  				}									
 														  	  	  		else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
 																	  						
 																	  		turn();    							
@@ -6080,8 +6088,7 @@ public class MainActivity2 extends ActionBarActivity {
 														  	  	  		else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
 																	  	    			
 																	  		computerHastePartTwo();   							
-																	  	}
-												
+																	  	}												
 														  	  	  		else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
 																	  						
 																	  		computerHastePartTwo();    							
@@ -6205,8 +6212,7 @@ public class MainActivity2 extends ActionBarActivity {
 																			  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 																			  	    			
 																			  	    			gameEngineComputerFirst2();   							
-																			  				}
-														
+																			  				}														
 																			  	  	  		else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
 																						  						
 																						  		turn();    							
@@ -6214,8 +6220,7 @@ public class MainActivity2 extends ActionBarActivity {
 																			  	  	  		else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
 																						  	    			
 																						  		computerHastePartTwo();   							
-																						  	}
-																	
+																						  	}																	
 																			  	  	  		else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
 																						  						
 																						  		computerHastePartTwo();    							
@@ -6313,8 +6318,7 @@ public class MainActivity2 extends ActionBarActivity {
 														  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 														  	    			
 														  	    			gameEngineComputerFirst2();   							
-														  				}
-									
+														  				}									
 														  	  	  		else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
 																	  						
 																	  		turn();    							
@@ -6322,8 +6326,7 @@ public class MainActivity2 extends ActionBarActivity {
 														  	  	  		else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
 																	  	    			
 																	  		computerHastePartTwo();   							
-																	  	}
-												
+																	  	}												
 														  	  	  		else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
 																	  						
 																	  		computerHastePartTwo();    							
@@ -6353,8 +6356,7 @@ public class MainActivity2 extends ActionBarActivity {
 						  	  	  	}
 					  	  	  	}, 2000);				  	  	  		
 				  	  	  	}
-			  	  	  	}, 2000);
-				  	  	  												
+			  	  	  	}, 2000);				  	  	  												
 					}
 				}
 				
@@ -6528,16 +6530,16 @@ public class MainActivity2 extends ActionBarActivity {
 	  						  	    			gameEngineComputerFirst2();   							
 	  						  				}
 	  		
-	  									  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
+	  						  	  	  		else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
 	  									  						
 	  									  		turn();    							
 	  									  	}
-	  									  	if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
+	  						  	  	  		else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
 	  									  	    			
 	  									  		computerHastePartTwo();   							
 	  									  	}
 	  				
-	  									  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
+	  						  	  	  		else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
 	  									  						
 	  									  		computerHastePartTwo();    							
 	  									  	}				  	  	  			
@@ -7599,16 +7601,16 @@ public class MainActivity2 extends ActionBarActivity {
 						  	    			gameEngineComputerFirst2();   							
 						  				}
 					
-									  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
+						  	  	  		else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
 									  						
 									  		turn();    							
 									  	}
-									  	if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
+						  	  	  		else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
 									  	    			
 									  		computerHastePartTwo();   							
 									  	}
 					
-									  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
+						  	  	  		else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
 									  						
 									  		computerHastePartTwo();    							
 									  	}	  	  	  			
@@ -7793,7 +7795,7 @@ public class MainActivity2 extends ActionBarActivity {
 																	  	    			gameEngineComputerFirst2();   							
 																	  				}
 												
-																				  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
+																	  	  	  		else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
 																				  						
 																				  		turn();
 																				  	}
@@ -7880,9 +7882,8 @@ public class MainActivity2 extends ActionBarActivity {
 												  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
 												  	    			
 												  	    			gameEngineComputerFirst2();   							
-												  				}
-									
-															  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+												  				}									
+												  	  	  		else if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
 															  						
 															  		turn();    							
 															  	}			  	  	  			
@@ -8046,7 +8047,7 @@ public class MainActivity2 extends ActionBarActivity {
 																	  	    			gameEngineComputerFirst2();   							
 																	  				}
 												
-																				  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
+																	  	  	  		else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
 																				  						
 																				  		turn();
 																				  	}
@@ -8133,9 +8134,8 @@ public class MainActivity2 extends ActionBarActivity {
 												  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
 												  	    			
 												  	    			gameEngineComputerFirst2();   							
-												  				}
-									
-															  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+												  				}									
+												  	  	  		else if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
 															  						
 															  		turn();    							
 															  	}			  	  	  			
@@ -8292,8 +8292,8 @@ public class MainActivity2 extends ActionBarActivity {
 		  			final TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
 	    			playerHitPointsTextView.setTypeface(typeFace);
 	    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
-	    			Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);
-	    			playerHitPointsTextView.startAnimation(animPulsingAnimation);
+	    			//Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);
+	    			//playerHitPointsTextView.startAnimation(animPulsingAnimation);
 		  			
 	    			
 		  			centerscrolltext.setVisibility(View.VISIBLE);													
@@ -8458,18 +8458,16 @@ public class MainActivity2 extends ActionBarActivity {
 																		  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 																		  	    			
 																		  	    			gameEngineComputerFirst2();   							
-																		  				}
-													
-																					  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
+																		  				}													
+																		  	  	  		else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
 																					  						
 																					  		turn();    							
 																					  	}
-																					  	if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
+																		  	  	  		else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
 																					  	    			
 																					  		computerHastePartTwo();   							
-																					  	}
-																
-																					  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
+																					  	}																
+																		  	  	  		else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
 																					  						
 																					  		computerHastePartTwo();    							
 																					  	}								  		    		
@@ -8544,9 +8542,8 @@ public class MainActivity2 extends ActionBarActivity {
 													  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
 													  	    			
 													  	    			gameEngineComputerFirst2();   							
-													  				}
-													  	  	  		
-																  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+													  				}													  	  	  		
+													  	  	  		else if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
 																  						
 																  		turn();    							
 																  	}								  						  	  	  			
@@ -8641,18 +8638,16 @@ public class MainActivity2 extends ActionBarActivity {
 																		  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 																		  	    			
 																		  	    			gameEngineComputerFirst2();   							
-																		  				}
-													
-																					  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
+																		  				}													
+																		  	  	  		else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
 																					  						
 																					  		turn();    							
 																					  	}
-																					  	if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
+																		  	  	  		else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
 																					  	    			
 																					  		computerHastePartTwo();   							
-																					  	}
-																
-																					  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
+																					  	}																
+																		  	  	  		else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
 																					  						
 																					  		computerHastePartTwo();  							
 																					  	}								  		    		
@@ -8727,9 +8722,8 @@ public class MainActivity2 extends ActionBarActivity {
 													  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
 													  	    			
 													  	    			gameEngineComputerFirst2();   							
-													  				}
-													  	  	  		
-																  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+													  				}													  	  	  		
+													  	  	  		else if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
 																  						
 																  		turn();
 																  	}								  						  	  	  			
@@ -8823,7 +8817,7 @@ public class MainActivity2 extends ActionBarActivity {
 							  	  	  			
 								  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 										  		centerscrolltext.startAnimation(animAlphaText);			  		
-												centerscrolltext.append("\n" + "> The computer rolls " + ArrayOfAttackResult.attackResult[0] + ", +2 for the Bless Spell = " + (ArrayOfAttackResult.attackResult[0] + 2));
+												centerscrolltext.append("\n" + "> The computer rolls " + ArrayOfAttackResult.attackResult[0] + ", +2 for the Bless Spell = " + (ArrayOfAttackResult.attackResult[0] + 2) + ".");
 												
 								
 												if (ArrayOfAttackResult.attackResult[0] >= 15) {
@@ -8853,9 +8847,8 @@ public class MainActivity2 extends ActionBarActivity {
 													  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
 													  	    			
 													  	    			gameEngineComputerFirst2();   							
-													  				}
-									
-																  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+													  				}									
+													  	  	  		else if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
 																  						
 																  		turn();    							
 																  	}				  	  	  			
@@ -8889,9 +8882,8 @@ public class MainActivity2 extends ActionBarActivity {
 													  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
 													  	    			
 													  	    			gameEngineComputerFirst2();   							
-													  				}
-									
-																  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+													  				}									
+													  	  	  		else if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
 																  						
 																  		turn();    							
 																  	}				  	  	  			
@@ -8970,9 +8962,8 @@ public class MainActivity2 extends ActionBarActivity {
 											  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
 											  	    			
 											  	    			gameEngineComputerFirst2();   							
-											  				}
-							
-														  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+											  				}							
+											  	  	  		else if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
 														  						
 														  		turn();    							
 														  	}				  	  	  			
@@ -9006,9 +8997,8 @@ public class MainActivity2 extends ActionBarActivity {
 											  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
 											  	    			
 											  	    			gameEngineComputerFirst2();   							
-											  				}
-							
-														  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+											  				}							
+											  	  	  		else if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
 														  						
 														  		turn();    							
 														  	}				  	  	  			
@@ -9096,9 +9086,8 @@ public class MainActivity2 extends ActionBarActivity {
 										  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
 										  	    			
 										  	    			gameEngineComputerFirst2();   							
-										  				}
-					
-													  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+										  				}					
+										  	  	  		else if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
 													  						
 													  		turn();    							
 													  	}				  	  	  			
@@ -9132,9 +9121,8 @@ public class MainActivity2 extends ActionBarActivity {
 										  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
 										  	    			
 										  	    			gameEngineComputerFirst2();   							
-										  				}
-					
-													  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+										  				}					
+										  	  	  		else if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
 													  						
 													  		turn();    							
 													  	}				  	  	  			
@@ -9355,9 +9343,8 @@ public class MainActivity2 extends ActionBarActivity {
 				  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
 				  	    			
 				  	    			gameEngineComputerFirst2();   							
-				  				}
-	
-							  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+				  				}	
+				  	  	  		else if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
 							  						
 							  		turn();    							
 							  	}			  	  	  			
@@ -9513,9 +9500,8 @@ public class MainActivity2 extends ActionBarActivity {
 															  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
 															  	    			
 															  	    			gameEngineComputerFirst2();   							
-															  				}
-										
-																		  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+															  				}										
+															  	  	  		else if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
 																		  						
 																		  		turn();    							
 																		  	}
@@ -9599,9 +9585,8 @@ public class MainActivity2 extends ActionBarActivity {
 										  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
 										  	    			
 										  	    			gameEngineComputerFirst2();   							
-										  				}
-					
-													  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+										  				}					
+										  	  	  		else if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
 													  						
 													  		turn();    							
 													  	}							  						  	  	  			
@@ -9711,9 +9696,8 @@ public class MainActivity2 extends ActionBarActivity {
 															  	  	  		if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
 															  	    			
 															  	    			gameEngineComputerFirst2();   							
-															  				}
-										
-																		  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
+															  				}										
+															  	  	  		else if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
 																		  						
 																		  		turn();    							
 																		  	}
@@ -9799,7 +9783,7 @@ public class MainActivity2 extends ActionBarActivity {
 										  	    			gameEngineComputerFirst2();   							
 										  				}
 					
-													  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
+										  	  	  		else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
 													  						
 													  		turn();    							
 													  	}							  						  	  	  			
@@ -12071,18 +12055,16 @@ public class MainActivity2 extends ActionBarActivity {
 																  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 																  	    			
 																  	    			gameEngineComputerFirst2();   							
-																  				}
-													
-																			  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
+																  				}													
+																  	  	  		else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
 																			  						
 																			  		turn();    							
 																			  	}
-																			  	if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
+																  	  	  		else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
 																			  	    			
 																			  		computerHastePartTwo();   							
-																			  	}
-													
-																			  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
+																			  	}													
+																  	  	  		else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
 																			  						
 																			  		computerHastePartTwo();    							
 																			  	}			  	  	  			
@@ -12116,18 +12098,16 @@ public class MainActivity2 extends ActionBarActivity {
 																  	  	  		if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {		
 																  	    			
 																  	    			gameEngineComputerFirst2();   							
-																  				}
-													
-																			  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
+																  				}													
+																  	  	  		else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("no")) {				
 																			  						
 																			  		turn();    							
 																			  	}
-																			  	if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
+																  	  	  		else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
 																			  	    			
 																			  		computerHastePartTwo();   							
-																			  	}
-													
-																			  	if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
+																			  	}													
+																  	  	  		else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {				
 																			  						
 																			  		computerHastePartTwo();    							
 																			  	}			  	  	  			
@@ -12966,19 +12946,16 @@ public class MainActivity2 extends ActionBarActivity {
 								  	  	  			if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
 													
 								  	  	  				gameEngineHumanFirst2();    							
-													}
-	
-													if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
+													}	
+								  	  	  			else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
 										    			
 										    			turn();   							
-													}
-													
-													if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
+													}													
+								  	  	  			else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
 														
 										    			hastePartTwo();    							
-													}
-	
-													if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
+													}	
+								  	  	  			else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
 										    			
 														hastePartTwo();   							
 													}					  	  	  	
@@ -13022,19 +12999,16 @@ public class MainActivity2 extends ActionBarActivity {
 								  	  	  			if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
 													
 									    			gameEngineHumanFirst2();    							
-													}
-	
-													if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
+													}	
+								  	  	  			else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
 										    			
 										    			turn();   							
-													}
-													
-													if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
+													}													
+								  	  	  			else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
 														
 										    			hastePartTwo();    							
-													}
-	
-													if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
+													}	
+								  	  	  			else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
 										    			
 														hastePartTwo();   							
 													}					  	  	  	
@@ -13116,19 +13090,16 @@ public class MainActivity2 extends ActionBarActivity {
 								  	  	  			if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
 													
 									    			gameEngineHumanFirst2();    							
-													}
-	
-													if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
+													}	
+								  	  	  			else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
 										    			
 										    			turn();   							
-													}
-													
-													if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
+													}													
+								  	  	  			else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
 														
 										    			hastePartTwo();    							
-													}
-	
-													if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
+													}	
+								  	  	  			else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
 										    			
 														hastePartTwo();   							
 													}					  	  	  	
@@ -13182,19 +13153,16 @@ public class MainActivity2 extends ActionBarActivity {
 								  	  	  			if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
 													
 									    			gameEngineHumanFirst2();    							
-													}
-	
-													if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
+													}	
+								  	  	  			else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
 										    			
 										    			turn();   							
-													}
-													
-													if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
+													}													
+								  	  	  			else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
 														
 										    			hastePartTwo();    							
-													}
-	
-													if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
+													}	
+								  	  	  			else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
 										    			
 														hastePartTwo();   							
 													}					  	  	  	
@@ -13907,19 +13875,16 @@ public class MainActivity2 extends ActionBarActivity {
 						  	  	  		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
 											
 							    			gameEngineHumanFirst2();    							
-										}
-	
-										if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
+										}	
+						  	  	  		else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
 							    			
 							    			turn();   							
-										}
-										
-										if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
+										}										
+						  	  	  		else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
 											
 							    			hastePartTwo();    							
-										}
-	
-										if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
+										}	
+						  	  	  		else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
 							    			
 											hastePartTwo();   							
 										}					  	  	  	
@@ -14573,19 +14538,16 @@ public class MainActivity2 extends ActionBarActivity {
 						  	  	  		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
 											
 							    			gameEngineHumanFirst2();    							
-										}
-		
-										if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
+										}		
+						  	  	  		else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
 							    			
 							    			turn();   							
-										}
-										
-										if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
+										}										
+						  	  	  		else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
 											
 							    			hastePartTwo();    							
-										}
-		
-										if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
+										}		
+						  	  	  		else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
 							    			
 											hastePartTwo();   							
 										}					  	  	  	
@@ -15621,7 +15583,10 @@ public class MainActivity2 extends ActionBarActivity {
 								ArrayOfAttackResult.attackResult[0] = (int) ((Math.random() * 20) + 1);
 								//int attackResult = (int) ((Math.random() * 20) + 1);										
 								
-								iscriticalmissrolled = "yes";								
+								iscriticalmissrolled = "yes";
+								
+								// Re-enables ability to use srollbar:
+					  			centerscrolltext.bringToFront();
 			  	  	  		}
 			  	  	  	}, 750);					  	  	  		
 	  	  	  		}
@@ -16026,7 +15991,10 @@ public class MainActivity2 extends ActionBarActivity {
 								ArrayOfAttackResult.attackResult[0] = (int) ((Math.random() * 20) + 1);//(int) ((Math.random() * 20) + 1)
 								//int attackResult = (int) ((Math.random() * 20) + 1);										
 								
-								iscriticalmissloseweaponrolled = "yes";								
+								iscriticalmissloseweaponrolled = "yes";
+								
+								// Re-enables ability to use srollbar:
+					  			centerscrolltext.bringToFront();
 			  	  	  		}
 			  	  	  	}, 750);					  	  	  		
 	  	  	  		}
@@ -16100,21 +16068,18 @@ public class MainActivity2 extends ActionBarActivity {
 							  	  	  		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
 												
 								    			gameEngineHumanFirst2();    							
-											}
-			
-											if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
+											}			
+							  	  	  		else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
 								    			
 								    			turn();   							
 											}
 											
-											// TAKE THIS OUT?:
-											
-											if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
+											// TAKE THIS OUT?:											
+							  	  	  		else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
 												
 								    			hastePartTwo();    							
-											}
-			
-											if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
+											}			
+							  	  	  		else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
 								    			
 												hastePartTwo();   							
 											}						  	  	  			
@@ -16145,19 +16110,16 @@ public class MainActivity2 extends ActionBarActivity {
 							  	  	  		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
 												
 								    			gameEngineHumanFirst2();    							
-											}
-			
-											if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
+											}			
+							  	  	  		else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
 								    			
 								    			turn();   							
-											}
-											
-											if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
+											}											
+							  	  	  		else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {				
 												
 								    			hastePartTwo();    							
-											}
-			
-											if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
+											}			
+							  	  	  		else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
 								    			
 												hastePartTwo();   							
 											}						  	  	  			
@@ -16552,9 +16514,8 @@ public class MainActivity2 extends ActionBarActivity {
 									  	  	  		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
 														
 										    			gameEngineHumanFirst2();    							
-													}
-	
-													if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
+													}	
+									  	  	  		else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
 										    			
 										    			turn();   							
 													}
@@ -16603,9 +16564,8 @@ public class MainActivity2 extends ActionBarActivity {
 									  	  	  		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
 														
 										    			gameEngineHumanFirst2();    							
-													}
-	
-													if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
+													}	
+									  	  	  		else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
 										    			
 										    			turn();   							
 													}
@@ -16768,9 +16728,8 @@ public class MainActivity2 extends ActionBarActivity {
 									  	  	  		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
 														
 										    			gameEngineHumanFirst2();    							
-													}
-	
-													if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
+													}	
+									  	  	  		else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
 										    			
 										    			turn();   							
 													}
@@ -16815,9 +16774,8 @@ public class MainActivity2 extends ActionBarActivity {
 									  	  	  		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
 														
 										    			gameEngineHumanFirst2();    							
-													}
-	
-													if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
+													}	
+									  	  	  		else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
 										    			
 										    			turn();   							
 													}
@@ -16957,9 +16915,8 @@ public class MainActivity2 extends ActionBarActivity {
 							  	  	  		if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {				
 												
 								    			gameEngineHumanFirst2();    							
-											}
-		
-											if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
+											}		
+							  	  	  		else if (ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) {		
 								    			
 								    			turn();   							
 											}					  	  	  	
@@ -17072,8 +17029,8 @@ public class MainActivity2 extends ActionBarActivity {
 		  			final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
 		  			computerHitPointsTextView.setTypeface(typeFace);
 		  			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));	  			
-		  			Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);				
-		  			computerHitPointsTextView.startAnimation(animPulsingAnimation);
+		  			//Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);				
+		  			//computerHitPointsTextView.startAnimation(animPulsingAnimation);
 		  			
 		  			
 		  			
@@ -17556,9 +17513,8 @@ public class MainActivity2 extends ActionBarActivity {
 								  	  	  		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
 													
 									    			gameEngineHumanFirst2();    							
-												}
-	
-												if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
+												}	
+								  	  	  		else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
 									    			
 									    			turn();   							
 												}																	  	  	  	
@@ -17712,9 +17668,8 @@ public class MainActivity2 extends ActionBarActivity {
 								  	  	  		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
 													
 									    			gameEngineHumanFirst2();    							
-												}
-	
-												if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
+												}	
+								  	  	  		else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
 									    			
 									    			turn();   							
 												}																	  	  	  	
@@ -17962,9 +17917,8 @@ public class MainActivity2 extends ActionBarActivity {
 				  	  	  		if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {				
 									
 					    			gameEngineHumanFirst2();    							
-								}
-	
-								if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
+								}	
+				  	  	  		else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1])) {		
 					    			
 					    			turn();   							
 								}																						
@@ -18042,7 +17996,7 @@ public class MainActivity2 extends ActionBarActivity {
 		  		};		  		
 		  		
 		  		
-		  		// THIS WAY ALLOWS YOU TO STYLE THE DIALOG:
+		  		// THIS WAY ALLOWS YOU TO STYLE THE DIALOG (ex. background doesn't dim.):
 		  		ContextThemeWrapper cw = new ContextThemeWrapper(MainActivity2.this, R.style.DialogWindowTitle_Holo);
 		  		AlertDialog.Builder builder = new AlertDialog.Builder(cw);
 		  		
@@ -18069,8 +18023,8 @@ public class MainActivity2 extends ActionBarActivity {
 	            builder.setAdapter(adapter,
 	                    new DialogInterface.OnClickListener() {
 	                        @Override
-	                        public void onClick(final DialogInterface dialog,
-	                                int item) {
+	                        public void onClick(final DialogInterface dialog, int item) {
+	                        	
 	                        	if (item == 0) {										
 									
 									centerscrolltext.setVisibility(View.VISIBLE);													
@@ -18488,7 +18442,7 @@ public class MainActivity2 extends ActionBarActivity {
 		  			  		};		  		
 		  			  		
 		  			  		
-		  			  		// THIS WAY ALLOWS YOU TO STYLE THE DIALOG:
+		  			  		// THIS WAY ALLOWS YOU TO STYLE THE DIALOG (ex. background doesn't dim.):
 		  			  		ContextThemeWrapper cw = new ContextThemeWrapper(MainActivity2.this, R.style.DialogWindowTitle_Holo);
 		  			  		AlertDialog.Builder builder = new AlertDialog.Builder(cw);
 		  			  		
@@ -18895,7 +18849,7 @@ public class MainActivity2 extends ActionBarActivity {
 		//Toast.makeText(MainActivity2.this, "didComputerCriticalMiss = " + didComputerCriticalMiss, Toast.LENGTH_SHORT).show();
 		//Toast.makeText(MainActivity2.this, "disarmedTurnStart = " + disarmedTurnStart[1], Toast.LENGTH_SHORT).show();
 		
-		Toast.makeText(MainActivity2.this, "Turn = " + ArrayOfTurn.turn[0], Toast.LENGTH_SHORT).show();
+		//Toast.makeText(MainActivity2.this, "Turn = " + ArrayOfTurn.turn[0], Toast.LENGTH_SHORT).show();
 		
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
@@ -19066,7 +19020,7 @@ public class MainActivity2 extends ActionBarActivity {
 		
 		//Toast.makeText(MainActivity2.this, "COMPUTER TURN START", Toast.LENGTH_SHORT).show();	
 		
-		Toast.makeText(MainActivity2.this, "Turn = " + ArrayOfTurn.turn[0], Toast.LENGTH_SHORT).show();
+		//Toast.makeText(MainActivity2.this, "Turn = " + ArrayOfTurn.turn[0], Toast.LENGTH_SHORT).show();
 		
     	
     	if (canHasDisarmed[1].equals("yes") && didComputerCriticalMiss.equals("no") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0]) {
@@ -19262,7 +19216,7 @@ public class MainActivity2 extends ActionBarActivity {
 		//Toast.makeText(MainActivity2.this, "didHumanCriticalMiss = " + didHumanCriticalMiss, Toast.LENGTH_SHORT).show();
 		//Toast.makeText(MainActivity2.this, "disarmedTurnStart = " + disarmedTurnStart[0], Toast.LENGTH_SHORT).show();
 		
-		Toast.makeText(MainActivity2.this, "Turn = " + ArrayOfTurn.turn[0], Toast.LENGTH_SHORT).show();
+		//Toast.makeText(MainActivity2.this, "Turn = " + ArrayOfTurn.turn[0], Toast.LENGTH_SHORT).show();
 		
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);  	
@@ -19422,7 +19376,7 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	public void gameEngineComputerFirst2() {
 		
-		Toast.makeText(MainActivity2.this, "Turn = " + ArrayOfTurn.turn[0], Toast.LENGTH_SHORT).show();
+		//Toast.makeText(MainActivity2.this, "Turn = " + ArrayOfTurn.turn[0], Toast.LENGTH_SHORT).show();
 		
 		
 		issecondroundofhasteused = "no"; // SO HUMIE CAN USE MB AFTER THE 2RD ROUND OF A HASTE.
@@ -20281,7 +20235,7 @@ public void victoryDefeatAnimation() {
 								istitlestatsopen = "no";
 							}
 							
-							if (playerDeadYet[1] == "no" && playerDeadYet[0] == "yes") {
+							else if (playerDeadYet[1] == "no" && playerDeadYet[0] == "yes") {
 								
 								titlevictorydefeat.append("Defeat");
 								
@@ -20326,7 +20280,7 @@ public void victoryDefeatAnimation() {
 								titlevictorydefeat.append("Victory");
 							}
 							
-							if (playerDeadYet[1] == "no" && playerDeadYet[0] == "yes") {
+							else if (playerDeadYet[1] == "no" && playerDeadYet[0] == "yes") {
 								
 								titlevictorydefeat.append("Defeat");
 							}					

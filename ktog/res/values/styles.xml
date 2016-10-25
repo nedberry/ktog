@@ -39,7 +39,7 @@
 		<item name="android:windowTitleStyle">@style/DialogWindowTitle_Holo</item>
 		<item name="android:windowContentOverlay">@null</item>
 		<item name="android:windowMinWidthMajor">@android:dimen/dialog_min_width_major</item>
-		<item name="android:windowMinWidthMinor">@android:dimen/dialog_min_width_minor</item>
+		<item name="android:windowMinWidthMinor">@android:dimen/dialog_min_width_minor</item>	
 	</style>
  
 	<!-- Local copy of android:DialogWindowTitle.Holo -->
@@ -50,14 +50,10 @@
 		<item name="android:maxLines">1</item>
 		<item name="android:scrollHorizontally">true</item>
 		<item name="android:textAppearance">@android:style/TextAppearance.Holo.DialogWindowTitle</item>
-	</style>
-	
-	
-    
-    
-    
-    
-    
-    
+		
+		<!-- Prevents background from dimming when builder/dialog is called -->
+		<item name="android:backgroundDimEnabled">false</item>
+		
+	</style>    
     
 </resources>
