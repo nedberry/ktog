@@ -285,8 +285,8 @@ public class MainActivity2 extends ActionBarActivity {
 		ImageView stonedead2 = (ImageView) findViewById(R.id.imageviewavatarleft3);
 		
 		ImageView customImage = (ImageView) findViewById(R.id.imageviewavatarleft4);
-		customImage.getLayoutParams().height = 100;
-		customImage.getLayoutParams().width = 100;
+		//customImage.getLayoutParams().height = 100;
+		//customImage.getLayoutParams().width = 100;
 		if (getIntent().getExtras() != null) {			
 				
 			Intent intent = getIntent(); 
