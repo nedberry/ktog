@@ -390,12 +390,18 @@
 
         <ImageView
             android:id="@+id/imageviewavatarright"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:background="@drawable/computer"
-            android:gravity="center" />        
+            
+            android:layout_width="100dp"
+        	android:layout_height="100dp"            
+            
+            android:gravity="center"
+            
+            android:scaleType="fitXY"
+            
+            android:background="@drawable/computer" />        
     </RelativeLayout>
     
     
@@ -424,30 +430,48 @@
 
         <ImageView
             android:id="@+id/imageviewavatarleft1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:background="@drawable/computer"
-            android:gravity="center" />
+            
+            android:layout_width="100dp"
+        	android:layout_height="100dp"            
+            
+            android:gravity="center"
+            
+            android:scaleType="fitXY"
+            
+            android:background="@drawable/computer" />
 
         <ImageView
             android:id="@+id/imageviewavatarleft2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:background="@drawable/crossedswords2"
-            android:gravity="center" />
+            
+            android:layout_width="100dp"
+        	android:layout_height="100dp"            
+            
+            android:gravity="center"
+            
+            android:scaleType="fitXY"
+            
+            android:background="@drawable/crossedswords2" />
 
         <ImageView
             android:id="@+id/imageviewavatarleft3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:background="@drawable/stonedead2"
-            android:gravity="center" />
+            
+            android:layout_width="100dp"
+        	android:layout_height="100dp"            
+            
+            android:gravity="center"
+            
+            android:scaleType="fitXY"
+            
+            android:background="@drawable/stonedead2" />
         
         <ImageView
             android:id="@+id/imageviewavatarleft4"
@@ -461,7 +485,7 @@
             android:gravity="center"
             
             android:scaleType="fitXY" />
-        
+                
     </RelativeLayout>
     
     
