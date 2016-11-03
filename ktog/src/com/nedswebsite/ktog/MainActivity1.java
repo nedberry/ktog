@@ -169,9 +169,7 @@ public class MainActivity1 extends ActionBarActivity {
 	    					openGallery();
 	    					
 	    					dialog.dismiss();
-	    				}
-	    				
-	    				
+	    				}    				
 	    	        	
 	    	        	//finish();
         	  		}
@@ -243,26 +241,14 @@ public class MainActivity1 extends ActionBarActivity {
 				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
 			    intent.putExtra("imageUri", imageUri.toString());
 				//intent.putExtra("imageUri", imageUri);
-			    startActivity(intent);
-				/*
-				customImageView.setImageURI(imageUri);
-				
-				customImageView.buildDrawingCache();
-			    Bitmap bitmap = customImageView.getDrawingCache();
-
-			    Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
-			    intent.putExtra("CustomImage", bitmap);
-			    */
-			    
-			    			       	
+			    startActivity(intent);						    			       	
 			}
 	}
 	
 	//===================================================================================================
 	// SEPERATOR
 	//===================================================================================================
-	
-	
+		
 	@Override
     public void onBackPressed() {
 			
@@ -296,11 +282,7 @@ public class MainActivity1 extends ActionBarActivity {
 		
 		Intent svc=new Intent(this, Badonk2SoundService.class);
 		startService(svc);		
-	}
-	
-	
-	
-	
+	}	
 	
 	
 	
@@ -346,7 +328,10 @@ public class MainActivity1 extends ActionBarActivity {
         SendPostReqAsyncTask sendPostReqAsyncTask = new SendPostReqAsyncTask();
         sendPostReqAsyncTask.execute(player);		
     }
-		
+	
+	
+	
+	
 	@Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);        
@@ -450,9 +435,7 @@ public class MainActivity1 extends ActionBarActivity {
     	    					openGallery();
     	    					
     	    					dialog.dismiss();
-    	    				}
-    	    				
-    	    				
+    	    				}   	    				
     	                	
     	                	//finish();
             	  		}
@@ -503,9 +486,10 @@ public class MainActivity1 extends ActionBarActivity {
     			//startActivity(openMain2Activity);            				
     			}
     		});	
-        	buttonSound1.start();
-        	
-        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+        	buttonSound1.start();        	
+        } 
+        
+        else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
         	
         	setContentView(R.layout.activity_main_activity1);
         	
@@ -597,9 +581,7 @@ public class MainActivity1 extends ActionBarActivity {
     	    					openGallery();
     	    					
     	    					dialog.dismiss();
-    	    				}
-    	    				
-    	    				
+    	    				}   	    				
     	                	
     	                	//finish();
             	  		}

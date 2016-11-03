@@ -293,24 +293,7 @@ public class MainActivity2 extends ActionBarActivity {
 			String image_path= intent.getStringExtra("imageUri"); 
 			Uri fileUri = Uri.parse(image_path);
 			customImage.setImageURI(fileUri);
-		}
-		
-		//Bundle b = getIntent().getExtras();
-		/*
-        String uri_Str= getIntent().getStringExtra("imageUri");
-        Uri uri = Uri.parse(uri_Str);
-        ImageView customImage = (ImageView) findViewById(R.id.imageviewavatarleft4);
-        customImage.setImageURI(uri);
-        */
-		//String path = getIntent().getStringExtra("imagePath");		
-	    //Drawable image = Drawable.createFromPath(path);
-	    //customImage.setImageDrawable(image);
-		/*
-		Intent intent=getIntent();
-		Bitmap bitmap = (Bitmap) intent.getParcelableExtra("CustomImage");
-		ImageView customImage = (ImageView) findViewById(R.id.imageviewavatarleft4);
-		customImage.setImageBitmap(bitmap);		
-		*/
+		}		
 		
 		
 		if (ArrayOfAvatars.avatar[0].equals("computer")){
@@ -530,7 +513,7 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  		}
 			  	  	  	}, 2000);
 		  	  	  	}
-	  	  	  	}, 2925);//FINAGLING TO GET RIGHT (MAINLY 1ST TIME) - should be 4700?	  	  		  			
+	  	  	  	}, 3150);//FINAGLING TO GET RIGHT (MAINLY 1ST TIME) - should be at least 4700?	  	  		  			
   	  		}
   	  	}, 2000);
   	  	
@@ -760,7 +743,7 @@ public class MainActivity2 extends ActionBarActivity {
 			    			  	  		
 			    			  	  		istitlestatsopen = "no";
 		    			  	  	  	}
-		    		  	  	  	}, 11200);
+		    		  	  	  	}, 11250);
     			  	  	  	}
     		  	  	  	}, 600);
             		}
@@ -4981,8 +4964,8 @@ public class MainActivity2 extends ActionBarActivity {
 	  	    	for (int i = 0; i < 2; i++) {
 	  	    		// Was "numberOfPlayers", which = 2 up top.
 	  	        
-	  	           if (max == ArrayOfInitiative.initiative[i])
-	  	           {
+	  	           if (max == ArrayOfInitiative.initiative[i]) {
+	  	        	   
 	  	        	   alert.setMessage("\n" + ArrayOfPlayers.player[i] + " wins with a " + max + ".");
 	  	           }
 	  	        }
@@ -5256,7 +5239,7 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  		}
 		  	  	}, 10325); // FINAGELED!	  	  			
   	  	  	}
-  	  	}, 525);  		  	    	  	  			  	  			
+  	  	}, 675); // SHOULD BE AT LEAST 675? WAS 525 		  	    	  	  			  	  			
 	
 	  	//Toast.makeText(MainActivity2.this,"isinitiativestarted = " +  isinitiativestarted + " aretheredoubles = " + aretheredoubles, Toast.LENGTH_SHORT).show();  	 	
 	  	  		
@@ -7118,7 +7101,7 @@ public class MainActivity2 extends ActionBarActivity {
 						}
 					}
 					
-					if (ArrayOfHitPoints.hitpoints[0] < 12) { // see above for explanation
+					else if (ArrayOfHitPoints.hitpoints[0] < 12) { // see above for explanation
 					
 						if (computerUseMightyBlow < 15) {
 							// MORE likely for comp to use MB because human HP < 12.
@@ -7751,7 +7734,7 @@ public class MainActivity2 extends ActionBarActivity {
 									  	  	  	}, 1000);
 											}
 									
-											if ((ArrayOfAttackResult.attackResult[0] >= 12 && ArrayOfAttackResult.attackResult[0] <= 19) || (ArrayOfAttackResult.attackResult[0] + 2) > 20) {
+											else if ((ArrayOfAttackResult.attackResult[0] >= 12 && ArrayOfAttackResult.attackResult[0] <= 19) || (ArrayOfAttackResult.attackResult[0] + 2) > 20) {
 												
 												final Handler h = new Handler();
 									  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -7901,7 +7884,7 @@ public class MainActivity2 extends ActionBarActivity {
 									  	  	  	}, 2000);										
 											}
 									
-											if (ArrayOfAttackResult.attackResult[0] < 12 && ArrayOfAttackResult.attackResult[0] > 0) {
+											else if (ArrayOfAttackResult.attackResult[0] < 12 && ArrayOfAttackResult.attackResult[0] > 0) {
 												
 												final Handler h = new Handler();
 									  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -8002,7 +7985,7 @@ public class MainActivity2 extends ActionBarActivity {
 									  	  	  	}, 1000);
 											}
 									
-											if ((ArrayOfAttackResult.attackResult[0] >= 10 && ArrayOfAttackResult.attackResult[0] <= 19) || (ArrayOfAttackResult.attackResult[0] + 2) > 20) {
+											else if ((ArrayOfAttackResult.attackResult[0] >= 10 && ArrayOfAttackResult.attackResult[0] <= 19) || (ArrayOfAttackResult.attackResult[0] + 2) > 20) {
 												
 												final Handler h = new Handler();
 									  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -8153,7 +8136,7 @@ public class MainActivity2 extends ActionBarActivity {
 									  	  	  	}, 2000);										
 											}
 									
-											if (ArrayOfAttackResult.attackResult[0] < 10 && ArrayOfAttackResult.attackResult[0] > 0) {
+											else if (ArrayOfAttackResult.attackResult[0] < 10 && ArrayOfAttackResult.attackResult[0] > 0) {
 												
 												final Handler h = new Handler();
 									  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -8293,6 +8276,7 @@ public class MainActivity2 extends ActionBarActivity {
 	
 	public void computerHastePartTwo() {		
 		
+		// NEED THIS IF?
 		if (isInvokingService.equals("true")) {
 			//NEED THIS?
 			SystemClock.sleep(1000);
@@ -8388,7 +8372,7 @@ public class MainActivity2 extends ActionBarActivity {
 												centerscrolltext.append("\n" + "> The computer rolls " + ArrayOfAttackResult.attackResult[0] + ".");
 						  	  	  			}
 						  	  	  			
-						  	  	  			if (canHasDisarmed[0].equals("yes")) {
+						  	  	  			else if (canHasDisarmed[0].equals("yes")) {
 						  	  	  				
 							  	  	  			centerscrolltext.setVisibility(View.VISIBLE);													
 										  		centerscrolltext.startAnimation(animAlphaText);
@@ -8567,7 +8551,7 @@ public class MainActivity2 extends ActionBarActivity {
 												  	  	  	}, 2000);													  	  	  													
 														}
 														
-														if (ArrayOfAttackResult.attackResult[0] < 14 && ArrayOfAttackResult.attackResult[0] > 1) {
+														else if (ArrayOfAttackResult.attackResult[0] < 14 && ArrayOfAttackResult.attackResult[0] > 1) {
 																											  	  	  			
 											  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 													  		centerscrolltext.startAnimation(animAlphaText);
@@ -8592,7 +8576,7 @@ public class MainActivity2 extends ActionBarActivity {
 															return;													  	  	  												
 														}
 														
-														if (ArrayOfAttackResult.attackResult[0] <= 1) {
+														else if (ArrayOfAttackResult.attackResult[0] <= 1) {
 																											  	  	  			
 											  	  	  		computerCriticalMiss();
 															return;
@@ -8747,7 +8731,7 @@ public class MainActivity2 extends ActionBarActivity {
 												  	  	  	}, 2000);													  	  	  													
 														}
 														
-														if (ArrayOfAttackResult.attackResult[0] < 12 && ArrayOfAttackResult.attackResult[0] > 1) {
+														else if (ArrayOfAttackResult.attackResult[0] < 12 && ArrayOfAttackResult.attackResult[0] > 1) {
 																											  	  	  			
 											  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 													  		centerscrolltext.startAnimation(animAlphaText);
@@ -8772,7 +8756,7 @@ public class MainActivity2 extends ActionBarActivity {
 															return;													  	  	  													
 														}
 														
-														if (ArrayOfAttackResult.attackResult[0] <= 1) {
+														else if (ArrayOfAttackResult.attackResult[0] <= 1) {
 																										  	  	  			
 											  	  	  		computerCriticalMiss();
 															return;													  	  	  													
@@ -9604,7 +9588,7 @@ public class MainActivity2 extends ActionBarActivity {
 							  	  	  	}, 2000);																		
 									}
 									
-									if (ArrayOfAttackResult.attackResult[0] < 15 && ArrayOfAttackResult.attackResult[0] >= 1) {
+									else if (ArrayOfAttackResult.attackResult[0] < 15 && ArrayOfAttackResult.attackResult[0] >= 1) {
 										
 										final Handler h = new Handler();
 							  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -9652,7 +9636,7 @@ public class MainActivity2 extends ActionBarActivity {
 									//return;						
 								}
 								
-								if (canHasDisarmed[0].equals("yes")) {
+								else if (canHasDisarmed[0].equals("yes")) {
 									
 									if (ArrayOfAttackResult.attackResult[0] >= 13 && ArrayOfAttackResult.attackResult[0] <= 20) { // CAN'T BE 20...-1 to-hit for being disarmed but, +2 because computer is disarmed (+1 total)
 										
@@ -9800,7 +9784,7 @@ public class MainActivity2 extends ActionBarActivity {
 							  	  	  	}, 2000);										
 									}
 									
-									if (ArrayOfAttackResult.attackResult[0] < 13 && ArrayOfAttackResult.attackResult[0] >= 1) {
+									else if (ArrayOfAttackResult.attackResult[0] < 13 && ArrayOfAttackResult.attackResult[0] >= 1) {
 										
 										final Handler h = new Handler();
 							  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -10441,7 +10425,7 @@ public class MainActivity2 extends ActionBarActivity {
 						}
 					}
 					
-					if (ArrayOfHitPoints.hitpoints[0] < 12) { // see above for explanation
+					else if (ArrayOfHitPoints.hitpoints[0] < 12) { // see above for explanation
 					
 						if (computerUseMightyBlow < 15) {
 							// more likely for comp to use MB because human HP < 12.
@@ -11578,7 +11562,7 @@ public class MainActivity2 extends ActionBarActivity {
 						}
 					}
 					
-					if (ArrayOfHitPoints.hitpoints[0] < 12) {// if human HP below 12 then MB
+					else if (ArrayOfHitPoints.hitpoints[0] < 12) {// if human HP below 12 then MB
 						
 						centerscrolltext.setVisibility(View.VISIBLE);													
 				  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -12035,7 +12019,7 @@ public class MainActivity2 extends ActionBarActivity {
 						  	  	  			
 							  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 									  		centerscrolltext.startAnimation(animAlphaText);			  		
-											centerscrolltext.append("\n" + "> The computer did not hit itself... now it must roll to see if it loses it's weapon...");
+											centerscrolltext.append("\n" + "> The computer did not hit itself, now it must roll to see if it loses it's weapon...");
 											
 											ArrayOfAttackResult.attackResult[0] = (int) ((Math.random() * 20) + 1);//(int) ((Math.random() * 20) + 1)
 											
@@ -12940,7 +12924,7 @@ public class MainActivity2 extends ActionBarActivity {
 								centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0] + ".");			  	  	  			
 			  	  	  		}
 			  	  	  		
-				  	  	  	if (canHasDisarmed[playerNumberAttacked].equals("yes")) {				  	  	  		
+			  	  	  		else if (canHasDisarmed[playerNumberAttacked].equals("yes")) {				  	  	  		
 				  	  	  		
 					  	  	  	centerscrolltext.setVisibility(View.VISIBLE);													
 						  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -12959,7 +12943,7 @@ public class MainActivity2 extends ActionBarActivity {
 										return;
 									}
 									
-									if (canHasDisarmed[playerNumberAttacked].equals("no")) {
+									else if (canHasDisarmed[playerNumberAttacked].equals("no")) {
 										
 										if (ArrayOfAttackResult.attackResult[0] >= 14 && ArrayOfAttackResult.attackResult[0] <= 19) {
 											
@@ -12971,7 +12955,7 @@ public class MainActivity2 extends ActionBarActivity {
 											return;
 										}
 										
-										if (ArrayOfAttackResult.attackResult[0] < 14 && ArrayOfAttackResult.attackResult[0] > 1) {
+										else if (ArrayOfAttackResult.attackResult[0] < 14 && ArrayOfAttackResult.attackResult[0] > 1) {
 											
 											centerscrolltext.setVisibility(View.VISIBLE);
 									  		centerscrolltext.startAnimation(animAlphaText);
@@ -13005,14 +12989,14 @@ public class MainActivity2 extends ActionBarActivity {
 											return;
 										}
 										
-										if (ArrayOfAttackResult.attackResult[0] <= 1) {
+										else if (ArrayOfAttackResult.attackResult[0] <= 1) {
 											
 											criticalMiss();
 											return;
 										}
 									}
 									
-									if (canHasDisarmed[playerNumberAttacked].equals("yes")) {
+									else if (canHasDisarmed[playerNumberAttacked].equals("yes")) {
 										
 										if (ArrayOfAttackResult.attackResult[0] >= 12 && ArrayOfAttackResult.attackResult[0] <= 19) {
 											
@@ -13024,7 +13008,7 @@ public class MainActivity2 extends ActionBarActivity {
 											return;
 										}
 										
-										if (ArrayOfAttackResult.attackResult[0] < 12 && ArrayOfAttackResult.attackResult[0] > 1) {
+										else if (ArrayOfAttackResult.attackResult[0] < 12 && ArrayOfAttackResult.attackResult[0] > 1) {
 											
 											centerscrolltext.setVisibility(View.VISIBLE);
 									  		centerscrolltext.startAnimation(animAlphaText);
@@ -13058,7 +13042,7 @@ public class MainActivity2 extends ActionBarActivity {
 											return;
 										}
 										
-										if (ArrayOfAttackResult.attackResult[0] <= 1) {
+										else if (ArrayOfAttackResult.attackResult[0] <= 1) {
 											
 											criticalMiss();
 											return;
@@ -13070,7 +13054,7 @@ public class MainActivity2 extends ActionBarActivity {
 		  	  	  	}, 2000);	  				
 	  			}
 	  			
-	  			if (canHasDisarmed[0].equals("yes")) {
+	  			else if (canHasDisarmed[0].equals("yes")) {
 	  				
 	  				final Handler h4 = new Handler();
 		  	  	  	h4.postDelayed(new Runnable() {		  	  	  			
@@ -13085,7 +13069,7 @@ public class MainActivity2 extends ActionBarActivity {
 								centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0] + ", -1 for being disarmed = " + (ArrayOfAttackResult.attackResult[0] - 1) + ".");			  	  	  			
 			  	  	  		}
 			  	  	  		
-				  	  	  	if (canHasDisarmed[playerNumberAttacked].equals("yes")) {				  	  	  		
+			  	  	  		else if (canHasDisarmed[playerNumberAttacked].equals("yes")) {				  	  	  		
 				  	  	  		
 					  	  	  	centerscrolltext.setVisibility(View.VISIBLE);													
 						  		centerscrolltext.startAnimation(animAlphaText);			  		
@@ -13115,7 +13099,7 @@ public class MainActivity2 extends ActionBarActivity {
 											return;
 										}
 										
-										if (ArrayOfAttackResult.attackResult[0] < 15 && ArrayOfAttackResult.attackResult[0] >= 1) {
+										else if (ArrayOfAttackResult.attackResult[0] < 15 && ArrayOfAttackResult.attackResult[0] >= 1) {
 											
 											centerscrolltext.setVisibility(View.VISIBLE);
 									  		centerscrolltext.startAnimation(animAlphaText);
@@ -13166,7 +13150,7 @@ public class MainActivity2 extends ActionBarActivity {
 										*/
 									}
 									
-									if (canHasDisarmed[playerNumberAttacked].equals("yes")) {
+									else if (canHasDisarmed[playerNumberAttacked].equals("yes")) {
 										
 										if (ArrayOfAttackResult.attackResult[0] >= 13 && ArrayOfAttackResult.attackResult[0] <= 20) { // -1 to-hit for being disarmed but, +2 because computer is disarmed (+1 total)
 											
@@ -13178,7 +13162,7 @@ public class MainActivity2 extends ActionBarActivity {
 											return;
 										}
 										
-										if (ArrayOfAttackResult.attackResult[0] < 13 && ArrayOfAttackResult.attackResult[0] >= 1) {
+										else if (ArrayOfAttackResult.attackResult[0] < 13 && ArrayOfAttackResult.attackResult[0] >= 1) {
 											
 											centerscrolltext.setVisibility(View.VISIBLE);
 									  		centerscrolltext.startAnimation(animAlphaText);
@@ -13524,7 +13508,7 @@ public class MainActivity2 extends ActionBarActivity {
 				  	  	  	}, 2000);						
 		  	  	  		}
 						
-						if (canHasDisarmed[0].equals("yes")) {							
+		  	  	  		else if (canHasDisarmed[0].equals("yes")) {							
 							
 							SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
 							//SharedPreferences.Editor editor = preferences.edit();
@@ -13877,7 +13861,7 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  	}, 2000);												
 					}				  	  	  	
 			  	  	  	
-					if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] <= 6 && ArrayOfHitPoints.hitpoints[playerNumberAttacked] > 0) {
+					else if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] <= 6 && ArrayOfHitPoints.hitpoints[playerNumberAttacked] > 0) {
 						
 						final Handler h = new Handler();
 			  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -14923,7 +14907,7 @@ public class MainActivity2 extends ActionBarActivity {
 							criticalHitDamageResultsHandler();
 						}
 							
-						if (canHasDisarmed[0].equals("yes")) {							
+		  	  	  		else if (canHasDisarmed[0].equals("yes")) {							
 							
 							centerscrolltext.setVisibility(View.VISIBLE);
 					  		centerscrolltext.startAnimation(animAlphaText);
@@ -15701,7 +15685,7 @@ public class MainActivity2 extends ActionBarActivity {
 									
 									centerscrolltext.setVisibility(View.VISIBLE);
 							  		centerscrolltext.startAnimation(animAlphaText);
-							  		centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you did not hit yourself... now you must roll to see if you lose your weapon...");
+							  		centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you did not hit yourself, now you must roll to see if you lose your weapon...");
 																  		
 							  		criticalMissLoseWeapon();						  		
 								}		  	  	  			
@@ -16583,7 +16567,7 @@ public class MainActivity2 extends ActionBarActivity {
 									*/
 								}
 					
-								if (ArrayOfAttackResult.attackResult[0] <= 14 && ArrayOfAttackResult.attackResult[0] > 0) {
+				  	  	  		else if (ArrayOfAttackResult.attackResult[0] <= 14 && ArrayOfAttackResult.attackResult[0] > 0) {
 									
 									final Handler h = new Handler();
 						  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -16793,7 +16777,7 @@ public class MainActivity2 extends ActionBarActivity {
 									*/
 								}
 					
-								if (ArrayOfAttackResult.attackResult[0] <= 16 && ArrayOfAttackResult.attackResult[0] > 1) {
+				  	  	  		else if (ArrayOfAttackResult.attackResult[0] <= 16 && ArrayOfAttackResult.attackResult[0] > 1) {
 									
 									final Handler h = new Handler();
 						  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -16833,7 +16817,7 @@ public class MainActivity2 extends ActionBarActivity {
 									*/
 								}
 								
-								if (ArrayOfAttackResult.attackResult[0] <= 1) {
+				  	  	  		else if (ArrayOfAttackResult.attackResult[0] <= 1) {
 									
 									centerscrolltext.setVisibility(View.VISIBLE);
 							  		centerscrolltext.startAnimation(animAlphaText);
@@ -16932,7 +16916,7 @@ public class MainActivity2 extends ActionBarActivity {
 						  	  	  	}, 2000);						  	  	  	
 	  		  	  	  			}
 	  		  	  	  			
-			  		  	  	  	if (canHasDisarmed[0].equals("yes")) {
+	  		  	  	  			else if (canHasDisarmed[0].equals("yes")) {
 			  		  	  	  		
 			  		  	  	  		canHasDisarmed[0] = "no";	  	  	  								  	  	  			
 
@@ -17391,7 +17375,7 @@ public class MainActivity2 extends ActionBarActivity {
 					  		centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0]	+ ", +2 for Bless Spell = " + (ArrayOfAttackResult.attackResult[0] + 2) + ".");							
 						}
 						
-						if (canHasDisarmed[playerNumberAttacked].equals("yes")) {						
+		  	  	  		else if (canHasDisarmed[playerNumberAttacked].equals("yes")) {						
 							
 							centerscrolltext.setVisibility(View.VISIBLE);
 					  		centerscrolltext.startAnimation(animAlphaText);
@@ -17410,7 +17394,7 @@ public class MainActivity2 extends ActionBarActivity {
 									return;
 								}
 								
-								if (canHasDisarmed[playerNumberAttacked].equals("no")) {
+								else if (canHasDisarmed[playerNumberAttacked].equals("no")) {
 									
 									if ((ArrayOfAttackResult.attackResult[0] >= 12 && ArrayOfAttackResult.attackResult[0] <= 19)  || (ArrayOfAttackResult.attackResult[0] + 2) > 20) {
 										
@@ -17534,7 +17518,7 @@ public class MainActivity2 extends ActionBarActivity {
 										return;
 									}
 									
-									if (ArrayOfAttackResult.attackResult[0] < 12 && ArrayOfAttackResult.attackResult[0] > 0) {
+									else if (ArrayOfAttackResult.attackResult[0] < 12 && ArrayOfAttackResult.attackResult[0] > 0) {
 										
 										// don't critically miss when using bless.
 										
@@ -17565,7 +17549,7 @@ public class MainActivity2 extends ActionBarActivity {
 									}
 								}
 								
-								if (canHasDisarmed[playerNumberAttacked].equals("yes")) {
+								else if (canHasDisarmed[playerNumberAttacked].equals("yes")) {
 									
 									if (ArrayOfAttackResult.attackResult[0] >= 10 && ArrayOfAttackResult.attackResult[0] <= 19  || (ArrayOfAttackResult.attackResult[0] + 2) > 20) {
 										
@@ -17689,7 +17673,7 @@ public class MainActivity2 extends ActionBarActivity {
 										return;
 									}
 									
-									if (ArrayOfAttackResult.attackResult[0] < 10 && ArrayOfAttackResult.attackResult[0] > 0) {
+									else if (ArrayOfAttackResult.attackResult[0] < 10 && ArrayOfAttackResult.attackResult[0] > 0) {
 										
 										// don't critically miss when using bless.
 										
@@ -18020,7 +18004,9 @@ public class MainActivity2 extends ActionBarActivity {
 		  		            holder.title = (TextView) convertView.findViewById(R.id.title);		  		           
 		  		            
 		  		            convertView.setTag(holder);
-		  		        } else {
+		  		        }
+		  		        
+		  		        else {
 		  		            // view already defined, retrieve view holder
 		  		            holder = (ViewHolder) convertView.getTag();
 		  		        }       
@@ -18085,7 +18071,8 @@ public class MainActivity2 extends ActionBarActivity {
 							  	  	  	}
 						  	  	  	}, 1000);										
 								}
-								if (item == 1) {
+	                        	
+	                        	else if (item == 1) {
 									
 									centerscrolltext.setVisibility(View.VISIBLE);													
 							  		centerscrolltext.startAnimation(animAlphaText);
@@ -18105,7 +18092,8 @@ public class MainActivity2 extends ActionBarActivity {
 							  	  	  	}
 						  	  	  	}, 1000);										
 								}
-								if (item == 2) {
+	                        	
+	                        	else if (item == 2) {
 									
 									centerscrolltext.setVisibility(View.VISIBLE);													
 							  		centerscrolltext.startAnimation(animAlphaText);
@@ -18125,7 +18113,8 @@ public class MainActivity2 extends ActionBarActivity {
 							  	  	  	}
 						  	  	  	}, 1000);									
 								}
-								if (item == 3) {
+	                        	
+	                        	else if (item == 3) {
 									
 									centerscrolltext.setVisibility(View.VISIBLE);													
 							  		centerscrolltext.startAnimation(animAlphaText);
@@ -18145,7 +18134,8 @@ public class MainActivity2 extends ActionBarActivity {
 							  	  	  	}
 						  	  	  	}, 1000);										
 								}
-								if (item == 4) {
+	                        	
+	                        	else if (item == 4) {
 									
 									centerscrolltext.setVisibility(View.VISIBLE);													
 							  		centerscrolltext.startAnimation(animAlphaText);
@@ -18466,7 +18456,9 @@ public class MainActivity2 extends ActionBarActivity {
 		  			  		            holder.title = (TextView) convertView.findViewById(R.id.title);		  		           
 		  			  		            
 		  			  		            convertView.setTag(holder);
-		  			  		        } else {
+		  			  		        }
+		  			  		        
+		  			  		        else {
 		  			  		            // view already defined, retrieve view holder
 		  			  		            holder = (ViewHolder) convertView.getTag();
 		  			  		        }       
@@ -18509,8 +18501,8 @@ public class MainActivity2 extends ActionBarActivity {
 		  		            builder.setAdapter(adapter,
 		  		                    new DialogInterface.OnClickListener() {
 		  		                        @Override
-		  		                        public void onClick(final DialogInterface dialog,
-		  		                                int item) {
+		  		                        public void onClick(final DialogInterface dialog, int item) {
+		  		                        	
 		  		                        	if (item == 0) {										
 		  										
 		  		                        		centerscrolltext.setVisibility(View.VISIBLE);													
@@ -18530,7 +18522,8 @@ public class MainActivity2 extends ActionBarActivity {
 										  	  	  	}
 									  	  	  	}, 1000);										
 		  									}
-		  									if (item == 1) {
+		  		                        	
+		  		                        	else if (item == 1) {
 		  										
 		  									//hideNavigation();
 												//isInvokingService = "true";												
@@ -18566,7 +18559,8 @@ public class MainActivity2 extends ActionBarActivity {
 													disarmedAction();
 												}										
 		  									}
-		  									if (item == 2) {
+		  		                        	
+		  		                        	else if (item == 2) {
 		  										
 		  									//hideNavigation();
 												//isInvokingService = "true";
@@ -18587,7 +18581,7 @@ public class MainActivity2 extends ActionBarActivity {
 										  	  	  	}, 1000);													
 												}
 												
-												if (cureSpell[0] < 1) {
+												else if (cureSpell[0] < 1) {
 													
 													disarmedAction();
 												}									
@@ -18778,6 +18772,7 @@ public class MainActivity2 extends ActionBarActivity {
 			playerNumberAttacked = 1;
 
 			for (int a = 0; a < 2; a++) {
+				
 				playerDeadYet[a] = "no";
 			}
 		
@@ -18798,7 +18793,7 @@ public class MainActivity2 extends ActionBarActivity {
 		    turn();
 		}
 		
-		if (numberOfPlayers > 1) {			
+		else if (numberOfPlayers > 1) {			
 			
 			//WHAT TO DO????????
 		}					    
@@ -18877,7 +18872,7 @@ public class MainActivity2 extends ActionBarActivity {
 			}			
 		}
 		
-		if (numberOfPlayers > 1) {			
+		else if (numberOfPlayers > 1) {			
 			
 			//WHAT TO DO????????
 		}
@@ -19071,7 +19066,8 @@ public class MainActivity2 extends ActionBarActivity {
 			canHasDisarmed[1] = "no";	  		  				
 		}
     	
-    	else if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss.equals("yes") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0]) {
+    	//THIS WAS "else if" (WANT THIS AND THE IF ABOVE TO BOTH BE EVALUATED):
+    	if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss.equals("yes") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0]) {
     		
     		canHasDisarmed[0] = "no";				
 				
@@ -19429,7 +19425,8 @@ public class MainActivity2 extends ActionBarActivity {
 	  		disarmedtextleft.setVisibility(View.INVISIBLE);
 		}
     	
-    	else if (canHasDisarmed[1].equals("yes") && didComputerCriticalMiss.equals("yes") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0]) {
+    	//THIS WAS "else if" (WANT THIS AND THE IF ABOVE TO BOTH BE EVALUATED):
+    	if (canHasDisarmed[1].equals("yes") && didComputerCriticalMiss.equals("yes") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0]) {
     		
     		canHasDisarmed[1] = "no";
 			
@@ -20227,7 +20224,7 @@ public class MainActivity2 extends ActionBarActivity {
 		});
 	}
 	
-public void victoryDefeatAnimation() {
+	public void victoryDefeatAnimation() {
 		
 		runOnUiThread(new Runnable() {
 			@Override
@@ -20354,7 +20351,5 @@ public void victoryDefeatAnimation() {
 	  	    }
   		});	
 	}	
-	
-	
 
 }
