@@ -17,6 +17,7 @@ import org.apache.http.message.BasicNameValuePair;
 
 import android.support.v7.app.ActionBarActivity;
 import android.text.InputFilter;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -39,7 +40,7 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.Toast;
 
-public class MainActivity1 extends ActionBarActivity {			
+public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app stopped" message on S4 w/o this)			
 	
 	public static final int PICK_IMAGE = 100;
 	public ImageView customImageView;

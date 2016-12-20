@@ -63,7 +63,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.view.ViewGroup;
 
-public class MainActivity2 extends ActionBarActivity {
+public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app stopped" message on S4 w/o this)
 	
 	int playerNumberAttacked;
 	//int i;
@@ -209,6 +209,7 @@ public class MainActivity2 extends ActionBarActivity {
 		getWindow().getDecorView().setBackgroundColor(Color.BLACK);		
 		
 		
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		
 		
 		//Globals g = Globals.getInstance();
@@ -513,7 +514,7 @@ public class MainActivity2 extends ActionBarActivity {
 			  	  	  		}
 			  	  	  	}, 2000);
 		  	  	  	}
-	  	  	  	}, 3150);//FINAGLING TO GET RIGHT (MAINLY 1ST TIME) - should be at least 4700?	  	  		  			
+	  	  	  	}, 2875);//FINAGLING TO GET RIGHT (MAINLY 1ST TIME) - should be at least 4700?	  	  		  			
   	  		}
   	  	}, 2000);
   	  	
