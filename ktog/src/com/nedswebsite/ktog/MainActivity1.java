@@ -34,6 +34,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -101,7 +102,14 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
         	InputFilter[] FilterArray = new InputFilter[1];
         	FilterArray[0] = new InputFilter.LengthFilter(14);
         	input.setFilters(FilterArray);
-
+        	
+        	// THIS WILL GET KEYBOARD AUTOMATICALLY FOR S4:
+        	/*
+        	input.requestFocus();
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+            */
+        	
         	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
         	public void onClick(DialogInterface dialog, int whichButton) {        		         		
         		  		
@@ -367,6 +375,13 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
             	input.setSingleLine(true);
             	// Limits to 1 line (clicking return is like clicking "ok".)
             	alert.setView(input);
+            	
+            	// THIS WILL GET KEYBOARD AUTOMATICALLY FOR S4:
+            	/*
+            	input.requestFocus();
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+                */
 
             	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             	public void onClick(DialogInterface dialog, int whichButton) {            		         		
@@ -513,6 +528,13 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
             	input.setSingleLine(true);
             	// Limits to 1 line (clicking return is like clicking "ok".)
             	alert.setView(input);
+            	
+            	// THIS WILL GET KEYBOARD AUTOMATICALLY FOR S4:
+            	/*
+            	input.requestFocus();
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+                */
 
             	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             	public void onClick(DialogInterface dialog, int whichButton) {            		         		

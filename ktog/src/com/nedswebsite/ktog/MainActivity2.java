@@ -383,7 +383,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
   	  	}, 800);        
     	*/		
 		
-		preInitiativeTitle();				
+						
 		
 		/*
 		Thread thread3 = new Thread() {
@@ -438,6 +438,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		View lineInSummaryTableLayout = (View) findViewById(R.id.line);
 		lineInSummaryTableLayout.setVisibility(View.INVISIBLE);
 		
+		
+		preInitiativeTitle();
 		
 		
 		// THESE RUN METHODS ARE THREAD-SAFE, SUPPOSEDLY.
@@ -514,7 +516,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 			  	  	  		}
 			  	  	  	}, 2000);
 		  	  	  	}
-	  	  	  	}, 2875);//FINAGLING TO GET RIGHT (MAINLY 1ST TIME) - should be at least 4700?	  	  		  			
+	  	  	  	}, 3000);//FINAGLING TO GET RIGHT (MAINLY 1ST TIME) - should be at least 4700?	  	  		  			
   	  		}
   	  	}, 2000);
   	  	
