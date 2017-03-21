@@ -26,7 +26,9 @@
 
         <!-- was using: android:theme="@style/AppTheme" but the above worked -->
 
-        <activity android:name=".Video" >
+        <activity
+            android:name=".Video"
+            android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -54,6 +56,24 @@
             android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="com.nedswebsite.ktog.MAINACTIVITY2" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Host"            
+            android:screenOrientation="landscape" >
+            <intent-filter>
+                <action android:name="com.nedswebsite.ktog.HOST" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Client"            
+            android:screenOrientation="landscape" >
+            <intent-filter>
+                <action android:name="com.nedswebsite.ktog.CLIENT" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
