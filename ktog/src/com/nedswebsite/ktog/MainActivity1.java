@@ -1,8 +1,12 @@
 package com.nedswebsite.ktog;
 
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Enumeration;
 import java.util.List;
 
 import org.apache.http.HttpEntity;
@@ -16,6 +20,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
 import android.support.v7.app.ActionBarActivity;
+import android.text.Html;
 import android.text.InputFilter;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -23,12 +28,15 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.ContactsContract.CommonDataKinds.Email;
+import android.provider.ContactsContract.Contacts;
 import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -47,6 +55,10 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	public ImageView customImageView;
 	
 	String multiplayer = "no";
+	
+	private static final int CONTACT_PICKER_RESULT = 1001;
+	
+	InetAddress inetAddress;
 	
 	
 	@Override
@@ -343,6 +355,10 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
+		
+		switch(requestCode){	
+		
+		case PICK_IMAGE://FOR IMAGE GALLERY
 			if (resultCode == RESULT_OK && requestCode == PICK_IMAGE && multiplayer.equals("no")) {
 				Uri imageUri = data.getData();
 				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
@@ -406,6 +422,93 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 				//intent.putExtra("imageUri", imageUri);
 			    startActivity(intent);						    			       	
 			}
+		break;
+			
+		case CONTACT_PICKER_RESULT:// FOR CONTACT PICKER
+			
+			if (resultCode == RESULT_OK) {
+	            switch (requestCode) {
+	            case CONTACT_PICKER_RESULT:
+	                // handle contact results
+	            	
+	            	Cursor cursor = null;
+	            	String email = "";
+	            	
+	            	Uri result = data.getData();
+	            	
+	            	String id = result.getLastPathSegment();
+	            	
+	            	
+	            	// query for everything phone
+	            	cursor = getContentResolver().query(
+	            	        Email.CONTENT_URI, null,
+	            	        Email.CONTACT_ID + "=?",
+	            	        new String[]{id}, null);
+	            	
+	            	if (cursor.moveToFirst()) {
+	            	    int emailIdx = cursor.getColumnIndex(Email.DATA);
+	            	    email = cursor.getString(emailIdx);
+	            	    //Log.v(DEBUG_TAG, "Got email: " + email);
+	            	    
+	            	    	            	    
+	            	    //STUFF GOES HERE	            	    
+	            	    
+            	        Intent gmailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+	            	            "mailto",email, null));
+            	        //gmailIntent.setClassName("com.google.android.gm", "com.google.android.gm.ComposeActivityGmail");
+            	        gmailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "KtOG Invitation");
+            	        gmailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Please click link to play:");
+            	        startActivity(gmailIntent);        	    
+	            	    
+	            	    
+	            	}	            	
+	            //break;
+	            	
+	            	cursor.close();
+	            	
+	            	AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity1.this);
+		  			
+					alert.setCancelable(false);
+					
+		  	    	alert.setTitle("Do you want to send another invite?");
+		  	    	/*
+		  	    	alert.setMessage("something");
+		  	    	*/	  	    	
+		  	    	
+		  	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+		  		    	public void onClick(DialogInterface dialog, int whichButton) {	  		    		
+		  		    		
+		  		    		doLaunchContactPicker(customImageView);													  		    		
+		  		    	}
+		  	    	});
+		  	    	
+		  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+		          	  public void onClick(DialogInterface dialog, int whichButton) {
+		          		  
+		          		  	//hideNavigation();
+		          		  	
+		          		  	/*
+		    				Intent intent = new Intent(MainActivity1.this, Host.class);
+		    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+		    				startActivity(intent);
+		    	        	*/							          		  	
+		          		  	
+		          		  	dialog.dismiss();
+		          	  }
+		          	});	  	    	
+		  	    	
+		  	    	alert.show();
+    	        	
+	            
+	            }
+
+	        } else {
+	            // gracefully handle failure
+	            //Log.w(DEBUG_TAG, "Warning: activity result not ok");
+	        }
+		break;
+		
+		}
 	}
 	
 	public void goToHostOrJoin() {
@@ -427,12 +530,20 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 								
 				if (item == 0) {    					
 					
-					stopService(svc);	    				
-    				
+					stopService(svc);					
+					
+					getLocalIpAddress();
+					
+					// TURNED OFF FOR DISPLAYING PRIVATE IP PURPOSES:
+					doLaunchContactPicker(customImageView);
+					
+					
+					/*
     				Intent intent = new Intent(MainActivity1.this, Host.class);
     				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
     				startActivity(intent);
-    	        	
+    	        	*/
+    				
     	        	dialog.dismiss();
 				}
 				else if (item == 1) {    					
@@ -455,6 +566,38 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 		});	    		
     	
         builder.create().show();		
+	}
+	
+		
+	public void doLaunchContactPicker(View view) {
+	    Intent contactPickerIntent = new Intent(Intent.ACTION_PICK,
+	            Contacts.CONTENT_URI);
+	    startActivityForResult(contactPickerIntent, CONTACT_PICKER_RESULT);
+	}
+	
+	
+	public String getLocalIpAddress(){
+		   try {
+		       for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces();  
+		       en.hasMoreElements();) {
+		       NetworkInterface intf = en.nextElement();
+		           for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();) {
+		           InetAddress inetAddress = enumIpAddr.nextElement();
+		                if (!inetAddress.isLoopbackAddress()) {		                	
+		                	
+		                	
+		                	String hostIP = inetAddress.getHostAddress();
+		                	Toast.makeText(MainActivity1.this, hostIP, Toast.LENGTH_LONG).show();
+		                	
+		                	
+		                	return inetAddress.getHostAddress().toString();
+		                }
+		           }
+		       }
+		       } catch (Exception ex) {
+		          //Log.e("IP Address", ex.toString());
+		      }
+		      return null;
 	}
 	
 	
