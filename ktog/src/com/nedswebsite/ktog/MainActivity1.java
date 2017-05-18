@@ -3,6 +3,7 @@ package com.nedswebsite.ktog;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -22,6 +23,9 @@ import org.apache.http.message.BasicNameValuePair;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Html;
 import android.text.InputFilter;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.URLSpan;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -59,6 +63,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	private static final int CONTACT_PICKER_RESULT = 1001;
 	
 	InetAddress inetAddress;
+	
+	String hostIP;
 	
 	
 	@Override
@@ -399,7 +405,7 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 							
 							stopService(svc);	    				
 		    				
-		    				Intent intent = new Intent(MainActivity1.this, Client.class);
+		    				Intent intent = new Intent(MainActivity1.this, Client1.class);
 		    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
 		    				startActivity(intent);
 		    	        	
@@ -450,17 +456,68 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	            	    email = cursor.getString(emailIdx);
 	            	    //Log.v(DEBUG_TAG, "Got email: " + email);
 	            	    
-	            	    	            	    
-	            	    //STUFF GOES HERE	            	    
+	            	    
+	            	    
+	            	    
+	            	    //E-MAIL METHODS:	            	    
+	            	    
+	            	    /*
+	            	    // URL METHOD:
+	            	    //URL sourceUrl = new URL("http://10.0.2.2:2291/acd.asmx/Get_Teams?_userid=" + _userid + "&_sporttype=" + _sporttype);
+            	        //URL sourceUrl = new URL("http://www.ktog.multiplayer.com/?userid=" + hostIP);
+	            	    String url = "http://www.ktog.multiplayer.com/?verification=" + hostIP + "&username=larry";
+
+	            	    SpannableStringBuilder builder = new SpannableStringBuilder();
+	            	    //builder.append("hi friends please visit my website for");
+	            	    int start = builder.length();
+	            	    builder.append(url);
+	            	    int end = builder.length();
+
+	            	    builder.setSpan(new URLSpan(url), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+	            	    
+	            	    Intent i = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+	            	            "mailto",email, null));
+	            	    //Intent i = new Intent(Intent.ACTION_SEND);  
+	            	    //i.setType("message/rfc822") ;
+	            	    //i.putExtra(Intent.EXTRA_EMAIL, new String[]{""});  
+	            	    i.putExtra(Intent.EXTRA_SUBJECT,"KtOG Invitation");  
+	            	    i.putExtra(Intent.EXTRA_TEXT, builder);  
+	            	    //startActivity(Intent.createChooser(i, "Select application"));     	    
+	            	    startActivity(i);
+	            	    */
+	            	    
+	            	    
+	            	    //OTHER METHOD:
 	            	    
             	        Intent gmailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
 	            	            "mailto",email, null));
             	        //gmailIntent.setClassName("com.google.android.gm", "com.google.android.gm.ComposeActivityGmail");
             	        gmailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "KtOG Invitation");
-            	        gmailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Please click link to play:");
+            	        //gmailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Please click link to play:");
+            	        //gmailIntent.putExtra(Intent.EXTRA_TEXT, Html.fromHtml("<a href=\"" + "http://www.ktog.multiplayer.com/launch?hostip=" + hostIP + "\">Link</a>"));
+            	        //gmailIntent.putExtra(android.content.Intent.EXTRA_TEXT, Html.fromHtml("<a href=\"" + "http://www.ktog.multiplayer.com/launch?hostip=" + hostIP + "\">Link</a>"));         	                 	        
+            	        //gmailIntent.putExtra(android.content.Intent.EXTRA_HTML_TEXT, Html.fromHtml("<a href=\"" + "http://www.ktog.multiplayer.com/launch?hostip=" + hostIP + "\">Link</a>"));
+            	                    	                   	        
+            	        gmailIntent.putExtra(
+            	        		Intent.EXTRA_TEXT,
+            	        		Html.fromHtml(new StringBuilder()
+            	        		    //.append("<p><b>http://www.ktog.multiplayer.com/launch?hostip=</b></p>")
+            	        			
+            	        			//METHOD 1:
+            	        			//.append("<a>http://www.ktog.multiplayer.com/launch?hostip=</a>")
+            	        		
+            	        			//METHOD 2:
+            	        			//.append("<a>http://www.ktog.multiplayer.com/?verification=" + hostIP + "&username=larry</a>")
+            	        			.append("<a>http://www.ktog.multiplayer.com/?ip=" + hostIP + "</a>")
+            	        			
+            	        			//.append(hostIP)
+            	        		    .toString())            	        		    
+            	        		);
+            	        
             	        startActivity(gmailIntent);        	    
 	            	    
-	            	    
+            	        //Toast.makeText(MainActivity1.this, hostIP, Toast.LENGTH_LONG).show();
+            	        
 	            	}	            	
 	            //break;
 	            	
@@ -487,11 +544,11 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 		          		  
 		          		  	//hideNavigation();
 		          		  	
-		          		  	/*
+		          		  	
 		    				Intent intent = new Intent(MainActivity1.this, Host.class);
 		    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
 		    				startActivity(intent);
-		    	        	*/							          		  	
+		    	        								          		  	
 		          		  	
 		          		  	dialog.dismiss();
 		          	  }
@@ -506,6 +563,7 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	            // gracefully handle failure
 	            //Log.w(DEBUG_TAG, "Warning: activity result not ok");
 	        }
+		// NEED THIS??:
 		break;
 		
 		}
@@ -550,7 +608,7 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 					
 					stopService(svc);	    				
     				
-    				Intent intent = new Intent(MainActivity1.this, Client.class);
+    				Intent intent = new Intent(MainActivity1.this, Client1.class);
     				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
     				startActivity(intent);
     	        	
@@ -586,9 +644,16 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 		                if (!inetAddress.isLoopbackAddress()) {		                	
 		                	
 		                	
-		                	String hostIP = inetAddress.getHostAddress();
-		                	Toast.makeText(MainActivity1.this, hostIP, Toast.LENGTH_LONG).show();
+		                	String hostIPFull = inetAddress.getHostAddress();//WAS String
+		                	//Toast.makeText(MainActivity1.this, hostIP, Toast.LENGTH_LONG).show();
 		                	
+		                	
+		                	
+		                	hostIP = hostIPFull.split("%")[0];
+		                	Toast.makeText(MainActivity1.this, hostIP, Toast.LENGTH_LONG).show();
+		                	//return hostIP;
+                            
+                            
 		                	
 		                	return inetAddress.getHostAddress().toString();
 		                }

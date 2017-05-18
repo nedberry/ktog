@@ -68,28 +68,37 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </activity>
+        </activity>        
         <activity
-            android:name=".Client"            
-            android:screenOrientation="landscape" >
+            android:name=".Client1"          
+            android:configChanges="orientation|screenSize" >
             <intent-filter>
                 
                 <action android:name="android.intent.action.VIEW"/>
+                <!-- <action android:name="com.nedswebsite.ktog.Client1"/> -->
 
 			    <category android:name="android.intent.category.DEFAULT"/>
 			    <category android:name="android.intent.category.BROWSABLE"/>
 			
 			    <data
 			        android:host="www.ktog.multiplayer.com"
-			        android:path="/launch"
+			        
+			        
 			        android:scheme="http"/>
+			    	<!-- 
+			    	android:pathPrefix="/"
+			    	android:path="/launch?hostip="  -->                
                 
-                
-                <!-- <action android:name="com.nedswebsite.ktog.CLIENT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Client2"           
+            android:screenOrientation="landscape" >
+            <intent-filter>                
+                <action android:name="com.nedswebsite.ktog.Client2"/>
+                <!-- WAS: <action android:name="android.intent.action.VIEW"/>  -->
 
-                <category android:name="android.intent.category.DEFAULT" /> -->
-                
-                
+			    <category android:name="android.intent.category.DEFAULT"/>                
             </intent-filter>
         </activity>
         
