@@ -25,6 +25,7 @@ import android.text.Html;
 import android.text.InputFilter;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
+import android.text.format.Formatter;
 import android.text.style.URLSpan;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -35,7 +36,10 @@ import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.media.MediaPlayer;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
+import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -634,8 +638,9 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	}
 	
 	
-	public String getLocalIpAddress(){
-		   try {
+	public void getLocalIpAddress(){
+		/*   
+		try {
 		       for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces();  
 		       en.hasMoreElements();) {
 		       NetworkInterface intf = en.nextElement();
@@ -663,7 +668,77 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 		          //Log.e("IP Address", ex.toString());
 		      }
 		      return null;
+		      */
+		boolean WIFI = false;
+
+		boolean MOBILE = false;
+
+		ConnectivityManager CM = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+		NetworkInfo[] networkInfo = CM.getAllNetworkInfo();
+
+		for (NetworkInfo netInfo : networkInfo) {
+
+			if (netInfo.getTypeName().equalsIgnoreCase("WIFI"))
+
+				if (netInfo.isConnected())
+
+					WIFI = true;
+
+			if (netInfo.getTypeName().equalsIgnoreCase("MOBILE"))
+
+				if (netInfo.isConnected())
+
+					MOBILE = true;
+		}
+
+		if (WIFI == true)
+
+		{
+			hostIP = GetDeviceipWiFiData();
+
+		}
+
+		if (MOBILE == true) {
+
+			hostIP = GetDeviceipMobileData();
+
+		}
 	}
+	
+	public String GetDeviceipMobileData(){
+		try {
+			for (Enumeration<NetworkInterface> en = NetworkInterface
+					.getNetworkInterfaces(); en.hasMoreElements();) {
+				NetworkInterface networkinterface = en.nextElement();
+				for (Enumeration<InetAddress> enumIpAddr = networkinterface
+						.getInetAddresses(); enumIpAddr.hasMoreElements();) {
+					InetAddress inetAddress = enumIpAddr.nextElement();
+					if (!inetAddress.isLoopbackAddress()) {
+						return inetAddress.getHostAddress().toString();
+					}
+				}
+			}
+		} catch (Exception ex) {
+			// Log.e("Current IP", ex.toString());
+		}
+		return null;
+	}
+
+	public String GetDeviceipWiFiData() {//NEEDS:<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+		WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
+
+		@SuppressWarnings("deprecation")
+		// THERE ARE 3 DIFFERENT FORMATTER CLASSES
+		String ip = Formatter.formatIpAddress(wm.getConnectionInfo()
+				.getIpAddress());
+
+		return ip;
+
+	}
+		 
+		
 	
 	
 	//===================================================================================================

@@ -168,7 +168,7 @@ public class Client2 extends Activity {
 		
 		
 		//startup();
-		
+		hostIP = ArrayOfIP.hostIP[0];
 		
 		// MOVE THIS DOWN A BIT??????????????
 		new Thread(new ClientThread()).start();
@@ -461,7 +461,8 @@ public class Client2 extends Activity {
 						  	  	  		public void run()
 						  	  	  		{  	  			
 						  	  	  		try {
-						  	  			
+						  	  	  		
+						  	  	  		Toast.makeText(Client2.this, "THIS IS THE HOSTIP" + hostIP, Toast.LENGTH_LONG).show();
 						  	  			String str = "Hi!";
 						  	  			PrintWriter out = new PrintWriter(new BufferedWriter(
 						  	  					new OutputStreamWriter(socket.getOutputStream())),
@@ -697,7 +698,7 @@ public class Client2 extends Activity {
 	public void onStart() {
 		super.onStart();
 		
-		hostIP = ArrayOfIP.hostIP[0];
+		//hostIP = ArrayOfIP.hostIP[0];
 		//hostIP = getIntent().getStringExtra("hostIP");
 		
 		
