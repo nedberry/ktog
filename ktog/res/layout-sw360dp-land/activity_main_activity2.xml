@@ -799,5 +799,21 @@
         android:textSize="139sp"        
         android:gravity="center" />
    	
+   	
+   	
+   	<ImageButton
+   	    android:id="@+id/textviewcenterscrolltextbutton"   	    
+   	    android:layout_width="211dp"
+   	    android:layout_height="136dp"
+   	    android:layout_alignBottom="@+id/imageviewcenterscroll"
+   	    android:layout_alignTop="@+id/imageviewcenterscroll"
+   	    
+   	    android:layout_toRightOf="@+id/imageviewscroll3b5left"   	    
+   	    android:paddingBottom="24dp"
+   	    android:paddingLeft="12dp"
+   	    android:paddingRight="15dp"
+   	    android:paddingTop="6dp"
+   	    android:alpha="0" />
+   	
 
 </RelativeLayout>

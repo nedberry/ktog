@@ -1294,7 +1294,7 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f060016;
         public static final int action_menu_presenter=0x7f060017;
         public static final int action_mode_close_button=0x7f060024;
-        public static final int action_settings=0x7f06008b;
+        public static final int action_settings=0x7f06008c;
         public static final int activity_chooser_view_content=0x7f060025;
         public static final int always=0x7f06000b;
         public static final int beginning=0x7f060011;
@@ -1375,7 +1375,7 @@ containing a value of this type.
         public static final int progress_circular=0x7f060018;
         public static final int progress_horizontal=0x7f060019;
         public static final int radio=0x7f06002f;
-        public static final int relativeLayout=0x7f060087;
+        public static final int relativeLayout=0x7f060088;
         public static final int relativeLayout1=0x7f060067;
         public static final int relativeLayout2=0x7f060064;
         public static final int scrollanimation=0x7f06007f;
@@ -1402,6 +1402,7 @@ containing a value of this type.
         public static final int textdisarmedleft=0x7f060068;
         public static final int textdisarmedright=0x7f060065;
         public static final int textviewcenterscrolltext=0x7f06007e;
+        public static final int textviewcenterscrolltextbutton=0x7f060087;
         public static final int textviewhitpointsleft=0x7f06006e;
         public static final int textviewhitpointsright=0x7f060044;
         public static final int textviewnameleft=0x7f060060;
@@ -1419,9 +1420,9 @@ containing a value of this type.
         public static final int twentysidedanimation=0x7f060082;
         public static final int up=0x7f060021;
         public static final int useLogo=0x7f060003;
-        public static final int videobutton1=0x7f06008a;
-        public static final int videoview=0x7f060089;
-        public static final int viewFlipper=0x7f060088;
+        public static final int videobutton1=0x7f06008b;
+        public static final int videoview=0x7f06008a;
+        public static final int viewFlipper=0x7f060089;
         public static final int withText=0x7f06000c;
     }
     public static final class integer {

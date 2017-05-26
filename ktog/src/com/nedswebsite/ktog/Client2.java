@@ -314,6 +314,9 @@ public class Client2 extends Activity {
 		
 		
 		
+		final ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+		//titleBlankButton.setVisibility(View.INVISIBLE);
+		
 		final ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
 		titleBlankButton.setVisibility(View.INVISIBLE);
 		
@@ -419,7 +422,10 @@ public class Client2 extends Activity {
   	  		{  	  			
   	  			centerscrolltext.setVisibility(View.VISIBLE);
   	  			centerscrolltext.startAnimation(animAlphaText);
-	  			centerscrolltext.append("> Welcome, " + ArrayOfPlayers.player[0] + ".");  	  	  				  	  	  			
+	  			centerscrolltext.append("> Welcome, " + ArrayOfPlayers.player[0] + ".");
+	  			centerscrolltext.append("\n" + "> NEW LINE TEST");
+	  			centerscrolltext.append("\n" + "> NEW LINE TEST");
+	  			centerscrolltext.append("\n" + "> NEW LINE TEST");
 	  	  	  			
 	  	  	  			
   	  	  		final Handler h = new Handler();
@@ -513,6 +519,23 @@ public class Client2 extends Activity {
 	  	  	  	}, 3000);//FINAGLING TO GET RIGHT (MAINLY 1ST TIME) - should be at least 4700?	  	  		  			
   	  		}
   	  	}, 2000);
+  	  	
+  	  	
+  	  	
+  	  	
+  	  	chatBlankButton.setOnClickListener(new View.OnClickListener() {
+          @Override
+			public void onClick(View v) {
+        	  
+        	  Toast.makeText(Client2.this, "CHAT TEST", Toast.LENGTH_LONG).show();
+          	
+          	            	
+			}            
+  	  	});
+  	  	
+  	  	
+  	  	
+  	  	
 	}
 	
 	

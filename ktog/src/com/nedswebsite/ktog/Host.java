@@ -28,13 +28,11 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TableLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-/**
- * This class implements java Socket server
- * @author pankaj
- *
- */
+
 public class Host extends Activity {
     
 	ServerSocket serverSocket;
@@ -50,46 +48,26 @@ public class Host extends Activity {
 	
 	
 	int playerNumberAttacked;
-	//int i;
-	
-	//int turn = 0;
-	
+		
 	
 	int gameOn;
-	int computerAction;
-	//int gameOn = 1;	
-	//int turn;
+	
 	
 	int max = 0;
-	//int numberOfPlayers = 2;
+	
 	
 	static int numberOfPlayers = 1; // NEED THIS???????????
 	
-	//static int playerNumberAttacked;
 	
-	// NEEDS TO BE GLOBAL??
-	//int attackResult;
-	//int attackDamage;
-	//int criticalHitAttackDamageOne;
-	//int criticalHitAttackDamageTwo;
-	//int cureResult;
 	
-	//int computerAttackResultAgainstDisarmed;
 	
-	int computerAttackDamageDisarmed;
 	public static int[] attackDamageOneDisarmed = new int[1];
-	public static int[] attackDamageTwoDisarmed = new int[1];
+	public static int[] attackDamageTwoDisarmed = new int[1];	
 	
-	
-	//int turnhumandisarmedcomputer; ========= disarmedTurnStart[1] = turn;
-	//int turncomputercritmiss;=====disarmedTurnStart[0] = turn;
-	//int turncomputerdisarmedhuman; ========= disarmedTurnStart[0] = turn;
-	//int turnhumancritmiss;========disarmedTurnStart[1] = turn;	
 	
 	public static int[] disarmedTurnStart = new int[6];
 	String didHumanCriticalMiss = "no";
-	String didComputerCriticalMiss = "no";
-	
+		
 	
 	// SOME OF THESE MAY NEED TO BE AN ARRAY-CLASS:
 	public static int[] blessSpell = new int[] {1, 1, 1, 1, 1, 1, 1};// {1, 1, 1, 1, 1, 1, 1};
@@ -101,9 +79,7 @@ public class Host extends Activity {
 	
 	// FOR ORDERING PURPOSES IN TITLE:
 	int firstsubscript;
-	int secondsubscript;
-	
-	
+	int secondsubscript;	
 	
 	
 	//IS THIS WORKING NOW (W NEW onbackpressed CODE)????????????
@@ -115,15 +91,14 @@ public class Host extends Activity {
 	String isinitiativestarted = "no";	
 	static String isinitiativestartedinterrupted = "no";
 	String issixsidedrolledforinitiative = "no";
-	String aretheredoubles = "yes";	
+	String aretheredoubles = "yes";
 	
-	
-	//String preventinitiativediefromleaking = "on";	
+		
 	String preventattackdamagediefromleaking = "on";
 	String preventcureresultdiefromleaking = "on";	
 	
 	
-	// ARRAYS?: (COMBINE W COMP BELOW?)
+	// ARRAYS?:
 	String isattackrolled = "no";
 	String isdisarmwithblessrolled = "no";
 	String isdisarmnoblessrolled = "no";	
@@ -141,11 +116,7 @@ public class Host extends Activity {
 	String iscriticalhitmightyblowfirstrollrolled = "no";
 	String iscriticalhitmightyblowsecondrollrolled = "no";
 	
-	// ARRAYS?: (COMBINE W HUMIE ABOVE?)
-	//public static String[] usedHaste = new String[] {"no"};//FOR COMP. ONLY: so computer doesn't use a haste during a haste.
-	String iscomputerhasteused = "no";
-	String iscomputerblessrolled = "no";
-	
+		
 	String startGameNow ="no";	
 	
 	
@@ -153,6 +124,7 @@ public class Host extends Activity {
 	public static String[] playerDeadYet = new String[] {"yes", "yes", "yes", "yes", "yes", "yes"}; // NEED 6?????????	
 	//String playerDeadYet[] = {"yes", "yes", "yes", "yes", "yes", "yes"};
 	public static String[] canHasDisarmed = new String[] {"no", "no", "no", "no", "no", "no"}; // NEED 6?????????		
+	
 	
 	//FOR onResume
 	String isSixSidedReadyToBeRolled = "no";
@@ -184,12 +156,10 @@ public class Host extends Activity {
 		// For the little space between the action & attack button.
 		getWindow().getDecorView().setBackgroundColor(Color.BLACK);		
 		
-		
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		
 		
-		MediaPlayerWrapper.play(Host.this, R.raw.buttonsound6);    	
-    			
+		MediaPlayerWrapper.play(Host.this, R.raw.buttonsound6);    			
 		
 		
 		// Crashes if this is put up top.
@@ -200,9 +170,11 @@ public class Host extends Activity {
 		playerNameTextView.setTypeface(typeFace);		
 		playerNameTextView.setText(ArrayOfPlayers.player[0]);		
 		
+		//WAS FOR COMP NAME:
 		TextView computerNameTextView = (TextView)findViewById(R.id.textviewnameright);
 		computerNameTextView.setTypeface(typeFace);
-		computerNameTextView.setText(ArrayOfPlayers.player[1]);
+		//computerNameTextView.setText(ArrayOfPlayers.player[1]);
+		computerNameTextView.setVisibility(View.INVISIBLE);
 		
 		
 		ArrayOfHitPoints.hitpoints[0] = 20;//20		
@@ -210,49 +182,27 @@ public class Host extends Activity {
 		playerHitPointsTextView.setTypeface(typeFace);
 		playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));		
 		
-		ArrayOfHitPoints.hitpoints[1] = 20;//20
+		//WAS FOR COMP HP:
+		//ArrayOfHitPoints.hitpoints[1] = 20;//20
 		final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
 		computerHitPointsTextView.setTypeface(typeFace);
-		computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));		
+		computerHitPointsTextView.setVisibility(View.INVISIBLE);
+		//computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));		
 		
 		
-		// MAKE THIS A RUNNABLE LIKE GAME ENGINE AND CALL IT AFTER INITIATIVE?
-		/*
-		Thread thread1 = new Thread() {
-		    @Override
-		    public void run() {
-		    	final Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);
-				playerHitPointsTextView.startAnimation(animPulsingAnimation);		
-				computerHitPointsTextView.startAnimation(animPulsingAnimation);
-		    }
-		};
-		thread1.start();
-		*/
-		/*
-		runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
-				final Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);
-				playerHitPointsTextView.startAnimation(animPulsingAnimation);		
-				computerHitPointsTextView.startAnimation(animPulsingAnimation);
-	  	    }
-  		});
-		*/
-		
-		//TO MAKE HIT POINTS PULSATE, USE THIS:
-		
+		//TO MAKE HIT POINTS PULSATE, USE THIS:		
 		final Animation animPulsingAnimation = AnimationUtils.loadAnimation(Host.this, R.anim.pulsinganimation);
-		playerHitPointsTextView.startAnimation(animPulsingAnimation);		
+		playerHitPointsTextView.startAnimation(animPulsingAnimation);
+		/*WAS FOR COMP HP:
 		computerHitPointsTextView.startAnimation(animPulsingAnimation);
+		*/
 		
 		
 		ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
 		ImageView crossedswords2 = (ImageView) findViewById(R.id.imageviewavatarleft2);
 		ImageView stonedead2 = (ImageView) findViewById(R.id.imageviewavatarleft3);
 		
-		ImageView customImage = (ImageView) findViewById(R.id.imageviewavatarleft4);
-		//customImage.getLayoutParams().height = 100;
-		//customImage.getLayoutParams().width = 100;
+		ImageView customImage = (ImageView) findViewById(R.id.imageviewavatarleft4);		
 		if (getIntent().getExtras() != null) {			
 				
 			Intent intent = getIntent(); 
@@ -283,6 +233,11 @@ public class Host extends Activity {
 			computerAvatar.setVisibility(View.INVISIBLE);
 		}
 		
+		//FOR CLIENT/COMP AVATAR:
+		ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+		clientAvatar.setVisibility(View.INVISIBLE);		
+		
+		
 		ImageView blessLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftbless);
 		blessLeft.setVisibility(View.INVISIBLE);
 		ImageView cureLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftcure);
@@ -311,6 +266,9 @@ public class Host extends Activity {
 		
 		
 		
+		final ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+		//titleBlankButton.setVisibility(View.INVISIBLE);
+		
 		final ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
 		titleBlankButton.setVisibility(View.INVISIBLE);
 		
@@ -319,57 +277,14 @@ public class Host extends Activity {
 		sixSidedBlank.setVisibility(View.INVISIBLE);		
 		
 		final ImageView twentySidedBlank = (ImageView) findViewById(R.id.twentysidedanimation);
-		twentySidedBlank.setVisibility(View.INVISIBLE);
+		twentySidedBlank.setVisibility(View.INVISIBLE);		
 		
 		
 		
-		// ANIMATIONS RUNNING SLOWER IN THREADS:
 		
 		unfoldScrolls();		
-		/*
-		Thread thread2 = new Thread() {
-		    @Override
-		    public void run() {
-		    	unfoldScrolls();
-		    }
-		};
-		thread2.start();
-		*/
-        /*
-        final Handler h1 = new Handler();
-  	  	h1.postDelayed(new Runnable() {
-
-  	  		@Override
-  	  		public void run()
-  	  		{  	  			
-	  	  		final MediaPlayer scrollsUnrollingSound = MediaPlayer.create(MainActivity2.this, R.raw.scrollsunrolling);
-	  			scrollsUnrollingSound.start();			  		  			
-  	  		}
-  	  	}, 800);        
-    	*/		
 		
-						
 		
-		/*
-		Thread thread3 = new Thread() {
-		    @Override
-		    public void run() {
-		    	preInitiativeTitle();
-		    }
-		};
-		thread3.start();
-		*/
-  	  	/*
-		final Handler h2 = new Handler();
-	  	h2.postDelayed(new Runnable() {
-	
-	  		@Override
-	  		public void run()
-	  		{	  			
-	  			MediaPlayerWrapper.play(MainActivity2.this, R.raw.scrollrollingandunrolling);
-	  		}
-	  	}, 4450);  	
-	  	*/  	  	
   	  	
   	  	
         final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
@@ -417,7 +332,9 @@ public class Host extends Activity {
   	  			centerscrolltext.setVisibility(View.VISIBLE);
   	  			centerscrolltext.startAnimation(animAlphaText);
 	  			centerscrolltext.append("> Welcome, " + ArrayOfPlayers.player[0] + ".");  	  	  				  	  	  			
-	  	  	  			
+	  			centerscrolltext.append("\n" + "> NEW LINE TEST");
+	  			centerscrolltext.append("\n" + "> NEW LINE TEST");
+	  			centerscrolltext.append("\n" + "> NEW LINE TEST");
 	  	  	  			
   	  	  		final Handler h = new Handler();
 	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -436,9 +353,10 @@ public class Host extends Activity {
 		  	  	  		titleinitiativetext.append("Initiative");
 		  				
 		  	  	  		
-		  	  	  		playerHitPointsTextView.clearAnimation();		
+		  	  	  		playerHitPointsTextView.clearAnimation();
+		  	  	  		/*WAS FOR COMP HP:
 		  	  	  		computerHitPointsTextView.clearAnimation();
-		  	  	  		
+		  	  	  		*/
 		  				
 		  				final Handler h4 = new Handler();
 			  	  	  	h4.postDelayed(new Runnable() {
@@ -491,7 +409,24 @@ public class Host extends Activity {
 		  	  	  	}
 	  	  	  	}, 3000);//FINAGLING TO GET RIGHT (MAINLY 1ST TIME) - should be at least 4700?	  	  		  			
   	  		}
-  	  	}, 2000);
+  	  	}, 2000);  	  	
+  	  	
+  	  	
+  	  	
+  	  	
+  	  chatBlankButton.setOnClickListener(new View.OnClickListener() {
+          @Override
+			public void onClick(View v) {
+        	  
+        	  Toast.makeText(Host.this, "CHAT TEST", Toast.LENGTH_LONG).show();
+          	
+          	            	
+			}            
+  	  }); 	  	
+  	  	
+  	  	
+  	  	
+  	  	
 	}
 	
 	
@@ -708,14 +643,7 @@ public class Host extends Activity {
 				  		
 						centerscrolltext.append("\n" + "> Finding opponents...");		  					  			
 		  	  	    }
-	  	  		});			
-				
-				
-				
-				
-				
-				
-				
+	  	  		});				
 				
 				//serverSocket = new ServerSocket(SERVERPORT);
 				
