@@ -1,7 +1,9 @@
 package com.nedswebsite.ktog;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OptionalDataException;
@@ -16,7 +18,11 @@ import java.net.UnknownHostException;
 import java.util.List;
 import java.util.Set;
 
+import com.nedswebsite.ktog.Host.updateUIThread;
+
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -24,15 +30,19 @@ import android.graphics.drawable.AnimationDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.InputFilter;
 import android.text.method.ScrollingMovementMethod;
+import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.webkit.WebView;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +53,7 @@ import android.widget.Toast;
  */
 public class Client2 extends Activity {
     
+	Handler updateConversationHandler;
 	
 	private Socket socket;
 
@@ -166,6 +177,8 @@ public class Client2 extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);		
 		
+		
+		updateConversationHandler = new Handler();
 		
 		//startup();
 		hostIP = ArrayOfIP.hostIP[0];
@@ -422,11 +435,12 @@ public class Client2 extends Activity {
   	  		{  	  			
   	  			centerscrolltext.setVisibility(View.VISIBLE);
   	  			centerscrolltext.startAnimation(animAlphaText);
-	  			centerscrolltext.append("> Welcome, " + ArrayOfPlayers.player[0] + ".");
+	  			centerscrolltext.append("> Welcome, " + ArrayOfPlayers.player[1] + ".");
+	  			/*TO TEST SCROLL BAR:
 	  			centerscrolltext.append("\n" + "> NEW LINE TEST");
 	  			centerscrolltext.append("\n" + "> NEW LINE TEST");
 	  			centerscrolltext.append("\n" + "> NEW LINE TEST");
-	  	  	  			
+	  	  	  	*/	
 	  	  	  			
   	  	  		final Handler h = new Handler();
 	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -468,17 +482,17 @@ public class Client2 extends Activity {
 						  	  	  		{  	  			
 						  	  	  		try {
 						  	  	  		
-						  	  	  		Toast.makeText(Client2.this, "THIS IS THE HOSTIP" + hostIP, Toast.LENGTH_LONG).show();
-						  	  			String str = "Hi!";
-						  	  			PrintWriter out = new PrintWriter(new BufferedWriter(
-						  	  					new OutputStreamWriter(socket.getOutputStream())),
-						  	  					true);
-						  	  			out.println(str);
-						  	  			//NEW:
-						  	  			/*
-						  	  			out.flush();
-						  	  			out.close();
-						  	  			*/
+							  	  	  		Toast.makeText(Client2.this, "THIS IS THE HOSTIP" + hostIP, Toast.LENGTH_LONG).show();
+							  	  			String str = ArrayOfPlayers.player[1] + " has entered the game!";
+							  	  			PrintWriter out = new PrintWriter(new BufferedWriter(
+							  	  					new OutputStreamWriter(socket.getOutputStream())),
+							  	  					true);
+							  	  			out.println(str);
+							  	  			//NEW:
+							  	  			/*
+							  	  			out.flush();
+							  	  			out.close();
+							  	  			*/
 							  	  		} catch (UnknownHostException e) {
 							  	  			e.printStackTrace();
 							  	  		} catch (IOException e) {
@@ -523,15 +537,108 @@ public class Client2 extends Activity {
   	  	
   	  	
   	  	
-  	  	chatBlankButton.setOnClickListener(new View.OnClickListener() {
-          @Override
+		chatBlankButton.setOnClickListener(new View.OnClickListener() {
+			@Override
 			public void onClick(View v) {
-        	  
-        	  Toast.makeText(Client2.this, "CHAT TEST", Toast.LENGTH_LONG).show();
-          	
-          	            	
-			}            
-  	  	});
+
+				// Toast.makeText(Client2.this, "CHAT TEST",
+				// Toast.LENGTH_LONG).show();
+				
+				
+				
+				
+				
+				AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this);
+
+		    	alert.setTitle("Chat");
+		    	alert.setMessage("Enter Message");
+
+		    	// Set an EditText view to get user input:
+		    	final EditText input = new EditText(Client2.this);
+		    	input.setSingleLine(true);
+		    	// Limits to 1 line (clicking return is like clicking "ok".)
+		    	alert.setView(input);
+		    	// Limits the number of characters entered to 50.
+		    	InputFilter[] FilterArray = new InputFilter[1];
+		    	FilterArray[0] = new InputFilter.LengthFilter(50);
+		    	input.setFilters(FilterArray);
+		    	
+		    	// THIS WILL GET KEYBOARD AUTOMATICALLY FOR S4:
+		    	/*
+		    	input.requestFocus();
+		        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+		        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+		        */
+		    	
+		    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+		    	public void onClick(DialogInterface dialog, int whichButton) {		    		
+		    		
+		    		try {		  	  	  		
+		  	  	  		
+		    			final String str = input.getText().toString();
+		  	  			PrintWriter out = new PrintWriter(new BufferedWriter(
+		  	  					new OutputStreamWriter(socket.getOutputStream())),
+		  	  					true);
+		  	  			out.println(ArrayOfPlayers.player[1] + ": " + str);
+		  	  			
+		  	  			
+			  	  		runOnUiThread(new Runnable() {
+			      	  	    @Override
+			      	  	    public void run() {
+			      	  	    	
+			    	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+			    	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+			    	  			
+			    	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+			    	  			centerscrolltext.setTypeface(typeFace);
+			    	  			
+			    	  			final Handler h = new Handler();
+			    	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+			    	  	  	  			
+			    	  	  	  		@Override
+			    		  	  	  	public void run() {
+			      	  	    	
+			      	  	    			centerscrolltext.setVisibility(View.VISIBLE);
+			    				  		//centerscrolltext.startAnimation(animAlphaText);
+			    						centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[1] + ": " + str);		        
+			    	  	  	  		}
+			    	  	  	  	}, 2000);
+			      	  	    }
+			      	  	});
+		  	  			
+		  	  			
+		  	  			//NEW:
+		  	  			/*
+		  	  			out.flush();
+		  	  			out.close();
+		  	  			*/
+		  	  		} catch (UnknownHostException e) {
+		  	  			e.printStackTrace();
+		  	  		} catch (IOException e) {
+		  	  			e.printStackTrace();
+		  	  		} catch (Exception e) {
+		  	  			e.printStackTrace();
+		  	  		}	        	
+		    	}
+		    	});
+
+		    	alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+		    	  public void onClick(DialogInterface dialog, int whichButton) {
+		    	    // Canceled.
+		    	  }
+		    	});
+		    	
+		    	alert.show();
+				
+				
+				
+				
+				
+				
+				// END
+
+			}
+		});
   	  	
   	  	
   	  	
@@ -824,25 +931,105 @@ public class Client2 extends Activity {
 		
 	}	
 	
-	class ClientThread implements Runnable {
+	// ONSTOP OR ONDESTROY???????
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
 
+		if (socket != null) {
+			try {
+				socket.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	
+	class ClientThread implements Runnable {
+		
+		private BufferedReader input;
+		
 		@Override
 		public void run() {
 
 			try {
-				InetAddress serverAddr = InetAddress.getByName(hostIP);//WAS: SERVER_IP
+				InetAddress serverAddr = InetAddress.getByName(hostIP);// WAS: SERVER_IP
 
 				socket = new Socket(serverAddr, SERVERPORT);
+				
+				
+				this.input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+				
+				
 
 			} catch (UnknownHostException e1) {
 				e1.printStackTrace();
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
+			
+			while (true) { //WAS:(!Thread.currentThread().isInterrupted())
+
+				try {
+
+					String read = input.readLine();
+
+					updateConversationHandler.post(new updateUIThread(read));
+
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
+				/*
+				//NEED THIS?????????????????
+				finally {
+					// The connection is closed for one reason or another,
+					// so have the server dealing with it
+					try {
+						serverSocket.close();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				*/
+			}
 
 		}
 
-	}	
+	}
+	
+	class updateUIThread implements Runnable {
+		private String msg;		
+		
+		public updateUIThread(String str) {
+			this.msg = str;
+		}
+		
+		@Override
+		public void run() {
+			//text.setText(text.getText().toString()+"Client Says: "+ msg + "\n");
+			
+			runOnUiThread(new Runnable() {
+	  	  	    @Override
+	  	  	    public void run() {
+	  	  	    	
+		  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+		  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+		  			
+		  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+		  			centerscrolltext.setTypeface(typeFace);
+		  			
+		  			centerscrolltext.setVisibility(View.VISIBLE);
+			  		
+		  			centerscrolltext.append("\n" + "> "+ msg);//+ "\n"
+		  			// WAS: centerscrolltext.append("\n" + "> Client Says: "+ msg + "\n");		  					  			
+	  	  	    }
+  	  		});				
+		}
+	}
     
     
 }

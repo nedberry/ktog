@@ -455,8 +455,6 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
 	
 	public void onStart() {
 		super.onStart();		
-				
-		
 		
 		try {// NEED THIS???????????? IN MANIFEST: android:pathPrefix="/"
 			Intent intent = getIntent();
