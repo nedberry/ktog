@@ -22,14 +22,18 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.AnimationDrawable;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.text.InputFilter;
 import android.text.method.ScrollingMovementMethod;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -153,6 +157,12 @@ public class Host extends Activity {
 		super.onCreate(savedInstanceState);		
 		
 		
+		final MediaPlayer buttonSound = MediaPlayer.create(Host.this, R.raw.swordswing);
+		
+		final Intent svc=new Intent(this, Badonk2SoundService.class);
+		//startService(svc);
+		
+		
 		updateConversationHandler = new Handler();
 
 		this.serverThread = new Thread(new ServerThread());
@@ -179,6 +189,16 @@ public class Host extends Activity {
 		
 		// Crashes if this is put up top.
 		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
+		
+		
+		
+		//TextView startGameTextView = (TextView)findViewById(R.id.textviewstartgame);
+		//startGameTextView.setTypeface(typeFace);		
+		//startGameTextView.setText("Press Start to begin game...");
+		
+		final ImageButton startButton = (ImageButton) findViewById(R.id.imagebuttonstart);
+		Animation myFadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.fadein);
+		startButton.startAnimation(myFadeInAnimation);		
 		
 		
 		TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);		
@@ -381,7 +401,9 @@ public class Host extends Activity {
 			  	  	  		public void run() {				  				
 			  	  	  			
 			  	  	  			// Sets sixSidedBlank visible & enabled.
-			  	  	  			sixSidedRollFromLeft();  	  	  			
+			  	  	  			//sixSidedRollFromLeft();
+			  	  	  			
+			  	  	  			startService(svc);
 			  		  			
 			  	  	  			
 				  		  		final Handler h5 = new Handler();
@@ -391,6 +413,9 @@ public class Host extends Activity {
 						  	  	  		@Override
 						  	  	  		public void run()
 						  	  	  		{  	  			
+						  	  	  			
+						  	  	  			//startService(svc);
+						  	  	  			
 						  	  	  			/*
 						  	  	  			ServerThread  NewServerThread= new ServerThread();
 						  	  	  			NewServerThread.run();						  	  	  			
@@ -419,18 +444,32 @@ public class Host extends Activity {
 						  		  			//preventinitiativediefromleaking = "off";
 						  		  			 */
 					  	  	  		}
-					  	  	  	}, 750);
+					  	  	  	}, 500);
 			  	  	  		}
-			  	  	  	}, 2000);
+			  	  	  	}, 1000);
 		  	  	  	}
 	  	  	  	}, 3000);//FINAGLING TO GET RIGHT (MAINLY 1ST TIME) - should be at least 4700?	  	  		  			
   	  		}
-  	  	}, 2000);  	  	
+  	  	}, 2000);
   	  	
   	  	
+  	  	startButton.setOnClickListener(new View.OnClickListener() {
+          @Override
+			public void onClick(View v) {
+			                    	
+        	  buttonSound.start();      	
+      	
+        	  stopService(svc);
+        	  
+        	  
+        	  Toast.makeText(Host.this, "GOTO BEGIN STUFF HERE", Toast.LENGTH_LONG).show();
+      	
+      	        				
+			}
+		});
   	  	
   	  	
-  	  chatBlankButton.setOnClickListener(new View.OnClickListener() {
+  	  	chatBlankButton.setOnClickListener(new View.OnClickListener() {
           @Override
 			public void onClick(View v) {
         	  
@@ -488,7 +527,7 @@ public class Host extends Activity {
 		      	  	    	
 		      	  	    			centerscrolltext.setVisibility(View.VISIBLE);
 		    				  		//centerscrolltext.startAnimation(animAlphaText);
-		    						centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ": " + str);		        
+		    						centerscrolltext.append("\n" + ArrayOfPlayers.player[0] + ": " + str);		        
 		    	  	  	  		}
 		    	  	  	  	}, 2000);
 		      	  	    }
@@ -604,7 +643,7 @@ public class Host extends Activity {
 			public void run() {
 				// Setting up scroll frame animation.
 				ImageView img = (ImageView)findViewById(R.id.scrollanimation);
-				img.setBackgroundResource(R.anim.scrollanimationup);
+				img.setBackgroundResource(R.anim.scrollanimationleftup);
 			
 				// Get the background, which has been compiled to an AnimationDrawable object.
 				AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -710,10 +749,13 @@ public class Host extends Activity {
 		  	  	frameAnimation.start();
 	  	    }
   		});	
-	}
+	}	
 	
 	
 	
+	//=============================================================================================
+	//SEPERATOR
+	//=============================================================================================
 	
 	
 	// ONSTOP OR ONDESTROY???????
@@ -732,10 +774,16 @@ public class Host extends Activity {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-
+		
+		final Intent svc=new Intent(this, Badonk2SoundService.class);
+		
 		if (serverSocket != null) {
 			try {
+				
 				serverSocket.close();
+				
+				stopService(svc);
+				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -743,7 +791,49 @@ public class Host extends Activity {
 		}
 	}
 	
+	public void onBackPressed() {
+
+		AlertDialog.Builder alert = new AlertDialog.Builder(Host.this);
+		
+		final Intent svc=new Intent(this, Badonk2SoundService.class);
+
+		alert.setTitle("KtOG");
+		alert.setMessage("Are you sure you want to exit?");
+
+		alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int whichButton) {
+
+				dialog.dismiss();
+				
+				stopService(svc);
+
+				Intent intent = new Intent(Host.this, MainActivity1.class);
+				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK); // this combination of flags would start a new instance even if the instance of same Activity exists.
+				intent.addFlags(Intent.FLAG_ACTIVITY_TASK_ON_HOME);
+				finish();
+				startActivity(intent);			
+			}
+		});
+
+		alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int whichButton) {
+
+				dialog.dismiss();
+
+				// hideNavigation();
+			}
+		});
+		alert.show();
+
+		// Toast.makeText(MainActivity2.this,"onBackPressed WORKING!!!!",
+		// Toast.LENGTH_SHORT).show();
+	}	
 	
+	
+	//=============================================================================================
+	//SEPERATOR
+	//=============================================================================================
 	
 	
 	class ServerThread implements Runnable {
@@ -764,7 +854,7 @@ public class Host extends Activity {
 			  			
 			  			centerscrolltext.setVisibility(View.VISIBLE);
 				  		
-						centerscrolltext.append("\n" + "> Finding opponents...");		  					  			
+						centerscrolltext.append("\n" + "> Waiting for opponents...");		  					  			
 		  	  	    }
 	  	  		});				
 				
@@ -848,7 +938,8 @@ public class Host extends Activity {
 
 				} catch (IOException e) {
 					e.printStackTrace();
-				}
+				}				
+				
 				
 				/*
 				//NEED THIS?????????????????
@@ -864,7 +955,8 @@ public class Host extends Activity {
 				}
 				*/
 			}
-		}
+		}		
+		
 		
 		public void print(Object obj){
 			
@@ -876,18 +968,17 @@ public class Host extends Activity {
   	  			out.println(obj);  	  			
   	  		} 
 			
-			catch(IOException e) { 
-				
+			catch(IOException e) {				
 				e.printStackTrace();  	  		
-  	  		}
-			
+  	  		}			
 		}
 		
 	}
 	
+	
 	public void sendToAll(Object str){
         for(ClientWorker client : clientWorkers)                    	
-        	client.print(str);
+        	client.print(ArrayOfPlayers.player[0] + ": " + str);
     }
 	
 	
@@ -914,13 +1005,12 @@ public class Host extends Activity {
 		  			
 		  			centerscrolltext.setVisibility(View.VISIBLE);
 			  		
-		  			centerscrolltext.append("\n" + "> "+ msg);//+ "\n"
+		  			centerscrolltext.append("\n" + msg);//+ "\n"
 		  			// WAS: centerscrolltext.append("\n" + "> Client Says: "+ msg + "\n");		  					  			
 	  	  	    }
   	  		});				
 		}
-	}
-	
+	}	
 	
 	
     

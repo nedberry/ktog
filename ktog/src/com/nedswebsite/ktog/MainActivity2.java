@@ -228,8 +228,11 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		
 		
 		// Crashes if this is put up top.
-		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
+		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 		
+		
+		final ImageButton startButton = (ImageButton) findViewById(R.id.imagebuttonstart);
+		startButton.setVisibility(View.INVISIBLE);
 		
 		TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);		
 		playerNameTextView.setTypeface(typeFace);		
@@ -360,7 +363,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		
 		// ANIMATIONS RUNNING SLOWER IN THREADS:
 		
-		unfoldScrolls();		
+		unfoldScrolls();
+		
 		/*
 		Thread thread2 = new Thread() {
 		    @Override

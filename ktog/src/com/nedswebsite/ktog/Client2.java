@@ -175,7 +175,11 @@ public class Client2 extends Activity {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);		
+		super.onCreate(savedInstanceState);
+		
+		
+		//final Intent svc=new Intent(this, Badonk2SoundService.class);
+		//startService(svc);
 		
 		
 		updateConversationHandler = new Handler();
@@ -493,6 +497,11 @@ public class Client2 extends Activity {
 							  	  			out.flush();
 							  	  			out.close();
 							  	  			*/
+							  	  			
+								  	  		centerscrolltext.setVisibility(View.VISIBLE);
+						  		  	  		centerscrolltext.startAnimation(animAlphaText);
+						  		  			centerscrolltext.append("\n" + ArrayOfPlayers.player[1] + " has entered the game!");
+							  	  			
 							  	  		} catch (UnknownHostException e) {
 							  	  			e.printStackTrace();
 							  	  		} catch (IOException e) {
@@ -600,7 +609,7 @@ public class Client2 extends Activity {
 			      	  	    	
 			      	  	    			centerscrolltext.setVisibility(View.VISIBLE);
 			    				  		//centerscrolltext.startAnimation(animAlphaText);
-			    						centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[1] + ": " + str);		        
+			    						centerscrolltext.append("\n" + ArrayOfPlayers.player[1] + ": " + str);		        
 			    	  	  	  		}
 			    	  	  	  	}, 2000);
 			      	  	    }
@@ -715,7 +724,7 @@ public class Client2 extends Activity {
 			public void run() {
 				// Setting up scroll frame animation.
 				ImageView img = (ImageView)findViewById(R.id.scrollanimation);
-				img.setBackgroundResource(R.anim.scrollanimationup);
+				img.setBackgroundResource(R.anim.scrollanimationleftdown);
 			
 				// Get the background, which has been compiled to an AnimationDrawable object.
 				AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -823,6 +832,10 @@ public class Client2 extends Activity {
   		});	
 	}    
     
+	
+	//=============================================================================================
+	//SEPERATOR
+	//=============================================================================================
 	
 	
 	public void onStart() {
@@ -935,16 +948,64 @@ public class Client2 extends Activity {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
+		
+		final Intent svc=new Intent(this, Badonk2SoundService.class);
 
 		if (socket != null) {
 			try {
 				socket.close();
+				
+				stopService(svc);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 	}
+	
+	public void onBackPressed() {
+
+		AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this);
+		
+		final Intent svc=new Intent(this, Badonk2SoundService.class);
+
+		alert.setTitle("KtOG");
+		alert.setMessage("Are you sure you want to exit?");
+
+		alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int whichButton) {
+
+				dialog.dismiss();
+				
+				stopService(svc);
+
+				Intent intent = new Intent(Client2.this, MainActivity1.class);
+				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK); // this combination of flags would start a new instance even if the instance of same Activity exists.
+				intent.addFlags(Intent.FLAG_ACTIVITY_TASK_ON_HOME);
+				finish();
+				startActivity(intent);			
+			}
+		});
+
+		alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int whichButton) {
+
+				dialog.dismiss();
+
+				// hideNavigation();
+			}
+		});
+		alert.show();
+
+		// Toast.makeText(MainActivity2.this,"onBackPressed WORKING!!!!",
+		// Toast.LENGTH_SHORT).show();
+	}
+	
+	
+	//=============================================================================================
+	//SEPERATOR
+	//=============================================================================================
 	
 	
 	class ClientThread implements Runnable {
@@ -1024,7 +1085,7 @@ public class Client2 extends Activity {
 		  			
 		  			centerscrolltext.setVisibility(View.VISIBLE);
 			  		
-		  			centerscrolltext.append("\n" + "> "+ msg);//+ "\n"
+		  			centerscrolltext.append("\n" + msg);//+ "\n"
 		  			// WAS: centerscrolltext.append("\n" + "> Client Says: "+ msg + "\n");		  					  			
 	  	  	    }
   	  		});				

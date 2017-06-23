@@ -5,6 +5,39 @@
     android:layout_height="match_parent"
     tools:context="com.nedswebsite.ktog.MainActivity2" >  
     
+    <!--
+    <TextView
+   	    android:id="@+id/textviewstartgame"
+   	    android:layout_width="340dp"
+   	    android:layout_height="120dp"
+   	    android:layout_alignLeft="@+id/imageviewcenterscroll"        
+        android:layout_toLeftOf="@+id/textviewhitpointsright" 
+        android:layout_marginTop="240dp"          	    
+   	    android:textColor="#FFFFFF"   	    
+   	    android:gravity="top|center_horizontal"
+   	    android:textSize="25sp"
+   	    
+   	     />
+    
+    	android:background="@drawable/rounded_corner"
+		android:background="@android:color/holo_blue_light"    	
+		-->
+    
+    <ImageButton
+        android:id="@+id/imagebuttonstart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"        
+        android:layout_alignLeft="@+id/imageviewcenterscroll"        
+        android:layout_toLeftOf="@+id/textviewhitpointsright"
+        android:layout_marginTop="250dp"
+        android:background="@drawable/start"
+	    android:cropToPadding="false" />    
+    <!--
+		android:layout_marginTop="275dp"    	
+		--> 
+    
+    
+    
     <ImageView
         android:id="@+id/imageviewscroll3b5left"
         android:layout_width="wrap_content"
