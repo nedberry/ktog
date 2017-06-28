@@ -208,7 +208,7 @@ public class Host extends Activity {
 		//WAS FOR COMP NAME:
 		TextView computerNameTextView = (TextView)findViewById(R.id.textviewnameright);
 		computerNameTextView.setTypeface(typeFace);
-		//computerNameTextView.setText(ArrayOfPlayers.player[1]);
+		computerNameTextView.setText(ArrayOfPlayers.player[1]);
 		computerNameTextView.setVisibility(View.INVISIBLE);
 		
 		
@@ -218,7 +218,7 @@ public class Host extends Activity {
 		playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));		
 		
 		//WAS FOR COMP HP:
-		//ArrayOfHitPoints.hitpoints[1] = 20;//20
+		ArrayOfHitPoints.hitpoints[1] = 20;//20
 		final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
 		computerHitPointsTextView.setTypeface(typeFace);
 		computerHitPointsTextView.setVisibility(View.INVISIBLE);
@@ -336,8 +336,11 @@ public class Host extends Activity {
 		titletext.append("KtOG");
 		
 		
-		final TextView titleinitiativetext = (TextView) findViewById(R.id.textviewtitleinitiativetext);
-		titleinitiativetext.setVisibility(View.INVISIBLE);	
+		final TextView titlelobbytext = (TextView) findViewById(R.id.textviewtitlelobbytext);
+		titlelobbytext.setVisibility(View.INVISIBLE);
+		
+		TextView titleinitiativetext = (TextView) findViewById(R.id.textviewtitleinitiativetext);		
+		titleinitiativetext.setVisibility(View.INVISIBLE);
 		
 		
 		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);		
@@ -351,10 +354,10 @@ public class Host extends Activity {
 		disarmedtextright.append("Disarmed");
 		
 		View lineInSummaryTableLayout = (View) findViewById(R.id.line);
-		lineInSummaryTableLayout.setVisibility(View.INVISIBLE);
+		lineInSummaryTableLayout.setVisibility(View.INVISIBLE);			
 		
 		
-		preInitiativeTitle();
+		preInitiativeTitle();//SHOULD REALLY BE CALLED "startTitle" (just using preInitiativeTitle() animation for "Lobby")		
 		
 		
 		// THESE RUN METHODS ARE THREAD-SAFE, SUPPOSEDLY.
@@ -381,12 +384,12 @@ public class Host extends Activity {
 	  	  	  			titletext.setVisibility(View.INVISIBLE);
 	  	  	  			
 		  	  	  		//Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-		  	  	  		titleinitiativetext.setTypeface(typeFace);
+		  	  	  		titlelobbytext.setTypeface(typeFace);
 	  		  			
 		  				//titletext.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(100));
 		  					
-		  	  	  		titleinitiativetext.setVisibility(View.VISIBLE);				  		
-		  	  	  		titleinitiativetext.append("Initiative");
+		  	  	  		titlelobbytext.setVisibility(View.VISIBLE);				  		
+		  	  	  		titlelobbytext.append("Lobby");
 		  				
 		  	  	  		
 		  	  	  		playerHitPointsTextView.clearAnimation();
@@ -404,6 +407,11 @@ public class Host extends Activity {
 			  	  	  			//sixSidedRollFromLeft();
 			  	  	  			
 			  	  	  			startService(svc);
+			  	  	  			
+			  	  	  			
+				  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
+			  	  	  			centerscrolltext.startAnimation(animAlphaText);
+			  	  	  			centerscrolltext.append("\n" + "> Waiting for opponents...");
 			  		  			
 			  	  	  			
 				  		  		final Handler h5 = new Handler();
@@ -413,6 +421,9 @@ public class Host extends Activity {
 						  	  	  		@Override
 						  	  	  		public void run()
 						  	  	  		{  	  			
+						  	  	  			
+						  	  	  			
+						  	  	  			
 						  	  	  			
 						  	  	  			//startService(svc);
 						  	  	  			
@@ -462,9 +473,34 @@ public class Host extends Activity {
         	  stopService(svc);
         	  
         	  
-        	  Toast.makeText(Host.this, "GOTO BEGIN STUFF HERE", Toast.LENGTH_LONG).show();
-      	
-      	        				
+        	  startButton.setVisibility(View.INVISIBLE);        	  
+        	  
+        	  
+        	  victoryDefeatAnimationForStartTransition();        	  
+        	  
+        	  
+        	  final Handler h = new Handler();
+        		h.postDelayed(new Runnable() {		  	  	  			
+        	  			
+        	  		@Override
+        	  	  	public void run() {
+        	  			
+        	  			TextView titlelobbytext = (TextView) findViewById(R.id.textviewtitlelobbytext);
+        	  			titlelobbytext.setVisibility(View.INVISIBLE); 
+        	  			
+        	  			
+        	  			TextView titleinitiativetext = (TextView) findViewById(R.id.textviewtitleinitiativetext);
+		  	  			
+			  	  		Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+			  	  		titleinitiativetext.setTypeface(typeFace);					  			
+						
+							
+			  	  		titleinitiativetext.setVisibility(View.VISIBLE); 			
+  		  	  			
+  		  	  							  		
+  		  	  			titleinitiativetext.append("Initiative");	      	  	  			  	  			
+        	  	  	}
+        	  	}, 675); // SHOULD BE AT LEAST 675? WAS 525       	      	        				
 			}
 		});
   	  	
@@ -615,6 +651,8 @@ public class Host extends Activity {
 	}	
 	
 	
+	
+	
 	//@SuppressWarnings("deprecation")
 	public void unfoldScrolls() {
 		/*
@@ -656,6 +694,26 @@ public class Host extends Activity {
 	}
 	
 	
+	
+	
+	public void startTitle() {	
+		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				
+				ImageView img = (ImageView)findViewById(R.id.titleanimation);		
+				img.setBackgroundResource(R.anim.titleanimationpreinitiative);		  	  
+		  	  	
+		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+				
+		  	  	// Animation is just 1 slide so user can see title.
+		  	  	frameAnimation.stop();
+		  	  	frameAnimation.start();	  	  	
+	  	    }
+  		});	
+	}
+	
 	public void preInitiativeTitle() {	
 		/*
 		ImageView img = (ImageView)findViewById(R.id.titleanimation);		
@@ -695,6 +753,26 @@ public class Host extends Activity {
 	  	    }
   		});	
 	}
+	
+	public void victoryDefeatAnimationForStartTransition() {
+		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {		
+					
+				// CLOSING ON SUMMARY TABLE
+				ImageView img = (ImageView)findViewById(R.id.titleanimation);		
+				img.setBackgroundResource(R.anim.victorydefeatanimation);		  	  
+		  	  	
+		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();				
+		  	  	
+		  	  	frameAnimation.stop();
+		  	  	frameAnimation.start();			
+			}
+  		});
+	}
+	
+	
 	
 	
 	public void sixSidedRollFromLeft() {	
@@ -775,14 +853,19 @@ public class Host extends Activity {
 	protected void onDestroy() {
 		super.onDestroy();
 		
-		final Intent svc=new Intent(this, Badonk2SoundService.class);
+		//final Intent svc=new Intent(this, Badonk2SoundService.class);
 		
 		if (serverSocket != null) {
 			try {
 				
 				serverSocket.close();
 				
-				stopService(svc);
+				
+				android.os.Process.killProcess(android.os.Process.myPid());
+			    
+			    super.onDestroy();
+				
+				//stopService(svc);
 				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -839,9 +922,10 @@ public class Host extends Activity {
 	class ServerThread implements Runnable {
 
 		public void run() {
-			//Socket socket = null;
+			
 			try {
 				
+				/*
 				runOnUiThread(new Runnable() {
 		  	  	    @Override
 		  	  	    public void run() {
@@ -857,10 +941,8 @@ public class Host extends Activity {
 						centerscrolltext.append("\n" + "> Waiting for opponents...");		  					  			
 		  	  	    }
 	  	  		});				
+				*/
 				
-				//serverSocket = new ServerSocket(SERVERPORT);
-				
-				//NEW:
 				
 				serverSocket = new ServerSocket(); // <-- create an unbound socket first
 				serverSocket.setReuseAddress(true);
@@ -872,7 +954,7 @@ public class Host extends Activity {
 			while(true){
 		        ClientWorker w;
 		        try{
-		    //server.accept returns a client connection
+		        //server.accept returns a client connection
 		          w = new ClientWorker(serverSocket.accept(), idCounter);
 		          idCounter++;
 		          clientWorkers.add(w); 
@@ -927,6 +1009,7 @@ public class Host extends Activity {
 	          System.out.println("in or out failed");
 	          System.exit(-1);
 	        }
+	        
 
 			while (true) { //WAS:(!Thread.currentThread().isInterrupted())
 

@@ -208,29 +208,40 @@ public class Client2 extends Activity {
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		
 		
-		MediaPlayerWrapper.play(Client2.this, R.raw.buttonsound6);    	
+		MediaPlayerWrapper.play(Client2.this, R.raw.buttonsound6);
+		
+		final Intent svc=new Intent(this, Badonk2SoundService.class);
+		//stopService(svc);
+		startService(svc);
     			
 		
 		
 		// Crashes if this is put up top.
-		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
+		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 		
 		
-		TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);		
+		final ImageButton startButton = (ImageButton) findViewById(R.id.imagebuttonstart);
+		startButton.setVisibility(View.INVISIBLE);
+		
+		
+		TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameright);//WAS textviewnameleft		
 		playerNameTextView.setTypeface(typeFace);		
-		playerNameTextView.setText(ArrayOfPlayers.player[0]);		
+		playerNameTextView.setText(ArrayOfPlayers.player[1]);
 		
+		/*
 		TextView computerNameTextView = (TextView)findViewById(R.id.textviewnameright);
 		computerNameTextView.setTypeface(typeFace);
-		computerNameTextView.setText(ArrayOfPlayers.player[1]);
+		computerNameTextView.setText(ArrayOfPlayers.player[0]);//WAS 1
+		*/
 		
 		
-		ArrayOfHitPoints.hitpoints[0] = 20;//20		
+		ArrayOfHitPoints.hitpoints[1] = 20;//WAS 0
 		final TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
 		playerHitPointsTextView.setTypeface(typeFace);
-		playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));		
+		playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+		playerHitPointsTextView.setVisibility(View.INVISIBLE);
 		
-		ArrayOfHitPoints.hitpoints[1] = 20;//20
+		ArrayOfHitPoints.hitpoints[0] = 20;//WAS 1
 		final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
 		computerHitPointsTextView.setTypeface(typeFace);
 		computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));		
@@ -262,10 +273,12 @@ public class Client2 extends Activity {
 		//TO MAKE HIT POINTS PULSATE, USE THIS:
 		
 		final Animation animPulsingAnimation = AnimationUtils.loadAnimation(Client2.this, R.anim.pulsinganimation);
-		playerHitPointsTextView.startAnimation(animPulsingAnimation);		
+		/*WAS FOR 'HUMAN' HP:
+		playerHitPointsTextView.startAnimation(animPulsingAnimation);
+		*/
 		computerHitPointsTextView.startAnimation(animPulsingAnimation);
 		
-		
+		/*
 		ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
 		ImageView crossedswords2 = (ImageView) findViewById(R.id.imageviewavatarleft2);
 		ImageView stonedead2 = (ImageView) findViewById(R.id.imageviewavatarleft3);
@@ -302,6 +315,37 @@ public class Client2 extends Activity {
 			stonedead2.setVisibility(View.INVISIBLE);
 			computerAvatar.setVisibility(View.INVISIBLE);
 		}
+		*/
+		
+		
+		//NEW WAY: TRYING TO SET DRAWABLE PROGRAMMATICALLY:
+		//FOR CLIENT AVATAR:
+		ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+		//clientAvatar.setVisibility(View.INVISIBLE);
+		
+		ImageView customImage = (ImageView) findViewById(R.id.imageviewavatarright);
+		//customImage.getLayoutParams().height = 100;
+		//customImage.getLayoutParams().width = 100;
+		if (getIntent().getExtras() != null) {			
+				
+			Intent intent2 = getIntent(); 
+			String image_path= intent2.getStringExtra("imageUri"); 
+			Uri fileUri = Uri.parse(image_path);
+			customImage.setImageURI(fileUri);
+		}		
+		
+		
+		if (ArrayOfAvatars.avatar[0].equals("computer")){
+			clientAvatar.setBackgroundResource(R.drawable.computer);
+		}
+		else if (ArrayOfAvatars.avatar[0].equals("crossedswords")){
+			clientAvatar.setBackgroundResource(R.drawable.crossedswords2);
+		}
+		else if (ArrayOfAvatars.avatar[0].equals("stonedead")){
+			clientAvatar.setBackgroundResource(R.drawable.stonedead2);
+		}
+		
+		
 		
 		ImageView blessLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftbless);
 		blessLeft.setVisibility(View.INVISIBLE);
@@ -409,6 +453,9 @@ public class Client2 extends Activity {
 		titletext.append("KtOG");
 		
 		
+		final TextView titlelobbytext = (TextView) findViewById(R.id.textviewtitlelobbytext);
+		titlelobbytext.setVisibility(View.INVISIBLE);
+		
 		final TextView titleinitiativetext = (TextView) findViewById(R.id.textviewtitleinitiativetext);
 		titleinitiativetext.setVisibility(View.INVISIBLE);	
 		
@@ -427,7 +474,7 @@ public class Client2 extends Activity {
 		lineInSummaryTableLayout.setVisibility(View.INVISIBLE);
 		
 		
-		preInitiativeTitle();
+		preInitiativeTitle();//SHOULD REALLY BE CALLED "startTitle" (just using preInitiativeTitle() animation for "Lobby")
 		
 		
 		// THESE RUN METHODS ARE THREAD-SAFE, SUPPOSEDLY.
@@ -455,15 +502,16 @@ public class Client2 extends Activity {
 	  	  	  			titletext.setVisibility(View.INVISIBLE);
 	  	  	  			
 		  	  	  		//Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-		  	  	  		titleinitiativetext.setTypeface(typeFace);
+	  	  	  			titlelobbytext.setTypeface(typeFace);
 	  		  			
 		  				//titletext.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(100));
 		  					
-		  	  	  		titleinitiativetext.setVisibility(View.VISIBLE);				  		
-		  	  	  		titleinitiativetext.append("Initiative");
+	  	  	  			titlelobbytext.setVisibility(View.VISIBLE);				  		
+	  	  	  			titlelobbytext.append("Lobby");
 		  				
-		  	  	  		
+		  	  	  		/*WAS FOR 'HUMAN' HP:
 		  	  	  		playerHitPointsTextView.clearAnimation();		
+		  	  	  		*/
 		  	  	  		computerHitPointsTextView.clearAnimation();
 		  	  	  		
 		  				
@@ -474,7 +522,7 @@ public class Client2 extends Activity {
 			  	  	  		public void run() {				  				
 			  	  	  			
 			  	  	  			// Sets sixSidedBlank visible & enabled.
-			  	  	  			sixSidedRollFromLeft();  	  	  			
+			  	  	  			//sixSidedRollFromLeft();  	  	  			
 			  		  			
 			  	  	  			
 				  		  		final Handler h5 = new Handler();
@@ -486,7 +534,7 @@ public class Client2 extends Activity {
 						  	  	  		{  	  			
 						  	  	  		try {
 						  	  	  		
-							  	  	  		Toast.makeText(Client2.this, "THIS IS THE HOSTIP" + hostIP, Toast.LENGTH_LONG).show();
+							  	  	  		//Toast.makeText(Client2.this, "THIS IS THE HOSTIP" + hostIP, Toast.LENGTH_LONG).show();
 							  	  			String str = ArrayOfPlayers.player[1] + " has entered the game!";
 							  	  			PrintWriter out = new PrintWriter(new BufferedWriter(
 							  	  					new OutputStreamWriter(socket.getOutputStream())),
@@ -551,9 +599,7 @@ public class Client2 extends Activity {
 			public void onClick(View v) {
 
 				// Toast.makeText(Client2.this, "CHAT TEST",
-				// Toast.LENGTH_LONG).show();
-				
-				
+				// Toast.LENGTH_LONG).show();				
 				
 				
 				
@@ -637,18 +683,12 @@ public class Client2 extends Activity {
 		    	  }
 		    	});
 		    	
-		    	alert.show();
-				
-				
-				
-				
-				
+		    	alert.show();				
 				
 				// END
 
 			}
-		});
-  	  	
+		});  	  	
   	  	
   	  	
   	  	
@@ -949,13 +989,17 @@ public class Client2 extends Activity {
 	protected void onDestroy() {
 		super.onDestroy();
 		
-		final Intent svc=new Intent(this, Badonk2SoundService.class);
+		//final Intent svc=new Intent(this, Badonk2SoundService.class);
 
 		if (socket != null) {
 			try {
 				socket.close();
 				
-				stopService(svc);
+				android.os.Process.killProcess(android.os.Process.myPid());
+			    
+			    super.onDestroy();
+				
+				//stopService(svc);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -1042,6 +1086,7 @@ public class Client2 extends Activity {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+				
 				
 				/*
 				//NEED THIS?????????????????

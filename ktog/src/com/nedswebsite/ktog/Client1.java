@@ -253,7 +253,7 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
 		        builder.create().show();
 		        
 				
-				Intent intent = new Intent(Client1.this, MainActivity2.class);
+				Intent intent = new Intent(Client1.this, Client2.class);
 			    intent.putExtra("imageUri", imageUri.toString());
 				//intent.putExtra("imageUri", imageUri);
 			    startActivity(intent);						    			       	

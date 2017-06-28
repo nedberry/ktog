@@ -427,7 +427,7 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 		        builder.create().show();
 		        
 				
-				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+				Intent intent = new Intent(MainActivity1.this, Host.class);
 			    intent.putExtra("imageUri", imageUri.toString());
 				//intent.putExtra("imageUri", imageUri);
 			    startActivity(intent);						    			       	
