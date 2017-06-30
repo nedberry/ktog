@@ -1016,8 +1016,14 @@ public class Host extends Activity {
 				try {
 
 					String read = input.readLine();
-
-					updateConversationHandler.post(new updateUIThread(read));
+					
+					if ((read == null) || read.equalsIgnoreCase("QUIT")) {
+						clientSocket.close();
+	                    return;
+	                }
+					else {
+						updateConversationHandler.post(new updateUIThread(read));
+					}
 
 				} catch (IOException e) {
 					e.printStackTrace();

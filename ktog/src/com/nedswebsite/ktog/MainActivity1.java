@@ -261,10 +261,10 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
         		  		
         		// NEED TO SEND TO ARRAY HERE:
         		String playername = input.getText().toString();
-            	String playercomputer = "Computer".toString();
+            	//String playercomputer = "Computer".toString();
             	
             	ArrayOfPlayers.player[0] = playername;
-            	ArrayOfPlayers.player[1] = playercomputer;
+            	//ArrayOfPlayers.player[1] = playercomputer;
             	
             	insertToDatabase(playername);	        	
 	        	
@@ -362,6 +362,7 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 		startActivityForResult(gallery, PICK_IMAGE);
 	}
 	
+	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
@@ -409,9 +410,10 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 							
 							stopService(svc);	    				
 		    				
-		    				Intent intent = new Intent(MainActivity1.this, Client1.class);
+		    				//Intent intent = new Intent(MainActivity1.this, Client1.class);
 		    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-		    				startActivity(intent);
+		    				//startActivity(intent);
+							Toast.makeText(MainActivity1.this,"JOIN BY INVITE ONLY :(", Toast.LENGTH_LONG).show();
 		    	        	
 		    	        	dialog.dismiss();
 						}
@@ -558,9 +560,7 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 		          	  }
 		          	});	  	    	
 		  	    	
-		  	    	alert.show();
-    	        	
-	            
+		  	    	alert.show();	            
 	            }
 
 	        } else {
@@ -612,9 +612,10 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 					
 					stopService(svc);	    				
     				
-    				Intent intent = new Intent(MainActivity1.this, Client1.class);
+    				//Intent intent = new Intent(MainActivity1.this, Client1.class);
     				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-    				startActivity(intent);
+    				//startActivity(intent);
+					Toast.makeText(MainActivity1.this,"JOIN BY INVITE ONLY :(", Toast.LENGTH_LONG).show();
     	        	
     	        	dialog.dismiss();
 				}
@@ -636,6 +637,11 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	            Contacts.CONTENT_URI);
 	    startActivityForResult(contactPickerIntent, CONTACT_PICKER_RESULT);
 	}
+	
+	
+	//===================================================================================================
+	// SEPERATOR
+	//===================================================================================================
 	
 	
 	public void getLocalIpAddress(){
@@ -692,17 +698,13 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 					MOBILE = true;
 		}
 
-		if (WIFI == true)
-
-		{
+		if (WIFI == true) {
 			hostIP = GetDeviceipWiFiData();
-
 		}
 
 		if (MOBILE == true) {
 
 			hostIP = GetDeviceipMobileData();
-
 		}
 	}
 	
@@ -735,10 +737,7 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 				.getIpAddress());
 
 		return ip;
-
 	}
-		 
-		
 	
 	
 	//===================================================================================================
@@ -781,6 +780,9 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	}	
 	
 	
+	//===================================================================================================
+	// SEPERATOR
+	//===================================================================================================
 	
 	
 	public static void insertToDatabase(final String player){
@@ -826,6 +828,9 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
     }
 	
 	
+	//===================================================================================================
+	// SEPERATOR
+	//===================================================================================================
 	
 	
 	@Override
@@ -846,6 +851,9 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
         	ImageButton onePlayerButton = (ImageButton) findViewById(R.id.imagebuttononeplayer);
     		ImageButton multiPlayerButton = (ImageButton) findViewById(R.id.imagebuttonmultiplayer);
     		ImageButton aboutButton = (ImageButton) findViewById(R.id.imagebuttonabout);
+    		
+    		final MediaPlayer buttonSound = MediaPlayer.create(MainActivity1.this, R.raw.swordswing);
+    		
     		
     		onePlayerButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -963,13 +971,107 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
     		multiPlayerButton.setOnClickListener(new View.OnClickListener() {
                 @Override
     			public void onClick(View v) {
-                	
-            	buttonSound1.start();
+    			                    	
+            	buttonSound.start();
             	
-            	//Intent openMainActivity2 = new Intent("com.nedswebsite.ktog.MAINACTIVITY2");
-            	//startActivity(openMainActivity2);
-            	Toast.makeText(MainActivity1.this,"Multi-player not working yet :(", Toast.LENGTH_LONG).show();
-            	            				
+            	multiplayer = "yes";
+            	
+            	
+            	AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity1.this);
+
+            	alert.setTitle("Multiplayer");
+            	alert.setMessage("Enter Name");
+
+            	// Set an EditText view to get user input:
+            	final EditText input = new EditText(MainActivity1.this);
+            	input.setSingleLine(true);
+            	// Limits to 1 line (clicking return is like clicking "ok".)
+            	alert.setView(input);
+            	// Limits the number of characters entered to 14.
+            	InputFilter[] FilterArray = new InputFilter[1];
+            	FilterArray[0] = new InputFilter.LengthFilter(14);
+            	input.setFilters(FilterArray);
+            	
+            	// THIS WILL GET KEYBOARD AUTOMATICALLY FOR S4:
+            	/*
+            	input.requestFocus();
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+                */
+            	
+            	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            	public void onClick(DialogInterface dialog, int whichButton) {        		         		
+            		  		
+            		// NEED TO SEND TO ARRAY HERE:
+            		String playername = input.getText().toString();
+                	//String playercomputer = "Computer".toString();
+                	
+                	ArrayOfPlayers.player[0] = playername;
+                	//ArrayOfPlayers.player[1] = playercomputer;
+                	
+                	insertToDatabase(playername);	        	
+    	        	
+    	        	// ARRAY ADAPTER WITH ICON STUFF:	        	
+    	        	
+    	        	final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead", "Custom"};
+    	    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2, R.drawable.computer};
+    	    		
+    	    		ListAdapter adapter = new ArrayAdapterWithIcon(MainActivity1.this, items, avatars);
+    	    		
+    	    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
+    	    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
+    	    		//builder.setIcon(R.drawable.computerhead);
+    	    		builder.setTitle("Choose Your Avatar");
+    	    		
+    	    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
+    	    			public void onClick(DialogInterface dialog, int item) { 
+    	    								
+    	    				if (item == 0) {
+    	    					ArrayOfAvatars.avatar[0] = "computer";
+    	    					
+    	    					goToHostOrJoin();
+    		    	        	
+    		    	        	dialog.dismiss();
+    	    				}
+    	    				else if (item == 1) {
+    	    					ArrayOfAvatars.avatar[0] = "crossedswords";
+    	    					
+    	    					goToHostOrJoin();
+    		    	        	
+    		    	        	dialog.dismiss();
+    	    				}
+    	    				else if (item == 2) {
+    	    					ArrayOfAvatars.avatar[0] = "stonedead";
+    	    					
+    	    					goToHostOrJoin();
+    		    	        	
+    		    	        	dialog.dismiss();
+    	    				}
+    	    				else if (item == 3) {
+    	    					ArrayOfAvatars.avatar[0] = "custom";	    					
+    	    					
+    	    					openGallery();
+    	    					
+    	    					dialog.dismiss();
+    	    				}    				
+    	    	        	
+    	    	        	//finish();
+            	  		}
+    	    		});	    		
+    	        	
+    	            builder.create().show();            
+    	        	
+            	  }
+            	});
+
+            	alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            	  public void onClick(DialogInterface dialog, int whichButton) {
+            	    // Canceled.
+            	  }
+            	});
+            	
+            	alert.show();        	
+                
     			}
     		});
     		
@@ -999,6 +1101,9 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
         	final ImageButton onePlayerButton = (ImageButton) findViewById(R.id.imagebuttononeplayer);
     		final ImageButton multiPlayerButton = (ImageButton) findViewById(R.id.imagebuttonmultiplayer);
     		final ImageButton aboutButton = (ImageButton) findViewById(R.id.imagebuttonabout);
+    		
+    		final MediaPlayer buttonSound = MediaPlayer.create(MainActivity1.this, R.raw.swordswing);
+    		
 
     		onePlayerButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -1115,14 +1220,108 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
     		
     		multiPlayerButton.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
+    			public void onClick(View v) {
+    			                    	
+            	buttonSound.start();
+            	
+            	multiplayer = "yes";
+            	
+            	
+            	AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity1.this);
+
+            	alert.setTitle("Multiplayer");
+            	alert.setMessage("Enter Name");
+
+            	// Set an EditText view to get user input:
+            	final EditText input = new EditText(MainActivity1.this);
+            	input.setSingleLine(true);
+            	// Limits to 1 line (clicking return is like clicking "ok".)
+            	alert.setView(input);
+            	// Limits the number of characters entered to 14.
+            	InputFilter[] FilterArray = new InputFilter[1];
+            	FilterArray[0] = new InputFilter.LengthFilter(14);
+            	input.setFilters(FilterArray);
+            	
+            	// THIS WILL GET KEYBOARD AUTOMATICALLY FOR S4:
+            	/*
+            	input.requestFocus();
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+                */
+            	
+            	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            	public void onClick(DialogInterface dialog, int whichButton) {        		         		
+            		  		
+            		// NEED TO SEND TO ARRAY HERE:
+            		String playername = input.getText().toString();
+                	//String playercomputer = "Computer".toString();
                 	
-                buttonSound1.start();
+                	ArrayOfPlayers.player[0] = playername;
+                	//ArrayOfPlayers.player[1] = playercomputer;
                 	
-                //Intent openMainActivity2 = new Intent("com.nedswebsite.ktog.MAINACTIVITY2");
-                //startActivity(openMainActivity2);
-                Toast.makeText(MainActivity1.this,"Multi-player not working yet :(", Toast.LENGTH_LONG).show();
-                	             				
+                	insertToDatabase(playername);	        	
+    	        	
+    	        	// ARRAY ADAPTER WITH ICON STUFF:	        	
+    	        	
+    	        	final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead", "Custom"};
+    	    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2, R.drawable.computer};
+    	    		
+    	    		ListAdapter adapter = new ArrayAdapterWithIcon(MainActivity1.this, items, avatars);
+    	    		
+    	    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
+    	    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
+    	    		//builder.setIcon(R.drawable.computerhead);
+    	    		builder.setTitle("Choose Your Avatar");
+    	    		
+    	    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
+    	    			public void onClick(DialogInterface dialog, int item) { 
+    	    								
+    	    				if (item == 0) {
+    	    					ArrayOfAvatars.avatar[0] = "computer";
+    	    					
+    	    					goToHostOrJoin();
+    		    	        	
+    		    	        	dialog.dismiss();
+    	    				}
+    	    				else if (item == 1) {
+    	    					ArrayOfAvatars.avatar[0] = "crossedswords";
+    	    					
+    	    					goToHostOrJoin();
+    		    	        	
+    		    	        	dialog.dismiss();
+    	    				}
+    	    				else if (item == 2) {
+    	    					ArrayOfAvatars.avatar[0] = "stonedead";
+    	    					
+    	    					goToHostOrJoin();
+    		    	        	
+    		    	        	dialog.dismiss();
+    	    				}
+    	    				else if (item == 3) {
+    	    					ArrayOfAvatars.avatar[0] = "custom";	    					
+    	    					
+    	    					openGallery();
+    	    					
+    	    					dialog.dismiss();
+    	    				}    				
+    	    	        	
+    	    	        	//finish();
+            	  		}
+    	    		});	    		
+    	        	
+    	            builder.create().show();            
+    	        	
+            	  }
+            	});
+
+            	alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            	  public void onClick(DialogInterface dialog, int whichButton) {
+            	    // Canceled.
+            	  }
+            	});
+            	
+            	alert.show();        	
+                
     			}
     		});
     		
