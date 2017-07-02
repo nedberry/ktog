@@ -545,11 +545,11 @@ public class Client2 extends Activity {
 							  	  			out.flush();
 							  	  			out.close();
 							  	  			*/
-							  	  			
+							  	  			/*
 								  	  		centerscrolltext.setVisibility(View.VISIBLE);
 						  		  	  		centerscrolltext.startAnimation(animAlphaText);
 						  		  			centerscrolltext.append("\n" + ArrayOfPlayers.player[1] + " has entered the game!");
-							  	  			
+							  	  			*/
 							  	  		} catch (UnknownHostException e) {
 							  	  			e.printStackTrace();
 							  	  		} catch (IOException e) {
@@ -636,7 +636,7 @@ public class Client2 extends Activity {
 		  	  					true);
 		  	  			out.println(ArrayOfPlayers.player[1] + ": " + str);
 		  	  			
-		  	  			
+		  	  			/*
 			  	  		runOnUiThread(new Runnable() {
 			      	  	    @Override
 			      	  	    public void run() {
@@ -660,7 +660,7 @@ public class Client2 extends Activity {
 			    	  	  	  	}, 2000);
 			      	  	    }
 			      	  	});
-		  	  			
+		  	  			*/
 		  	  			
 		  	  			//NEW:
 		  	  			/*
@@ -1080,8 +1080,15 @@ public class Client2 extends Activity {
 				try {
 
 					String read = input.readLine();
-
-					updateConversationHandler.post(new updateUIThread(read));
+					
+					if ((read == null) || read.equalsIgnoreCase("QUIT")) {
+						socket.close();
+	                    return;
+	                }
+					
+					else {
+						updateConversationHandler.post(new updateUIThread(read));
+					}
 
 				} catch (IOException e) {
 					e.printStackTrace();

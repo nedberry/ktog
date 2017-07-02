@@ -89,9 +89,6 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
 		final Intent svc=new Intent(this, Badonk2SoundService.class);
 		//stopService(svc);
 		startService(svc);		
-				
-		
-		
             
 			                    	
     	buttonSound.start();
@@ -185,12 +182,7 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
     	  }
     	});
     	
-    	alert.show();        	
-            
-			
-		
-		
-		
+    	alert.show();
 	}
 	
 	
@@ -199,6 +191,7 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
 		Intent gallery = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI);
 		startActivityForResult(gallery, PICK_IMAGE);
 	}
+	
 	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -234,16 +227,18 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
 		    				Intent intent = new Intent(Client1.this, Client2.class);
 		    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
 		    				
-		    				//intent.putExtra("hostIP", hostIP);
-		    				
-		    				startActivity(intent);
-		    				
+		    				//intent.putExtra("hostIP", hostIP);		    				
+		    				startActivity(intent);		    				
 		    	        	
 		    	        	dialog.dismiss();
+		    	        	
+		    	        	//finish();
 						}
 						else if (item == 1) {		
 		    	        	
 		    	        	dialog.dismiss();
+		    	        	
+		    	        	finish();
 						}    				    				
 			        	
 			        	//finish();
@@ -256,12 +251,15 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
 				Intent intent = new Intent(Client1.this, Client2.class);
 			    intent.putExtra("imageUri", imageUri.toString());
 				//intent.putExtra("imageUri", imageUri);
-			    startActivity(intent);						    			       	
+			    startActivity(intent);
+			    
+			    //finish();
 			}
 		break;		
 		
 		}
 	}
+	
 	
 	public void goToJoin() {
 		
@@ -288,16 +286,18 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
     				Intent intent = new Intent(Client1.this, Client2.class);
     				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
     				
-    				//intent.putExtra("hostIP", hostIP);
-    				
-    				startActivity(intent);
-    	        	
+    				//intent.putExtra("hostIP", hostIP);    				
+    				startActivity(intent);    	        	
     				
     	        	dialog.dismiss();
+    	        	
+    	        	//finish();
 				}
 				else if (item == 1) {		
     	        	
-    	        	dialog.dismiss();    	        	
+    	        	dialog.dismiss();
+    	        	
+    	        	finish();
     	        	
 				}    				    				
 	        	
@@ -306,14 +306,40 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
 		});	    		
     	
         builder.create().show();		
-	}
-	
+	}	
 	
 	
 	//===================================================================================================
 	// SEPERATOR
 	//===================================================================================================
+	
+	
+	public void onStart() {
+		super.onStart();		
 		
+		try {// NEED THIS???????????? IN MANIFEST: android:pathPrefix="/"
+			Intent intent = getIntent();
+			Uri data = intent.getData();//http://www.ktog.multiplayer.com/?ip=
+			String ip = data.getQueryParameter("ip");
+			
+			/*DOESNT RECOGNIZE THE "%"?????
+			String[] vars = ip.split("?");
+			vars = vars[1].split("%");
+			hostIP = vars[0].split("=")[1];
+			*/
+			
+			hostIP = ip;
+			
+			ArrayOfIP.hostIP[0] = hostIP;
+			
+		    //Toast.makeText(Client1.this, hostIP, Toast.LENGTH_LONG).show();
+		    
+		} catch (Throwable t) {
+				Toast.makeText(Client1.this, "HOSTIP CONVERSION DID NOT WORK", Toast.LENGTH_LONG).show();
+		}
+		
+	}
+	
 	@Override
     public void onBackPressed() {
 			
@@ -350,6 +376,9 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
 	}	
 	
 	
+	//===================================================================================================
+	// SEPERATOR
+	//===================================================================================================
 	
 	
 	public static void insertToDatabase(final String player){
@@ -436,45 +465,15 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
         	
         	//final ImageButton onePlayerButton = (ImageButton) findViewById(R.id.imagebuttononeplayer);
     		//final ImageButton multiPlayerButton = (ImageButton) findViewById(R.id.imagebuttonmultiplayer);
-    		//final ImageButton aboutButton = (ImageButton) findViewById(R.id.imagebuttonabout);
-
-    		   		
+    		//final ImageButton aboutButton = (ImageButton) findViewById(R.id.imagebuttonabout);   		   		
     		
                 	
             buttonSound1.start();
             	
             //Intent openMainActivity2 = new Intent("com.nedswebsite.ktog.MAINACTIVITY2");
             //startActivity(openMainActivity2);
-            //Toast.makeText(Client1.this,"Multi-player not working yet :(", Toast.LENGTH_LONG).show();
-                	             				
-    		
-    		
-    		
+            //Toast.makeText(Client1.this,"Multi-player not working yet :(", Toast.LENGTH_LONG).show();    		
         }
-    }
+    }	
 	
-	public void onStart() {
-		super.onStart();		
-		
-		try {// NEED THIS???????????? IN MANIFEST: android:pathPrefix="/"
-			Intent intent = getIntent();
-			Uri data = intent.getData();//http://www.ktog.multiplayer.com/?ip=
-			String ip = data.getQueryParameter("ip");
-			
-			/*DOESNT RECOGNIZE THE "%"?????
-			String[] vars = ip.split("?");
-			vars = vars[1].split("%");
-			hostIP = vars[0].split("=")[1];
-			*/
-			
-			hostIP = ip;
-			
-			ArrayOfIP.hostIP[0] = hostIP;
-			
-		    Toast.makeText(Client1.this, hostIP, Toast.LENGTH_LONG).show();
-		} catch (Throwable t) {
-				Toast.makeText(Client1.this, "HOSTIP CONVERSION DID NOT WORK", Toast.LENGTH_LONG).show();
-		}
-		
-	}
 }

@@ -1023,6 +1023,9 @@ public class Host extends Activity {
 	                }
 					else {
 						updateConversationHandler.post(new updateUIThread(read));
+						
+						
+			    		sendToAllClients(read);
 					}
 
 				} catch (IOException e) {
@@ -1068,6 +1071,12 @@ public class Host extends Activity {
 	public void sendToAll(Object str){
         for(ClientWorker client : clientWorkers)                    	
         	client.print(ArrayOfPlayers.player[0] + ": " + str);
+    }
+	
+	
+	public void sendToAllClients(Object read){
+        for(ClientWorker client : clientWorkers)                    	
+        	client.print(read);
     }
 	
 	
