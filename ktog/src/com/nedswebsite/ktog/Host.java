@@ -49,20 +49,22 @@ import android.widget.Toast;
 
 public class Host extends Activity {
     
-	Socket clientSocket;
+	//Socket clientSocket;
+	//Socket[] clientSocket = new Socket[1];
 	
 	ArrayList<ClientWorker> clientWorkers = new ArrayList<ClientWorker>();
 	int idCounter = 0;
 	
 	ServerSocket serverSocket;
-
+	//ServerSocket[] serverSocket = new ServerSocket[1];
+	
 	Handler updateConversationHandler;
 
 	Thread serverThread;
 
 	TextView text;
 
-	public static final int SERVERPORT = 2000;//WAS 6000
+	//public static final int SERVERPORT = 2000;//WAS 6000
 	
 	
 	
@@ -498,7 +500,15 @@ public class Host extends Activity {
 			  	  		titleinitiativetext.setVisibility(View.VISIBLE); 			
   		  	  			
   		  	  							  		
-  		  	  			titleinitiativetext.append("Initiative");	      	  	  			  	  			
+  		  	  			titleinitiativetext.append("Initiative");
+  		  	  			
+  		  	  			
+  		  	  			/*
+	  		  	  		for (int counter = 0; counter < clientWorkers.size(); counter++) {
+	  		        	  
+	  		        	  Toast.makeText(Host.this, clientWorkers.get(counter), Toast.LENGTH_LONG).show();		               		
+	  		  	  		}
+	  		  	  		*/	  		  	  		
         	  	  	}
         	  	}, 675); // SHOULD BE AT LEAST 675? WAS 525       	      	        				
 			}
@@ -946,20 +956,28 @@ public class Host extends Activity {
 				
 				serverSocket = new ServerSocket(); // <-- create an unbound socket first
 				serverSocket.setReuseAddress(true);
-				serverSocket.bind(new InetSocketAddress(2000)); // <-- now bind it
+				serverSocket.bind(new InetSocketAddress(2000)); // <-- now bind it				
+				
 				
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			while(true){
+			while(true) {
 		        ClientWorker w;
-		        try{
-		        //server.accept returns a client connection
-		          w = new ClientWorker(serverSocket.accept(), idCounter);
-		          idCounter++;
-		          clientWorkers.add(w); 
-		          Thread t = new Thread(w);
-		          t.start();
+		        try{		        	
+		        	// HELPS TO PREVENT ADDITIONAL CLIENTS LOGGING INTO SERVER THAN TOTAL INVITES SENT BY HOST.
+		        	if (clientWorkers.size() > ArrayOfInvites.invites[0]) {
+			        	  
+			        }		        	
+		        	else {		        		
+		        		//server.accept returns a client connection
+			        	w = new ClientWorker(serverSocket.accept(), idCounter);
+			        	idCounter++;
+			        	clientWorkers.add(w); 
+			        	Thread t = new Thread(w);
+			        	t.start();		        		
+		        	}     
+		          
 		        } catch (IOException e) {
 		          System.exit(-1);
 		        }
@@ -968,7 +986,7 @@ public class Host extends Activity {
 	}
 
 	
-	class ClientWorker implements Runnable {
+	class ClientWorker implements Runnable, CharSequence {
 
 		private Socket clientSocket;
 
@@ -1063,6 +1081,24 @@ public class Host extends Activity {
 			catch(IOException e) {				
 				e.printStackTrace();  	  		
   	  		}			
+		}
+
+		@Override
+		public char charAt(int arg0) {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+
+		@Override
+		public int length() {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+
+		@Override
+		public CharSequence subSequence(int arg0, int arg1) {
+			// TODO Auto-generated method stub
+			return null;
 		}
 		
 	}

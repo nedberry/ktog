@@ -539,9 +539,11 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 		  	    	*/	  	    	
 		  	    	
 		  	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-		  		    	public void onClick(DialogInterface dialog, int whichButton) {	  		    		
+		  		    	public void onClick(DialogInterface dialog, int whichButton) {
 		  		    		
-		  		    		doLaunchContactPicker(customImageView);													  		    		
+		  		    		ArrayOfInvites.invites[0] = ArrayOfInvites.invites[0] + 1;
+		  		    		
+		  		    		doLaunchContactPicker(customImageView);												  		    		
 		  		    	}
 		  	    	});
 		  	    	
@@ -757,6 +759,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	// DESTROYS EVERYTHING (EXCEPT SERVICE?)
 	@Override
 	protected void onDestroy() {
+		
+		ArrayOfInvites.invites = new int[1];
 		
 	    android.os.Process.killProcess(android.os.Process.myPid());
 	    

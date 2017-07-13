@@ -60,7 +60,7 @@
    	    android:textColor="#FFFFFF"   	    
    	    android:gravity="center"
    	    android:textSize="58sp"   	    
-   	    android:paddingBottom="24dp" />
+   	    android:paddingBottom="23dp" />
     
     <TextView
    	    android:id="@+id/textviewtitlektogtext"
@@ -74,7 +74,7 @@
    	    android:textColor="#FFFFFF"   	    
    	    android:gravity="center"
    	    android:textSize="77sp"   	    
-   	    android:paddingBottom="24dp" />
+   	    android:paddingBottom="18dp" />
     <!--
     	android:gravity="bottom"
     	android:lineSpacingExtra="2dp"
@@ -96,7 +96,7 @@
    	    android:textColor="#FFFFFF"   	    
    	    android:gravity="center"
    	    android:textSize="46sp"  	    
-   	    android:paddingBottom="24dp" />
+   	    android:paddingBottom="20dp" />
      
 	<ScrollView
 		android:layout_width="211dp"
