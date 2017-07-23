@@ -77,7 +77,7 @@ public class Host extends Activity {
 	int max = 0;
 	
 	
-	static int numberOfPlayers = 1; // NEED THIS???????????
+	//static int numberOfPlayers = 1; // NEED THIS???????????
 	
 	
 	
@@ -164,6 +164,8 @@ public class Host extends Activity {
 		final Intent svc=new Intent(this, Badonk2SoundService.class);
 		//startService(svc);
 		
+		MediaPlayerWrapper.play(Host.this, R.raw.buttonsound6);
+		
 		
 		updateConversationHandler = new Handler();
 
@@ -183,15 +185,11 @@ public class Host extends Activity {
 		// For the little space between the action & attack button.
 		getWindow().getDecorView().setBackgroundColor(Color.BLACK);		
 		
-		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-		
-		
-		MediaPlayerWrapper.play(Host.this, R.raw.buttonsound6);    			
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);		    			
 		
 		
 		// Crashes if this is put up top.
 		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
-		
 		
 		
 		//TextView startGameTextView = (TextView)findViewById(R.id.textviewstartgame);
@@ -205,7 +203,7 @@ public class Host extends Activity {
 		
 		TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);		
 		playerNameTextView.setTypeface(typeFace);		
-		playerNameTextView.setText(ArrayOfPlayers.player[0]);		
+		playerNameTextView.setText(ArrayOfPlayers.player[5]);		
 		
 		//WAS FOR COMP NAME:
 		TextView computerNameTextView = (TextView)findViewById(R.id.textviewnameright);
@@ -318,9 +316,7 @@ public class Host extends Activity {
 		
 		
 		
-		
 		unfoldScrolls();		
-		
 		
   	  	
   	  	
@@ -371,7 +367,7 @@ public class Host extends Activity {
   	  		{  	  			
   	  			centerscrolltext.setVisibility(View.VISIBLE);
   	  			centerscrolltext.startAnimation(animAlphaText);
-	  			centerscrolltext.append("\n" + "> Welcome, " + ArrayOfPlayers.player[0] + ".");  	  	  				  	  	  			
+	  			centerscrolltext.append("\n" + "> Welcome, " + ArrayOfPlayers.player[5] + ".");  	  	  				  	  	  			
 	  			/*TO TEST SCROLL BAR:
 	  			centerscrolltext.append("\n" + "> NEW LINE TEST");
 	  			centerscrolltext.append("\n" + "> NEW LINE TEST");
@@ -423,10 +419,6 @@ public class Host extends Activity {
 						  	  	  		@Override
 						  	  	  		public void run()
 						  	  	  		{  	  			
-						  	  	  			
-						  	  	  			
-						  	  	  			
-						  	  	  			
 						  	  	  			//startService(svc);
 						  	  	  			
 						  	  	  			/*
@@ -455,15 +447,18 @@ public class Host extends Activity {
 						  		  			
 						  		  			
 						  		  			//preventinitiativediefromleaking = "off";
-						  		  			 */
+						  		  			*/
 					  	  	  		}
 					  	  	  	}, 500);
 			  	  	  		}
 			  	  	  	}, 1000);
 		  	  	  	}
-	  	  	  	}, 3000);//FINAGLING TO GET RIGHT (MAINLY 1ST TIME) - should be at least 4700?	  	  		  			
+	  	  	  	}, 3000);//FINAGLING TO GET RIGHT (MAINLY 1ST TIME) - should be at least 4800?	  	  		  			
   	  		}
   	  	}, 2000);
+  	  	
+  	  	
+  	  	determineInitiative();
   	  	
   	  	
   	  	startButton.setOnClickListener(new View.OnClickListener() {
@@ -494,13 +489,14 @@ public class Host extends Activity {
         	  			TextView titleinitiativetext = (TextView) findViewById(R.id.textviewtitleinitiativetext);
 		  	  			
 			  	  		Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-			  	  		titleinitiativetext.setTypeface(typeFace);					  			
-						
+			  	  		titleinitiativetext.setTypeface(typeFace);						
 							
-			  	  		titleinitiativetext.setVisibility(View.VISIBLE); 			
-  		  	  			
+			  	  		titleinitiativetext.setVisibility(View.VISIBLE);  		  	  			
   		  	  							  		
   		  	  			titleinitiativetext.append("Initiative");
+  		  	  			
+  		  	  			
+  		  	  			//gameEngine();
   		  	  			
   		  	  			
   		  	  			/*
@@ -508,9 +504,58 @@ public class Host extends Activity {
 	  		        	  
 	  		        	  Toast.makeText(Host.this, clientWorkers.get(counter), Toast.LENGTH_LONG).show();		               		
 	  		  	  		}
-	  		  	  		*/	  		  	  		
+	  		  	  		*/
+  		  	  			
+	  		  	  		final Handler h4 = new Handler();
+			  	  	  	h4.postDelayed(new Runnable() {
+			  	  	  		
+			  	  	  		@Override
+			  	  	  		public void run() {				  				
+			  	  	  			
+			  	  	  			// Sets sixSidedBlank visible & enabled.
+			  	  	  			sixSidedRollFromLeft();  	  	  			
+			  		  			
+			  	  	  			
+				  		  		final Handler h5 = new Handler();
+					  	  	  	h5.postDelayed(new Runnable() {
+					  	  	  			
+					  	  	  			// Does this thread help:?
+						  	  	  		@Override
+						  	  	  		public void run()
+						  	  	  		{  	  			
+							  	  	  		sixSidedWobbleStart();
+							  	  	  		
+							  	  	  		isSixSidedReadyToBeRolled = "yes";
+							  	  	  		isInitiativeOver = "no";
+							  	  	  		
+						  	  	  			centerscrolltext.setVisibility(View.VISIBLE);
+						  		  	  		centerscrolltext.startAnimation(animAlphaText);
+						  		  			centerscrolltext.append("\n" + "> Please slide the die...");								  		  			
+						  		  			
+						  		  			playerCardStartFadeInFadeOut();
+						  		  			//playerTurnBackgroundStart();			  		  			
+						  		  			
+						  		  			
+						  		  			//issixsidedrolledforinitiative = "yes";
+						  		  			isinitiativestarted = "yes";			  		  			
+						  		  			onBackPressedOk = "yes";
+						  		  			
+						  		  			
+						  		  			//preventinitiativediefromleaking = "off";
+						  		  			
+						  		  			
+						  		  			String str = "StartInitiative";
+						  		  			sendToAll(str);
+						  		  			
+						  		  			
+						  		  			String str2 = "ONE CLIENT TEST";
+						  		  			sendToClient1(str2);
+					  	  	  		}
+					  	  	  	}, 750);
+			  	  	  		}
+			  	  	  	}, 1000);  		  	  			
         	  	  	}
-        	  	}, 675); // SHOULD BE AT LEAST 675? WAS 525       	      	        				
+        	  	}, 713); // SHOULD BE AT LEAST 675?       	      	        				
 			}
 		});
   	  	
@@ -563,19 +608,12 @@ public class Host extends Activity {
 		    	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 		    	  			
 		    	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-		    	  			centerscrolltext.setTypeface(typeFace);
+		    	  			centerscrolltext.setTypeface(typeFace);		    	  			
 		    	  			
-		    	  			final Handler h = new Handler();
-		    	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-		    	  	  	  			
-		    	  	  	  		@Override
-		    		  	  	  	public void run() {
 		      	  	    	
-		      	  	    			centerscrolltext.setVisibility(View.VISIBLE);
-		    				  		//centerscrolltext.startAnimation(animAlphaText);
-		    						centerscrolltext.append("\n" + ArrayOfPlayers.player[0] + ": " + str);		        
-		    	  	  	  		}
-		    	  	  	  	}, 2000);
+      	  	    			centerscrolltext.setVisibility(View.VISIBLE);
+    				  		//centerscrolltext.startAnimation(animAlphaText);
+    						centerscrolltext.append("\n" + ArrayOfPlayers.player[5] + ": " + str);		    	  	  	  	
 		      	  	    }
 		      	  	});
 		    		
@@ -620,9 +658,103 @@ public class Host extends Activity {
 	}	
 	
 	
-	//=============================================================================================
-	//SEPERATOR
-	//=============================================================================================
+	/*
+	 * 
+	 * 
+	 * 
+	 * Android-Related Methods***********************************************************************************
+	 * 
+	 * 
+	 * 
+	 */
+	
+	
+	// ONSTOP OR ONDESTROY???????
+		/*
+		@Override
+		protected void onStop() {
+			super.onStop();
+			try {
+				serverSocket.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		*/
+		
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		
+		final Intent svc=new Intent(this, Badonk2SoundService.class);
+		
+		if (serverSocket != null) {
+			try {
+				
+				serverSocket.close();
+				
+				stopService(svc);
+				
+				android.os.Process.killProcess(android.os.Process.myPid());
+			    
+			    super.onDestroy();				
+				
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+		
+	public void onBackPressed() {
+
+		AlertDialog.Builder alert = new AlertDialog.Builder(Host.this);
+		
+		final Intent svc=new Intent(this, Badonk2SoundService.class);
+
+		alert.setTitle("KtOG");
+		alert.setMessage("Are you sure you want to exit?");
+
+		alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int whichButton) {
+
+				dialog.dismiss();
+				
+				stopService(svc);
+
+				Intent intent = new Intent(Host.this, MainActivity1.class);
+				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK); // this combination of flags would start a new instance even if the instance of same Activity exists.
+				intent.addFlags(Intent.FLAG_ACTIVITY_TASK_ON_HOME);
+				finish();
+				startActivity(intent);			
+			}
+		});
+
+		alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int whichButton) {
+
+				dialog.dismiss();
+
+				// hideNavigation();
+			}
+		});
+		alert.show();
+
+		// Toast.makeText(MainActivity2.this,"onBackPressed WORKING!!!!", Toast.LENGTH_SHORT).show();
+	}
+	
+	
+	/*
+	 * 
+	 * 
+	 * 
+	 * Player Cards*****************************************************************************************
+	 * 
+	 * 
+	 * 
+	 */
 	
 	
 	// OK IN THEIR OWN THREADS????
@@ -654,13 +786,15 @@ public class Host extends Activity {
 	}
 	
 	
-	public void sixSidedWobbleStart() {
-		final ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
-		final Animation shake = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.wobblesixsided);
-		img.setAnimation(shake);
-	}	
-	
-	
+	/*
+	 * 
+	 * 
+	 * 
+	 * Intro Animations***********************************************************************************
+	 * 
+	 * 
+	 * 
+	 */
 	
 	
 	//@SuppressWarnings("deprecation")
@@ -702,10 +836,8 @@ public class Host extends Activity {
 	  	    }
   		});	
 	}
-	
-	
-	
-	
+		
+	/*
 	public void startTitle() {	
 		
 		runOnUiThread(new Runnable() {
@@ -723,6 +855,7 @@ public class Host extends Activity {
 	  	    }
   		});	
 	}
+	*/
 	
 	public void preInitiativeTitle() {	
 		/*
@@ -783,31 +916,24 @@ public class Host extends Activity {
 	}
 	
 	
+	/*
+	 * 
+	 * 
+	 * 
+	 * Dice-Related*******************************************************************************************
+	 * 
+	 * 
+	 * 
+	 */
 	
 	
-	public void sixSidedRollFromLeft() {	
-	  	/*
-		final ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
-		img.setBackgroundResource(R.anim.sixsidedrollfromleftanimation);
-  	  
-  	  	// Get the background, which has been compiled to an AnimationDrawable object.
-  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();		
-  	  
-  	  		Thread thread = new Thread() {
-			    @Override
-			    public void run() {
-			    	MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
-			    }
-			};
-		thread.start();
-  	  	//MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
-  	  	
-  	  	
-  	  	// Animation is just 1 slide so user can see title.
-  	  	frameAnimation.stop();
-  	  	frameAnimation.start();
-  	  	*/
-		// USING "runOnUiThread(new Runnable() {}" TO SEE IF IT WORKS BETTER THAN NOT USING IT.
+	public void sixSidedWobbleStart() {
+		final ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
+		final Animation shake = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.wobblesixsided);
+		img.setAnimation(shake);
+	}
+	
+	public void sixSidedRollFromLeft() {	  	
 		
 		final ImageView sixSidedBlank = (ImageView) findViewById(R.id.sixsidedanimation);
 		sixSidedBlank.setVisibility(View.VISIBLE);
@@ -837,91 +963,76 @@ public class Host extends Activity {
 		  	  	frameAnimation.start();
 	  	    }
   		});	
-	}	
+	}
 	
 	
-	
-	//=============================================================================================
-	//SEPERATOR
-	//=============================================================================================
-	
-	
-	// ONSTOP OR ONDESTROY???????
 	/*
-	@Override
-	protected void onStop() {
-		super.onStop();
-		try {
-			serverSocket.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	*/
+	 * 
+	 * 
+	 * 
+	 * Initiative*****************************************************************************************
+	 * 
+	 * 
+	 * 
+	 */
 	
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
+	
+	public void  determineInitiative() {
 		
-		//final Intent svc=new Intent(this, Badonk2SoundService.class);
+		int result = (int)(Math.random()*6)+1;
+        //(Math.random()*6) returns a number between 0 (inclusive) and 6 (exclusive)
+        //same as: (int) Math.ceil(Math.random()*6); ?
+		ArrayOfInitiative.initiative[0] = result;
 		
-		if (serverSocket != null) {
-			try {
-				
-				serverSocket.close();
-				
-				
-				android.os.Process.killProcess(android.os.Process.myPid());
-			    
-			    super.onDestroy();
-				
-				//stopService(svc);
-				
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+		int resultComputer = (int)(Math.random()*6)+1;
+		ArrayOfInitiative.initiative[1] = resultComputer;				
 	}
 	
-	public void onBackPressed() {
-
-		AlertDialog.Builder alert = new AlertDialog.Builder(Host.this);
+	
+	/*
+	 * 
+	 * 
+	 * 
+	 * Game Mechanics*****************************************************************************************
+	 * 
+	 * 
+	 * 
+	 */
+	
+	
+	public void gameEngine() {		
 		
-		final Intent svc=new Intent(this, Badonk2SoundService.class);
-
-		alert.setTitle("KtOG");
-		alert.setMessage("Are you sure you want to exit?");
-
-		alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int whichButton) {
-
-				dialog.dismiss();
-				
-				stopService(svc);
-
-				Intent intent = new Intent(Host.this, MainActivity1.class);
-				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK); // this combination of flags would start a new instance even if the instance of same Activity exists.
-				intent.addFlags(Intent.FLAG_ACTIVITY_TASK_ON_HOME);
-				finish();
-				startActivity(intent);			
-			}
-		});
-
-		alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int whichButton) {
-
-				dialog.dismiss();
-
-				// hideNavigation();
-			}
-		});
-		alert.show();
-
-		// Toast.makeText(MainActivity2.this,"onBackPressed WORKING!!!!",
-		// Toast.LENGTH_SHORT).show();
-	}	
+		//FOR TESTING:
+		/*
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {
+  	  	    	
+	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+	  			
+	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  			centerscrolltext.setTypeface(typeFace);
+	  			
+	  			centerscrolltext.setVisibility(View.VISIBLE);
+		  		
+	  			
+	  			
+	  			//for (int i=0; i < 6; i++) {
+	  			//	centerscrolltext.append("\n" + ArrayOfPlayers.player[i] + " " + ArrayOfID.id[i]);//+ "\n"
+	  			//}
+	  				  			
+	  			centerscrolltext.append("\n" + "Total clients = "+ idCounter);
+  	  	    }
+  		});
+  		*/				
+		
+		/*
+		for (int i=0; i<ArrayOfInvites.invites[0]; i++) {			
+			Toast.makeText(Host.this, ArrayOfPlayers.player[i] + " " + ArrayOfID.id[i], Toast.LENGTH_LONG).show();			
+		}
+		*/				
+	}
 	
 	
 	//=============================================================================================
@@ -965,8 +1076,8 @@ public class Host extends Activity {
 			while(true) {
 		        ClientWorker w;
 		        try{		        	
-		        	// HELPS TO PREVENT ADDITIONAL CLIENTS LOGGING INTO SERVER THAN TOTAL INVITES SENT BY HOST.
-		        	if (clientWorkers.size() > ArrayOfInvites.invites[0]) {
+		        	// HELPS TO PREVENT ADDITIONAL CLIENTS LOGGING INTO SERVER THAN TOTAL INVITES SENT BY HOST OR MORE THAN 5 CLIENTS.
+		        	if ((clientWorkers.size() > ArrayOfInvites.invites[0]) || (clientWorkers.size() > 5)) {
 			        	  
 			        }		        	
 		        	else {		        		
@@ -1006,7 +1117,7 @@ public class Host extends Activity {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			*/
+			*/			
 		}
 
 		public void run() {
@@ -1014,8 +1125,7 @@ public class Host extends Activity {
 			String line;
 	        BufferedReader in = null;
 	        PrintWriter out = null;
-	        try{
-	        	
+	        try{	        	
 	        	
 	        	this.input = new BufferedReader(new InputStreamReader(this.clientSocket.getInputStream()));
 	        	//input = new BufferedReader(new InputStreamReader(this.clientSocket.getInputStream()));
@@ -1033,12 +1143,59 @@ public class Host extends Activity {
 
 				try {
 
-					String read = input.readLine();
+					String read = input.readLine();					
 					
 					if ((read == null) || read.equalsIgnoreCase("QUIT")) {
 						clientSocket.close();
 	                    return;
 	                }
+					
+					else if (read.contains("PlayerName")) {//MAY WANT MORE COMPLICATED TERM SO IT DOESN'T GET REPEATED IN CHAT
+						
+						String[] parts = read.split(":");
+						String part1 = parts[0];  
+						//String part2 = parts[1].trim();//IF THERE WAS A SPACE
+						String part2 = parts[1];
+						
+						
+						/*
+						//TESTING:
+						//THESE DONT WORK?:
+						//Toast.makeText(Host.this, id, Toast.LENGTH_LONG).show();						
+						//Toast.makeText(Host.this, part2, Toast.LENGTH_LONG).show();
+						read = "id= " + id + "name= " + part2;
+						//THIS IS GETTING POSTED TWICE TO HOST UI?:
+						updateConversationHandler.post(new updateUIThread(read));
+						*/
+						
+						//read = "id= " + id + "name= " + part2;
+						//updateConversationHandler.post(new updateUIThread(read));
+						
+						//CANT ADD STRING TO ARRAYLIST IN FORM:int, Host.ClientWorker. SO USE ARRAYOFPLAYERS?
+						//clientWorkers.add(id, part2);						
+						
+						if (id == 0) {
+							ArrayOfPlayers.player[0]=part2;
+							ArrayOfID.id[0] = 0;
+						}
+						else if (id == 1) {
+							ArrayOfPlayers.player[1]=part2;
+							ArrayOfID.id[1] = 1;
+						}
+						else if (id == 2) {
+							ArrayOfPlayers.player[2]=part2;
+							ArrayOfID.id[2] = 2;
+						}
+						else if (id == 3) {
+							ArrayOfPlayers.player[3]=part2;
+							ArrayOfID.id[3] = 3;
+						}
+						else if (id == 4) {
+							ArrayOfPlayers.player[4]=part2;
+							ArrayOfID.id[4] = 4;
+						}												
+					}					
+					
 					else {
 						updateConversationHandler.post(new updateUIThread(read));
 						
@@ -1106,7 +1263,7 @@ public class Host extends Activity {
 	
 	public void sendToAll(Object str){
         for(ClientWorker client : clientWorkers)                    	
-        	client.print(ArrayOfPlayers.player[0] + ": " + str);
+        	client.print(ArrayOfPlayers.player[5] + ": " + str);
     }
 	
 	
@@ -1114,6 +1271,12 @@ public class Host extends Activity {
         for(ClientWorker client : clientWorkers)                    	
         	client.print(read);
     }
+	
+	public void sendToClient1(Object read){
+		//for(ClientWorker client : clientWorkers)                    	
+		ClientWorker client = clientWorkers.get(1);
+		client.print(read);
+	}
 	
 	
 	class updateUIThread implements Runnable {

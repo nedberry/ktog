@@ -27,6 +27,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.AnimationDrawable;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -175,11 +176,14 @@ public class Client2 extends Activity {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+		super.onCreate(savedInstanceState);		
 		
 		
-		//final Intent svc=new Intent(this, Badonk2SoundService.class);
-		//startService(svc);
+		MediaPlayerWrapper.play(Client2.this, R.raw.buttonsound6);
+		
+		final Intent svc=new Intent(this, Badonk2SoundService.class);
+		//stopService(svc);
+		startService(svc);		
 		
 		
 		updateConversationHandler = new Handler();
@@ -208,11 +212,7 @@ public class Client2 extends Activity {
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		
 		
-		MediaPlayerWrapper.play(Client2.this, R.raw.buttonsound6);
 		
-		final Intent svc=new Intent(this, Badonk2SoundService.class);
-		//stopService(svc);
-		startService(svc);
     			
 		
 		
@@ -535,11 +535,21 @@ public class Client2 extends Activity {
 						  	  	  		try {
 						  	  	  		
 							  	  	  		//Toast.makeText(Client2.this, "THIS IS THE HOSTIP" + hostIP, Toast.LENGTH_LONG).show();
+						  	  	  			
 							  	  			String str = ArrayOfPlayers.player[1] + " has entered the game!";
 							  	  			PrintWriter out = new PrintWriter(new BufferedWriter(
 							  	  					new OutputStreamWriter(socket.getOutputStream())),
 							  	  					true);
 							  	  			out.println(str);
+							  	  		
+							  	  			
+							  	  			String str2 = ArrayOfPlayers.player[1];
+							  	  			out.println("PlayerName :" + str2);
+							  	  			
+							  	  			
+							  	  			//gameEngine();
+							  	  			
+							  	  			
 							  	  			//NEW:
 							  	  			/*
 							  	  			out.flush();
@@ -592,6 +602,7 @@ public class Client2 extends Activity {
   	  	}, 2000);
   	  	
   	  	
+  	  	determineInitiative();
   	  	
   	  	
 		chatBlankButton.setOnClickListener(new View.OnClickListener() {
@@ -695,187 +706,15 @@ public class Client2 extends Activity {
 	}
 	
 	
-	//=============================================================================================
-	//SEPERATOR
-	//=============================================================================================
-	
-	
-	// OK IN THEIR OWN THREADS????
-	public void playerCardStartFadeInFadeOut() {		
-		runOnUiThread(new Runnable() {
-			@Override
-			public void run() {	
-				/*
-		    	TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);		    	
-				final Animation animAlphaTextRepeat = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.anim_alpha_text_repeat);
-			  	playerNameTextView.startAnimation(animAlphaTextRepeat);
-			  	*/
-			  	
-			  	// Changes color of imageview:
-			  	/*
-			  	ImageView img = (ImageView)findViewById(R.id.playerturnbackgroundanimation);
-			  	img.setBackgroundResource(R.drawable.leftscroll);
-				img.setImageResource(R.drawable.leftscroll);
-			  	img.getBackground().setColorFilter(Color.parseColor("#ff0000"), PorterDuff.Mode.DARKEN);
-			  	*/
-				
-				//getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_IMMERSIVE | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
-			  	ImageView img = (ImageView)findViewById(R.id.playerturnbackgroundanimation);		  	
-			  	img.bringToFront();
-			  	final Animation animAlphaTextRepeat = AnimationUtils.loadAnimation(Client2.this, R.anim.anim_alpha_text_repeat);
-			  	img.startAnimation(animAlphaTextRepeat);		  	
-		    }
-  		});			  		  	
-	}
-	
-	
-	public void sixSidedWobbleStart() {
-		final ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
-		final Animation shake = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.wobblesixsided);
-		img.setAnimation(shake);
-	}	
-	
-	
-	//@SuppressWarnings("deprecation")
-	public void unfoldScrolls() {
-		/*
-		// TO PERFORM FRAME ANIMATION PROGRAMMATICALLY:
-		AnimationDrawable animation;
-		animation = new AnimationDrawable();
-        animation.addFrame(getResources().getDrawable(R.drawable.dualingscrolls14), 75);
-        animation.addFrame(getResources().getDrawable(R.drawable.dualingscrolls12), 75);
-        animation.addFrame(getResources().getDrawable(R.drawable.dualingscrolls10), 75);
-        animation.addFrame(getResources().getDrawable(R.drawable.dualingscrolls8), 75);
-        animation.addFrame(getResources().getDrawable(R.drawable.dualingscrolls6), 75);
-        animation.addFrame(getResources().getDrawable(R.drawable.dualingscrolls4), 75);
-        animation.addFrame(getResources().getDrawable(R.drawable.dualingscrolls1), 75);
-        
-        animation.setOneShot(true);
-       
-        ImageView imageAnim =  (ImageView) findViewById(R.id.scrollanimation);
-        imageAnim.setBackgroundDrawable(animation);       
-        
-        imageAnim.post(animation);
-		*/
-		
-		// USING "runOnUiThread(new Runnable() {}" TO SEE IF IT WORKS BETTER THAN NOT USING IT.
-		runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
-				// Setting up scroll frame animation.
-				ImageView img = (ImageView)findViewById(R.id.scrollanimation);
-				img.setBackgroundResource(R.anim.scrollanimationleftdown);
-			
-				// Get the background, which has been compiled to an AnimationDrawable object.
-				AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
-							
-				// Start the animation.
-				frameAnimation.stop();
-				frameAnimation.start();
-	  	    }
-  		});	
-	}
-	
-	
-	public void preInitiativeTitle() {	
-		/*
-		ImageView img = (ImageView)findViewById(R.id.titleanimation);		
-		img.setBackgroundResource(R.anim.titleanimationpreinitiative);
-  	  
-  	  	// Get the background, which has been compiled to an AnimationDrawable object.
-  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
-		
-  	  	// Animation is just 1 slide so user can see title.
-  	  	frameAnimation.stop();
-  	  	frameAnimation.start();
-  	  	*/
-		// USING "runOnUiThread(new Runnable() {}" TO SEE IF IT WORKS BETTER THAN NOT USING IT.
-		runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
-				// Setting up scroll frame animation.
-				ImageView img = (ImageView)findViewById(R.id.titleanimation);		
-				img.setBackgroundResource(R.anim.titleanimationpreinitiative);
-		  	  
-		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
-		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
-				
-		  	  	// Animation is just 1 slide so user can see title.
-		  	  	frameAnimation.stop();
-		  	  	frameAnimation.start();
-		  	  	
-		  	  	//TextView titletext = (TextView) findViewById(R.id.textviewtitlektogtext);
-		  	  	
-		  	  	//Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-	  			//titletext.setTypeface(typeFace);
-	  			
-	  			//titletext.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(100));
-	  				
-	  			//titletext.setVisibility(View.VISIBLE);				  		
-	  			//titletext.append("KtOG");
-	  	    }
-  		});	
-	}
-	
-	
-	public void sixSidedRollFromLeft() {	
-	  	/*
-		final ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
-		img.setBackgroundResource(R.anim.sixsidedrollfromleftanimation);
-  	  
-  	  	// Get the background, which has been compiled to an AnimationDrawable object.
-  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();		
-  	  
-  	  		Thread thread = new Thread() {
-			    @Override
-			    public void run() {
-			    	MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
-			    }
-			};
-		thread.start();
-  	  	//MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
-  	  	
-  	  	
-  	  	// Animation is just 1 slide so user can see title.
-  	  	frameAnimation.stop();
-  	  	frameAnimation.start();
-  	  	*/
-		// USING "runOnUiThread(new Runnable() {}" TO SEE IF IT WORKS BETTER THAN NOT USING IT.
-		
-		final ImageView sixSidedBlank = (ImageView) findViewById(R.id.sixsidedanimation);
-		sixSidedBlank.setVisibility(View.VISIBLE);
-		sixSidedBlank.setEnabled(true);
-		
-		runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
-				final ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
-				img.setBackgroundResource(R.anim.sixsidedrollfromleftanimation);
-		  	  
-		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
-		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();		
-		  	  
-	  	  		Thread thread = new Thread() {
-				    @Override
-				    public void run() {
-				    	MediaPlayerWrapper.play(Client2.this, R.raw.dierolling3b);
-				    }
-	  	  		};
-	  	  		thread.start();
-		  	  	//MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
-		  	  	
-		  	  	
-		  	  	// Animation is just 1 slide so user can see title.
-		  	  	frameAnimation.stop();
-		  	  	frameAnimation.start();
-	  	    }
-  		});	
-	}    
-    
-	
-	//=============================================================================================
-	//SEPERATOR
-	//=============================================================================================
+	/*
+	 * 
+	 * 
+	 * 
+	 * Android-Related Methods***********************************************************************************
+	 * 
+	 * 
+	 * 
+	 */
 	
 	
 	public void onStart() {
@@ -986,14 +825,15 @@ public class Client2 extends Activity {
 	
 	// ONSTOP OR ONDESTROY???????
 	@Override
-	protected void onDestroy() {
-		super.onDestroy();
+	protected void onDestroy() {		
 		
-		//final Intent svc=new Intent(this, Badonk2SoundService.class);
+		final Intent svc=new Intent(this, Badonk2SoundService.class);
 
 		if (socket != null) {
 			try {
 				socket.close();
+				
+				stopService(svc);
 				
 				android.os.Process.killProcess(android.os.Process.myPid());
 			    
@@ -1005,10 +845,12 @@ public class Client2 extends Activity {
 				e.printStackTrace();
 			}
 		}
+		
+		super.onDestroy();
 	}
 	
 	public void onBackPressed() {
-
+		
 		AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this);
 		
 		final Intent svc=new Intent(this, Badonk2SoundService.class);
@@ -1019,9 +861,9 @@ public class Client2 extends Activity {
 		alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int whichButton) {
 
-				dialog.dismiss();
-				
 				stopService(svc);
+				
+				dialog.dismiss();				
 
 				Intent intent = new Intent(Client2.this, MainActivity1.class);
 				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -1045,6 +887,368 @@ public class Client2 extends Activity {
 		// Toast.makeText(MainActivity2.this,"onBackPressed WORKING!!!!",
 		// Toast.LENGTH_SHORT).show();
 	}
+	
+	
+	/*
+	 * 
+	 * 
+	 * 
+	 * Player Cards*****************************************************************************************
+	 * 
+	 * 
+	 * 
+	 */
+	
+	
+	public void computerCardStartFadeInFadeOut() {
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				/*
+		    	TextView computerNameTextView = (TextView)findViewById(R.id.textviewnameright);
+				final Animation animAlphaTextRepeat = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.anim_alpha_text_repeat);
+				computerNameTextView.startAnimation(animAlphaTextRepeat);
+				*/
+				
+				//getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_IMMERSIVE | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+				ImageView img = (ImageView)findViewById(R.id.computerturnbackgroundanimation);		  	
+			  	img.bringToFront();
+			  	final Animation animAlphaTextRepeat = AnimationUtils.loadAnimation(Client2.this, R.anim.anim_alpha_text_repeat);
+			  	img.startAnimation(animAlphaTextRepeat);
+		    }
+		});			
+	}
+	
+	
+	/*
+	 * 
+	 * 
+	 * 
+	 * Intro Animations***********************************************************************************
+	 * 
+	 * 
+	 * 
+	 */
+	
+	
+	//@SuppressWarnings("deprecation")
+	public void unfoldScrolls() {
+		/*
+		// TO PERFORM FRAME ANIMATION PROGRAMMATICALLY:
+		AnimationDrawable animation;
+		animation = new AnimationDrawable();
+        animation.addFrame(getResources().getDrawable(R.drawable.dualingscrolls14), 75);
+        animation.addFrame(getResources().getDrawable(R.drawable.dualingscrolls12), 75);
+        animation.addFrame(getResources().getDrawable(R.drawable.dualingscrolls10), 75);
+        animation.addFrame(getResources().getDrawable(R.drawable.dualingscrolls8), 75);
+        animation.addFrame(getResources().getDrawable(R.drawable.dualingscrolls6), 75);
+        animation.addFrame(getResources().getDrawable(R.drawable.dualingscrolls4), 75);
+        animation.addFrame(getResources().getDrawable(R.drawable.dualingscrolls1), 75);
+        
+        animation.setOneShot(true);
+       
+        ImageView imageAnim =  (ImageView) findViewById(R.id.scrollanimation);
+        imageAnim.setBackgroundDrawable(animation);       
+        
+        imageAnim.post(animation);
+		*/
+		
+		// USING "runOnUiThread(new Runnable() {}" TO SEE IF IT WORKS BETTER THAN NOT USING IT.
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				// Setting up scroll frame animation.
+				ImageView img = (ImageView)findViewById(R.id.scrollanimation);
+				img.setBackgroundResource(R.anim.scrollanimationleftdown);
+			
+				// Get the background, which has been compiled to an AnimationDrawable object.
+				AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+							
+				// Start the animation.
+				frameAnimation.stop();
+				frameAnimation.start();
+	  	    }
+  		});	
+	}	
+		
+	public void preInitiativeTitle() {	
+		/*
+		ImageView img = (ImageView)findViewById(R.id.titleanimation);		
+		img.setBackgroundResource(R.anim.titleanimationpreinitiative);
+  	  
+  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+		
+  	  	// Animation is just 1 slide so user can see title.
+  	  	frameAnimation.stop();
+  	  	frameAnimation.start();
+  	  	*/
+		// USING "runOnUiThread(new Runnable() {}" TO SEE IF IT WORKS BETTER THAN NOT USING IT.
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				// Setting up scroll frame animation.
+				ImageView img = (ImageView)findViewById(R.id.titleanimation);		
+				img.setBackgroundResource(R.anim.titleanimationpreinitiative);
+		  	  
+		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+				
+		  	  	// Animation is just 1 slide so user can see title.
+		  	  	frameAnimation.stop();
+		  	  	frameAnimation.start();
+		  	  	
+		  	  	//TextView titletext = (TextView) findViewById(R.id.textviewtitlektogtext);
+		  	  	
+		  	  	//Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  			//titletext.setTypeface(typeFace);
+	  			
+	  			//titletext.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(100));
+	  				
+	  			//titletext.setVisibility(View.VISIBLE);				  		
+	  			//titletext.append("KtOG");
+	  	    }
+  		});	
+	}
+	
+	public void victoryDefeatAnimationForStartTransition() {
+		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {		
+					
+				// CLOSING ON SUMMARY TABLE
+				ImageView img = (ImageView)findViewById(R.id.titleanimation);		
+				img.setBackgroundResource(R.anim.victorydefeatanimation);		  	  
+		  	  	
+		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();				
+		  	  	
+		  	  	frameAnimation.stop();
+		  	  	frameAnimation.start();			
+			}
+  		});
+	}
+	
+	
+	/*
+	 * 
+	 * 
+	 * 
+	 * Dice-Related*******************************************************************************************
+	 * 
+	 * 
+	 * 
+	 */
+	
+	
+	public void sixSidedWobbleStart() {
+		final ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
+		final Animation shake = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.wobblesixsided);
+		img.setAnimation(shake);
+	}	
+	
+	public void sixSidedRollFromLeft() {	
+	  	/*
+		final ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+		img.setBackgroundResource(R.anim.sixsidedrollfromleftanimation);
+  	  
+  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();		
+  	  
+  	  		Thread thread = new Thread() {
+			    @Override
+			    public void run() {
+			    	MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
+			    }
+			};
+		thread.start();
+  	  	//MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
+  	  	
+  	  	
+  	  	// Animation is just 1 slide so user can see title.
+  	  	frameAnimation.stop();
+  	  	frameAnimation.start();
+  	  	*/
+		// USING "runOnUiThread(new Runnable() {}" TO SEE IF IT WORKS BETTER THAN NOT USING IT.
+		
+		final ImageView sixSidedBlank = (ImageView) findViewById(R.id.sixsidedanimation);
+		sixSidedBlank.setVisibility(View.VISIBLE);
+		sixSidedBlank.setEnabled(true);
+		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				final ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+				img.setBackgroundResource(R.anim.sixsidedrollfromleftanimation);
+		  	  
+		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();		
+		  	  
+	  	  		Thread thread = new Thread() {
+				    @Override
+				    public void run() {
+				    	MediaPlayerWrapper.play(Client2.this, R.raw.dierolling3b);
+				    }
+	  	  		};
+	  	  		thread.start();
+		  	  	//MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
+		  	  	
+		  	  	
+		  	  	// Animation is just 1 slide so user can see title.
+		  	  	frameAnimation.stop();
+		  	  	frameAnimation.start();
+	  	    }
+  		});	
+	}
+	
+	
+	/*
+	 * 
+	 * 
+	 * 
+	 * Initiative*****************************************************************************************
+	 * 
+	 * 
+	 * 
+	 */
+	
+	
+	public void  determineInitiative() {
+		
+		int result = (int)(Math.random()*6)+1;
+        //(Math.random()*6) returns a number between 0 (inclusive) and 6 (exclusive)
+        //same as: (int) Math.ceil(Math.random()*6); ?
+		ArrayOfInitiative.initiative[0] = result;
+		
+		int resultComputer = (int)(Math.random()*6)+1;
+		ArrayOfInitiative.initiative[1] = resultComputer;				
+	}	
+	
+	
+	/*
+	 * 
+	 * 
+	 * 
+	 * Game Mechanics*****************************************************************************************
+	 * 
+	 * 
+	 * 
+	 */
+	
+	
+	public void gameEngine() {
+					
+		/*
+		String str = ArrayOfPlayers.player[1];
+		PrintWriter out = null;
+		try {
+			out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		out.println("PlayerName :" + str);
+		*/
+		
+		MediaPlayer buttonSound = MediaPlayer.create(Client2.this, R.raw.swordswing);
+		buttonSound.start();      	
+      	
+		Intent svc=new Intent(this, Badonk2SoundService.class);
+  	  	stopService(svc);	  	        	  
+  	  
+  	  
+  	  	victoryDefeatAnimationForStartTransition();
+  	  	
+  	  	
+  	  	final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+		
+		runOnUiThread(new Runnable() {
+	  	    @Override
+	  	    public void run() {
+	  	    	
+	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+	  			
+	  			final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  			centerscrolltext.setTypeface(typeFace);
+  	  	
+  	  	
+		  	  	final Handler h = new Handler();
+				h.postDelayed(new Runnable() {		  	  	  			
+			  			
+			  		@Override
+			  	  	public void run() {
+			  			
+			  			TextView titlelobbytext = (TextView) findViewById(R.id.textviewtitlelobbytext);
+			  			titlelobbytext.setVisibility(View.INVISIBLE); 
+			  			
+			  			
+			  			TextView titleinitiativetext = (TextView) findViewById(R.id.textviewtitleinitiativetext);
+			  			
+			  	  		Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+			  	  		titleinitiativetext.setTypeface(typeFace);						
+							
+			  	  		titleinitiativetext.setVisibility(View.VISIBLE);  		  	  			
+		  	  							  		
+		  	  			titleinitiativetext.append("Initiative");
+		  	  			
+		  	  			
+		  	  			//gameEngine();
+		  	  			
+		  	  			
+		  	  			/*
+			  	  		for (int counter = 0; counter < clientWorkers.size(); counter++) {
+			        	  
+			        	  Toast.makeText(Host.this, clientWorkers.get(counter), Toast.LENGTH_LONG).show();		               		
+			  	  		}
+			  	  		*/
+		  	  			
+			  	  		final Handler h4 = new Handler();
+			  	  	  	h4.postDelayed(new Runnable() {
+			  	  	  		
+			  	  	  		@Override
+			  	  	  		public void run() {				  				
+			  	  	  			
+			  	  	  			// Sets sixSidedBlank visible & enabled.
+			  	  	  			sixSidedRollFromLeft();  	  	  			
+			  		  			
+			  	  	  			
+				  		  		final Handler h5 = new Handler();
+					  	  	  	h5.postDelayed(new Runnable() {
+					  	  	  			
+					  	  	  			// Does this thread help:?
+						  	  	  		@Override
+						  	  	  		public void run()
+						  	  	  		{  	  			
+							  	  	  		sixSidedWobbleStart();
+							  	  	  		
+							  	  	  		isSixSidedReadyToBeRolled = "yes";
+							  	  	  		isInitiativeOver = "no";
+							  	  	  		
+						  	  	  			centerscrolltext.setVisibility(View.VISIBLE);
+						  		  	  		centerscrolltext.startAnimation(animAlphaText);
+						  		  			centerscrolltext.append("\n" + "> Please slide the die...");								  		  			
+						  		  			
+						  		  			
+						  		  			computerCardStartFadeInFadeOut();		  		  			
+						  		  			
+						  		  			
+						  		  			//issixsidedrolledforinitiative = "yes";
+						  		  			isinitiativestarted = "yes";			  		  			
+						  		  			onBackPressedOk = "yes";
+						  		  			
+						  		  			
+						  		  			//preventinitiativediefromleaking = "off";						  		  			
+					  	  	  		}
+					  	  	  	}, 750);
+			  	  	  		}
+			  	  	  	}, 1000);  		  	  			
+			  	  	}
+			  	}, 713); // SHOULD BE AT LEAST 675?
+	  	    }
+		});	
+	}
+	
 	
 	
 	//=============================================================================================
@@ -1085,6 +1289,11 @@ public class Client2 extends Activity {
 						socket.close();
 	                    return;
 	                }
+					
+					else if (read.contains("StartInitiative")) {
+						
+						gameEngine();						
+					}
 					
 					else {
 						updateConversationHandler.post(new updateUIThread(read));

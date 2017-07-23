@@ -263,7 +263,7 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
         		String playername = input.getText().toString();
             	//String playercomputer = "Computer".toString();
             	
-            	ArrayOfPlayers.player[0] = playername;
+            	ArrayOfPlayers.player[5] = playername;
             	//ArrayOfPlayers.player[1] = playercomputer;
             	
             	insertToDatabase(playername);	        	
@@ -1010,7 +1010,7 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
             		String playername = input.getText().toString();
                 	//String playercomputer = "Computer".toString();
                 	
-                	ArrayOfPlayers.player[0] = playername;
+                	ArrayOfPlayers.player[5] = playername;
                 	//ArrayOfPlayers.player[1] = playercomputer;
                 	
                 	insertToDatabase(playername);	        	
@@ -1260,7 +1260,7 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
             		String playername = input.getText().toString();
                 	//String playercomputer = "Computer".toString();
                 	
-                	ArrayOfPlayers.player[0] = playername;
+                	ArrayOfPlayers.player[5] = playername;
                 	//ArrayOfPlayers.player[1] = playercomputer;
                 	
                 	insertToDatabase(playername);	        	
