@@ -49,6 +49,9 @@ import android.widget.Toast;
 
 public class Host extends Activity {
     
+	//public static String[] initiativeRolled = new String[6];
+	String[] initiativeRolled = new String[] {"no", "no", "no", "no", "no", "no"};
+	
 	//Socket clientSocket;
 	//Socket[] clientSocket = new Socket[1];
 	
@@ -547,9 +550,11 @@ public class Host extends Activity {
 						  		  			String str = "StartInitiative";
 						  		  			sendToAll(str);
 						  		  			
+						  		  			/* FOR TESTING
+						  		  			 * String str2 = "ONE CLIENT TEST";
+						  		  			 * sendToClient1(str2);						  		  			
+						  		  			 */
 						  		  			
-						  		  			String str2 = "ONE CLIENT TEST";
-						  		  			sendToClient1(str2);
 					  	  	  		}
 					  	  	  	}, 750);
 			  	  	  		}
@@ -650,7 +655,813 @@ public class Host extends Activity {
           	
           	            	
 			}            
-  	  }); 	  	
+  	  	});  	  	
+  	  	
+  	  	
+		sixSidedBlank.setOnTouchListener(new OnSixSidedSwipeTouchListener(Host.this) {
+			
+		    /*
+			public void onSwipeTop() {
+		        Toast.makeText(MainActivity2.this, "top", Toast.LENGTH_SHORT).show();		        
+		    }
+		    */			
+			
+			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Host.this);
+			//SharedPreferences.Editor editor = preferences.edit();			
+			
+			
+		    public void onSwipeRight() {
+		    	/*
+		    	Toast.makeText(MainActivity2.this, "INITIATIVE ROLLED = " + issixsidedrolledforinitiative, Toast.LENGTH_SHORT).show();											  	  	  			
+				Toast.makeText(MainActivity2.this, "DAMAGE ROLLED = " + isattackdamagerolled, Toast.LENGTH_SHORT).show();
+				int attackDamage = preferences.getInt("attackDamage", 0);
+				Toast.makeText(MainActivity2.this, "DAMAGE = " + attackDamage, Toast.LENGTH_SHORT).show();
+		    	*/
+		    	//if (issixsidedrolledforinitiative.equals("yes")) {	  				
+					
+				sixSidedWobbleStop();				
+				
+				//sixSidedRollFromCenterToRight();
+				//determineInitiative();				
+				
+				
+				if (issixsidedrolledforinitiative.equals("no")) {
+				
+					if (ArrayOfInitiative.initiative[5] == 1) {
+						
+						sixSidedRollFromCenterToRight1();
+						
+						initiativeResults();
+					}
+					else if (ArrayOfInitiative.initiative[5] == 2) {
+						
+						sixSidedRollFromCenterToRight2();
+						
+						initiativeResults();
+					}
+					else if (ArrayOfInitiative.initiative[5] == 3) {
+						
+						sixSidedRollFromCenterToRight3();
+						
+						initiativeResults();
+					}
+					else if (ArrayOfInitiative.initiative[5] == 4) {
+						
+						sixSidedRollFromCenterToRight4();
+						
+						initiativeResults();
+					}
+					else if (ArrayOfInitiative.initiative[5] == 5) {
+						
+						sixSidedRollFromCenterToRight5();
+						
+						initiativeResults();
+					}
+					else if (ArrayOfInitiative.initiative[5] == 6) {
+						
+						sixSidedRollFromCenterToRight6();
+						
+						initiativeResults();
+					}					
+				}	
+				
+				/*
+				else if (isattackdamagerolled.equals("yes")) {
+					
+					int attackDamage = preferences.getInt("attackDamage", 0);
+					
+					if (attackDamage == 1) {
+						
+						sixSidedRollFromCenterToRight1();
+						
+						damageResults();
+					}
+					else if (attackDamage == 2) {
+						
+						sixSidedRollFromCenterToRight2();
+						
+						damageResults();
+					}
+					else if (attackDamage == 3) {
+						
+						sixSidedRollFromCenterToRight3();
+						
+						damageResults();
+					}
+					else if (attackDamage == 4) {
+						
+						sixSidedRollFromCenterToRight4();
+						
+						damageResults();
+					}
+					else if (attackDamage == 5) {
+						
+						sixSidedRollFromCenterToRight5();
+						
+						damageResults();
+					}
+					else if (attackDamage == 6) {
+						
+						sixSidedRollFromCenterToRight6();
+						
+						damageResults();
+					}
+				}
+				
+				else if (iscurerolled.equals("yes")) {
+					
+					int cureResult = preferences.getInt("cureResult", 0);
+					
+					if (cureResult == 1) {
+						
+						sixSidedRollFromCenterToRight1();
+						
+						cureResults();
+					}
+					else if (cureResult == 2) {
+						
+						sixSidedRollFromCenterToRight2();
+						
+						cureResults();
+					}
+					else if (cureResult == 3) {
+						
+						sixSidedRollFromCenterToRight3();
+						
+						cureResults();
+					}
+					else if (cureResult == 4) {
+						
+						sixSidedRollFromCenterToRight4();
+						
+						cureResults();
+					}
+					else if (cureResult == 5) {
+						
+						sixSidedRollFromCenterToRight5();
+						
+						cureResults();
+					}
+					else if (cureResult == 6) {
+						
+						sixSidedRollFromCenterToRight6();
+						
+						cureResults();
+					}
+				}
+				
+				else if (ismightyblowdamagerolled.equals("yes")) {
+					
+					int attackDamage = preferences.getInt("attackDamage", 0);
+					
+					if (attackDamage == 1) {
+						
+						sixSidedRollFromCenterToRight1();
+						
+						mightyBlowResults();
+					}
+					else if (attackDamage == 2) {
+						
+						sixSidedRollFromCenterToRight2();
+						
+						mightyBlowResults();
+					}
+					else if (attackDamage == 3) {
+						
+						sixSidedRollFromCenterToRight3();
+						
+						mightyBlowResults();
+					}
+					else if (attackDamage == 4) {
+						
+						sixSidedRollFromCenterToRight4();
+						
+						mightyBlowResults();
+					}
+					else if (attackDamage == 5) {
+						
+						sixSidedRollFromCenterToRight5();
+						
+						mightyBlowResults();
+					}
+					else if (attackDamage == 6) {
+						
+						sixSidedRollFromCenterToRight6();
+						
+						mightyBlowResults();
+					}					
+				}
+				
+				else if (iscriticalmissdamagerolled.equals("yes")) {
+					
+					int attackDamage = preferences.getInt("attackDamage", 0);
+					
+					if (attackDamage == 1) {
+						
+						sixSidedRollFromCenterToRight1();
+						
+						criticalMissDamageResults();
+					}
+					else if (attackDamage == 2) {
+						
+						sixSidedRollFromCenterToRight2();
+						
+						criticalMissDamageResults();
+					}
+					else if (attackDamage == 3) {
+						
+						sixSidedRollFromCenterToRight3();
+						
+						criticalMissDamageResults();
+					}
+					else if (attackDamage == 4) {
+						
+						sixSidedRollFromCenterToRight4();
+						
+						criticalMissDamageResults();
+					}
+					else if (attackDamage == 5) {
+						
+						sixSidedRollFromCenterToRight5();
+						
+						criticalMissDamageResults();
+					}
+					else if (attackDamage == 6) {
+						
+						sixSidedRollFromCenterToRight6();
+						
+						criticalMissDamageResults();
+					}					
+				}
+				
+				else if (iscriticalhitfirstrollrolled.equals("yes")) {
+					
+					//int attackDamage = preferences.getInt("attackDamage", 0);
+					
+					if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 1) {
+						
+						sixSidedRollFromCenterToRight1();
+						
+						criticalHitPartTwo();
+					}
+					else if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 2) {
+						
+						sixSidedRollFromCenterToRight2();
+						
+						criticalHitPartTwo();
+					}
+					else if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 3) {
+						
+						sixSidedRollFromCenterToRight3();
+						
+						criticalHitPartTwo();
+					}
+					else if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 4) {
+						
+						sixSidedRollFromCenterToRight4();
+						
+						criticalHitPartTwo();
+					}
+					else if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 5) {
+						
+						sixSidedRollFromCenterToRight5();
+						
+						criticalHitPartTwo();
+					}
+					else if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 6) {
+						
+						sixSidedRollFromCenterToRight6();
+						
+						criticalHitPartTwo();
+					}					
+				}
+				
+				else if (iscriticalhitsecondrollrolled.equals("yes")) {
+					
+					//int attackDamage = preferences.getInt("attackDamage", 0);
+					
+					if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 1) {
+						
+						sixSidedRollFromCenterToRight1();
+						
+						criticalHitDamageResults();
+					}
+					else if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 2) {
+						
+						sixSidedRollFromCenterToRight2();
+						
+						criticalHitDamageResults();
+					}
+					else if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 3) {
+						
+						sixSidedRollFromCenterToRight3();
+						
+						criticalHitDamageResults();
+					}
+					else if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 4) {
+						
+						sixSidedRollFromCenterToRight4();
+						
+						criticalHitDamageResults();
+					}
+					else if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 5) {
+						
+						sixSidedRollFromCenterToRight5();
+						
+						criticalHitDamageResults();
+					}
+					else if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 6) {
+						
+						sixSidedRollFromCenterToRight6();
+						
+						criticalHitDamageResults();
+					}					
+				}
+				
+				else if (iscriticalhitmightyblowfirstrollrolled.equals("yes")) {
+					
+					//int attackDamage = preferences.getInt("attackDamage", 0);
+					
+					if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 1) {
+						
+						sixSidedRollFromCenterToRight1();
+						
+						criticalHitMightyBlowPartTwo();
+					}
+					else if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 2) {
+						
+						sixSidedRollFromCenterToRight2();
+						
+						criticalHitMightyBlowPartTwo();
+					}
+					else if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 3) {
+						
+						sixSidedRollFromCenterToRight3();
+						
+						criticalHitMightyBlowPartTwo();
+					}
+					else if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 4) {
+						
+						sixSidedRollFromCenterToRight4();
+						
+						criticalHitMightyBlowPartTwo();
+					}
+					else if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 5) {
+						
+						sixSidedRollFromCenterToRight5();
+						
+						criticalHitMightyBlowPartTwo();
+					}
+					else if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 6) {
+						
+						sixSidedRollFromCenterToRight6();
+						
+						criticalHitMightyBlowPartTwo();
+					}					
+				}
+				
+				else if (iscriticalhitmightyblowsecondrollrolled.equals("yes")) {
+					
+					//int attackDamage = preferences.getInt("attackDamage", 0);
+					
+					if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 1) {
+						
+						sixSidedRollFromCenterToRight1();
+						
+						criticalHitMightyBlowDamageResults();
+					}
+					else if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 2) {
+						
+						sixSidedRollFromCenterToRight2();
+						
+						criticalHitMightyBlowDamageResults();
+					}
+					else if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 3) {
+						
+						sixSidedRollFromCenterToRight3();
+						
+						criticalHitMightyBlowDamageResults();
+					}
+					else if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 4) {
+						
+						sixSidedRollFromCenterToRight4();
+						
+						criticalHitMightyBlowDamageResults();
+					}
+					else if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 5) {
+						
+						sixSidedRollFromCenterToRight5();
+						
+						criticalHitMightyBlowDamageResults();
+					}
+					else if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 6) {
+						
+						sixSidedRollFromCenterToRight6();
+						
+						criticalHitMightyBlowDamageResults();
+					}					
+				}								
+			*/
+		    }		    
+		    public void onSwipeLeft() {
+		    	/*
+		    	Toast.makeText(MainActivity2.this, "INITIATIVE ROLLED = " + issixsidedrolledforinitiative, Toast.LENGTH_SHORT).show();											  	  	  			
+				Toast.makeText(MainActivity2.this, "DAMAGE ROLLED = " + isattackdamagerolled, Toast.LENGTH_SHORT).show();
+				int attackDamage = preferences.getInt("attackDamage", 0);
+				Toast.makeText(MainActivity2.this, "DAMAGE = " + attackDamage, Toast.LENGTH_SHORT).show();
+		    	*/
+		    	
+		    	//if (issixsidedrolledforinitiative.equals("yes")) {	  				
+					
+				sixSidedWobbleStop();				
+	  	  		
+				//sixSidedRollFromCenterToLeft();
+				//determineInitiative();				
+				
+				
+				if (issixsidedrolledforinitiative.equals("no")) {
+					
+					if (ArrayOfInitiative.initiative[5] == 1) {
+						
+						sixSidedRollFromCenterToLeft1();
+						
+						initiativeResults();
+					}
+					else if (ArrayOfInitiative.initiative[5] == 2) {
+						
+						sixSidedRollFromCenterToLeft2();
+						
+						initiativeResults();
+					}
+					else if (ArrayOfInitiative.initiative[5] == 3) {
+						
+						sixSidedRollFromCenterToLeft3();
+						
+						initiativeResults();
+					}
+					else if (ArrayOfInitiative.initiative[5] == 4) {
+						
+						sixSidedRollFromCenterToLeft4();
+						
+						initiativeResults();
+					}
+					else if (ArrayOfInitiative.initiative[5] == 5) {
+						
+						sixSidedRollFromCenterToLeft5();
+						
+						initiativeResults();
+					}
+					else if (ArrayOfInitiative.initiative[5] == 6) {
+						
+						sixSidedRollFromCenterToLeft6();
+						
+						initiativeResults();
+					}
+				}
+				/*
+				else if (isattackdamagerolled.equals("yes")) {
+					
+					int attackDamage = preferences.getInt("attackDamage", 0);
+					
+					if (attackDamage == 1) {
+						
+						sixSidedRollFromCenterToLeft1();
+						
+						damageResults();
+					}
+					else if (attackDamage == 2) {
+						
+						sixSidedRollFromCenterToLeft2();
+						
+						damageResults();
+					}
+					else if (attackDamage == 3) {
+						
+						sixSidedRollFromCenterToLeft3();
+						
+						damageResults();
+					}
+					else if (attackDamage == 4) {
+						
+						sixSidedRollFromCenterToLeft4();
+						
+						damageResults();
+					}
+					else if (attackDamage == 5) {
+						
+						sixSidedRollFromCenterToLeft5();
+						
+						damageResults();
+					}
+					else if (attackDamage == 6) {
+						
+						sixSidedRollFromCenterToLeft6();
+						
+						damageResults();
+					}
+				}
+				
+				else if (iscurerolled.equals("yes")) {
+					
+					int cureResult = preferences.getInt("cureResult", 0);
+					
+					if (cureResult == 1) {
+						
+						sixSidedRollFromCenterToLeft1();
+						
+						cureResults();
+					}
+					else if (cureResult == 2) {
+						
+						sixSidedRollFromCenterToLeft2();
+						
+						cureResults();
+					}
+					else if (cureResult == 3) {
+						
+						sixSidedRollFromCenterToLeft3();
+						
+						cureResults();
+					}
+					else if (cureResult == 4) {
+						
+						sixSidedRollFromCenterToLeft4();
+						
+						cureResults();
+					}
+					else if (cureResult == 5) {
+						
+						sixSidedRollFromCenterToLeft5();
+						
+						cureResults();
+					}
+					else if (cureResult == 6) {
+						
+						sixSidedRollFromCenterToLeft6();
+						
+						cureResults();
+					}
+				}
+				
+				else if (ismightyblowdamagerolled.equals("yes")) {
+					
+					int attackDamage = preferences.getInt("attackDamage", 0);
+					
+					if (attackDamage == 1) {
+						
+						sixSidedRollFromCenterToLeft1();
+						
+						mightyBlowResults();
+					}
+					else if (attackDamage == 2) {
+						
+						sixSidedRollFromCenterToLeft2();
+						
+						mightyBlowResults();
+					}
+					else if (attackDamage == 3) {
+						
+						sixSidedRollFromCenterToLeft3();
+						
+						mightyBlowResults();
+					}
+					else if (attackDamage == 4) {
+						
+						sixSidedRollFromCenterToLeft4();
+						
+						mightyBlowResults();
+					}
+					else if (attackDamage == 5) {
+						
+						sixSidedRollFromCenterToLeft5();
+						
+						mightyBlowResults();
+					}
+					else if (attackDamage == 6) {
+						
+						sixSidedRollFromCenterToLeft6();
+						
+						mightyBlowResults();
+					}
+				}
+				
+				else if (iscriticalmissdamagerolled.equals("yes")) {
+					
+					int attackDamage = preferences.getInt("attackDamage", 0);
+					
+					if (attackDamage == 1) {
+						
+						sixSidedRollFromCenterToLeft1();
+						
+						criticalMissDamageResults();
+					}
+					else if (attackDamage == 2) {
+						
+						sixSidedRollFromCenterToLeft2();
+						
+						criticalMissDamageResults();
+					}
+					else if (attackDamage == 3) {
+						
+						sixSidedRollFromCenterToLeft3();
+						
+						criticalMissDamageResults();
+					}
+					else if (attackDamage == 4) {
+						
+						sixSidedRollFromCenterToLeft4();
+						
+						criticalMissDamageResults();
+					}
+					else if (attackDamage == 5) {
+						
+						sixSidedRollFromCenterToLeft5();
+						
+						criticalMissDamageResults();
+					}
+					else if (attackDamage == 6) {
+						
+						sixSidedRollFromCenterToLeft6();
+						
+						criticalMissDamageResults();
+					}					
+				}
+				
+				else if (iscriticalhitfirstrollrolled.equals("yes")) {
+					
+					//int attackDamage = preferences.getInt("attackDamage", 0);
+					
+					if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 1) {
+						
+						sixSidedRollFromCenterToLeft1();
+						
+						criticalHitPartTwo();
+					}
+					else if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 2) {
+						
+						sixSidedRollFromCenterToLeft2();
+						
+						criticalHitPartTwo();
+					}
+					else if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 3) {
+						
+						sixSidedRollFromCenterToLeft3();
+						
+						criticalHitPartTwo();
+					}
+					else if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 4) {
+						
+						sixSidedRollFromCenterToLeft4();
+						
+						criticalHitPartTwo();
+					}
+					else if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 5) {
+						
+						sixSidedRollFromCenterToLeft5();
+						
+						criticalHitPartTwo();
+					}
+					else if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 6) {
+						
+						sixSidedRollFromCenterToLeft6();
+						
+						criticalHitPartTwo();
+					}					
+				}
+				
+				else if (iscriticalhitsecondrollrolled.equals("yes")) {
+					
+					//int attackDamage = preferences.getInt("attackDamage", 0);
+					
+					if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 1) {
+						
+						sixSidedRollFromCenterToLeft1();
+						
+						criticalHitDamageResults();
+					}
+					else if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 2) {
+						
+						sixSidedRollFromCenterToLeft2();
+						
+						criticalHitDamageResults();
+					}
+					else if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 3) {
+						
+						sixSidedRollFromCenterToLeft3();
+						
+						criticalHitDamageResults();
+					}
+					else if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 4) {
+						
+						sixSidedRollFromCenterToLeft4();
+						
+						criticalHitDamageResults();
+					}
+					else if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 5) {
+						
+						sixSidedRollFromCenterToLeft5();
+						
+						criticalHitDamageResults();
+					}
+					else if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 6) {
+						
+						sixSidedRollFromCenterToLeft6();
+						
+						criticalHitDamageResults();
+					}					
+				}
+				
+				else if (iscriticalhitmightyblowfirstrollrolled.equals("yes")) {
+					
+					//int attackDamage = preferences.getInt("attackDamage", 0);
+					
+					if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 1) {
+						
+						sixSidedRollFromCenterToLeft1();
+						
+						criticalHitMightyBlowPartTwo();
+					}
+					else if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 2) {
+						
+						sixSidedRollFromCenterToLeft2();
+						
+						criticalHitMightyBlowPartTwo();
+					}
+					else if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 3) {
+						
+						sixSidedRollFromCenterToLeft3();
+						
+						criticalHitMightyBlowPartTwo();
+					}
+					else if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 4) {
+						
+						sixSidedRollFromCenterToLeft4();
+						
+						criticalHitMightyBlowPartTwo();
+					}
+					else if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 5) {
+						
+						sixSidedRollFromCenterToLeft5();
+						
+						criticalHitMightyBlowPartTwo();
+					}
+					else if (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] == 6) {
+						
+						sixSidedRollFromCenterToLeft6();
+						
+						criticalHitMightyBlowPartTwo();
+					}					
+				}
+				
+				else if (iscriticalhitmightyblowsecondrollrolled.equals("yes")) {
+					
+					//int attackDamage = preferences.getInt("attackDamage", 0);
+					
+					if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 1) {
+						
+						sixSidedRollFromCenterToLeft1();
+						
+						criticalHitMightyBlowDamageResults();
+					}
+					else if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 2) {
+						
+						sixSidedRollFromCenterToLeft2();
+						
+						criticalHitMightyBlowDamageResults();
+					}
+					else if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 3) {
+						
+						sixSidedRollFromCenterToLeft3();
+						
+						criticalHitMightyBlowDamageResults();
+					}
+					else if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 4) {
+						
+						sixSidedRollFromCenterToLeft4();
+						
+						criticalHitMightyBlowDamageResults();
+					}
+					else if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 5) {
+						
+						sixSidedRollFromCenterToLeft5();
+						
+						criticalHitMightyBlowDamageResults();
+					}
+					else if (ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] == 6) {
+						
+						sixSidedRollFromCenterToLeft6();
+						
+						criticalHitMightyBlowDamageResults();
+					}					
+				}			
+			*/
+		    }
+		    /*
+		    public void onSwipeBottom() {
+		        Toast.makeText(MainActivity2.this, "bottom", Toast.LENGTH_SHORT).show();
+		    }
+		    */
+		});
   	  	
   	  	
   	  	
@@ -684,7 +1495,13 @@ public class Host extends Activity {
 		
 	@Override
 	protected void onDestroy() {
-		super.onDestroy();
+		
+		ArrayOfPlayers.player = new String[6];
+		ArrayOfInitiative.initiative = new int[6];
+		
+		initiativeRolled = new String[] {"no", "no", "no", "no", "no", "no"};
+		
+		//super.onDestroy();
 		
 		final Intent svc=new Intent(this, Badonk2SoundService.class);
 		
@@ -705,6 +1522,8 @@ public class Host extends Activity {
 				e.printStackTrace();
 			}
 		}
+		
+		super.onDestroy();
 	}
 		
 	public void onBackPressed() {
@@ -783,6 +1602,16 @@ public class Host extends Activity {
 			  	img.startAnimation(animAlphaTextRepeat);		  	
 		    }
   		});			  		  	
+	}
+	
+	public void playerCardStopFadeInFadeOut() {
+		/*
+		TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);		
+	  	playerNameTextView.clearAnimation();
+	  	*/
+		ImageView img = (ImageView)findViewById(R.id.playerturnbackgroundanimation);
+		img.clearAnimation();
+		img.setVisibility(View.GONE);		
 	}
 	
 	
@@ -933,6 +1762,12 @@ public class Host extends Activity {
 		img.setAnimation(shake);
 	}
 	
+	public void sixSidedWobbleStop() {
+		final ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
+		
+		img.clearAnimation();
+	}
+	
 	public void sixSidedRollFromLeft() {	  	
 		
 		final ImageView sixSidedBlank = (ImageView) findViewById(R.id.sixsidedanimation);
@@ -965,6 +1800,247 @@ public class Host extends Activity {
   		});	
 	}
 	
+	public void sixSidedRollFromCenterToLeft1() {	
+
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+				img.setBackgroundResource(R.anim.sixsidedrollfromcentertoleftanimation1);
+				img.bringToFront();
+		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();		
+		  	  	
+		  	  	MediaPlayerWrapper.play(Host.this, R.raw.dierolling3b);
+		  	  	
+		  	  	// Animation is just 1 slide so user can see title.
+		  	  	frameAnimation.stop();
+		  	  	frameAnimation.start();
+	  	    }
+  		}); 	  	
+	}
+	
+	public void sixSidedRollFromCenterToLeft2() {	
+	  	
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+				img.setBackgroundResource(R.anim.sixsidedrollfromcentertoleftanimation2);
+				img.bringToFront();
+		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();		
+		  	  	
+		  	  	MediaPlayerWrapper.play(Host.this, R.raw.dierolling3b);
+		  	  	
+		  	  	// Animation is just 1 slide so user can see title.
+		  	  	frameAnimation.stop();
+		  	  	frameAnimation.start();
+	  	    }
+  		}); 	  	
+	}
+
+	public void sixSidedRollFromCenterToLeft3() {	
+	  	
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+				img.setBackgroundResource(R.anim.sixsidedrollfromcentertoleftanimation3);
+				img.bringToFront();
+		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();		
+		  	  	
+		  	  	MediaPlayerWrapper.play(Host.this, R.raw.dierolling3b);
+		  	  	
+		  	  	// Animation is just 1 slide so user can see title.
+		  	  	frameAnimation.stop();
+		  	  	frameAnimation.start();
+	  	    }
+  		}); 	  	
+	}
+	
+	public void sixSidedRollFromCenterToLeft4() {	
+	  	
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+				img.setBackgroundResource(R.anim.sixsidedrollfromcentertoleftanimation4);
+				img.bringToFront();
+		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+				
+		  	  	MediaPlayerWrapper.play(Host.this, R.raw.dierolling3b);
+		  	  	
+		  	  	// Animation is just 1 slide so user can see title.
+		  	  	frameAnimation.stop();
+		  	  	frameAnimation.start();
+	  	    }
+  		});		
+	}
+	
+	public void sixSidedRollFromCenterToLeft5() {	
+	  	
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+				img.setBackgroundResource(R.anim.sixsidedrollfromcentertoleftanimation5);
+				img.bringToFront();
+		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+				
+		  	  	MediaPlayerWrapper.play(Host.this, R.raw.dierolling3b);
+		  	  	
+		  	  	// Animation is just 1 slide so user can see title.
+		  	  	frameAnimation.stop();
+		  	  	frameAnimation.start();
+	  	    }
+  		});
+	}
+	
+	public void sixSidedRollFromCenterToLeft6() {	
+	  	
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+				img.setBackgroundResource(R.anim.sixsidedrollfromcentertoleftanimation6);
+				img.bringToFront();
+		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+				
+		  	  	MediaPlayerWrapper.play(Host.this, R.raw.dierolling3b);
+		  	  	
+		  	  	// Animation is just 1 slide so user can see title.
+		  	  	frameAnimation.stop();
+		  	  	frameAnimation.start();
+	  	    }
+  		});
+	}
+	
+	
+	public void sixSidedRollFromCenterToRight1() {	
+	  	
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+				img.setBackgroundResource(R.anim.sixsidedrollfromcentertorightanimation1);
+				img.bringToFront();
+		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+				
+		  	  	MediaPlayerWrapper.play(Host.this, R.raw.dierolling3b);
+		  	  	
+		  	  	// Animation is just 1 slide so user can see title.
+		  	  	frameAnimation.stop();
+		  	  	frameAnimation.start();
+	  	    }
+  		});
+	}
+	
+	public void sixSidedRollFromCenterToRight2() {	
+	  	
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+				img.setBackgroundResource(R.anim.sixsidedrollfromcentertorightanimation2);
+				img.bringToFront();
+		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+				
+		  	  	MediaPlayerWrapper.play(Host.this, R.raw.dierolling3b);
+		  	  	
+		  	  	// Animation is just 1 slide so user can see title.
+		  	  	frameAnimation.stop();
+		  	  	frameAnimation.start();
+	  	    }
+  		});
+	}
+	
+	public void sixSidedRollFromCenterToRight3() {	
+	  	
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+				img.setBackgroundResource(R.anim.sixsidedrollfromcentertorightanimation3);
+				img.bringToFront();
+		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+				
+		  	  	MediaPlayerWrapper.play(Host.this, R.raw.dierolling3b);
+		  	  	
+		  	  	// Animation is just 1 slide so user can see title.
+		  	  	frameAnimation.stop();
+		  	  	frameAnimation.start();
+	  	    }
+  		});
+	}
+	
+	public void sixSidedRollFromCenterToRight4() {	
+	  	
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+				img.setBackgroundResource(R.anim.sixsidedrollfromcentertorightanimation4);
+				img.bringToFront();
+		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+				
+		  	  	MediaPlayerWrapper.play(Host.this, R.raw.dierolling3b);
+		  	  	
+		  	  	// Animation is just 1 slide so user can see title.
+		  	  	frameAnimation.stop();
+		  	  	frameAnimation.start();
+	  	    }
+  		});
+	}
+	
+	public void sixSidedRollFromCenterToRight5() {	
+	  	
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+				img.setBackgroundResource(R.anim.sixsidedrollfromcentertorightanimation5);
+				img.bringToFront();
+		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+				
+		  	  	MediaPlayerWrapper.play(Host.this, R.raw.dierolling3b);
+		  	  	
+		  	  	// Animation is just 1 slide so user can see title.
+		  	  	frameAnimation.stop();
+		  	  	frameAnimation.start();
+	  	    }
+  		});
+	}
+	
+	public void sixSidedRollFromCenterToRight6() {	
+	  	
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+				img.setBackgroundResource(R.anim.sixsidedrollfromcentertorightanimation6);
+				img.bringToFront();
+		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+				
+		  	  	MediaPlayerWrapper.play(Host.this, R.raw.dierolling3b);
+		  	  	
+		  	  	// Animation is just 1 slide so user can see title.
+		  	  	frameAnimation.stop();
+		  	  	frameAnimation.start();
+	  	    }
+  		});
+	}
+	
 	
 	/*
 	 * 
@@ -982,10 +2058,200 @@ public class Host extends Activity {
 		int result = (int)(Math.random()*6)+1;
         //(Math.random()*6) returns a number between 0 (inclusive) and 6 (exclusive)
         //same as: (int) Math.ceil(Math.random()*6); ?
-		ArrayOfInitiative.initiative[0] = result;
+		ArrayOfInitiative.initiative[5] = result;					
+	}
+	
+	public void initiativeResults() {
 		
-		int resultComputer = (int)(Math.random()*6)+1;
-		ArrayOfInitiative.initiative[1] = resultComputer;				
+		isSixSidedReadyToBeRolled = "no";
+		
+		//Toast.makeText(MainActivity2.this,"At method determineDoubles().", Toast.LENGTH_SHORT).show();
+		
+		// Here to prevent pre-mature (BUT STILL SEE ) rolling:
+		final ImageView sixSidedBlank = (ImageView) findViewById(R.id.sixsidedanimation);
+		sixSidedBlank.setEnabled(false);		
+				
+		
+		final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+		//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+		
+		Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+		centerscrolltext.setTypeface(typeFace);				
+		
+		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+		
+		final Handler h1 = new Handler();
+	  	h1.postDelayed(new Runnable() {	  	  		
+	  	  		
+  	  		@Override
+  	  		public void run()
+  	  		{  	  			
+	  	  		centerscrolltext.setVisibility(View.VISIBLE);
+	  	  		centerscrolltext.startAnimation(animAlphaText);
+	  			centerscrolltext.append("\n" + "> You roll " + ArrayOfInitiative.initiative[5] + " for initiative.");
+	  			
+	  			
+	  			initiativeRolled[5] = "yes";
+	  			
+	  			
+	  			final Handler h2 = new Handler();
+		  	  	h2.postDelayed(new Runnable() {
+
+		  	  		@Override
+		  	  		public void run()
+		  	  		{  	  			
+			  	  		String str = ArrayOfPlayers.player[5] + " rolls a " + ArrayOfInitiative.initiative[5] + ".";
+						sendToAllClients(str);
+		  	  			
+		  	  			/*
+		  	  			centerscrolltext.setVisibility(View.VISIBLE);
+			  	  		centerscrolltext.startAnimation(animAlphaText);
+			  			centerscrolltext.append("\n" + "> Players are rolling for initiative...");
+		  	  			*/
+		  	  			
+		  	  			/*
+		  	  			centerscrolltext.setVisibility(View.VISIBLE);
+			  	  		centerscrolltext.startAnimation(animAlphaText);
+			  			centerscrolltext.append("\n" + "> Initiatives" +
+			  									"\n" + "  ===========");
+		  	  			
+		  	  			for (int i=0; i<=clientWorkers.size(); i++) {
+				  	  		centerscrolltext.setVisibility(View.VISIBLE);
+				  	  		centerscrolltext.startAnimation(animAlphaText);
+				  			centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[i] + "= " + ArrayOfInitiative.initiative[i]);
+			  	  		}
+		  	  			*/
+		  	  			/*
+		  	  			centerscrolltext.setVisibility(View.VISIBLE);
+			  	  		centerscrolltext.startAnimation(animAlphaText);
+			  			centerscrolltext.append("\n" + "> Initiatives" +
+			  									"\n" + "  ===========" +
+			  									"\n" + "> " + ArrayOfPlayers.player[0] + "= " + ArrayOfInitiative.initiative[0] +
+			  									"\n" + "> " + ArrayOfPlayers.player[1] + "= " + ArrayOfInitiative.initiative[1] +
+			  									"\n" + "> " + ArrayOfPlayers.player[2] + "= " + ArrayOfInitiative.initiative[2] +
+			  									"\n" + "> " + ArrayOfPlayers.player[3] + "= " + ArrayOfInitiative.initiative[3] +
+			  									"\n" + "> " + ArrayOfPlayers.player[4] + "= " + ArrayOfInitiative.initiative[4]);
+			  			
+			  			*/
+			  			
+			  			
+			  			playerCardStopFadeInFadeOut();
+			  			//computerCardStartFadeInFadeOut();			  			
+			  			
+			  			
+			  			checkInitiativeResults();
+			  			
+			  			
+			  			//determineDoubles();			  			
+		  	  		}
+		  	  	}, 2000);//WAS 4000
+  	  		}
+  	  	}, 1250);		 		
+	}
+	
+	//Determines when all players have rolled for initiative then calls for method to determine doubles:
+	public void checkInitiativeResults() {
+		
+		if (initiativeRolled[5].equals("yes")) {
+			
+			if (clientWorkers.size() == 1) {
+				if (initiativeRolled[0].equals("yes")) {					
+					
+					determineDoubles();
+				}
+			}			
+			else if (clientWorkers.size() == 2) {
+				if (initiativeRolled[0].equals("yes") && initiativeRolled[1].equals("yes")) {
+					
+					determineDoubles();
+				}
+			}
+			else if (clientWorkers.size() == 3) {
+				if (initiativeRolled[0].equals("yes") && initiativeRolled[1].equals("yes") && initiativeRolled[2].equals("yes")) {
+
+					determineDoubles();
+				}			
+			}
+			else if (clientWorkers.size() == 4) {
+				if (initiativeRolled[0].equals("yes") && initiativeRolled[1].equals("yes") && initiativeRolled[2].equals("yes") && initiativeRolled[3].equals("yes")) {
+
+					determineDoubles();
+				}
+				
+			}
+			else if (clientWorkers.size() == 5) {
+				if (initiativeRolled[0].equals("yes") && initiativeRolled[1].equals("yes") && initiativeRolled[2].equals("yes") && initiativeRolled[3].equals("yes") && initiativeRolled[4].equals("yes")) {
+
+					determineDoubles();
+				}
+			}
+		}
+		
+		else if (initiativeRolled[5].equals("no") && (initiativeRolled[0].equals("yes") || initiativeRolled[1].equals("yes") || initiativeRolled[2].equals("yes") || initiativeRolled[3].equals("yes") || initiativeRolled[4].equals("yes"))) {
+			String str = "Waiting for players to roll...";
+			sendToAll(str);
+			
+			runOnUiThread(new Runnable() {
+      	  	    @Override
+      	  	    public void run() {
+      	  	    	
+    	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+    	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+    	  			
+    	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+    	  			centerscrolltext.setTypeface(typeFace);		    	  			
+    	  			
+      	  	    	
+	  	    		centerscrolltext.setVisibility(View.VISIBLE);
+			  		//centerscrolltext.startAnimation(animAlphaText);
+					centerscrolltext.append("\n" + "Waiting for players to roll...");		    	  	  	  	
+      	  	    }
+      	  	});
+		}
+		
+		else {
+			String str = "Waiting for players to roll...";
+			sendToAll(str);
+			
+			runOnUiThread(new Runnable() {
+      	  	    @Override
+      	  	    public void run() {
+      	  	    	
+    	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+    	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+    	  			
+    	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+    	  			centerscrolltext.setTypeface(typeFace);		    	  			
+    	  			
+      	  	    	
+	  	    		centerscrolltext.setVisibility(View.VISIBLE);
+			  		//centerscrolltext.startAnimation(animAlphaText);
+					centerscrolltext.append("\n" + "Waiting for players to roll...");		    	  	  	  	
+      	  	    }
+      	  	});
+		}
+	}
+	
+	public void determineDoubles() {
+		
+		//DOES NOT LIKE TOASTS WITH HOST/CLIENT THREAD RUNNING
+		//Toast.makeText(Host.this, "ALL PLAYERS FINISHED ROLLING", Toast.LENGTH_LONG).show();
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {
+  	  	    	
+	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+	  			
+	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  			centerscrolltext.setTypeface(typeFace);		    	  			
+	  			
+  	  	    	
+  	    		centerscrolltext.setVisibility(View.VISIBLE);
+		  		//centerscrolltext.startAnimation(animAlphaText);
+				centerscrolltext.append("\n" + "ALL INITIAL ROLLS COMPLETED");		    	  	  	  	
+  	  	    }
+  	  	});
 	}
 	
 	
@@ -1194,7 +2460,159 @@ public class Host extends Activity {
 							ArrayOfPlayers.player[4]=part2;
 							ArrayOfID.id[4] = 4;
 						}												
-					}					
+					}
+					
+					else if (read.contains("InitiativeRolled")) {
+						
+						String[] parts = read.split(":");
+						String part1 = parts[0];  
+						//String part2 = parts[1].trim();//IF THERE WAS A SPACE
+						String part2 = parts[1];
+						
+						int initiative = Integer.parseInt(part2);
+						
+						
+						if (id == 0) {
+							ArrayOfInitiative.initiative[0]=initiative;
+							initiativeRolled[0] = "yes";
+							
+							
+							String str = ArrayOfPlayers.player[0] + " rolls a " + ArrayOfInitiative.initiative[0] + ".";
+							sendToAllClients(str);
+							
+							runOnUiThread(new Runnable() {
+				      	  	    @Override
+				      	  	    public void run() {
+				      	  	    	
+				    	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+				    	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+				    	  			
+				    	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+				    	  			centerscrolltext.setTypeface(typeFace);		    	  			
+				    	  			
+				      	  	    	
+					  	    		centerscrolltext.setVisibility(View.VISIBLE);
+							  		//centerscrolltext.startAnimation(animAlphaText);
+									centerscrolltext.append("\n" + ArrayOfPlayers.player[0] + " rolls a " + ArrayOfInitiative.initiative[0] + ".");		    	  	  	  	
+				      	  	    }
+				      	  	});
+							
+							
+							checkInitiativeResults();
+						}
+						else if (id == 1) {
+							ArrayOfInitiative.initiative[1]=initiative;
+							initiativeRolled[1] = "yes";
+
+							
+							String str = ArrayOfPlayers.player[1] + " rolls a " + ArrayOfInitiative.initiative[1] + ".";
+							sendToAllClients(str);
+							
+							runOnUiThread(new Runnable() {
+				      	  	    @Override
+				      	  	    public void run() {
+				      	  	    	
+				    	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+				    	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+				    	  			
+				    	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+				    	  			centerscrolltext.setTypeface(typeFace);		    	  			
+				    	  			
+				      	  	    	
+					  	    		centerscrolltext.setVisibility(View.VISIBLE);
+							  		//centerscrolltext.startAnimation(animAlphaText);
+									centerscrolltext.append("\n" + ArrayOfPlayers.player[1] + " rolls a " + ArrayOfInitiative.initiative[1] + ".");		    	  	  	  	
+				      	  	    }
+				      	  	});
+							
+							
+							checkInitiativeResults();
+						}
+						else if (id == 2) {
+							ArrayOfInitiative.initiative[2]=initiative;
+							initiativeRolled[2] = "yes";
+
+							
+							String str = ArrayOfPlayers.player[2] + " rolls a " + ArrayOfInitiative.initiative[2] + ".";
+							sendToAllClients(str);
+							
+							runOnUiThread(new Runnable() {
+				      	  	    @Override
+				      	  	    public void run() {
+				      	  	    	
+				    	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+				    	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+				    	  			
+				    	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+				    	  			centerscrolltext.setTypeface(typeFace);		    	  			
+				    	  			
+				      	  	    	
+					  	    		centerscrolltext.setVisibility(View.VISIBLE);
+							  		//centerscrolltext.startAnimation(animAlphaText);
+									centerscrolltext.append("\n" + ArrayOfPlayers.player[2] + " rolls a " + ArrayOfInitiative.initiative[2] + ".");		    	  	  	  	
+				      	  	    }
+				      	  	});
+							
+							
+							checkInitiativeResults();
+						}
+						else if (id == 3) {
+							ArrayOfInitiative.initiative[3]=initiative;
+							initiativeRolled[3] = "yes";
+
+							
+							String str = ArrayOfPlayers.player[3] + " rolls a " + ArrayOfInitiative.initiative[3] + ".";
+							sendToAllClients(str);
+							
+							runOnUiThread(new Runnable() {
+				      	  	    @Override
+				      	  	    public void run() {
+				      	  	    	
+				    	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+				    	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+				    	  			
+				    	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+				    	  			centerscrolltext.setTypeface(typeFace);		    	  			
+				    	  			
+				      	  	    	
+					  	    		centerscrolltext.setVisibility(View.VISIBLE);
+							  		//centerscrolltext.startAnimation(animAlphaText);
+									centerscrolltext.append("\n" + ArrayOfPlayers.player[3] + " rolls a " + ArrayOfInitiative.initiative[3] + ".");		    	  	  	  	
+				      	  	    }
+				      	  	});
+							
+							
+							checkInitiativeResults();
+						}
+						else if (id == 4) {
+							ArrayOfInitiative.initiative[4]=initiative;
+							initiativeRolled[4] = "yes";
+
+							
+							String str = ArrayOfPlayers.player[4] + " rolls a " + ArrayOfInitiative.initiative[4] + ".";
+							sendToAllClients(str);
+							
+							runOnUiThread(new Runnable() {
+				      	  	    @Override
+				      	  	    public void run() {
+				      	  	    	
+				    	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+				    	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+				    	  			
+				    	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+				    	  			centerscrolltext.setTypeface(typeFace);		    	  			
+				    	  			
+				      	  	    	
+					  	    		centerscrolltext.setVisibility(View.VISIBLE);
+							  		//centerscrolltext.startAnimation(animAlphaText);
+									centerscrolltext.append("\n" + ArrayOfPlayers.player[4] + " rolls a " + ArrayOfInitiative.initiative[4] + ".");		    	  	  	  	
+				      	  	    }
+				      	  	});
+							
+							
+							checkInitiativeResults();
+						}						
+					}
 					
 					else {
 						updateConversationHandler.post(new updateUIThread(read));
@@ -1272,9 +2690,33 @@ public class Host extends Activity {
         	client.print(read);
     }
 	
+	public void sendToClient0(Object read){
+		//for(ClientWorker client : clientWorkers)                    	
+		ClientWorker client = clientWorkers.get(0);
+		client.print(read);
+	}
+	
 	public void sendToClient1(Object read){
 		//for(ClientWorker client : clientWorkers)                    	
 		ClientWorker client = clientWorkers.get(1);
+		client.print(read);
+	}
+	
+	public void sendToClient2(Object read){
+		//for(ClientWorker client : clientWorkers)                    	
+		ClientWorker client = clientWorkers.get(2);
+		client.print(read);
+	}
+	
+	public void sendToClient3(Object read){
+		//for(ClientWorker client : clientWorkers)                    	
+		ClientWorker client = clientWorkers.get(3);
+		client.print(read);
+	}
+	
+	public void sendToClient4(Object read){
+		//for(ClientWorker client : clientWorkers)                    	
+		ClientWorker client = clientWorkers.get(4);
 		client.print(read);
 	}
 	
