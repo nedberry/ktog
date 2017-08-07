@@ -17,6 +17,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.NavigableMap;
+import java.util.TreeMap;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -47,8 +49,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class Host extends Activity {
-    
+public class Host extends Activity {    
+	
+	TreeMap<Integer, String> map = new TreeMap<Integer, String>();
+	NavigableMap<Integer, String> navigableMap = new TreeMap<Integer, String>();
+	
+	int numberOfPlayers;
+	
 	//public static String[] initiativeRolled = new String[6];
 	String[] initiativeRolled = new String[] {"no", "no", "no", "no", "no", "no"};
 	
@@ -509,6 +516,9 @@ public class Host extends Activity {
 	  		  	  		}
 	  		  	  		*/
   		  	  			
+  		  	  			
+  		  	  			//ABOVE METHOD IS FOLLOWING CODE:
+  		  	  			/*
 	  		  	  		final Handler h4 = new Handler();
 			  	  	  	h4.postDelayed(new Runnable() {
 			  	  	  		
@@ -550,15 +560,22 @@ public class Host extends Activity {
 						  		  			String str = "StartInitiative";
 						  		  			sendToAll(str);
 						  		  			
-						  		  			/* FOR TESTING
-						  		  			 * String str2 = "ONE CLIENT TEST";
-						  		  			 * sendToClient1(str2);						  		  			
-						  		  			 */
+						  		  			// FOR TESTING
+						  		  			// String str2 = "ONE CLIENT TEST";
+						  		  			// sendToClient1(str2);						  		  			
+						  		  			
 						  		  			
 					  	  	  		}
 					  	  	  	}, 750);
 			  	  	  		}
-			  	  	  	}, 1000);  		  	  			
+			  	  	  	}, 1000);
+			  	  	  	*/
+  		  	  			
+  		  	  			hostRollsInitiative();
+  		  	  			
+  		  	  			String str = "StartInitiative";
+  		  	  			sendToAll(str);
+  		  	  			
         	  	  	}
         	  	}, 713); // SHOULD BE AT LEAST 675?       	      	        				
 			}
@@ -2232,11 +2249,12 @@ public class Host extends Activity {
 		}
 	}
 	
-	public void determineDoubles() {
+	public void determineDoubles() {	
 		
 		//DOES NOT LIKE TOASTS WITH HOST/CLIENT THREAD RUNNING
 		//Toast.makeText(Host.this, "ALL PLAYERS FINISHED ROLLING", Toast.LENGTH_LONG).show();
-		runOnUiThread(new Runnable() {
+		// FOR TESTING:
+		/*runOnUiThread(new Runnable() {
   	  	    @Override
   	  	    public void run() {
   	  	    	
@@ -2251,7 +2269,588 @@ public class Host extends Activity {
 		  		//centerscrolltext.startAnimation(animAlphaText);
 				centerscrolltext.append("\n" + "ALL INITIAL ROLLS COMPLETED");		    	  	  	  	
   	  	    }
+  	  	});*/
+		
+		
+		if ((initiativeRolled[5].equals("yes")) && (initiativeRolled[0].equals("yes"))) {
+			numberOfPlayers = 2;
+		}
+		if ((initiativeRolled[5].equals("yes")) && (initiativeRolled[0].equals("yes")) && (initiativeRolled[1].equals("yes"))) {
+			numberOfPlayers = 3;			
+		}
+		if ((initiativeRolled[5].equals("yes")) && (initiativeRolled[0].equals("yes")) && (initiativeRolled[1].equals("yes")) && (initiativeRolled[2].equals("yes"))) {
+			numberOfPlayers = 4;
+		}
+		if ((initiativeRolled[5].equals("yes")) && (initiativeRolled[0].equals("yes")) && (initiativeRolled[1].equals("yes")) && (initiativeRolled[2].equals("yes")) && (initiativeRolled[3].equals("yes"))) {
+			numberOfPlayers = 5;
+		}
+		if ((initiativeRolled[5].equals("yes")) && (initiativeRolled[0].equals("yes")) && (initiativeRolled[1].equals("yes")) && (initiativeRolled[2].equals("yes")) && (initiativeRolled[3].equals("yes")) && (initiativeRolled[4].equals("yes"))) {
+			numberOfPlayers = 6;
+		}		
+		
+		
+		if (numberOfPlayers == 2) {
+			//IF DOUBLE
+			if (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[5]) {
+				initiativeRolled[0] = "no";
+				initiativeRolled[5] = "no";
+				
+				runOnUiThread(new Runnable() {
+	      	  	    @Override
+	      	  	    public void run() {
+	      	  	    	
+	    	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+	    	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+	    	  			
+	    	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	    	  			centerscrolltext.setTypeface(typeFace);		    	  			
+	    	  			
+	      	  	    	
+		  	    		centerscrolltext.setVisibility(View.VISIBLE);
+				  		//centerscrolltext.startAnimation(animAlphaText);
+						centerscrolltext.append("\n" + "Re-roll for inititiative...");						
+	      	  	    }
+	      	  	});
+				
+				String str = "re-roll for inititiative...";
+				sendToClient0(str);						
+				
+				String str2 = "StartInitiative";
+				sendToClient0(str2);
+				
+				
+				hostRollsInitiative();
+			}
+			//IF NO DOUBLE
+			else {
+				/*THIS JUST FOR DISPLAY PURPOSES IN JAVA VERSION?
+				for (int i = 0; i < 6; i++) {
+					map.put(ArrayOfInitiative.initiative[i], ArrayOfPlayers.player[i]);
+				}
+
+				for (int key : map.keySet()) {
+				}
+				*/
+				
+				displayInitiatives();
+			}
+		}
+		
+		if (numberOfPlayers == 3) {
+			//IF DOUBLE
+			if ((ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[1])) {
+				initiativeRolled[0] = "no";
+				initiativeRolled[5] = "no";
+				
+				runOnUiThread(new Runnable() {
+	      	  	    @Override
+	      	  	    public void run() {
+	      	  	    	
+	    	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+	    	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+	    	  			
+	    	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	    	  			centerscrolltext.setTypeface(typeFace);		    	  			
+	    	  			
+	      	  	    	
+		  	    		centerscrolltext.setVisibility(View.VISIBLE);
+				  		//centerscrolltext.startAnimation(animAlphaText);
+						centerscrolltext.append("\n" + "Re-roll for inititiative...");						
+	      	  	    }
+	      	  	});
+				
+				String str = "re-roll for inititiative...";
+				sendToClient0(str);						
+				
+				String str2 = "StartInitiative";
+				sendToClient0(str2);
+				
+				
+				hostRollsInitiative();
+			}
+			
+			if ((ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[5])) {
+				initiativeRolled[0] = "no";
+				initiativeRolled[1] = "no";
+				
+				runOnUiThread(new Runnable() {
+	      	  	    @Override
+	      	  	    public void run() {
+	      	  	    	
+	    	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+	    	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+	    	  			
+	    	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	    	  			centerscrolltext.setTypeface(typeFace);		    	  			
+	    	  			
+	      	  	    	
+		  	    		centerscrolltext.setVisibility(View.VISIBLE);
+				  		//centerscrolltext.startAnimation(animAlphaText);
+						centerscrolltext.append("\n" + "Clients re-roll for inititiative...");					
+	      	  	    }
+	      	  	});
+				
+				String str = "re-roll for inititiative...";
+				sendToClient0(str);						
+				
+				String str2 = "StartInitiative";
+				sendToClient0(str2);
+				
+				String str3 = "re-roll for inititiative...";
+				sendToClient1(str3);						
+				
+				String str4 = "StartInitiative";
+				sendToClient1(str4);
+				
+				//hostRollsInitiative();
+			}
+			
+			if ((ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[0])) {
+				initiativeRolled[1] = "no";
+				initiativeRolled[5] = "no";
+				
+				runOnUiThread(new Runnable() {
+	      	  	    @Override
+	      	  	    public void run() {
+	      	  	    	
+	    	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+	    	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+	    	  			
+	    	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	    	  			centerscrolltext.setTypeface(typeFace);		    	  			
+	    	  			
+	      	  	    	
+		  	    		centerscrolltext.setVisibility(View.VISIBLE);
+				  		//centerscrolltext.startAnimation(animAlphaText);
+						centerscrolltext.append("\n" + "Re-roll for inititiative...");						
+	      	  	    }
+	      	  	});
+				
+				String str = "re-roll for inititiative...";
+				sendToClient1(str);						
+				
+				String str2 = "StartInitiative";
+				sendToClient1(str2);
+				
+				
+				hostRollsInitiative();
+			}
+			
+			if ((ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[0])) {
+				initiativeRolled[0] = "no";
+				initiativeRolled[1] = "no";
+				initiativeRolled[5] = "no";
+				
+				runOnUiThread(new Runnable() {
+	      	  	    @Override
+	      	  	    public void run() {
+	      	  	    	
+	    	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+	    	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+	    	  			
+	    	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	    	  			centerscrolltext.setTypeface(typeFace);		    	  			
+	    	  			
+	      	  	    	
+		  	    		centerscrolltext.setVisibility(View.VISIBLE);
+				  		//centerscrolltext.startAnimation(animAlphaText);
+						centerscrolltext.append("\n" + "Re-roll for inititiative...");					
+	      	  	    }
+	      	  	});
+				
+				String str = "re-roll for inititiative...";
+				sendToClient0(str);						
+				
+				String str2 = "StartInitiative";
+				sendToClient0(str2);
+				
+				String str3 = "re-roll for inititiative...";
+				sendToClient1(str3);						
+				
+				String str4 = "StartInitiative";
+				sendToClient1(str4);
+				
+				hostRollsInitiative();
+								
+			}
+			
+			else {			
+				
+				displayInitiatives();
+			}
+			
+		}
+		
+		if (numberOfPlayers == 4) {
+			//IF DOUBLE
+			if (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[5]) {
+				initiativeRolled[0] = "no";
+				initiativeRolled[5] = "no";
+				
+				runOnUiThread(new Runnable() {
+	      	  	    @Override
+	      	  	    public void run() {
+	      	  	    	
+	    	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+	    	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+	    	  			
+	    	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	    	  			centerscrolltext.setTypeface(typeFace);		    	  			
+	    	  			
+	      	  	    	
+		  	    		centerscrolltext.setVisibility(View.VISIBLE);
+				  		//centerscrolltext.startAnimation(animAlphaText);
+						centerscrolltext.append("\n" + "Re-roll for inititiative...");					
+	      	  	    }
+	      	  	});
+				
+				String str = "re-roll for inititiative...";
+				sendToClient0(str);						
+				
+				String str2 = "StartInitiative";
+				sendToClient0(str2);
+				
+				
+				hostRollsInitiative();
+			}
+			
+			if (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[1]){
+				
+			}
+			
+			if (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[2]){
+				
+			}
+			
+			if (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[2]){
+				
+			}
+			
+			if (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[5]){
+				
+			}
+			
+			if (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[5]){
+				
+			}
+			
+			else {
+				
+				displayInitiatives();
+			}
+		}
+		
+		if (numberOfPlayers == 5) {
+			//IF DOUBLE
+			if (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[5]) {
+				initiativeRolled[0] = "no";
+				initiativeRolled[5] = "no";
+				
+				runOnUiThread(new Runnable() {
+	      	  	    @Override
+	      	  	    public void run() {
+	      	  	    	
+	    	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+	    	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+	    	  			
+	    	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	    	  			centerscrolltext.setTypeface(typeFace);		    	  			
+	    	  			
+	      	  	    	
+		  	    		centerscrolltext.setVisibility(View.VISIBLE);
+				  		//centerscrolltext.startAnimation(animAlphaText);
+						centerscrolltext.append("\n" + "Re-roll for inititiative...");						
+	      	  	    }
+	      	  	});
+				
+				String str = "re-roll for inititiative...";
+				sendToClient0(str);						
+				
+				String str2 = "StartInitiative";
+				sendToClient0(str2);
+				
+				
+				hostRollsInitiative();
+			}
+			
+			if (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[1]){
+				
+			}
+			
+			if (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[2]){
+				
+			}
+			
+			if (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[3]){
+				
+			}
+			
+			if (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[2]){
+				
+			}
+			
+			if (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[3]){
+				
+			}
+			
+			if (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[5]){
+				
+			}
+			
+			if (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[3]){
+				
+			}
+			
+			if (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[5]){
+				
+			}
+			
+			if (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5]){
+				
+			}
+			
+			else {
+				
+				displayInitiatives();
+			}
+		}		
+		
+		if (numberOfPlayers == 6) {
+			//IF DOUBLE
+			if (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[5]) {
+				initiativeRolled[0] = "no";
+				initiativeRolled[5] = "no";
+				
+				runOnUiThread(new Runnable() {
+	      	  	    @Override
+	      	  	    public void run() {
+	      	  	    	
+	    	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+	    	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+	    	  			
+	    	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	    	  			centerscrolltext.setTypeface(typeFace);		    	  			
+	    	  			
+	      	  	    	
+		  	    		centerscrolltext.setVisibility(View.VISIBLE);
+				  		//centerscrolltext.startAnimation(animAlphaText);
+						centerscrolltext.append("\n" + "Re-roll for inititiative...");						
+	      	  	    }
+	      	  	});
+				
+				String str = "re-roll for inititiative...";
+				sendToClient0(str);						
+				
+				String str2 = "StartInitiative";
+				sendToClient0(str2);
+				
+				
+				hostRollsInitiative();
+			}
+			
+			if (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[1]){
+				
+			}
+			
+			if (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[2]){
+				
+			}
+			
+			if (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[3]){
+				
+			}
+			
+			if (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[4]){
+				
+			}
+			
+			if (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[2]){
+				
+			}
+			
+			if (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[3]){
+				
+			}
+			
+			if (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[4]){
+				
+			}
+			
+			if (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[5]){
+				
+			}
+			
+			if (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[3]){
+				
+			}
+			
+			if (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[4]){
+				
+			}
+			
+			if (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[5]){
+				
+			}
+			
+			if (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[4]){
+				
+			}
+			
+			if (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5]){
+				
+			}
+			
+			if (ArrayOfInitiative.initiative[4] == ArrayOfInitiative.initiative[5]){
+				
+			}
+			
+			else {
+				
+				displayInitiatives();
+			}
+		}
+		  
+	}
+	
+	public void hostRollsInitiative() {
+		
+		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				
+				final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+	  			
+	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  			centerscrolltext.setTypeface(typeFace);
+	  			
+				
+				final Handler h4 = new Handler();
+	  	  	  	h4.postDelayed(new Runnable() {
+	  	  	  		
+	  	  	  		@Override
+	  	  	  		public void run() {				  				
+	  	  	  			
+	  	  	  			// Sets sixSidedBlank visible & enabled.
+	  	  	  			sixSidedRollFromLeft();  	  	  			
+	  		  			
+	  	  	  			
+		  		  		final Handler h5 = new Handler();
+			  	  	  	h5.postDelayed(new Runnable() {
+			  	  	  			
+			  	  	  			// Does this thread help:?
+				  	  	  		@Override
+				  	  	  		public void run()
+				  	  	  		{  	  			
+					  	  	  		sixSidedWobbleStart();
+					  	  	  		
+					  	  	  		isSixSidedReadyToBeRolled = "yes";
+					  	  	  		isInitiativeOver = "no";
+					  	  	  		
+				  	  	  			centerscrolltext.setVisibility(View.VISIBLE);
+				  		  	  		centerscrolltext.startAnimation(animAlphaText);
+				  		  			centerscrolltext.append("\n" + "> Please slide the die...");								  		  			
+				  		  			
+				  		  			playerCardStartFadeInFadeOut();
+				  		  			//playerTurnBackgroundStart();			  		  			
+				  		  			
+				  		  			
+				  		  			//issixsidedrolledforinitiative = "yes";
+				  		  			isinitiativestarted = "yes";			  		  			
+				  		  			onBackPressedOk = "yes";
+				  		  			
+				  		  			
+				  		  			//preventinitiativediefromleaking = "off";
+				  		  			
+				  		  			
+				  		  			//String str = "StartInitiative";
+				  		  			//sendToAll(str);
+				  		  			
+				  		  			/* FOR TESTING
+				  		  			 * String str2 = "ONE CLIENT TEST";
+				  		  			 * sendToClient1(str2);						  		  			
+				  		  			 */				  		  			
+			  	  	  		}
+			  	  	  	}, 750);
+	  	  	  		}
+	  	  	  	}, 1000);						
+			}
+  		});
+		
+	}
+	
+	public void displayInitiatives() {
+		
+		//FOR TESTING:
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {
+  	  	    	
+	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+	  			
+	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  			centerscrolltext.setTypeface(typeFace);		    	  			
+	  			
+  	  	    	
+  	    		centerscrolltext.setVisibility(View.VISIBLE);
+		  		//centerscrolltext.startAnimation(animAlphaText);
+				centerscrolltext.append("\n" + "TESTING" + "\n" + numberOfPlayers);					
+  	  	    }
   	  	});
+		
+		
+		/*
+		for (int i = 0; i < 6; i++) {
+			map.put(ArrayOfInitiative.initiative[i], ArrayOfPlayers.player[i]);
+		}
+
+		for (int key : map.keySet()) {
+		}  
+	      
+	      
+		runOnUiThread(new Runnable() {
+			@Override
+  	    	public void run() {
+    	  	    	
+  	  	    	final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+  	  	    	//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+  	  			
+  	  	    	Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+  	  	    	centerscrolltext.setTypeface(typeFace);		    	  			
+  	  			
+    	  	    	
+  	    		centerscrolltext.setVisibility(View.VISIBLE);
+		  		//centerscrolltext.startAnimation(animAlphaText);
+				centerscrolltext.append("\n" + "INITIATIVE" + " " + "NAME");
+				centerscrolltext.append("\n" + "----------" + " " + "----");
+				
+				String str = "INITIATIVE" + " " + "NAME" + "\n" + "----------" + " " + "----";
+				sendToAllClients(str);
+				
+				//NOT DISPLAYING:
+				int[] playerNumber = new int[6];
+				navigableMap=navigableMap.descendingMap();
+			      int playerNumberCount = 1;
+			      int playerNumberSubscript = 0;
+			      for (int navigableKey : navigableMap.keySet())
+			      {
+			         //System.out.println(navigableKey + "\t\t" + navigableMap.get(navigableKey));
+			         centerscrolltext.append("\n" + navigableKey + " " + navigableMap.get(navigableKey));
+			         
+			         String str2 = navigableKey + " " + navigableMap.get(navigableKey);
+			         sendToAllClients(str2);
+			         
+			         playerNumber[playerNumberSubscript] = playerNumberCount;//playerNumber = player #1 (player who rolled highest initiative), etc.
+			         playerNumberSubscript++;
+			         playerNumberCount++;
+			      }
+			    //navigableMap.values().toArray(playerName);// fills playerName array w names in order of initiative.							
+	  	    }
+	  	});
+	  	*/	
 	}
 	
 	

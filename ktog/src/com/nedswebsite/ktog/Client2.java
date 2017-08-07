@@ -608,7 +608,7 @@ public class Client2 extends Activity {
   	  	}, 2000);
   	  	
   	  	
-  	  	determineInitiative();
+  	  	//determineInitiative();
   	  	
   	  	
 		chatBlankButton.setOnClickListener(new View.OnClickListener() {
@@ -2252,20 +2252,10 @@ public class Client2 extends Activity {
   	  	}, 1250);		 		
 	}
 	
-	
-	/*
-	 * 
-	 * 
-	 * 
-	 * Game Mechanics*****************************************************************************************
-	 * 
-	 * 
-	 * 
-	 */
-	
-	
-	public void gameEngine() {
-					
+	public void rollInitiative() {		
+		
+		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+		
 		/*
 		String str = ArrayOfPlayers.player[1];
 		PrintWriter out = null;
@@ -2288,19 +2278,13 @@ public class Client2 extends Activity {
   	  	victoryDefeatAnimationForStartTransition();
   	  	
   	  	
-  	  	final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+  	  	determineInitiative();	  	
+  	  	
 		
 		runOnUiThread(new Runnable() {
 	  	    @Override
-	  	    public void run() {
+	  	    public void run() {	  	  	  	
 	  	    	
-	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
-	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
-	  			
-	  			final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-	  			centerscrolltext.setTypeface(typeFace);
-  	  	
-  	  	
 		  	  	final Handler h = new Handler();
 				h.postDelayed(new Runnable() {		  	  	  			
 			  			
@@ -2353,6 +2337,13 @@ public class Client2 extends Activity {
 							  	  	  		isSixSidedReadyToBeRolled = "yes";
 							  	  	  		isInitiativeOver = "no";
 							  	  	  		
+							  	  	  		
+								  	  	  	final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+								  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+								  			
+								  			final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+								  			centerscrolltext.setTypeface(typeFace);
+							  	  	  		
 						  	  	  			centerscrolltext.setVisibility(View.VISIBLE);
 						  		  	  		centerscrolltext.startAnimation(animAlphaText);
 						  		  			centerscrolltext.append("\n" + "> Please slide the die...");								  		  			
@@ -2376,6 +2367,74 @@ public class Client2 extends Activity {
 	  	    }
 		});	
 	}
+	
+	public void reRollInitiative() {	
+		
+		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+		
+		
+		final Handler h4 = new Handler();
+  	  	h4.postDelayed(new Runnable() {
+  	  		
+  	  		@Override
+  	  		public void run() {				  				
+  	  			
+  	  			// Sets sixSidedBlank visible & enabled.
+  	  			sixSidedRollFromLeft();  	  	  			
+	  			
+  	  			
+  		  		final Handler h5 = new Handler();
+	  	  	  	h5.postDelayed(new Runnable() {
+	  	  	  			
+	  	  	  			// Does this thread help:?
+		  	  	  		@Override
+		  	  	  		public void run() {
+		  	  	  			
+			  	  	  		sixSidedWobbleStart();
+			  	  	  		
+			  	  	  		isSixSidedReadyToBeRolled = "yes";
+			  	  	  		isInitiativeOver = "no";
+			  	  	  		
+			  	  	  		
+				  	  	  	final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+							//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+						
+							final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+							centerscrolltext.setTypeface(typeFace);
+			  	  	  		
+		  	  	  			centerscrolltext.setVisibility(View.VISIBLE);
+		  		  	  		centerscrolltext.startAnimation(animAlphaText);
+		  		  			centerscrolltext.append("\n" + "> Please slide the die...");								  		  			
+		  		  			
+		  		  			
+		  		  			computerCardStartFadeInFadeOut();		  		  			
+		  		  			
+		  		  			
+		  		  			//issixsidedrolledforinitiative = "yes";
+		  		  			isinitiativestarted = "yes";			  		  			
+		  		  			onBackPressedOk = "yes";
+		  		  			
+		  		  			
+		  		  			//preventinitiativediefromleaking = "off";						  		  			
+	  	  	  		}
+	  	  	  	}, 750);
+  	  		}
+  	  	}, 1000);		
+	}
+	
+	
+	/*
+	 * 
+	 * 
+	 * 
+	 * Game Mechanics*****************************************************************************************
+	 * 
+	 * 
+	 * 
+	 */
+	
+	
+	
 	
 	
 	
@@ -2420,7 +2479,7 @@ public class Client2 extends Activity {
 					
 					else if (read.contains("StartInitiative")) {
 						
-						gameEngine();						
+						rollInitiative();						
 					}
 					
 					else {
