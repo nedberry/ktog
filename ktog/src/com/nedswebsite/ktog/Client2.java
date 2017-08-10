@@ -2175,12 +2175,12 @@ public class Client2 extends Activity {
 	 */
 	
 	
-	public void  determineInitiative() {
+	public void  determineInitiative() {		
 		
 		int result = (int)(Math.random()*6)+1;
         //(Math.random()*6) returns a number between 0 (inclusive) and 6 (exclusive)
         //same as: (int) Math.ceil(Math.random()*6); ?
-		ArrayOfInitiative.initiative[1] = result;						
+		ArrayOfInitiative.initiative[1] = result;								
 	}
 	
 	public void initiativeResults() {
@@ -2373,6 +2373,9 @@ public class Client2 extends Activity {
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
 		
+		determineInitiative();
+		
+		
 		final Handler h4 = new Handler();
   	  	h4.postDelayed(new Runnable() {
   	  		
@@ -2481,6 +2484,14 @@ public class Client2 extends Activity {
 						
 						rollInitiative();						
 					}
+					
+					else if (read.contains("Re-rollInitiative")) {
+						
+						// NOT WORKING!!!!!!!!!!!!!!!!!!!!!!!!
+						//reRollInitiative();
+						
+						rollInitiative();
+					}				
 					
 					else {
 						updateConversationHandler.post(new updateUIThread(read));
