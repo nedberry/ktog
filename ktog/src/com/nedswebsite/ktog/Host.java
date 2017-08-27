@@ -52,7 +52,7 @@ import android.widget.Toast;
 
 public class Host extends Activity {    
 	
-	TreeMap<Integer, String> map = new TreeMap<Integer, String>();
+	TreeMap<Float, String> map = new TreeMap<Float, String>();
 	NavigableMap<Integer, String> navigableMap = new TreeMap<Integer, String>();
 	
 	
@@ -2153,7 +2153,7 @@ public class Host extends Activity {
   	  		public void run() {  	  			
 	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 	  	  		centerscrolltext.startAnimation(animAlphaText);
-	  			centerscrolltext.append("\n" + "> You roll " + ArrayOfInitiative.initiative[5] + " for initiative.");
+	  			centerscrolltext.append("\n" + "> You roll " + ArrayOfInitiative.initiative[5] + ".");
 	  			
 	  			
 	  			initiativeRolled[5] = "yes";
@@ -2336,3295 +2336,5128 @@ public class Host extends Activity {
 		if ((initiativeRolled[5].equals("yes")) && (initiativeRolled[0].equals("yes")) && (initiativeRolled[1].equals("yes")) && (initiativeRolled[2].equals("yes")) && (initiativeRolled[3].equals("yes"))) {
 			numberOfPlayers = 5;
 		}
+		/*
 		if ((initiativeRolled[5].equals("yes")) && (initiativeRolled[0].equals("yes")) && (initiativeRolled[1].equals("yes")) && (initiativeRolled[2].equals("yes")) && (initiativeRolled[3].equals("yes")) && (initiativeRolled[4].equals("yes"))) {
 			numberOfPlayers = 6;
 		}		
-		
+		*/
 		
 		
 		
 		
 			
-			if (rollOff.equals("no")) {				
+		if (rollOff.equals("no")) {				
+			
+			if ((ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[4])) {					
 				
-				if ((ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[4])) {					
-					
-					tempInitiativeStorage();
-					
-					rollOff ="yes";
-					rollOff305 ="yes";
-					
+				tempInitiativeStorage();										
+				
+				double05();
+			}
+			
+			if ((ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[4])) {
+				
+				tempInitiativeStorage();
+				
+				double01();
+			}
+			
+			if ((ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[4])) {
+				
+				tempInitiativeStorage();
+				
+				double15();
+			}
+			
+			if ((ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[4])) {
+				
+				tempInitiativeStorage();
+				
+				double25();
+			}
+			
+			if ((ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[4])) {
+				
+				tempInitiativeStorage();
+				
+				double20();
+			}
+			
+			if ((ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[4])) {
+				
+				tempInitiativeStorage();
+				
+				double21();
+			}
+			
+			if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[4]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5])) {
+				
+				tempInitiativeStorage();
+				
+				double30();
+			}
+			
+			if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[4]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5])) {
+				
+				tempInitiativeStorage();
+				
+				double31();
+			}
+			
+			if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[4]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5])) {
+				
+				tempInitiativeStorage();
+				
+				double32();
+			}
+			
+			if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[4])) {
+				
+				tempInitiativeStorage();
+				
+				double35();
+			}
+			
+			if ((ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[4])) {
+				
+				tempInitiativeStorage();
+				
+				double150();
+			}
+			
+			if ((ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[4])) {
+
+				tempInitiativeStorage();
+				
+				double215();
+			}
+			
+			if ((ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[4])) {
+
+				tempInitiativeStorage();
+				
+				double250();
+			}
+			
+			if ((ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[4])) {
+
+				tempInitiativeStorage();	
+				
+				double201();
+			}
+			
+			if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[4]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5])) {
+
+				tempInitiativeStorage();
+				
+				double301();
+			}
+			
+			if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[4]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5])) {
+
+				tempInitiativeStorage();		
+				
+				double302();
+			}
+			
+			if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[4])) {
+
+				tempInitiativeStorage();
+				
+				double305();
+			}
+			
+			if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[4]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5])) {
+
+				tempInitiativeStorage();	
+				
+				double312();
+			}
+			
+			if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[4])) {
+
+				tempInitiativeStorage();	
+				
+				double315();
+			}
+			
+			if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[4])) {
+
+				tempInitiativeStorage();	
+				
+				double325();
+			}
+			
+			if ((ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[4])) {
+				
+				tempInitiativeStorage();		
+				
+				double0125();
+			}
+			
+			if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[4]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5])) {
+
+				tempInitiativeStorage();
+				
+				double3012();
+			}
+			
+			if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[4]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2])) {
+
+				tempInitiativeStorage();	
+				
+				double3015();
+			}
+			
+			if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[4])) {
+
+				tempInitiativeStorage();	
+				
+				double3125();
+			}
+			
+			if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[4])) {
+
+				tempInitiativeStorage();
+				
+				double3025();
+			}
+			
+			if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[4])) {
+
+				tempInitiativeStorage();
+				
+				double30125();
+			}		
+			
+			if ((numberOfPlayers == 2) && (ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[0])) {
+				
+				tempInitiativeStorage();
+				
+				
+				displayInitiatives();
+				
+			}
+			if ((numberOfPlayers == 3) && (ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[1]) && 
+					(ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[1])) {
+				
+				tempInitiativeStorage();
+				
+				
+				displayInitiatives();
+				
+			}
+			if ((numberOfPlayers == 4) && (ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[1]) && 
+					(ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[1]) && 
+					(ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[2])) {
+				
+				tempInitiativeStorage();
+				
+				
+				displayInitiatives();
+				
+			}
+			if ((numberOfPlayers == 5) && (ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[1]) && 
+					(ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[3]) && 
+					(ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[2]) && 
+					(ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[2]) && 
+					(ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[3])) {
+				
+				tempInitiativeStorage();
+				
+				
+				displayInitiatives();
+				
+			}
+			/*
+			else {					
+				
+				tempInitiativeStorage();
+				
+				
+				displayInitiatives();
+			}
+			*/
+		}
+		
+		
+		else if (rollOff.equals("yes")) {
+			
+			if (rollOff305.equals("yes")) {
+				
+				if ((ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[5])) {				
 					
 					double05();
 				}
 				
-				if ((ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[4])) {
+				else {
 					
-					tempInitiativeStorage();					
-					
-					rollOff ="yes";
-					rollOff301 ="yes";
-					
+					if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5]) {
+						initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.1f);
+						initiativeFinal[5] = (float) initiativeFinal[5];
+						
+						if (rollOff530125.equals("yes") || rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")
+								|| rollOff5325.equals("yes") || rollOff5315.equals("yes") || rollOff5312.equals("yes") || rollOff5305.equals("yes") || rollOff5302.equals("yes") || rollOff5301.equals("yes")
+								|| rollOff4250.equals("yes") || rollOff4215.equals("yes") || rollOff4201.equals("yes") || rollOff4150.equals("yes")) {
+							
+							deadMethod();
+						}						
+						else {
+						
+							displayInitiatives();
+						}
+					}
+					else if (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) {
+						initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.1f);
+						initiativeFinal[0] = (float) initiativeFinal[0];
+						
+						if (rollOff530125.equals("yes") || rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")
+								|| rollOff5325.equals("yes") || rollOff5315.equals("yes") || rollOff5312.equals("yes") || rollOff5305.equals("yes") || rollOff5302.equals("yes") || rollOff5301.equals("yes")
+								|| rollOff4250.equals("yes") || rollOff4215.equals("yes") || rollOff4201.equals("yes") || rollOff4150.equals("yes")) {
+							
+							deadMethod();
+						}						
+						else {
+						
+							displayInitiatives();
+						}
+					}					
+				}
+			}				
+			
+			if (rollOff301.equals("yes")) {
+				
+				if ((ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[1])) {				
 					
 					double01();
 				}
 				
-				if ((ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[4])) {
+				else {
 					
-					tempInitiativeStorage();					
-					
-					rollOff ="yes";
-					rollOff315 ="yes";
-					
-					
+					if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {
+						initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.1f);
+						initiativeFinal[1] = (float) initiativeFinal[1];
+						
+						if (rollOff530125.equals("yes") || rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")
+								|| rollOff5325.equals("yes") || rollOff5315.equals("yes") || rollOff5312.equals("yes") || rollOff5305.equals("yes") || rollOff5302.equals("yes") || rollOff5301.equals("yes")
+								|| rollOff4250.equals("yes") || rollOff4215.equals("yes") || rollOff4201.equals("yes") || rollOff4150.equals("yes")) {
+							
+							deadMethod();
+						}						
+						else {
+						
+							displayInitiatives();
+						}
+					}
+					else if (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0]) {
+						initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.1f);
+						initiativeFinal[0] = (float) initiativeFinal[0];
+						
+						if (rollOff530125.equals("yes") || rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")
+								|| rollOff5325.equals("yes") || rollOff5315.equals("yes") || rollOff5312.equals("yes") || rollOff5305.equals("yes") || rollOff5302.equals("yes") || rollOff5301.equals("yes")
+								|| rollOff4250.equals("yes") || rollOff4215.equals("yes") || rollOff4201.equals("yes") || rollOff4150.equals("yes")) {
+							
+							deadMethod();
+						}						
+						else {
+						
+							displayInitiatives();
+						}
+					}	
+				}
+			}				
+			
+			if (rollOff315.equals("yes")) {
+				
+				if ((ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[5])) {				
+											
 					double15();
 				}
 				
-				if ((ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[4])) {
-					
-					tempInitiativeStorage();					
-					
-					rollOff ="yes";
-					rollOff425 ="yes";
-					
-					
-					double25();
-				}
-				
-				if ((ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[4])) {
-					
-					tempInitiativeStorage();					
-					
-					rollOff ="yes";
-					rollOff420 ="yes";
-					
-					
-					double20();
-				}
-				
-				if ((ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[4])) {
-					
-					tempInitiativeStorage();					
-					
-					rollOff ="yes";
-					rollOff421 ="yes";
-					
-					
-					double21();
-				}
-				
-				if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[4]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5])) {
-					
-					tempInitiativeStorage();					
-					
-					rollOff ="yes";
-					rollOff530 ="yes";
-					
-					
-					double30();
-				}
-				
-				if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[4]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5])) {
-					
-					tempInitiativeStorage();					
-					
-					rollOff ="yes";
-					rollOff531 ="yes";
-					
-					
-					double31();
-				}
-				
-				if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[4]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5])) {
-					
-					tempInitiativeStorage();					
-					
-					rollOff ="yes";
-					rollOff532 ="yes";
-					
-					
-					double32();
-				}
-				
-				if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[4])) {
-					
-					tempInitiativeStorage();					
-					
-					rollOff ="yes";
-					rollOff535 ="yes";
-					
-					
-					double35();
-				}
-				
-				if ((ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[4])) {
-					
-					tempInitiativeStorage();					
-					
-					rollOff ="yes";
-					rollOff4150 ="yes";
-					
-					
-					double150();
-				}
-				
-				if ((ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[4])) {
-	
-					tempInitiativeStorage();					
-					
-					rollOff ="yes";
-					rollOff4215 ="yes";
-					
-					
-					double215();
-				}
-				
-				if ((ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[4])) {
-	
-					tempInitiativeStorage();					
-					
-					rollOff ="yes";
-					rollOff4250 ="yes";
-					
-					
-					double250();
-				}
-				
-				if ((ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[4])) {
-	
-					tempInitiativeStorage();					
-					
-					rollOff ="yes";
-					rollOff4201 ="yes";
-					
-					
-					double201();
-				}
-				
-				if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[4]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5])) {
-	
-					tempInitiativeStorage();					
-					
-					rollOff ="yes";
-					rollOff5301 ="yes";
-					
-					
-					double301();
-				}
-				
-				if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[4]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5])) {
-	
-					tempInitiativeStorage();					
-					
-					rollOff ="yes";
-					rollOff5302 ="yes";
-					
-					
-					double302();
-				}
-				
-				if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[4])) {
-	
-					tempInitiativeStorage();					
-					
-					rollOff ="yes";
-					rollOff5305 ="yes";
-					
-					
-					double305();
-				}
-				
-				if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[4]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5])) {
-	
-					tempInitiativeStorage();					
-					
-					rollOff ="yes";
-					rollOff5312 ="yes";
-					
-					
-					double312();
-				}
-				
-				if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[4])) {
-	
-					tempInitiativeStorage();					
-					
-					rollOff ="yes";
-					rollOff5315 ="yes";
-					
-					
-					double315();
-				}
-				
-				if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[4])) {
-	
-					tempInitiativeStorage();					
-					
-					rollOff ="yes";
-					rollOff5325 ="yes";
-					
-					
-					double325();
-				}
-				
-				if ((ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[4])) {
-					
-					tempInitiativeStorage();					
-					
-					rollOff ="yes";
-					rollOff40125 ="yes";
-					
-					
-					double0125();
-				}
-				
-				if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[4]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5])) {
-	
-					tempInitiativeStorage();					
-					
-					rollOff ="yes";
-					rollOff53012 ="yes";
-					
-					
-					double3012();
-				}
-				
-				if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[4]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2])) {
-	
-					tempInitiativeStorage();					
-					
-					rollOff ="yes";
-					rollOff53015 ="yes";
-					
-					
-					double3015();
-				}
-				
-				if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[4])) {
-	
-					tempInitiativeStorage();					
-					
-					rollOff ="yes";
-					rollOff53125 ="yes";
-					
-					
-					double3125();
-				}
-				
-				if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[4])) {
-	
-					tempInitiativeStorage();					
-					
-					rollOff ="yes";
-					rollOff53025 ="yes";
-					
-					
-					double3025();
-				}
-				
-				if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[4])) {
-	
-					tempInitiativeStorage();					
-					
-					rollOff ="yes";
-					rollOff530125 ="yes";
-					
-					
-					double30125();
-				}
-				
-				/*
-				else if ((ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[4])) {
-					
-					initiativeFinal[3] = (float) ArrayOfInitiative.initiative[3];
-					initiativeFinal[4] = (float) ArrayOfInitiative.initiative[4];					
-					
-					
-					initiativeRolled[1] = "no";
-					initiativeRolled[5] = "no";
-					initiativeRolled[0] = "no";
-					initiativeRolled[2] = "no";
-					
-					runOnUiThread(new Runnable() {
-		      	  	    @Override
-		      	  	    public void run() {
-		      	  	    	
-		    	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
-		    	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
-		    	  			
-		    	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-		    	  			centerscrolltext.setTypeface(typeFace);		    	  			
-		    	  			
-		      	  	    	
-			  	    		centerscrolltext.setVisibility(View.VISIBLE);
-					  		//centerscrolltext.startAnimation(animAlphaText);
-							centerscrolltext.append("\n" + "Re-roll for inititiative...");					
-		      	  	    }
-		      	  	});
-					
-					String str = "re-roll for inititiative...";
-					sendToClient0(str);						
-					
-					String str2 = "Re-rollInitiative";
-					sendToClient0(str2);
-					
-					String str3 = "re-roll for inititiative...";
-					sendToClient1(str3);						
-					
-					String str4 = "Re-rollInitiative";
-					sendToClient1(str4);
-					
-					String str5 = "re-roll for inititiative...";
-					sendToClient2(str5);						
-					
-					String str6 = "Re-rollInitiative";
-					sendToClient2(str6);
-					
-					
-					hostRollsInitiative();									
-				}*/			
-				/*
-				else if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[4])) {
-					
-					initiativeFinal[4] = (float) ArrayOfInitiative.initiative[4];					
-					
-					
-					initiativeRolled[3] = "no";
-					initiativeRolled[0] = "no";
-					initiativeRolled[1] = "no";
-					initiativeRolled[2] = "no";
-					initiativeRolled[5] = "no";
-					
-					runOnUiThread(new Runnable() {
-		      	  	    @Override
-		      	  	    public void run() {
-		      	  	    	
-		    	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
-		    	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
-		    	  			
-		    	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-		    	  			centerscrolltext.setTypeface(typeFace);		    	  			
-		    	  			
-		      	  	    	
-			  	    		centerscrolltext.setVisibility(View.VISIBLE);
-					  		//centerscrolltext.startAnimation(animAlphaText);
-							centerscrolltext.append("\n" + "Re-roll for inititiative...");					
-		      	  	    }
-		      	  	});
-					
-					String str = "re-roll for inititiative...";
-					sendToClient3(str);						
-					
-					String str2 = "Re-rollInitiative";
-					sendToClient3(str2);
-					
-					String str3 = "re-roll for inititiative...";
-					sendToClient0(str3);						
-					
-					String str4 = "Re-rollInitiative";
-					sendToClient0(str4);
-					
-					String str5 = "re-roll for inititiative...";
-					sendToClient1(str5);						
-					
-					String str6 = "Re-rollInitiative";
-					sendToClient1(str6);
-					
-					String str7 = "re-roll for inititiative...";
-					sendToClient2(str7);						
-					
-					String str8 = "Re-rollInitiative";
-					sendToClient2(str8);
-					
-					
-					hostRollsInitiative();									
-				}*/
-				
-				else {					
-					
-					tempInitiativeStorage();
-					
-					
-					displayInitiatives();
+				else {
+					
+					if (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5]) {
+						initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.1f);
+						initiativeFinal[5] = (float) initiativeFinal[5];
+						
+						if (rollOff530125.equals("yes") || rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")
+								|| rollOff5325.equals("yes") || rollOff5315.equals("yes") || rollOff5312.equals("yes") || rollOff5305.equals("yes") || rollOff5302.equals("yes") || rollOff5301.equals("yes")
+								|| rollOff4250.equals("yes") || rollOff4215.equals("yes") || rollOff4201.equals("yes") || rollOff4150.equals("yes")) {
+							
+							deadMethod();
+						}						
+						else {
+						
+							displayInitiatives();
+						}
+					}
+					else if (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1]) {
+						initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.1f);
+						initiativeFinal[1] = (float) initiativeFinal[1];
+						
+						if (rollOff530125.equals("yes") || rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")
+								|| rollOff5325.equals("yes") || rollOff5315.equals("yes") || rollOff5312.equals("yes") || rollOff5305.equals("yes") || rollOff5302.equals("yes") || rollOff5301.equals("yes")
+								|| rollOff4250.equals("yes") || rollOff4215.equals("yes") || rollOff4201.equals("yes") || rollOff4150.equals("yes")) {
+							
+							deadMethod();
+						}						
+						else {
+						
+							displayInitiatives();
+						}
+					}	
 				}
 			}
 			
-			
-			else if (rollOff.equals("yes")) {
+			if (rollOff425.equals("yes")) {
 				
-				if (rollOff305.equals("yes")) {
-					
-					if ((ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[5])) {				
-						
-						double05();
-					}
-					
-					else {
-						
-						if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5]) {
-							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.1f);
-							initiativeFinal[5] = (float) initiativeFinal[5];
-						}
-						if (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) {
-							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.1f);
-							initiativeFinal[0] = (float) initiativeFinal[0];
-						}		
-						
-						
-						displayInitiatives();
-					}
-				}				
-				
-				if (rollOff301.equals("yes")) {
-					
-					if ((ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[1])) {				
-						
-						double01();
-					}
-					
-					else {
-						
-						if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {
-							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.1f);
-							initiativeFinal[1] = (float) initiativeFinal[1];
-						}
-						if (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0]) {
-							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.1f);
-							initiativeFinal[0] = (float) initiativeFinal[0];
-						}		
-						
-						
-						displayInitiatives();
-					}
-				}				
-				
-				if (rollOff315.equals("yes")) {
-					
-					if ((ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[5])) {				
-												
-						double15();
-					}
-					
-					else {
-						
-						if (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5]) {
-							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.1f);
-							initiativeFinal[5] = (float) initiativeFinal[5];
-						}
-						if (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1]) {
-							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.1f);
-							initiativeFinal[1] = (float) initiativeFinal[1];
-						}					
-						
-						
-						displayInitiatives();
-					}
-				}
-				
-				if (rollOff425.equals("yes")) {
-					
-					if ((ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[5])) {				
-												
-						double25();
-					}
-					
-					else {
-						
-						if (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5]) {
-							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.1f);
-							initiativeFinal[5] = (float) initiativeFinal[5];
-						}
-						if (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2]) {
-							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.1f);
-							initiativeFinal[2] = (float) initiativeFinal[2];
-						}					
-						
-						
-						displayInitiatives();
-					}
-				}
-				
-				if (rollOff420.equals("yes")) {
-					
-					if ((ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[0])) {				
-												
-						double20();
-					}
-					
-					else {
-						
-						if (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0]) {
-							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.1f);
-							initiativeFinal[0] = (float) initiativeFinal[0];
-						}
-						if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2]) {
-							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.1f);
-							initiativeFinal[2] = (float) initiativeFinal[2];
-						}					
-						
-						
-						displayInitiatives();
-					}
-				}
-				
-				if (rollOff421.equals("yes")) {
-					
-					if ((ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[1])) {				
-												
-						double21();
-					}
-					
-					else {
-						
-						if (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1]) {
-							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.1f);
-							initiativeFinal[1] = (float) initiativeFinal[1];
-						}
-						if (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2]) {
-							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.1f);
-							initiativeFinal[2] = (float) initiativeFinal[2];
-						}					
-						
-						
-						displayInitiatives();
-					}
-				}
-				
-				if (rollOff530.equals("yes")) {
-					
-					if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0])) {				
-												
-						double30();
-					}
-					
-					else {
-						
-						if (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0]) {
-							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.1f);
-							initiativeFinal[0] = (float) initiativeFinal[0];
-						}
-						if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3]) {
-							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.1f);
-							initiativeFinal[3] = (float) initiativeFinal[3];
-						}					
-						
-						
-						displayInitiatives();
-					}
-				}
-				
-				if (rollOff531.equals("yes")) {
-					
-					if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1])) {				
-												
-						double31();
-					}
-					
-					else {
-						
-						if (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1]) {
-							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.1f);
-							initiativeFinal[1] = (float) initiativeFinal[1];
-						}
-						if (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3]) {
-							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.1f);
-							initiativeFinal[3] = (float) initiativeFinal[3];
-						}					
-						
-						
-						displayInitiatives();
-					}
-				}
-				
-				if (rollOff532.equals("yes")) {
-					
-					if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2])) {				
-												
-						double32();
-					}
-					
-					else {
-						
-						if (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2]) {
-							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.1f);
-							initiativeFinal[2] = (float) initiativeFinal[2];
-						}
-						if (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3]) {
-							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.1f);
-							initiativeFinal[3] = (float) initiativeFinal[3];
-						}					
-						
-						
-						displayInitiatives();
-					}
-				}
-				
-				if (rollOff535.equals("yes")) {
-					
-					if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {				
-												
-						double35();
-					}
-					
-					else {
-						
-						if (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5]) {
-							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.1f);
-							initiativeFinal[5] = (float) initiativeFinal[5];
-						}
-						if (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3]) {
-							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.1f);
-							initiativeFinal[3] = (float) initiativeFinal[3];
-						}					
-						
-						
-						displayInitiatives();
-					}
-				}				
-				
-				if (rollOff4150.equals("yes")) {
-					
-					if ((ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[0])) {				
-												
-						double150();
-					}					
-					else if ((ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[5])) {					
-						
-						double05();
-					}
-					else if ((ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[0])) {						
-						
-						double01();
-					}
-					else if ((ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[0])) {																		
-						
-						double15();
-					}
-					else {						
-						
-						if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
-							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.6f);
-							
-							if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
-								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
-								initiativeFinal[0] = (float) initiativeFinal[0];
-							}
-							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
-								initiativeFinal[5] = (float) initiativeFinal[5];
-							}							
-						}
-						else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
-							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.6f);
-							
-							if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
-								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
-								initiativeFinal[0] = (float) initiativeFinal[0];
-							}
-							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {
-								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
-								initiativeFinal[1] = (float) initiativeFinal[1];
-							}
-						}
-						else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {
-							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.6f);
-							
-							if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
-								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
-								initiativeFinal[1] = (float) initiativeFinal[1];
-							}
-							if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
-								initiativeFinal[5] = (float) initiativeFinal[5];
-							}
-						}						
-						
-						
-						displayInitiatives();
-					}
-				}				
-				
-				if (rollOff4215.equals("yes")) {
-	
-					if ((ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[5])) {				
-												
-						double215();
-					}					
-					else if ((ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[5])) {						
-						
-						double15();
-					}
-					else if ((ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[5])) {						
+				if ((ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[5])) {				
 											
-						double25();
-					}
-					else if ((ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[5])) {																		
+					double25();
+				}
+				
+				else {
+					
+					if (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5]) {
+						initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.1f);
+						initiativeFinal[5] = (float) initiativeFinal[5];
 						
-						double21();
-					}					
-					else {
-						
-						if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
-							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.6f);
+						if (rollOff530125.equals("yes") || rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")
+								|| rollOff5325.equals("yes") || rollOff5315.equals("yes") || rollOff5312.equals("yes") || rollOff5305.equals("yes") || rollOff5302.equals("yes") || rollOff5301.equals("yes")
+								|| rollOff4250.equals("yes") || rollOff4215.equals("yes") || rollOff4201.equals("yes") || rollOff4150.equals("yes")) {
 							
-							if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
-								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
-								initiativeFinal[1] = (float) initiativeFinal[1];
+							deadMethod();
+						}						
+						else {
+						
+							displayInitiatives();
+						}
+					}
+					else if (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2]) {
+						initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.1f);
+						initiativeFinal[2] = (float) initiativeFinal[2];
+						
+						if (rollOff530125.equals("yes") || rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")
+								|| rollOff5325.equals("yes") || rollOff5315.equals("yes") || rollOff5312.equals("yes") || rollOff5305.equals("yes") || rollOff5302.equals("yes") || rollOff5301.equals("yes")
+								|| rollOff4250.equals("yes") || rollOff4215.equals("yes") || rollOff4201.equals("yes") || rollOff4150.equals("yes")) {
+							
+							deadMethod();
+						}						
+						else {
+						
+							displayInitiatives();
+						}
+					}	
+				}
+			}
+			
+			if (rollOff420.equals("yes")) {
+				
+				if ((ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[0])) {				
+											
+					double20();
+				}
+				
+				else {
+					
+					if (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0]) {
+						initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.1f);
+						initiativeFinal[0] = (float) initiativeFinal[0];
+						
+						if (rollOff530125.equals("yes") || rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")
+								|| rollOff5325.equals("yes") || rollOff5315.equals("yes") || rollOff5312.equals("yes") || rollOff5305.equals("yes") || rollOff5302.equals("yes") || rollOff5301.equals("yes")
+								|| rollOff4250.equals("yes") || rollOff4215.equals("yes") || rollOff4201.equals("yes") || rollOff4150.equals("yes")) {
+							
+							deadMethod();
+						}						
+						else {
+						
+							displayInitiatives();
+						}
+					}
+					else if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2]) {
+						initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.1f);
+						initiativeFinal[2] = (float) initiativeFinal[2];
+						
+						if (rollOff530125.equals("yes") || rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")
+								|| rollOff5325.equals("yes") || rollOff5315.equals("yes") || rollOff5312.equals("yes") || rollOff5305.equals("yes") || rollOff5302.equals("yes") || rollOff5301.equals("yes")
+								|| rollOff4250.equals("yes") || rollOff4215.equals("yes") || rollOff4201.equals("yes") || rollOff4150.equals("yes")) {
+							
+							deadMethod();
+						}						
+						else {
+						
+							displayInitiatives();
+						}
+					}
+				}
+			}
+			
+			if (rollOff421.equals("yes")) {
+				
+				if ((ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[1])) {				
+											
+					double21();
+				}
+				
+				else {
+					
+					if (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1]) {
+						initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.1f);
+						initiativeFinal[1] = (float) initiativeFinal[1];
+						
+						if (rollOff530125.equals("yes") || rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")
+								|| rollOff5325.equals("yes") || rollOff5315.equals("yes") || rollOff5312.equals("yes") || rollOff5305.equals("yes") || rollOff5302.equals("yes") || rollOff5301.equals("yes")
+								|| rollOff4250.equals("yes") || rollOff4215.equals("yes") || rollOff4201.equals("yes") || rollOff4150.equals("yes")) {
+							
+							deadMethod();
+						}						
+						else {
+						
+							displayInitiatives();
+						}
+					}
+					else if (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2]) {
+						initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.1f);
+						initiativeFinal[2] = (float) initiativeFinal[2];
+						
+						if (rollOff530125.equals("yes") || rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")
+								|| rollOff5325.equals("yes") || rollOff5315.equals("yes") || rollOff5312.equals("yes") || rollOff5305.equals("yes") || rollOff5302.equals("yes") || rollOff5301.equals("yes")
+								|| rollOff4250.equals("yes") || rollOff4215.equals("yes") || rollOff4201.equals("yes") || rollOff4150.equals("yes")) {
+							
+							deadMethod();
+						}						
+						else {
+						
+							displayInitiatives();
+						}
+					}
+				}
+			}
+			
+			if (rollOff530.equals("yes")) {
+				
+				if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0])) {				
+											
+					double30();
+				}
+				
+				else {
+					
+					if (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0]) {
+						initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.1f);
+						initiativeFinal[0] = (float) initiativeFinal[0];
+						
+						if (rollOff530125.equals("yes") || rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")
+								|| rollOff5325.equals("yes") || rollOff5315.equals("yes") || rollOff5312.equals("yes") || rollOff5305.equals("yes") || rollOff5302.equals("yes") || rollOff5301.equals("yes")
+								|| rollOff4250.equals("yes") || rollOff4215.equals("yes") || rollOff4201.equals("yes") || rollOff4150.equals("yes")) {
+							
+							deadMethod();
+						}						
+						else {
+						
+							displayInitiatives();
+						}
+					}
+					else if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3]) {
+						initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.1f);
+						initiativeFinal[3] = (float) initiativeFinal[3];
+						
+						if (rollOff530125.equals("yes") || rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")
+								|| rollOff5325.equals("yes") || rollOff5315.equals("yes") || rollOff5312.equals("yes") || rollOff5305.equals("yes") || rollOff5302.equals("yes") || rollOff5301.equals("yes")
+								|| rollOff4250.equals("yes") || rollOff4215.equals("yes") || rollOff4201.equals("yes") || rollOff4150.equals("yes")) {
+							
+							deadMethod();
+						}						
+						else {
+						
+							displayInitiatives();
+						}
+					}
+				}
+			}
+			
+			if (rollOff531.equals("yes")) {
+				
+				if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1])) {				
+											
+					double31();
+				}
+				
+				else {
+					
+					if (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1]) {
+						initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.1f);
+						initiativeFinal[1] = (float) initiativeFinal[1];
+						
+						if (rollOff530125.equals("yes") || rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")
+								|| rollOff5325.equals("yes") || rollOff5315.equals("yes") || rollOff5312.equals("yes") || rollOff5305.equals("yes") || rollOff5302.equals("yes") || rollOff5301.equals("yes")
+								|| rollOff4250.equals("yes") || rollOff4215.equals("yes") || rollOff4201.equals("yes") || rollOff4150.equals("yes")) {
+							
+							deadMethod();
+						}						
+						else {
+						
+							displayInitiatives();
+						}
+					}
+					else if (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3]) {
+						initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.1f);
+						initiativeFinal[3] = (float) initiativeFinal[3];
+						
+						if (rollOff530125.equals("yes") || rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")
+								|| rollOff5325.equals("yes") || rollOff5315.equals("yes") || rollOff5312.equals("yes") || rollOff5305.equals("yes") || rollOff5302.equals("yes") || rollOff5301.equals("yes")
+								|| rollOff4250.equals("yes") || rollOff4215.equals("yes") || rollOff4201.equals("yes") || rollOff4150.equals("yes")) {
+							
+							deadMethod();
+						}						
+						else {
+						
+							displayInitiatives();
+						}
+					}
+				}
+			}
+			
+			if (rollOff532.equals("yes")) {
+				
+				if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2])) {				
+											
+					double32();
+				}
+				
+				else {
+					
+					if (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2]) {
+						initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.1f);
+						initiativeFinal[2] = (float) initiativeFinal[2];
+						
+						if (rollOff530125.equals("yes") || rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")
+								|| rollOff5325.equals("yes") || rollOff5315.equals("yes") || rollOff5312.equals("yes") || rollOff5305.equals("yes") || rollOff5302.equals("yes") || rollOff5301.equals("yes")
+								|| rollOff4250.equals("yes") || rollOff4215.equals("yes") || rollOff4201.equals("yes") || rollOff4150.equals("yes")) {
+							
+							deadMethod();
+						}						
+						else {
+						
+							displayInitiatives();
+						}
+					}
+					else if (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3]) {
+						initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.1f);
+						initiativeFinal[3] = (float) initiativeFinal[3];
+						
+						if (rollOff530125.equals("yes") || rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")
+								|| rollOff5325.equals("yes") || rollOff5315.equals("yes") || rollOff5312.equals("yes") || rollOff5305.equals("yes") || rollOff5302.equals("yes") || rollOff5301.equals("yes")
+								|| rollOff4250.equals("yes") || rollOff4215.equals("yes") || rollOff4201.equals("yes") || rollOff4150.equals("yes")) {
+							
+							deadMethod();
+						}						
+						else {
+						
+							displayInitiatives();
+						}
+					}
+				}
+			}
+			
+			if (rollOff535.equals("yes")) {
+				
+				if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {				
+											
+					double35();
+				}
+				
+				else {
+					
+					if (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5]) {
+						initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.1f);
+						initiativeFinal[5] = (float) initiativeFinal[5];
+						
+						if (rollOff530125.equals("yes") || rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")
+								|| rollOff5325.equals("yes") || rollOff5315.equals("yes") || rollOff5312.equals("yes") || rollOff5305.equals("yes") || rollOff5302.equals("yes") || rollOff5301.equals("yes")
+								|| rollOff4250.equals("yes") || rollOff4215.equals("yes") || rollOff4201.equals("yes") || rollOff4150.equals("yes")) {
+							
+							deadMethod();
+						}						
+						else {
+						
+							displayInitiatives();
+						}
+					}
+					else if (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3]) {
+						initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.1f);
+						initiativeFinal[3] = (float) initiativeFinal[3];
+						
+						if (rollOff530125.equals("yes") || rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")
+								|| rollOff5325.equals("yes") || rollOff5315.equals("yes") || rollOff5312.equals("yes") || rollOff5305.equals("yes") || rollOff5302.equals("yes") || rollOff5301.equals("yes")
+								|| rollOff4250.equals("yes") || rollOff4215.equals("yes") || rollOff4201.equals("yes") || rollOff4150.equals("yes")) {
+							
+							deadMethod();
+						}						
+						else {
+						
+							displayInitiatives();
+						}
+					}
+				}
+			}				
+			
+			if (rollOff4150.equals("yes")) {
+				
+				if ((ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[0])) {				
+											
+					double150();
+				}					
+				else if ((ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[5])) {					
+					
+					double05();
+				}
+				else if ((ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[0])) {						
+					
+					double01();
+				}
+				else if ((ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[0])) {																		
+					
+					double15();
+				}
+				else {						
+					
+					if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
+						initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.6f);
+						
+						if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
+							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
+							initiativeFinal[0] = (float) initiativeFinal[0];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
 							}
+						}
+						else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
+							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
+							initiativeFinal[5] = (float) initiativeFinal[5];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}							
+					}
+					else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
+						initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.6f);
+						
+						if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
+							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
+							initiativeFinal[0] = (float) initiativeFinal[0];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {
+							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
+							initiativeFinal[1] = (float) initiativeFinal[1];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+					}
+					else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {
+						initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.6f);
+						
+						if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
+							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
+							initiativeFinal[1] = (float) initiativeFinal[1];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
+							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
+							initiativeFinal[5] = (float) initiativeFinal[5];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+					}
+				}
+			}				
+			
+			if (rollOff4215.equals("yes")) {
+
+				if ((ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[5])) {				
+											
+					double215();
+				}					
+				else if ((ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[5])) {						
+					
+					double15();
+				}
+				else if ((ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[5])) {						
+										
+					double25();
+				}
+				else if ((ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[5])) {																		
+					
+					double21();
+				}					
+				else {
+					
+					if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
+						initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.6f);
+						
+						if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
+							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
+							initiativeFinal[1] = (float) initiativeFinal[1];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
+							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
+							initiativeFinal[5] = (float) initiativeFinal[5];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+					}
+					else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
+						initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.6f);
+						
+						if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
+							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
+							initiativeFinal[2] = (float) initiativeFinal[2];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
+							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
+							initiativeFinal[5] = (float) initiativeFinal[5];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+					}
+					else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
+						initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.6f);
+						
+						if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
+							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
+							initiativeFinal[1] = (float) initiativeFinal[1];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2])) {
+							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
+							initiativeFinal[2] = (float) initiativeFinal[2];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+					}
+				}
+			}				
+			
+			if (rollOff4250.equals("yes")) {
+
+				if ((ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[0])) {				
+											
+					double250();
+				}				
+				else if ((ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[5])) {					
+					
+					double05();
+				}
+				else if ((ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[0])) {					
+					
+					double20();
+				}
+				else if ((ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[0])) {																		
+					
+					double25();
+				}					
+				else {
+					
+					if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0])) {
+						initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.6f);
+						
+						if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
+							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
+							initiativeFinal[0] = (float) initiativeFinal[0];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
+							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
+							initiativeFinal[5] = (float) initiativeFinal[5];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+					}
+					else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
+						initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.6f);
+						
+						if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0])) {
+							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
+							initiativeFinal[0] = (float) initiativeFinal[0];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
+							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
+							initiativeFinal[2] = (float) initiativeFinal[2];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+					}
+					else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
+						initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.6f);
+						
+						if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
+							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
+							initiativeFinal[5] = (float) initiativeFinal[5];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
+							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
+							initiativeFinal[2] = (float) initiativeFinal[2];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+					}
+				}
+			}				
+			
+			if (rollOff4201.equals("yes")) {
+
+				if ((ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[1])) {				
+											
+					double201();
+				}
+				else if ((ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[1])) {					
+					
+					double01();
+				}
+				else if ((ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[1])) {						
+					
+					double21();
+				}
+				else if ((ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[1])) {																	
+					
+					double20();
+				}					
+				else {
+					
+					if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
+						initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.6f);
+						
+						if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {
+							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
+							initiativeFinal[1] = (float) initiativeFinal[1];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
+							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
+							initiativeFinal[0] = (float) initiativeFinal[0];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+					}
+					else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {
+						initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.6f);
+						
+						if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
+							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
+							initiativeFinal[1] = (float) initiativeFinal[1];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2])) {
+							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
+							initiativeFinal[2] = (float) initiativeFinal[2];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+					}
+					else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
+						initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.6f);
+						
+						if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0])) {
+							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
+							initiativeFinal[0] = (float) initiativeFinal[0];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
+							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
+							initiativeFinal[2] = (float) initiativeFinal[2];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+					}
+				}
+			}				
+			
+			if (rollOff5301.equals("yes")) {
+
+				if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1])) {				
+											
+					double301();
+				}
+				else if ((ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[1])) {					
+					
+					double01();
+				}
+				else if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1])) {					
+					
+					double31();
+				}
+				else if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1])) {					
+					
+					double30();
+				}					
+				else {
+					
+					if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1])) {
+						initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.6f);
+						
+						if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {
+							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
+							initiativeFinal[1] = (float) initiativeFinal[1];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
+							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
+							initiativeFinal[0] = (float) initiativeFinal[0];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+					}
+					else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {
+						initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.6f);
+						
+						if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1])) {
+							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
+							initiativeFinal[1] = (float) initiativeFinal[1];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3])) {
+							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
+							initiativeFinal[3] = (float) initiativeFinal[3];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+					}
+					else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
+						initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.6f);
+						
+						if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0])) {
+							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
+							initiativeFinal[0] = (float) initiativeFinal[0];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3])) {
+							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
+							initiativeFinal[3] = (float) initiativeFinal[3];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+					}
+				}
+			}			
+			
+			if (rollOff5302.equals("yes")) {
+
+				if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2])) {				
+											
+					double302();
+				}
+				else if ((ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[2])) {						
+					
+					double20();
+				}
+				else if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2])) {					
+					
+					double32();
+				}
+				else if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2])) {																	
+					
+					double30();
+				}					
+				else {
+					
+					if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
+						initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.6f);
+						
+						if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
+							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
+							initiativeFinal[2] = (float) initiativeFinal[2];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0])) {
+							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
+							initiativeFinal[0] = (float) initiativeFinal[0];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+					}
+					else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
+						initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.6f);
+						
+						if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
+							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
+							initiativeFinal[2] = (float) initiativeFinal[2];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3])) {
+							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
+							initiativeFinal[3] = (float) initiativeFinal[3];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+					}
+					else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0])) {
+						initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.6f);
+						
+						if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0])) {
+							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
+							initiativeFinal[0] = (float) initiativeFinal[0];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3])) {
+							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
+							initiativeFinal[3] = (float) initiativeFinal[3];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+					}
+				}
+			}				
+			
+			if (rollOff5305.equals("yes")) {
+
+				if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {				
+											
+					double305();
+				}
+				else if ((ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[5])) {					
+					
+					double05();
+				}
+				else if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {					
+					
+					double35();
+				}
+				else if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5])) {						
+					
+					double30();
+				}				
+				else {
+					
+					if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
+						initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.6f);
+						
+						if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
+							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
+							initiativeFinal[5] = (float) initiativeFinal[5];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
+							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
+							initiativeFinal[0] = (float) initiativeFinal[0];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+					}
+					else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
+						initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.6f);
+						
+						if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
+							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
+							initiativeFinal[5] = (float) initiativeFinal[5];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3])) {
+							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
+							initiativeFinal[3] = (float) initiativeFinal[3];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+					}
+					else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
+						initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.6f);
+						
+						if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0])) {
+							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
+							initiativeFinal[0] = (float) initiativeFinal[0];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3])) {
+							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
+							initiativeFinal[3] = (float) initiativeFinal[3];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+					}
+				}
+			}				
+			
+			if (rollOff5312.equals("yes")) {
+
+				if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2])) {				
+											
+					double312();
+				}
+				else if ((ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[2])) {					
+					
+					double21();
+				}
+				else if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2])) {					
+					
+					double32();
+				}
+				else if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2])) {					
+					
+					double31();
+				}					
+				else {
+					
+					if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
+						initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.6f);
+						
+						if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2])) {
+							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
+							initiativeFinal[2] = (float) initiativeFinal[2];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
+							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
+							initiativeFinal[1] = (float) initiativeFinal[1];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+					}
+					else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2])) {
+						initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.6f);
+						
+						if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
+							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
+							initiativeFinal[2] = (float) initiativeFinal[2];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}	
+						}
+						else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3])) {
+							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
+							initiativeFinal[3] = (float) initiativeFinal[3];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+					}
+					else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
+						initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.6f);
+						
+						if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1])) {
+							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
+							initiativeFinal[1] = (float) initiativeFinal[1];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3])) {
+							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
+							initiativeFinal[3] = (float) initiativeFinal[3];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+					}
+				}
+			}				
+			
+			if (rollOff5315.equals("yes")) {
+
+				if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {				
+											
+					double315();
+				}
+				else if ((ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[5])) {						
+					
+					double15();
+				}
+				else if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {						
+					
+					double35();
+				}
+				else if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5])) {					
+					
+					double31();
+				}					
+				else {
+					
+					if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
+						initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.6f);
+						
+						if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
+							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
+							initiativeFinal[5] = (float) initiativeFinal[5];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
+							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
+							initiativeFinal[1] = (float) initiativeFinal[1];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+					}
+					else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
+						initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.6f);
+						
+						if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
+							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
+							initiativeFinal[5] = (float) initiativeFinal[5];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3])) {
+							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
+							initiativeFinal[3] = (float) initiativeFinal[3];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+					}
+					else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
+						initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.6f);
+						
+						if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1])) {
+							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
+							initiativeFinal[1] = (float) initiativeFinal[1];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3])) {
+							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
+							initiativeFinal[3] = (float) initiativeFinal[3];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+					}
+				}
+			}				
+			
+			if (rollOff5325.equals("yes")) {
+
+				if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {				
+											
+					double325();
+				}
+				else if ((ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[5])) {					
+					
+					double25();
+				}
+				else if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {					
+					
+					double35();
+				}
+				else if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5])) {					
+					
+					double32();
+				}					
+				else {
+					
+					if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
+						initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.6f);
+						
+						if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
+							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
+							initiativeFinal[5] = (float) initiativeFinal[5];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
+							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
+							initiativeFinal[2] = (float) initiativeFinal[2];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+					}
+					else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
+						initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.6f);
+						
+						if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
+							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
+							initiativeFinal[5] = (float) initiativeFinal[5];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3])) {
+							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
+							initiativeFinal[3] = (float) initiativeFinal[3];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+					}
+					else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
+						initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.6f);
+						
+						if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
+							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
+							initiativeFinal[2] = (float) initiativeFinal[2];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3])) {
+							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
+							initiativeFinal[3] = (float) initiativeFinal[3];
+							
+							if (rollOff53025.equals("yes") || rollOff53125.equals("yes") || rollOff53015.equals("yes") || rollOff53012.equals("yes") || rollOff40125.equals("yes")) {
+								
+								deadMethod();
+							}						
+							else {
+							
+								displayInitiatives();
+							}
+						}
+					}
+				}
+			}				
+			
+			if (rollOff40125.equals("yes")) {
+
+				if ((ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[5])) {				
+											
+					double0125();
+				}					
+				if ((ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[5])) {				
+											
+					double215();
+				}
+				if ((ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[5] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[5] == ArrayOfInitiative.initiative[0])) {				
+											
+					double250();
+				}
+				if ((ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[5])) {				
+											
+					double150();
+				}
+				if ((ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[0])) {				
+											
+					double201();
+				}				
+				if ((ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[2])) {				
+					
+					double21();
+				}
+				if ((ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[5])) {
+											
+					double15();
+				}
+				if ((ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[5])) {
+					
+					double25();
+				}
+				if ((ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[5])) {				
+					
+					double05();
+				}
+				if ((ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[0])) {
+					
+					double20();
+				}
+				if ((ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[1])) {
+					
+					double01();
+				}					
+				else {
+					
+					if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
+						initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.6f);
+						
+						if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
+							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
+								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								initiativeFinal[5] = (float) (initiativeFinal[5]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
+								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
+								initiativeFinal[2] = (float) (initiativeFinal[2]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
+							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
+							
 							if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
-								initiativeFinal[5] = (float) initiativeFinal[5];
+								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+								initiativeFinal[5] = (float) (initiativeFinal[5]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
+								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
+								initiativeFinal[1] = (float) (initiativeFinal[1]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
 							}
 						}
-						else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
-							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.6f);
+						else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
+							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
 							
-							if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
-								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
-								initiativeFinal[2] = (float) initiativeFinal[2];
-							}
-							if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
-								initiativeFinal[5] = (float) initiativeFinal[5];
-							}
-						}
-						else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
-							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.6f);
-							
-							if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
-								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
-								initiativeFinal[1] = (float) initiativeFinal[1];
-							}
 							if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2])) {
-								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
-								initiativeFinal[2] = (float) initiativeFinal[2];
+								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+								initiativeFinal[2] = (float) (initiativeFinal[2]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
 							}
-						}						
-						
-						
-						displayInitiatives();
-					}
-				}				
-				
-				if (rollOff4250.equals("yes")) {
-	
-					if ((ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[0])) {				
-												
-						double250();
-					}				
-					else if ((ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[5])) {					
-						
-						double05();
-					}
-					else if ((ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[0])) {					
-						
-						double20();
-					}
-					else if ((ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[0])) {																		
-						
-						double25();
-					}					
-					else {
-						
-						if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0])) {
-							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.6f);
-							
-							if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
-								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
-								initiativeFinal[0] = (float) initiativeFinal[0];
-							}
-							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
-								initiativeFinal[5] = (float) initiativeFinal[5];
+							else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
+								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								initiativeFinal[1] = (float) (initiativeFinal[1]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
 							}
 						}
-						else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
-							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.6f);
-							
-							if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0])) {
-								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
-								initiativeFinal[0] = (float) initiativeFinal[0];
-							}
-							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
-								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
-								initiativeFinal[2] = (float) initiativeFinal[2];
-							}
-						}
-						else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
-							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.6f);
+					}
+					
+					else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
+						initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.6f);
+						
+						if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
+							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
 							
 							if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
-								initiativeFinal[5] = (float) initiativeFinal[5];
+								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								initiativeFinal[5] = (float) (initiativeFinal[5]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
 							}
-							if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
-								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
-								initiativeFinal[2] = (float) initiativeFinal[2];
-							}
-						}						
-						
-						
-						displayInitiatives();
-					}
-				}				
-				
-				if (rollOff4201.equals("yes")) {
-	
-					if ((ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[1])) {				
-												
-						double201();
-					}
-					else if ((ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[1])) {					
-						
-						double01();
-					}
-					else if ((ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[1])) {						
-						
-						double21();
-					}
-					else if ((ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[1])) {																	
-						
-						double20();
-					}					
-					else {
-						
-						if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
-							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.6f);
-							
-							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {
-								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
-								initiativeFinal[1] = (float) initiativeFinal[1];
-							}
-							if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
-								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
-								initiativeFinal[0] = (float) initiativeFinal[0];
+							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
+								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
+								initiativeFinal[2] = (float) (initiativeFinal[2]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
 							}
 						}
-						else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {
-							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.6f);
-							
-							if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
-								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
-								initiativeFinal[1] = (float) initiativeFinal[1];
-							}
-							if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2])) {
-								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
-								initiativeFinal[2] = (float) initiativeFinal[2];
-							}
-						}
-						else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
-							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.6f);
-							
-							if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0])) {
-								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
-								initiativeFinal[0] = (float) initiativeFinal[0];
-							}
-							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
-								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
-								initiativeFinal[2] = (float) initiativeFinal[2];
-							}
-						}						
-						
-						
-						displayInitiatives();
-					}
-				}				
-				
-				if (rollOff5301.equals("yes")) {
-	
-					if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1])) {				
-												
-						double301();
-					}
-					else if ((ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[1])) {					
-						
-						double01();
-					}
-					else if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1])) {					
-						
-						double31();
-					}
-					else if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1])) {					
-						
-						double30();
-					}					
-					else {
-						
-						if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1])) {
-							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.6f);
-							
-							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {
-								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
-								initiativeFinal[1] = (float) initiativeFinal[1];
-							}
-							if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
-								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
-								initiativeFinal[0] = (float) initiativeFinal[0];
-							}
-						}
-						else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {
-							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.6f);
-							
-							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1])) {
-								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
-								initiativeFinal[1] = (float) initiativeFinal[1];
-							}
-							if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3])) {
-								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
-								initiativeFinal[3] = (float) initiativeFinal[3];
-							}
-						}
-						else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
-							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.6f);
-							
-							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0])) {
-								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
-								initiativeFinal[0] = (float) initiativeFinal[0];
-							}
-							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3])) {
-								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
-								initiativeFinal[3] = (float) initiativeFinal[3];
-							}
-						}						
-						
-						
-						displayInitiatives();
-					}
-				}			
-				
-				if (rollOff5302.equals("yes")) {
-	
-					if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2])) {				
-												
-						double302();
-					}
-					else if ((ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[2])) {						
-						
-						double20();
-					}
-					else if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2])) {					
-						
-						double32();
-					}
-					else if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2])) {																	
-						
-						double30();
-					}					
-					else {
-						
-						if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
-							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.6f);
-							
-							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
-								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
-								initiativeFinal[2] = (float) initiativeFinal[2];
-							}
-							if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0])) {
-								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
-								initiativeFinal[0] = (float) initiativeFinal[0];
-							}
-						}
-						else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
-							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.6f);
-							
-							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
-								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
-								initiativeFinal[2] = (float) initiativeFinal[2];
-							}
-							if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3])) {
-								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
-								initiativeFinal[3] = (float) initiativeFinal[3];
-							}
-						}
-						else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0])) {
-							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.6f);
-							
-							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0])) {
-								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
-								initiativeFinal[0] = (float) initiativeFinal[0];
-							}
-							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3])) {
-								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
-								initiativeFinal[3] = (float) initiativeFinal[3];
-							}
-						}						
-						
-						
-						displayInitiatives();
-					}
-				}				
-				
-				if (rollOff5305.equals("yes")) {
-	
-					if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {				
-												
-						double305();
-					}
-					else if ((ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[5])) {					
-						
-						double05();
-					}
-					else if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {					
-						
-						double35();
-					}
-					else if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5])) {						
-						
-						double30();
-					}				
-					else {
-						
-						if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
-							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.6f);
+						else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
+							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
 							
 							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
-								initiativeFinal[5] = (float) initiativeFinal[5];
+								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+								initiativeFinal[5] = (float) (initiativeFinal[5]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
 							}
-							if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
-								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
-								initiativeFinal[0] = (float) initiativeFinal[0];
+							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
+								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
+								initiativeFinal[0] = (float) (initiativeFinal[0]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
 							}
 						}
-						else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
-							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.6f);
+						else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
+							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
 							
-							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
-								initiativeFinal[5] = (float) initiativeFinal[5];
+							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
+								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+								initiativeFinal[2] = (float) (initiativeFinal[2]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
 							}
-							if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3])) {
-								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
-								initiativeFinal[3] = (float) initiativeFinal[3];
+							else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0])) {
+								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								initiativeFinal[0] = (float) (initiativeFinal[0]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
 							}
 						}
-						else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
-							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.6f);
-							
-							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0])) {
-								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
-								initiativeFinal[0] = (float) initiativeFinal[0];
-							}
-							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3])) {
-								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
-								initiativeFinal[3] = (float) initiativeFinal[3];
-							}
-						}						
-						
-						
-						displayInitiatives();
 					}
+					
+					else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
+						initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.6f);
+						
+						if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
+							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
+								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+								initiativeFinal[5] = (float) (initiativeFinal[5]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
+								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
+								initiativeFinal[1] = (float) (initiativeFinal[1]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
+							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
+								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+								initiativeFinal[5] = (float) (initiativeFinal[5]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
+								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
+								initiativeFinal[0] = (float) (initiativeFinal[0]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
+							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {
+								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+								initiativeFinal[1] = (float) (initiativeFinal[1]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
+								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+								initiativeFinal[0] = (float) (initiativeFinal[0]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
+					}
+					
+					else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
+						initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.6f);
+						
+						if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
+							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2])) {
+								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+								initiativeFinal[2] = (float) (initiativeFinal[2]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
+								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								initiativeFinal[1] = (float) (initiativeFinal[1]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2])) {
+							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
+								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+								initiativeFinal[2] = (float) (initiativeFinal[2]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0])) {
+								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								initiativeFinal[0] = (float) (initiativeFinal[0]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
+							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {
+								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+								initiativeFinal[1] = (float) (initiativeFinal[1]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
+								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+								initiativeFinal[0] = (float) (initiativeFinal[0]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
+					}
+				}
+			}				
+			
+			if (rollOff53012.equals("yes")) {
+
+				if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2])) {				
+											
+					double3012();
+				}					
+				if ((ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[1])) {				
+					
+					double201();
+				}
+				if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2])) {				
+					
+					double312();
+				}
+				if ((ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[2])) {				
+					
+					double302();
+				}
+				if ((ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[3])) {				
+					
+					double301();
+				}
+				if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0])) {				
+					
+					double30();
+				}
+				if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1])) {
+					
+					double31();
+				}
+				if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2])) {
+					
+					double32();
+				}
+				if ((ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[1])) {				
+					
+					double01();
+				}
+				if ((ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[1])) {
+					
+					double21();
+				}
+				if ((ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[0])) {
+					
+					double20();
 				}				
-				
-				if (rollOff5312.equals("yes")) {
-	
-					if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2])) {				
-												
-						double312();
-					}
-					else if ((ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[2])) {					
+				else {
+					
+					if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
+						initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.6f);
 						
-						double21();
+						if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
+							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2])) {
+								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+								initiativeFinal[2] = (float) (initiativeFinal[2]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
+								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								initiativeFinal[1] = (float) (initiativeFinal[1]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2])) {
+							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
+								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+								initiativeFinal[2] = (float) (initiativeFinal[2]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0])) {
+								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								initiativeFinal[0] = (float) (initiativeFinal[0]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
+							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {
+								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+								initiativeFinal[1] = (float) (initiativeFinal[1]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
+								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+								initiativeFinal[0] = (float) (initiativeFinal[0]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
 					}
-					else if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2])) {					
-						
-						double32();
-					}
-					else if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2])) {					
-						
-						double31();
-					}					
-					else {
+					
+					else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3])) {
+						initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.6f);
 						
 						if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
-							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.6f);
+							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
 							
 							if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2])) {
-								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
-								initiativeFinal[2] = (float) initiativeFinal[2];
+								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+								initiativeFinal[2] = (float) (initiativeFinal[2]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
 							}
-							if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
-								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
-								initiativeFinal[1] = (float) initiativeFinal[1];
+							else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
+								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								initiativeFinal[1] = (float) (initiativeFinal[1]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
 							}
 						}
 						else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2])) {
-							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.6f);
+							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
 							
 							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
-								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
-								initiativeFinal[2] = (float) initiativeFinal[2];
+								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+								initiativeFinal[2] = (float) (initiativeFinal[2]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
 							}
-							if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3])) {
-								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
-								initiativeFinal[3] = (float) initiativeFinal[3];
+							else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3])) {
+								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								initiativeFinal[3] = (float) (initiativeFinal[3]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
 							}
 						}
 						else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
-							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.6f);
+							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
 							
 							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1])) {
-								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
-								initiativeFinal[1] = (float) initiativeFinal[1];
+								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+								initiativeFinal[1] = (float) (initiativeFinal[1]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
 							}
-							if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3])) {
-								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
-								initiativeFinal[3] = (float) initiativeFinal[3];
+							else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3])) {
+								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+								initiativeFinal[3] = (float) (initiativeFinal[3]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
 							}
-						}						
-						
-						
-						displayInitiatives();
+						}
 					}
-				}				
+					
+					else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3])) {
+						initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.6f);
+						
+						if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
+							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
+								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+								initiativeFinal[2] = (float) (initiativeFinal[2]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0])) {
+								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								initiativeFinal[0] = (float) (initiativeFinal[0]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
+							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
+								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+								initiativeFinal[2] = (float) (initiativeFinal[2]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3])) {
+								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								initiativeFinal[3] = (float) (initiativeFinal[3]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0])) {
+							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0])) {
+								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+								initiativeFinal[0] = (float) (initiativeFinal[0]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3])) {
+								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+								initiativeFinal[3] = (float) (initiativeFinal[3]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
+					}
+					
+					else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3])) {
+						initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.6f);
+						
+						if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1])) {
+							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {
+								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+								initiativeFinal[1] = (float) (initiativeFinal[1]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
+								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+								initiativeFinal[0] = (float) (initiativeFinal[0]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {
+							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1])) {
+								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+								initiativeFinal[1] = (float) (initiativeFinal[1]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3])) {
+								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+								initiativeFinal[3] = (float) (initiativeFinal[3]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
+							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0])) {
+								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+								initiativeFinal[0] = (float) (initiativeFinal[0]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3])) {
+								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+								initiativeFinal[3] = (float) (initiativeFinal[3]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
+					}
+				}
+			}				
+			
+			if (rollOff53015.equals("yes")) {
+
+				if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {				
+											
+					double3015();
+				}
 				
-				if (rollOff5315.equals("yes")) {
-	
-					if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {				
-												
-						double315();
-					}
-					else if ((ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[5])) {						
+				if ((ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[5] == ArrayOfInitiative.initiative[1])) {				
+					
+					double150();
+				}
+				if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {				
+					
+					double315();
+				}
+				if ((ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[5])) {				
+					
+					double305();
+				}
+				if ((ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[3])) {				
+					
+					double301();
+				}					
+				if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0])) {				
+					
+					double30();
+				}
+				if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1])) {
+					
+					double31();
+				}
+				if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {
+					
+					double35();
+				}
+				if ((ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[1])) {				
+					
+					double01();
+				}
+				if ((ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[5] == ArrayOfInitiative.initiative[1])) {
+					
+					double15();
+				}
+				if ((ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[5] == ArrayOfInitiative.initiative[0])) {
+					
+					double05();
+				}					
+				else {
+					
+					if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
+						initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.6f);
 						
-						double15();
-					}
-					else if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {						
-						
-						double35();
-					}
-					else if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5])) {					
-						
-						double31();
-					}					
-					else {
-						
-						if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
-							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.6f);
+						if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
+							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
 							
 							if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
-								initiativeFinal[5] = (float) initiativeFinal[5];
+								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+								initiativeFinal[5] = (float) (initiativeFinal[5]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
 							}
-							if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
-								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
-								initiativeFinal[1] = (float) initiativeFinal[1];
+							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
+								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
+								initiativeFinal[1] = (float) (initiativeFinal[1]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
+							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
+								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+								initiativeFinal[5] = (float) (initiativeFinal[5]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
+								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
+								initiativeFinal[0] = (float) (initiativeFinal[0]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
+							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {
+								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+								initiativeFinal[1] = (float) (initiativeFinal[1]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
+								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+								initiativeFinal[0] = (float) (initiativeFinal[0]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
+					}
+					
+					else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3])) {
+						initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.6f);
+						
+						if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
+							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
+								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+								initiativeFinal[5] = (float) (initiativeFinal[5]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
+								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
+								initiativeFinal[1] = (float) (initiativeFinal[1]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
 							}
 						}
 						else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
-							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.6f);
+							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
 							
 							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
-								initiativeFinal[5] = (float) initiativeFinal[5];
+								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+								initiativeFinal[5] = (float) (initiativeFinal[5]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
 							}
-							if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3])) {
-								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
-								initiativeFinal[3] = (float) initiativeFinal[3];
+							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3])) {
+								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
+								initiativeFinal[3] = (float) (initiativeFinal[3]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
 							}
 						}
 						else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
-							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.6f);
+							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
 							
 							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1])) {
-								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
-								initiativeFinal[1] = (float) initiativeFinal[1];
+								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+								initiativeFinal[1] = (float) (initiativeFinal[1]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
 							}
-							if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3])) {
-								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
-								initiativeFinal[3] = (float) initiativeFinal[3];
+							else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3])) {
+								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+								initiativeFinal[3] = (float) (initiativeFinal[3]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
 							}
-						}						
-						
-						
-						displayInitiatives();
+						}
 					}
-				}				
+					
+					else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3])) {
+						initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.6f);
+						
+						if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
+							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
+								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+								initiativeFinal[5] = (float) (initiativeFinal[5]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
+								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
+								initiativeFinal[0] = (float) (initiativeFinal[0]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
+							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
+								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+								initiativeFinal[5] = (float) (initiativeFinal[5]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3])) {
+								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
+								initiativeFinal[3] = (float) (initiativeFinal[3]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
+							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0])) {
+								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+								initiativeFinal[0] = (float) (initiativeFinal[0]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3])) {
+								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+								initiativeFinal[3] = (float) (initiativeFinal[3]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
+					}
+					
+					else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3])) {
+						initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.6f);
+						
+						if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1])) {
+							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {
+								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+								initiativeFinal[1] = (float) (initiativeFinal[1]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
+								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+								initiativeFinal[0] = (float) (initiativeFinal[0]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {
+							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1])) {
+								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+								initiativeFinal[1] = (float) (initiativeFinal[1]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3])) {
+								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+								initiativeFinal[3] = (float) (initiativeFinal[3]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
+							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0])) {
+								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+								initiativeFinal[0] = (float) (initiativeFinal[0]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3])) {
+								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+								initiativeFinal[3] = (float) (initiativeFinal[3]);								
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
+					}
+				}
+			}			
+			
+			if (rollOff53125.equals("yes")) {
+
+				if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {				
+											
+					double3125();
+				}					
+				if ((ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[5] == ArrayOfInitiative.initiative[1])) {				
+					
+					double215();
+				}
+				if ((ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[5])) {				
+					
+					double325();
+				}
+				if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {				
+					
+					double315();					}
 				
-				if (rollOff5325.equals("yes")) {
-	
-					if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {				
-												
-						double325();
-					}
-					else if ((ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[5])) {					
+				if ((ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[3])) {				
+					
+					double312();
+				}				
+				if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2])) {				
+					
+					double32();
+				}
+				if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1])) {
+					
+					double31();
+				}
+				if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {
+					
+					double35();
+				}
+				if ((ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[1])) {				
+					
+					double21();
+				}
+				if ((ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[5] == ArrayOfInitiative.initiative[1])) {
+					
+					double15();
+				}
+				if ((ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[5] == ArrayOfInitiative.initiative[2])) {
+					
+					double25();
+				}					
+				else {
+					
+					if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
+						initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.6f);
 						
-						double25();
-					}
-					else if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {					
-						
-						double35();
-					}
-					else if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5])) {					
-						
-						double32();
-					}					
-					else {
-						
-						if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
-							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.6f);
+						if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
+							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
+								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+								initiativeFinal[5] = (float) (initiativeFinal[5]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
+								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
+								initiativeFinal[1] = (float) (initiativeFinal[1]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
+							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
 							
 							if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
-								initiativeFinal[5] = (float) initiativeFinal[5];
+								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								initiativeFinal[5] = (float) (initiativeFinal[5]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
 							}
-							if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
-								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
-								initiativeFinal[2] = (float) initiativeFinal[2];
+							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
+								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
+								initiativeFinal[2] = (float) (initiativeFinal[2]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
+							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
+								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								initiativeFinal[1] = (float) (initiativeFinal[1]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2])) {
+								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+								initiativeFinal[2] = (float) (initiativeFinal[2]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
+					}
+					
+					else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
+						initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.6f);
+						
+						if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
+							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
+								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								initiativeFinal[5] = (float) (initiativeFinal[5]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
+								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
+								initiativeFinal[2] = (float) (initiativeFinal[2]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
 							}
 						}
 						else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
-							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.6f);
+							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
 							
 							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
-								initiativeFinal[5] = (float) initiativeFinal[5];
+								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+								initiativeFinal[5] = (float) (initiativeFinal[5]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
 							}
-							if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3])) {
-								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
-								initiativeFinal[3] = (float) initiativeFinal[3];
+							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3])) {
+								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
+								initiativeFinal[3] = (float) (initiativeFinal[3]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
 							}
 						}
 						else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
-							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.6f);
+							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
 							
 							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
-								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
-								initiativeFinal[2] = (float) initiativeFinal[2];
+								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+								initiativeFinal[2] = (float) (initiativeFinal[2]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
 							}
-							if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3])) {
-								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
-								initiativeFinal[3] = (float) initiativeFinal[3];
+							else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3])) {
+								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								initiativeFinal[3] = (float) (initiativeFinal[3]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
 							}
-						}						
-						
-						
-						displayInitiatives();
+						}
 					}
-				}				
+					
+					else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
+						initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.6f);
+						
+						if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
+							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
+								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+								initiativeFinal[5] = (float) (initiativeFinal[5]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
+								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
+								initiativeFinal[1] = (float) (initiativeFinal[1]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
+							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
+								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+								initiativeFinal[5] = (float) (initiativeFinal[5]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3])) {
+								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
+								initiativeFinal[3] = (float) (initiativeFinal[3]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
+							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1])) {
+								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+								initiativeFinal[1] = (float) (initiativeFinal[1]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3])) {
+								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+								initiativeFinal[3] = (float) (initiativeFinal[3]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
+					}
+					
+					else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
+						initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.6f);
+						
+						if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1])) {
+							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
+								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								initiativeFinal[1] = (float) (initiativeFinal[1]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2])) {
+								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+								initiativeFinal[2] = (float) (initiativeFinal[2]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
+							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1])) {
+								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+								initiativeFinal[1] = (float) (initiativeFinal[1]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3])) {
+								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+								initiativeFinal[3] = (float) (initiativeFinal[3]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2])) {
+							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
+								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+								initiativeFinal[2] = (float) (initiativeFinal[2]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3])) {
+								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								initiativeFinal[3] = (float) (initiativeFinal[3]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
+					}
+				}
+			}				
+			
+			if (rollOff53025.equals("yes")) {
+
+				if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {				
+											
+					double3025();
+				}					
+				if ((ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[5] == ArrayOfInitiative.initiative[0])) {				
+					
+					double250();
+				}
+				if ((ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[5])) {				
+					
+					double325();
+				}
+				if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {				
+					
+					double305();					}
 				
-				if (rollOff40125.equals("yes")) {
-	
-					if ((ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[5])) {				
-												
-						double0125();
-					}					
-					if ((ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[5])) {				
-												
-						double215();
-					}
-					if ((ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[5] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[5] == ArrayOfInitiative.initiative[0])) {				
-												
-						double250();
-					}
-					if ((ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[5])) {				
-												
-						double150();
-					}
-					if ((ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[0])) {				
-												
-						double201();
-					}				
-					if ((ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[2])) {				
+				if ((ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[3])) {				
+					
+					double302();
+				}					
+				if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2])) {				
+					
+					double32();
+				}
+				if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0])) {
+					
+					double30();
+				}
+				if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {
+					
+					double35();
+				}
+				if ((ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[0])) {				
+					
+					double20();
+				}
+				if ((ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[5] == ArrayOfInitiative.initiative[0])) {
+					
+					double05();
+				}
+				if ((ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[5] == ArrayOfInitiative.initiative[2])) {
+					
+					double25();
+				}				
+				else {
+					
+					if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
+						initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.6f);
 						
-						double21();
+						if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
+							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
+								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								initiativeFinal[5] = (float) (initiativeFinal[5]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
+								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
+								initiativeFinal[2] = (float) (initiativeFinal[2]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
+							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
+								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+								initiativeFinal[5] = (float) (initiativeFinal[5]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
+								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
+								initiativeFinal[0] = (float) (initiativeFinal[0]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
+							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
+								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+								initiativeFinal[2] = (float) (initiativeFinal[2]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0])) {
+								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								initiativeFinal[0] = (float) (initiativeFinal[0]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
 					}
-					if ((ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[5])) {
-												
-						double15();
-					}
-					if ((ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[5])) {
+					
+					else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
+						initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.6f);
 						
-						double25();
+						if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
+							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
+								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								initiativeFinal[5] = (float) (initiativeFinal[5]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
+								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
+								initiativeFinal[2] = (float) (initiativeFinal[2]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
+							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
+								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+								initiativeFinal[5] = (float) (initiativeFinal[5]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3])) {
+								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
+								initiativeFinal[3] = (float) (initiativeFinal[3]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
+							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
+								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+								initiativeFinal[2] = (float) (initiativeFinal[2]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3])) {
+								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								initiativeFinal[3] = (float) (initiativeFinal[3]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
 					}
-					if ((ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[5])) {				
+					
+					else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
+						initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.6f);
 						
-						double05();
+						if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
+							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
+								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+								initiativeFinal[5] = (float) (initiativeFinal[5]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
+								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
+								initiativeFinal[0] = (float) (initiativeFinal[0]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
+							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
+								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+								initiativeFinal[5] = (float) (initiativeFinal[5]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3])) {
+								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
+								initiativeFinal[3] = (float) (initiativeFinal[3]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
+							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0])) {
+								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+								initiativeFinal[0] = (float) (initiativeFinal[0]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3])) {
+								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+								initiativeFinal[3] = (float) (initiativeFinal[3]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
 					}
-					if ((ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[0])) {
+					else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
+						initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.6f);
 						
-						double20();
+						if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0])) {
+							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0])) {
+								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								initiativeFinal[0] = (float) (initiativeFinal[0]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
+								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+								initiativeFinal[2] = (float) (initiativeFinal[2]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0])) {
+							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0])) {
+								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+								initiativeFinal[0] = (float) (initiativeFinal[0]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3])) {
+								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+								initiativeFinal[3] = (float) (initiativeFinal[3]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
+							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
+								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+								initiativeFinal[2] = (float) (initiativeFinal[2]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3])) {
+								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								initiativeFinal[3] = (float) (initiativeFinal[3]);
+								
+								if (rollOff530125.equals("yes")) {
+									
+									deadMethod();
+								}						
+								else {
+								
+									displayInitiatives();
+								}
+							}
+						}
 					}
-					if ((ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[1])) {
-						
-						double01();
-					}					
-					else {
+				}
+			}			
+			
+			if (rollOff530125.equals("yes")) {
+
+				if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {				
+											
+					double30125();
+				}				
+				if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {				
+					
+					double3025();
+				}
+				if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {				
+					
+					double3125();
+				}
+				if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {				
+					
+					double3015();
+				}					
+				if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2])) {				
+					
+					double3012();
+				}
+				if ((ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[5])) {				
+					
+					double0125();
+				}					
+				if ((ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[0])) {				
+					
+					double150();
+				}
+				if ((ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[1])) {				
+					
+					double201();
+				}
+				if ((ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[5] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[5] == ArrayOfInitiative.initiative[1])) {				
+					
+					double215();
+				}
+				if ((ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[0])) {				
+					
+					double250();
+				}
+				if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1])) {				
+					
+					double301();
+				}
+				if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2])) {				
+					
+					double302();
+				}
+				if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {				
+					
+					double305();
+				}
+				if ((ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[3])) {				
+					
+					double312();
+				}
+				if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {				
+					
+					double315();
+				}
+				if ((ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[5])) {				
+					
+					double325();
+				}				
+				if ((ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[5])) {
+					
+					double05();
+				}
+				if ((ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[1])) {
+					
+					double01();
+				}
+				if ((ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[5])) {
+					
+					double15();
+				}
+				if ((ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[0])) {
+					
+					double20();
+				}
+				if ((ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[1])) {
+					
+					double21();
+				}
+				if ((ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[5])) {
+					
+					double25();
+				}
+				if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0])) {
+					
+					double30();
+				}
+				if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1])) {
+					
+					double31();
+				}
+				if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2])) {
+					
+					double32();
+				}
+				if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {
+					
+					double35();
+				}					
+				else {
+					
+					if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
+						initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.6f);
 						
 						if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
-							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.6f);
+							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);								
 							
 							if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
+								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
 								
 								if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
 									initiativeFinal[5] = (float) (initiativeFinal[5]);
+									
+									displayInitiatives();
 								}
-								if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
-									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
+									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
 									initiativeFinal[2] = (float) (initiativeFinal[2]);
+									
+									displayInitiatives();
 								}
 							}
 							else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
+								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
 								
 								if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
 									initiativeFinal[5] = (float) (initiativeFinal[5]);
+									
+									displayInitiatives();
 								}
-								if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
-									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
+									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
 									initiativeFinal[1] = (float) (initiativeFinal[1]);
+									
+									displayInitiatives();
 								}
 							}
 							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
-								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
+								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
 								
 								if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2])) {
-									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
 									initiativeFinal[2] = (float) (initiativeFinal[2]);
+									
+									displayInitiatives();
 								}
-								if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
-									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
+									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
 									initiativeFinal[1] = (float) (initiativeFinal[1]);
+									
+									displayInitiatives();
 								}
 							}
 						}
-						
 						else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
-							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.6f);
+							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
 							
 							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
+								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
 								
 								if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
 									initiativeFinal[5] = (float) (initiativeFinal[5]);
+									
+									displayInitiatives();
 								}
-								if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
-									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
+									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
 									initiativeFinal[2] = (float) (initiativeFinal[2]);
+									
+									displayInitiatives();
 								}
 							}
 							else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
+								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
 								
 								if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
 									initiativeFinal[5] = (float) (initiativeFinal[5]);
+									
+									displayInitiatives();
 								}
-								if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
-									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
+									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
 									initiativeFinal[0] = (float) (initiativeFinal[0]);
+									
+									displayInitiatives();
 								}
 							}
 							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
-								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
+								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
 								
 								if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
-									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
 									initiativeFinal[2] = (float) (initiativeFinal[2]);
+									
+									displayInitiatives();
 								}
-								if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0])) {
-									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0])) {
+									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
 									initiativeFinal[0] = (float) (initiativeFinal[0]);
+									
+									displayInitiatives();
 								}
 							}
 						}
-						
 						else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
-							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.6f);
+							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
 							
 							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
+								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
 								
 								if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
 									initiativeFinal[5] = (float) (initiativeFinal[5]);
+									
+									displayInitiatives();
 								}
-								if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
-									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
+									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
 									initiativeFinal[1] = (float) (initiativeFinal[1]);
+									
+									displayInitiatives();
 								}
 							}
 							else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
+								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
 								
 								if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
 									initiativeFinal[5] = (float) (initiativeFinal[5]);
+									
+									displayInitiatives();
 								}
-								if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
-									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
+									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
 									initiativeFinal[0] = (float) (initiativeFinal[0]);
+									
+									displayInitiatives();
 								}
 							}
 							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
-								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
+								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
 								
 								if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {
-									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
 									initiativeFinal[1] = (float) (initiativeFinal[1]);
+									
+									displayInitiatives();
 								}
-								if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
-									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
+									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
 									initiativeFinal[0] = (float) (initiativeFinal[0]);
+									
+									displayInitiatives();
 								}
 							}
 						}
-						
 						else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
-							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.6f);
+							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
 							
 							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
-								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
+								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
 								
 								if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2])) {
-									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
 									initiativeFinal[2] = (float) (initiativeFinal[2]);
+									
+									displayInitiatives();
 								}
-								if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
-									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
+									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
 									initiativeFinal[1] = (float) (initiativeFinal[1]);
+									
+									displayInitiatives();
 								}
 							}
 							else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2])) {
-								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
+								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
 								
 								if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
-									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
 									initiativeFinal[2] = (float) (initiativeFinal[2]);
+									
+									displayInitiatives();
 								}
-								if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0])) {
-									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0])) {
+									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
 									initiativeFinal[0] = (float) (initiativeFinal[0]);
+									
+									displayInitiatives();
 								}
 							}
 							else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
-								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
+								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
 								
 								if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {
-									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
 									initiativeFinal[1] = (float) (initiativeFinal[1]);
+									
+									displayInitiatives();
 								}
-								if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
-									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
+									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
 									initiativeFinal[0] = (float) (initiativeFinal[0]);
+									
+									displayInitiatives();
 								}
 							}
 						}
-						
-						
-						displayInitiatives();
-					}
-				}				
-				
-				if (rollOff53012.equals("yes")) {
-	
-					if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2])) {				
-												
-						double3012();
-					}					
-					if ((ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[1])) {				
-						
-						double201();
-					}
-					if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2])) {				
-						
-						double312();
-					}
-					if ((ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[2])) {				
-						
-						double302();
-					}
-					if ((ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[3])) {				
-						
-						double301();
-					}
-					if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0])) {				
-						
-						double30();
-					}
-					if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1])) {
-						
-						double31();
-					}
-					if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2])) {
-						
-						double32();
-					}
-					if ((ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[1])) {				
-						
-						double01();
-					}
-					if ((ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[1])) {
-						
-						double21();
-					}
-					if ((ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[0])) {
-						
-						double20();
-					}				
-					else {
-						
-						if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
-							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.6f);
-							
-							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
-								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
-								
-								if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2])) {
-									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
-									initiativeFinal[2] = (float) (initiativeFinal[2]);
-								}
-								if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
-									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
-									initiativeFinal[1] = (float) (initiativeFinal[1]);
-								}
-							}
-							else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2])) {
-								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
-								
-								if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
-									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
-									initiativeFinal[2] = (float) (initiativeFinal[2]);
-								}
-								if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0])) {
-									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
-									initiativeFinal[0] = (float) (initiativeFinal[0]);
-								}
-							}
-							else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
-								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
-								
-								if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {
-									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
-									initiativeFinal[1] = (float) (initiativeFinal[1]);
-								}
-								if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
-									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
-									initiativeFinal[0] = (float) (initiativeFinal[0]);
-								}
-							}
-						}
-						
-						else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3])) {
-							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.6f);
-							
-							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
-								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
-								
-								if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2])) {
-									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
-									initiativeFinal[2] = (float) (initiativeFinal[2]);
-								}
-								if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
-									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
-									initiativeFinal[1] = (float) (initiativeFinal[1]);
-								}
-							}
-							else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2])) {
-								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
-								
-								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
-									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
-									initiativeFinal[2] = (float) (initiativeFinal[2]);
-								}
-								if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3])) {
-									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
-									initiativeFinal[3] = (float) (initiativeFinal[3]);
-								}
-							}
-							else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
-								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
-								
-								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1])) {
-									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
-									initiativeFinal[1] = (float) (initiativeFinal[1]);
-								}
-								if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3])) {
-									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
-									initiativeFinal[3] = (float) (initiativeFinal[3]);
-								}
-							}
-						}
-						
-						else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3])) {
-							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.6f);
-							
-							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
-								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
-								
-								if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
-									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
-									initiativeFinal[2] = (float) (initiativeFinal[2]);
-								}
-								if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0])) {
-									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
-									initiativeFinal[0] = (float) (initiativeFinal[0]);
-								}
-							}
-							else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
-								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
-								
-								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
-									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
-									initiativeFinal[2] = (float) (initiativeFinal[2]);
-								}
-								if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3])) {
-									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
-									initiativeFinal[3] = (float) (initiativeFinal[3]);
-								}
-							}
-							else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0])) {
-								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
-								
-								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0])) {
-									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
-									initiativeFinal[0] = (float) (initiativeFinal[0]);
-								}
-								if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3])) {
-									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
-									initiativeFinal[3] = (float) (initiativeFinal[3]);
-								}
-							}
-						}
-						
-						else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3])) {
-							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.6f);
-							
-							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1])) {
-								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
-								
-								if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {
-									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
-									initiativeFinal[1] = (float) (initiativeFinal[1]);
-								}
-								if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
-									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
-									initiativeFinal[0] = (float) (initiativeFinal[0]);
-								}
-							}
-							else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {
-								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
-								
-								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1])) {
-									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
-									initiativeFinal[1] = (float) (initiativeFinal[1]);
-								}
-								if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3])) {
-									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
-									initiativeFinal[3] = (float) (initiativeFinal[3]);
-								}
-							}
-							else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
-								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
-								
-								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0])) {
-									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
-									initiativeFinal[0] = (float) (initiativeFinal[0]);
-								}
-								if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3])) {
-									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
-									initiativeFinal[3] = (float) (initiativeFinal[3]);
-								}
-							}
-						}
-						
-						
-						displayInitiatives();
-					}
-				}				
-				
-				if (rollOff53015.equals("yes")) {
-	
-					if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {				
-												
-						double3015();
 					}
 					
-					if ((ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[5] == ArrayOfInitiative.initiative[1])) {				
-						
-						double150();
-					}
-					if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {				
-						
-						double315();
-					}
-					if ((ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[5])) {				
-						
-						double305();
-					}
-					if ((ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[3])) {				
-						
-						double301();
-					}					
-					if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0])) {				
-						
-						double30();
-					}
-					if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1])) {
-						
-						double31();
-					}
-					if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {
-						
-						double35();
-					}
-					if ((ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[1])) {				
-						
-						double01();
-					}
-					if ((ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[5] == ArrayOfInitiative.initiative[1])) {
-						
-						double15();
-					}
-					if ((ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[5] == ArrayOfInitiative.initiative[0])) {
-						
-						double05();
-					}					
-					else {
-						
-						if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
-							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.6f);
-							
-							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
-								
-								if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
-									initiativeFinal[5] = (float) (initiativeFinal[5]);
-								}
-								if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
-									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
-									initiativeFinal[1] = (float) (initiativeFinal[1]);
-								}
-							}
-							else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
-								
-								if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
-									initiativeFinal[5] = (float) (initiativeFinal[5]);
-								}
-								if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
-									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
-									initiativeFinal[0] = (float) (initiativeFinal[0]);
-								}
-							}
-							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
-								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
-								
-								if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {
-									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
-									initiativeFinal[1] = (float) (initiativeFinal[1]);
-								}
-								if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
-									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
-									initiativeFinal[0] = (float) (initiativeFinal[0]);
-								}
-							}
-						}
-						
-						else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3])) {
-							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.6f);
-							
-							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
-								
-								if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
-									initiativeFinal[5] = (float) (initiativeFinal[5]);
-								}
-								if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
-									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
-									initiativeFinal[1] = (float) (initiativeFinal[1]);
-								}
-							}
-							else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
-								
-								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
-									initiativeFinal[5] = (float) (initiativeFinal[5]);
-								}
-								if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3])) {
-									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
-									initiativeFinal[3] = (float) (initiativeFinal[3]);
-								}
-							}
-							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
-								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
-								
-								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1])) {
-									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
-									initiativeFinal[1] = (float) (initiativeFinal[1]);
-								}
-								if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3])) {
-									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
-									initiativeFinal[3] = (float) (initiativeFinal[3]);
-								}
-							}
-						}
-						
-						else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3])) {
-							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.6f);
-							
-							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
-								
-								if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
-									initiativeFinal[5] = (float) (initiativeFinal[5]);
-								}
-								if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
-									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
-									initiativeFinal[0] = (float) (initiativeFinal[0]);
-								}
-							}
-							else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
-								
-								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
-									initiativeFinal[5] = (float) (initiativeFinal[5]);
-								}
-								if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3])) {
-									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
-									initiativeFinal[3] = (float) (initiativeFinal[3]);
-								}
-							}
-							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
-								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
-								
-								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0])) {
-									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
-									initiativeFinal[0] = (float) (initiativeFinal[0]);
-								}
-								if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3])) {
-									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
-									initiativeFinal[3] = (float) (initiativeFinal[3]);
-								}
-							}
-						}
-						
-						else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3])) {
-							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.6f);
-							
-							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1])) {
-								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
-								
-								if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {
-									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
-									initiativeFinal[1] = (float) (initiativeFinal[1]);
-								}
-								if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
-									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
-									initiativeFinal[0] = (float) (initiativeFinal[0]);
-								}
-							}
-							else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {
-								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
-								
-								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1])) {
-									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
-									initiativeFinal[1] = (float) (initiativeFinal[1]);
-								}
-								if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3])) {
-									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
-									initiativeFinal[3] = (float) (initiativeFinal[3]);
-								}
-							}
-							else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
-								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
-								
-								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0])) {
-									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
-									initiativeFinal[0] = (float) (initiativeFinal[0]);
-								}
-								if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3])) {
-									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
-									initiativeFinal[3] = (float) (initiativeFinal[3]);
-								}
-							}
-						}
-						
-						
-						displayInitiatives();
-					}
-				}			
-				
-				if (rollOff53125.equals("yes")) {
-	
-					if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {				
-												
-						double3125();
-					}					
-					if ((ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[5] == ArrayOfInitiative.initiative[1])) {				
-						
-						double215();
-					}
-					if ((ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[5])) {				
-						
-						double325();
-					}
-					if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {				
-						
-						double315();					}
-					
-					if ((ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[3])) {				
-						
-						double312();
-					}				
-					if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2])) {				
-						
-						double32();
-					}
-					if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1])) {
-						
-						double31();
-					}
-					if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {
-						
-						double35();
-					}
-					if ((ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[1])) {				
-						
-						double21();
-					}
-					if ((ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[5] == ArrayOfInitiative.initiative[1])) {
-						
-						double15();
-					}
-					if ((ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[5] == ArrayOfInitiative.initiative[2])) {
-						
-						double25();
-					}					
-					else {
+					else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
+						initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.6f);
 						
 						if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
-							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.6f);
+							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);								
 							
-							if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
-								
-								if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
-									initiativeFinal[5] = (float) (initiativeFinal[5]);
-								}
-								if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
-									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
-									initiativeFinal[1] = (float) (initiativeFinal[1]);
-								}
-							}
-							else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
+							if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
+								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
 								
 								if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
 									initiativeFinal[5] = (float) (initiativeFinal[5]);
+									
+									displayInitiatives();
 								}
-								if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
-									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
+									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
 									initiativeFinal[2] = (float) (initiativeFinal[2]);
+									
+									displayInitiatives();
 								}
 							}
-							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
-								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
+							else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
+								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
 								
-								if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
-									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
-									initiativeFinal[1] = (float) (initiativeFinal[1]);
+								if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
+									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
+									initiativeFinal[5] = (float) (initiativeFinal[5]);
+									
+									displayInitiatives();
 								}
+								else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
+									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
+									initiativeFinal[1] = (float) (initiativeFinal[1]);
+									
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
+								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
+								
 								if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2])) {
-									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
 									initiativeFinal[2] = (float) (initiativeFinal[2]);
+									
+									displayInitiatives();
+								}
+								else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
+									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
+									initiativeFinal[1] = (float) (initiativeFinal[1]);
+									
+									displayInitiatives();
 								}
 							}
 						}
-						
 						else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
-							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.6f);
+							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
 							
 							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
+								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
 								
 								if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
 									initiativeFinal[5] = (float) (initiativeFinal[5]);
+									
+									displayInitiatives();
 								}
-								if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
-									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
+									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
 									initiativeFinal[2] = (float) (initiativeFinal[2]);
+									
+									displayInitiatives();
 								}
 							}
 							else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
+								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
 								
 								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
 									initiativeFinal[5] = (float) (initiativeFinal[5]);
+									
+									displayInitiatives();
 								}
-								if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3])) {
-									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3])) {
+									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
 									initiativeFinal[3] = (float) (initiativeFinal[3]);
+									
+									displayInitiatives();
 								}
 							}
 							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
-								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
+								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
 								
 								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
-									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
 									initiativeFinal[2] = (float) (initiativeFinal[2]);
+									
+									displayInitiatives();
 								}
-								if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3])) {
-									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3])) {
+									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
 									initiativeFinal[3] = (float) (initiativeFinal[3]);
+									
+									displayInitiatives();
 								}
 							}
 						}
-						
-						else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
-							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.6f);
+						else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
+							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
 							
 							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
+								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
 								
 								if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
 									initiativeFinal[5] = (float) (initiativeFinal[5]);
+									
+									displayInitiatives();
 								}
-								if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
-									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
+									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
 									initiativeFinal[1] = (float) (initiativeFinal[1]);
+									
+									displayInitiatives();
 								}
 							}
 							else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
+								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
 								
 								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
 									initiativeFinal[5] = (float) (initiativeFinal[5]);
+									
+									displayInitiatives();
 								}
-								if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3])) {
-									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3])) {
+									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
 									initiativeFinal[3] = (float) (initiativeFinal[3]);
+									
+									displayInitiatives();
 								}
 							}
 							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
-								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
+								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
 								
 								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1])) {
-									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
 									initiativeFinal[1] = (float) (initiativeFinal[1]);
+									
+									displayInitiatives();
 								}
-								if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3])) {
-									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3])) {
+									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
 									initiativeFinal[3] = (float) (initiativeFinal[3]);
+									
+									displayInitiatives();
 								}
 							}
 						}
-						
 						else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
-							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.6f);
+							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
 							
-							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1])) {
-								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
+							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
+								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
 								
-								if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
-									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
-									initiativeFinal[1] = (float) (initiativeFinal[1]);
-								}
 								if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2])) {
-									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
 									initiativeFinal[2] = (float) (initiativeFinal[2]);
+									
+									displayInitiatives();
 								}
-							}
-							else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
-								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
-								
-								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1])) {
-									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
+									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
 									initiativeFinal[1] = (float) (initiativeFinal[1]);
-								}
-								if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3])) {
-									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
-									initiativeFinal[3] = (float) (initiativeFinal[3]);
+									
+									displayInitiatives();
 								}
 							}
 							else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2])) {
-								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
+								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
 								
 								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
-									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
 									initiativeFinal[2] = (float) (initiativeFinal[2]);
+									
+									displayInitiatives();
 								}
-								if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3])) {
-									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3])) {
+									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
 									initiativeFinal[3] = (float) (initiativeFinal[3]);
+									
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
+								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								
+								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1])) {
+									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
+									initiativeFinal[1] = (float) (initiativeFinal[1]);
+									
+									displayInitiatives();
+								}
+								else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3])) {
+									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
+									initiativeFinal[3] = (float) (initiativeFinal[3]);
+									
+									displayInitiatives();
 								}
 							}
 						}
-						
-						
-						displayInitiatives();
 					}
-				}				
-				
-				if (rollOff53025.equals("yes")) {
-	
-					if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {				
-												
-						double3025();
-					}					
-					if ((ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[5] == ArrayOfInitiative.initiative[0])) {				
-						
-						double250();
-					}
-					if ((ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[5])) {				
-						
-						double325();
-					}
-					if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {				
-						
-						double305();					}
 					
-					if ((ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[3])) {				
-						
-						double302();
-					}					
-					if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2])) {				
-						
-						double32();
-					}
-					if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0])) {
-						
-						double30();
-					}
-					if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {
-						
-						double35();
-					}
-					if ((ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[0])) {				
-						
-						double20();
-					}
-					if ((ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[5] == ArrayOfInitiative.initiative[0])) {
-						
-						double05();
-					}
-					if ((ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[5] == ArrayOfInitiative.initiative[2])) {
-						
-						double25();
-					}				
-					else {
+					else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
+						initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.6f);
 						
 						if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
-							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.6f);
+							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);								
 							
 							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
+								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
 								
 								if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
 									initiativeFinal[5] = (float) (initiativeFinal[5]);
+									
+									displayInitiatives();
 								}
-								if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
-									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
+									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
 									initiativeFinal[2] = (float) (initiativeFinal[2]);
+									
+									displayInitiatives();
 								}
 							}
 							else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
+								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
 								
 								if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
 									initiativeFinal[5] = (float) (initiativeFinal[5]);
+									
+									displayInitiatives();
 								}
-								if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
-									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
+									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
 									initiativeFinal[0] = (float) (initiativeFinal[0]);
+									
+									displayInitiatives();
 								}
 							}
 							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
-								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
+								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
 								
 								if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
-									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
 									initiativeFinal[2] = (float) (initiativeFinal[2]);
+									
+									displayInitiatives();
 								}
-								if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0])) {
-									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0])) {
+									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
 									initiativeFinal[0] = (float) (initiativeFinal[0]);
+									
+									displayInitiatives();
 								}
 							}
 						}
-						
 						else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
-							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.6f);
+							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
 							
 							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
+								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
 								
 								if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
 									initiativeFinal[5] = (float) (initiativeFinal[5]);
+									
+									displayInitiatives();
 								}
-								if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
-									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
+									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
 									initiativeFinal[2] = (float) (initiativeFinal[2]);
+									
+									displayInitiatives();
 								}
 							}
 							else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
+								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
 								
 								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
 									initiativeFinal[5] = (float) (initiativeFinal[5]);
+									
+									displayInitiatives();
 								}
-								if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3])) {
-									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3])) {
+									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
 									initiativeFinal[3] = (float) (initiativeFinal[3]);
+									
+									displayInitiatives();
 								}
 							}
 							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
-								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
+								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
 								
 								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
-									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
 									initiativeFinal[2] = (float) (initiativeFinal[2]);
+									
+									displayInitiatives();
 								}
-								if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3])) {
-									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3])) {
+									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
 									initiativeFinal[3] = (float) (initiativeFinal[3]);
+									
+									displayInitiatives();
 								}
 							}
 						}
-						
 						else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
-							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.6f);
+							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
 							
 							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
+								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
 								
 								if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
 									initiativeFinal[5] = (float) (initiativeFinal[5]);
+									
+									displayInitiatives();
 								}
-								if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
-									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
+									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
 									initiativeFinal[0] = (float) (initiativeFinal[0]);
+									
+									displayInitiatives();
 								}
 							}
 							else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
+								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
 								
 								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
 									initiativeFinal[5] = (float) (initiativeFinal[5]);
+									
+									displayInitiatives();
 								}
-								if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3])) {
-									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3])) {
+									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
 									initiativeFinal[3] = (float) (initiativeFinal[3]);
+									
+									displayInitiatives();
 								}
 							}
 							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
-								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
+								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
 								
 								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0])) {
-									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
 									initiativeFinal[0] = (float) (initiativeFinal[0]);
+									
+									displayInitiatives();
 								}
-								if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3])) {
-									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3])) {
+									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
 									initiativeFinal[3] = (float) (initiativeFinal[3]);
+									
+									displayInitiatives();
 								}
 							}
 						}
 						else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
-							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.6f);
+							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
 							
-							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0])) {
-								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);
+							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
+								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
 								
-								if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0])) {
-									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
-									initiativeFinal[0] = (float) (initiativeFinal[0]);
-								}
 								if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
-									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
 									initiativeFinal[2] = (float) (initiativeFinal[2]);
+									
+									displayInitiatives();
 								}
-							}
-							else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0])) {
-								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
-								
-								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0])) {
-									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0])) {
+									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
 									initiativeFinal[0] = (float) (initiativeFinal[0]);
-								}
-								if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3])) {
-									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
-									initiativeFinal[3] = (float) (initiativeFinal[3]);
+									
+									displayInitiatives();
 								}
 							}
 							else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
-								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
+								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
 								
 								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
-									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
 									initiativeFinal[2] = (float) (initiativeFinal[2]);
+									
+									displayInitiatives();
 								}
-								if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3])) {
-									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3])) {
+									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
 									initiativeFinal[3] = (float) (initiativeFinal[3]);
+									
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0])) {
+								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								
+								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0])) {
+									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
+									initiativeFinal[0] = (float) (initiativeFinal[0]);
+									
+									displayInitiatives();
+								}
+								else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3])) {
+									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
+									initiativeFinal[3] = (float) (initiativeFinal[3]);
+									
+									displayInitiatives();
 								}
 							}
 						}
-						
-						
-						displayInitiatives();
 					}
-				}			
-				
-				if (rollOff530125.equals("yes")) {
-	
-					if ((ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {				
-												
-						double30125();
-					}				
-					if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {				
+					
+					else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
+						initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.6f);
 						
-						double3025();
-					}
-					if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {				
-						
-						double3125();
-					}
-					if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {				
-						
-						double3015();
-					}					
-					if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2])) {				
-						
-						double3012();
-					}
-					if ((ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[5])) {				
-						
-						double0125();
-					}					
-					if ((ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[0])) {				
-						
-						double150();
-					}
-					if ((ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[1])) {				
-						
-						double201();
-					}
-					if ((ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[5] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[5] == ArrayOfInitiative.initiative[1])) {				
-						
-						double215();
-					}
-					if ((ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[0])) {				
-						
-						double250();
-					}
-					if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1])) {				
-						
-						double301();
-					}
-					if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2])) {				
-						
-						double302();
-					}
-					if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {				
-						
-						double305();
-					}
-					if ((ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[3])) {				
-						
-						double312();
-					}
-					if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {				
-						
-						double315();
-					}
-					if ((ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[5])) {				
-						
-						double325();
-					}				
-					if ((ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[5])) {
-						
-						double05();
-					}
-					if ((ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[0] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] == ArrayOfInitiative.initiative[1])) {
-						
-						double01();
-					}
-					if ((ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] == ArrayOfInitiative.initiative[5])) {
-						
-						double15();
-					}
-					if ((ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[0])) {
-						
-						double20();
-					}
-					if ((ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[1])) {
-						
-						double21();
-					}
-					if ((ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] == ArrayOfInitiative.initiative[5])) {
-						
-						double25();
-					}
-					if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[0])) {
-						
-						double30();
-					}
-					if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[1])) {
-						
-						double31();
-					}
-					if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[5]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[2])) {
-						
-						double32();
-					}
-					if ((ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] != ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] == ArrayOfInitiative.initiative[5])) {
-						
-						double35();
-					}					
-					else {
-						
-						if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
-							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.6f);
+						if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
+							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);								
 							
-							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);								
+							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
+								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
 								
-								if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+								if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
+									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
+									initiativeFinal[5] = (float) (initiativeFinal[5]);
 									
-									if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
-										initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
-										initiativeFinal[5] = (float) (initiativeFinal[5]);
-									}
-									if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
-										initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
-										initiativeFinal[2] = (float) (initiativeFinal[2]);
-									}
+									displayInitiatives();
 								}
-								else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
+									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
+									initiativeFinal[1] = (float) (initiativeFinal[1]);
 									
-									if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
-										initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
-										initiativeFinal[5] = (float) (initiativeFinal[5]);
-									}
-									if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
-										initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
-										initiativeFinal[1] = (float) (initiativeFinal[1]);
-									}
-								}
-								else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
-									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
-									
-									if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2])) {
-										initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
-										initiativeFinal[2] = (float) (initiativeFinal[2]);
-									}
-									if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
-										initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
-										initiativeFinal[1] = (float) (initiativeFinal[1]);
-									}
+									displayInitiatives();
 								}
 							}
-							else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
+							else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
+								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
 								
-								if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+								if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
+									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
+									initiativeFinal[5] = (float) (initiativeFinal[5]);
 									
-									if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
-										initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
-										initiativeFinal[5] = (float) (initiativeFinal[5]);
-									}
-									if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
-										initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
-										initiativeFinal[2] = (float) (initiativeFinal[2]);
-									}
+									displayInitiatives();
 								}
-								else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
+									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
+									initiativeFinal[0] = (float) (initiativeFinal[0]);
 									
-									if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
-										initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
-										initiativeFinal[5] = (float) (initiativeFinal[5]);
-									}
-									if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
-										initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
-										initiativeFinal[0] = (float) (initiativeFinal[0]);
-									}
-								}
-								else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
-									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
-									
-									if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
-										initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
-										initiativeFinal[2] = (float) (initiativeFinal[2]);
-									}
-									if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0])) {
-										initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
-										initiativeFinal[0] = (float) (initiativeFinal[0]);
-									}
+									displayInitiatives();
 								}
 							}
-							else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
+							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
+								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
 								
-								if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+								if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {
+									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
+									initiativeFinal[1] = (float) (initiativeFinal[1]);
 									
-									if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
-										initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
-										initiativeFinal[5] = (float) (initiativeFinal[5]);
-									}
-									if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
-										initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
-										initiativeFinal[1] = (float) (initiativeFinal[1]);
-									}
+									displayInitiatives();
 								}
-								else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
+									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
+									initiativeFinal[0] = (float) (initiativeFinal[0]);
 									
-									if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
-										initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
-										initiativeFinal[5] = (float) (initiativeFinal[5]);
-									}
-									if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
-										initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
-										initiativeFinal[0] = (float) (initiativeFinal[0]);
-									}
-								}
-								else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
-									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
-									
-									if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {
-										initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
-										initiativeFinal[1] = (float) (initiativeFinal[1]);
-									}
-									if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
-										initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
-										initiativeFinal[0] = (float) (initiativeFinal[0]);
-									}
-								}
-							}
-							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
-								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
-								
-								if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
-									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
-									
-									if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2])) {
-										initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
-										initiativeFinal[2] = (float) (initiativeFinal[2]);
-									}
-									if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
-										initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
-										initiativeFinal[1] = (float) (initiativeFinal[1]);
-									}
-								}
-								else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2])) {
-									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
-									
-									if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
-										initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
-										initiativeFinal[2] = (float) (initiativeFinal[2]);
-									}
-									if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0])) {
-										initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
-										initiativeFinal[0] = (float) (initiativeFinal[0]);
-									}
-								}
-								else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
-									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
-									
-									if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {
-										initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
-										initiativeFinal[1] = (float) (initiativeFinal[1]);
-									}
-									if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
-										initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
-										initiativeFinal[0] = (float) (initiativeFinal[0]);
-									}
+									displayInitiatives();
 								}
 							}
 						}
-						
-						else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
-							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.6f);
+						else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
+							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
 							
-							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);								
+							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
+								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
 								
-								if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+								if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
+									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
+									initiativeFinal[5] = (float) (initiativeFinal[5]);
 									
-									if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
-										initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
-										initiativeFinal[5] = (float) (initiativeFinal[5]);
-									}
-									if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
-										initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
-										initiativeFinal[2] = (float) (initiativeFinal[2]);
-									}
+									displayInitiatives();
 								}
-								else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
+									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
+									initiativeFinal[1] = (float) (initiativeFinal[1]);
 									
-									if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
-										initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
-										initiativeFinal[5] = (float) (initiativeFinal[5]);
-									}
-									if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
-										initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
-										initiativeFinal[1] = (float) (initiativeFinal[1]);
-									}
-								}
-								else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
-									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
-									
-									if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2])) {
-										initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
-										initiativeFinal[2] = (float) (initiativeFinal[2]);
-									}
-									if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
-										initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
-										initiativeFinal[1] = (float) (initiativeFinal[1]);
-									}
+									displayInitiatives();
 								}
 							}
-							else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
+							else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
+								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
 								
-								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
+									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
+									initiativeFinal[5] = (float) (initiativeFinal[5]);
 									
-									if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
-										initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
-										initiativeFinal[5] = (float) (initiativeFinal[5]);
-									}
-									if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
-										initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
-										initiativeFinal[2] = (float) (initiativeFinal[2]);
-									}
+									displayInitiatives();
 								}
-								else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3])) {
+									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
+									initiativeFinal[3] = (float) (initiativeFinal[3]);
 									
-									if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
-										initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
-										initiativeFinal[5] = (float) (initiativeFinal[5]);
-									}
-									if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3])) {
-										initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
-										initiativeFinal[3] = (float) (initiativeFinal[3]);
-									}
-								}
-								else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
-									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
-									
-									if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
-										initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
-										initiativeFinal[2] = (float) (initiativeFinal[2]);
-									}
-									if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3])) {
-										initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
-										initiativeFinal[3] = (float) (initiativeFinal[3]);
-									}
+									displayInitiatives();
 								}
 							}
-							else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
+							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
+								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
 								
-								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1])) {
+									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
+									initiativeFinal[1] = (float) (initiativeFinal[1]);
 									
-									if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
-										initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
-										initiativeFinal[5] = (float) (initiativeFinal[5]);
-									}
-									if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
-										initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
-										initiativeFinal[1] = (float) (initiativeFinal[1]);
-									}
+									displayInitiatives();
 								}
-								else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3])) {
+									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
+									initiativeFinal[3] = (float) (initiativeFinal[3]);
 									
-									if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
-										initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
-										initiativeFinal[5] = (float) (initiativeFinal[5]);
-									}
-									if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3])) {
-										initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
-										initiativeFinal[3] = (float) (initiativeFinal[3]);
-									}
-								}
-								else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
-									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
-									
-									if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1])) {
-										initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
-										initiativeFinal[1] = (float) (initiativeFinal[1]);
-									}
-									if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3])) {
-										initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
-										initiativeFinal[3] = (float) (initiativeFinal[3]);
-									}
-								}
-							}
-							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
-								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
-								
-								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
-									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
-									
-									if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2])) {
-										initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
-										initiativeFinal[2] = (float) (initiativeFinal[2]);
-									}
-									if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
-										initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
-										initiativeFinal[1] = (float) (initiativeFinal[1]);
-									}
-								}
-								else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2])) {
-									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
-									
-									if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
-										initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
-										initiativeFinal[2] = (float) (initiativeFinal[2]);
-									}
-									if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3])) {
-										initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
-										initiativeFinal[3] = (float) (initiativeFinal[3]);
-									}
-								}
-								else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
-									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
-									
-									if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1])) {
-										initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
-										initiativeFinal[1] = (float) (initiativeFinal[1]);
-									}
-									if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3])) {
-										initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
-										initiativeFinal[3] = (float) (initiativeFinal[3]);
-									}
+									displayInitiatives();
 								}
 							}
 						}
-						
-						else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
-							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.6f);
+						else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
+							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
 							
-							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);								
+							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
+								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
 								
-								if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+								if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
+									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
+									initiativeFinal[5] = (float) (initiativeFinal[5]);
 									
-									if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
-										initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
-										initiativeFinal[5] = (float) (initiativeFinal[5]);
-									}
-									if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
-										initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
-										initiativeFinal[2] = (float) (initiativeFinal[2]);
-									}
+									displayInitiatives();
 								}
-								else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
+									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
+									initiativeFinal[0] = (float) (initiativeFinal[0]);
 									
-									if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
-										initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
-										initiativeFinal[5] = (float) (initiativeFinal[5]);
-									}
-									if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
-										initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
-										initiativeFinal[0] = (float) (initiativeFinal[0]);
-									}
-								}
-								else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
-									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
-									
-									if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
-										initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
-										initiativeFinal[2] = (float) (initiativeFinal[2]);
-									}
-									if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0])) {
-										initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
-										initiativeFinal[0] = (float) (initiativeFinal[0]);
-									}
+									displayInitiatives();
 								}
 							}
-							else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
+							else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
+								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
 								
-								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
+									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
+									initiativeFinal[5] = (float) (initiativeFinal[5]);
 									
-									if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
-										initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
-										initiativeFinal[5] = (float) (initiativeFinal[5]);
-									}
-									if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
-										initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
-										initiativeFinal[2] = (float) (initiativeFinal[2]);
-									}
+									displayInitiatives();
 								}
-								else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3])) {
+									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
+									initiativeFinal[3] = (float) (initiativeFinal[3]);
 									
-									if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
-										initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
-										initiativeFinal[5] = (float) (initiativeFinal[5]);
-									}
-									if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3])) {
-										initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
-										initiativeFinal[3] = (float) (initiativeFinal[3]);
-									}
-								}
-								else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
-									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
-									
-									if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
-										initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
-										initiativeFinal[2] = (float) (initiativeFinal[2]);
-									}
-									if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3])) {
-										initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
-										initiativeFinal[3] = (float) (initiativeFinal[3]);
-									}
+									displayInitiatives();
 								}
 							}
-							else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
+							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
+								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
 								
-								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0])) {
+									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
+									initiativeFinal[0] = (float) (initiativeFinal[0]);
 									
-									if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
-										initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
-										initiativeFinal[5] = (float) (initiativeFinal[5]);
-									}
-									if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
-										initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
-										initiativeFinal[0] = (float) (initiativeFinal[0]);
-									}
+									displayInitiatives();
 								}
-								else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3])) {
+									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
+									initiativeFinal[3] = (float) (initiativeFinal[3]);
 									
-									if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
-										initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
-										initiativeFinal[5] = (float) (initiativeFinal[5]);
-									}
-									if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3])) {
-										initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
-										initiativeFinal[3] = (float) (initiativeFinal[3]);
-									}
-								}
-								else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
-									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
-									
-									if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0])) {
-										initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
-										initiativeFinal[0] = (float) (initiativeFinal[0]);
-									}
-									if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3])) {
-										initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
-										initiativeFinal[3] = (float) (initiativeFinal[3]);
-									}
-								}
-							}
-							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
-								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
-								
-								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
-									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
-									
-									if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
-										initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
-										initiativeFinal[2] = (float) (initiativeFinal[2]);
-									}
-									if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0])) {
-										initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
-										initiativeFinal[0] = (float) (initiativeFinal[0]);
-									}
-								}
-								else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
-									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
-									
-									if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
-										initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
-										initiativeFinal[2] = (float) (initiativeFinal[2]);
-									}
-									if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3])) {
-										initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
-										initiativeFinal[3] = (float) (initiativeFinal[3]);
-									}
-								}
-								else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0])) {
-									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
-									
-									if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0])) {
-										initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
-										initiativeFinal[0] = (float) (initiativeFinal[0]);
-									}
-									if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3])) {
-										initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
-										initiativeFinal[3] = (float) (initiativeFinal[3]);
-									}
+									displayInitiatives();
 								}
 							}
 						}
-						
-						else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[5])) {
-							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.6f);
+						else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
+							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
 							
-							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);								
+							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1])) {
+								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
 								
-								if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+								if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {
+									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
+									initiativeFinal[1] = (float) (initiativeFinal[1]);
 									
-									if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
-										initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
-										initiativeFinal[5] = (float) (initiativeFinal[5]);
-									}
-									if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
-										initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
-										initiativeFinal[1] = (float) (initiativeFinal[1]);
-									}
+									displayInitiatives();
 								}
-								else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
+									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
+									initiativeFinal[0] = (float) (initiativeFinal[0]);
 									
-									if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
-										initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
-										initiativeFinal[5] = (float) (initiativeFinal[5]);
-									}
-									if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
-										initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
-										initiativeFinal[0] = (float) (initiativeFinal[0]);
-									}
-								}
-								else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
-									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
-									
-									if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {
-										initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
-										initiativeFinal[1] = (float) (initiativeFinal[1]);
-									}
-									if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
-										initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
-										initiativeFinal[0] = (float) (initiativeFinal[0]);
-									}
+									displayInitiatives();
 								}
 							}
-							else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
+							else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {
+								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
 								
-								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1])) {
+									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
+									initiativeFinal[1] = (float) (initiativeFinal[1]);
 									
-									if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
-										initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
-										initiativeFinal[5] = (float) (initiativeFinal[5]);
-									}
-									if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
-										initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
-										initiativeFinal[1] = (float) (initiativeFinal[1]);
-									}
+									displayInitiatives();
 								}
-								else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3])) {
+									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
+									initiativeFinal[3] = (float) (initiativeFinal[3]);
 									
-									if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
-										initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
-										initiativeFinal[5] = (float) (initiativeFinal[5]);
-									}
-									if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3])) {
-										initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
-										initiativeFinal[3] = (float) (initiativeFinal[3]);
-									}
-								}
-								else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
-									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
-									
-									if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1])) {
-										initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
-										initiativeFinal[1] = (float) (initiativeFinal[1]);
-									}
-									if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3])) {
-										initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
-										initiativeFinal[3] = (float) (initiativeFinal[3]);
-									}
+									displayInitiatives();
 								}
 							}
-							else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[5])) {
-								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
+							else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
+								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
 								
-								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0])) {
+									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
+									initiativeFinal[0] = (float) (initiativeFinal[0]);
 									
-									if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
-										initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
-										initiativeFinal[5] = (float) (initiativeFinal[5]);
-									}
-									if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
-										initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
-										initiativeFinal[0] = (float) (initiativeFinal[0]);
-									}
+									displayInitiatives();
 								}
-								else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[5])) {
-									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3])) {
+									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
+									initiativeFinal[3] = (float) (initiativeFinal[3]);
 									
-									if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[5])) {
-										initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
-										initiativeFinal[5] = (float) (initiativeFinal[5]);
-									}
-									if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3])) {
-										initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.3f);
-										initiativeFinal[3] = (float) (initiativeFinal[3]);
-									}
-								}
-								else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0])) {
-									initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.4f);
-									
-									if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0])) {
-										initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
-										initiativeFinal[0] = (float) (initiativeFinal[0]);
-									}
-									if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3])) {
-										initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
-										initiativeFinal[3] = (float) (initiativeFinal[3]);
-									}
-								}
-							}
-							else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1])) {
-								initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.5f);
-								
-								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1])) {
-									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
-									
-									if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {
-										initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
-										initiativeFinal[1] = (float) (initiativeFinal[1]);
-									}
-									if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
-										initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
-										initiativeFinal[0] = (float) (initiativeFinal[0]);
-									}
-								}
-								else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {
-									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
-									
-									if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1])) {
-										initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
-										initiativeFinal[1] = (float) (initiativeFinal[1]);
-									}
-									if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3])) {
-										initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
-										initiativeFinal[3] = (float) (initiativeFinal[3]);
-									}
-								}
-								else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
-									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
-									
-									if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0])) {
-										initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
-										initiativeFinal[0] = (float) (initiativeFinal[0]);
-									}
-									if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3])) {
-										initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
-										initiativeFinal[3] = (float) (initiativeFinal[3]);
-									}
+									displayInitiatives();
 								}
 							}
 						}
+					}
+					
+					else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
+						initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.6f);
 						
-						else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[2])) {
-							initiativeFinal[5] = (float) (initiativeFinal[5]) + (0.6f);
+						if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
+							initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);								
 							
-							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
-								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.5f);								
+							if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
+								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
 								
-								if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
-									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+								if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2])) {
+									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
+									initiativeFinal[2] = (float) (initiativeFinal[2]);
 									
-									if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2])) {
-										initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
-										initiativeFinal[2] = (float) (initiativeFinal[2]);
-									}
-									if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
-										initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
-										initiativeFinal[1] = (float) (initiativeFinal[1]);
-									}
+									displayInitiatives();
 								}
-								else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2])) {
-									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
+									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
+									initiativeFinal[1] = (float) (initiativeFinal[1]);
 									
-									if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
-										initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
-										initiativeFinal[2] = (float) (initiativeFinal[2]);
-									}
-									if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0])) {
-										initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
-										initiativeFinal[0] = (float) (initiativeFinal[0]);
-									}
-								}
-								else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
-									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
-									
-									if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {
-										initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
-										initiativeFinal[1] = (float) (initiativeFinal[1]);
-									}
-									if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
-										initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
-										initiativeFinal[0] = (float) (initiativeFinal[0]);
-									}
+									displayInitiatives();
 								}
 							}
-							else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
-								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
+							else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2])) {
+								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
 								
-								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
-									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+								if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
+									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
+									initiativeFinal[2] = (float) (initiativeFinal[2]);
 									
-									if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2])) {
-										initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
-										initiativeFinal[2] = (float) (initiativeFinal[2]);
-									}
-									if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
-										initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
-										initiativeFinal[1] = (float) (initiativeFinal[1]);
-									}
+									displayInitiatives();
 								}
-								else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2])) {
-									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0])) {
+									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
+									initiativeFinal[0] = (float) (initiativeFinal[0]);
 									
-									if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
-										initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
-										initiativeFinal[2] = (float) (initiativeFinal[2]);
-									}
-									if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3])) {
-										initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
-										initiativeFinal[3] = (float) (initiativeFinal[3]);
-									}
-								}
-								else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
-									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
-									
-									if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1])) {
-										initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
-										initiativeFinal[1] = (float) (initiativeFinal[1]);
-									}
-									if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3])) {
-										initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
-										initiativeFinal[3] = (float) (initiativeFinal[3]);
-									}
+									displayInitiatives();
 								}
 							}
-							else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2])) {
-								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
+							else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
+								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
 								
-								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
-									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+								if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {
+									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
+									initiativeFinal[1] = (float) (initiativeFinal[1]);
 									
-									if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
-										initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
-										initiativeFinal[2] = (float) (initiativeFinal[2]);
-									}
-									if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0])) {
-										initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
-										initiativeFinal[0] = (float) (initiativeFinal[0]);
-									}
+									displayInitiatives();
 								}
-								else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
-									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+								else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
+									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
+									initiativeFinal[0] = (float) (initiativeFinal[0]);
 									
-									if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
-										initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
-										initiativeFinal[2] = (float) (initiativeFinal[2]);
-									}
-									if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3])) {
-										initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
-										initiativeFinal[3] = (float) (initiativeFinal[3]);
-									}
-								}
-								else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0])) {
-									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
-									
-									if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0])) {
-										initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
-										initiativeFinal[0] = (float) (initiativeFinal[0]);
-									}
-									if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3])) {
-										initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
-										initiativeFinal[3] = (float) (initiativeFinal[3]);
-									}
-								}
-							}
-							else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
-								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
-								
-								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1])) {
-									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
-									
-									if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {
-										initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
-										initiativeFinal[1] = (float) (initiativeFinal[1]);
-									}
-									if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
-										initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
-										initiativeFinal[0] = (float) (initiativeFinal[0]);
-									}
-								}
-								else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {
-									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
-									
-									if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1])) {
-										initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
-										initiativeFinal[1] = (float) (initiativeFinal[1]);
-									}
-									if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3])) {
-										initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
-										initiativeFinal[3] = (float) (initiativeFinal[3]);
-									}
-								}
-								else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
-									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
-									
-									if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0])) {
-										initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
-										initiativeFinal[0] = (float) (initiativeFinal[0]);
-									}
-									if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3])) {
-										initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
-										initiativeFinal[3] = (float) (initiativeFinal[3]);
-									}
+									displayInitiatives();
 								}
 							}
 						}
-						
-						
-						displayInitiatives();
+						else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
+							initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
+								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+								
+								if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2])) {
+									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
+									initiativeFinal[2] = (float) (initiativeFinal[2]);
+									
+									displayInitiatives();
+								}
+								else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
+									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
+									initiativeFinal[1] = (float) (initiativeFinal[1]);
+									
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2])) {
+								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+								
+								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
+									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
+									initiativeFinal[2] = (float) (initiativeFinal[2]);
+									
+									displayInitiatives();
+								}
+								else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3])) {
+									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
+									initiativeFinal[3] = (float) (initiativeFinal[3]);
+									
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
+								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								
+								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1])) {
+									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
+									initiativeFinal[1] = (float) (initiativeFinal[1]);
+									
+									displayInitiatives();
+								}
+								else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3])) {
+									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
+									initiativeFinal[3] = (float) (initiativeFinal[3]);
+									
+									displayInitiatives();
+								}
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[2])) {
+							initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
+								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+								
+								if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
+									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
+									initiativeFinal[2] = (float) (initiativeFinal[2]);
+									
+									displayInitiatives();
+								}
+								else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0])) {
+									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
+									initiativeFinal[0] = (float) (initiativeFinal[0]);
+									
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[2])) {
+								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+								
+								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[2])) {
+									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
+									initiativeFinal[2] = (float) (initiativeFinal[2]);
+									
+									displayInitiatives();
+								}
+								else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3])) {
+									initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.3f);
+									initiativeFinal[3] = (float) (initiativeFinal[3]);
+									
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0])) {
+								initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.4f);
+								
+								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0])) {
+									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
+									initiativeFinal[0] = (float) (initiativeFinal[0]);
+									
+									displayInitiatives();
+								}
+								else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3])) {
+									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
+									initiativeFinal[3] = (float) (initiativeFinal[3]);
+									
+									displayInitiatives();
+								}
+							}
+						}
+						else if ((ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[2] > ArrayOfInitiative.initiative[1])) {
+							initiativeFinal[2] = (float) (initiativeFinal[2]) + (0.5f);
+							
+							if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0]) && (ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1])) {
+								initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.4f);
+								
+								if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {
+									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
+									initiativeFinal[1] = (float) (initiativeFinal[1]);
+									
+									displayInitiatives();
+								}
+								else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
+									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
+									initiativeFinal[0] = (float) (initiativeFinal[0]);
+									
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1])) {
+								initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.4f);
+								
+								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[1])) {
+									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
+									initiativeFinal[1] = (float) (initiativeFinal[1]);
+									
+									displayInitiatives();
+								}
+								else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3])) {
+									initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.3f);
+									initiativeFinal[3] = (float) (initiativeFinal[3]);
+									
+									displayInitiatives();
+								}
+							}
+							else if ((ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[3]) && (ArrayOfInitiative.initiative[1] > ArrayOfInitiative.initiative[0])) {
+								initiativeFinal[1] = (float) (initiativeFinal[1]) + (0.4f);
+								
+								if ((ArrayOfInitiative.initiative[3] > ArrayOfInitiative.initiative[0])) {
+									initiativeFinal[3] = (float) (initiativeFinal[3]) + (0.3f);
+									initiativeFinal[0] = (float) (initiativeFinal[0]);
+									
+									displayInitiatives();
+								}
+								else if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[3])) {
+									initiativeFinal[0] = (float) (initiativeFinal[0]) + (0.3f);
+									initiativeFinal[3] = (float) (initiativeFinal[3]);
+									
+									displayInitiatives();
+								}
+							}
+						}
 					}
 				}
-			}		  
+			}
+		}		  
 	}
 	
 	
@@ -5643,6 +7476,9 @@ public class Host extends Activity {
 		
 		initiativeRolled[0] = "no";
 		initiativeRolled[5] = "no";
+		
+		rollOff ="yes";
+		rollOff305 ="yes";
 		
 		runOnUiThread(new Runnable() {
   	  	    @Override
@@ -5675,6 +7511,9 @@ public class Host extends Activity {
 		
 		initiativeRolled[0] = "no";
 		initiativeRolled[1] = "no";
+		
+		rollOff ="yes";
+		rollOff301 ="yes";
 		
 		runOnUiThread(new Runnable() {
   	  	    @Override
@@ -5711,6 +7550,9 @@ public class Host extends Activity {
 		initiativeRolled[1] = "no";
 		initiativeRolled[5] = "no";
 		
+		rollOff ="yes";
+		rollOff315 ="yes";
+		
 		runOnUiThread(new Runnable() {
   	  	    @Override
   	  	    public void run() {
@@ -5743,6 +7585,9 @@ public class Host extends Activity {
 		initiativeRolled[2] = "no";
 		initiativeRolled[5] = "no";
 		
+		rollOff ="yes";
+		rollOff425 ="yes";
+		
 		runOnUiThread(new Runnable() {
   	  	    @Override
   	  	    public void run() {
@@ -5774,6 +7619,9 @@ public class Host extends Activity {
 		
 		initiativeRolled[2] = "no";
 		initiativeRolled[0] = "no";
+		
+		rollOff ="yes";
+		rollOff420 ="yes";
 		
 		runOnUiThread(new Runnable() {
   	  	    @Override
@@ -5810,6 +7658,9 @@ public class Host extends Activity {
 		initiativeRolled[2] = "no";
 		initiativeRolled[1] = "no";
 		
+		rollOff ="yes";
+		rollOff421 ="yes";
+		
 		runOnUiThread(new Runnable() {
   	  	    @Override
   	  	    public void run() {
@@ -5845,6 +7696,9 @@ public class Host extends Activity {
 		initiativeRolled[1] = "no";
 		initiativeRolled[5] = "no";
 		initiativeRolled[0] = "no";
+		
+		rollOff ="yes";
+		rollOff4150 ="yes";
 		
 		runOnUiThread(new Runnable() {
   	  	    @Override
@@ -5885,6 +7739,9 @@ public class Host extends Activity {
 		initiativeRolled[1] = "no";
 		initiativeRolled[5] = "no";
 		
+		rollOff ="yes";
+		rollOff4215 ="yes";
+		
 		runOnUiThread(new Runnable() {
 		  	    @Override
 		  	    public void run() {
@@ -5924,6 +7781,9 @@ public class Host extends Activity {
 		initiativeRolled[5] = "no";
 		initiativeRolled[0] = "no";
 		
+		rollOff ="yes";
+		rollOff4250 ="yes";
+		
 		runOnUiThread(new Runnable() {
 		  	    @Override
 		  	    public void run() {
@@ -5962,6 +7822,9 @@ public class Host extends Activity {
 		initiativeRolled[2] = "no";
 		initiativeRolled[0] = "no";
 		initiativeRolled[1] = "no";
+		
+		rollOff ="yes";
+		rollOff4201 ="yes";
 		
 		runOnUiThread(new Runnable() {
 		  	    @Override
@@ -6004,6 +7867,9 @@ public class Host extends Activity {
 		initiativeRolled[3] = "no";
 		initiativeRolled[0] = "no";
 		
+		rollOff ="yes";
+		rollOff530 ="yes";
+		
 		runOnUiThread(new Runnable() {
 		  	    @Override
 		  	    public void run() {
@@ -6038,6 +7904,9 @@ public class Host extends Activity {
 		
 		initiativeRolled[3] = "no";
 		initiativeRolled[1] = "no";
+		
+		rollOff ="yes";
+		rollOff531 ="yes";
 		
 		runOnUiThread(new Runnable() {
 		  	    @Override
@@ -6074,6 +7943,9 @@ public class Host extends Activity {
 		initiativeRolled[3] = "no";
 		initiativeRolled[2] = "no";
 		
+		rollOff ="yes";
+		rollOff532 ="yes";
+		
 		runOnUiThread(new Runnable() {
 		  	    @Override
 		  	    public void run() {
@@ -6109,6 +7981,9 @@ public class Host extends Activity {
 		initiativeRolled[3] = "no";
 		initiativeRolled[5] = "no";
 		
+		rollOff ="yes";
+		rollOff535 ="yes";
+		
 		runOnUiThread(new Runnable() {
 		  	    @Override
 		  	    public void run() {
@@ -6136,11 +8011,14 @@ public class Host extends Activity {
 		hostRollsInitiative();		
 	}
 	
-public void double301() {
+	public void double301() {
 		
 		initiativeRolled[3] = "no";
 		initiativeRolled[0] = "no";
 		initiativeRolled[1] = "no";
+		
+		rollOff ="yes";
+		rollOff5301 ="yes";
 		
 		runOnUiThread(new Runnable() {
 		  	    @Override
@@ -6178,11 +8056,14 @@ public void double301() {
 		sendToClient1(str6);
 	}
 
-public void double302() {
+	public void double302() {
 	
 		initiativeRolled[3] = "no";
 		initiativeRolled[0] = "no";
 		initiativeRolled[2] = "no";
+		
+		rollOff ="yes";
+		rollOff5302 ="yes";
 		
 		runOnUiThread(new Runnable() {
 		  	    @Override
@@ -6220,11 +8101,14 @@ public void double302() {
 		sendToClient2(str6);
 	}
 
-public void double305() {
+	public void double305() {
 	
 		initiativeRolled[3] = "no";
 		initiativeRolled[0] = "no";
 		initiativeRolled[5] = "no";
+		
+		rollOff ="yes";
+		rollOff5305 ="yes";
 		
 		runOnUiThread(new Runnable() {
 		  	    @Override
@@ -6259,11 +8143,14 @@ public void double305() {
 		hostRollsInitiative();
 	}
 
-public void double312() {
+	public void double312() {
 	
 		initiativeRolled[3] = "no";
 		initiativeRolled[1] = "no";
 		initiativeRolled[2] = "no";
+		
+		rollOff ="yes";
+		rollOff5312 ="yes";
 		
 		runOnUiThread(new Runnable() {
 		  	    @Override
@@ -6301,11 +8188,14 @@ public void double312() {
 		sendToClient2(str6);
 	}
 
-public void double315() {
+	public void double315() {
 	
 		initiativeRolled[3] = "no";
 		initiativeRolled[1] = "no";
 		initiativeRolled[5] = "no";
+		
+		rollOff ="yes";
+		rollOff5315 ="yes";
 		
 		runOnUiThread(new Runnable() {
 		  	    @Override
@@ -6340,11 +8230,14 @@ public void double315() {
 		hostRollsInitiative();
 	}
 
-public void double325() {
+	public void double325() {
 	
 		initiativeRolled[3] = "no";
 		initiativeRolled[2] = "no";
 		initiativeRolled[5] = "no";
+		
+		rollOff ="yes";
+		rollOff5325 ="yes";
 		
 		runOnUiThread(new Runnable() {
 		  	    @Override
@@ -6379,58 +8272,64 @@ public void double325() {
 		hostRollsInitiative();
 	}
 
-public void double0125() {
+	public void double0125() {
 	
-	initiativeRolled[0] = "no";
-	initiativeRolled[1] = "no";
-	initiativeRolled[2] = "no";
-	initiativeRolled[5] = "no";
+		initiativeRolled[0] = "no";
+		initiativeRolled[1] = "no";
+		initiativeRolled[2] = "no";
+		initiativeRolled[5] = "no";
+		
+		rollOff ="yes";
+		rollOff40125 ="yes";
+		
+		runOnUiThread(new Runnable() {
+		  	    @Override
+		  	    public void run() {
+		  	    	
+	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+	  			
+	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  			centerscrolltext.setTypeface(typeFace);		    	  			
+	  			
+		  	    	
+		    		centerscrolltext.setVisibility(View.VISIBLE);
+		  		//centerscrolltext.startAnimation(animAlphaText);
+				centerscrolltext.append("\n" + "Re-roll for inititiative...");						
+		  	    }
+		  	});
+		
+		String str = "re-roll for inititiative...";
+		sendToClient0(str);						
+		
+		String str2 = "Re-rollInitiative";
+		sendToClient0(str2);
+		
+		String str3 = "re-roll for inititiative...";
+		sendToClient1(str3);						
+		
+		String str4 = "Re-rollInitiative";
+		sendToClient1(str4);
+		
+		String str5 = "re-roll for inititiative...";
+		sendToClient2(str5);						
+		
+		String str6 = "Re-rollInitiative";
+		sendToClient2(str6);		
 	
-	runOnUiThread(new Runnable() {
-	  	    @Override
-	  	    public void run() {
-	  	    	
-  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
-  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
-  			
-  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-  			centerscrolltext.setTypeface(typeFace);		    	  			
-  			
-	  	    	
-	    		centerscrolltext.setVisibility(View.VISIBLE);
-	  		//centerscrolltext.startAnimation(animAlphaText);
-			centerscrolltext.append("\n" + "Re-roll for inititiative...");						
-	  	    }
-	  	});
-	
-	String str = "re-roll for inititiative...";
-	sendToClient0(str);						
-	
-	String str2 = "Re-rollInitiative";
-	sendToClient0(str2);
-	
-	String str3 = "re-roll for inititiative...";
-	sendToClient1(str3);						
-	
-	String str4 = "Re-rollInitiative";
-	sendToClient1(str4);
-	
-	String str5 = "re-roll for inititiative...";
-	sendToClient2(str5);						
-	
-	String str6 = "Re-rollInitiative";
-	sendToClient2(str6);		
+		
+		hostRollsInitiative();
+	}
 
-	
-	hostRollsInitiative();
-}
-
-public void double3012() {
+	public void double3012() {
 	
 		initiativeRolled[3] = "no";
 		initiativeRolled[0] = "no";
 		initiativeRolled[1] = "no";
-		initiativeRolled[2] = "no";
+		initiativeRolled[2] = "no";		
+		
+		rollOff ="yes";
+		rollOff53012 ="yes";
 		
 		runOnUiThread(new Runnable() {
 		  	    @Override
@@ -6474,12 +8373,15 @@ public void double3012() {
 		sendToClient2(str8);
 	}
 
-public void double3015() {
+	public void double3015() {
 	
 		initiativeRolled[3] = "no";
 		initiativeRolled[0] = "no";
 		initiativeRolled[1] = "no";
 		initiativeRolled[5] = "no";
+		
+		rollOff ="yes";
+		rollOff53015 ="yes";
 		
 		runOnUiThread(new Runnable() {
 		  	    @Override
@@ -6520,12 +8422,15 @@ public void double3015() {
 		hostRollsInitiative();
 	}
 
-public void double3125() {
+	public void double3125() {
 	
 		initiativeRolled[3] = "no";
 		initiativeRolled[1] = "no";
 		initiativeRolled[2] = "no";
 		initiativeRolled[5] = "no";
+		
+		rollOff ="yes";
+		rollOff53125 ="yes";
 		
 		runOnUiThread(new Runnable() {
 		  	    @Override
@@ -6566,12 +8471,15 @@ public void double3125() {
 		hostRollsInitiative();
 	}
 
-public void double3025() {
+	public void double3025() {
 	
 		initiativeRolled[3] = "no";
 		initiativeRolled[0] = "no";
 		initiativeRolled[2] = "no";
 		initiativeRolled[5] = "no";
+		
+		rollOff ="yes";
+		rollOff53025 ="yes";
 		
 		runOnUiThread(new Runnable() {
 		  	    @Override
@@ -6612,13 +8520,16 @@ public void double3025() {
 		hostRollsInitiative();
 	}
 
-public void double30125() {
+	public void double30125() {
 	
 		initiativeRolled[3] = "no";
 		initiativeRolled[0] = "no";
 		initiativeRolled[1] = "no";
 		initiativeRolled[2] = "no";
 		initiativeRolled[5] = "no";
+		
+		rollOff ="yes";
+		rollOff530125 ="yes";
 		
 		runOnUiThread(new Runnable() {
 		  	    @Override
@@ -6707,6 +8618,9 @@ public void double30125() {
 					  	  	  		sixSidedWobbleStart();
 					  	  	  		
 					  	  	  		
+					  	  	  		centerscrolltext.bringToFront();
+					  	  	  		
+					  	  	  		
 					  	  	  		determineInitiative();
 					  	  	  		
 					  	  	  		
@@ -6745,6 +8659,10 @@ public void double30125() {
 		
 	}
 	
+	public void deadMethod() {
+		
+	}
+	
 	public void displayInitiatives() {
 		
 		//FOR TESTING:
@@ -6760,21 +8678,1144 @@ public void double30125() {
 	  			
   	  	    	
   	    		centerscrolltext.setVisibility(View.VISIBLE);
-		  		//centerscrolltext.startAnimation(animAlphaText);
+		  		//centerscrolltext.startAnimation(animAlphaText);  	    		
   	    		
   	    		
-  	    		centerscrolltext.append("\n" + ArrayOfPlayers.player[5] + "\n" + initiativeFinal[5]);
+  	    		/*
+  	    		centerscrolltext.append("\n" + ArrayOfPlayers.player[5] + " rolls " + initiativeFinal[5] + ".");
   	    		
   	    		for (int i=0; i < (clientWorkers.size()); i++) {  	    			
   	    			
-  	    			centerscrolltext.append("\n" + ArrayOfPlayers.player[i] + "\n" + initiativeFinal[i]);
+  	    			centerscrolltext.append("\n" + ArrayOfPlayers.player[i] + " rolls " + initiativeFinal[i] + ".");
   	    		}
-  	    		//
-  	    		//centerscrolltext.append("\n" + rollOff + "\n" + rollOff305 + "\n" + rollOff301 + "\n" + rollOff315);
+  	    		*/ 	    		
   	    		
-  	    		//float test = 0.1f;
-  	    		//centerscrolltext.append("\n" + test);
   	    		
+  	    		if (numberOfPlayers == 2) {
+  	    			
+  	    			centerscrolltext.append("\n" + "\n" + "Initiative Results:");
+  	    			
+  	    			final String str = "\n" + "Initiative Results:";
+  	    			sendToClient0(str);
+  	    			
+  	    			
+  	    			if (initiativeFinal[5] > initiativeFinal[0]) {
+  	    				
+  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".");
+  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".");
+  	    				
+  	    				final String str2 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+  	    				sendToClient0(str2);
+  	    				final String str3 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+  	    				sendToClient0(str3);
+  	    			}
+  	    			else if (initiativeFinal[0] > initiativeFinal[5]) {
+  	    				
+  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".");
+  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".");
+  	    				
+  	    				final String str2 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+  	    				sendToClient0(str2);
+  	    				final String str3 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+  	    				sendToClient0(str3);
+  	    			}   			
+  	    		}
+  	    		else if (numberOfPlayers == 3) {
+  	    			
+  	    			centerscrolltext.append("\n" + "\n" + "Initiative Results:");
+  	    			
+  	    			final String str = "\n" + "Initiative Results:";
+  	    			sendToClient0(str);
+  	    			
+  	    			final String str8 = "\n" + "Initiative Results:";
+  	    			sendToClient1(str8);
+  	    			
+  	    			
+  	    			if ((initiativeFinal[5] > initiativeFinal[0]) && (initiativeFinal[5] > initiativeFinal[1])) {
+  	    				
+  	    				if (initiativeFinal[0] > initiativeFinal[1]) {
+  	    					
+  	    					centerscrolltext.append("\n" + ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".");
+  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".");
+  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".");
+  	  	    				
+  	  	    				final String str2 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+  	  	    				sendToClient0(str2);
+  	  	    				final String str3 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+  	  	    				sendToClient0(str3);
+  	  	    				final String str4 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+  	  	    				sendToClient0(str4);
+  	  	    				
+  	  	    				final String str5 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	    				sendToClient1(str5);
+	  	    				final String str6 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	    				sendToClient1(str6);
+	  	    				final String str7 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	    				sendToClient1(str7);
+  	    				}
+  	    				else if (initiativeFinal[1] > initiativeFinal[0]) {
+  	    					
+  	    					centerscrolltext.append("\n" + ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".");
+  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".");
+  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".");
+  	  	    				
+  	  	    				final String str2 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+  	  	    				sendToClient0(str2);
+  	  	    				final String str3 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+  	  	    				sendToClient0(str3);
+  	  	    				final String str4 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+  	  	    				sendToClient0(str4);
+  	  	    				
+  	  	    				final String str5 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	    				sendToClient1(str5);
+	  	    				final String str6 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	    				sendToClient1(str6);
+	  	    				final String str7 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	    				sendToClient1(str7);
+  	    				} 	    				
+  	    			}
+  	    			else if ((initiativeFinal[0] > initiativeFinal[5]) && (initiativeFinal[0] > initiativeFinal[1])) {
+  	    				
+  	    				if (initiativeFinal[5] > initiativeFinal[1]) {
+  	    					
+  	    					centerscrolltext.append("\n" + ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".");
+  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".");
+  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".");
+  	  	    				
+  	  	    				final String str2 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+  	  	    				sendToClient0(str2);
+  	  	    				final String str3 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+  	  	    				sendToClient0(str3);
+  	  	    				final String str4 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+  	  	    				sendToClient0(str4);
+  	  	    				
+  	  	    				final String str5 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	    				sendToClient1(str5);
+	  	    				final String str6 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	    				sendToClient1(str6);
+	  	    				final String str7 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	    				sendToClient1(str7);
+  	    				}
+  	    				else if (initiativeFinal[1] > initiativeFinal[5]) {
+  	    					
+  	    					centerscrolltext.append("\n" + ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".");
+  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".");
+  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".");
+  	  	    				
+  	  	    				final String str2 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+  	  	    				sendToClient0(str2);
+  	  	    				final String str3 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+  	  	    				sendToClient0(str3);
+  	  	    				final String str4 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+  	  	    				sendToClient0(str4);
+  	  	    				
+  	  	    				final String str5 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	    				sendToClient1(str5);
+	  	    				final String str6 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	    				sendToClient1(str6);
+	  	    				final String str7 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	    				sendToClient1(str7);
+  	    				}
+  	    			}
+  	    			else if ((initiativeFinal[1] > initiativeFinal[5]) && (initiativeFinal[1] > initiativeFinal[0])) {
+  	    				
+  	    				if (initiativeFinal[5] > initiativeFinal[0]) {
+  	    					
+  	    					centerscrolltext.append("\n" + ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".");
+  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".");
+  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".");
+  	  	    				
+  	  	    				final String str2 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+  	  	    				sendToClient0(str2);
+  	  	    				final String str3 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+  	  	    				sendToClient0(str3);
+  	  	    				final String str4 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+  	  	    				sendToClient0(str4);
+  	  	    				
+  	  	    				final String str5 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	    				sendToClient1(str5);
+	  	    				final String str6 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	    				sendToClient1(str6);
+	  	    				final String str7 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	    				sendToClient1(str7);
+  	    				}
+  	    				else if (initiativeFinal[0] > initiativeFinal[5]) {
+  	    					
+  	    					centerscrolltext.append("\n" + ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".");
+  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".");
+  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".");
+  	  	    				
+  	  	    				final String str2 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+  	  	    				sendToClient0(str2);
+  	  	    				final String str3 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+  	  	    				sendToClient0(str3);
+  	  	    				final String str4 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+  	  	    				sendToClient0(str4);
+  	  	    				
+  	  	    				final String str5 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	    				sendToClient1(str5);
+	  	    				final String str6 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	    				sendToClient1(str6);
+	  	    				final String str7 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	    				sendToClient1(str7);
+  	    				}
+  	    			}
+  	    		}
+  	    		else if (numberOfPlayers == 4) {
+  	    			
+  	    			centerscrolltext.append("\n" + "\n" + "Initiative Results:");
+  	    			
+  	    			final String str = "\n" + "Initiative Results:";
+  	    			sendToClient0(str);
+  	    			
+  	    			final String str14 = "\n" + "Initiative Results:";
+  	    			sendToClient1(str14);
+  	    			
+  	    			final String str15 = "\n" + "Initiative Results:";
+  	    			sendToClient2(str15);
+  	    			
+  	    			
+  	    			if ((initiativeFinal[5] > initiativeFinal[0]) && (initiativeFinal[5] > initiativeFinal[1]) && (initiativeFinal[5] > initiativeFinal[2])) {
+  	    				
+  	    				if ((initiativeFinal[0] > initiativeFinal[1]) && (initiativeFinal[0] > initiativeFinal[2])) {
+  	    					
+  	    					if ((initiativeFinal[1] > initiativeFinal[2])) {
+  	    						
+  	    						centerscrolltext.append("\n" + ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".");
+  	  	  	    				
+  	  	  	    				final String str2 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+  	  	  	    				sendToClient0(str2);
+  	  	  	    				final String str3 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+  	  	  	    				sendToClient0(str3);
+  	  	  	    				final String str4 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+  	  	  	    				sendToClient0(str4);
+  	  	  	    				final String str5 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient0(str5);
+	  	  	    				
+	  	  	    				final String str6 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient1(str6);
+	  	  	    				final String str7 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient1(str7);
+	  	  	    				final String str8 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient1(str8);
+	  	  	    				final String str9 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient1(str9);
+	  	  	    				
+	  	  	    				final String str10 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient2(str10);
+	  	  	    				final String str11 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient2(str11);
+	  	  	    				final String str12 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient2(str12);
+	  	  	    				final String str13 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient2(str13);
+  	    					}
+  	    					else if ((initiativeFinal[2] > initiativeFinal[1])) {
+  	    						
+  	    						centerscrolltext.append("\n" + ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".");
+  	  	  	    				
+  	  	  	    				final String str2 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+  	  	  	    				sendToClient0(str2);
+  	  	  	    				final String str3 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+  	  	  	    				sendToClient0(str3);
+  	  	  	    				final String str4 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+  	  	  	    				sendToClient0(str4);
+  	  	  	    				final String str5 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient0(str5);
+	  	  	    				
+	  	  	    				final String str6 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient1(str6);
+	  	  	    				final String str7 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient1(str7);
+	  	  	    				final String str8 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient1(str8);
+	  	  	    				final String str9 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient1(str9);
+	  	  	    				
+	  	  	    				final String str10 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient2(str10);
+	  	  	    				final String str11 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient2(str11);
+	  	  	    				final String str12 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient2(str12);
+	  	  	    				final String str13 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient2(str13);
+  	    					}
+  	    				}
+  	    				else if ((initiativeFinal[1] > initiativeFinal[0]) && (initiativeFinal[1] > initiativeFinal[2])) {
+  	    					
+  	    					if ((initiativeFinal[0] > initiativeFinal[2])) {
+  	    						
+  	    						centerscrolltext.append("\n" + ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".");
+  	  	  	    				
+  	  	  	    				final String str2 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+  	  	  	    				sendToClient0(str2);
+  	  	  	    				final String str3 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+  	  	  	    				sendToClient0(str3);
+  	  	  	    				final String str4 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+  	  	  	    				sendToClient0(str4);
+  	  	  	    				final String str5 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient0(str5);
+	  	  	    				
+	  	  	    				final String str6 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient1(str6);
+	  	  	    				final String str7 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient1(str7);
+	  	  	    				final String str8 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient1(str8);
+	  	  	    				final String str9 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient1(str9);
+	  	  	    				
+	  	  	    				final String str10 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient2(str10);
+	  	  	    				final String str11 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient2(str11);
+	  	  	    				final String str12 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient2(str12);
+	  	  	    				final String str13 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient2(str13);
+  	    					}
+  	    					else if ((initiativeFinal[2] > initiativeFinal[0])) {
+  	    						
+  	    						centerscrolltext.append("\n" + ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".");
+  	  	  	    				
+  	  	  	    				final String str2 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+  	  	  	    				sendToClient0(str2);
+  	  	  	    				final String str3 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+  	  	  	    				sendToClient0(str3);
+  	  	  	    				final String str4 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+  	  	  	    				sendToClient0(str4);
+  	  	  	    				final String str5 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient0(str5);
+	  	  	    				
+	  	  	    				final String str6 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient1(str6);
+	  	  	    				final String str7 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient1(str7);
+	  	  	    				final String str8 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient1(str8);
+	  	  	    				final String str9 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient1(str9);
+	  	  	    				
+	  	  	    				final String str10 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient2(str10);
+	  	  	    				final String str11 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient2(str11);
+	  	  	    				final String str12 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient2(str12);
+	  	  	    				final String str13 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient2(str13);
+  	    					}
+  	    				}
+  	    				else if ((initiativeFinal[2] > initiativeFinal[0]) && (initiativeFinal[2] > initiativeFinal[1])) {
+  	    					
+  	    					if ((initiativeFinal[0] > initiativeFinal[1])) {
+  	    						
+  	    						centerscrolltext.append("\n" + ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".");
+  	  	  	    				
+  	  	  	    				final String str2 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+  	  	  	    				sendToClient0(str2);
+  	  	  	    				final String str3 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+  	  	  	    				sendToClient0(str3);
+  	  	  	    				final String str4 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+  	  	  	    				sendToClient0(str4);
+  	  	  	    				final String str5 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient0(str5);
+	  	  	    				
+	  	  	    				final String str6 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient1(str6);
+	  	  	    				final String str7 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient1(str7);
+	  	  	    				final String str8 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient1(str8);
+	  	  	    				final String str9 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient1(str9);
+	  	  	    				
+	  	  	    				final String str10 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient2(str10);
+	  	  	    				final String str11 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient2(str11);
+	  	  	    				final String str12 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient2(str12);
+	  	  	    				final String str13 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient2(str13);
+  	    					}
+  	    					else if ((initiativeFinal[1] > initiativeFinal[0])) {
+  	    						
+  	    						centerscrolltext.append("\n" + ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".");
+  	  	  	    				
+  	  	  	    				final String str2 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+  	  	  	    				sendToClient0(str2);
+  	  	  	    				final String str3 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+  	  	  	    				sendToClient0(str3);
+  	  	  	    				final String str4 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+  	  	  	    				sendToClient0(str4);
+  	  	  	    				final String str5 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient0(str5);
+	  	  	    				
+	  	  	    				final String str6 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient1(str6);
+	  	  	    				final String str7 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient1(str7);
+	  	  	    				final String str8 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient1(str8);
+	  	  	    				final String str9 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient1(str9);
+	  	  	    				
+	  	  	    				final String str10 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient2(str10);
+	  	  	    				final String str11 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient2(str11);
+	  	  	    				final String str12 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient2(str12);
+	  	  	    				final String str13 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient2(str13);
+  	    					}
+  	    				}
+  	    			}
+  	    			else if ((initiativeFinal[0] > initiativeFinal[5]) && (initiativeFinal[0] > initiativeFinal[1]) && (initiativeFinal[0] > initiativeFinal[2])) {
+  	    				
+  	    				if ((initiativeFinal[5] > initiativeFinal[1]) && (initiativeFinal[5] > initiativeFinal[2])) {
+  	    					
+  	    					if ((initiativeFinal[1] > initiativeFinal[2])) {
+  	    						
+  	    						centerscrolltext.append("\n" + ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".");
+  	  	  	    				
+  	  	  	    				final String str2 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+  	  	  	    				sendToClient0(str2);
+  	  	  	    				final String str3 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+  	  	  	    				sendToClient0(str3);
+  	  	  	    				final String str4 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+  	  	  	    				sendToClient0(str4);
+  	  	  	    				final String str5 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient0(str5);
+	  	  	    				
+	  	  	    				final String str6 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient1(str6);
+	  	  	    				final String str7 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient1(str7);
+	  	  	    				final String str8 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient1(str8);
+	  	  	    				final String str9 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient1(str9);
+	  	  	    				
+	  	  	    				final String str10 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient2(str10);
+	  	  	    				final String str11 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient2(str11);
+	  	  	    				final String str12 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient2(str12);
+	  	  	    				final String str13 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient2(str13);
+  	    					}
+  	    					else if ((initiativeFinal[2] > initiativeFinal[1])) {
+  	    						
+  	    						centerscrolltext.append("\n" + ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".");
+  	  	  	    				
+  	  	  	    				final String str2 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+  	  	  	    				sendToClient0(str2);
+  	  	  	    				final String str3 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+  	  	  	    				sendToClient0(str3);
+  	  	  	    				final String str4 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+  	  	  	    				sendToClient0(str4);
+  	  	  	    				final String str5 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient0(str5);
+	  	  	    				
+	  	  	    				final String str6 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient1(str6);
+	  	  	    				final String str7 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient1(str7);
+	  	  	    				final String str8 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient1(str8);
+	  	  	    				final String str9 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient1(str9);
+	  	  	    				
+	  	  	    				final String str10 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient2(str10);
+	  	  	    				final String str11 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient2(str11);
+	  	  	    				final String str12 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient2(str12);
+	  	  	    				final String str13 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient2(str13);
+  	    					}
+  	    				}
+  	    				else if ((initiativeFinal[1] > initiativeFinal[5]) && (initiativeFinal[1] > initiativeFinal[2])) {
+  	    					
+  	    					if ((initiativeFinal[5] > initiativeFinal[2])) {
+  	    						
+  	    						centerscrolltext.append("\n" + ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".");
+  	  	  	    				
+  	  	  	    				final String str2 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+  	  	  	    				sendToClient0(str2);
+  	  	  	    				final String str3 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+  	  	  	    				sendToClient0(str3);
+  	  	  	    				final String str4 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+  	  	  	    				sendToClient0(str4);
+  	  	  	    				final String str5 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient0(str5);
+	  	  	    				
+	  	  	    				final String str6 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient1(str6);
+	  	  	    				final String str7 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient1(str7);
+	  	  	    				final String str8 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient1(str8);
+	  	  	    				final String str9 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient1(str9);
+	  	  	    				
+	  	  	    				final String str10 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient2(str10);
+	  	  	    				final String str11 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient2(str11);
+	  	  	    				final String str12 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient2(str12);
+	  	  	    				final String str13 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient2(str13);
+  	    					}
+  	    					else if ((initiativeFinal[2] > initiativeFinal[5])) {
+  	    						
+  	    						centerscrolltext.append("\n" + ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".");
+  	  	  	    				
+  	  	  	    				final String str2 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+  	  	  	    				sendToClient0(str2);
+  	  	  	    				final String str3 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+  	  	  	    				sendToClient0(str3);
+  	  	  	    				final String str4 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+  	  	  	    				sendToClient0(str4);
+  	  	  	    				final String str5 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient0(str5);
+	  	  	    				
+	  	  	    				final String str6 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient1(str6);
+	  	  	    				final String str7 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient1(str7);
+	  	  	    				final String str8 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient1(str8);
+	  	  	    				final String str9 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient1(str9);
+	  	  	    				
+	  	  	    				final String str10 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient2(str10);
+	  	  	    				final String str11 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient2(str11);
+	  	  	    				final String str12 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient2(str12);
+	  	  	    				final String str13 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient2(str13);
+  	    					}
+  	    				}
+  	    				else if ((initiativeFinal[2] > initiativeFinal[5]) && (initiativeFinal[2] > initiativeFinal[1])) {
+  	    					
+  	    					if ((initiativeFinal[5] > initiativeFinal[1])) {
+  	    						
+  	    						centerscrolltext.append("\n" + ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".");
+  	  	  	    				
+  	  	  	    				final String str2 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+  	  	  	    				sendToClient0(str2);
+  	  	  	    				final String str3 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+  	  	  	    				sendToClient0(str3);
+  	  	  	    				final String str4 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+  	  	  	    				sendToClient0(str4);
+  	  	  	    				final String str5 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient0(str5);
+	  	  	    				
+	  	  	    				final String str6 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient1(str6);
+	  	  	    				final String str7 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient1(str7);
+	  	  	    				final String str8 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient1(str8);
+	  	  	    				final String str9 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient1(str9);
+	  	  	    				
+	  	  	    				final String str10 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient2(str10);
+	  	  	    				final String str11 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient2(str11);
+	  	  	    				final String str12 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient2(str12);
+	  	  	    				final String str13 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient2(str13);
+  	    					}
+  	    					else if ((initiativeFinal[1] > initiativeFinal[5])) {
+  	    						
+  	    						centerscrolltext.append("\n" + ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".");
+  	  	  	    				
+  	  	  	    				final String str2 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+  	  	  	    				sendToClient0(str2);
+  	  	  	    				final String str3 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+  	  	  	    				sendToClient0(str3);
+  	  	  	    				final String str4 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+  	  	  	    				sendToClient0(str4);
+  	  	  	    				final String str5 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient0(str5);
+	  	  	    				
+	  	  	    				final String str6 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient1(str6);
+	  	  	    				final String str7 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient1(str7);
+	  	  	    				final String str8 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient1(str8);
+	  	  	    				final String str9 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient1(str9);
+	  	  	    				
+	  	  	    				final String str10 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient2(str10);
+	  	  	    				final String str11 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient2(str11);
+	  	  	    				final String str12 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient2(str12);
+	  	  	    				final String str13 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient2(str13);
+  	    					}
+  	    				}
+  	    			}
+  	    			else if ((initiativeFinal[1] > initiativeFinal[5]) && (initiativeFinal[1] > initiativeFinal[0]) && (initiativeFinal[1] > initiativeFinal[2])) {
+  	    				
+  	    				if ((initiativeFinal[5] > initiativeFinal[0]) && (initiativeFinal[5] > initiativeFinal[2])) {
+  	    					
+  	    					if ((initiativeFinal[0] > initiativeFinal[2])) {
+  	    						
+  	    						centerscrolltext.append("\n" + ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".");
+  	  	  	    				
+  	  	  	    				final String str2 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+  	  	  	    				sendToClient0(str2);
+  	  	  	    				final String str3 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+  	  	  	    				sendToClient0(str3);
+  	  	  	    				final String str4 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+  	  	  	    				sendToClient0(str4);
+  	  	  	    				final String str5 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient0(str5);
+	  	  	    				
+	  	  	    				final String str6 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient1(str6);
+	  	  	    				final String str7 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient1(str7);
+	  	  	    				final String str8 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient1(str8);
+	  	  	    				final String str9 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient1(str9);
+	  	  	    				
+	  	  	    				final String str10 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient2(str10);
+	  	  	    				final String str11 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient2(str11);
+	  	  	    				final String str12 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient2(str12);
+	  	  	    				final String str13 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient2(str13);
+  	    					}
+  	    					else if ((initiativeFinal[2] > initiativeFinal[0])) {
+  	    						
+  	    						centerscrolltext.append("\n" + ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".");
+  	  	  	    				
+  	  	  	    				final String str2 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+  	  	  	    				sendToClient0(str2);
+  	  	  	    				final String str3 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+  	  	  	    				sendToClient0(str3);
+  	  	  	    				final String str4 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+  	  	  	    				sendToClient0(str4);
+  	  	  	    				final String str5 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient0(str5);
+	  	  	    				
+	  	  	    				final String str6 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient1(str6);
+	  	  	    				final String str7 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient1(str7);
+	  	  	    				final String str8 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient1(str8);
+	  	  	    				final String str9 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient1(str9);
+	  	  	    				
+	  	  	    				final String str10 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient2(str10);
+	  	  	    				final String str11 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient2(str11);
+	  	  	    				final String str12 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient2(str12);
+	  	  	    				final String str13 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient2(str13);
+  	    					}
+  	    				}
+  	    				else if ((initiativeFinal[0] > initiativeFinal[5]) && (initiativeFinal[0] > initiativeFinal[2])) {
+  	    					
+  	    					if ((initiativeFinal[5] > initiativeFinal[2])) {
+  	    						
+  	    						centerscrolltext.append("\n" + ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".");
+  	  	  	    				
+  	  	  	    				final String str2 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+  	  	  	    				sendToClient0(str2);
+  	  	  	    				final String str3 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+  	  	  	    				sendToClient0(str3);
+  	  	  	    				final String str4 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+  	  	  	    				sendToClient0(str4);
+  	  	  	    				final String str5 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient0(str5);
+	  	  	    				
+	  	  	    				final String str6 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient1(str6);
+	  	  	    				final String str7 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient1(str7);
+	  	  	    				final String str8 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient1(str8);
+	  	  	    				final String str9 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient1(str9);
+	  	  	    				
+	  	  	    				final String str10 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient2(str10);
+	  	  	    				final String str11 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient2(str11);
+	  	  	    				final String str12 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient2(str12);
+	  	  	    				final String str13 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient2(str13);
+  	    					}
+  	    					else if ((initiativeFinal[2] > initiativeFinal[5])) {
+  	    						
+  	    						centerscrolltext.append("\n" + ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".");
+  	  	  	    				
+  	  	  	    				final String str2 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+  	  	  	    				sendToClient0(str2);
+  	  	  	    				final String str3 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+  	  	  	    				sendToClient0(str3);
+  	  	  	    				final String str4 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+  	  	  	    				sendToClient0(str4);
+  	  	  	    				final String str5 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient0(str5);
+	  	  	    				
+	  	  	    				final String str6 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient1(str6);
+	  	  	    				final String str7 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient1(str7);
+	  	  	    				final String str8 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient1(str8);
+	  	  	    				final String str9 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient1(str9);
+	  	  	    				
+	  	  	    				final String str10 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient2(str10);
+	  	  	    				final String str11 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient2(str11);
+	  	  	    				final String str12 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient2(str12);
+	  	  	    				final String str13 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient2(str13);
+  	    					}
+  	    				}
+  	    				else if ((initiativeFinal[2] > initiativeFinal[5]) && (initiativeFinal[2] > initiativeFinal[0])) {
+  	    					
+  	    					if ((initiativeFinal[5] > initiativeFinal[0])) {
+  	    						
+  	    						centerscrolltext.append("\n" + ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".");
+  	  	  	    				
+  	  	  	    				final String str2 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+  	  	  	    				sendToClient0(str2);
+  	  	  	    				final String str3 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+  	  	  	    				sendToClient0(str3);
+  	  	  	    				final String str4 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+  	  	  	    				sendToClient0(str4);
+  	  	  	    				final String str5 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient0(str5);
+	  	  	    				
+	  	  	    				final String str6 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient1(str6);
+	  	  	    				final String str7 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient1(str7);
+	  	  	    				final String str8 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient1(str8);
+	  	  	    				final String str9 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient1(str9);
+	  	  	    				
+	  	  	    				final String str10 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient2(str10);
+	  	  	    				final String str11 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient2(str11);
+	  	  	    				final String str12 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient2(str12);
+	  	  	    				final String str13 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient2(str13);
+  	    					}
+  	    					else if ((initiativeFinal[0] > initiativeFinal[5])) {
+  	    						
+  	    						centerscrolltext.append("\n" + ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".");
+  	  	  	    				
+  	  	  	    				final String str2 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+  	  	  	    				sendToClient0(str2);
+  	  	  	    				final String str3 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+  	  	  	    				sendToClient0(str3);
+  	  	  	    				final String str4 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+  	  	  	    				sendToClient0(str4);
+  	  	  	    				final String str5 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient0(str5);
+	  	  	    				
+	  	  	    				final String str6 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient1(str6);
+	  	  	    				final String str7 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient1(str7);
+	  	  	    				final String str8 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient1(str8);
+	  	  	    				final String str9 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient1(str9);
+	  	  	    				
+	  	  	    				final String str10 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient2(str10);
+	  	  	    				final String str11 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient2(str11);
+	  	  	    				final String str12 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient2(str12);
+	  	  	    				final String str13 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient2(str13);
+  	    					}
+  	    				}
+  	    			}
+  	    			else if ((initiativeFinal[2] > initiativeFinal[5]) && (initiativeFinal[2] > initiativeFinal[0]) && (initiativeFinal[2] > initiativeFinal[1])) {
+  	    				
+  	    				if ((initiativeFinal[5] > initiativeFinal[0]) && (initiativeFinal[5] > initiativeFinal[1])) {
+  	    					
+  	    					if ((initiativeFinal[0] > initiativeFinal[1])) {
+  	    						
+  	    						centerscrolltext.append("\n" + ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".");
+  	  	  	    				
+  	  	  	    				final String str2 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+  	  	  	    				sendToClient0(str2);
+  	  	  	    				final String str3 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+  	  	  	    				sendToClient0(str3);
+  	  	  	    				final String str4 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+  	  	  	    				sendToClient0(str4);
+  	  	  	    				final String str5 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient0(str5);
+	  	  	    				
+	  	  	    				final String str6 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient1(str6);
+	  	  	    				final String str7 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient1(str7);
+	  	  	    				final String str8 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient1(str8);
+	  	  	    				final String str9 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient1(str9);
+	  	  	    				
+	  	  	    				final String str10 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient2(str10);
+	  	  	    				final String str11 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient2(str11);
+	  	  	    				final String str12 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient2(str12);
+	  	  	    				final String str13 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient2(str13);
+  	    					}
+  	    					else if ((initiativeFinal[1] > initiativeFinal[0])) {
+  	    						
+  	    						centerscrolltext.append("\n" + ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".");
+  	  	  	    				
+  	  	  	    				final String str2 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+  	  	  	    				sendToClient0(str2);
+  	  	  	    				final String str3 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+  	  	  	    				sendToClient0(str3);
+  	  	  	    				final String str4 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+  	  	  	    				sendToClient0(str4);
+  	  	  	    				final String str5 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient0(str5);
+	  	  	    				
+	  	  	    				final String str6 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient1(str6);
+	  	  	    				final String str7 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient1(str7);
+	  	  	    				final String str8 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient1(str8);
+	  	  	    				final String str9 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient1(str9);
+	  	  	    				
+	  	  	    				final String str10 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient2(str10);
+	  	  	    				final String str11 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient2(str11);
+	  	  	    				final String str12 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient2(str12);
+	  	  	    				final String str13 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient2(str13);
+  	    					}
+  	    				}
+  	    				else if ((initiativeFinal[0] > initiativeFinal[5]) && (initiativeFinal[0] > initiativeFinal[1])) {
+  	    					
+  	    					if ((initiativeFinal[5] > initiativeFinal[1])) {
+  	    						
+  	    						centerscrolltext.append("\n" + ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".");
+  	  	  	    				
+  	  	  	    				final String str2 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+  	  	  	    				sendToClient0(str2);
+  	  	  	    				final String str3 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+  	  	  	    				sendToClient0(str3);
+  	  	  	    				final String str4 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+  	  	  	    				sendToClient0(str4);
+  	  	  	    				final String str5 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient0(str5);
+	  	  	    				
+	  	  	    				final String str6 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient1(str6);
+	  	  	    				final String str7 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient1(str7);
+	  	  	    				final String str8 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient1(str8);
+	  	  	    				final String str9 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient1(str9);
+	  	  	    				
+	  	  	    				final String str10 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient2(str10);
+	  	  	    				final String str11 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient2(str11);
+	  	  	    				final String str12 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient2(str12);
+	  	  	    				final String str13 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient2(str13);
+  	    					}
+  	    					else if ((initiativeFinal[1] > initiativeFinal[5])) {
+  	    						
+  	    						centerscrolltext.append("\n" + ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".");
+  	  	  	    				
+  	  	  	    				final String str2 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+  	  	  	    				sendToClient0(str2);
+  	  	  	    				final String str3 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+  	  	  	    				sendToClient0(str3);
+  	  	  	    				final String str4 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+  	  	  	    				sendToClient0(str4);
+  	  	  	    				final String str5 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient0(str5);
+	  	  	    				
+	  	  	    				final String str6 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient1(str6);
+	  	  	    				final String str7 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient1(str7);
+	  	  	    				final String str8 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient1(str8);
+	  	  	    				final String str9 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient1(str9);
+	  	  	    				
+	  	  	    				final String str10 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient2(str10);
+	  	  	    				final String str11 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient2(str11);
+	  	  	    				final String str12 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient2(str12);
+	  	  	    				final String str13 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient2(str13);
+  	    					}
+  	    				}
+  	    				else if ((initiativeFinal[1] > initiativeFinal[5]) && (initiativeFinal[1] > initiativeFinal[0])) {
+  	    					
+  	    					if ((initiativeFinal[5] > initiativeFinal[0])) {
+  	    						
+  	    						centerscrolltext.append("\n" + ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".");
+  	  	  	    				
+  	  	  	    				final String str2 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+  	  	  	    				sendToClient0(str2);
+  	  	  	    				final String str3 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+  	  	  	    				sendToClient0(str3);
+  	  	  	    				final String str4 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+  	  	  	    				sendToClient0(str4);
+  	  	  	    				final String str5 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient0(str5);
+	  	  	    				
+	  	  	    				final String str6 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient1(str6);
+	  	  	    				final String str7 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient1(str7);
+	  	  	    				final String str8 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient1(str8);
+	  	  	    				final String str9 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient1(str9);
+	  	  	    				
+	  	  	    				final String str10 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient2(str10);
+	  	  	    				final String str11 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient2(str11);
+	  	  	    				final String str12 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient2(str12);
+	  	  	    				final String str13 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient2(str13);
+  	    					}
+  	    					else if ((initiativeFinal[0] > initiativeFinal[5])) {
+  	    						
+  	    						centerscrolltext.append("\n" + ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".");
+  	  	  	    				centerscrolltext.append("\n" + ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".");
+  	  	  	    				
+  	  	  	    				final String str2 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+  	  	  	    				sendToClient0(str2);
+  	  	  	    				final String str3 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+  	  	  	    				sendToClient0(str3);
+  	  	  	    				final String str4 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+  	  	  	    				sendToClient0(str4);
+  	  	  	    				final String str5 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient0(str5);
+	  	  	    				
+	  	  	    				final String str6 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient1(str6);
+	  	  	    				final String str7 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient1(str7);
+	  	  	    				final String str8 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient1(str8);
+	  	  	    				final String str9 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient1(str9);
+	  	  	    				
+	  	  	    				final String str10 = ArrayOfPlayers.player[2] + "..." + initiativeFinal[2] + ".";
+	  	  	    				sendToClient2(str10);
+	  	  	    				final String str11 = ArrayOfPlayers.player[1] + "..." + initiativeFinal[1] + ".";
+	  	  	    				sendToClient2(str11);
+	  	  	    				final String str12 = ArrayOfPlayers.player[0] + "..." + initiativeFinal[0] + ".";
+	  	  	    				sendToClient2(str12);
+	  	  	    				final String str13 = ArrayOfPlayers.player[5] + "..." + initiativeFinal[5] + ".";
+	  	  	    				sendToClient2(str13);
+  	    					}
+  	    				}
+  	    			}
+  	    		}
+  	    		else if (numberOfPlayers == 5) {
+  	    			
+  	    		}
+  	    		
+  	    		
+  	    		
+  	    		
+  	    		
+  	    		
+  	    		
+  	    		
+  	    		
+  	    		
+  	    		
+  	    		
+  	    		
+  	    		
+  	    		
+  	    		
+  	    		/*
+  	    		for (int i = 0; i <= 5; i++) {
+	  	            if (initiativeFinal[i] > max) {
+	  	            	int y = (int) initiativeFinal[i];
+	  	            	max = y;
+	  	            }
+  	    		}
+  	    		for (int i = 0; i <= 5; i++) {
+	  	            if (max == initiativeFinal[i]) {
+	  	            
+	  	            centerscrolltext.append("\n" + ArrayOfPlayers.player[i] + " goes first with a " + max + "!");
+	  	            
+  	            	final String str = ArrayOfPlayers.player[i] + " goes first with a " + max + "!";
+  		    		sendToAllClients(str);		  	            
+	  	            }
+  	    		}
+  	    		*/  		
+  	    		
+  	    		
+  	    		/*
+  	    		final String str = "\n" + "Initiative Results:"; 
+  	    		sendToAll(str);
+  	    		
+  	    		for (int i=5; i >= 0; i--) {  	    			
+  	    			
+  	    			int y = (int) initiativeFinal[i]; 	    			
+  	    			
+  	    			final String str2 = "\n" + y + "..." + ArrayOfPlayers.player[i] + ".";
+  		    		sendToAll(str2);
+  	    		}
+  	    		*/ 
+  	    		
+  	    		
+  	    		/*
+  	    		for (float i = 0; i <= 5; i++) {
+  	    			//int y = (int) initiativeFinal[i];
+  	    			map.put(initiativeFinal[(int) i], ArrayOfPlayers.player[(int) i]);
+  	    		}
+	  	        
+  	        
+	  	        for (float key : map.keySet())
+	  	        {
+	  	        }
+
+	  	        final String str = "\n" + "Initiative Results:"; 
+	    		sendToAll(str);
+	    		
+	    		navigableMap=navigableMap.descendingMap();
+	    	      
+	    	    for (int navigableKey : navigableMap.keySet()) {
+	    	    	
+	    	    	final String str2 = "\n" + navigableKey + "..." + navigableMap.get(navigableKey); 
+		    		sendToAllClients(str2);	    	            	         
+	    	    }
+  	    		*/
+  	    		
+  	    		 	    		
   	    		//NEED THIS?
   	    		/*
   	    		DecimalFormat decimalFormat = new DecimalFormat("#0.0");
@@ -7310,13 +10351,13 @@ public void double30125() {
 		ClientWorker client = clientWorkers.get(3);
 		client.print(read);
 	}
-	
+	/*
 	public void sendToClient4(Object read){
 		//for(ClientWorker client : clientWorkers)                    	
 		ClientWorker client = clientWorkers.get(4);
 		client.print(read);
 	}
-	
+	*/
 	
 	class updateUIThread implements Runnable {
 		private String msg;		

@@ -2208,48 +2208,29 @@ public class Client2 extends Activity {
   	  		@Override
   	  		public void run()
   	  		{  	  			
-	  	  		centerscrolltext.setVisibility(View.VISIBLE);
-	  	  		centerscrolltext.startAnimation(animAlphaText);
-	  			centerscrolltext.append("\n" + "> You roll " + ArrayOfInitiative.initiative[1] + " for initiative.");
+  	  			//playerCardStopFadeInFadeOut();
+	  			computerCardStartFadeInFadeOut();
 	  			
-	  			final Handler h2 = new Handler();
-		  	  	h2.postDelayed(new Runnable() {
-
-		  	  		@Override
-		  	  		public void run()
-		  	  		{  	  			
-			  	  		/*
-		  	  			centerscrolltext.setVisibility(View.VISIBLE);
-			  	  		centerscrolltext.startAnimation(animAlphaText);
-			  			centerscrolltext.append("\n");
-		  	  			*/
-		  	  			
-		  	  			
-			  			//playerCardStopFadeInFadeOut();
-			  			computerCardStartFadeInFadeOut();
-			  			
-			  			
-			  			try {	  	  	  			
-			  	  			
-			  	  			PrintWriter out = new PrintWriter(new BufferedWriter(
-			  	  					new OutputStreamWriter(socket.getOutputStream())),
-			  	  					true);
-			  	  			out.println("InitiativeRolled :" + ArrayOfInitiative.initiative[1]);				  	  		
-			  	  			
-			  	  		} catch (UnknownHostException e) {
-			  	  			e.printStackTrace();
-			  	  		} catch (IOException e) {
-			  	  			e.printStackTrace();
-			  	  		} catch (Exception e) {
-			  	  			e.printStackTrace();
-			  	  		}
-			  			
-			  			
-			  			//determineDoubles();			  			
-		  	  		}
-		  	  	}, 4000);
+	  			
+	  			try {	  	  	  			
+	  	  			
+	  	  			PrintWriter out = new PrintWriter(new BufferedWriter(
+	  	  					new OutputStreamWriter(socket.getOutputStream())),
+	  	  					true);
+	  	  			out.println("InitiativeRolled :" + ArrayOfInitiative.initiative[1]);				  	  		
+	  	  			
+	  	  		} catch (UnknownHostException e) {
+	  	  			e.printStackTrace();
+	  	  		} catch (IOException e) {
+	  	  			e.printStackTrace();
+	  	  		} catch (Exception e) {
+	  	  			e.printStackTrace();
+	  	  		}
+	  			
+	  			
+	  			//determineDoubles();
   	  		}
-  	  	}, 1250);		 		
+  	  	}, 4000);		 		
 	}
 	
 	public void rollInitiative() {		
@@ -2348,6 +2329,8 @@ public class Client2 extends Activity {
 						  		  	  		centerscrolltext.startAnimation(animAlphaText);
 						  		  			centerscrolltext.append("\n" + "> Please slide the die...");								  		  			
 						  		  			
+						  		  			centerscrolltext.bringToFront();
+						  		  			
 						  		  			
 						  		  			computerCardStartFadeInFadeOut();		  		  			
 						  		  			
@@ -2407,7 +2390,9 @@ public class Client2 extends Activity {
 			  	  	  		
 		  	  	  			centerscrolltext.setVisibility(View.VISIBLE);
 		  		  	  		centerscrolltext.startAnimation(animAlphaText);
-		  		  			centerscrolltext.append("\n" + "> Please slide the die...");								  		  			
+		  		  			centerscrolltext.append("\n" + "> Please slide the die...");
+		  		  			
+		  		  			centerscrolltext.bringToFront();
 		  		  			
 		  		  			
 		  		  			computerCardStartFadeInFadeOut();		  		  			
