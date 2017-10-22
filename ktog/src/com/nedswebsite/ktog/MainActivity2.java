@@ -1942,7 +1942,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 	}
 	
 	@Override
-	public void onResume(){
+	public void onResume() {
 	    super.onResume();
 	    // put your code here...
 	    
@@ -12935,7 +12935,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 				  	  	  		
 					  	  	  	centerscrolltext.setVisibility(View.VISIBLE);													
 						  		centerscrolltext.startAnimation(animAlphaText);			  		
-								centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0] + ", +2 for your opponent being disarmed = " + (ArrayOfAttackResult.attackResult[0] + 2) + ".");			  	  	  			
+								centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0] + ", +2 for opponent being disarmed = " + (ArrayOfAttackResult.attackResult[0] + 2) + ".");			  	  	  			
 			  	  	  		}												
 							
 							final Handler h2 = new Handler();
@@ -13029,7 +13029,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 					
 								  	  	  			if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
 													
-									    			gameEngineHumanFirst2();    							
+								  	  	  				gameEngineHumanFirst2();    							
 													}	
 								  	  	  			else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
 										    			
@@ -13080,7 +13080,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 				  	  	  		
 					  	  	  	centerscrolltext.setVisibility(View.VISIBLE);													
 						  		centerscrolltext.startAnimation(animAlphaText);			  		
-								centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0] + ", +1 for being disarmed and your opponent being disarmed = " + (ArrayOfAttackResult.attackResult[0] + 1) + ".");			  	  	  			
+								centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0] + ", +1 for being disarmed and opponent being disarmed = " + (ArrayOfAttackResult.attackResult[0] + 1) + ".");			  	  	  			
 			  	  	  		}						
 							
 							final Handler h5 = new Handler();
@@ -13120,7 +13120,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 					
 								  	  	  			if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
 													
-									    			gameEngineHumanFirst2();    							
+								  	  	  				gameEngineHumanFirst2();    							
 													}	
 								  	  	  			else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
 										    			
@@ -13183,7 +13183,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 					
 								  	  	  			if ((ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {				
 													
-									    			gameEngineHumanFirst2();    							
+								  	  	  				gameEngineHumanFirst2();    							
 													}	
 								  	  	  			else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("no")) {		
 										    			
@@ -15681,7 +15681,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 						  	  	  			
 							  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 									  		centerscrolltext.startAnimation(animAlphaText);
-											centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", roll for damage to yourself...");						  	  	  			
+											centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", roll for damage...");						  	  	  			
 						  	  	  			
 						  	  	  			criticalMissDamage();					  	  	  			
 							  	  	  	}
@@ -17386,7 +17386,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 							
 							centerscrolltext.setVisibility(View.VISIBLE);
 					  		centerscrolltext.startAnimation(animAlphaText);
-					  		centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0]	+ ", +4 for Bless Spell and your opponent being disarmed = " + (ArrayOfAttackResult.attackResult[0] + 4) + ".");						
+					  		centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0]	+ ", +4 for Bless Spell and opponent being disarmed = " + (ArrayOfAttackResult.attackResult[0] + 4) + ".");						
 						}												
 						
 						final Handler h2 = new Handler();
@@ -18500,7 +18500,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		  							
 		  							//GOTO SOME METHOD!!!!!!!!!!!!!!
 		  							
-		  							runActionsOnUi();
+		  							disarmedAction();
 		  						}
 		  					});
 		  		  			

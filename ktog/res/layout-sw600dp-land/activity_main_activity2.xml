@@ -837,7 +837,7 @@
    	    android:paddingLeft="20dp"
    	    android:paddingRight="25dp"
    	    android:paddingTop="9dp"
-   	    android:alpha="0" />
+   	    android:alpha="0"/>
    	
    	
 

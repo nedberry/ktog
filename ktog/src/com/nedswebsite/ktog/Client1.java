@@ -125,7 +125,7 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
     		String playername = input.getText().toString();
         	
         	
-        	ArrayOfPlayers.player[1] = playername;
+        	ArrayOfPlayers.player[0] = playername;
         	
         	
         	insertToDatabase(playername);	        	
@@ -330,7 +330,7 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
 			
 			hostIP = ip;
 			
-			ArrayOfIP.hostIP[0] = hostIP;
+			ArrayOfIP.hostIP[5] = hostIP;
 			
 		    //Toast.makeText(Client1.this, hostIP, Toast.LENGTH_LONG).show();
 		    

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="true" >
+    
+    <item android:drawable="@drawable/dualingscrollsleftdown1" android:duration="90" />    
+    <item android:drawable="@drawable/dualingscrollsleftup12noright" android:duration="90" />    
+    <item android:drawable="@drawable/dualingscrollsleftup10noright" android:duration="90" />    
+    <item android:drawable="@drawable/dualingscrollsleftup8noright" android:duration="90" />    
+    <item android:drawable="@drawable/dualingscrollsleftup6noright" android:duration="90" />    
+    <item android:drawable="@drawable/dualingscrollsleftup4noright" android:duration="90" />    
+    <item android:drawable="@drawable/dualingscrolls1" android:duration="90" />   
+
+</animation-list>

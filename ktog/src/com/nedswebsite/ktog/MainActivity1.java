@@ -32,6 +32,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -43,6 +44,7 @@ import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.Contacts;
 import android.view.ContextThemeWrapper;
@@ -747,14 +749,46 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	//===================================================================================================
 		
 	@Override
-    public void onBackPressed() {
-			
-			final Intent svc=new Intent(this, Badonk2SoundService.class);
-			stopService(svc);
-			
-            super.onBackPressed();
-            this.finish();
+    public void onBackPressed() {		
+		
+		final Intent svc=new Intent(this, Badonk2SoundService.class);
+		stopService(svc);
+		
+        super.onBackPressed();
+        this.finish();
+		
+		/*
+		AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity1.this);
+		
+    	alert.setTitle("KtOG");	  	    	
+    	alert.setMessage("Are you sure you want to exit?");	  	    		  	    	
+    	
+    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+    		public void onClick(DialogInterface dialog, int whichButton) {
+    			
+    			onBackPressedStuffToDo();    							  		    			  		    		
+    		}
+    	});
+    	
+    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+    		public void onClick(DialogInterface dialog, int whichButton) {
+    			
+    			dialog.dismiss();    					         		            		  
+    		}
+    	});	  	    	
+    	alert.show();
+    	*/		
     }
+	/*
+	public void onBackPressedStuffToDo() {
+		
+		final Intent svc=new Intent(this, Badonk2SoundService.class);
+		stopService(svc);
+		
+        super.onBackPressed();
+        this.finish();
+	}	
+	*/
 	
 	// DESTROYS EVERYTHING (EXCEPT SERVICE?)
 	@Override
