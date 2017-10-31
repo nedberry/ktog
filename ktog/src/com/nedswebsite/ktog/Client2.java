@@ -2357,300 +2357,348 @@ public class Client2 extends Activity {
 	
 	public void stopGraphics() {
 		
-		TextView blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
-		TextView cureGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
-		TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
-		TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
-		TextView hasteGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
-		TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
-		TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
-		
-		blessGraphic.clearAnimation();
-		blessGraphic.setVisibility(View.GONE);
-		
-		cureGraphic.clearAnimation();
-		cureGraphic.setVisibility(View.GONE);
-		
-		dodgeGraphic.clearAnimation();
-		dodgeGraphic.setVisibility(View.GONE);
-		
-		mightyBlowGraphic.clearAnimation();
-		mightyBlowGraphic.setVisibility(View.GONE);
-		
-		hasteGraphic.clearAnimation();
-		hasteGraphic.setVisibility(View.GONE);
-		
-		criticalHitGraphic.clearAnimation();
-		criticalHitGraphic.setVisibility(View.GONE);
-		
-		criticalMissGraphic.clearAnimation();
-		criticalMissGraphic.setVisibility(View.GONE);
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				
+				TextView blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+				TextView cureGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+				TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
+				TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+				TextView hasteGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+				TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+				TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+				
+				blessGraphic.clearAnimation();
+				blessGraphic.setVisibility(View.GONE);
+				
+				cureGraphic.clearAnimation();
+				cureGraphic.setVisibility(View.GONE);
+				
+				dodgeGraphic.clearAnimation();
+				dodgeGraphic.setVisibility(View.GONE);
+				
+				mightyBlowGraphic.clearAnimation();
+				mightyBlowGraphic.setVisibility(View.GONE);
+				
+				hasteGraphic.clearAnimation();
+				hasteGraphic.setVisibility(View.GONE);
+				
+				criticalHitGraphic.clearAnimation();
+				criticalHitGraphic.setVisibility(View.GONE);
+				
+				criticalMissGraphic.clearAnimation();
+				criticalMissGraphic.setVisibility(View.GONE);				
+			}
+		});		
 	}
 	
 	public void hasteGraphic() {
 		
-		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
-		
-		Animation a = AnimationUtils.loadAnimation(Client2.this, R.anim.textscaletobig);					  	  	  	
-	  	  	
-  	  	TextView hasteGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
-  	  	
-  	  	hasteGraphic.setVisibility(View.VISIBLE);
-	  	hasteGraphic.bringToFront();
-  	  	
-  	  	hasteGraphic.setTypeface(typeFace);
-  	  	hasteGraphic.setText("Haste");  	  	
-  	  	
-  	  	hasteGraphic.clearAnimation();
-  	  	hasteGraphic.startAnimation(a);
-  		
-  		MediaPlayerWrapper.play(Client2.this, R.raw.badonkshort);
-  		
-  		
-		final Handler h = new Handler();
-  	  	h.postDelayed(new Runnable() {		  	  	  			
-  	  			
-  	  		@Override
-  	  		public void run() {
-  	  			
-	  	  		Animation a = AnimationUtils.loadAnimation(Client2.this, R.anim.textscaletosmall);						  	  	  	
-	  	  	  	
-		  	  	final TextView hasteGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				
+				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
+				
+				Animation a = AnimationUtils.loadAnimation(Client2.this, R.anim.textscaletobig);					  	  	  	
+			  	  	
+		  	  	TextView hasteGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+		  	  	
+		  	  	hasteGraphic.setVisibility(View.VISIBLE);
+			  	hasteGraphic.bringToFront();
+		  	  	
 		  	  	hasteGraphic.setTypeface(typeFace);
-		  	  	hasteGraphic.setText("Haste");
-	  	  	  	
+		  	  	hasteGraphic.setText("Haste");  	  	
+		  	  	
 		  	  	hasteGraphic.clearAnimation();
 		  	  	hasteGraphic.startAnimation(a);
-  	  		}	  	  		
-  	  	}, 3000);		
+		  		
+		  		MediaPlayerWrapper.play(Client2.this, R.raw.badonkshort);
+		  		
+		  		
+				final Handler h = new Handler();
+		  	  	h.postDelayed(new Runnable() {		  	  	  			
+		  	  			
+		  	  		@Override
+		  	  		public void run() {
+		  	  			
+			  	  		Animation a = AnimationUtils.loadAnimation(Client2.this, R.anim.textscaletosmall);						  	  	  	
+			  	  	  	
+				  	  	final TextView hasteGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+				  	  	hasteGraphic.setTypeface(typeFace);
+				  	  	hasteGraphic.setText("Haste");
+			  	  	  	
+				  	  	hasteGraphic.clearAnimation();
+				  	  	hasteGraphic.startAnimation(a);
+		  	  		}	  	  		
+		  	  	}, 3000);				
+			}
+		});			
 	}
 	
 	public void cureGraphic() {
 		
-		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
-		
-		Animation a = AnimationUtils.loadAnimation(Client2.this, R.anim.textscaletobig);					  	  	  	
-	  	  	
-  	  	TextView cureGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
-  	  	
-  	  	cureGraphic.setVisibility(View.VISIBLE);
-	  	cureGraphic.bringToFront();
-  	  	
-  	  	cureGraphic.setTypeface(typeFace);
-  	  	cureGraphic.setText(" Cure");  	  	
-  	  	
-  	  	cureGraphic.clearAnimation();
-  	  	cureGraphic.startAnimation(a);
-  		
-  		MediaPlayerWrapper.play(Client2.this, R.raw.badonkshort);
-  		
-  		
-		final Handler h = new Handler();
-  	  	h.postDelayed(new Runnable() {		  	  	  			
-  	  			
-  	  		@Override
-  	  		public void run() {
-  	  			
-	  	  		Animation a = AnimationUtils.loadAnimation(Client2.this, R.anim.textscaletosmall);						  	  	  	
-	  	  	  	
-		  	  	final TextView cureGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				
+				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
+				
+				Animation a = AnimationUtils.loadAnimation(Client2.this, R.anim.textscaletobig);					  	  	  	
+			  	  	
+		  	  	TextView cureGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+		  	  	
+		  	  	cureGraphic.setVisibility(View.VISIBLE);
+			  	cureGraphic.bringToFront();
+		  	  	
 		  	  	cureGraphic.setTypeface(typeFace);
-		  	  	cureGraphic.setText(" Cure");
-	  	  	  	
+		  	  	cureGraphic.setText(" Cure");  	  	
+		  	  	
 		  	  	cureGraphic.clearAnimation();
 		  	  	cureGraphic.startAnimation(a);
-  	  		}	  	  		
-  	  	}, 3000);		
+		  		
+		  		MediaPlayerWrapper.play(Client2.this, R.raw.badonkshort);
+		  		
+		  		
+				final Handler h = new Handler();
+		  	  	h.postDelayed(new Runnable() {		  	  	  			
+		  	  			
+		  	  		@Override
+		  	  		public void run() {
+		  	  			
+			  	  		Animation a = AnimationUtils.loadAnimation(Client2.this, R.anim.textscaletosmall);						  	  	  	
+			  	  	  	
+				  	  	final TextView cureGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+				  	  	cureGraphic.setTypeface(typeFace);
+				  	  	cureGraphic.setText(" Cure");
+			  	  	  	
+				  	  	cureGraphic.clearAnimation();
+				  	  	cureGraphic.startAnimation(a);
+		  	  		}	  	  		
+		  	  	}, 3000);				
+			}
+		});				
 	}
 	
 	public void blessGraphic() {
 		
-		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
-		
-		Animation a = AnimationUtils.loadAnimation(Client2.this, R.anim.textscaletobig);					  	  	  	
-	  	  	
-  	  	TextView blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
-  		
-  	  	blessGraphic.setVisibility(View.VISIBLE);
-		blessGraphic.bringToFront();
-  	  	
-  	  	blessGraphic.setTypeface(typeFace);
-  		blessGraphic.setText("Bless");  		
-  	  	
-  	  	blessGraphic.clearAnimation();
-  		blessGraphic.startAnimation(a);
-  		
-  		MediaPlayerWrapper.play(Client2.this, R.raw.badonkshort);
-  		
-  		
-		final Handler h = new Handler();
-  	  	h.postDelayed(new Runnable() {		  	  	  			
-  	  			
-  	  		@Override
-  	  		public void run() {
-  	  			
-	  	  		Animation a = AnimationUtils.loadAnimation(Client2.this, R.anim.textscaletosmall);						  	  	  	
-	  	  	  	
-		  	  	final TextView blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
-  	  	  		blessGraphic.setTypeface(typeFace);
-  	  	  		blessGraphic.setText("Bless");
-  	  	  		
-	  	  	  	blessGraphic.clearAnimation();
-  	  	  		blessGraphic.startAnimation(a);
-  	  		}	  	  		
-  	  	}, 3000);		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				
+				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
+				
+				Animation a = AnimationUtils.loadAnimation(Client2.this, R.anim.textscaletobig);					  	  	  	
+			  	  	
+		  	  	TextView blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+		  		
+		  	  	blessGraphic.setVisibility(View.VISIBLE);
+				blessGraphic.bringToFront();
+		  	  	
+		  	  	blessGraphic.setTypeface(typeFace);
+		  		blessGraphic.setText("Bless");  		
+		  	  	
+		  	  	blessGraphic.clearAnimation();
+		  		blessGraphic.startAnimation(a);
+		  		
+		  		MediaPlayerWrapper.play(Client2.this, R.raw.badonkshort);
+		  		
+		  		
+				final Handler h = new Handler();
+		  	  	h.postDelayed(new Runnable() {		  	  	  			
+		  	  			
+		  	  		@Override
+		  	  		public void run() {
+		  	  			
+			  	  		Animation a = AnimationUtils.loadAnimation(Client2.this, R.anim.textscaletosmall);						  	  	  	
+			  	  	  	
+				  	  	final TextView blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+		  	  	  		blessGraphic.setTypeface(typeFace);
+		  	  	  		blessGraphic.setText("Bless");
+		  	  	  		
+			  	  	  	blessGraphic.clearAnimation();
+		  	  	  		blessGraphic.startAnimation(a);
+		  	  		}	  	  		
+		  	  	}, 3000);				
+			}
+		});				
 	}
 	
 	public void criticalMissGraphic() {
 		
-		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
-		
-		Animation a = AnimationUtils.loadAnimation(Client2.this, R.anim.textscaletobig);					  	  	  	
-	  	  	
-  	  	TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
-  	  	
-  	  	criticalMissGraphic.setVisibility(View.VISIBLE);
-	  	criticalMissGraphic.bringToFront();
-  	  	
-  	  	criticalMissGraphic.setTypeface(typeFace);
-  	  	criticalMissGraphic.setText("Critical Miss");  	  	
-  	  	
-  	  	criticalMissGraphic.clearAnimation();
-  	  	criticalMissGraphic.startAnimation(a);
-  		
-  		MediaPlayerWrapper.play(Client2.this, R.raw.badonkshort);
-  		
-  		
-		final Handler h = new Handler();
-  	  	h.postDelayed(new Runnable() {		  	  	  			
-  	  			
-  	  		@Override
-  	  		public void run() {
-  	  			
-	  	  		Animation a = AnimationUtils.loadAnimation(Client2.this, R.anim.textscaletosmall);						  	  	  	
-	  	  	  	
-		  	  	final TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				
+				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
+				
+				Animation a = AnimationUtils.loadAnimation(Client2.this, R.anim.textscaletobig);					  	  	  	
+			  	  	
+		  	  	TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+		  	  	
+		  	  	criticalMissGraphic.setVisibility(View.VISIBLE);
+			  	criticalMissGraphic.bringToFront();
+		  	  	
 		  	  	criticalMissGraphic.setTypeface(typeFace);
-		  	  	criticalMissGraphic.setText("Critical Miss");
-	  	  	  	
+		  	  	criticalMissGraphic.setText("Critical Miss");  	  	
+		  	  	
 		  	  	criticalMissGraphic.clearAnimation();
 		  	  	criticalMissGraphic.startAnimation(a);
-  	  		}	  	  		
-  	  	}, 3000);		
+		  		
+		  		MediaPlayerWrapper.play(Client2.this, R.raw.badonkshort);
+		  		
+		  		
+				final Handler h = new Handler();
+		  	  	h.postDelayed(new Runnable() {		  	  	  			
+		  	  			
+		  	  		@Override
+		  	  		public void run() {
+		  	  			
+			  	  		Animation a = AnimationUtils.loadAnimation(Client2.this, R.anim.textscaletosmall);						  	  	  	
+			  	  	  	
+				  	  	final TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+				  	  	criticalMissGraphic.setTypeface(typeFace);
+				  	  	criticalMissGraphic.setText("Critical Miss");
+			  	  	  	
+				  	  	criticalMissGraphic.clearAnimation();
+				  	  	criticalMissGraphic.startAnimation(a);
+		  	  		}	  	  		
+		  	  	}, 3000);				
+			}
+		});			
 	}
 	
 	public void criticalHitGraphic() {
 		
-		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
-		
-		Animation a = AnimationUtils.loadAnimation(Client2.this, R.anim.textscaletobig);					  	  	  	
-	  	  	
-  	  	TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
-  	  	
-  	  	criticalHitGraphic.setVisibility(View.VISIBLE);
-	  	criticalHitGraphic.bringToFront();
-  	  	
-  	  	criticalHitGraphic.setTypeface(typeFace);
-  	  	criticalHitGraphic.setText("Critical     Hit");  	  	
-  	  	
-  	  	criticalHitGraphic.clearAnimation();
-  	  	criticalHitGraphic.startAnimation(a);
-  		
-  		MediaPlayerWrapper.play(Client2.this, R.raw.badonkshort);
-  		
-  		
-		final Handler h = new Handler();
-  	  	h.postDelayed(new Runnable() {		  	  	  			
-  	  			
-  	  		@Override
-  	  		public void run() {
-  	  			
-	  	  		Animation a = AnimationUtils.loadAnimation(Client2.this, R.anim.textscaletosmall);						  	  	  	
-	  	  	  	
-		  	  	final TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				
+				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
+				
+				Animation a = AnimationUtils.loadAnimation(Client2.this, R.anim.textscaletobig);					  	  	  	
+			  	  	
+		  	  	TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+		  	  	
+		  	  	criticalHitGraphic.setVisibility(View.VISIBLE);
+			  	criticalHitGraphic.bringToFront();
+		  	  	
 		  	  	criticalHitGraphic.setTypeface(typeFace);
-		  	  	criticalHitGraphic.setText("Critical     Hit");
-	  	  	  	
+		  	  	criticalHitGraphic.setText("Critical     Hit");  	  	
+		  	  	
 		  	  	criticalHitGraphic.clearAnimation();
 		  	  	criticalHitGraphic.startAnimation(a);
-  	  		}	  	  		
-  	  	}, 3000);		
+		  		
+		  		MediaPlayerWrapper.play(Client2.this, R.raw.badonkshort);
+		  		
+		  		
+				final Handler h = new Handler();
+		  	  	h.postDelayed(new Runnable() {		  	  	  			
+		  	  			
+		  	  		@Override
+		  	  		public void run() {
+		  	  			
+			  	  		Animation a = AnimationUtils.loadAnimation(Client2.this, R.anim.textscaletosmall);						  	  	  	
+			  	  	  	
+				  	  	final TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+				  	  	criticalHitGraphic.setTypeface(typeFace);
+				  	  	criticalHitGraphic.setText("Critical     Hit");
+			  	  	  	
+				  	  	criticalHitGraphic.clearAnimation();
+				  	  	criticalHitGraphic.startAnimation(a);
+		  	  		}	  	  		
+		  	  	}, 3000);				
+			}
+		});				
 	}
 	
 	public void dodgeGraphic() {
 		
-		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
-		
-		Animation a = AnimationUtils.loadAnimation(Client2.this, R.anim.textscaletobig);					  	  	  	
-	  	  	
-  	  	TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
-  	  	
-  	  	dodgeGraphic.setVisibility(View.VISIBLE);
-	  	dodgeGraphic.bringToFront();
-  	  	
-  	  	dodgeGraphic.setTypeface(typeFace);
-  	  	dodgeGraphic.setText("Dodge");  	  	
-  	  	
-  	  	dodgeGraphic.clearAnimation();
-  	  	dodgeGraphic.startAnimation(a);
-  		
-  		MediaPlayerWrapper.play(Client2.this, R.raw.badonkshort);
-  		
-  		
-		final Handler h = new Handler();
-  	  	h.postDelayed(new Runnable() {		  	  	  			
-  	  			
-  	  		@Override
-  	  		public void run() {
-  	  			
-	  	  		Animation a = AnimationUtils.loadAnimation(Client2.this, R.anim.textscaletosmall);						  	  	  	
-	  	  	  	
-		  	  	final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				
+				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
+				
+				Animation a = AnimationUtils.loadAnimation(Client2.this, R.anim.textscaletobig);					  	  	  	
+			  	  	
+		  	  	TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
+		  	  	
+		  	  	dodgeGraphic.setVisibility(View.VISIBLE);
+			  	dodgeGraphic.bringToFront();
+		  	  	
 		  	  	dodgeGraphic.setTypeface(typeFace);
-		  	  	dodgeGraphic.setText("Dodge");
-	  	  	  	
+		  	  	dodgeGraphic.setText("Dodge");  	  	
+		  	  	
 		  	  	dodgeGraphic.clearAnimation();
 		  	  	dodgeGraphic.startAnimation(a);
-  	  		}	  	  		
-  	  	}, 3000);	
+		  		
+		  		MediaPlayerWrapper.play(Client2.this, R.raw.badonkshort);
+		  		
+		  		
+				final Handler h = new Handler();
+		  	  	h.postDelayed(new Runnable() {		  	  	  			
+		  	  			
+		  	  		@Override
+		  	  		public void run() {
+		  	  			
+			  	  		Animation a = AnimationUtils.loadAnimation(Client2.this, R.anim.textscaletosmall);						  	  	  	
+			  	  	  	
+				  	  	final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
+				  	  	dodgeGraphic.setTypeface(typeFace);
+				  	  	dodgeGraphic.setText("Dodge");
+			  	  	  	
+				  	  	dodgeGraphic.clearAnimation();
+				  	  	dodgeGraphic.startAnimation(a);
+		  	  		}	  	  		
+		  	  	}, 3000);			
+			}
+		});			
 	}
 	
 	public void mightyBlowGraphic() {
 		
-		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
-		
-		Animation a = AnimationUtils.loadAnimation(Client2.this, R.anim.textscaletobig);					  	  	  	
-	  	  	
-  	  	TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
-  	  	
-  	  	mightyBlowGraphic.setVisibility(View.VISIBLE);
-	  	mightyBlowGraphic.bringToFront();
-  	  	
-  	  	mightyBlowGraphic.setTypeface(typeFace);
-  	  	mightyBlowGraphic.setText("Mighty Blow");  	  	
-  	  	
-  	  	mightyBlowGraphic.clearAnimation();
-  	  	mightyBlowGraphic.startAnimation(a);
-  		
-  		MediaPlayerWrapper.play(Client2.this, R.raw.badonkshort);
-  		
-  		
-		final Handler h = new Handler();
-  	  	h.postDelayed(new Runnable() {		  	  	  			
-  	  			
-  	  		@Override
-  	  		public void run() {
-  	  			
-	  	  		Animation a = AnimationUtils.loadAnimation(Client2.this, R.anim.textscaletosmall);						  	  	  	
-	  	  	  	
-		  	  	final TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				
+				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
+				
+				Animation a = AnimationUtils.loadAnimation(Client2.this, R.anim.textscaletobig);					  	  	  	
+			  	  	
+		  	  	TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+		  	  	
+		  	  	mightyBlowGraphic.setVisibility(View.VISIBLE);
+			  	mightyBlowGraphic.bringToFront();
+		  	  	
 		  	  	mightyBlowGraphic.setTypeface(typeFace);
-		  	  	mightyBlowGraphic.setText("Mighty Blow");
-	  	  	  	
+		  	  	mightyBlowGraphic.setText("Mighty Blow");  	  	
+		  	  	
 		  	  	mightyBlowGraphic.clearAnimation();
 		  	  	mightyBlowGraphic.startAnimation(a);
-  	  		}	  	  		
-  	  	}, 3000);		
+		  		
+		  		MediaPlayerWrapper.play(Client2.this, R.raw.badonkshort);
+		  		
+		  		
+				final Handler h = new Handler();
+		  	  	h.postDelayed(new Runnable() {		  	  	  			
+		  	  			
+		  	  		@Override
+		  	  		public void run() {
+		  	  			
+			  	  		Animation a = AnimationUtils.loadAnimation(Client2.this, R.anim.textscaletosmall);						  	  	  	
+			  	  	  	
+				  	  	final TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+				  	  	mightyBlowGraphic.setTypeface(typeFace);
+				  	  	mightyBlowGraphic.setText("Mighty Blow");
+			  	  	  	
+				  	  	mightyBlowGraphic.clearAnimation();
+				  	  	mightyBlowGraphic.startAnimation(a);
+		  	  		}	  	  		
+		  	  	}, 3000);				
+			}
+		});				
 	}
 	
 	
@@ -3079,6 +3127,9 @@ public class Client2 extends Activity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img.setBackgroundResource(R.anim.computertwentysidedrollfromleft1);
+				
+				img.setVisibility(View.VISIBLE);
+				
 				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -3099,6 +3150,9 @@ public class Client2 extends Activity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img.setBackgroundResource(R.anim.computertwentysidedrollfromleft2);
+				
+				img.setVisibility(View.VISIBLE);
+				
 				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -3119,6 +3173,9 @@ public class Client2 extends Activity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img.setBackgroundResource(R.anim.computertwentysidedrollfromleft3);
+				
+				img.setVisibility(View.VISIBLE);
+				
 				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -3139,6 +3196,9 @@ public class Client2 extends Activity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img.setBackgroundResource(R.anim.computertwentysidedrollfromleft4);
+				
+				img.setVisibility(View.VISIBLE);
+				
 				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -3159,6 +3219,9 @@ public class Client2 extends Activity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img.setBackgroundResource(R.anim.computertwentysidedrollfromleft5);
+				
+				img.setVisibility(View.VISIBLE);
+				
 				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -3179,6 +3242,9 @@ public class Client2 extends Activity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img.setBackgroundResource(R.anim.computertwentysidedrollfromleft6);
+				
+				img.setVisibility(View.VISIBLE);
+				
 				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -3199,6 +3265,9 @@ public class Client2 extends Activity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img.setBackgroundResource(R.anim.computertwentysidedrollfromleft7);
+				
+				img.setVisibility(View.VISIBLE);
+				
 				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -3219,6 +3288,9 @@ public class Client2 extends Activity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img.setBackgroundResource(R.anim.computertwentysidedrollfromleft8);
+				
+				img.setVisibility(View.VISIBLE);
+				
 				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -3239,6 +3311,9 @@ public class Client2 extends Activity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img.setBackgroundResource(R.anim.computertwentysidedrollfromleft9);
+				
+				img.setVisibility(View.VISIBLE);
+				
 				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -3259,6 +3334,9 @@ public class Client2 extends Activity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img.setBackgroundResource(R.anim.computertwentysidedrollfromleft10);
+				
+				img.setVisibility(View.VISIBLE);
+				
 				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -3279,6 +3357,9 @@ public class Client2 extends Activity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img.setBackgroundResource(R.anim.computertwentysidedrollfromleft11);
+				
+				img.setVisibility(View.VISIBLE);
+				
 				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -3299,6 +3380,9 @@ public class Client2 extends Activity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img.setBackgroundResource(R.anim.computertwentysidedrollfromleft12);
+				
+				img.setVisibility(View.VISIBLE);
+				
 				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -3319,6 +3403,9 @@ public class Client2 extends Activity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img.setBackgroundResource(R.anim.computertwentysidedrollfromleft13);
+				
+				img.setVisibility(View.VISIBLE);
+				
 				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -3339,6 +3426,9 @@ public class Client2 extends Activity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img.setBackgroundResource(R.anim.computertwentysidedrollfromleft14);
+				
+				img.setVisibility(View.VISIBLE);
+				
 				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -3359,6 +3449,9 @@ public class Client2 extends Activity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img.setBackgroundResource(R.anim.computertwentysidedrollfromleft15);
+				
+				img.setVisibility(View.VISIBLE);
+				
 				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -3379,6 +3472,9 @@ public class Client2 extends Activity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img.setBackgroundResource(R.anim.computertwentysidedrollfromleft16);
+				
+				img.setVisibility(View.VISIBLE);
+				
 				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -3399,6 +3495,9 @@ public class Client2 extends Activity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img.setBackgroundResource(R.anim.computertwentysidedrollfromleft17);
+				
+				img.setVisibility(View.VISIBLE);
+				
 				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -3419,6 +3518,9 @@ public class Client2 extends Activity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img.setBackgroundResource(R.anim.computertwentysidedrollfromleft18);
+				
+				img.setVisibility(View.VISIBLE);
+				
 				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -3439,6 +3541,9 @@ public class Client2 extends Activity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img.setBackgroundResource(R.anim.computertwentysidedrollfromleft19);
+				
+				img.setVisibility(View.VISIBLE);
+				
 				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -3459,6 +3564,9 @@ public class Client2 extends Activity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img.setBackgroundResource(R.anim.computertwentysidedrollfromleft20);
+				
+				img.setVisibility(View.VISIBLE);
+				
 				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -3533,7 +3641,7 @@ public class Client2 extends Activity {
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
 		  	  	
-		  	  	String str = "computerTwentySidedRollFromLeft1";
+		  	  	String str = "cmputerTwentySidedRollFromLeft1";
 				sendToHost(str);
 	  	    }
   		});
@@ -3994,7 +4102,7 @@ public class Client2 extends Activity {
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
 		  	  	
-		  	  	String str = "computerTwentySidedRollFromLeft1";
+		  	  	String str = "cmputerTwentySidedRollFromLeft1";
 				sendToHost(str);
 	  	    }
   		});
@@ -4746,6 +4854,8 @@ public class Client2 extends Activity {
 	
 	public void gameEngine2Player() {
 		
+		issixsidedrolledforinitiative = "yes";
+		
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
@@ -4765,8 +4875,7 @@ public class Client2 extends Activity {
 				computerAvatar.setVisibility(View.VISIBLE);
 				
 				
-				unfoldLeftScrollNoRight();
-				
+				unfoldLeftScrollNoRight();				
 			}
 		});
 	}
@@ -4777,10 +4886,117 @@ public class Client2 extends Activity {
 			@Override
 			public void run() {
 		
-				hideImageView();
+				//hideImageView();
+				
+				// Use a blank drawable to hide the imageview animation:
+				// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+				img1.setBackgroundResource(R.drawable.twentytwentyblank);
+				img1.setImageResource(R.drawable.twentytwentyblank);
+				
+				/*
+				//TEST:
+				img1.bringToFront();
+				*/
+
+				// Use a blank drawable to hide the imageview animation:
+				ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
+				img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
 				
 				
 				computerCardStopFadeInFadeOut();
+				playerCardStartFadeInFadeOut();
+				
+				
+				Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+				
+				//NEED THIS??
+				TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+				playerHitPointsTextView.setTypeface(typeFace);
+				playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[5]));
+				//Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);
+				//playerHitPointsTextView.startAnimation(animPulsingAnimation);				
+				
+				
+				//Toast.makeText(Client2.this, "Player # Attacked = " + playerNumberAttacked + ", # Of Players = " + numberOfPlayers, Toast.LENGTH_LONG).show();
+			}
+		});
+	}
+	
+	public void turn1V105() {
+		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {				
+				
+				//hideImageView();
+				
+				// Use a blank drawable to hide the imageview animation:
+				// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+				img1.setBackgroundResource(R.drawable.twentytwentyblank);
+				img1.setImageResource(R.drawable.twentytwentyblank);
+
+				// Use a blank drawable to hide the imageview animation:
+				ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
+				img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+				
+				
+				playerCardStopFadeInFadeOut();
+				computerCardStartFadeInFadeOut();
+				
+				
+				Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+				
+				//NEED THIS??
+				TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+				computerHitPointsTextView.setTypeface(typeFace);
+				computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+				//Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);				
+				//computerHitPointsTextView.startAnimation(animPulsingAnimation);
+				
+				/*
+				//TEST:
+				ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);				
+				img.bringToFront();
+				*/
+				
+				//Toast.makeText(Client2.this, "Player # Attacked = " + playerNumberAttacked + ", # Of Players = " + numberOfPlayers, Toast.LENGTH_LONG).show();
+			}
+		});
+	}
+	
+	public void turn1V1052() {
+		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+		
+				//hideImageView();
+				
+				// Use a blank drawable to hide the imageview animation:
+				// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+				img1.setBackgroundResource(R.drawable.twentytwentyblank);
+				img1.setImageResource(R.drawable.twentytwentyblank);
+		
+				// Use a blank drawable to hide the imageview animation:
+				ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
+				img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+				
+				
+				final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+				// Re-enables ability to use srollbar:
+				centerscrolltext.bringToFront();
+				
+				ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+		    	titleBlankButton.bringToFront();
+				
+				
+		    	computerCardStopFadeInFadeOut();
 				playerCardStartFadeInFadeOut();
 				
 				
@@ -4796,52 +5012,6 @@ public class Client2 extends Activity {
 		});
 	}
 	
-	public void turn1V105() {
-		
-		hideImageView();
-		
-		
-		playerCardStopFadeInFadeOut();
-		computerCardStartFadeInFadeOut();
-		
-		
-		Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-		
-		//NEED THIS??
-		TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
-		computerHitPointsTextView.setTypeface(typeFace);
-		computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
-		//Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);				
-		//computerHitPointsTextView.startAnimation(animPulsingAnimation);
-	}
-	
-	public void turn1V1052() {
-		
-		hideImageView();
-		
-		
-		final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
-		// Re-enables ability to use srollbar:
-		centerscrolltext.bringToFront();
-		
-		ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
-    	titleBlankButton.bringToFront();
-		
-		
-    	computerCardStopFadeInFadeOut();
-		playerCardStartFadeInFadeOut();
-		
-		
-		Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-		
-		//NEED THIS??
-		TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
-		playerHitPointsTextView.setTypeface(typeFace);
-		playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[5]));
-		//Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);
-		//playerHitPointsTextView.startAnimation(animPulsingAnimation);
-	}
-	
 	public void hideImageView() {
 		
 		// Use a blank drawable to hide the imageview animation:
@@ -4854,7 +5024,7 @@ public class Client2 extends Activity {
 		ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
 		img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
 		img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
-	}
+	}	
 	
 	public void displayTurn() {
 		
@@ -4884,6 +5054,11 @@ public class Client2 extends Activity {
 		  		centerscrolltext.append("\n" + " >>>>>>>>>>>   " + " Turn " + ArrayOfTurn.turn[0] + "   <<<<<<<<<<<");				
 		  		//centerscrolltext.append("\n");
 		  		
+		  		if (ArrayOfTurn.turn[0] == 1) {
+		  			
+		  			ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);				
+					img1.bringToFront();
+		  		}
   	  	    }
 		});
 	}
@@ -4923,7 +5098,7 @@ public class Client2 extends Activity {
 			  	  		}
 			  	  		*/
 			    		
-			    		String str = "dodgeRolled :yes";
+			    		String str = "dgeRolled :yes";
 						sendToHost(str);
 			    		
 			    		dialog.dismiss();
@@ -4949,7 +5124,7 @@ public class Client2 extends Activity {
 			  	  		}	    		
 			    		*/
 		    			
-		    			String str = "dodgeRolled :no";
+		    			String str = "dgeRolled :no";
 						sendToHost(str);
 		    			
 			    		dialog.dismiss();
@@ -4962,48 +5137,60 @@ public class Client2 extends Activity {
 	
 	public void changeHostHitPoints() {
 		
-		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {
 		
-		final TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
-		playerHitPointsTextView.setTypeface(typeFace);
-		playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[5]));
-		//playerHitPointsTextView.bringToFront();
-		Animation animPulsingAnimation = AnimationUtils.loadAnimation(Client2.this, R.anim.pulsinganimation);
-		playerHitPointsTextView.startAnimation(animPulsingAnimation);
-		
-		
-		final Handler h = new Handler();
-	  		h.postDelayed(new Runnable() {		  	  	  			
-	  	  			
-  	  		@Override
-  	  	  	public void run() {  	  			
-	  	  			
-  	  			playerHitPointsTextView.clearAnimation();	  	  			
-	  	  	}
-  	  	}, 2000);	
+				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+				
+				final TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+				playerHitPointsTextView.setTypeface(typeFace);
+				playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[5]));
+				//playerHitPointsTextView.bringToFront();
+				Animation animPulsingAnimation = AnimationUtils.loadAnimation(Client2.this, R.anim.pulsinganimation);
+				playerHitPointsTextView.startAnimation(animPulsingAnimation);
+				
+				
+				final Handler h = new Handler();
+			  		h.postDelayed(new Runnable() {		  	  	  			
+			  	  			
+		  	  		@Override
+		  	  	  	public void run() {  	  			
+			  	  			
+		  	  			playerHitPointsTextView.clearAnimation();	  	  			
+			  	  	}
+		  	  	}, 2000);
+  	  	    }
+  		});
 	}
 	
 	public void changeClientHitPoints() {
 		
-		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {
 		
-		final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
-		computerHitPointsTextView.setTypeface(typeFace);
-		computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
-		//playerHitPointsTextView.bringToFront();
-		Animation animPulsingAnimation = AnimationUtils.loadAnimation(Client2.this, R.anim.pulsinganimation);
-		computerHitPointsTextView.startAnimation(animPulsingAnimation);
-		
-		
-		final Handler h = new Handler();
-	  		h.postDelayed(new Runnable() {		  	  	  			
-	  	  			
-  	  		@Override
-  	  	  	public void run() {  	  		
-	  	  			
-  	  			computerHitPointsTextView.clearAnimation();		
-	  	  	}
-  	  	}, 2000);	
+				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+				
+				final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+				computerHitPointsTextView.setTypeface(typeFace);
+				computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+				//playerHitPointsTextView.bringToFront();
+				Animation animPulsingAnimation = AnimationUtils.loadAnimation(Client2.this, R.anim.pulsinganimation);
+				computerHitPointsTextView.startAnimation(animPulsingAnimation);
+				
+				
+				final Handler h = new Handler();
+			  		h.postDelayed(new Runnable() {		  	  	  			
+			  	  			
+		  	  		@Override
+		  	  	  	public void run() {  	  		
+			  	  			
+		  	  			computerHitPointsTextView.clearAnimation();		
+			  	  	}
+		  	  	}, 2000);
+  	  	    }
+  		});
 	}
 	
 	public void victoryDefeatAnimation() {
@@ -5147,76 +5334,81 @@ public class Client2 extends Activity {
 	
 	public void skillsCheck() {
 		
-		//if (numberOfPlayers == 2) {
-			
-			if (blessSpell[5] < 1) {
-				
-				ImageView blessLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftbless);
-				blessLeft.setVisibility(View.VISIBLE);				
-			}				
-			if (cureSpell[5] < 1) {
-				
-				ImageView cureLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftcure);
-				cureLeft.setVisibility(View.VISIBLE);				
-			}			
-			if (dodgeBlowSpell[5] < 1) {
-				
-				ImageView dodgeLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftdodge);
-				dodgeLeft.setVisibility(View.VISIBLE);				
-			}			
-			if (mightyBlowSpell[5] < 1) {
-				
-				ImageView mbLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftmb);
-				mbLeft.setVisibility(View.VISIBLE);				
-			}			
-			if (hasteSpell[5] < 2) {
-				
-				ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
-				hasteLeft1.setVisibility(View.VISIBLE);				
-			}			
-			if (hasteSpell[5] < 1) {
-				
-				ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
-				hasteLeft1.setVisibility(View.VISIBLE);
-				ImageView hasteLeft2 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste2);
-				hasteLeft2.setVisibility(View.VISIBLE);				
-			}
-			
-			
-			if (blessSpell[0] < 1) {
-				
-				ImageView blessRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightbless);
-				blessRight.setVisibility(View.VISIBLE);				
-			}				
-			if (cureSpell[0] < 1) {
-				
-				ImageView cureRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightcure);
-				cureRight.setVisibility(View.VISIBLE);				
-			}			
-			if (dodgeBlowSpell[0] < 1) {
-				
-				ImageView dodgeRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightdodge);
-				dodgeRight.setVisibility(View.VISIBLE);				
-			}			
-			if (mightyBlowSpell[0] < 1) {
-				
-				ImageView mbRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightmb);
-				mbRight.setVisibility(View.VISIBLE);				
-			}			
-			if (hasteSpell[0] < 2) {
-				
-				ImageView hasteRight1 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste1);
-				hasteRight1.setVisibility(View.VISIBLE);				
-			}			
-			if (hasteSpell[0] < 1) {
-				
-				ImageView hasteRight1 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste1);
-				hasteRight1.setVisibility(View.VISIBLE);
-				ImageView hasteRight2 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste2);
-				hasteRight2.setVisibility(View.VISIBLE);				
-			}
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {
+		
+				//if (numberOfPlayers == 2) {
+					
+					if (blessSpell[5] < 1) {
 						
-		//}	
+						ImageView blessLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftbless);
+						blessLeft.setVisibility(View.VISIBLE);				
+					}				
+					if (cureSpell[5] < 1) {
+						
+						ImageView cureLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftcure);
+						cureLeft.setVisibility(View.VISIBLE);				
+					}			
+					if (dodgeBlowSpell[5] < 1) {
+						
+						ImageView dodgeLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftdodge);
+						dodgeLeft.setVisibility(View.VISIBLE);				
+					}			
+					if (mightyBlowSpell[5] < 1) {
+						
+						ImageView mbLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftmb);
+						mbLeft.setVisibility(View.VISIBLE);				
+					}			
+					if (hasteSpell[5] < 2) {
+						
+						ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
+						hasteLeft1.setVisibility(View.VISIBLE);				
+					}			
+					if (hasteSpell[5] < 1) {
+						
+						ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
+						hasteLeft1.setVisibility(View.VISIBLE);
+						ImageView hasteLeft2 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste2);
+						hasteLeft2.setVisibility(View.VISIBLE);				
+					}
+					
+					
+					if (blessSpell[0] < 1) {
+						
+						ImageView blessRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightbless);
+						blessRight.setVisibility(View.VISIBLE);				
+					}				
+					if (cureSpell[0] < 1) {
+						
+						ImageView cureRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightcure);
+						cureRight.setVisibility(View.VISIBLE);				
+					}			
+					if (dodgeBlowSpell[0] < 1) {
+						
+						ImageView dodgeRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightdodge);
+						dodgeRight.setVisibility(View.VISIBLE);				
+					}			
+					if (mightyBlowSpell[0] < 1) {
+						
+						ImageView mbRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightmb);
+						mbRight.setVisibility(View.VISIBLE);				
+					}			
+					if (hasteSpell[0] < 2) {
+						
+						ImageView hasteRight1 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste1);
+						hasteRight1.setVisibility(View.VISIBLE);				
+					}			
+					if (hasteSpell[0] < 1) {
+						
+						ImageView hasteRight1 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste1);
+						hasteRight1.setVisibility(View.VISIBLE);
+						ImageView hasteRight2 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste2);
+						hasteRight2.setVisibility(View.VISIBLE);				
+					}								
+				//}
+  	  	    }
+		});	
 	}
 	
 	
@@ -5323,13 +5515,13 @@ public class Client2 extends Activity {
 	                        public void onClick(final DialogInterface dialog, int item) {
 	                        	
 	                        	if (item == 0) {										
-									
+									/*
 									centerscrolltext.setVisibility(View.VISIBLE);													
 							  		centerscrolltext.startAnimation(animAlphaText);
 									centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + " attacks...");
+									*/
 									
-									
-									String str = "\n" + "> " + ArrayOfPlayers.player[0] + " attacks...";
+									String str = "> " + ArrayOfPlayers.player[0] + " attacks...";
 									sendToHost(str);																
 									
 									
@@ -5348,13 +5540,13 @@ public class Client2 extends Activity {
 								}
 	                        	
 	                        	else if (item == 1) {
-									
+									/*
 									centerscrolltext.setVisibility(View.VISIBLE);													
 							  		centerscrolltext.startAnimation(animAlphaText);
 									centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + " attempts to disarm...");
+									*/
 									
-									
-									String str = "\n" + "> " + ArrayOfPlayers.player[0] + " attempts to disarm...";
+									String str = "> " + ArrayOfPlayers.player[0] + " attempts to disarm...";
 									sendToHost(str);									
 									
 									
@@ -5373,13 +5565,13 @@ public class Client2 extends Activity {
 								}
 	                        	
 	                        	else if (item == 2) {
-									
+									/*
 									centerscrolltext.setVisibility(View.VISIBLE);													
 							  		centerscrolltext.startAnimation(animAlphaText);
 									centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + " casts haste...");
+									*/
 									
-									
-									String str = "\n" + "> " + ArrayOfPlayers.player[0] + " casts haste...";
+									String str = "> " + ArrayOfPlayers.player[0] + " casts haste...";
 									sendToHost(str);									
 									
 									
@@ -5397,13 +5589,13 @@ public class Client2 extends Activity {
 								}
 	                        	
 	                        	else if (item == 3) {
-									
+									/*
 									centerscrolltext.setVisibility(View.VISIBLE);													
 							  		centerscrolltext.startAnimation(animAlphaText);
 									centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + " casts cure...");
+									*/
 									
-									
-									String str = "\n" + "> " + ArrayOfPlayers.player[0] + " casts cure...";
+									String str = "> " + ArrayOfPlayers.player[0] + " casts cure...";
 									sendToHost(str);									
 									
 									
@@ -5421,13 +5613,13 @@ public class Client2 extends Activity {
 								}
 	                        	
 	                        	else if (item == 4) {
-									
+									/*
 									centerscrolltext.setVisibility(View.VISIBLE);													
 							  		centerscrolltext.startAnimation(animAlphaText);
 									centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + " casts bless...");
+									*/
 									
-									
-									String str = "\n" + "> " + ArrayOfPlayers.player[0] + " casts bless...";
+									String str = "> " + ArrayOfPlayers.player[0] + " casts bless...";
 									sendToHost(str);									
 									
 									
@@ -5590,13 +5782,13 @@ public class Client2 extends Activity {
 	  		                        public void onClick(final DialogInterface dialog, int item) {
 	  		                        	
 	  		                        	if (item == 0) {										
-	  										
+	  										/*
 	  		                        		centerscrolltext.setVisibility(View.VISIBLE);													
 									  		centerscrolltext.startAnimation(animAlphaText);
 											centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + " attacks...");
+											*/
 											
-											
-											String str = "\n" + "> " + ArrayOfPlayers.player[0] + " attacks...";
+											String str = "> " + ArrayOfPlayers.player[0] + " attacks...";
 											sendToHost(str);											
 											
 											
@@ -5626,13 +5818,13 @@ public class Client2 extends Activity {
 											}												
 											
 											else if ((hasteSpell[0] > 0) && !(disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0])) {
-												
+												/*
 												centerscrolltext.setVisibility(View.VISIBLE);													
 										  		centerscrolltext.startAnimation(animAlphaText);
 												centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + " casts haste...");
+												*/
 												
-												
-												String str = "\n" + "> " + ArrayOfPlayers.player[0] + " casts haste...";
+												String str = "> " + ArrayOfPlayers.player[0] + " casts haste...";
 												sendToHost(str);												
 												
 												
@@ -5656,13 +5848,13 @@ public class Client2 extends Activity {
 	  		                        	else if (item == 2) {	  										
 	  		                        		
 											if (cureSpell[0] > 0) {
-												
+												/*
 												centerscrolltext.setVisibility(View.VISIBLE);													
 										  		centerscrolltext.startAnimation(animAlphaText);
 												centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + " casts cure...");
+												*/
 												
-												
-												String str = "\n" + "> " + ArrayOfPlayers.player[0] + " casts cure...";
+												String str = "> " + ArrayOfPlayers.player[0] + " casts cure...";
 												sendToHost(str);												
 												
 												
@@ -5818,11 +6010,12 @@ public class Client2 extends Activity {
 				  	  	  		final TextView hasteGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
 				  	  	  		hasteGraphic.setVisibility(View.INVISIBLE);
 			  	  	  			
+				  	  	  		/*
 				  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 								centerscrolltext.startAnimation(animAlphaText);
 								centerscrolltext.append("\n" + "> TWO attacks...");
-								
-								String str5 = "\n" + "> TWO attacks...";
+								*/
+								String str5 = "> TWO attacks...";
 								sendToHost(str5);								
 																
 								
@@ -5832,11 +6025,12 @@ public class Client2 extends Activity {
 					  	  	  		@Override
 						  	  	  	public void run() {
 					  	  	  			
+					  	  	  			/*
 						  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 								  		centerscrolltext.startAnimation(animAlphaText);
 										centerscrolltext.append("\n" + "> FIRST attack...");
-										
-										String str6 = "\n" + "> FIRST attack...";
+										*/
+										String str6 = "> FIRST attack...";
 										sendToHost(str6);										
 																				
 										
@@ -5864,11 +6058,12 @@ public class Client2 extends Activity {
 				  	  	  		final TextView hasteGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
 				  	  	  		hasteGraphic.setVisibility(View.INVISIBLE);
 			  	  	  			
+				  	  	  		/*
 				  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 						  		centerscrolltext.startAnimation(animAlphaText);
 								centerscrolltext.append("\n" + "> You are no longer disarmed.");
-								
-								String str8 = "\n" + "> " +  ArrayOfPlayers.player[0] + " is no longer disarmed.";
+								*/
+								String str8 = "> " +  ArrayOfPlayers.player[0] + " is no longer disarmed.";
 								sendToHost(str8);
 								
 								
@@ -6126,12 +6321,12 @@ public class Client2 extends Activity {
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);
 	  			
-	  			
+	  			/*
 	  			centerscrolltext.setVisibility(View.VISIBLE);
 		  		centerscrolltext.startAnimation(animAlphaText);
 		  		centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + " uses a bless...");
-	  			
-		  		String str = "\n" + "> " + ArrayOfPlayers.player[0] + " uses a bless...";
+	  			*/
+		  		String str = "> " + ArrayOfPlayers.player[0] + " uses a bless...";
 		  		sendToHost(str);
 		  		
 		  		
@@ -6412,16 +6607,23 @@ public class Client2 extends Activity {
 	  						
 	  						if(numberOfPlayers == 2) {
 	  							
-	  							String str3 = "rollDodge";
+	  							String str3 = "rollDodgeFor :" + "criticalHit";
 	  							sendToHost(str3);
 	  							
-	  							String str4 = "rollDodgeFor :" + "criticalHit";
-	  							sendToHost(str4);
+	  							String str4 = "rollDge";
+	  							sendToHost(str4);	  							
+	  							
 	  							
 	  							//playerAskedToDodgeCritHit[0] = "yes";
 	  							
 	  							//checkForDodgeRoll();
-	  						}																
+	  						}
+	  						
+	  						else {
+	  							
+	  							String str4 = "rollDge";
+	  							//sendToHost(str4); SEND TO 'PLAYERATTACKED'????????????????	  							
+	  						}
 	  					}		  	  	  			
   					
 	  					// IF NO DODGE BLOW:	  					
@@ -6609,12 +6811,12 @@ public class Client2 extends Activity {
 	  	  	  			String str2 = "stopGraphics";
 	  	  	  			sendToHost(str2);
 	  	  	  			
-	  	  	  			
+	  	  	  			/*
 		  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 				  		centerscrolltext.startAnimation(animAlphaText);
 				  		centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you roll twice for critical hit damage.");
-				  		
-				  		String str3 = "\n" + "> " + ArrayOfPlayers.player[0] + " rolls twice for critical hit damage...";
+				  		*/
+				  		String str3 = "> " + ArrayOfPlayers.player[0] + " rolls twice for critical hit damage...";
 				  		sendToHost(str3);
 	  	  	  			
 				  		
@@ -6692,11 +6894,12 @@ public class Client2 extends Activity {
 	  	  	  		@Override
 		  	  	  	public void run() {
 	  	  	  			
+	  	  	  			/*
 		  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 				  		centerscrolltext.startAnimation(animAlphaText);
 				  		centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you roll twice for critical hit damage.");
-				  		
-				  		String str = "\n" + "> " + ArrayOfPlayers.player[0] + " rolls twice for critical hit damage...";
+				  		*/
+				  		String str = "> " + ArrayOfPlayers.player[0] + " rolls twice for critical hit damage...";
 				  		sendToHost(str);
 	  	  	  			
 				  		 
@@ -6786,11 +6989,12 @@ public class Client2 extends Activity {
 	  	  	  			//SharedPreferences.Editor editor = preferences.edit();
 	  	  	  			int cureResult = preferences.getInt("cureResult", 0);//0 IS THE INT TO RETURN IF PREFERENCE DOESN'T EXIST?
 	  	  	  			
+	  	  	  			/*
 		  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 				  		centerscrolltext.startAnimation(animAlphaText);
 						centerscrolltext.append("\n" + "> You roll " + cureResult + ".");				
-						
-						String str = "\n" + "> " + ArrayOfPlayers.player[0] + " rolls " + cureResult + ".";
+						*/
+						String str = "> " + ArrayOfPlayers.player[0] + " rolls " + cureResult + ".";
 						sendToHost(str);
 						
 						
@@ -6859,21 +7063,23 @@ public class Client2 extends Activity {
 		  	  	  			
 			  	  	  		if (canHasDisarmed[playerNumberAttacked].equals("no")) {
 			  	  	  			
+			  	  	  			/*
 				  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 						  		centerscrolltext.startAnimation(animAlphaText);			  		
 								centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0] + ".");
-								
-								String str = "\n" + "> " + ArrayOfPlayers.player[0] + " rolls " + ArrayOfAttackResult.attackResult[0] + ".";
+								*/
+								String str = "> " + ArrayOfPlayers.player[0] + " rolls " + ArrayOfAttackResult.attackResult[0] + ".";
 								sendToHost(str);
 			  	  	  		}
 			  	  	  		
 			  	  	  		else if (canHasDisarmed[playerNumberAttacked].equals("yes")) {				  	  	  		
 				  	  	  		
+			  	  	  			/*
 					  	  	  	centerscrolltext.setVisibility(View.VISIBLE);													
 						  		centerscrolltext.startAnimation(animAlphaText);			  		
 								centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0] + ", +2 for opponent being disarmed = " + (ArrayOfAttackResult.attackResult[0] + 2) + ".");
-								
-								String str2 = "\n" + "> " + ArrayOfPlayers.player[0] + " rolls " + ArrayOfAttackResult.attackResult[0] + ", +2 for opponent being disarmed = " + (ArrayOfAttackResult.attackResult[0] + 2) + ".";
+								*/
+								String str2 = "> " + ArrayOfPlayers.player[0] + " rolls " + ArrayOfAttackResult.attackResult[0] + ", +2 for opponent being disarmed = " + (ArrayOfAttackResult.attackResult[0] + 2) + ".";
 								sendToHost(str2);
 			  	  	  		}												
 							
@@ -6893,11 +7099,12 @@ public class Client2 extends Activity {
 										
 										if (ArrayOfAttackResult.attackResult[0] >= 14 && ArrayOfAttackResult.attackResult[0] <= 19) {
 											
+											/*
 											centerscrolltext.setVisibility(View.VISIBLE);													
 									  		centerscrolltext.startAnimation(animAlphaText);			  		
 											centerscrolltext.append("\n" + "> Your attack hits.");
-											
-											String str3 = "\n" + "> " + ArrayOfPlayers.player[0] + "'s" + " attack hits.";
+											*/
+											String str3 = "> " + ArrayOfPlayers.player[0] + "'s" + " attack hits.";
 											sendToHost(str3);
 											
 											
@@ -6907,11 +7114,12 @@ public class Client2 extends Activity {
 										
 										else if (ArrayOfAttackResult.attackResult[0] < 14 && ArrayOfAttackResult.attackResult[0] > 1) {
 											
+											/*
 											centerscrolltext.setVisibility(View.VISIBLE);
 									  		centerscrolltext.startAnimation(animAlphaText);
 											centerscrolltext.append("\n" + "> Your attack misses.");
-											
-											String str4 = "\n" + "> " + ArrayOfPlayers.player[0] + "'s" + " attack misses.";
+											*/
+											String str4 = "> " + ArrayOfPlayers.player[0] + "'s" + " attack misses.";
 											sendToHost(str4);
 											
 											
@@ -6941,11 +7149,12 @@ public class Client2 extends Activity {
 										
 										if (ArrayOfAttackResult.attackResult[0] >= 12 && ArrayOfAttackResult.attackResult[0] <= 19) {
 											
+											/*
 											centerscrolltext.setVisibility(View.VISIBLE);													
 									  		centerscrolltext.startAnimation(animAlphaText);			  		
 											centerscrolltext.append("\n" + "> Your attack hits.");
-											
-											String str6 = "\n" + "> " + ArrayOfPlayers.player[0] + "'s" + " attack hits.";
+											*/
+											String str6 = "> " + ArrayOfPlayers.player[0] + "'s" + " attack hits.";
 											sendToHost(str6);
 											
 											
@@ -6955,11 +7164,12 @@ public class Client2 extends Activity {
 										
 										else if (ArrayOfAttackResult.attackResult[0] < 12 && ArrayOfAttackResult.attackResult[0] > 1) {
 											
+											/*
 											centerscrolltext.setVisibility(View.VISIBLE);
 									  		centerscrolltext.startAnimation(animAlphaText);
 											centerscrolltext.append("\n" + "> Your attack misses.");
-											
-											String str7 = "\n" + "> " + ArrayOfPlayers.player[0] + "'s" + " attack misses.";
+											*/
+											String str7 = "> " + ArrayOfPlayers.player[0] + "'s" + " attack misses.";
 											sendToHost(str7);
 											
 											
@@ -6999,21 +7209,23 @@ public class Client2 extends Activity {
 			
 			  	  	  		if (canHasDisarmed[playerNumberAttacked].equals("no")) {			  	  	  			
 			  	  	  			
+			  	  	  			/*
 				  	  	  		centerscrolltext.setVisibility(View.VISIBLE);													
 						  		centerscrolltext.startAnimation(animAlphaText);			  		
 								centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0] + ", -1 for being disarmed = " + (ArrayOfAttackResult.attackResult[0] - 1) + ".");
-								
-								String str9 = "\n" + "> " + ArrayOfPlayers.player[0] + " rolls " + ArrayOfAttackResult.attackResult[0] + ", -1 for being disarmed = " + (ArrayOfAttackResult.attackResult[0] - 1) + ".";
+								*/
+								String str9 = "> " + ArrayOfPlayers.player[0] + " rolls " + ArrayOfAttackResult.attackResult[0] + ", -1 for being disarmed = " + (ArrayOfAttackResult.attackResult[0] - 1) + ".";
 								sendToHost(str9);
 			  	  	  		}
 			  	  	  		
 			  	  	  		else if (canHasDisarmed[playerNumberAttacked].equals("yes")) {				  	  	  		
 				  	  	  		
+			  	  	  			/*
 					  	  	  	centerscrolltext.setVisibility(View.VISIBLE);													
 						  		centerscrolltext.startAnimation(animAlphaText);			  		
 								centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0] + ", +1 for being disarmed and opponent being disarmed = " + (ArrayOfAttackResult.attackResult[0] + 1) + ".");
-								
-								String str10 = "\n" + "> " + ArrayOfPlayers.player[0] + " rolls " + ArrayOfAttackResult.attackResult[0] + ", +1 for being disarmed and opponent being disarmed = " + (ArrayOfAttackResult.attackResult[0] + 1) + ".";
+								*/
+								String str10 = "> " + ArrayOfPlayers.player[0] + " rolls " + ArrayOfAttackResult.attackResult[0] + ", +1 for being disarmed and opponent being disarmed = " + (ArrayOfAttackResult.attackResult[0] + 1) + ".";
 								sendToHost(str10);
 			  	  	  		}						
 							
@@ -7032,11 +7244,12 @@ public class Client2 extends Activity {
 										
 										if (ArrayOfAttackResult.attackResult[0] >= 15 && ArrayOfAttackResult.attackResult[0] <= 20) { // -1 to-hit for being disarmed.
 											
+											/*
 											centerscrolltext.setVisibility(View.VISIBLE);													
 									  		centerscrolltext.startAnimation(animAlphaText);			  		
 											centerscrolltext.append("\n" + "> Your punch hits.");
-											
-											String str11 = "\n" + "> " + ArrayOfPlayers.player[0] + "'s" + " punch hits.";
+											*/
+											String str11 = "> " + ArrayOfPlayers.player[0] + "'s" + " punch hits.";
 											sendToHost(str11);
 											
 											
@@ -7046,11 +7259,12 @@ public class Client2 extends Activity {
 										
 										else if (ArrayOfAttackResult.attackResult[0] < 15 && ArrayOfAttackResult.attackResult[0] >= 1) {
 											
+											/*
 											centerscrolltext.setVisibility(View.VISIBLE);
 									  		centerscrolltext.startAnimation(animAlphaText);
 											centerscrolltext.append("\n" + "> Your punch misses.");
-											
-											String str12 = "\n" + "> " + ArrayOfPlayers.player[0] + "'s" + " punch misses.";
+											*/
+											String str12 = "> " + ArrayOfPlayers.player[0] + "'s" + " punch misses.";
 											sendToHost(str12);
 											
 											
@@ -7089,11 +7303,12 @@ public class Client2 extends Activity {
 										
 										if (ArrayOfAttackResult.attackResult[0] >= 13 && ArrayOfAttackResult.attackResult[0] <= 20) { // -1 to-hit for being disarmed but, +2 because computer is disarmed (+1 total)
 											
+											/*
 											centerscrolltext.setVisibility(View.VISIBLE);													
 									  		centerscrolltext.startAnimation(animAlphaText);			  		
 											centerscrolltext.append("\n" + "> Your punch hits.");
-											
-											String str14 = "\n" + "> " + ArrayOfPlayers.player[0] + "'s" + " punch hits.";
+											*/
+											String str14 = "> " + ArrayOfPlayers.player[0] + "'s" + " punch hits.";
 											sendToHost(str14);
 											
 											
@@ -7103,11 +7318,12 @@ public class Client2 extends Activity {
 										
 										else if (ArrayOfAttackResult.attackResult[0] < 13 && ArrayOfAttackResult.attackResult[0] >= 1) {
 											
+											/*
 											centerscrolltext.setVisibility(View.VISIBLE);
 									  		centerscrolltext.startAnimation(animAlphaText);
 											centerscrolltext.append("\n" + "> Your punch misses.");
-											
-											String str15 = "\n" + "> " + ArrayOfPlayers.player[0] + "'s" + " punch misses.";
+											*/
+											String str15 = "> " + ArrayOfPlayers.player[0] + "'s" + " punch misses.";
 											sendToHost(str15);
 											
 											
@@ -7170,17 +7386,24 @@ public class Client2 extends Activity {
 	  			if (dodgeBlowSpell[playerNumberAttacked] > 0) {
 	  				
 	  				if(numberOfPlayers == 2) {  					
-							
-	  					String str = "rollDodge";
-						sendToHost(str);
 						
-						String str2 = "rollDodgeFor :" + "damage2";
-						sendToHost(str2);
+	  					String str = "rollDodgeFor :" + "damage2";
+						sendToHost(str);
+	  					
+	  					String str2 = "rollDge";
+						sendToHost(str2);						
+						
 						
 						//playerAskedToDodgeDamage[0] = "yes";
 						
 						//checkForDodgeRoll();
-					}										
+					}
+	  				
+	  				else {
+	  					
+	  					String str2 = "rollDge";
+						//sendToHost(str2); SEND TO 'PLAYERATTACKED'???????????????? 					
+	  				}
 				}
 	  			
 	  			// IF NO DODGE BLOW:
@@ -7447,11 +7670,12 @@ public class Client2 extends Activity {
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);
 	  			
+	  			/*
 	  			centerscrolltext.setVisibility(View.VISIBLE);
 		  		centerscrolltext.startAnimation(animAlphaText);
 				centerscrolltext.append("\n" + "> Roll for damage...");
-				
-				String str = "\n" + "> " + ArrayOfPlayers.player[0] + " is rolling for damage...";
+				*/
+				String str = "> " + ArrayOfPlayers.player[0] + " rolls for damage...";
 				sendToHost(str);
 				
 				
@@ -7493,6 +7717,7 @@ public class Client2 extends Activity {
 						        //same as: (int) Math.ceil(Math.random()*6); ?										
 								
 								isattackdamagerolled = "yes";
+								
 								preventattackdamagediefromleaking = "off";							
 			  	  	  		}
 			  	  	  	}, 750);					  	  	  		
@@ -7544,12 +7769,12 @@ public class Client2 extends Activity {
 	  	  	  			String str2 = "stopGraphics";
 	  	  	  			sendToHost(str2);
 	  	  	  			
-	  	  	  			
+	  	  	  			/*
 		  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 	  			  		centerscrolltext.startAnimation(animAlphaText);
 	  					centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you must roll to see if you hit yourself...");
-	  					
-	  					String str = "\n" + "> " + ArrayOfPlayers.player[0] + " must roll to see if it hit itself...";
+	  					*/
+	  					String str = "> " + ArrayOfPlayers.player[0] + " must roll to see if it hit itself...";
 	  					sendToHost(str);
 	  					
 	  					
@@ -7643,12 +7868,13 @@ public class Client2 extends Activity {
 	  	  	  			
 	  	  	  		@Override
 		  	  	  	public void run() {						
-										
+						
+	  	  	  			/*
 						centerscrolltext.setVisibility(View.VISIBLE);
 				  		centerscrolltext.startAnimation(animAlphaText);
 				  		centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0]	+ ", +2 for the Bless Spell = "	+ (ArrayOfAttackResult.attackResult[0] + 2) + ".");
-						
-				  		String str = "\n" + "> " + ArrayOfPlayers.player[0] + " rolls "	+ ArrayOfAttackResult.attackResult[0]	+ ", +2 for the Bless Spell = "	+ (ArrayOfAttackResult.attackResult[0] + 2) + ".";
+						*/
+				  		String str = "> " + ArrayOfPlayers.player[0] + " rolls "	+ ArrayOfAttackResult.attackResult[0]	+ ", +2 for the Bless Spell = "	+ (ArrayOfAttackResult.attackResult[0] + 2) + ".";
 				  		sendToHost(str);
 				  		
 				  		
@@ -7666,11 +7892,12 @@ public class Client2 extends Activity {
 						  	  	  		@Override
 							  	  	  	public void run() {
 						  	  	  			
+						  	  	  			/*
 							  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 									  		centerscrolltext.startAnimation(animAlphaText);
 									  		centerscrolltext.append("\n" + "> Your opponent has been disarmed.");
-									  		
-									  		String str2 = "\n" + "> " + ArrayOfPlayers.player[playerNumberAttacked] + " is disarmed.";
+									  		*/
+									  		String str2 = "> " + ArrayOfPlayers.player[playerNumberAttacked] + " is disarmed.";
 									  		sendToHost(str2);											
 											
 									  		
@@ -7703,11 +7930,12 @@ public class Client2 extends Activity {
 						  	  	  		@Override
 							  	  	  	public void run() {
 						  	  	  			
+						  	  	  			/*
 							  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 									  		centerscrolltext.startAnimation(animAlphaText);
 									  		centerscrolltext.append("\n" + "> Your attempt to disarm misses.");
-									  		
-									  		String str5 = "\n" + "> " + ArrayOfPlayers.player[0] + "'s" + " attempt to disarm misses.";
+									  		*/
+									  		String str5 = "> " + ArrayOfPlayers.player[0] + "'s" + " attempt to disarm misses.";
 									  		sendToHost(str5);
 									  		
 									  		
@@ -7757,11 +7985,12 @@ public class Client2 extends Activity {
 	  	  	  		@Override
 		  	  	  	public void run() {
 	  	  	  			
+	  	  	  			/*
 		  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 				  		centerscrolltext.startAnimation(animAlphaText);
 				  		centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0] + ".");
-						
-				  		String str = "\n" + "> " + ArrayOfPlayers.player[0] + " rolls "	+ ArrayOfAttackResult.attackResult[0] + ".";
+						*/
+				  		String str = "> " + ArrayOfPlayers.player[0] + " rolls "	+ ArrayOfAttackResult.attackResult[0] + ".";
 				  		sendToHost(str);
 						
 				  		
@@ -7788,11 +8017,12 @@ public class Client2 extends Activity {
 						  	  	  		@Override
 							  	  	  	public void run() {
 						  	  	  			
+						  	  	  			/*
 							  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 									  		centerscrolltext.startAnimation(animAlphaText);
 									  		centerscrolltext.append("\n" + "> Your opponent has been disarmed.");
-									  		
-									  		String str3 = "\n" + "> " + ArrayOfPlayers.player[playerNumberAttacked] + " is disarmed.";
+									  		*/
+									  		String str3 = "> " + ArrayOfPlayers.player[playerNumberAttacked] + " is disarmed.";
 									  		sendToHost(str3);
 											
 									  		
@@ -7818,11 +8048,12 @@ public class Client2 extends Activity {
 						  	  	  		@Override
 							  	  	  	public void run() {
 						  	  	  			
+						  	  	  			/*
 							  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 									  		centerscrolltext.startAnimation(animAlphaText);
 									  		centerscrolltext.append("\n" + "> Your attempt to disarm misses.");
-									  		
-									  		String str5 = "\n" + "> " + ArrayOfPlayers.player[0] + "'s" + " attempt to disarm misses.";
+									  		*/
+									  		String str5 = "> " + ArrayOfPlayers.player[0] + "'s" + " attempt to disarm misses.";
 									  		sendToHost(str5);
 									  		
 									  		
@@ -7842,11 +8073,12 @@ public class Client2 extends Activity {
 								
 				  	  	  		else if (ArrayOfAttackResult.attackResult[0] <= 1) {
 									
+				  	  	  			/*
 									centerscrolltext.setVisibility(View.VISIBLE);
 							  		centerscrolltext.startAnimation(animAlphaText);
 							  		centerscrolltext.append("\n" + "> You have rolled a critical miss...");
-									
-							  		String str7 = "\n" + "> " + ArrayOfPlayers.player[0] + " rolls "	+ "a critical miss...";
+									*/
+							  		String str7 = "> " + ArrayOfPlayers.player[0] + " rolls "	+ "a critical miss...";
 							  		sendToHost(str7);
 							  		
 							  		
@@ -7899,21 +8131,23 @@ public class Client2 extends Activity {
 	  	  	  			
 		  	  	  		if (canHasDisarmed[playerNumberAttacked].equals("no")) {
 							
+		  	  	  			/*
 							centerscrolltext.setVisibility(View.VISIBLE);
 					  		centerscrolltext.startAnimation(animAlphaText);
 					  		centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0]	+ ", +2 for Bless Spell = " + (ArrayOfAttackResult.attackResult[0] + 2) + ".");
-					  		
-					  		String str = "\n" + "> " + ArrayOfPlayers.player[0] + " rolls "	+ ArrayOfAttackResult.attackResult[0] + ", +2 for Bless Spell = " + (ArrayOfAttackResult.attackResult[0] + 2) + ".";
+					  		*/
+					  		String str = "> " + ArrayOfPlayers.player[0] + " rolls "	+ ArrayOfAttackResult.attackResult[0] + ", +2 for Bless Spell = " + (ArrayOfAttackResult.attackResult[0] + 2) + ".";
 					  		sendToHost(str);
 						}
 						
 		  	  	  		else if (canHasDisarmed[playerNumberAttacked].equals("yes")) {					
 							
+		  	  	  			/*
 							centerscrolltext.setVisibility(View.VISIBLE);
 					  		centerscrolltext.startAnimation(animAlphaText);
 					  		centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0] + ", +4 for Bless Spell and opponent being disarmed = " + (ArrayOfAttackResult.attackResult[0] + 4) + ".");
-					  		
-					  		String str2 = "\n" + "> " + ArrayOfPlayers.player[0] + " rolls "	+ ArrayOfAttackResult.attackResult[0] + ", +4 for Bless Spell and opponent being disarmed = " + (ArrayOfAttackResult.attackResult[0] + 4) + ".";
+					  		*/
+					  		String str2 = "> " + ArrayOfPlayers.player[0] + " rolls "	+ ArrayOfAttackResult.attackResult[0] + ", +4 for Bless Spell and opponent being disarmed = " + (ArrayOfAttackResult.attackResult[0] + 4) + ".";
 					  		sendToHost(str2);					  		
 						}												
 						
@@ -7933,11 +8167,12 @@ public class Client2 extends Activity {
 									
 									if ((ArrayOfAttackResult.attackResult[0] >= 12 && ArrayOfAttackResult.attackResult[0] <= 19)  || (ArrayOfAttackResult.attackResult[0] + 2) > 20) {
 										
+										/*
 										centerscrolltext.setVisibility(View.VISIBLE);													
 								  		centerscrolltext.startAnimation(animAlphaText);			  		
 										centerscrolltext.append("\n" + "> Your attack hits.");
-										
-										String str3 = "\n" + "> " + ArrayOfPlayers.player[0] + "'s"	+ " attack hits.";
+										*/
+										String str3 = "> " + ArrayOfPlayers.player[0] + "'s"	+ " attack hits.";
 										sendToHost(str3);
 										
 										
@@ -7954,11 +8189,12 @@ public class Client2 extends Activity {
 										
 										isblessrolled = "no";
 										
+										/*
 										centerscrolltext.setVisibility(View.VISIBLE);
 								  		centerscrolltext.startAnimation(animAlphaText);
 										centerscrolltext.append("\n" + "> Your attack misses.");
-										
-										String str4 = "\n" + "> " + ArrayOfPlayers.player[0] + "'s"	+ " attack misses.";
+										*/
+										String str4 = "> " + ArrayOfPlayers.player[0] + "'s"	+ " attack misses.";
 										sendToHost(str4);
 										
 										
@@ -7981,11 +8217,12 @@ public class Client2 extends Activity {
 									
 									if (ArrayOfAttackResult.attackResult[0] >= 10 && ArrayOfAttackResult.attackResult[0] <= 19  || (ArrayOfAttackResult.attackResult[0] + 2) > 20) {
 										
+										/*
 										centerscrolltext.setVisibility(View.VISIBLE);													
 								  		centerscrolltext.startAnimation(animAlphaText);			  		
 										centerscrolltext.append("\n" + "> Your attack hits.");
-										
-										String str6 = "\n" + "> " + ArrayOfPlayers.player[0] + "'s"	+ " attack hits.";
+										*/
+										String str6 = "> " + ArrayOfPlayers.player[0] + "'s"	+ " attack hits.";
 										sendToHost(str6);										
 										
 										
@@ -8003,11 +8240,12 @@ public class Client2 extends Activity {
 										
 										isblessrolled = "no";
 										
+										/*
 										centerscrolltext.setVisibility(View.VISIBLE);
 								  		centerscrolltext.startAnimation(animAlphaText);
 										centerscrolltext.append("\n" + "> Your attack misses.");
-										
-										String str7 = "\n" + "> " + ArrayOfPlayers.player[0] + "'s"	+ " attack misses.";
+										*/
+										String str7 = "> " + ArrayOfPlayers.player[0] + "'s"	+ " attack misses.";
 										sendToHost(str7);
 										
 										
@@ -8061,11 +8299,12 @@ public class Client2 extends Activity {
 	  	  	  		@Override
 		  	  	  	public void run() {	
 	  	  	  			
+	  	  	  			/*
 		  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 				  		centerscrolltext.startAnimation(animAlphaText);
 				  		centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0] + ".");
-				  		
-				  		String str = "\n" + "> " + ArrayOfPlayers.player[0] + " rolls " + ArrayOfAttackResult.attackResult[0] + ".";
+				  		*/
+				  		String str = "> " + ArrayOfPlayers.player[0] + " rolls " + ArrayOfAttackResult.attackResult[0] + ".";
 				  		sendToHost(str);				  		
 				  		
 						
@@ -8077,11 +8316,12 @@ public class Client2 extends Activity {
 			  	  	  			
 				  	  	  		if (ArrayOfAttackResult.attackResult[0] >= 17) {
 									
+				  	  	  			/*
 									centerscrolltext.setVisibility(View.VISIBLE);
 							  		centerscrolltext.startAnimation(animAlphaText);
 							  		centerscrolltext.append("\n" + "> You hit yourself.");
-							  		
-							  		String str2 = "\n" + "> " + ArrayOfPlayers.player[0] + " hits itself.";
+							  		*/
+							  		String str2 = "> " + ArrayOfPlayers.player[0] + " hits itself.";
 							  		sendToHost(str2);
 							  		
 							  		
@@ -8091,11 +8331,12 @@ public class Client2 extends Activity {
 						  	  	  		@Override
 							  	  	  	public void run() {
 						  	  	  			
+						  	  	  			/*
 							  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 									  		centerscrolltext.startAnimation(animAlphaText);
 											centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", roll for damage...");						  	  	  			
-						  	  	  			
-											String str3 = "\n" + "> " + ArrayOfPlayers.player[0] + " is rolling for damage...";
+						  	  	  			*/
+											String str3 = "> " + ArrayOfPlayers.player[0] + " rolls for damage...";
 											sendToHost(str3);
 											
 											
@@ -8106,11 +8347,12 @@ public class Client2 extends Activity {
 								
 								else {
 									
+									/*
 									centerscrolltext.setVisibility(View.VISIBLE);
 							  		centerscrolltext.startAnimation(animAlphaText);
 							  		centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you did not hit yourself, now you must roll to see if you lose your weapon...");
-									
-							  		String str4 = "\n" + "> " + ArrayOfPlayers.player[0] + " did not hit itself, but must roll to see if it loses it's weapon...";
+									*/
+							  		String str4 = "> " + ArrayOfPlayers.player[0] + " did not hit itself, but must roll to see if it loses it's weapon...";
 							  		sendToHost(str4);
 							  		
 							  		
@@ -8280,11 +8522,12 @@ public class Client2 extends Activity {
 	  	  	  		@Override
 		  	  	  	public void run() {
 	  	  	  			
+	  	  	  			/*
 		  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 				  		centerscrolltext.startAnimation(animAlphaText);
 				  		centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0] + ".");
-						
-				  		String str = "\n" + "> " + ArrayOfPlayers.player[0] + " rolls " + ArrayOfAttackResult.attackResult[0] + ".";
+						*/
+				  		String str = "> " + ArrayOfPlayers.player[0] + " rolls " + ArrayOfAttackResult.attackResult[0] + ".";
 				  		sendToHost(str);
 				  		
 				  		
@@ -8317,11 +8560,12 @@ public class Client2 extends Activity {
 				  	  	  		@Override
 					  	  	  	public void run() {
 				  	  	  			
+				  	  	  			/*
 					  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 							  		centerscrolltext.startAnimation(animAlphaText);
 							  		centerscrolltext.append("\n" + "> You are disarmed.");
-							  		
-							  		String str4 = "\n" + "> " + ArrayOfPlayers.player[0] + " is disarmed.";
+							  		*/
+							  		String str4 = "> " + ArrayOfPlayers.player[0] + " is disarmed.";
 							  		sendToHost(str4);
 							  		
 							  		
@@ -8347,11 +8591,12 @@ public class Client2 extends Activity {
 				  	  	  		@Override
 					  	  	  	public void run() {
 				  	  	  			
+				  	  	  			/*
 					  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 							  		centerscrolltext.startAnimation(animAlphaText);
 							  		centerscrolltext.append("\n" + "> You hold on to your weapon.");
-							  		
-							  		String str6 = "\n" + "> " + ArrayOfPlayers.player[0] + " holds on to it's weapon.";
+							  		*/
+							  		String str6 = "> " + ArrayOfPlayers.player[0] + " holds on to it's weapon.";
 							  		sendToHost(str6);
 							  		
 							  		
@@ -8410,11 +8655,12 @@ public class Client2 extends Activity {
 		  	  	  			//SharedPreferences.Editor editor = preferences.edit();
 		  	  	  			int attackDamage = preferences.getInt("attackDamage", 0);
 		  	  	  			
+		  	  	  			/*
 							centerscrolltext.setVisibility(View.VISIBLE);
 					  		centerscrolltext.startAnimation(animAlphaText);
 							centerscrolltext.append("\n" + "> You roll " + attackDamage + ".");
-							
-							String str = "\n" + "> " + ArrayOfPlayers.player[0] + " rolls " + attackDamage + ".";
+							*/
+							String str = "> " + ArrayOfPlayers.player[0] + " rolls " + attackDamage + ".";
 							sendToHost(str);							
 							
 							
@@ -8454,11 +8700,12 @@ public class Client2 extends Activity {
 				                  attackDamageDisarmed = 0;					            
 							}
 							
+							/*
 							centerscrolltext.setVisibility(View.VISIBLE);
 					  		centerscrolltext.startAnimation(animAlphaText);
 							centerscrolltext.append("\n" + "> You roll " + attackDamage + ", -2 damage for punch = " + attackDamageDisarmed + " damage.");
-							
-							String str = "\n" + "> " + ArrayOfPlayers.player[0] + " rolls " + attackDamage + ", -2 damage for punch = " + attackDamageDisarmed + " damage.";
+							*/
+							String str = "> " + ArrayOfPlayers.player[0] + " rolls " + attackDamage + ", -2 damage for punch = " + attackDamageDisarmed + " damage.";
 							sendToHost(str);
 							
 							
@@ -8580,11 +8827,12 @@ public class Client2 extends Activity {
 		  	  	  			//SharedPreferences.Editor editor = preferences.edit();
 		  	  	  			int attackDamage = preferences.getInt("attackDamage", 0);
 		  	  	  			
+		  	  	  			/*
 			  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 					  		centerscrolltext.startAnimation(animAlphaText);
 							centerscrolltext.append("\n" + "> You roll " + attackDamage	+ ".");
-							
-							String str = "\n" + "> " + ArrayOfPlayers.player[0] + " rolls " + attackDamage + ".";
+							*/
+							String str = "> " + ArrayOfPlayers.player[0] + " rolls " + attackDamage + ".";
 							sendToHost(str);
 							
 							
@@ -8598,11 +8846,12 @@ public class Client2 extends Activity {
 				  	  	  			//SharedPreferences.Editor editor = preferences.edit();
 				  	  	  			int attackDamage = preferences.getInt("attackDamage", 0);
 				  	  	  			
+				  	  	  			/*
 					  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 							  		centerscrolltext.startAnimation(animAlphaText);
 									centerscrolltext.append("\n" + "> Double damage for Mighty Blow = " + (attackDamage * 2) + ".");
-									
-									String str2 = "\n" + "> Double damage for Mighty Blow = " + (attackDamage * 2) + ".";
+									*/
+									String str2 = "> Double damage for Mighty Blow = " + (attackDamage * 2) + ".";
 									sendToHost(str2);
 									
 									
@@ -8643,11 +8892,12 @@ public class Client2 extends Activity {
 				                  attackDamageDisarmed = 0;					            
 							}
 							
+							/*
 							centerscrolltext.setVisibility(View.VISIBLE);
 					  		centerscrolltext.startAnimation(animAlphaText);
 							centerscrolltext.append("\n" + "> You roll " + attackDamage + ", -2 damage for punch = " + attackDamageDisarmed + " damage.");
-							
-							String str3 = "\n" + "> " + ArrayOfPlayers.player[0] + " rolls " + attackDamage + ", -2 damage for punch = " + attackDamageDisarmed + " damage.";
+							*/
+							String str3 = "> " + ArrayOfPlayers.player[0] + " rolls " + attackDamage + ", -2 damage for punch = " + attackDamageDisarmed + " damage.";
 							sendToHost(str3);
 							
 							
@@ -8668,11 +8918,12 @@ public class Client2 extends Activity {
 						                  attackDamageDisarmed = 0;					            
 									}
 				  	  	  			
+									/*
 					  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 							  		centerscrolltext.startAnimation(animAlphaText);
 									centerscrolltext.append("\n" + "> Double damage for Mighty Blow = " + (attackDamageDisarmed * 2) + ".");
-									
-									String str4 = "\n" + "> Double damage for Mighty Blow = " + (attackDamageDisarmed * 2) + ".";
+									*/
+									String str4 = "> Double damage for Mighty Blow = " + (attackDamageDisarmed * 2) + ".";
 									sendToHost(str4);
 									
 									
@@ -8791,11 +9042,12 @@ public class Client2 extends Activity {
 						//SharedPreferences.Editor editor = preferences.edit();
 						int attackDamage = preferences.getInt("attackDamage", 0);
 			  			
+						/*
 						centerscrolltext.setVisibility(View.VISIBLE);
 				  		centerscrolltext.startAnimation(animAlphaText);
 						centerscrolltext.append("\n" + "> You roll " + attackDamage + ".");
-						
-						String str = "\n" + "> " + ArrayOfPlayers.player[0] + " rolls " + attackDamage + ".";
+						*/
+						String str = "> " + ArrayOfPlayers.player[0] + " rolls " + attackDamage + ".";
 						sendToHost(str);
 						
 						
@@ -8901,12 +9153,12 @@ public class Client2 extends Activity {
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);
 	  			
-	  			
+	  			/*
 	  			centerscrolltext.setVisibility(View.VISIBLE);
 		  		centerscrolltext.startAnimation(animAlphaText);
 				centerscrolltext.append("\n" + "> You roll " + ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ".");  			
-	  			
-				String str = "\n" + "> " + ArrayOfPlayers.player[0] + " rolls " + ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ".";
+	  			*/
+				String str = "> " + ArrayOfPlayers.player[0] + " rolls " + ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ".";
 				sendToHost(str);
 				
 	  			
@@ -8928,12 +9180,13 @@ public class Client2 extends Activity {
 			  	  	  			
 			  	  	  			isSixSidedReadyToBeRolled = "yes";			  	  	  			
 				  	  	  		
+			  	  	  			/*
 			  	  	  			centerscrolltext.bringToFront();			  	  	  			
 								centerscrolltext.setVisibility(View.VISIBLE);
 						  		centerscrolltext.startAnimation(animAlphaText);
 								centerscrolltext.append("\n" + "> Make your second roll...");
-								
-								String str2 = "\n" + "> " + ArrayOfPlayers.player[0] + " is making second roll...";
+								*/
+								String str2 = "> " + ArrayOfPlayers.player[0] + " makes second roll...";
 								sendToHost(str2);
 								
 								
@@ -8976,12 +9229,12 @@ public class Client2 extends Activity {
 	  			final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);
   	  	    	
-	  			
+	  			/*
 	  			centerscrolltext.setVisibility(View.VISIBLE);
 		  		centerscrolltext.startAnimation(animAlphaText);
 				centerscrolltext.append("\n" + "> You roll " + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] + ".");
-	  			
-				String str = "\n" + "> " + ArrayOfPlayers.player[0] + " rolls " + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] + ".";
+	  			*/
+				String str = "> " + ArrayOfPlayers.player[0] + " rolls " + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] + ".";
 				sendToHost(str);
 				
 	  			
@@ -8993,11 +9246,12 @@ public class Client2 extends Activity {
 	  	  	  			
 		  	  	  		if (canHasDisarmed[0].equals("no")) {							
 							
+		  	  	  			/*
 							centerscrolltext.setVisibility(View.VISIBLE);
 					  		centerscrolltext.startAnimation(animAlphaText);
 							centerscrolltext.append("\n" + "> You roll a total " + (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) + ".");
-							
-							String str2 = "\n" + "> " + ArrayOfPlayers.player[0] + " rolls a total " + (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) + ".";
+							*/
+							String str2 = "> " + ArrayOfPlayers.player[0] + " rolls a total " + (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) + ".";
 							sendToHost(str2);
 							
 							
@@ -9025,11 +9279,12 @@ public class Client2 extends Activity {
 							
 		  	  	  		else if (canHasDisarmed[0].equals("yes")) {							
 							
+		  	  	  			/*
 							centerscrolltext.setVisibility(View.VISIBLE);
 					  		centerscrolltext.startAnimation(animAlphaText);
 							centerscrolltext.append("\n" + "> You roll a total " + (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) + ", -2 damage for punch = " + ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) + ".");
-							
-							String str4 = "\n" + "> " + ArrayOfPlayers.player[0] + " rolls a total " + (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) + ", -2 damage for punch = " + ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) + ".";
+							*/
+							String str4 = "> " + ArrayOfPlayers.player[0] + " rolls a total " + (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) + ", -2 damage for punch = " + ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) + ".";
 							sendToHost(str4);
 							
 							
@@ -9137,11 +9392,12 @@ public class Client2 extends Activity {
 	  	  	  		@Override
 		  	  	  	public void run() {
 	  	  	  			
+	  	  	  			/*
 		  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 				  		centerscrolltext.startAnimation(animAlphaText);
 						centerscrolltext.append("\n" + "> You roll " + ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ".");
-	  	  	  			
-						String str = "\n" + "> " + ArrayOfPlayers.player[0] + " rolls " + ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ".";
+	  	  	  			*/
+						String str = "> " + ArrayOfPlayers.player[0] + " rolls " + ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ".";
 						sendToHost(str);
 						
 						
@@ -9163,12 +9419,13 @@ public class Client2 extends Activity {
 					  	  	  			
 					  	  	  			isSixSidedReadyToBeRolled = "yes";					  	  	  			
 						  	  	  		
+					  	  	  			/*
 					  	  	  			centerscrolltext.bringToFront();					  	  	  			
 										centerscrolltext.setVisibility(View.VISIBLE);
 								  		centerscrolltext.startAnimation(animAlphaText);
 										centerscrolltext.append("\n" + "> Make your second roll...");
-										
-										String str2 = "\n" + "> " + ArrayOfPlayers.player[0] + " is making second roll...";
+										*/
+										String str2 = "> " + ArrayOfPlayers.player[0] + " makes second roll...";
 										sendToHost(str2);
 										
 										
@@ -9220,11 +9477,12 @@ public class Client2 extends Activity {
 	  	  	  		@Override
 		  	  	  	public void run() {
 	  	  	  			
+	  	  	  			/*
 		  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 				  		centerscrolltext.startAnimation(animAlphaText);
 						centerscrolltext.append("\n" + "> You roll " + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] + ".");
-	  	  	  			
-						String str = "\n" + "> " + ArrayOfPlayers.player[0] + " rolls " + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] + ".";
+	  	  	  			*/
+						String str = "> " + ArrayOfPlayers.player[0] + " rolls " + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] + ".";
 						sendToHost(str);
 						
 						
@@ -9236,11 +9494,12 @@ public class Client2 extends Activity {
 			  	  	  			
 				  	  	  		if (canHasDisarmed[0].equals("no")) {							
 									
+				  	  	  			/*
 									centerscrolltext.setVisibility(View.VISIBLE);
 							  		centerscrolltext.startAnimation(animAlphaText);
 									centerscrolltext.append("\n" + "> You roll a total " + (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) + ".");
-									
-									String str2 = "\n" + "> " + ArrayOfPlayers.player[0] + " rolls a total " + (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) + ".";
+									*/
+									String str2 = "> " + ArrayOfPlayers.player[0] + " rolls a total " + (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) + ".";
 									sendToHost(str2);
 									
 									
@@ -9250,11 +9509,12 @@ public class Client2 extends Activity {
 						  	  	  		@Override
 							  	  	  	public void run() {
 						  	  	  			
+						  	  	  			/*
 							  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 									  		centerscrolltext.startAnimation(animAlphaText);
 											centerscrolltext.append("\n" + "> Double damage for Mighty Blow = " + ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) * 2) + ".");
-											
-											String str3 = "\n" + "> Double damage for Mighty Blow = " + ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) * 2) + ".";
+											*/
+											String str3 = "> Double damage for Mighty Blow = " + ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) * 2) + ".";
 											sendToHost(str3);
 											
 											
@@ -9285,11 +9545,12 @@ public class Client2 extends Activity {
 									
 								if (canHasDisarmed[0].equals("yes")) {								
 									
+									/*
 									centerscrolltext.setVisibility(View.VISIBLE);
 							  		centerscrolltext.startAnimation(animAlphaText);
 									centerscrolltext.append("\n" + "> You roll a total " + (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) + ", -2 damage for punch = " + ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) + " damage.");
-									
-									String str5 = "\n" + "> " + ArrayOfPlayers.player[0] + " rolls a total " + (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) + ", -2 damage for punch = " + ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) + " damage.";
+									*/
+									String str5 = "> " + ArrayOfPlayers.player[0] + " rolls a total " + (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) + ", -2 damage for punch = " + ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) + " damage.";
 									sendToHost(str5);
 									
 									
@@ -9298,12 +9559,13 @@ public class Client2 extends Activity {
 						  	  	  			
 						  	  	  		@Override
 							  	  	  	public void run() {
-						  	  	  			
+						  	  	  		
+						  	  	  		/*
 						  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 								  		centerscrolltext.startAnimation(animAlphaText);
 										centerscrolltext.append("\n" + "> Double damage for Mighty Blow = " + (((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) * 2) + ".");
-										
-										String str6 = "\n" + "> Double damage for Mighty Blow = " + (((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) * 2) + ".";
+										*/
+										String str6 = "> Double damage for Mighty Blow = " + (((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) * 2) + ".";
 										sendToHost(str6);
 										
 										
@@ -9459,12 +9721,12 @@ public class Client2 extends Activity {
 				  	  	  	img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
 				  	  	  	img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
 		  	  	  			
-		  	  	  			
+		  	  	  			/*
 			  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 					  		centerscrolltext.startAnimation(animAlphaText);
 							centerscrolltext.append("\n" + "> SECOND attack...");
-							
-							String str3 = "\n" + "> SECOND attack...";
+							*/
+							String str3 = "> SECOND attack...";
 							sendToHost(str3);
 							
 							
@@ -9516,6 +9778,17 @@ public class Client2 extends Activity {
 		}
 	}
 	
+	public void test() {
+		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {			
+				
+				Toast.makeText(Client2.this, "DOES NOT CONTAIN :", Toast.LENGTH_LONG).show();
+			}
+		});
+		
+	}
 	
 	//=============================================================================================
 	//SEPERATOR
@@ -9586,7 +9859,7 @@ public class Client2 extends Activity {
 												
 						numberOfPlayers=Integer.parseInt(part2);											
 					}
-					else if (read.contains("id")) {
+					else if (read.contains("ID")) {
 						
 						String[] parts = read.split(":");
 						String part1 = parts[0];  
@@ -9599,7 +9872,7 @@ public class Client2 extends Activity {
 						
 						rollInitiative();						
 					}					
-					else if (read.contains("rerollInitiative")) {						
+					else if (read.contains("rerllInitiative")) {			
 						
 						reRollInitiative();						
 					}
@@ -9625,7 +9898,7 @@ public class Client2 extends Activity {
 						
 						gameEngine2Player();																		
 					}					
-					else if (read.contains("turn1V150")) {
+					else if (read.contains("trn1V150")) {
 						
 						turn1V150();																		
 					}					
@@ -9633,7 +9906,7 @@ public class Client2 extends Activity {
 						
 						turn1V105();																		
 					}
-					else if (read.contains("turn1V1052")) {
+					else if (read.contains("Turn1V1052")) {
 						
 						turn1V1052();																		
 					}
@@ -9646,16 +9919,35 @@ public class Client2 extends Activity {
 						
 						issecondroundofhasteused=part2;																
 					}
-					else if (read.contains("Turn")) {
-						
+					else if (read.contains("Turn")) {		
+						/*A CHECK THAT DONT FULLY UNDERSTAND USED WHEN TRYING TO DEBUG 'ARRAY OUT OF BOUNDS ERROR':
 						String[] parts = read.split(":");
-						String part1 = parts[0];  
-						//String part2 = parts[1].trim();//IF THERE WAS A SPACE
-						String part2 = parts[1];				
-												
-						ArrayOfTurn.turn[0]=Integer.parseInt(part2);																		
+						String part1 = "";
+						String part2 = "";
+						if (read.length() > 1) {
+							part1 = parts[0];
+							part2 = parts[1];
+							
+							ArrayOfTurn.turn[0]=Integer.parseInt(part2);
+						}
+						*/
+						
+						if(read.contains(":")) {
+						
+							String[] parts = read.split(":");
+							String part1 = parts[0];  
+							//String part2 = parts[1].trim();//IF THERE WAS A SPACE
+							String part2 = parts[1];				
+													
+							ArrayOfTurn.turn[0]=Integer.parseInt(part2);
+						}
+						else {
+							
+							test();
+						}
+						
 					}					
-					else if (read.contains("displayTurn")) {
+					else if (read.contains("displayTrn")) {
 						
 						displayTurn();																	
 					}
@@ -9697,7 +9989,7 @@ public class Client2 extends Activity {
 						
 						changeClientHitPoints();
 					}
-					else if (read.contains("rollDodge")) {						
+					else if (read.contains("rollDge")) {					
 						
 						rollDodge();						
 					}
@@ -9891,109 +10183,553 @@ public class Client2 extends Activity {
 						victoryDefeatAnimation();																	
 					}
 					
-					else if (read.contains("computerTwentySidedRollFromLeft1")) {
-						
-						computerTwentySidedRollFromLeft1();																	
+					else if (read.contains("cmputerTwentySidedRollFromLeft1")) {
+						/*
+						runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
+								img.setBackgroundResource(R.anim.computertwentysidedrollfromleft1);
+								img.bringToFront();
+						  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+						  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+								
+						  	  	MediaPlayerWrapper.play(Client2.this, R.raw.dierolling3b);
+						  	  	
+						  	  	// Animation is just 1 slide so user can see title.
+						  	  	frameAnimation.stop();
+						  	  	frameAnimation.start();
+					  	    }
+				  		});
+				  		*/
+						/*
+						final ImageView twentySidedBlank = (ImageView) findViewById(R.id.twentysidedanimation);
+						twentySidedBlank.setVisibility(View.VISIBLE);
+						*/
+						computerTwentySidedRollFromLeft1();
 					}					
 					else if (read.contains("computerTwentySidedRollFromLeft2")) {
-						
-						computerTwentySidedRollFromLeft2();																	
+						/*
+						runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
+								img.setBackgroundResource(R.anim.computertwentysidedrollfromleft2);
+								img.bringToFront();
+						  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+						  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+								
+						  	  	MediaPlayerWrapper.play(Client2.this, R.raw.dierolling3b);
+						  	  	
+						  	  	// Animation is just 1 slide so user can see title.
+						  	  	frameAnimation.stop();
+						  	  	frameAnimation.start();
+					  	    }
+				  		});
+				  		*/
+						/*
+						final ImageView twentySidedBlank = (ImageView) findViewById(R.id.twentysidedanimation);
+						twentySidedBlank.setVisibility(View.VISIBLE);
+						*/
+						computerTwentySidedRollFromLeft2();
 					}
 					else if (read.contains("computerTwentySidedRollFromLeft3")) {
-						
-						computerTwentySidedRollFromLeft3();																	
+						/*
+						runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
+								img.setBackgroundResource(R.anim.computertwentysidedrollfromleft3);
+								img.bringToFront();
+						  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+						  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+								
+						  	  	MediaPlayerWrapper.play(Client2.this, R.raw.dierolling3b);
+						  	  	
+						  	  	// Animation is just 1 slide so user can see title.
+						  	  	frameAnimation.stop();
+						  	  	frameAnimation.start();
+					  	    }
+				  		});
+				  		*/
+						/*
+						final ImageView twentySidedBlank = (ImageView) findViewById(R.id.twentysidedanimation);
+						twentySidedBlank.setVisibility(View.VISIBLE);
+						*/
+						computerTwentySidedRollFromLeft3();
 					}
 					else if (read.contains("computerTwentySidedRollFromLeft4")) {
-						
-						computerTwentySidedRollFromLeft4();																	
+						/*
+						runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
+								img.setBackgroundResource(R.anim.computertwentysidedrollfromleft4);
+								img.bringToFront();
+						  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+						  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+								
+						  	  	MediaPlayerWrapper.play(Client2.this, R.raw.dierolling3b);
+						  	  	
+						  	  	// Animation is just 1 slide so user can see title.
+						  	  	frameAnimation.stop();
+						  	  	frameAnimation.start();
+					  	    }
+				  		});
+				  		*/
+						/*
+						final ImageView twentySidedBlank = (ImageView) findViewById(R.id.twentysidedanimation);
+						twentySidedBlank.setVisibility(View.VISIBLE);
+						*/
+						computerTwentySidedRollFromLeft4();
 					}
 					else if (read.contains("computerTwentySidedRollFromLeft5")) {
-						
-						computerTwentySidedRollFromLeft5();																	
+						/*
+						runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
+								img.setBackgroundResource(R.anim.computertwentysidedrollfromleft5);
+								img.bringToFront();
+						  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+						  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+								
+						  	  	MediaPlayerWrapper.play(Client2.this, R.raw.dierolling3b);
+						  	  	
+						  	  	// Animation is just 1 slide so user can see title.
+						  	  	frameAnimation.stop();
+						  	  	frameAnimation.start();
+					  	    }
+				  		});
+				  		*/
+						/*
+						final ImageView twentySidedBlank = (ImageView) findViewById(R.id.twentysidedanimation);
+						twentySidedBlank.setVisibility(View.VISIBLE);
+						*/
+						computerTwentySidedRollFromLeft5();
 					}
 					else if (read.contains("computerTwentySidedRollFromLeft6")) {
-						
-						computerTwentySidedRollFromLeft6();																	
+						/*
+						runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
+								img.setBackgroundResource(R.anim.computertwentysidedrollfromleft6);
+								img.bringToFront();
+						  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+						  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+								
+						  	  	MediaPlayerWrapper.play(Client2.this, R.raw.dierolling3b);
+						  	  	
+						  	  	// Animation is just 1 slide so user can see title.
+						  	  	frameAnimation.stop();
+						  	  	frameAnimation.start();
+					  	    }
+				  		});
+				  		*/
+						/*
+						final ImageView twentySidedBlank = (ImageView) findViewById(R.id.twentysidedanimation);
+						twentySidedBlank.setVisibility(View.VISIBLE);
+						*/
+						computerTwentySidedRollFromLeft6();
 					}
 					else if (read.contains("computerTwentySidedRollFromLeft7")) {
-						
-						computerTwentySidedRollFromLeft7();																	
+						/*
+						runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
+								img.setBackgroundResource(R.anim.computertwentysidedrollfromleft7);
+								img.bringToFront();
+						  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+						  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+								
+						  	  	MediaPlayerWrapper.play(Client2.this, R.raw.dierolling3b);
+						  	  	
+						  	  	// Animation is just 1 slide so user can see title.
+						  	  	frameAnimation.stop();
+						  	  	frameAnimation.start();
+					  	    }
+				  		});
+				  		*/
+						/*
+						final ImageView twentySidedBlank = (ImageView) findViewById(R.id.twentysidedanimation);
+						twentySidedBlank.setVisibility(View.VISIBLE);
+						*/
+						computerTwentySidedRollFromLeft7();
 					}
 					else if (read.contains("computerTwentySidedRollFromLeft8")) {
-						
-						computerTwentySidedRollFromLeft8();																	
+						/*
+						runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
+								img.setBackgroundResource(R.anim.computertwentysidedrollfromleft8);
+								img.bringToFront();
+						  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+						  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+								
+						  	  	MediaPlayerWrapper.play(Client2.this, R.raw.dierolling3b);
+						  	  	
+						  	  	// Animation is just 1 slide so user can see title.
+						  	  	frameAnimation.stop();
+						  	  	frameAnimation.start();
+					  	    }
+				  		});
+				  		*/
+						/*
+						final ImageView twentySidedBlank = (ImageView) findViewById(R.id.twentysidedanimation);
+						twentySidedBlank.setVisibility(View.VISIBLE);
+						*/
+						computerTwentySidedRollFromLeft8();
 					}
 					else if (read.contains("computerTwentySidedRollFromLeft9")) {
-						
-						computerTwentySidedRollFromLeft9();																	
+						/*
+						runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
+								img.setBackgroundResource(R.anim.computertwentysidedrollfromleft9);
+								img.bringToFront();
+						  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+						  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+								
+						  	  	MediaPlayerWrapper.play(Client2.this, R.raw.dierolling3b);
+						  	  	
+						  	  	// Animation is just 1 slide so user can see title.
+						  	  	frameAnimation.stop();
+						  	  	frameAnimation.start();
+					  	    }
+				  		});
+				  		*/
+						/*
+						final ImageView twentySidedBlank = (ImageView) findViewById(R.id.twentysidedanimation);
+						twentySidedBlank.setVisibility(View.VISIBLE);
+						*/
+						computerTwentySidedRollFromLeft9();
 					}
 					else if (read.contains("computerTwentySidedRollFromLeft10")) {
-						
-						computerTwentySidedRollFromLeft10();																	
-					}					
+						/*
+						runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
+								img.setBackgroundResource(R.anim.computertwentysidedrollfromleft10);
+								img.bringToFront();
+						  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+						  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+								
+						  	  	MediaPlayerWrapper.play(Client2.this, R.raw.dierolling3b);
+						  	  	
+						  	  	// Animation is just 1 slide so user can see title.
+						  	  	frameAnimation.stop();
+						  	  	frameAnimation.start();
+					  	    }
+				  		});
+				  		*/
+						/*
+						final ImageView twentySidedBlank = (ImageView) findViewById(R.id.twentysidedanimation);
+						twentySidedBlank.setVisibility(View.VISIBLE);
+						*/
+						computerTwentySidedRollFromLeft10();
+					}			
 					else if (read.contains("computerTwentySidedRollFromLeft11")) {
-						
-						computerTwentySidedRollFromLeft11();																	
+						/*
+						runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
+								img.setBackgroundResource(R.anim.computertwentysidedrollfromleft11);
+								img.bringToFront();
+						  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+						  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+								
+						  	  	MediaPlayerWrapper.play(Client2.this, R.raw.dierolling3b);
+						  	  	
+						  	  	// Animation is just 1 slide so user can see title.
+						  	  	frameAnimation.stop();
+						  	  	frameAnimation.start();
+					  	    }
+				  		});
+				  		*/
+						/*
+						final ImageView twentySidedBlank = (ImageView) findViewById(R.id.twentysidedanimation);
+						twentySidedBlank.setVisibility(View.VISIBLE);
+						*/
+						computerTwentySidedRollFromLeft11();
 					}
 					else if (read.contains("computerTwentySidedRollFromLeft12")) {
-						
-						computerTwentySidedRollFromLeft12();																	
+						/*
+						runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
+								img.setBackgroundResource(R.anim.computertwentysidedrollfromleft12);
+								img.bringToFront();
+						  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+						  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+								
+						  	  	MediaPlayerWrapper.play(Client2.this, R.raw.dierolling3b);
+						  	  	
+						  	  	// Animation is just 1 slide so user can see title.
+						  	  	frameAnimation.stop();
+						  	  	frameAnimation.start();
+					  	    }
+				  		});
+				  		*/
+						/*
+						final ImageView twentySidedBlank = (ImageView) findViewById(R.id.twentysidedanimation);
+						twentySidedBlank.setVisibility(View.VISIBLE);
+						*/
+						computerTwentySidedRollFromLeft12();
 					}
 					else if (read.contains("computerTwentySidedRollFromLeft13")) {
-						
-						computerTwentySidedRollFromLeft13();																	
+						/*
+						runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
+								img.setBackgroundResource(R.anim.computertwentysidedrollfromleft13);
+								img.bringToFront();
+						  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+						  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+								
+						  	  	MediaPlayerWrapper.play(Client2.this, R.raw.dierolling3b);
+						  	  	
+						  	  	// Animation is just 1 slide so user can see title.
+						  	  	frameAnimation.stop();
+						  	  	frameAnimation.start();
+					  	    }
+				  		});
+				  		*/
+						/*
+						final ImageView twentySidedBlank = (ImageView) findViewById(R.id.twentysidedanimation);
+						twentySidedBlank.setVisibility(View.VISIBLE);
+						*/
+						computerTwentySidedRollFromLeft13();
 					}
 					else if (read.contains("computerTwentySidedRollFromLeft14")) {
-						
-						computerTwentySidedRollFromLeft14();																	
+						/*
+						runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
+								img.setBackgroundResource(R.anim.computertwentysidedrollfromleft14);
+								img.bringToFront();
+						  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+						  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+								
+						  	  	MediaPlayerWrapper.play(Client2.this, R.raw.dierolling3b);
+						  	  	
+						  	  	// Animation is just 1 slide so user can see title.
+						  	  	frameAnimation.stop();
+						  	  	frameAnimation.start();
+					  	    }
+				  		});
+				  		*/
+						/*
+						final ImageView twentySidedBlank = (ImageView) findViewById(R.id.twentysidedanimation);
+						twentySidedBlank.setVisibility(View.VISIBLE);
+						*/
+						computerTwentySidedRollFromLeft14();
 					}
 					else if (read.contains("computerTwentySidedRollFromLeft15")) {
-						
-						computerTwentySidedRollFromLeft15();																	
+						/*
+						runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
+								img.setBackgroundResource(R.anim.computertwentysidedrollfromleft15);
+								img.bringToFront();
+						  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+						  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+								
+						  	  	MediaPlayerWrapper.play(Client2.this, R.raw.dierolling3b);
+						  	  	
+						  	  	// Animation is just 1 slide so user can see title.
+						  	  	frameAnimation.stop();
+						  	  	frameAnimation.start();
+					  	    }
+				  		});
+				  		*/
+						/*
+						final ImageView twentySidedBlank = (ImageView) findViewById(R.id.twentysidedanimation);
+						twentySidedBlank.setVisibility(View.VISIBLE);
+						*/
+						computerTwentySidedRollFromLeft15();
 					}
 					else if (read.contains("computerTwentySidedRollFromLeft16")) {
-						
-						computerTwentySidedRollFromLeft16();																	
+						/*
+						runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
+								img.setBackgroundResource(R.anim.computertwentysidedrollfromleft16);
+								img.bringToFront();
+						  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+						  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+								
+						  	  	MediaPlayerWrapper.play(Client2.this, R.raw.dierolling3b);
+						  	  	
+						  	  	// Animation is just 1 slide so user can see title.
+						  	  	frameAnimation.stop();
+						  	  	frameAnimation.start();
+					  	    }
+				  		});
+				  		*/
+						/*
+						final ImageView twentySidedBlank = (ImageView) findViewById(R.id.twentysidedanimation);
+						twentySidedBlank.setVisibility(View.VISIBLE);
+						*/
+						computerTwentySidedRollFromLeft16();
 					}
 					else if (read.contains("computerTwentySidedRollFromLeft17")) {
-						
-						computerTwentySidedRollFromLeft17();																	
+						/*
+						runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
+								img.setBackgroundResource(R.anim.computertwentysidedrollfromleft17);
+								img.bringToFront();
+						  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+						  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+								
+						  	  	MediaPlayerWrapper.play(Client2.this, R.raw.dierolling3b);
+						  	  	
+						  	  	// Animation is just 1 slide so user can see title.
+						  	  	frameAnimation.stop();
+						  	  	frameAnimation.start();
+					  	    }
+				  		});
+				  		*/
+						/*
+						final ImageView twentySidedBlank = (ImageView) findViewById(R.id.twentysidedanimation);
+						twentySidedBlank.setVisibility(View.VISIBLE);
+						*/
+						computerTwentySidedRollFromLeft17();
 					}
 					else if (read.contains("computerTwentySidedRollFromLeft18")) {
-						
-						computerTwentySidedRollFromLeft18();																	
+						/*
+						runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
+								img.setBackgroundResource(R.anim.computertwentysidedrollfromleft18);
+								img.bringToFront();
+						  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+						  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+								
+						  	  	MediaPlayerWrapper.play(Client2.this, R.raw.dierolling3b);
+						  	  	
+						  	  	// Animation is just 1 slide so user can see title.
+						  	  	frameAnimation.stop();
+						  	  	frameAnimation.start();
+					  	    }
+				  		});
+				  		*/
+						/*
+						final ImageView twentySidedBlank = (ImageView) findViewById(R.id.twentysidedanimation);
+						twentySidedBlank.setVisibility(View.VISIBLE);
+						*/
+						computerTwentySidedRollFromLeft18();
 					}
 					else if (read.contains("computerTwentySidedRollFromLeft19")) {
-						
-						computerTwentySidedRollFromLeft19();																	
+						/*
+						runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
+								img.setBackgroundResource(R.anim.computertwentysidedrollfromleft19);
+								img.bringToFront();
+						  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+						  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+								
+						  	  	MediaPlayerWrapper.play(Client2.this, R.raw.dierolling3b);
+						  	  	
+						  	  	// Animation is just 1 slide so user can see title.
+						  	  	frameAnimation.stop();
+						  	  	frameAnimation.start();
+					  	    }
+				  		});
+				  		*/
+						/*
+						final ImageView twentySidedBlank = (ImageView) findViewById(R.id.twentysidedanimation);
+						twentySidedBlank.setVisibility(View.VISIBLE);
+						*/
+						computerTwentySidedRollFromLeft19();
 					}
 					else if (read.contains("computerTwentySidedRollFromLeft20")) {
-						
-						computerTwentySidedRollFromLeft20();																	
+						/*
+						runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
+								img.setBackgroundResource(R.anim.computertwentysidedrollfromleft20);
+								img.bringToFront();
+						  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+						  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+								
+						  	  	MediaPlayerWrapper.play(Client2.this, R.raw.dierolling3b);
+						  	  	
+						  	  	// Animation is just 1 slide so user can see title.
+						  	  	frameAnimation.stop();
+						  	  	frameAnimation.start();
+					  	    }
+				  		});
+				  		*/
+						/*
+						final ImageView twentySidedBlank = (ImageView) findViewById(R.id.twentysidedanimation);
+						twentySidedBlank.setVisibility(View.VISIBLE);
+						*/
+						computerTwentySidedRollFromLeft20();
 					}					
 					
 					else if (read.contains("computerSixSidedRollFromLeft1")) {
-						
+						/*
+						ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+						img1.setBackgroundResource(R.drawable.twentytwentyblank);
+						img1.setImageResource(R.drawable.twentytwentyblank);
+						*/
 						computerSixSidedRollFromLeft1();																	
 					}
 					else if (read.contains("computerSixSidedRollFromLeft2")) {
-						
+						/*
+						ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+						img1.setBackgroundResource(R.drawable.twentytwentyblank);
+						img1.setImageResource(R.drawable.twentytwentyblank);
+						*/
 						computerSixSidedRollFromLeft2();																	
 					}
 					else if (read.contains("computerSixSidedRollFromLeft3")) {
-						
+						/*
+						ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+						img1.setBackgroundResource(R.drawable.twentytwentyblank);
+						img1.setImageResource(R.drawable.twentytwentyblank);
+						*/
 						computerSixSidedRollFromLeft3();																	
 					}
 					else if (read.contains("computerSixSidedRollFromLeft4")) {
-						
+						/*
+						ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+						img1.setBackgroundResource(R.drawable.twentytwentyblank);
+						img1.setImageResource(R.drawable.twentytwentyblank);
+						*/
 						computerSixSidedRollFromLeft4();																	
 					}
 					else if (read.contains("computerSixSidedRollFromLeft5")) {
-						
+						/*
+						ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+						img1.setBackgroundResource(R.drawable.twentytwentyblank);
+						img1.setImageResource(R.drawable.twentytwentyblank);
+						*/
 						computerSixSidedRollFromLeft5();																	
 					}
 					else if (read.contains("computerSixSidedRollFromLeft6")) {
-						
+						/*
+						ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+						img1.setBackgroundResource(R.drawable.twentytwentyblank);
+						img1.setImageResource(R.drawable.twentytwentyblank);
+						*/
 						computerSixSidedRollFromLeft6();																	
 					}					
 					

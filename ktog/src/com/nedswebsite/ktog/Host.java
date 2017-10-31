@@ -110,9 +110,9 @@ public class Host extends Activity {
 	String doublesModifierOfInitiativeClient3 = "";
 	
 	
-	String[] playerAskedToDodgeCritHit = new String[] {"no", "no", "no", "no", "no", "no"};
+	String[] plyerAskedToDodgeCritHit = new String[] {"no", "no", "no", "no", "no", "no"};
 	String[] playerAskedToDodgeDamage = new String[] {"no", "no", "no", "no", "no", "no"};
-	String[] dodgeRolled = new String[] {};//IS THIS NULL BY DEFAULT???
+	String[] dgeRolled = new String[] {"null","null","null","null","null"};//IS THIS NULL BY DEFAULT???
 	
 	int numberOfPlayers;
 	
@@ -2791,8 +2791,7 @@ public class Host extends Activity {
 		  	  		
 		  	  		String str = "computerSixSidedRollFromLeft2";
 		  	  		sendToAllClients(str);
-		  	  	}
-			  	  	
+		  	  	}			  	  	
 	  	    }
   		}); 	  	
 	}
@@ -3120,7 +3119,7 @@ public class Host extends Activity {
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
 		  	  	
-		  	  	String str = "computerTwentySidedRollFromLeft1";
+		  	  	String str = "cmputerTwentySidedRollFromLeft1";
 				sendToAllClients(str);
 	  	    }
   		});
@@ -3581,7 +3580,7 @@ public class Host extends Activity {
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
 		  	  	
-		  	  	String str = "computerTwentySidedRollFromLeft1";
+		  	  	String str = "cmputerTwentySidedRollFromLeft1";
 				sendToAllClients(str);
 	  	    }
   		});
@@ -8829,7 +8828,7 @@ public class Host extends Activity {
 		String str = "re-roll for inititiative...";
 		sendToClient0(str);						
 		
-		String str2 = "rerollInitiative";
+		String str2 = "rerllInitiative";
 		sendToClient0(str2);
 		
 		
@@ -8893,13 +8892,13 @@ public class Host extends Activity {
 		String str = "re-roll for inititiative...";
 		sendToClient0(str);						
 		
-		String str2 = "rerollInitiative";
+		String str2 = "rerllInitiative";
 		sendToClient0(str2);
 		
 		String str3 = "re-roll for inititiative...";
 		sendToClient1(str3);						
 		
-		String str4 = "rerollInitiative";
+		String str4 = "rerllInitiative";
 		sendToClient1(str4);		
 		
 		
@@ -8949,7 +8948,7 @@ public class Host extends Activity {
 		String str = "re-roll for inititiative...";
 		sendToClient1(str);						
 		
-		String str2 = "rerollInitiative";
+		String str2 = "rerllInitiative";
 		sendToClient1(str2);
 		
 		
@@ -9013,7 +9012,7 @@ public class Host extends Activity {
 		String str = "re-roll for inititiative...";
 		sendToClient2(str);						
 		
-		String str2 = "rerollInitiative";
+		String str2 = "rerllInitiative";
 		sendToClient2(str2);
 		
 		
@@ -9077,13 +9076,13 @@ public class Host extends Activity {
 		String str = "re-roll for inititiative...";
 		sendToClient2(str);						
 		
-		String str2 = "rerollInitiative";
+		String str2 = "rerllInitiative";
 		sendToClient2(str2);
 		
 		String str3 = "re-roll for inititiative...";
 		sendToClient0(str3);						
 		
-		String str4 = "rerollInitiative";
+		String str4 = "rerllInitiative";
 		sendToClient0(str4);
 		
 		
@@ -9133,13 +9132,13 @@ public class Host extends Activity {
 		String str = "re-roll for inititiative...";
 		sendToClient2(str);						
 		
-		String str2 = "rerollInitiative";
+		String str2 = "rerllInitiative";
 		sendToClient2(str2);
 		
 		String str3 = "re-roll for inititiative...";
 		sendToClient1(str3);						
 		
-		String str4 = "rerollInitiative";
+		String str4 = "rerllInitiative";
 		sendToClient1(str4);
 		
 		
@@ -9191,13 +9190,13 @@ public class Host extends Activity {
 		String str = "re-roll for inititiative...";
 		sendToClient1(str);						
 		
-		String str2 = "rerollInitiative";
+		String str2 = "rerllInitiative";
 		sendToClient1(str2);
 		
 		String str3 = "re-roll for inititiative...";
 		sendToClient0(str3);						
 		
-		String str4 = "rerollInitiative";
+		String str4 = "rerllInitiative";
 		sendToClient0(str4);
 		
 		
@@ -9252,13 +9251,13 @@ public class Host extends Activity {
 		String str = "re-roll for inititiative...";
 		sendToClient2(str);						
 		
-		String str2 = "rerollInitiative";
+		String str2 = "rerllInitiative";
 		sendToClient2(str2);
 		
 		String str3 = "re-roll for inititiative...";
 		sendToClient1(str3);						
 		
-		String str4 = "rerollInitiative";
+		String str4 = "rerllInitiative";
 		sendToClient1(str4);
 		
 		
@@ -9313,13 +9312,13 @@ public class Host extends Activity {
 		String str = "re-roll for inititiative...";
 		sendToClient2(str);						
 		
-		String str2 = "rerollInitiative";
+		String str2 = "rerllInitiative";
 		sendToClient2(str2);
 		
 		String str3 = "re-roll for inititiative...";
 		sendToClient0(str3);						
 		
-		String str4 = "rerollInitiative";
+		String str4 = "rerllInitiative";
 		sendToClient0(str4);
 		
 		
@@ -9374,19 +9373,19 @@ public class Host extends Activity {
 		String str = "re-roll for inititiative...";
 		sendToClient2(str);						
 		
-		String str2 = "rerollInitiative";
+		String str2 = "rerllInitiative";
 		sendToClient2(str2);
 		
 		String str3 = "re-roll for inititiative...";
 		sendToClient0(str3);						
 		
-		String str4 = "rerollInitiative";
+		String str4 = "rerllInitiative";
 		sendToClient0(str4);
 		
 		String str5 = "re-roll for inititiative...";
 		sendToClient1(str5);						
 		
-		String str6 = "rerollInitiative";
+		String str6 = "rerllInitiative";
 		sendToClient1(str6);		
 		
 		
@@ -9428,13 +9427,13 @@ public class Host extends Activity {
 		String str = "re-roll for inititiative...";
 		sendToClient3(str);						
 		
-		String str2 = "rerollInitiative";
+		String str2 = "rerllInitiative";
 		sendToClient3(str2);
 		
 		String str3 = "re-roll for inititiative...";
 		sendToClient0(str3);						
 		
-		String str4 = "rerollInitiative";
+		String str4 = "rerllInitiative";
 		sendToClient0(str4);
 		
 		
@@ -9484,13 +9483,13 @@ public class Host extends Activity {
 		String str = "re-roll for inititiative...";
 		sendToClient3(str);						
 		
-		String str2 = "rerollInitiative";
+		String str2 = "rerllInitiative";
 		sendToClient3(str2);
 		
 		String str3 = "re-roll for inititiative...";
 		sendToClient1(str3);						
 		
-		String str4 = "rerollInitiative";
+		String str4 = "rerllInitiative";
 		sendToClient1(str4);
 		
 		
@@ -9540,13 +9539,13 @@ public class Host extends Activity {
 		String str = "re-roll for inititiative...";
 		sendToClient3(str);						
 		
-		String str2 = "rerollInitiative";
+		String str2 = "rerllInitiative";
 		sendToClient3(str2);
 		
 		String str3 = "re-roll for inititiative...";
 		sendToClient2(str3);						
 		
-		String str4 = "rerollInitiative";
+		String str4 = "rerllInitiative";
 		sendToClient2(str4);
 		
 		
@@ -9596,7 +9595,7 @@ public class Host extends Activity {
 		String str = "re-roll for inititiative...";
 		sendToClient3(str);						
 		
-		String str2 = "rerollInitiative";
+		String str2 = "rerllInitiative";
 		sendToClient3(str2);
 		
 		
@@ -9662,19 +9661,19 @@ public class Host extends Activity {
 		String str = "re-roll for inititiative...";
 		sendToClient3(str);						
 		
-		String str2 = "rerollInitiative";
+		String str2 = "rerllInitiative";
 		sendToClient3(str2);
 		
 		String str3 = "re-roll for inititiative...";
 		sendToClient0(str3);						
 		
-		String str4 = "rerollInitiative";
+		String str4 = "rerllInitiative";
 		sendToClient0(str4);
 		
 		String str5 = "re-roll for inititiative...";
 		sendToClient1(str5);						
 		
-		String str6 = "rerollInitiative";
+		String str6 = "rerllInitiative";
 		sendToClient1(str6);
 		
 		
@@ -9718,19 +9717,19 @@ public class Host extends Activity {
 		String str = "re-roll for inititiative...";
 		sendToClient3(str);						
 		
-		String str2 = "rerollInitiative";
+		String str2 = "rerllInitiative";
 		sendToClient3(str2);
 		
 		String str3 = "re-roll for inititiative...";
 		sendToClient0(str3);						
 		
-		String str4 = "rerollInitiative";
+		String str4 = "rerllInitiative";
 		sendToClient0(str4);
 		
 		String str5 = "re-roll for inititiative...";
 		sendToClient2(str5);						
 		
-		String str6 = "rerollInitiative";
+		String str6 = "rerllInitiative";
 		sendToClient2(str6);
 		
 		
@@ -9774,13 +9773,13 @@ public class Host extends Activity {
 		String str = "re-roll for inititiative...";
 		sendToClient3(str);						
 		
-		String str2 = "rerollInitiative";
+		String str2 = "rerllInitiative";
 		sendToClient3(str2);
 		
 		String str3 = "re-roll for inititiative...";
 		sendToClient0(str3);						
 		
-		String str4 = "rerollInitiative";
+		String str4 = "rerllInitiative";
 		sendToClient0(str4);
 		
 		
@@ -9835,19 +9834,19 @@ public class Host extends Activity {
 		String str = "re-roll for inititiative...";
 		sendToClient3(str);						
 		
-		String str2 = "rerollInitiative";
+		String str2 = "rerllInitiative";
 		sendToClient3(str2);
 		
 		String str3 = "re-roll for inititiative...";
 		sendToClient1(str3);						
 		
-		String str4 = "rerollInitiative";
+		String str4 = "rerllInitiative";
 		sendToClient1(str4);
 		
 		String str5 = "re-roll for inititiative...";
 		sendToClient2(str5);						
 		
-		String str6 = "rerollInitiative";
+		String str6 = "rerllInitiative";
 		sendToClient2(str6);
 		
 		
@@ -9891,13 +9890,13 @@ public class Host extends Activity {
 		String str = "re-roll for inititiative...";
 		sendToClient3(str);						
 		
-		String str2 = "rerollInitiative";
+		String str2 = "rerllInitiative";
 		sendToClient3(str2);
 		
 		String str3 = "re-roll for inititiative...";
 		sendToClient1(str3);						
 		
-		String str4 = "rerollInitiative";
+		String str4 = "rerllInitiative";
 		sendToClient1(str4);
 		
 		
@@ -9952,13 +9951,13 @@ public class Host extends Activity {
 		String str = "re-roll for inititiative...";
 		sendToClient3(str);						
 		
-		String str2 = "rerollInitiative";
+		String str2 = "rerllInitiative";
 		sendToClient3(str2);
 		
 		String str3 = "re-roll for inititiative...";
 		sendToClient2(str3);						
 		
-		String str4 = "rerollInitiative";
+		String str4 = "rerllInitiative";
 		sendToClient2(str4);
 		
 		
@@ -10015,19 +10014,19 @@ public class Host extends Activity {
 		String str = "re-roll for inititiative...";
 		sendToClient0(str);						
 		
-		String str2 = "rerollInitiative";
+		String str2 = "rerllInitiative";
 		sendToClient0(str2);
 		
 		String str3 = "re-roll for inititiative...";
 		sendToClient1(str3);						
 		
-		String str4 = "rerollInitiative";
+		String str4 = "rerllInitiative";
 		sendToClient1(str4);
 		
 		String str5 = "re-roll for inititiative...";
 		sendToClient2(str5);						
 		
-		String str6 = "rerollInitiative";
+		String str6 = "rerllInitiative";
 		sendToClient2(str6);
 		
 		
@@ -10076,25 +10075,25 @@ public class Host extends Activity {
 		String str = "re-roll for inititiative...";
 		sendToClient3(str);						
 		
-		String str2 = "rerollInitiative";
+		String str2 = "rerllInitiative";
 		sendToClient3(str2);
 		
 		String str3 = "re-roll for inititiative...";
 		sendToClient0(str3);						
 		
-		String str4 = "rerollInitiative";
+		String str4 = "rerllInitiative";
 		sendToClient0(str4);
 		
 		String str5 = "re-roll for inititiative...";
 		sendToClient1(str5);						
 		
-		String str6 = "rerollInitiative";
+		String str6 = "rerllInitiative";
 		sendToClient1(str6);
 		
 		String str7 = "re-roll for inititiative...";
 		sendToClient2(str7);						
 		
-		String str8 = "rerollInitiative";
+		String str8 = "rerllInitiative";
 		sendToClient2(str8);
 	}
 
@@ -10133,19 +10132,19 @@ public class Host extends Activity {
 		String str = "re-roll for inititiative...";
 		sendToClient3(str);						
 		
-		String str2 = "rerollInitiative";
+		String str2 = "rerllInitiative";
 		sendToClient3(str2);
 		
 		String str3 = "re-roll for inititiative...";
 		sendToClient0(str3);						
 		
-		String str4 = "rerollInitiative";
+		String str4 = "rerllInitiative";
 		sendToClient0(str4);
 		
 		String str5 = "re-roll for inititiative...";
 		sendToClient1(str5);						
 		
-		String str6 = "rerollInitiative";
+		String str6 = "rerllInitiative";
 		sendToClient1(str6);
 		
 		
@@ -10194,19 +10193,19 @@ public class Host extends Activity {
 		String str = "re-roll for inititiative...";
 		sendToClient3(str);						
 		
-		String str2 = "rerollInitiative";
+		String str2 = "rerllInitiative";
 		sendToClient3(str2);
 		
 		String str3 = "re-roll for inititiative...";
 		sendToClient1(str3);						
 		
-		String str4 = "rerollInitiative";
+		String str4 = "rerllInitiative";
 		sendToClient1(str4);
 		
 		String str5 = "re-roll for inititiative...";
 		sendToClient2(str5);						
 		
-		String str6 = "rerollInitiative";
+		String str6 = "rerllInitiative";
 		sendToClient2(str6);
 		
 		
@@ -10255,19 +10254,19 @@ public class Host extends Activity {
 		String str = "re-roll for inititiative...";
 		sendToClient3(str);						
 		
-		String str2 = "rerollInitiative";
+		String str2 = "rerllInitiative";
 		sendToClient3(str2);
 		
 		String str3 = "re-roll for inititiative...";
 		sendToClient0(str3);						
 		
-		String str4 = "rerollInitiative";
+		String str4 = "rerllInitiative";
 		sendToClient0(str4);
 		
 		String str5 = "re-roll for inititiative...";
 		sendToClient2(str5);						
 		
-		String str6 = "rerollInitiative";
+		String str6 = "rerllInitiative";
 		sendToClient2(str6);
 		
 		
@@ -10318,25 +10317,25 @@ public class Host extends Activity {
 		String str = "re-roll for inititiative...";
 		sendToClient3(str);						
 		
-		String str2 = "rerollInitiative";
+		String str2 = "rerllInitiative";
 		sendToClient3(str2);
 		
 		String str3 = "re-roll for inititiative...";
 		sendToClient0(str3);						
 		
-		String str4 = "rerollInitiative";
+		String str4 = "rerllInitiative";
 		sendToClient0(str4);
 		
 		String str5 = "re-roll for inititiative...";
 		sendToClient1(str5);						
 		
-		String str6 = "rerollInitiative";
+		String str6 = "rerllInitiative";
 		sendToClient1(str6);
 		
 		String str7 = "re-roll for inititiative...";
 		sendToClient2(str7);						
 		
-		String str8 = "rerollInitiative";
+		String str8 = "rerllInitiative";
 		sendToClient2(str8);
 	
 		
@@ -11594,7 +11593,12 @@ public class Host extends Activity {
 	
 	public void gameEngine() {
 		
+		issixsidedrolledforinitiative = "yes";
+		
 		if (numberOfPlayers == 2) {
+			
+			//issixsidedrolledforinitiative = "yes";
+			
 			
 			final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 			
@@ -11642,7 +11646,7 @@ public class Host extends Activity {
 			playerNumberAttacked = 0;
 			
 		    
-		    //turn();
+		    turn();
 		}
 		
 		else if (numberOfPlayers == 3) {
@@ -11732,69 +11736,103 @@ public class Host extends Activity {
 	
 	public void turn() {
 		
-		if (numberOfPlayers == 2) {
+		if (numberOfPlayers == 2) {			
 			
-			// Use a blank drawable to hide the imageview animation:
-			// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
-			ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
-			img1.setBackgroundResource(R.drawable.twentytwentyblank);
-			img1.setImageResource(R.drawable.twentytwentyblank);
-
-			// Use a blank drawable to hide the imageview animation:
-			ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
-			img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
-			img2.setImageResource(R.drawable.sixsixrightleftrotateblank);			
-			
-			
-			if (initiativeFinal[5] > initiativeFinal[0]) {			
+			if (initiativeFinal[5] > initiativeFinal[0]) {
 				
-				computerCardStopFadeInFadeOut();
-    			playerCardStartFadeInFadeOut();
-    			
-    			
-    			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-    			
-    			//NEED THIS??
-    			TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
-    			playerHitPointsTextView.setTypeface(typeFace);
-    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[5]));
-    			//Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);
-    			//playerHitPointsTextView.startAnimation(animPulsingAnimation);
+				runOnUiThread(new Runnable() {
+		  	  	    @Override
+		  	  	    public void run() {
 				
-    			
-    			String str = "turn1V150";//2 PLAYER(1V1), HOST GOES FIRST(50)
-    			sendToClient0(str);
-    			
-				
-				ArrayOfTurn.turn[0] = ArrayOfTurn.turn[0] + 1;	
-				
-				
-				gameEngine1V1501();//PART 1		
+						// Use a blank drawable to hide the imageview animation:
+						// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+						ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+						img1.setBackgroundResource(R.drawable.twentytwentyblank);
+						img1.setImageResource(R.drawable.twentytwentyblank);
+		
+						// Use a blank drawable to hide the imageview animation:
+						ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
+						img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+						img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+						
+						
+						computerCardStopFadeInFadeOut();
+		    			playerCardStartFadeInFadeOut();
+		    			
+		    			
+		    			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+		    			
+		    			//NEED THIS??
+		    			TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+		    			playerHitPointsTextView.setTypeface(typeFace);
+		    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[5]));
+		    			//Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);
+		    			//playerHitPointsTextView.startAnimation(animPulsingAnimation);
+						
+		    			
+		    			String str = "trn1V150";//2 PLAYER(1V1), HOST GOES FIRST(50)
+		    			sendToClient0(str);
+		    			
+						
+						ArrayOfTurn.turn[0] = ArrayOfTurn.turn[0] + 1;	
+						
+						
+						gameEngine1V1501();//PART 1
+		  	  	    }
+		  		});
 			}
-			else if (initiativeFinal[0] > initiativeFinal[5]) {				
+			else if (initiativeFinal[0] > initiativeFinal[5]) {
 				
-				playerCardStopFadeInFadeOut();
-    			computerCardStartFadeInFadeOut();
-    			
-    			
-    			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-    			
-    			//NEED THIS??
-    			TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
-    			computerHitPointsTextView.setTypeface(typeFace);
-    			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
-    			//Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);				
-    			//computerHitPointsTextView.startAnimation(animPulsingAnimation);
-    			
-    			
-    			String str = "turn1V105";//2 PLAYER(1V1), CLIENT GOES FIRST(05)
-    			sendToClient0(str);
-    			
-    			
-    			ArrayOfTurn.turn[0] = ArrayOfTurn.turn[0] + 1;
-    			
-    			
-    			gameEngine1V1051();//PART 1			
+				runOnUiThread(new Runnable() {
+		  	  	    @Override
+		  	  	    public void run() {
+				
+						// Use a blank drawable to hide the imageview animation:
+						// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+						ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+						img1.setBackgroundResource(R.drawable.twentytwentyblank);
+						img1.setImageResource(R.drawable.twentytwentyblank);
+						
+						/*
+						//TEST:
+						img1.bringToFront();
+						*/
+		
+						// Use a blank drawable to hide the imageview animation:
+						ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
+						img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+						img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+						
+						
+						playerCardStopFadeInFadeOut();
+		    			computerCardStartFadeInFadeOut();
+		    			
+		    			
+		    			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+		    			
+		    			//NEED THIS??
+		    			TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+		    			computerHitPointsTextView.setTypeface(typeFace);
+		    			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+		    			//Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);				
+		    			//computerHitPointsTextView.startAnimation(animPulsingAnimation);
+		    			
+		    			/*
+		    			//TEST:
+						ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);				
+						img.bringToFront();
+		    			*/
+		    			
+		    			String str = "turn1V105";//2 PLAYER(1V1), CLIENT GOES FIRST(05)
+		    			sendToClient0(str);
+		    			
+		    			
+		    			ArrayOfTurn.turn[0] = ArrayOfTurn.turn[0] + 1;
+		    			
+		    			
+		    			gameEngine1V1051();//PART 1
+		  	  	    }
+		  		});
 			}			
 		}
 		
@@ -11918,10 +11956,12 @@ public class Host extends Activity {
   	  	    	
   	  	    	displayTurn();
   	  	    	
+  	  	    	//int turnVariable = ArrayOfTurn.turn[0];
+  	  	    	
 	  	  	    String str4 = "Turn :" + ArrayOfTurn.turn[0];
 				sendToClient0(str4);
   	  	    	
-	  	  	    String str5 = "displayTurn";
+	  	  	    String str5 = "displayTrn";
 				sendToClient0(str5);
   	  	    	
   	  	    	/*
@@ -12101,6 +12141,10 @@ public class Host extends Activity {
 	  			//computerHitPointsTextView.startAnimation(animPulsingAnimation);
 	  			
 	  			
+	  			String str = "turn1V105";//2 PLAYER(1V1), CLIENT GOES FIRST(05)
+    			sendToClient0(str);
+	  			
+	  			
 	  			final Handler h = new Handler();
 	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 	  	  	  			
@@ -12186,10 +12230,12 @@ public class Host extends Activity {
   	  	    	
   	  	    	displayTurn();
   	  	    	
+  	  	    	//int turnVariable = ArrayOfTurn.turn[0];
+  	  	    	
 	  	  	    String str5 = "Turn :" + ArrayOfTurn.turn[0];
 				sendToClient0(str5);
   	  	    	
-	  	  	    String str6 = "displayTurn";
+	  	  	    String str6 = "displayTrn";
 				sendToClient0(str6);  	  	    	
   	  	    	
   	  	    					
@@ -12331,7 +12377,7 @@ public class Host extends Activity {
   	  	    @Override
   	  	    public void run() {  	  	    	
   	  	    	
-  	  	    	String str6 = "turn1V1052";
+  	  	    	String str6 = "Turn1V1052";
   	  	    	sendToClient0(str6);
   	  	    	
   	  	    	// Use a blank drawable to hide the imageview animation:
@@ -12443,84 +12489,88 @@ public class Host extends Activity {
 		  		centerscrolltext.startAnimation(animAlphaText);
 		  		//centerscrolltext.append("\n");
 		  		centerscrolltext.append("\n" + " >>>>>>>>>>>   " + " Turn " + ArrayOfTurn.turn[0] + "   <<<<<<<<<<<");				
-		  		//centerscrolltext.append("\n");
-		  		
+		  		//centerscrolltext.append("\n");		  		
   	  	    }
 		});		
 	}	
 	
 	public void skillsCheck() {
 		
-		//if (numberOfPlayers == 2) {
-			
-			if (blessSpell[5] < 1) {
-				
-				ImageView blessLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftbless);
-				blessLeft.setVisibility(View.VISIBLE);				
-			}				
-			if (cureSpell[5] < 1) {
-				
-				ImageView cureLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftcure);
-				cureLeft.setVisibility(View.VISIBLE);				
-			}			
-			if (dodgeBlowSpell[5] < 1) {
-				
-				ImageView dodgeLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftdodge);
-				dodgeLeft.setVisibility(View.VISIBLE);				
-			}			
-			if (mightyBlowSpell[5] < 1) {
-				
-				ImageView mbLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftmb);
-				mbLeft.setVisibility(View.VISIBLE);				
-			}			
-			if (hasteSpell[5] < 2) {
-				
-				ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
-				hasteLeft1.setVisibility(View.VISIBLE);				
-			}			
-			if (hasteSpell[5] < 1) {
-				
-				ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
-				hasteLeft1.setVisibility(View.VISIBLE);
-				ImageView hasteLeft2 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste2);
-				hasteLeft2.setVisibility(View.VISIBLE);				
-			}
-			
-			
-			if (blessSpell[0] < 1) {
-				
-				ImageView blessRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightbless);
-				blessRight.setVisibility(View.VISIBLE);				
-			}				
-			if (cureSpell[0] < 1) {
-				
-				ImageView cureRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightcure);
-				cureRight.setVisibility(View.VISIBLE);				
-			}			
-			if (dodgeBlowSpell[0] < 1) {
-				
-				ImageView dodgeRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightdodge);
-				dodgeRight.setVisibility(View.VISIBLE);				
-			}			
-			if (mightyBlowSpell[0] < 1) {
-				
-				ImageView mbRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightmb);
-				mbRight.setVisibility(View.VISIBLE);				
-			}			
-			if (hasteSpell[0] < 2) {
-				
-				ImageView hasteRight1 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste1);
-				hasteRight1.setVisibility(View.VISIBLE);				
-			}			
-			if (hasteSpell[0] < 1) {
-				
-				ImageView hasteRight1 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste1);
-				hasteRight1.setVisibility(View.VISIBLE);
-				ImageView hasteRight2 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste2);
-				hasteRight2.setVisibility(View.VISIBLE);				
-			}
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {
+		
+				//if (numberOfPlayers == 2) {
+					
+					if (blessSpell[5] < 1) {
 						
-		//}	
+						ImageView blessLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftbless);
+						blessLeft.setVisibility(View.VISIBLE);				
+					}				
+					if (cureSpell[5] < 1) {
+						
+						ImageView cureLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftcure);
+						cureLeft.setVisibility(View.VISIBLE);				
+					}			
+					if (dodgeBlowSpell[5] < 1) {
+						
+						ImageView dodgeLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftdodge);
+						dodgeLeft.setVisibility(View.VISIBLE);				
+					}			
+					if (mightyBlowSpell[5] < 1) {
+						
+						ImageView mbLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftmb);
+						mbLeft.setVisibility(View.VISIBLE);				
+					}			
+					if (hasteSpell[5] < 2) {
+						
+						ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
+						hasteLeft1.setVisibility(View.VISIBLE);				
+					}			
+					if (hasteSpell[5] < 1) {
+						
+						ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
+						hasteLeft1.setVisibility(View.VISIBLE);
+						ImageView hasteLeft2 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste2);
+						hasteLeft2.setVisibility(View.VISIBLE);				
+					}
+					
+					
+					if (blessSpell[0] < 1) {
+						
+						ImageView blessRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightbless);
+						blessRight.setVisibility(View.VISIBLE);				
+					}				
+					if (cureSpell[0] < 1) {
+						
+						ImageView cureRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightcure);
+						cureRight.setVisibility(View.VISIBLE);				
+					}			
+					if (dodgeBlowSpell[0] < 1) {
+						
+						ImageView dodgeRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightdodge);
+						dodgeRight.setVisibility(View.VISIBLE);				
+					}			
+					if (mightyBlowSpell[0] < 1) {
+						
+						ImageView mbRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightmb);
+						mbRight.setVisibility(View.VISIBLE);				
+					}			
+					if (hasteSpell[0] < 2) {
+						
+						ImageView hasteRight1 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste1);
+						hasteRight1.setVisibility(View.VISIBLE);				
+					}			
+					if (hasteSpell[0] < 1) {
+						
+						ImageView hasteRight1 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste1);
+						hasteRight1.setVisibility(View.VISIBLE);
+						ImageView hasteRight2 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste2);
+						hasteRight2.setVisibility(View.VISIBLE);				
+					}								
+				//}
+  	  	    }
+  	  	});
 	}	
 	
 	public void endGame() {
@@ -12612,7 +12662,7 @@ public class Host extends Activity {
 			  	  		centerscrolltext.startAnimation(animAlphaText);
 			  			centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[5] + ", you are victorious!");
 			  			
-			  			String str2 = "\n" + "> " + ArrayOfPlayers.player[5] + ", is victorious!";
+			  			String str2 = "> " + ArrayOfPlayers.player[5] + ", is victorious!";
 						sendToClient0(str2);
 						
 			  			
@@ -12626,7 +12676,7 @@ public class Host extends Activity {
 			  	  	  			centerscrolltext.startAnimation(animAlphaText);
 			  	  	  			centerscrolltext.append("\n" + "> Game Over!");
 			  	  	  			
-			  	  	  			String str3 = "\n" + "> Game Over!";
+			  	  	  			String str3 = "> Game Over!";
 			  	  	  			sendToClient0(str3);
 			  	  	  			
 			  	  	  			
@@ -12683,7 +12733,7 @@ public class Host extends Activity {
 			  	  		centerscrolltext.startAnimation(animAlphaText);
 			  			centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", is victorious!");
 			  			
-			  			String str4 = "\n" + "> " + ArrayOfPlayers.player[0] + ", is victorious!";
+			  			String str4 = "> " + ArrayOfPlayers.player[0] + ", is victorious!";
 						sendToClient0(str4);
 			  			
 			  			
@@ -12697,8 +12747,8 @@ public class Host extends Activity {
 			  	  	  			centerscrolltext.startAnimation(animAlphaText);
 			  	  	  			centerscrolltext.append("\n" + "> Game Over!");
 			  	  	  			
-			  	  	  			String str5 = "\n" + "> Game Over!";
-			  	  	  			sendToClient0(str5);			  	  	  			
+			  	  	  			String str5 = "> Game Over!";
+			  	  	  			sendToClient0(str5);		  	  	  			
 			  	  	  			
 			  	  	  			
 			  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.buttonsound6);
@@ -12982,7 +13032,7 @@ public class Host extends Activity {
 									centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[5] + " attacks...");
 									
 									
-									String str = "\n" + "> " + ArrayOfPlayers.player[5] + " attacks...";
+									String str = "> " + ArrayOfPlayers.player[5] + " attacks...";
 									sendToAllClients(str);																
 									
 									
@@ -13008,7 +13058,7 @@ public class Host extends Activity {
 									centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[5] + " attempts to disarm...");
 									
 									
-									String str = "\n" + "> " + ArrayOfPlayers.player[5] + " attempts to disarm...";
+									String str = "> " + ArrayOfPlayers.player[5] + " attempts to disarm...";
 									sendToAllClients(str);									
 									
 									
@@ -13034,7 +13084,7 @@ public class Host extends Activity {
 									centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[5] + " casts haste...");
 									
 									
-									String str = "\n" + "> " + ArrayOfPlayers.player[5] + " casts haste...";
+									String str = "> " + ArrayOfPlayers.player[5] + " casts haste...";
 									sendToAllClients(str);									
 									
 									
@@ -13060,7 +13110,7 @@ public class Host extends Activity {
 									centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[5] + " casts cure...");
 									
 									
-									String str = "\n" + "> " + ArrayOfPlayers.player[5] + " casts cure...";
+									String str = "> " + ArrayOfPlayers.player[5] + " casts cure...";
 									sendToAllClients(str);									
 									
 									
@@ -13086,7 +13136,7 @@ public class Host extends Activity {
 									centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[5] + " casts bless...");
 									
 									
-									String str = "\n" + "> " + ArrayOfPlayers.player[5] + " casts bless...";
+									String str = "> " + ArrayOfPlayers.player[5] + " casts bless...";
 									sendToAllClients(str);									
 									
 									
@@ -13256,7 +13306,7 @@ public class Host extends Activity {
 											centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[5] + " attacks...");
 											
 											
-											String str = "\n" + "> " + ArrayOfPlayers.player[5] + " attacks...";
+											String str = "> " + ArrayOfPlayers.player[5] + " attacks...";
 											sendToAllClients(str);											
 											
 											
@@ -13295,7 +13345,7 @@ public class Host extends Activity {
 												centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[5] + " casts haste...");
 												
 												
-												String str = "\n" + "> " + ArrayOfPlayers.player[5] + " casts haste...";
+												String str = "> " + ArrayOfPlayers.player[5] + " casts haste...";
 												sendToAllClients(str);												
 												
 												
@@ -13327,7 +13377,7 @@ public class Host extends Activity {
 												centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[5] + " casts cure...");
 												
 												
-												String str = "\n" + "> " + ArrayOfPlayers.player[5] + " casts cure...";
+												String str = "> " + ArrayOfPlayers.player[5] + " casts cure...";
 												sendToAllClients(str);												
 												
 												
@@ -13475,7 +13525,7 @@ public class Host extends Activity {
 		
 		runOnUiThread(new Runnable() {
   	  	    @Override
-  	  	    public void run() {  	  	    	
+  	  	    public void run() {
   	  	    	
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
@@ -13668,7 +13718,7 @@ public class Host extends Activity {
 								centerscrolltext.startAnimation(animAlphaText);
 								centerscrolltext.append("\n" + "> TWO attacks...");
 								
-								String str5 = "\n" + "> TWO attacks...";
+								String str5 = "> TWO attacks...";
 								sendToAllClients(str5);								
 																
 								
@@ -13682,7 +13732,7 @@ public class Host extends Activity {
 								  		centerscrolltext.startAnimation(animAlphaText);
 										centerscrolltext.append("\n" + "> FIRST attack...");
 										
-										String str6 = "\n" + "> FIRST attack...";
+										String str6 = "> FIRST attack...";
 										sendToAllClients(str6);										
 																				
 										
@@ -13714,7 +13764,7 @@ public class Host extends Activity {
 						  		centerscrolltext.startAnimation(animAlphaText);
 								centerscrolltext.append("\n" + "> You are no longer disarmed.");
 								
-								String str8 = "\n" + "> " +  ArrayOfPlayers.player[5] + " is no longer disarmed.";
+								String str8 = "> " +  ArrayOfPlayers.player[5] + " is no longer disarmed.";
 								sendToAllClients(str8);
 								
 								
@@ -14021,7 +14071,7 @@ public class Host extends Activity {
 		  		centerscrolltext.startAnimation(animAlphaText);
 		  		centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[5] + " uses a bless...");
 	  			
-		  		String str = "\n" + "> " + ArrayOfPlayers.player[5] + " uses a bless...";
+		  		String str = "> " + ArrayOfPlayers.player[5] + " uses a bless...";
 				sendToAllClients(str);
 		  		
 		  		
@@ -14186,7 +14236,7 @@ public class Host extends Activity {
 						  		centerscrolltext.startAnimation(animAlphaText);			  		
 								centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0] + ".");
 								
-								String str = "\n" + "> " + ArrayOfPlayers.player[5] + " rolls " + ArrayOfAttackResult.attackResult[0] + ".";
+								String str = "> " + ArrayOfPlayers.player[5] + " rolls " + ArrayOfAttackResult.attackResult[0] + ".";
 								sendToAllClients(str);
 			  	  	  		}
 			  	  	  		
@@ -14196,7 +14246,7 @@ public class Host extends Activity {
 						  		centerscrolltext.startAnimation(animAlphaText);			  		
 								centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0] + ", +2 for opponent being disarmed = " + (ArrayOfAttackResult.attackResult[0] + 2) + ".");
 								
-								String str = "\n" + "> " + ArrayOfPlayers.player[5] + " rolls " + ArrayOfAttackResult.attackResult[0] + ", +2 for opponent being disarmed = " + (ArrayOfAttackResult.attackResult[0] + 2) + ".";
+								String str = "> " + ArrayOfPlayers.player[5] + " rolls " + ArrayOfAttackResult.attackResult[0] + ", +2 for opponent being disarmed = " + (ArrayOfAttackResult.attackResult[0] + 2) + ".";
 								sendToAllClients(str);
 			  	  	  		}												
 							
@@ -14220,7 +14270,7 @@ public class Host extends Activity {
 									  		centerscrolltext.startAnimation(animAlphaText);			  		
 											centerscrolltext.append("\n" + "> Your attack hits.");
 											
-											String str = "\n" + "> " + ArrayOfPlayers.player[5] + "'s" + " attack hits.";
+											String str = "> " + ArrayOfPlayers.player[5] + "'s" + " attack hits.";
 											sendToAllClients(str);
 											
 											
@@ -14234,7 +14284,7 @@ public class Host extends Activity {
 									  		centerscrolltext.startAnimation(animAlphaText);
 											centerscrolltext.append("\n" + "> Your attack misses.");
 											
-											String str = "\n" + "> " + ArrayOfPlayers.player[5] + "'s" + " attack misses.";
+											String str = "> " + ArrayOfPlayers.player[5] + "'s" + " attack misses.";
 											sendToAllClients(str);
 											
 											
@@ -14284,7 +14334,7 @@ public class Host extends Activity {
 									  		centerscrolltext.startAnimation(animAlphaText);			  		
 											centerscrolltext.append("\n" + "> Your attack hits.");
 											
-											String str = "\n" + "> " + ArrayOfPlayers.player[5] + "'s" + " attack hits.";
+											String str = "> " + ArrayOfPlayers.player[5] + "'s" + " attack hits.";
 											sendToAllClients(str);
 											
 											
@@ -14298,7 +14348,7 @@ public class Host extends Activity {
 									  		centerscrolltext.startAnimation(animAlphaText);
 											centerscrolltext.append("\n" + "> Your attack misses.");
 											
-											String str = "\n" + "> " + ArrayOfPlayers.player[5] + "'s" + " attack misses.";
+											String str = "> " + ArrayOfPlayers.player[5] + "'s" + " attack misses.";
 											sendToAllClients(str);
 											
 											
@@ -14359,7 +14409,7 @@ public class Host extends Activity {
 						  		centerscrolltext.startAnimation(animAlphaText);			  		
 								centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0] + ", -1 for being disarmed = " + (ArrayOfAttackResult.attackResult[0] - 1) + ".");
 								
-								String str = "\n" + "> " + ArrayOfPlayers.player[5] + " rolls " + ArrayOfAttackResult.attackResult[0] + ", -1 for being disarmed = " + (ArrayOfAttackResult.attackResult[0] - 1) + ".";
+								String str = "> " + ArrayOfPlayers.player[5] + " rolls " + ArrayOfAttackResult.attackResult[0] + ", -1 for being disarmed = " + (ArrayOfAttackResult.attackResult[0] - 1) + ".";
 								sendToAllClients(str);
 			  	  	  		}
 			  	  	  		
@@ -14369,7 +14419,7 @@ public class Host extends Activity {
 						  		centerscrolltext.startAnimation(animAlphaText);			  		
 								centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0] + ", +1 for being disarmed and opponent being disarmed = " + (ArrayOfAttackResult.attackResult[0] + 1) + ".");
 								
-								String str = "\n" + "> " + ArrayOfPlayers.player[5] + " rolls " + ArrayOfAttackResult.attackResult[0] + ", +1 for being disarmed and opponent being disarmed = " + (ArrayOfAttackResult.attackResult[0] + 1) + ".";
+								String str = "> " + ArrayOfPlayers.player[5] + " rolls " + ArrayOfAttackResult.attackResult[0] + ", +1 for being disarmed and opponent being disarmed = " + (ArrayOfAttackResult.attackResult[0] + 1) + ".";
 								sendToAllClients(str);
 			  	  	  		}						
 							
@@ -14392,7 +14442,7 @@ public class Host extends Activity {
 									  		centerscrolltext.startAnimation(animAlphaText);			  		
 											centerscrolltext.append("\n" + "> Your punch hits.");
 											
-											String str = "\n" + "> " + ArrayOfPlayers.player[5] + "'s" + " punch hits.";
+											String str = "> " + ArrayOfPlayers.player[5] + "'s" + " punch hits.";
 											sendToAllClients(str);
 											
 											
@@ -14406,7 +14456,7 @@ public class Host extends Activity {
 									  		centerscrolltext.startAnimation(animAlphaText);
 											centerscrolltext.append("\n" + "> Your punch misses.");
 											
-											String str = "\n" + "> " + ArrayOfPlayers.player[5] + "'s" + " punch misses.";
+											String str = "> " + ArrayOfPlayers.player[5] + "'s" + " punch misses.";
 											sendToAllClients(str);
 											
 											
@@ -14466,7 +14516,7 @@ public class Host extends Activity {
 									  		centerscrolltext.startAnimation(animAlphaText);			  		
 											centerscrolltext.append("\n" + "> Your punch hits.");
 											
-											String str = "\n" + "> " + ArrayOfPlayers.player[5] + "'s" + " punch hits.";
+											String str = "> " + ArrayOfPlayers.player[5] + "'s" + " punch hits.";
 											sendToAllClients(str);
 											
 											
@@ -14480,7 +14530,7 @@ public class Host extends Activity {
 									  		centerscrolltext.startAnimation(animAlphaText);
 											centerscrolltext.append("\n" + "> Your punch misses.");
 											
-											String str = "\n" + "> " + ArrayOfPlayers.player[5] + "'s" + " punch misses.";
+											String str = "> " + ArrayOfPlayers.player[5] + "'s" + " punch misses.";
 											sendToAllClients(str);
 											
 											
@@ -14580,7 +14630,7 @@ public class Host extends Activity {
 				  		centerscrolltext.startAnimation(animAlphaText);
 						centerscrolltext.append("\n" + "> You roll " + cureResult + ".");				
 						
-						String str = "\n" + "> " + ArrayOfPlayers.player[5] + " rolls " + cureResult + ".";
+						String str = "> " + ArrayOfPlayers.player[5] + " rolls " + cureResult + ".";
 						sendToAllClients(str);
 						
 						
@@ -14656,7 +14706,7 @@ public class Host extends Activity {
 				  		centerscrolltext.startAnimation(animAlphaText);
 				  		centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0]	+ ", +2 for the Bless Spell = "	+ (ArrayOfAttackResult.attackResult[0] + 2) + ".");
 						
-				  		String str = "\n" + "> " + ArrayOfPlayers.player[5] + " rolls "	+ ArrayOfAttackResult.attackResult[0]	+ ", +2 for the Bless Spell = "	+ (ArrayOfAttackResult.attackResult[0] + 2) + ".";
+				  		String str = "> " + ArrayOfPlayers.player[5] + " rolls "	+ ArrayOfAttackResult.attackResult[0]	+ ", +2 for the Bless Spell = "	+ (ArrayOfAttackResult.attackResult[0] + 2) + ".";
 						sendToAllClients(str);
 				  		
 				  		
@@ -14725,7 +14775,7 @@ public class Host extends Activity {
 									  		centerscrolltext.startAnimation(animAlphaText);
 									  		centerscrolltext.append("\n" + "> Your opponent has been disarmed.");
 									  		
-									  		String str = "\n" + "> " + ArrayOfPlayers.player[playerNumberAttacked] + " is disarmed.";
+									  		String str = "> " + ArrayOfPlayers.player[playerNumberAttacked] + " is disarmed.";
 											sendToAllClients(str);											
 											
 									  		
@@ -14764,7 +14814,7 @@ public class Host extends Activity {
 									  		centerscrolltext.startAnimation(animAlphaText);
 									  		centerscrolltext.append("\n" + "> Your attempt to disarm misses.");
 									  		
-									  		String str = "\n" + "> " + ArrayOfPlayers.player[5] + "'s" + " attempt to disarm misses.";
+									  		String str = "> " + ArrayOfPlayers.player[5] + "'s" + " attempt to disarm misses.";
 											sendToAllClients(str);
 									  		
 									  		
@@ -14828,7 +14878,7 @@ public class Host extends Activity {
 				  		centerscrolltext.startAnimation(animAlphaText);
 				  		centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0] + ".");
 						
-				  		String str = "\n" + "> " + ArrayOfPlayers.player[5] + " rolls "	+ ArrayOfAttackResult.attackResult[0] + ".";
+				  		String str = "> " + ArrayOfPlayers.player[5] + " rolls "	+ ArrayOfAttackResult.attackResult[0] + ".";
 						sendToAllClients(str);
 						
 				  		
@@ -14897,7 +14947,7 @@ public class Host extends Activity {
 									  		centerscrolltext.startAnimation(animAlphaText);
 									  		centerscrolltext.append("\n" + "> Your opponent has been disarmed.");
 									  		
-									  		String str = "\n" + "> " + ArrayOfPlayers.player[playerNumberAttacked] + " is disarmed.";
+									  		String str = "> " + ArrayOfPlayers.player[playerNumberAttacked] + " is disarmed.";
 											sendToAllClients(str);
 											
 									  		
@@ -14936,7 +14986,7 @@ public class Host extends Activity {
 									  		centerscrolltext.startAnimation(animAlphaText);
 									  		centerscrolltext.append("\n" + "> Your attempt to disarm misses.");
 									  		
-									  		String str = "\n" + "> " + ArrayOfPlayers.player[5] + "'s" + " attempt to disarm misses.";
+									  		String str = "> " + ArrayOfPlayers.player[5] + "'s" + " attempt to disarm misses.";
 											sendToAllClients(str);
 									  		
 									  		
@@ -14969,7 +15019,7 @@ public class Host extends Activity {
 							  		centerscrolltext.startAnimation(animAlphaText);
 							  		centerscrolltext.append("\n" + "> You have rolled a critical miss...");
 									
-							  		String str = "\n" + "> " + ArrayOfPlayers.player[5] + " rolls "	+ "a critical miss...";
+							  		String str = "> " + ArrayOfPlayers.player[5] + " rolls "	+ "a critical miss...";
 									sendToAllClients(str);
 							  		
 							  		
@@ -15027,7 +15077,7 @@ public class Host extends Activity {
 					  		centerscrolltext.startAnimation(animAlphaText);
 					  		centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0]	+ ", +2 for Bless Spell = " + (ArrayOfAttackResult.attackResult[0] + 2) + ".");
 					  		
-					  		String str = "\n" + "> " + ArrayOfPlayers.player[5] + " rolls "	+ ArrayOfAttackResult.attackResult[0] + ", +2 for Bless Spell = " + (ArrayOfAttackResult.attackResult[0] + 2) + ".";
+					  		String str = "> " + ArrayOfPlayers.player[5] + " rolls "	+ ArrayOfAttackResult.attackResult[0] + ", +2 for Bless Spell = " + (ArrayOfAttackResult.attackResult[0] + 2) + ".";
 							sendToAllClients(str);
 						}
 						
@@ -15037,7 +15087,7 @@ public class Host extends Activity {
 					  		centerscrolltext.startAnimation(animAlphaText);
 					  		centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0] + ", +4 for Bless Spell and opponent being disarmed = " + (ArrayOfAttackResult.attackResult[0] + 4) + ".");
 					  		
-					  		String str = "\n" + "> " + ArrayOfPlayers.player[5] + " rolls "	+ ArrayOfAttackResult.attackResult[0] + ", +4 for Bless Spell and opponent being disarmed = " + (ArrayOfAttackResult.attackResult[0] + 4) + ".";
+					  		String str = "> " + ArrayOfPlayers.player[5] + " rolls "	+ ArrayOfAttackResult.attackResult[0] + ", +4 for Bless Spell and opponent being disarmed = " + (ArrayOfAttackResult.attackResult[0] + 4) + ".";
 							sendToAllClients(str);					  		
 						}												
 						
@@ -15061,7 +15111,7 @@ public class Host extends Activity {
 								  		centerscrolltext.startAnimation(animAlphaText);			  		
 										centerscrolltext.append("\n" + "> Your attack hits.");
 										
-										String str = "\n" + "> " + ArrayOfPlayers.player[5] + "'s"	+ " attack hits.";
+										String str = "> " + ArrayOfPlayers.player[5] + "'s"	+ " attack hits.";
 										sendToAllClients(str);
 										
 										
@@ -15082,7 +15132,7 @@ public class Host extends Activity {
 								  		centerscrolltext.startAnimation(animAlphaText);
 										centerscrolltext.append("\n" + "> Your attack misses.");
 										
-										String str = "\n" + "> " + ArrayOfPlayers.player[5] + "'s"	+ " attack misses.";
+										String str = "> " + ArrayOfPlayers.player[5] + "'s"	+ " attack misses.";
 										sendToAllClients(str);
 										
 										
@@ -15118,7 +15168,7 @@ public class Host extends Activity {
 								  		centerscrolltext.startAnimation(animAlphaText);			  		
 										centerscrolltext.append("\n" + "> Your attack hits.");
 										
-										String str = "\n" + "> " + ArrayOfPlayers.player[5] + "'s"	+ " attack hits.";
+										String str = "> " + ArrayOfPlayers.player[5] + "'s"	+ " attack hits.";
 										sendToAllClients(str);
 										
 										
@@ -15141,7 +15191,7 @@ public class Host extends Activity {
 								  		centerscrolltext.startAnimation(animAlphaText);
 										centerscrolltext.append("\n" + "> Your attack misses.");
 										
-										String str = "\n" + "> " + ArrayOfPlayers.player[5] + "'s"	+ " attack misses.";
+										String str = "> " + ArrayOfPlayers.player[5] + "'s"	+ " attack misses.";
 										sendToAllClients(str);
 										
 										
@@ -15209,7 +15259,7 @@ public class Host extends Activity {
 				  		centerscrolltext.startAnimation(animAlphaText);
 				  		centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0] + ".");
 				  		
-				  		String str = "\n" + "> " + ArrayOfPlayers.player[5] + " rolls " + ArrayOfAttackResult.attackResult[0] + ".";
+				  		String str = "> " + ArrayOfPlayers.player[5] + " rolls " + ArrayOfAttackResult.attackResult[0] + ".";
 						sendToAllClients(str);				  		
 				  		
 						
@@ -15225,7 +15275,7 @@ public class Host extends Activity {
 							  		centerscrolltext.startAnimation(animAlphaText);
 							  		centerscrolltext.append("\n" + "> You hit yourself.");
 							  		
-							  		String str = "\n" + "> " + ArrayOfPlayers.player[5] + " hits itself.";
+							  		String str = "> " + ArrayOfPlayers.player[5] + " hits itself.";
 									sendToAllClients(str);
 							  		
 							  		
@@ -15239,7 +15289,7 @@ public class Host extends Activity {
 									  		centerscrolltext.startAnimation(animAlphaText);
 											centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[5] + ", roll for damage...");						  	  	  			
 						  	  	  			
-											String str = "\n" + "> " + ArrayOfPlayers.player[5] + " is rolling for damage...";
+											String str = "> " + ArrayOfPlayers.player[5] + " is rolling for damage...";
 											sendToAllClients(str);
 											
 											
@@ -15254,7 +15304,7 @@ public class Host extends Activity {
 							  		centerscrolltext.startAnimation(animAlphaText);
 							  		centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[5] + ", you did not hit yourself, now you must roll to see if you lose your weapon...");
 									
-							  		String str = "\n" + "> " + ArrayOfPlayers.player[5] + " did not hit itself, but must roll to see if it loses it's weapon...";
+							  		String str = "> " + ArrayOfPlayers.player[5] + " did not hit itself, but must roll to see if it loses it's weapon...";
 									sendToAllClients(str);
 							  		
 							  		
@@ -15302,7 +15352,7 @@ public class Host extends Activity {
 				  		centerscrolltext.startAnimation(animAlphaText);
 				  		centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0] + ".");
 						
-				  		String str = "\n" + "> " + ArrayOfPlayers.player[5] + " rolls " + ArrayOfAttackResult.attackResult[0] + ".";
+				  		String str = "> " + ArrayOfPlayers.player[5] + " rolls " + ArrayOfAttackResult.attackResult[0] + ".";
 						sendToAllClients(str);
 				  		
 				  		
@@ -15337,7 +15387,7 @@ public class Host extends Activity {
 							  		centerscrolltext.startAnimation(animAlphaText);
 							  		centerscrolltext.append("\n" + "> You are disarmed.");
 							  		
-							  		String str4 = "\n" + "> " + ArrayOfPlayers.player[5] + " is disarmed.";
+							  		String str4 = "> " + ArrayOfPlayers.player[5] + " is disarmed.";
 									sendToAllClients(str4);
 							  		
 							  		
@@ -15386,7 +15436,7 @@ public class Host extends Activity {
 							  		centerscrolltext.startAnimation(animAlphaText);
 							  		centerscrolltext.append("\n" + "> You hold on to your weapon.");
 							  		
-							  		String str5 = "\n" + "> " + ArrayOfPlayers.player[5] + " holds on to it's weapon.";
+							  		String str5 = "> " + ArrayOfPlayers.player[5] + " holds on to it's weapon.";
 									sendToAllClients(str5);
 							  		
 							  		
@@ -15483,7 +15533,7 @@ public class Host extends Activity {
 	  							String str3 = "rollDodge";
 	  							sendToClient0(str3);
 	  							
-	  							playerAskedToDodgeCritHit[0] = "yes";
+	  							plyerAskedToDodgeCritHit[0] = "yes";
 	  							
 	  							checkForDodgeRoll();
 	  						}																
@@ -15579,7 +15629,7 @@ public class Host extends Activity {
 		  		centerscrolltext.startAnimation(animAlphaText);
 		  		centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[playerNumberAttacked] + " does not dodge.");
 		  		
-		  		String str = "\n" + "> " + ArrayOfPlayers.player[playerNumberAttacked] + " does not dodge.";
+		  		String str = "> " + ArrayOfPlayers.player[playerNumberAttacked] + " does not dodge.";
 				sendToAllClients(str);
 		  		
 		  		
@@ -15670,7 +15720,7 @@ public class Host extends Activity {
 	  				
 	  				if(numberOfPlayers == 2) {  					
 							
-						String str = "rollDodge";
+						String str = "rollDge";
 						sendToClient0(str);
 						
 						playerAskedToDodgeDamage[0] = "yes";
@@ -15767,7 +15817,7 @@ public class Host extends Activity {
 		  		centerscrolltext.startAnimation(animAlphaText);
 		  		centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[playerNumberAttacked] + " does not dodge.");
 		  		
-		  		String str = "\n" + "> " + ArrayOfPlayers.player[playerNumberAttacked] + " does not dodge.";
+		  		String str = "> " + ArrayOfPlayers.player[playerNumberAttacked] + " does not dodge.";
 				sendToAllClients(str);				
 				
 				
@@ -15919,7 +15969,7 @@ public class Host extends Activity {
 					  		centerscrolltext.startAnimation(animAlphaText);
 							centerscrolltext.append("\n" + "> SECOND attack...");
 							
-							String str = "\n" + "> SECOND attack...";
+							String str = "> SECOND attack...";
 		  	  	  			sendToAllClients(str);
 							
 							
@@ -15986,7 +16036,7 @@ public class Host extends Activity {
 	  			  		centerscrolltext.startAnimation(animAlphaText);
 	  					centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[5] + ", you must roll to see if you hit yourself...");
 	  					
-	  					String str = "\n" + "> " + ArrayOfPlayers.player[5] + " must roll to see if it hit itself...";
+	  					String str = "> " + ArrayOfPlayers.player[5] + " must roll to see if it hit itself...";
 	  					sendToAllClients(str);
 	  					
 	  					
@@ -16104,7 +16154,7 @@ public class Host extends Activity {
 				  		centerscrolltext.startAnimation(animAlphaText);
 						centerscrolltext.append("\n" + "> You roll " + attackDamage + ".");
 						
-						String str = "\n" + "> " + ArrayOfPlayers.player[5] + " rolls " + attackDamage + ".";
+						String str = "> " + ArrayOfPlayers.player[5] + " rolls " + attackDamage + ".";
 						sendToAllClients(str);
 						
 	
@@ -16324,7 +16374,7 @@ public class Host extends Activity {
 				  		centerscrolltext.startAnimation(animAlphaText);
 				  		centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[5] + ", you roll twice for critical hit damage.");
 				  		
-				  		String str3 = "\n" + "> " + ArrayOfPlayers.player[5] + " rolls twice for critical hit damage...";
+				  		String str3 = "> " + ArrayOfPlayers.player[5] + " rolls twice for critical hit damage...";
 	  	  	  			sendToAllClients(str3);
 	  	  	  			
 				  		
@@ -16407,7 +16457,7 @@ public class Host extends Activity {
 				  		centerscrolltext.startAnimation(animAlphaText);
 				  		centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[5] + ", you roll twice for critical hit damage.");
 				  		
-				  		String str = "\n" + "> " + ArrayOfPlayers.player[5] + " rolls twice for critical hit damage...";
+				  		String str = "> " + ArrayOfPlayers.player[5] + " rolls twice for critical hit damage...";
 	  	  	  			sendToAllClients(str);
 	  	  	  			
 				  		 
@@ -16587,7 +16637,7 @@ public class Host extends Activity {
 		  		centerscrolltext.startAnimation(animAlphaText);
 				centerscrolltext.append("\n" + "> Roll for damage...");
 				
-				String str = "\n" + "> " + ArrayOfPlayers.player[5] + " is rolling for damage...";
+				String str = "> " + ArrayOfPlayers.player[5] + " is rolling for damage...";
 				sendToAllClients(str);
 				
 				
@@ -16739,14 +16789,15 @@ public class Host extends Activity {
 					  		centerscrolltext.startAnimation(animAlphaText);
 							centerscrolltext.append("\n" + "> You roll " + attackDamage + ".");
 							
-							String str = "\n" + "> " + ArrayOfPlayers.player[5] + " rolls " + attackDamage + ".";
+							String str = "> " + ArrayOfPlayers.player[5] + " rolls " + attackDamage + ".";
 							sendToAllClients(str);							
 							
 							
-							ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - attackDamage;
-							
 							String str2 = "ArrayOfHitPoints.hitpoints[0] :" + (ArrayOfHitPoints.hitpoints[playerNumberAttacked] - attackDamage);
 							sendToAllClients(str2);
+							
+							ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - attackDamage;							
+							
 							
 							//playerNumberAttackedHitPoints();							
 							
@@ -16778,14 +16829,15 @@ public class Host extends Activity {
 					  		centerscrolltext.startAnimation(animAlphaText);
 							centerscrolltext.append("\n" + "> You roll " + attackDamage + ", -2 damage for punch = " + attackDamageDisarmed + " damage.");
 							
-							String str = "\n" + "> " + ArrayOfPlayers.player[5] + " rolls " + attackDamage + ", -2 damage for punch = " + attackDamageDisarmed + " damage.";
+							String str = "> " + ArrayOfPlayers.player[5] + " rolls " + attackDamage + ", -2 damage for punch = " + attackDamageDisarmed + " damage.";
 							sendToAllClients(str);
 							
 							
-							ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - attackDamageDisarmed;
-							
 							String str2 = "ArrayOfHitPoints.hitpoints[0] :" + (ArrayOfHitPoints.hitpoints[playerNumberAttacked] - attackDamageDisarmed);
 							sendToAllClients(str2);
+							
+							ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - attackDamageDisarmed;							
+							
 							
 							//playerNumberAttackedHitPoints();							
 							
@@ -16981,7 +17033,7 @@ public class Host extends Activity {
 					  		centerscrolltext.startAnimation(animAlphaText);
 							centerscrolltext.append("\n" + "> You roll " + attackDamage	+ ".");
 							
-							String str = "\n" + "> " + ArrayOfPlayers.player[5] + " rolls " + attackDamage + ".";
+							String str = "> " + ArrayOfPlayers.player[5] + " rolls " + attackDamage + ".";
 							sendToAllClients(str);
 							
 							
@@ -16999,14 +17051,14 @@ public class Host extends Activity {
 							  		centerscrolltext.startAnimation(animAlphaText);
 									centerscrolltext.append("\n" + "> Double damage for Mighty Blow = " + (attackDamage * 2) + ".");
 									
-									String str2 = "\n" + "> Double damage for Mighty Blow = " + (attackDamage * 2) + ".";
+									String str2 = "> Double damage for Mighty Blow = " + (attackDamage * 2) + ".";
 									sendToAllClients(str2);
 									
 									
-									ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked]	- (attackDamage * 2);
-									
 									String str3 = "ArrayOfHitPoints.hitpoints[0] :" + (ArrayOfHitPoints.hitpoints[playerNumberAttacked] - (attackDamage * 2));
 									sendToAllClients(str3);
+									
+									ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked]	- (attackDamage * 2);									
 									
 									
 									TextView playerNumberAttackedHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
@@ -17039,7 +17091,7 @@ public class Host extends Activity {
 					  		centerscrolltext.startAnimation(animAlphaText);
 							centerscrolltext.append("\n" + "> You roll " + attackDamage + ", -2 damage for punch = " + attackDamageDisarmed + " damage.");
 							
-							String str4 = "\n" + "> " + ArrayOfPlayers.player[5] + " rolls " + attackDamage + ", -2 damage for punch = " + attackDamageDisarmed + " damage.";
+							String str4 = "> " + ArrayOfPlayers.player[5] + " rolls " + attackDamage + ", -2 damage for punch = " + attackDamageDisarmed + " damage.";
 							sendToAllClients(str4);
 							
 							
@@ -17064,14 +17116,14 @@ public class Host extends Activity {
 							  		centerscrolltext.startAnimation(animAlphaText);
 									centerscrolltext.append("\n" + "> Double damage for Mighty Blow = " + (attackDamageDisarmed * 2) + ".");
 									
-									String str5 = "\n" + "> Double damage for Mighty Blow = " + (attackDamageDisarmed * 2) + ".";
+									String str5 = "> Double damage for Mighty Blow = " + (attackDamageDisarmed * 2) + ".";
 									sendToAllClients(str5);
 									
 									
-									ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked]	- (attackDamageDisarmed * 2);
-									
 									String str6 = "ArrayOfHitPoints.hitpoints[0] :" + (ArrayOfHitPoints.hitpoints[playerNumberAttacked] - (attackDamageDisarmed * 2));
 									sendToAllClients(str6);
+									
+									ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked]	- (attackDamageDisarmed * 2);								
 									
 									
 									TextView playerNumberAttackedHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
@@ -17212,7 +17264,7 @@ public class Host extends Activity {
 		  		centerscrolltext.startAnimation(animAlphaText);
 				centerscrolltext.append("\n" + "> You roll " + ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ".");  			
 	  			
-				String str = "\n" + "> " + ArrayOfPlayers.player[5] + " rolls " + ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ".";
+				String str = "> " + ArrayOfPlayers.player[5] + " rolls " + ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ".";
 				sendToAllClients(str);
 				
 	  			
@@ -17239,7 +17291,7 @@ public class Host extends Activity {
 						  		centerscrolltext.startAnimation(animAlphaText);
 								centerscrolltext.append("\n" + "> Make your second roll...");
 								
-								String str2 = "\n" + "> " + ArrayOfPlayers.player[5] + " is making second roll...";
+								String str2 = "> " + ArrayOfPlayers.player[5] + " is making second roll...";
 								sendToAllClients(str2);
 								
 								
@@ -17287,7 +17339,7 @@ public class Host extends Activity {
 		  		centerscrolltext.startAnimation(animAlphaText);
 				centerscrolltext.append("\n" + "> You roll " + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] + ".");
 	  			
-				String str = "\n" + "> " + ArrayOfPlayers.player[5] + " rolls " + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] + ".";
+				String str = "> " + ArrayOfPlayers.player[5] + " rolls " + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] + ".";
 				sendToAllClients(str);
 				
 	  			
@@ -17303,14 +17355,14 @@ public class Host extends Activity {
 					  		centerscrolltext.startAnimation(animAlphaText);
 							centerscrolltext.append("\n" + "> You roll a total " + (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) + ".");
 							
-							String str2 = "\n" + "> " + ArrayOfPlayers.player[5] + " rolls a total " + (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) + ".";
+							String str2 = "> " + ArrayOfPlayers.player[5] + " rolls a total " + (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) + ".";
 							sendToAllClients(str2);
 							
 							
-							ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]);
-							
 							String str3 = "ArrayOfHitPoints.hitpoints[0] :" + (ArrayOfHitPoints.hitpoints[playerNumberAttacked] - (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]));
 							sendToAllClients(str3);
+							
+							ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]);							
 							
 							
 							TextView playerNumberAttackedHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
@@ -17330,14 +17382,14 @@ public class Host extends Activity {
 					  		centerscrolltext.startAnimation(animAlphaText);
 							centerscrolltext.append("\n" + "> You roll a total " + (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) + ", -2 damage for punch = " + ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) + ".");
 							
-							String str4 = "\n" + "> " + ArrayOfPlayers.player[5] + " rolls a total " + (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) + ", -2 damage for punch = " + ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) + ".";
+							String str4 = "> " + ArrayOfPlayers.player[5] + " rolls a total " + (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) + ", -2 damage for punch = " + ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) + ".";
 							sendToAllClients(str4);
 							
 							
-							ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2);
-							
 							String str5 = "ArrayOfHitPoints.hitpoints[0] :" + (ArrayOfHitPoints.hitpoints[playerNumberAttacked] - ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2));
 							sendToAllClients(str5);
+							
+							ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2);							
 							
 							
 							TextView playerNumberAttackedHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
@@ -17489,7 +17541,7 @@ public class Host extends Activity {
 				  		centerscrolltext.startAnimation(animAlphaText);
 						centerscrolltext.append("\n" + "> You roll " + ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ".");
 	  	  	  			
-						String str = "\n" + "> " + ArrayOfPlayers.player[5] + " rolls " + ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ".";
+						String str = "> " + ArrayOfPlayers.player[5] + " rolls " + ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ".";
 						sendToAllClients(str);
 						
 						
@@ -17516,7 +17568,7 @@ public class Host extends Activity {
 								  		centerscrolltext.startAnimation(animAlphaText);
 										centerscrolltext.append("\n" + "> Make your second roll...");
 										
-										String str2 = "\n" + "> " + ArrayOfPlayers.player[5] + " is making second roll...";
+										String str2 = "> " + ArrayOfPlayers.player[5] + " is making second roll...";
 										sendToAllClients(str2);
 										
 										
@@ -17572,7 +17624,7 @@ public class Host extends Activity {
 				  		centerscrolltext.startAnimation(animAlphaText);
 						centerscrolltext.append("\n" + "> You roll " + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] + ".");
 	  	  	  			
-						String str = "\n" + "> " + ArrayOfPlayers.player[5] + " rolls " + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] + ".";
+						String str = "> " + ArrayOfPlayers.player[5] + " rolls " + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] + ".";
 						sendToAllClients(str);
 						
 						
@@ -17588,7 +17640,7 @@ public class Host extends Activity {
 							  		centerscrolltext.startAnimation(animAlphaText);
 									centerscrolltext.append("\n" + "> You roll a total " + (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) + ".");
 									
-									String str2 = "\n" + "> " + ArrayOfPlayers.player[5] + " rolls a total " + (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) + ".";
+									String str2 = "> " + ArrayOfPlayers.player[5] + " rolls a total " + (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) + ".";
 									sendToAllClients(str2);
 									
 									
@@ -17602,14 +17654,14 @@ public class Host extends Activity {
 									  		centerscrolltext.startAnimation(animAlphaText);
 											centerscrolltext.append("\n" + "> Double damage for Mighty Blow = " + ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) * 2) + ".");
 											
-											String str3 = "\n" + "> Double damage for Mighty Blow = " + ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) * 2) + ".";
+											String str3 = "> Double damage for Mighty Blow = " + ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) * 2) + ".";
 											sendToAllClients(str3);
 											
 											
-											ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) * 2);
-											
 											String str4 = "ArrayOfHitPoints.hitpoints[0] :" + (ArrayOfHitPoints.hitpoints[playerNumberAttacked] - ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) * 2));
 											sendToAllClients(str4);
+											
+											ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) * 2);										
 											
 											
 											TextView playerNumberAttackedHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
@@ -17632,7 +17684,7 @@ public class Host extends Activity {
 							  		centerscrolltext.startAnimation(animAlphaText);
 									centerscrolltext.append("\n" + "> You roll a total " + (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) + ", -2 damage for punch = " + ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) + " damage.");
 									
-									String str5 = "\n" + "> " + ArrayOfPlayers.player[5] + " rolls a total " + (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) + ", -2 damage for punch = " + ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) + " damage.";
+									String str5 = "> " + ArrayOfPlayers.player[5] + " rolls a total " + (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) + ", -2 damage for punch = " + ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) + " damage.";
 									sendToAllClients(str5);
 									
 									
@@ -17646,14 +17698,14 @@ public class Host extends Activity {
 								  		centerscrolltext.startAnimation(animAlphaText);
 										centerscrolltext.append("\n" + "> Double damage for Mighty Blow = " + (((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) * 2) + ".");
 										
-										String str6 = "\n" + "> Double damage for Mighty Blow = " + (((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) * 2) + ".";
+										String str6 = "> Double damage for Mighty Blow = " + (((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) * 2) + ".";
 										sendToAllClients(str6);
 										
 										
-										ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - (((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) * 2);
-										
 										String str7 = "ArrayOfHitPoints.hitpoints[0] :" + (ArrayOfHitPoints.hitpoints[playerNumberAttacked] - (((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) * 2));
 										sendToAllClients(str7);
+										
+										ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - (((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) * 2);										
 										
 										
 										TextView playerNumberAttackedHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
@@ -17792,22 +17844,22 @@ public class Host extends Activity {
 		
 		if (numberOfPlayers == 2) {
 			
-			if (playerAskedToDodgeCritHit[0].equals("yes")) {
+			if (plyerAskedToDodgeCritHit[0].equals("yes")) {
 				
-				if (dodgeRolled[0].equals("yes")) {					
+				if (dgeRolled[0].equals("yes")) {					
 					
-					playerAskedToDodgeCritHit[0] = "no";
+					plyerAskedToDodgeCritHit[0] = "no";
 					
-					dodgeRolled[0] = "null";
+					dgeRolled[0] = "null";
 					
 					
 					clientDodged();					
 				}
-				else if (dodgeRolled[0].equals("no")) {
+				else if (dgeRolled[0].equals("no")) {
 					
-					playerAskedToDodgeCritHit[0] = "no";
+					plyerAskedToDodgeCritHit[0] = "no";
 					
-					dodgeRolled[0] = "null";
+					dgeRolled[0] = "null";
 					
 					
 					criticalHit2();
@@ -17816,20 +17868,20 @@ public class Host extends Activity {
 			
 			else if (playerAskedToDodgeDamage[0].equals("yes")) {
 				
-				if(dodgeRolled[0].equals("yes")) {					
+				if(dgeRolled[0].equals("yes")) {					
 					
 					playerAskedToDodgeDamage[0] = "no";
 					
-					dodgeRolled[0] = "null";
+					dgeRolled[0] = "null";
 					
 					
 					clientDodged();					
 				}
-				else if (dodgeRolled[0].equals("no")) {
+				else if (dgeRolled[0].equals("no")) {
 					
 					playerAskedToDodgeDamage[0] = "no";
 					
-					dodgeRolled[0] = "null";
+					dgeRolled[0] = "null";
 					
 					
 					damage2();
@@ -18171,7 +18223,7 @@ public class Host extends Activity {
 	  		  			}
 	  		  			*/
 		  	  	  	}
-	  	  	  	}, 6000);	  	  	  		  			
+	  	  	  	}, 3000);	  	  	  		  			
   	  	    }
 		});		
 	}
@@ -18320,35 +18372,35 @@ public class Host extends Activity {
 							ArrayOfPlayers.player[0]=part2;
 							ArrayOfID.id[0] = 0;
 							
-							String str = "id :" + 0;
+							String str = "ID :" + 0;
 							sendToClient0(str);
 						}
 						else if (id == 1) {
 							ArrayOfPlayers.player[1]=part2;
 							ArrayOfID.id[1] = 1;
 							
-							String str = "id :" + 1;
+							String str = "ID :" + 1;
 							sendToClient1(str);
 						}
 						else if (id == 2) {
 							ArrayOfPlayers.player[2]=part2;
 							ArrayOfID.id[2] = 2;
 							
-							String str = "id :" + 2;
+							String str = "ID :" + 2;
 							sendToClient2(str);
 						}
 						else if (id == 3) {
 							ArrayOfPlayers.player[3]=part2;
 							ArrayOfID.id[3] = 3;
 							
-							String str = "id :" + 3;
+							String str = "ID :" + 3;
 							sendToClient3(str);
 						}
 						else if (id == 4) {
 							ArrayOfPlayers.player[4]=part2;
 							ArrayOfID.id[4] = 4;
 							
-							String str = "id :" + 4;
+							String str = "ID :" + 4;
 							sendToClient4(str);
 						}												
 					}
@@ -18891,20 +18943,20 @@ public class Host extends Activity {
 						}																	
 					}
 					
-					else if (read.contains("dodgeRolled")) {
+					else if (read.contains("dgeRolled")) {
 						
 						String[] parts = read.split(":");
 						String part1 = parts[0];  
 						//String part2 = parts[1].trim();//IF THERE WAS A SPACE
 						String part2 = parts[1];
 						
-						dodgeRolled[0]=part2;
+						dgeRolled[0]=part2;
 						
 						
 						checkForDodgeRoll();						
 					}
 					
-					else if (read.contains("rollDodge")) {
+					else if (read.contains("rollDge")) {
 						
 						rollDodge();
 					}
@@ -19147,6 +19199,11 @@ public class Host extends Activity {
 						mightyBlowResultsCompleted();
 					}
 					
+					else if (read.contains("criticalMissLoseWeaponCriticalMissDamageCompleted")) {
+						
+						criticalMissLoseWeaponCriticalMissDamageCompleted();
+					}
+					
 					else if (read.contains("criticalMissLoseWeaponCriticalMissDamageResultsCompleted")) {
 						
 						criticalMissLoseWeaponCriticalMissDamageCompleted();
@@ -19157,145 +19214,145 @@ public class Host extends Activity {
 						attackDamageCriticalHitDamageCriticalHitMightyBlowDamageCompleted();
 					}
 					
-					else if (read.contains("computerTwentySidedRollFromLeft1")) {
+					else if (read.contains("cmputerTwentySidedRollFromLeft1")) {						
+							
+						//ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
+	  	  	  			//img.bringToFront();
 						
-						if (numberOfPlayers == 2) {
-							
-							computerTwentySidedRollFromLeft1();							
-						}						
+						computerTwentySidedRollFromLeft1();								
 					}
-					else if (read.contains("computerTwentySidedRollFromLeft2")) {
-	
-						if (numberOfPlayers == 2) {
+					else if (read.contains("computerTwentySidedRollFromLeft2")) {					
 							
-							computerTwentySidedRollFromLeft2();							
-						}
-					}
-					else if (read.contains("computerTwentySidedRollFromLeft3")) {
+						//ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
+	  	  	  			//img.bringToFront();
 						
-						if (numberOfPlayers == 2) {
-							
-							computerTwentySidedRollFromLeft3();							
-						}
+						computerTwentySidedRollFromLeft2();	
 					}
-					else if (read.contains("computerTwentySidedRollFromLeft4")) {
-						
-						if (numberOfPlayers == 2) {
+					else if (read.contains("computerTwentySidedRollFromLeft3")) {						
 							
-							computerTwentySidedRollFromLeft4();							
-						}
+						//ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
+	  	  	  			//img.bringToFront();
+						
+						computerTwentySidedRollFromLeft3();						
 					}
-					else if (read.contains("computerTwentySidedRollFromLeft5")) {
-						
-						if (numberOfPlayers == 2) {
+					else if (read.contains("computerTwentySidedRollFromLeft4")) {						
 							
-							computerTwentySidedRollFromLeft5();							
-						}
+						//ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
+	  	  	  			//img.bringToFront();
+						
+						computerTwentySidedRollFromLeft4();						
 					}
-					else if (read.contains("computerTwentySidedRollFromLeft6")) {
-						
-						if (numberOfPlayers == 2) {
+					else if (read.contains("computerTwentySidedRollFromLeft5")) {						
 							
-							computerTwentySidedRollFromLeft6();							
-						}
+						//ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
+	  	  	  			//img.bringToFront();
+						
+						computerTwentySidedRollFromLeft5();
 					}
-					else if (read.contains("computerTwentySidedRollFromLeft7")) {
-						
-						if (numberOfPlayers == 2) {
+					else if (read.contains("computerTwentySidedRollFromLeft6")) {						
 							
-							computerTwentySidedRollFromLeft7();							
-						}
+						//ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
+	  	  	  			//img.bringToFront();
+						
+						computerTwentySidedRollFromLeft6();						
 					}
-					else if (read.contains("computerTwentySidedRollFromLeft8")) {
-						
-						if (numberOfPlayers == 2) {
+					else if (read.contains("computerTwentySidedRollFromLeft7")) {						
 							
-							computerTwentySidedRollFromLeft8();							
-						}
+						//ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
+	  	  	  			//img.bringToFront();
+						
+						computerTwentySidedRollFromLeft7();						
 					}
-					else if (read.contains("computerTwentySidedRollFromLeft9")) {
-						
-						if (numberOfPlayers == 2) {
+					else if (read.contains("computerTwentySidedRollFromLeft8")) {						
 							
-							computerTwentySidedRollFromLeft9();							
-						}
+						//ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
+	  	  	  			//img.bringToFront();
+						
+						computerTwentySidedRollFromLeft8();						
 					}
-					else if (read.contains("computerTwentySidedRollFromLeft10")) {
-						
-						if (numberOfPlayers == 2) {
+					else if (read.contains("computerTwentySidedRollFromLeft9")) {						
 							
-							computerTwentySidedRollFromLeft10();							
-						}
+						//ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
+	  	  	  			//img.bringToFront();
+						
+						computerTwentySidedRollFromLeft9();						
 					}
-					else if (read.contains("computerTwentySidedRollFromLeft11")) {
-						
-						if (numberOfPlayers == 2) {
+					else if (read.contains("computerTwentySidedRollFromLeft10")) {						
 							
-							computerTwentySidedRollFromLeft11();							
-						}
+						//ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
+	  	  	  			//img.bringToFront();
+						
+						computerTwentySidedRollFromLeft10();						
 					}
-					else if (read.contains("computerTwentySidedRollFromLeft12")) {
-						
-						if (numberOfPlayers == 2) {
+					else if (read.contains("computerTwentySidedRollFromLeft11")) {						
 							
-							computerTwentySidedRollFromLeft12();							
-						}
+						//ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
+	  	  	  			//img.bringToFront();
+						
+						computerTwentySidedRollFromLeft11();						
 					}
-					else if (read.contains("computerTwentySidedRollFromLeft13")) {
-						
-						if (numberOfPlayers == 2) {
+					else if (read.contains("computerTwentySidedRollFromLeft12")) {					
 							
-							computerTwentySidedRollFromLeft13();							
-						}
+						//ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
+	  	  	  			//img.bringToFront();
+						
+						computerTwentySidedRollFromLeft12();						
 					}
-					else if (read.contains("computerTwentySidedRollFromLeft14")) {
-						
-						if (numberOfPlayers == 2) {
+					else if (read.contains("computerTwentySidedRollFromLeft13")) {						
 							
-							computerTwentySidedRollFromLeft14();							
-						}
+						//ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
+	  	  	  			//img.bringToFront();
+						
+						computerTwentySidedRollFromLeft13();						
 					}
-					else if (read.contains("computerTwentySidedRollFromLeft15")) {
-						
-						if (numberOfPlayers == 2) {
+					else if (read.contains("computerTwentySidedRollFromLeft14")) {						
 							
-							computerTwentySidedRollFromLeft15();							
-						}
+						//ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
+	  	  	  			//img.bringToFront();
+						
+						computerTwentySidedRollFromLeft14();						
 					}
-					else if (read.contains("computerTwentySidedRollFromLeft16")) {
-						
-						if (numberOfPlayers == 2) {
+					else if (read.contains("computerTwentySidedRollFromLeft15")) {						
 							
-							computerTwentySidedRollFromLeft16();							
-						}
+						//ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
+	  	  	  			//img.bringToFront();
+						
+						computerTwentySidedRollFromLeft15();						
 					}
-					else if (read.contains("computerTwentySidedRollFromLeft17")) {
-						
-						if (numberOfPlayers == 2) {
+					else if (read.contains("computerTwentySidedRollFromLeft16")) {						
 							
-							computerTwentySidedRollFromLeft17();							
-						}
+						//ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
+	  	  	  			//img.bringToFront();
+						
+						computerTwentySidedRollFromLeft16();						
 					}
-					else if (read.contains("computerTwentySidedRollFromLeft18")) {
-						
-						if (numberOfPlayers == 2) {
+					else if (read.contains("computerTwentySidedRollFromLeft17")) {						
 							
-							computerTwentySidedRollFromLeft18();							
-						}
+						//ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
+	  	  	  			//img.bringToFront();
+						
+						computerTwentySidedRollFromLeft17();						
 					}
-					else if (read.contains("computerTwentySidedRollFromLeft19")) {
-						
-						if (numberOfPlayers == 2) {
+					else if (read.contains("computerTwentySidedRollFromLeft18")) {						
 							
-							computerTwentySidedRollFromLeft19();							
-						}
+						//ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
+	  	  	  			//img.bringToFront();
+						
+						computerTwentySidedRollFromLeft18();						
 					}
-					else if (read.contains("computerTwentySidedRollFromLeft20")) {
-						
-						if (numberOfPlayers == 2) {
+					else if (read.contains("computerTwentySidedRollFromLeft19")) {						
 							
-							computerTwentySidedRollFromLeft20();							
-						}
+						//ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
+	  	  	  			//img.bringToFront();
+						
+						computerTwentySidedRollFromLeft19();						
+					}
+					else if (read.contains("computerTwentySidedRollFromLeft20")) {						
+							
+						//ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
+	  	  	  			//img.bringToFront();
+						
+						computerTwentySidedRollFromLeft20();
 					}					
 					
 					else {
