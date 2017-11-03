@@ -2392,300 +2392,362 @@ public class Host extends Activity {
 	
 	public void hasteGraphic() {
 		
-		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
 		
-		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobig);					  	  	  	
-	  	  	
-  	  	TextView hasteGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
-  	  	
-  	  	hasteGraphic.setVisibility(View.VISIBLE);
-	  	hasteGraphic.bringToFront();
-  	  	
-  	  	hasteGraphic.setTypeface(typeFace);
-  	  	hasteGraphic.setText("Haste");  	  	
-  	  	
-  	  	hasteGraphic.clearAnimation();
-  	  	hasteGraphic.startAnimation(a);
-  		
-  		MediaPlayerWrapper.play(Host.this, R.raw.badonkshort);
-  		
-  		
-		final Handler h = new Handler();
-  	  	h.postDelayed(new Runnable() {		  	  	  			
-  	  			
-  	  		@Override
-  	  		public void run() {
-  	  			
-	  	  		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletosmall);						  	  	  	
-	  	  	  	
-		  	  	final TextView hasteGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
+				
+				Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobig);					  	  	  	
+			  	  	
+		  	  	TextView hasteGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+		  	  	
+		  	  	hasteGraphic.setVisibility(View.VISIBLE);
+			  	hasteGraphic.bringToFront();
+		  	  	
 		  	  	hasteGraphic.setTypeface(typeFace);
-		  	  	hasteGraphic.setText("Haste");
-	  	  	  	
+		  	  	hasteGraphic.setText("Haste");  	  	
+		  	  	
 		  	  	hasteGraphic.clearAnimation();
 		  	  	hasteGraphic.startAnimation(a);
-  	  		}	  	  		
-  	  	}, 3000);		
-	}	
-	
-	public void stopGraphics() {
-		
-		TextView blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
-		TextView cureGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
-		TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
-		TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
-		TextView hasteGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
-		TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
-		TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
-		
-		blessGraphic.clearAnimation();
-		blessGraphic.setVisibility(View.GONE);
-		
-		cureGraphic.clearAnimation();
-		cureGraphic.setVisibility(View.GONE);
-		
-		dodgeGraphic.clearAnimation();
-		dodgeGraphic.setVisibility(View.GONE);
-		
-		mightyBlowGraphic.clearAnimation();
-		mightyBlowGraphic.setVisibility(View.GONE);
-		
-		hasteGraphic.clearAnimation();
-		hasteGraphic.setVisibility(View.GONE);
-		
-		criticalHitGraphic.clearAnimation();
-		criticalHitGraphic.setVisibility(View.GONE);
-		
-		criticalMissGraphic.clearAnimation();
-		criticalMissGraphic.setVisibility(View.GONE);
+		  		
+		  		MediaPlayerWrapper.play(Host.this, R.raw.badonkshort);
+		  		
+		  		
+				final Handler h = new Handler();
+		  	  	h.postDelayed(new Runnable() {		  	  	  			
+		  	  			
+		  	  		@Override
+		  	  		public void run() {
+		  	  			
+			  	  		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletosmall);						  	  	  	
+			  	  	  	
+				  	  	final TextView hasteGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+				  	  	hasteGraphic.setTypeface(typeFace);
+				  	  	hasteGraphic.setText("Haste");
+			  	  	  	
+				  	  	hasteGraphic.clearAnimation();
+				  	  	hasteGraphic.startAnimation(a);
+		  	  		}	  	  		
+		  	  	}, 3000);
+			}
+		});
 	}	
 	
 	public void cureGraphic() {
 		
-		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
 		
-		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobig);					  	  	  	
-	  	  	
-  	  	TextView cureGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
-  	  	
-  	  	cureGraphic.setVisibility(View.VISIBLE);
-	  	cureGraphic.bringToFront();
-  	  	
-  	  	cureGraphic.setTypeface(typeFace);
-  	  	cureGraphic.setText(" Cure");  	  	
-  	  	
-  	  	cureGraphic.clearAnimation();
-  	  	cureGraphic.startAnimation(a);
-  		
-  		MediaPlayerWrapper.play(Host.this, R.raw.badonkshort);
-  		
-  		
-		final Handler h = new Handler();
-  	  	h.postDelayed(new Runnable() {		  	  	  			
-  	  			
-  	  		@Override
-  	  		public void run() {
-  	  			
-	  	  		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletosmall);						  	  	  	
-	  	  	  	
-		  	  	final TextView cureGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
+				
+				Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobig);					  	  	  	
+			  	  	
+		  	  	TextView cureGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+		  	  	
+		  	  	cureGraphic.setVisibility(View.VISIBLE);
+			  	cureGraphic.bringToFront();
+		  	  	
 		  	  	cureGraphic.setTypeface(typeFace);
-		  	  	cureGraphic.setText(" Cure");
-	  	  	  	
+		  	  	cureGraphic.setText(" Cure");  	  	
+		  	  	
 		  	  	cureGraphic.clearAnimation();
 		  	  	cureGraphic.startAnimation(a);
-  	  		}	  	  		
-  	  	}, 3000);		
+		  		
+		  		MediaPlayerWrapper.play(Host.this, R.raw.badonkshort);
+		  		
+		  		
+				final Handler h = new Handler();
+		  	  	h.postDelayed(new Runnable() {		  	  	  			
+		  	  			
+		  	  		@Override
+		  	  		public void run() {
+		  	  			
+			  	  		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletosmall);						  	  	  	
+			  	  	  	
+				  	  	final TextView cureGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+				  	  	cureGraphic.setTypeface(typeFace);
+				  	  	cureGraphic.setText(" Cure");
+			  	  	  	
+				  	  	cureGraphic.clearAnimation();
+				  	  	cureGraphic.startAnimation(a);
+		  	  		}	  	  		
+		  	  	}, 3000);
+			}
+		});
 	}
 	
 	public void blessGraphic() {
 		
-		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
 		
-		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobig);					  	  	  	
-	  	  	
-  	  	TextView blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
-  		
-  	  	blessGraphic.setVisibility(View.VISIBLE);
-		blessGraphic.bringToFront();
-  	  	
-  	  	blessGraphic.setTypeface(typeFace);
-  		blessGraphic.setText("Bless");  		
-  	  	
-  	  	blessGraphic.clearAnimation();
-  		blessGraphic.startAnimation(a);
-  		
-  		MediaPlayerWrapper.play(Host.this, R.raw.badonkshort);
-  		
-  		
-		final Handler h = new Handler();
-  	  	h.postDelayed(new Runnable() {		  	  	  			
-  	  			
-  	  		@Override
-  	  		public void run() {
-  	  			
-	  	  		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletosmall);						  	  	  	
-	  	  	  	
-		  	  	final TextView blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
-  	  	  		blessGraphic.setTypeface(typeFace);
-  	  	  		blessGraphic.setText("Bless");
-  	  	  		
-	  	  	  	blessGraphic.clearAnimation();
-  	  	  		blessGraphic.startAnimation(a);
-  	  		}	  	  		
-  	  	}, 3000);		
-	}
-	
-	public void criticalHitGraphic() {
-		
-		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
-		
-		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobig);					  	  	  	
-	  	  	
-  	  	TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
-  	  	
-  	  	criticalHitGraphic.setVisibility(View.VISIBLE);
-	  	criticalHitGraphic.bringToFront();
-  	  	
-  	  	criticalHitGraphic.setTypeface(typeFace);
-  	  	criticalHitGraphic.setText("Critical     Hit");  	  	
-  	  	
-  	  	criticalHitGraphic.clearAnimation();
-  	  	criticalHitGraphic.startAnimation(a);
-  		
-  		MediaPlayerWrapper.play(Host.this, R.raw.badonkshort);
-  		
-  		
-		final Handler h = new Handler();
-  	  	h.postDelayed(new Runnable() {		  	  	  			
-  	  			
-  	  		@Override
-  	  		public void run() {
-  	  			
-	  	  		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletosmall);						  	  	  	
-	  	  	  	
-		  	  	final TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
-		  	  	criticalHitGraphic.setTypeface(typeFace);
-		  	  	criticalHitGraphic.setText("Critical     Hit");
-	  	  	  	
-		  	  	criticalHitGraphic.clearAnimation();
-		  	  	criticalHitGraphic.startAnimation(a);
-  	  		}	  	  		
-  	  	}, 3000);		
+				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
+				
+				Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobig);					  	  	  	
+			  	  	
+		  	  	TextView blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+		  		
+		  	  	blessGraphic.setVisibility(View.VISIBLE);
+				blessGraphic.bringToFront();
+		  	  	
+		  	  	blessGraphic.setTypeface(typeFace);
+		  		blessGraphic.setText("Bless");  		
+		  	  	
+		  	  	blessGraphic.clearAnimation();
+		  		blessGraphic.startAnimation(a);
+		  		
+		  		MediaPlayerWrapper.play(Host.this, R.raw.badonkshort);
+		  		
+		  		
+				final Handler h = new Handler();
+		  	  	h.postDelayed(new Runnable() {		  	  	  			
+		  	  			
+		  	  		@Override
+		  	  		public void run() {
+		  	  			
+			  	  		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletosmall);						  	  	  	
+			  	  	  	
+				  	  	final TextView blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+		  	  	  		blessGraphic.setTypeface(typeFace);
+		  	  	  		blessGraphic.setText("Bless");
+		  	  	  		
+			  	  	  	blessGraphic.clearAnimation();
+		  	  	  		blessGraphic.startAnimation(a);
+		  	  		}	  	  		
+		  	  	}, 3000);
+			}
+		});
 	}
 	
 	public void dodgeGraphic() {
 		
-		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
 		
-		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobig);					  	  	  	
-	  	  	
-  	  	TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
-  	  	
-  	  	dodgeGraphic.setVisibility(View.VISIBLE);
-	  	dodgeGraphic.bringToFront();
-  	  	
-  	  	dodgeGraphic.setTypeface(typeFace);
-  	  	dodgeGraphic.setText("Dodge");  	  	
-  	  	
-  	  	dodgeGraphic.clearAnimation();
-  	  	dodgeGraphic.startAnimation(a);
-  		
-  		MediaPlayerWrapper.play(Host.this, R.raw.badonkshort);
-  		
-  		
-		final Handler h = new Handler();
-  	  	h.postDelayed(new Runnable() {		  	  	  			
-  	  			
-  	  		@Override
-  	  		public void run() {
-  	  			
-	  	  		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletosmall);						  	  	  	
-	  	  	  	
-		  	  	final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
+				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
+				
+				Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobig);					  	  	  	
+			  	  	
+		  	  	TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
+		  	  	
+		  	  	dodgeGraphic.setVisibility(View.VISIBLE);
+			  	dodgeGraphic.bringToFront();
+		  	  	
 		  	  	dodgeGraphic.setTypeface(typeFace);
-		  	  	dodgeGraphic.setText("Dodge");
-	  	  	  	
+		  	  	dodgeGraphic.setText("Dodge");  	  	
+		  	  	
 		  	  	dodgeGraphic.clearAnimation();
 		  	  	dodgeGraphic.startAnimation(a);
-  	  		}	  	  		
-  	  	}, 3000);	
-	}
-	
-	public void criticalMissGraphic() {
-		
-		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
-		
-		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobig);					  	  	  	
-	  	  	
-  	  	TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
-  	  	
-  	  	criticalMissGraphic.setVisibility(View.VISIBLE);
-	  	criticalMissGraphic.bringToFront();
-  	  	
-  	  	criticalMissGraphic.setTypeface(typeFace);
-  	  	criticalMissGraphic.setText("Critical Miss");  	  	
-  	  	
-  	  	criticalMissGraphic.clearAnimation();
-  	  	criticalMissGraphic.startAnimation(a);
-  		
-  		MediaPlayerWrapper.play(Host.this, R.raw.badonkshort);
-  		
-  		
-		final Handler h = new Handler();
-  	  	h.postDelayed(new Runnable() {		  	  	  			
-  	  			
-  	  		@Override
-  	  		public void run() {
-  	  			
-	  	  		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletosmall);						  	  	  	
-	  	  	  	
-		  	  	final TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
-		  	  	criticalMissGraphic.setTypeface(typeFace);
-		  	  	criticalMissGraphic.setText("Critical Miss");
-	  	  	  	
-		  	  	criticalMissGraphic.clearAnimation();
-		  	  	criticalMissGraphic.startAnimation(a);
-  	  		}	  	  		
-  	  	}, 3000);		
+		  		
+		  		MediaPlayerWrapper.play(Host.this, R.raw.badonkshort);
+		  		
+		  		
+				final Handler h = new Handler();
+		  	  	h.postDelayed(new Runnable() {		  	  	  			
+		  	  			
+		  	  		@Override
+		  	  		public void run() {
+		  	  			
+			  	  		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletosmall);						  	  	  	
+			  	  	  	
+				  	  	final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
+				  	  	dodgeGraphic.setTypeface(typeFace);
+				  	  	dodgeGraphic.setText("Dodge");
+			  	  	  	
+				  	  	dodgeGraphic.clearAnimation();
+				  	  	dodgeGraphic.startAnimation(a);
+		  	  		}	  	  		
+		  	  	}, 3000);
+			}
+		});
 	}
 	
 	public void mightyBlowGraphic() {
 		
-		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
 		
-		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobig);					  	  	  	
-	  	  	
-  	  	TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
-  	  	
-  	  	mightyBlowGraphic.setVisibility(View.VISIBLE);
-	  	mightyBlowGraphic.bringToFront();
-  	  	
-  	  	mightyBlowGraphic.setTypeface(typeFace);
-  	  	mightyBlowGraphic.setText("Mighty Blow");  	  	
-  	  	
-  	  	mightyBlowGraphic.clearAnimation();
-  	  	mightyBlowGraphic.startAnimation(a);
-  		
-  		MediaPlayerWrapper.play(Host.this, R.raw.badonkshort);
-  		
-  		
-		final Handler h = new Handler();
-  	  	h.postDelayed(new Runnable() {		  	  	  			
-  	  			
-  	  		@Override
-  	  		public void run() {
-  	  			
-	  	  		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletosmall);						  	  	  	
-	  	  	  	
-		  	  	final TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
+				
+				Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobig);					  	  	  	
+			  	  	
+		  	  	TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+		  	  	
+		  	  	mightyBlowGraphic.setVisibility(View.VISIBLE);
+			  	mightyBlowGraphic.bringToFront();
+		  	  	
 		  	  	mightyBlowGraphic.setTypeface(typeFace);
-		  	  	mightyBlowGraphic.setText("Mighty Blow");
-	  	  	  	
+		  	  	mightyBlowGraphic.setText("Mighty Blow");  	  	
+		  	  	
 		  	  	mightyBlowGraphic.clearAnimation();
 		  	  	mightyBlowGraphic.startAnimation(a);
-  	  		}	  	  		
-  	  	}, 3000);		
+		  		
+		  		MediaPlayerWrapper.play(Host.this, R.raw.badonkshort);
+		  		
+		  		
+				final Handler h = new Handler();
+		  	  	h.postDelayed(new Runnable() {		  	  	  			
+		  	  			
+		  	  		@Override
+		  	  		public void run() {
+		  	  			
+			  	  		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletosmall);						  	  	  	
+			  	  	  	
+				  	  	final TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+				  	  	mightyBlowGraphic.setTypeface(typeFace);
+				  	  	mightyBlowGraphic.setText("Mighty Blow");
+			  	  	  	
+				  	  	mightyBlowGraphic.clearAnimation();
+				  	  	mightyBlowGraphic.startAnimation(a);
+		  	  		}	  	  		
+		  	  	}, 3000);
+			}
+		});
+	}
+	
+	public void criticalHitGraphic() {
+		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				
+				// Use a blank drawable to hide the imageview animation:
+				// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+				img1.setBackgroundResource(R.drawable.twentytwentyblank);
+				img1.setImageResource(R.drawable.twentytwentyblank);
+				
+		
+				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
+				
+				Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobig);					  	  	  	
+			  	  	
+		  	  	TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+		  	  	
+		  	  	criticalHitGraphic.setVisibility(View.VISIBLE);
+			  	criticalHitGraphic.bringToFront();
+		  	  	
+		  	  	criticalHitGraphic.setTypeface(typeFace);
+		  	  	criticalHitGraphic.setText("Critical     Hit");  	  	
+		  	  	
+		  	  	criticalHitGraphic.clearAnimation();
+		  	  	criticalHitGraphic.startAnimation(a);
+		  		
+		  		MediaPlayerWrapper.play(Host.this, R.raw.badonkshort);
+		  		
+		  		
+				final Handler h = new Handler();
+		  	  	h.postDelayed(new Runnable() {		  	  	  			
+		  	  			
+		  	  		@Override
+		  	  		public void run() {
+		  	  			
+			  	  		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletosmall);						  	  	  	
+			  	  	  	
+				  	  	final TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+				  	  	criticalHitGraphic.setTypeface(typeFace);
+				  	  	criticalHitGraphic.setText("Critical     Hit");
+			  	  	  	
+				  	  	criticalHitGraphic.clearAnimation();
+				  	  	criticalHitGraphic.startAnimation(a);
+		  	  		}	  	  		
+		  	  	}, 3000);
+			}
+		});
+	}	
+	
+	public void criticalMissGraphic() {
+		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				
+				// Use a blank drawable to hide the imageview animation:
+				// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+				img1.setBackgroundResource(R.drawable.twentytwentyblank);
+				img1.setImageResource(R.drawable.twentytwentyblank);
+				
+		
+				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
+				
+				Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobig);					  	  	  	
+			  	  	
+		  	  	TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+		  	  	
+		  	  	criticalMissGraphic.setVisibility(View.VISIBLE);
+			  	criticalMissGraphic.bringToFront();
+		  	  	
+		  	  	criticalMissGraphic.setTypeface(typeFace);
+		  	  	criticalMissGraphic.setText("Critical Miss");  	  	
+		  	  	
+		  	  	criticalMissGraphic.clearAnimation();
+		  	  	criticalMissGraphic.startAnimation(a);
+		  		
+		  		MediaPlayerWrapper.play(Host.this, R.raw.badonkshort);
+		  		
+		  		
+				final Handler h = new Handler();
+		  	  	h.postDelayed(new Runnable() {		  	  	  			
+		  	  			
+		  	  		@Override
+		  	  		public void run() {
+		  	  			
+			  	  		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletosmall);						  	  	  	
+			  	  	  	
+				  	  	final TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+				  	  	criticalMissGraphic.setTypeface(typeFace);
+				  	  	criticalMissGraphic.setText("Critical Miss");
+			  	  	  	
+				  	  	criticalMissGraphic.clearAnimation();
+				  	  	criticalMissGraphic.startAnimation(a);
+		  	  		}	  	  		
+		  	  	}, 3000);
+			}
+		});
+	}	
+	
+	public void stopGraphics() {
+		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+		
+				TextView blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+				TextView cureGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+				TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
+				TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+				TextView hasteGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+				TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+				TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+				
+				blessGraphic.clearAnimation();
+				blessGraphic.setVisibility(View.GONE);
+				
+				cureGraphic.clearAnimation();
+				cureGraphic.setVisibility(View.GONE);
+				
+				dodgeGraphic.clearAnimation();
+				dodgeGraphic.setVisibility(View.GONE);
+				
+				mightyBlowGraphic.clearAnimation();
+				mightyBlowGraphic.setVisibility(View.GONE);
+				
+				hasteGraphic.clearAnimation();
+				hasteGraphic.setVisibility(View.GONE);
+				
+				criticalHitGraphic.clearAnimation();
+				criticalHitGraphic.setVisibility(View.GONE);
+				
+				criticalMissGraphic.clearAnimation();
+				criticalMissGraphic.setVisibility(View.GONE);
+			}
+		});
 	}
 	
 	
@@ -2763,7 +2825,7 @@ public class Host extends Activity {
 					
 		  	  	if (issixsidedrolledforinitiative.equals("yes")) {
 		  	  		
-			  	  	String str = "computerSixSidedRollFromLeft1";
+			  	  	String str = "1computerSixSidedRollFromLeft1";
 					sendToAllClients(str);		  	  		
 		  	  	}				
 	  	    }
@@ -2789,7 +2851,7 @@ public class Host extends Activity {
 		  	  	
 		  	  	if (issixsidedrolledforinitiative.equals("yes")) {
 		  	  		
-		  	  		String str = "computerSixSidedRollFromLeft2";
+		  	  		String str = "2computerSixSidedRollFromLeft2";
 		  	  		sendToAllClients(str);
 		  	  	}			  	  	
 	  	    }
@@ -2815,7 +2877,7 @@ public class Host extends Activity {
 		  	  	
 		  	  	if (issixsidedrolledforinitiative.equals("yes")) {
 		  	  		
-		  	  		String str = "computerSixSidedRollFromLeft3";
+		  	  		String str = "3computerSixSidedRollFromLeft3";
 		  	  		sendToAllClients(str);
 		  	  	}
 	  	    }
@@ -2841,7 +2903,7 @@ public class Host extends Activity {
 		  	  	
 		  	  	if (issixsidedrolledforinitiative.equals("yes")) {
 		  	  		
-		  	  		String str = "computerSixSidedRollFromLeft4";
+		  	  		String str = "4computerSixSidedRollFromLeft4";
 		  	  		sendToAllClients(str);
 		  	  	}
 	  	    }
@@ -2867,7 +2929,7 @@ public class Host extends Activity {
 		  	  	
 		  	  	if (issixsidedrolledforinitiative.equals("yes")) {
 		  	  		
-		  	  		String str = "computerSixSidedRollFromLeft5";
+		  	  		String str = "5computerSixSidedRollFromLeft5";
 		  	  		sendToAllClients(str);
 		  	  	}
 	  	    }
@@ -2893,7 +2955,7 @@ public class Host extends Activity {
 		  	  	
 		  	  	if (issixsidedrolledforinitiative.equals("yes")) {
 		  	  		
-		  	  		String str = "computerSixSidedRollFromLeft6";
+		  	  		String str = "6computerSixSidedRollFromLeft6";
 		  	  		sendToAllClients(str);
 		  	  	}
 	  	    }
@@ -2920,7 +2982,7 @@ public class Host extends Activity {
 		  	  	
 		  	  	if (issixsidedrolledforinitiative.equals("yes")) {
 		  	  		
-		  	  		String str = "computerSixSidedRollFromLeft1";
+		  	  		String str = "1computerSixSidedRollFromLeft1";
 		  	  		sendToAllClients(str);
 		  	  	}
 	  	    }
@@ -2946,7 +3008,7 @@ public class Host extends Activity {
 		  	  	
 		  	  	if (issixsidedrolledforinitiative.equals("yes")) {
 		  	  		
-		  	  		String str = "computerSixSidedRollFromLeft2";
+		  	  		String str = "2computerSixSidedRollFromLeft2";
 		  	  		sendToAllClients(str);
 		  	  	}
 	  	    }
@@ -2972,7 +3034,7 @@ public class Host extends Activity {
 		  	  	
 		  	  	if (issixsidedrolledforinitiative.equals("yes")) {
 		  	  		
-		  	  		String str = "computerSixSidedRollFromLeft3";
+		  	  		String str = "3computerSixSidedRollFromLeft3";
 		  	  		sendToAllClients(str);
 		  	  	}
 	  	    }
@@ -2998,7 +3060,7 @@ public class Host extends Activity {
 		  	  	
 		  	  	if (issixsidedrolledforinitiative.equals("yes")) {
 		  	  		
-		  	  		String str = "computerSixSidedRollFromLeft4";
+		  	  		String str = "4computerSixSidedRollFromLeft4";
 		  	  		sendToAllClients(str);
 		  	  	}
 	  	    }
@@ -3024,7 +3086,7 @@ public class Host extends Activity {
 		  	  	
 		  	  	if (issixsidedrolledforinitiative.equals("yes")) {
 		  	  		
-		  	  		String str = "computerSixSidedRollFromLeft5";
+		  	  		String str = "5computerSixSidedRollFromLeft5";
 		  	  		sendToAllClients(str);
 		  	  	}
 	  	    }
@@ -3050,12 +3112,183 @@ public class Host extends Activity {
 		  	  	
 		  	  	if (issixsidedrolledforinitiative.equals("yes")) {
 		  	  		
-		  	  		String str = "computerSixSidedRollFromLeft6";
+		  	  		String str = "6computerSixSidedRollFromLeft6";
 		  	  		sendToAllClients(str);
 		  	  	}
 	  	    }
   		});
 	}
+	
+	
+	public void computerSixSidedRollFromLeft1() {	
+	  	
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				
+				// Use a blank drawable to hide the imageview animation:
+				// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+				img1.setBackgroundResource(R.drawable.twentytwentyblank);
+				img1.setImageResource(R.drawable.twentytwentyblank);
+				
+				
+				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+				img.setBackgroundResource(R.anim.computersixsidedrollfromleft1);
+				img.bringToFront();
+		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+				
+		  	  	MediaPlayerWrapper.play(Host.this, R.raw.dierolling3b);
+		  	  	
+		  	  	// Animation is just 1 slide so user can see title.
+		  	  	frameAnimation.stop();
+		  	  	frameAnimation.start();
+	  	    }
+  		});
+	}
+	
+	public void computerSixSidedRollFromLeft2() {	
+	  	
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				
+				// Use a blank drawable to hide the imageview animation:
+				// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+				img1.setBackgroundResource(R.drawable.twentytwentyblank);
+				img1.setImageResource(R.drawable.twentytwentyblank);
+				
+				
+				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+				img.setBackgroundResource(R.anim.computersixsidedrollfromleft2);
+				img.bringToFront();
+		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+				
+		  	  	MediaPlayerWrapper.play(Host.this, R.raw.dierolling3b);
+		  	  	
+		  	  	// Animation is just 1 slide so user can see title.
+		  	  	frameAnimation.stop();
+		  	  	frameAnimation.start();
+	  	    }
+  		});
+	}
+	
+	public void computerSixSidedRollFromLeft3() {	
+	  	
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				
+				// Use a blank drawable to hide the imageview animation:
+				// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+				img1.setBackgroundResource(R.drawable.twentytwentyblank);
+				img1.setImageResource(R.drawable.twentytwentyblank);
+				
+				
+				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+				img.setBackgroundResource(R.anim.computersixsidedrollfromleft3);
+				img.bringToFront();
+		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+				
+		  	  	MediaPlayerWrapper.play(Host.this, R.raw.dierolling3b);
+		  	  	
+		  	  	// Animation is just 1 slide so user can see title.
+		  	  	frameAnimation.stop();
+		  	  	frameAnimation.start();
+	  	    }
+  		});
+	}
+	
+	public void computerSixSidedRollFromLeft4() {	
+	  	
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				
+				// Use a blank drawable to hide the imageview animation:
+				// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+				img1.setBackgroundResource(R.drawable.twentytwentyblank);
+				img1.setImageResource(R.drawable.twentytwentyblank);
+				
+				
+				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+				img.setBackgroundResource(R.anim.computersixsidedrollfromleft4);
+				img.bringToFront();
+		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+				
+		  	  	MediaPlayerWrapper.play(Host.this, R.raw.dierolling3b);
+		  	  	
+		  	  	// Animation is just 1 slide so user can see title.
+		  	  	frameAnimation.stop();
+		  	  	frameAnimation.start();
+	  	    }
+  		});
+	}
+	
+	public void computerSixSidedRollFromLeft5() {	
+	  	
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				
+				// Use a blank drawable to hide the imageview animation:
+				// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+				img1.setBackgroundResource(R.drawable.twentytwentyblank);
+				img1.setImageResource(R.drawable.twentytwentyblank);
+				
+				
+				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+				img.setBackgroundResource(R.anim.computersixsidedrollfromleft5);
+				img.bringToFront();
+		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+				
+		  	  	MediaPlayerWrapper.play(Host.this, R.raw.dierolling3b);
+		  	  	
+		  	  	// Animation is just 1 slide so user can see title.
+		  	  	frameAnimation.stop();
+		  	  	frameAnimation.start();
+	  	    }
+  		});
+	}
+	
+	public void computerSixSidedRollFromLeft6() {	
+	  	
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				
+				// Use a blank drawable to hide the imageview animation:
+				// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+				img1.setBackgroundResource(R.drawable.twentytwentyblank);
+				img1.setImageResource(R.drawable.twentytwentyblank);
+				
+				
+				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
+				img.setBackgroundResource(R.anim.computersixsidedrollfromleft6);
+				img.bringToFront();
+		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
+		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+				
+		  	  	MediaPlayerWrapper.play(Host.this, R.raw.dierolling3b);
+		  	  	
+		  	  	// Animation is just 1 slide so user can see title.
+		  	  	frameAnimation.stop();
+		  	  	frameAnimation.start();
+	  	    }
+  		});  	  	
+	}
+	
+	
 	
 	
 	public void twentySidedWobbleStart() {
@@ -3556,7 +3789,7 @@ public class Host extends Activity {
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
 		  	  	
-		  	  	String str = "computerTwentySidedRollFromLeft20";
+		  	  	String str = "cmputerTwentySidedRollFromLeft20";
 				sendToAllClients(str);
 	  	    }
   		});
@@ -4017,7 +4250,7 @@ public class Host extends Activity {
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
 		  	  	
-		  	  	String str = "computerTwentySidedRollFromLeft20";
+		  	  	String str = "cmputerTwentySidedRollFromLeft20";
 				sendToAllClients(str);
 	  	    }
   		});
@@ -4030,6 +4263,9 @@ public class Host extends Activity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img.setBackgroundResource(R.anim.computertwentysidedrollfromleft1);
+				
+				img.setVisibility(View.VISIBLE);
+				
 				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -4050,6 +4286,9 @@ public class Host extends Activity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img.setBackgroundResource(R.anim.computertwentysidedrollfromleft2);
+				
+				img.setVisibility(View.VISIBLE);
+				
 				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -4070,6 +4309,9 @@ public class Host extends Activity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img.setBackgroundResource(R.anim.computertwentysidedrollfromleft3);
+				
+				img.setVisibility(View.VISIBLE);
+				
 				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -4090,6 +4332,9 @@ public class Host extends Activity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img.setBackgroundResource(R.anim.computertwentysidedrollfromleft4);
+				
+				img.setVisibility(View.VISIBLE);
+				
 				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -4110,6 +4355,9 @@ public class Host extends Activity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img.setBackgroundResource(R.anim.computertwentysidedrollfromleft5);
+				
+				img.setVisibility(View.VISIBLE);
+				
 				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -4130,6 +4378,9 @@ public class Host extends Activity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img.setBackgroundResource(R.anim.computertwentysidedrollfromleft6);
+				
+				img.setVisibility(View.VISIBLE);
+				
 				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -4150,6 +4401,9 @@ public class Host extends Activity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img.setBackgroundResource(R.anim.computertwentysidedrollfromleft7);
+				
+				img.setVisibility(View.VISIBLE);
+				
 				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -4170,6 +4424,9 @@ public class Host extends Activity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img.setBackgroundResource(R.anim.computertwentysidedrollfromleft8);
+				
+				img.setVisibility(View.VISIBLE);
+				
 				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -4190,6 +4447,9 @@ public class Host extends Activity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img.setBackgroundResource(R.anim.computertwentysidedrollfromleft9);
+				
+				img.setVisibility(View.VISIBLE);
+				
 				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -4210,6 +4470,9 @@ public class Host extends Activity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img.setBackgroundResource(R.anim.computertwentysidedrollfromleft10);
+				
+				img.setVisibility(View.VISIBLE);
+				
 				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -4230,6 +4493,9 @@ public class Host extends Activity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img.setBackgroundResource(R.anim.computertwentysidedrollfromleft11);
+				
+				img.setVisibility(View.VISIBLE);
+				
 				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -4250,6 +4516,9 @@ public class Host extends Activity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img.setBackgroundResource(R.anim.computertwentysidedrollfromleft12);
+				
+				img.setVisibility(View.VISIBLE);
+				
 				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -4270,6 +4539,9 @@ public class Host extends Activity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img.setBackgroundResource(R.anim.computertwentysidedrollfromleft13);
+				
+				img.setVisibility(View.VISIBLE);
+				
 				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -4290,6 +4562,9 @@ public class Host extends Activity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img.setBackgroundResource(R.anim.computertwentysidedrollfromleft14);
+				
+				img.setVisibility(View.VISIBLE);
+				
 				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -4310,6 +4585,9 @@ public class Host extends Activity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img.setBackgroundResource(R.anim.computertwentysidedrollfromleft15);
+				
+				img.setVisibility(View.VISIBLE);
+				
 				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -4330,6 +4608,9 @@ public class Host extends Activity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img.setBackgroundResource(R.anim.computertwentysidedrollfromleft16);
+				
+				img.setVisibility(View.VISIBLE);
+				
 				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -4350,6 +4631,9 @@ public class Host extends Activity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img.setBackgroundResource(R.anim.computertwentysidedrollfromleft17);
+				
+				img.setVisibility(View.VISIBLE);
+				
 				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -4370,6 +4654,9 @@ public class Host extends Activity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img.setBackgroundResource(R.anim.computertwentysidedrollfromleft18);
+				
+				img.setVisibility(View.VISIBLE);
+				
 				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -4390,6 +4677,9 @@ public class Host extends Activity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img.setBackgroundResource(R.anim.computertwentysidedrollfromleft19);
+				
+				img.setVisibility(View.VISIBLE);
+				
 				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -4410,6 +4700,9 @@ public class Host extends Activity {
 			public void run() {
 				ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img.setBackgroundResource(R.anim.computertwentysidedrollfromleft20);
+				
+				img.setVisibility(View.VISIBLE);
+				
 				img.bringToFront();
 		  	  	// Get the background, which has been compiled to an AnimationDrawable object.
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
@@ -11932,7 +12225,7 @@ public class Host extends Activity {
 			
 			canHasDisarmed[0] = "no";
 			
-			String str = "canHasDisarmed0 :" + "no";
+			String str = "0canHasDisarmed0 :" + "no";
 			sendToClient0(str);
 			
 			
@@ -11945,7 +12238,7 @@ public class Host extends Activity {
 			
 			didHumanCriticalMiss[0] = "no";
 			
-			String str3 = "didHumanCriticalMiss0 :" + "no";
+			String str3 = "0didHumanCriticalMiss0 :" + "no";
 			sendToClient0(str3);
 		}	
 		
@@ -12019,7 +12312,7 @@ public class Host extends Activity {
 				  									
 				  				canHasDisarmed[5] = "no";
 				  				
-				  				String str7 = "canHasDisarmed5 :" + "no";
+				  				String str7 = "5canHasDisarmed5 :" + "no";
 				  				sendToClient0(str7);
 				  				
 				  			
@@ -12076,7 +12369,7 @@ public class Host extends Activity {
 			
 			canHasDisarmed[0] = "no";
 			
-			String str2 = "canHasDisarmed0 :" + "no";
+			String str2 = "0canHasDisarmed0 :" + "no";
 			sendToClient0(str2);
 		}
     	
@@ -12085,13 +12378,13 @@ public class Host extends Activity {
     		
     		canHasDisarmed[5] = "no";
     		
-    		String str = "canHasDisarmed5 :" + "no";
+    		String str = "5canHasDisarmed5 :" + "no";
 			sendToClient0(str);
     		
 				
 			didHumanCriticalMiss[5] = "no";
 			
-			String str2 = "didHumanCriticalMiss5 :" + "no";
+			String str2 = "5didHumanCriticalMiss5 :" + "no";
 			sendToClient0(str2);
 			
 			TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
@@ -12206,7 +12499,7 @@ public class Host extends Activity {
 			
 			canHasDisarmed[5] = "no";			
 			
-			String str2 = "canHasDisarmed5 :" + "no";
+			String str2 = "5canHasDisarmed5 :" + "no";
 			sendToClient0(str2);
 			
 			
@@ -12219,7 +12512,7 @@ public class Host extends Activity {
 			
 			didHumanCriticalMiss[5] = "no";
 			
-			String str4 = "didHumanCriticalMiss5 :" + "no";
+			String str4 = "5didHumanCriticalMiss5 :" + "no";
 			sendToClient0(str4);
 		}	
 		
@@ -12277,7 +12570,7 @@ public class Host extends Activity {
 				  									
 				  				canHasDisarmed[0] = "no";
 				  				
-				  				String str8 = "canHasDisarmed0 :" + "no";
+				  				String str8 = "0canHasDisarmed0 :" + "no";
 				  				sendToClient0(str8);
 				  				
 				  			
@@ -12345,7 +12638,7 @@ public class Host extends Activity {
 			
 			canHasDisarmed[5] = "no";
 			
-			String str2 = "canHasDisarmed5 :" + "no";
+			String str2 = "5canHasDisarmed5 :" + "no";
 			sendToClient0(str2);
 		}
     	
@@ -12354,13 +12647,13 @@ public class Host extends Activity {
     		
     		canHasDisarmed[0] = "no";
     		
-    		String str3 = "canHasDisarmed0 :" + "no";
+    		String str3 = "0canHasDisarmed0 :" + "no";
 			sendToClient0(str3);
     		
 				
 			didHumanCriticalMiss[0] = "no";
 			
-			String str4 = "didHumanCriticalMiss0 :" + "no";
+			String str4 = "0didHumanCriticalMiss0 :" + "no";
 			sendToClient0(str4);
 			
 			
@@ -13753,7 +14046,7 @@ public class Host extends Activity {
 		  		  	  	  		
 		  		  	  	  		canHasDisarmed[5] = "no";
 		  		  	  	  		
-		  		  	  	  		String str7 = "canHasDisarmed5 :" + "no";
+		  		  	  	  		String str7 = "5canHasDisarmed5 :" + "no";
 		  		  	  	  		sendToAllClients(str7);
 		  		  	  	  		
 
@@ -14645,7 +14938,7 @@ public class Host extends Activity {
 		    			playerHitPointsTextView.startAnimation(animPulsingAnimation);
 						
 		    			
-		    			String str2 = "ArrayOfHitPoints.hitpoints[5] :" + ArrayOfHitPoints.hitpoints[5];
+		    			String str2 = "5ArrayOfHitPoints.hitpoints[5] :" + ArrayOfHitPoints.hitpoints[5];
 						sendToAllClients(str2);		    			
 		    			
 		    			
@@ -14725,7 +15018,7 @@ public class Host extends Activity {
 					  	  	  		
 									if (playerNumberAttacked == 0) {
 										
-										String str = "canHasDisarmed0 :" + "yes";
+										String str = "0canHasDisarmed0 :" + "yes";
 										sendToAllClients(str);
 										
 										String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
@@ -14733,7 +15026,7 @@ public class Host extends Activity {
 									}
 									else if (playerNumberAttacked == 1) {
 										
-										String str = "canHasDisarmed1 :" + "yes";
+										String str = "1canHasDisarmed1 :" + "yes";
 										sendToAllClients(str);
 										
 										String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
@@ -14741,7 +15034,7 @@ public class Host extends Activity {
 									}
 									else if (playerNumberAttacked == 2) {
 										
-										String str = "canHasDisarmed2 :" + "yes";
+										String str = "2canHasDisarmed2 :" + "yes";
 										sendToAllClients(str);
 										
 										String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
@@ -14749,7 +15042,7 @@ public class Host extends Activity {
 									}
 									else if (playerNumberAttacked == 3) {
 										
-										String str = "canHasDisarmed3 :" + "yes";
+										String str = "3canHasDisarmed3 :" + "yes";
 										sendToAllClients(str);
 										
 										String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
@@ -14757,7 +15050,7 @@ public class Host extends Activity {
 									}
 									else if (playerNumberAttacked == 4) {
 										
-										String str = "canHasDisarmed4 :" + "yes";
+										String str = "4canHasDisarmed4 :" + "yes";
 										sendToAllClients(str);
 										
 										String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
@@ -14897,7 +15190,7 @@ public class Host extends Activity {
 					  	  	  		
 									if (playerNumberAttacked == 0) {
 										
-										String str = "canHasDisarmed0 :" + "yes";
+										String str = "0canHasDisarmed0 :" + "yes";
 										sendToAllClients(str);
 										
 										String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
@@ -14905,7 +15198,7 @@ public class Host extends Activity {
 									}
 									else if (playerNumberAttacked == 1) {
 										
-										String str = "canHasDisarmed1 :" + "yes";
+										String str = "1canHasDisarmed1 :" + "yes";
 										sendToAllClients(str);
 										
 										String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
@@ -14913,7 +15206,7 @@ public class Host extends Activity {
 									}
 									else if (playerNumberAttacked == 2) {
 										
-										String str = "canHasDisarmed2 :" + "yes";
+										String str = "2canHasDisarmed2 :" + "yes";
 										sendToAllClients(str);
 										
 										String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
@@ -14921,7 +15214,7 @@ public class Host extends Activity {
 									}
 									else if (playerNumberAttacked == 3) {
 										
-										String str = "canHasDisarmed3 :" + "yes";
+										String str = "3canHasDisarmed3 :" + "yes";
 										sendToAllClients(str);
 										
 										String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
@@ -14929,7 +15222,7 @@ public class Host extends Activity {
 									}
 									else if (playerNumberAttacked == 4) {
 										
-										String str = "canHasDisarmed4 :" + "yes";
+										String str = "4canHasDisarmed4 :" + "yes";
 										sendToAllClients(str);
 										
 										String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
@@ -15360,13 +15653,13 @@ public class Host extends Activity {
 							
 							canHasDisarmed[5] = "yes";
 							
-							String str2 = "canHasDisarmed5 :" + "yes";
+							String str2 = "5canHasDisarmed5 :" + "yes";
 							sendToAllClients(str2);
 							
 							
 							didHumanCriticalMiss[5] = "yes";
 							
-							String str3 = "didHumanCriticalMiss5 :" + "yes";
+							String str3 = "5didHumanCriticalMiss5 :" + "yes";
 							sendToAllClients(str3);
 							
 							
@@ -15530,7 +15823,7 @@ public class Host extends Activity {
 	  						
 	  						if(numberOfPlayers == 2) {
 	  							
-	  							String str3 = "rollDodge";
+	  							String str3 = "rollDge";
 	  							sendToClient0(str3);
 	  							
 	  							plyerAskedToDodgeCritHit[0] = "yes";
@@ -16160,7 +16453,7 @@ public class Host extends Activity {
 	
 						ArrayOfHitPoints.hitpoints[5] = ArrayOfHitPoints.hitpoints[5] - attackDamage;
 						
-						String str2 = "ArrayOfHitPoints.hitpoints[5] :" + ArrayOfHitPoints.hitpoints[5];
+						String str2 = "5ArrayOfHitPoints.hitpoints[5] :" + ArrayOfHitPoints.hitpoints[5];
 						sendToAllClients(str2);
 						
 						
@@ -16351,7 +16644,7 @@ public class Host extends Activity {
   	  	    	
 	  			mightyBlowGraphic();
 	  			
-	  			String str = "mightyBlowGraphic";
+	  			String str = "mghtyBlowGraphic";
 				sendToAllClients(str);
 				
 				
@@ -16532,7 +16825,7 @@ public class Host extends Activity {
 				
 	  			mightyBlowGraphic();
 	  			
-	  			String str = "mightyBlowGraphic";
+	  			String str = "mghtyBlowGraphic";
 				sendToAllClients(str);	  			
 									
 					
@@ -16793,7 +17086,7 @@ public class Host extends Activity {
 							sendToAllClients(str);							
 							
 							
-							String str2 = "ArrayOfHitPoints.hitpoints[0] :" + (ArrayOfHitPoints.hitpoints[playerNumberAttacked] - attackDamage);
+							String str2 = playerNumberAttacked + "ArrayOfHitPoints.hitpoints[" + playerNumberAttacked + "] :" + (ArrayOfHitPoints.hitpoints[playerNumberAttacked] - attackDamage);
 							sendToAllClients(str2);
 							
 							ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - attackDamage;							
@@ -16833,7 +17126,7 @@ public class Host extends Activity {
 							sendToAllClients(str);
 							
 							
-							String str2 = "ArrayOfHitPoints.hitpoints[0] :" + (ArrayOfHitPoints.hitpoints[playerNumberAttacked] - attackDamageDisarmed);
+							String str2 = playerNumberAttacked + "ArrayOfHitPoints.hitpoints[" + playerNumberAttacked + "] :" + (ArrayOfHitPoints.hitpoints[playerNumberAttacked] - attackDamageDisarmed);
 							sendToAllClients(str2);
 							
 							ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - attackDamageDisarmed;							
@@ -17055,7 +17348,7 @@ public class Host extends Activity {
 									sendToAllClients(str2);
 									
 									
-									String str3 = "ArrayOfHitPoints.hitpoints[0] :" + (ArrayOfHitPoints.hitpoints[playerNumberAttacked] - (attackDamage * 2));
+									String str3 = playerNumberAttacked + "ArrayOfHitPoints.hitpoints[" + playerNumberAttacked + "] :" + (ArrayOfHitPoints.hitpoints[playerNumberAttacked] - (attackDamage * 2));
 									sendToAllClients(str3);
 									
 									ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked]	- (attackDamage * 2);									
@@ -17120,7 +17413,7 @@ public class Host extends Activity {
 									sendToAllClients(str5);
 									
 									
-									String str6 = "ArrayOfHitPoints.hitpoints[0] :" + (ArrayOfHitPoints.hitpoints[playerNumberAttacked] - (attackDamageDisarmed * 2));
+									String str6 = playerNumberAttacked + "ArrayOfHitPoints.hitpoints[" + playerNumberAttacked + "] :" + (ArrayOfHitPoints.hitpoints[playerNumberAttacked] - (attackDamageDisarmed * 2));
 									sendToAllClients(str6);
 									
 									ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked]	- (attackDamageDisarmed * 2);								
@@ -17359,7 +17652,7 @@ public class Host extends Activity {
 							sendToAllClients(str2);
 							
 							
-							String str3 = "ArrayOfHitPoints.hitpoints[0] :" + (ArrayOfHitPoints.hitpoints[playerNumberAttacked] - (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]));
+							String str3 = playerNumberAttacked + "ArrayOfHitPoints.hitpoints[" + playerNumberAttacked + "] :" + (ArrayOfHitPoints.hitpoints[playerNumberAttacked] - (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]));
 							sendToAllClients(str3);
 							
 							ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]);							
@@ -17386,7 +17679,7 @@ public class Host extends Activity {
 							sendToAllClients(str4);
 							
 							
-							String str5 = "ArrayOfHitPoints.hitpoints[0] :" + (ArrayOfHitPoints.hitpoints[playerNumberAttacked] - ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2));
+							String str5 = playerNumberAttacked + "ArrayOfHitPoints.hitpoints[" + playerNumberAttacked + "] :" + (ArrayOfHitPoints.hitpoints[playerNumberAttacked] - ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2));
 							sendToAllClients(str5);
 							
 							ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2);							
@@ -17658,7 +17951,7 @@ public class Host extends Activity {
 											sendToAllClients(str3);
 											
 											
-											String str4 = "ArrayOfHitPoints.hitpoints[0] :" + (ArrayOfHitPoints.hitpoints[playerNumberAttacked] - ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) * 2));
+											String str4 = playerNumberAttacked + "ArrayOfHitPoints.hitpoints[" + playerNumberAttacked + "] :" + (ArrayOfHitPoints.hitpoints[playerNumberAttacked] - ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) * 2));
 											sendToAllClients(str4);
 											
 											ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) * 2);										
@@ -17702,7 +17995,7 @@ public class Host extends Activity {
 										sendToAllClients(str6);
 										
 										
-										String str7 = "ArrayOfHitPoints.hitpoints[0] :" + (ArrayOfHitPoints.hitpoints[playerNumberAttacked] - (((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) * 2));
+										String str7 = playerNumberAttacked + "ArrayOfHitPoints.hitpoints[" + playerNumberAttacked + "] :" + (ArrayOfHitPoints.hitpoints[playerNumberAttacked] - (((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) * 2));
 										sendToAllClients(str7);
 										
 										ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - (((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) * 2);										
@@ -18223,7 +18516,7 @@ public class Host extends Activity {
 	  		  			}
 	  		  			*/
 		  	  	  	}
-	  	  	  	}, 3000);	  	  	  		  			
+	  	  	  	}, 2000);	  	  	  		  			
   	  	    }
 		});		
 	}
@@ -18557,7 +18850,7 @@ public class Host extends Activity {
 						}						
 					}
 					
-					else if (read.contains("ArrayOfHitPoints.hitpoints")) {//FOR CURE
+					else if (read.contains("Cure.hitpoints")) {//FOR CURE
 						
 						String[] parts = read.split(":");
 						String part1 = parts[0];  
@@ -18569,7 +18862,7 @@ public class Host extends Activity {
 							
 							ArrayOfHitPoints.hitpoints[0] = Integer.parseInt(part2);
 							
-							String str = "ArrayOfHitPoints.hitpoints[0]" + ArrayOfHitPoints.hitpoints[0];
+							String str = "0ArrayOfHitPoints.hitpoints[0] :" + ArrayOfHitPoints.hitpoints[0];
 							sendToAllClients(str);
 							
 							
@@ -18606,42 +18899,42 @@ public class Host extends Activity {
 							
 							ArrayOfHitPoints.hitpoints[1]=Integer.parseInt(part2);
 							
-							String str = "ArrayOfHitPoints.hitpoints[1]" + ArrayOfHitPoints.hitpoints[1];
+							String str = "1ArrayOfHitPoints.hitpoints[1] :" + ArrayOfHitPoints.hitpoints[1];
 							sendToAllClients(str);
 						}
 						else if (id == 2) {
 							
 							ArrayOfHitPoints.hitpoints[2]=Integer.parseInt(part2);
 							
-							String str = "ArrayOfHitPoints.hitpoints[2]" + ArrayOfHitPoints.hitpoints[2];
+							String str = "2ArrayOfHitPoints.hitpoints[2] :" + ArrayOfHitPoints.hitpoints[2];
 							sendToAllClients(str);
 						}
 						else if (id == 3) {
 							
 							ArrayOfHitPoints.hitpoints[3]=Integer.parseInt(part2);
 							
-							String str = "ArrayOfHitPoints.hitpoints[3]" + ArrayOfHitPoints.hitpoints[3];
+							String str = "3ArrayOfHitPoints.hitpoints[3] :" + ArrayOfHitPoints.hitpoints[3];
 							sendToAllClients(str);
 						}
 						else if (id == 4) {
 							
 							ArrayOfHitPoints.hitpoints[4]=Integer.parseInt(part2);
 							
-							String str = "ArrayOfHitPoints.hitpoints[4]" + ArrayOfHitPoints.hitpoints[4];
+							String str = "4ArrayOfHitPoints.hitpoints[4] :" + ArrayOfHitPoints.hitpoints[4];
 							sendToAllClients(str);
 						}
 					}
 					
-					else if (read.contains("ArrayOfHitPoints.hitpoints[5]")) {
+					else if (read.contains("5ArrayOfHitPoints.hitpoints[5]")) {
 						
 						String[] parts = read.split(":");
 						String part1 = parts[0];  
 						//String part2 = parts[1].trim();//IF THERE WAS A SPACE
 						String part2 = parts[1];
 						
-						ArrayOfHitPoints.hitpoints[5] = ArrayOfHitPoints.hitpoints[5] - Integer.parseInt(part2);
+						ArrayOfHitPoints.hitpoints[5] = (ArrayOfHitPoints.hitpoints[5] - Integer.parseInt(part2));
 						
-						String str = "ArrayOfHitPoints.hitpoints[5]";
+						String str = "5ArrayOfHitPoints.hitpoints[5] :" + ArrayOfHitPoints.hitpoints[5];
 						sendToAllClients(str);						
 						
 						
@@ -18653,7 +18946,7 @@ public class Host extends Activity {
 					  	  	    	
 						  	  	    Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 					    			
-					    			//NEED THIS??
+					    			
 					    			final TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
 					    			playerHitPointsTextView.setTypeface(typeFace);
 					    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[5]));
@@ -18669,6 +18962,50 @@ public class Host extends Activity {
 						      	  	  	public void run() {  	  			
 						    	  	  			
 						      	  			playerHitPointsTextView.clearAnimation();	  	  			
+						    	  	  	}
+					    	  		}, 2000);
+					  	  	    }
+							});								
+						}
+					}
+					
+					else if (read.contains("0ArrayOfHitPoints.hitpoints[0]")) {
+						
+						String[] parts = read.split(":");
+						String part1 = parts[0];  
+						//String part2 = parts[1].trim();//IF THERE WAS A SPACE
+						String part2 = parts[1];
+						
+						ArrayOfHitPoints.hitpoints[0] = (ArrayOfHitPoints.hitpoints[0] - Integer.parseInt(part2));
+						
+						String str = "0ArrayOfHitPoints.hitpoints[0] :" + ArrayOfHitPoints.hitpoints[0];
+						sendToAllClients(str);						
+						
+						
+						if (numberOfPlayers == 2) {							
+							
+							runOnUiThread(new Runnable() {
+					  	  	    @Override
+					  	  	    public void run() {
+					  	  	    	
+						  	  	    Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+					    			
+					    			
+						  	  	    final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+						  	  	    computerHitPointsTextView.setTypeface(typeFace);								
+						  	  	    computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+					    			
+					    			Animation animPulsingAnimation = AnimationUtils.loadAnimation(Host.this, R.anim.pulsinganimation);
+					    			computerHitPointsTextView.startAnimation(animPulsingAnimation);					    			
+					    			
+					    			
+					    			final Handler h = new Handler();
+					    	  		h.postDelayed(new Runnable() {		  	  	  			
+					    	  	  			
+						      	  		@Override
+						      	  	  	public void run() {  	  			
+						    	  	  			
+						      	  			computerHitPointsTextView.clearAnimation();	  	  			
 						    	  	  	}
 					    	  		}, 2000);
 					  	  	    }
@@ -18780,7 +19117,7 @@ public class Host extends Activity {
 							
 							disarmedTurnStart[0] = ArrayOfTurn.turn[0];
 							
-							String str = "canHasDisarmed0";
+							String str = "0canHasDisarmed0" + part2;
 							sendToAllClients(str);
 							
 							String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
@@ -18792,7 +19129,7 @@ public class Host extends Activity {
 							
 							disarmedTurnStart[1] = ArrayOfTurn.turn[0];
 							
-							String str = "canHasDisarmed1";
+							String str = "1canHasDisarmed1" + part2;
 							sendToAllClients(str);
 							
 							String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
@@ -18804,7 +19141,7 @@ public class Host extends Activity {
 							
 							disarmedTurnStart[2] = ArrayOfTurn.turn[0];
 							
-							String str = "canHasDisarmed2";
+							String str = "2canHasDisarmed2" + part2;
 							sendToAllClients(str);
 							
 							String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
@@ -18816,7 +19153,7 @@ public class Host extends Activity {
 							
 							disarmedTurnStart[3] = ArrayOfTurn.turn[0];
 							
-							String str = "canHasDisarmed3";
+							String str = "3canHasDisarmed3" + part2;
 							sendToAllClients(str);
 							
 							String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
@@ -18828,7 +19165,7 @@ public class Host extends Activity {
 							
 							disarmedTurnStart[4] = ArrayOfTurn.turn[0];
 							
-							String str = "canHasDisarmed4";
+							String str = "4canHasDisarmed4" + part2;
 							sendToAllClients(str);
 							
 							String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
@@ -18852,7 +19189,7 @@ public class Host extends Activity {
 						
 						if (playerDisarmed == 0) {
 							
-							String str = "canHasDisarmed0 :" + "yes";
+							String str = "0canHasDisarmed0 :" + "yes";
 							sendToAllClients(str);
 							
 							String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
@@ -18860,7 +19197,7 @@ public class Host extends Activity {
 						}
 						else if (playerDisarmed == 1) {
 							
-							String str = "canHasDisarmed1 :" + "yes";
+							String str = "1canHasDisarmed1 :" + "yes";
 							sendToAllClients(str);
 							
 							String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
@@ -18868,7 +19205,7 @@ public class Host extends Activity {
 						}
 						else if (playerDisarmed == 2) {
 							
-							String str = "canHasDisarmed2 :" + "yes";
+							String str = "2canHasDisarmed2 :" + "yes";
 							sendToAllClients(str);
 							
 							String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
@@ -18876,7 +19213,7 @@ public class Host extends Activity {
 						}
 						else if (playerDisarmed == 3) {
 							
-							String str = "canHasDisarmed3 :" + "yes";
+							String str = "3canHasDisarmed3 :" + "yes";
 							sendToAllClients(str);
 							
 							String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
@@ -18884,7 +19221,7 @@ public class Host extends Activity {
 						}
 						else if (playerDisarmed == 4) {
 							
-							String str = "canHasDisarmed4 :" + "yes";
+							String str = "4canHasDisarmed4 :" + "yes";
 							sendToAllClients(str);
 							
 							String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
@@ -18892,7 +19229,7 @@ public class Host extends Activity {
 						}
 						else if (playerDisarmed == 5) {
 							
-							String str = "canHasDisarmed5 :" + "yes";
+							String str = "5canHasDisarmed5 :" + "yes";
 							sendToAllClients(str);
 							
 							//DONT NEED TO SEND disarmedTurnStart TO HOST BECAUSE IT'S DEFINED ABOVE.
@@ -18910,35 +19247,35 @@ public class Host extends Activity {
 							
 							didHumanCriticalMiss[0]=part2;						
 							
-							String str = "didHumanCriticalMiss0";
+							String str = "0didHumanCriticalMiss0";
 							sendToAllClients(str);
 						}
 						else if (id == 1) {
 							
 							didHumanCriticalMiss[1]=part2;						
 							
-							String str = "didHumanCriticalMiss1";
+							String str = "1didHumanCriticalMiss1";
 							sendToAllClients(str);
 						}
 						else if (id == 2) {
 							
 							didHumanCriticalMiss[2]=part2;							
 							
-							String str = "didHumanCriticalMiss2";
+							String str = "2didHumanCriticalMiss2";
 							sendToAllClients(str);
 						}
 						else if (id == 3) {
 							
 							didHumanCriticalMiss[3]=part2;							
 							
-							String str = "didHumanCriticalMiss3";
+							String str = "3didHumanCriticalMiss3";
 							sendToAllClients(str);
 						}
 						else if (id == 4) {
 							
 							didHumanCriticalMiss[4]=part2;
 													
-							String str = "didHumanCriticalMiss4";
+							String str = "4didHumanCriticalMiss4";
 							sendToAllClients(str);
 						}																	
 					}
@@ -18975,42 +19312,56 @@ public class Host extends Activity {
 						
 						String str = "hasteGraphic";
 						sendToAllClients(str);
+						
+						hasteGraphic();
 					}
 					
 					else if (read.contains("cureGraphic")) {
 						
 						String str = "cureGraphic";
 						sendToAllClients(str);
+						
+						cureGraphic();
 					}
 					
 					else if (read.contains("blessGraphic")) {
 						
 						String str = "blessGraphic";
 						sendToAllClients(str);
+						
+						blessGraphic();
 					}
 					
 					else if (read.contains("criticalHitGraphic")) {
 						
 						String str = "criticalHitGraphic";
 						sendToAllClients(str);
+						
+						criticalHitGraphic();
 					}
 					
-					else if (read.contains("mightyBlowGraphic")) {
+					else if (read.contains("mghtyBlowGraphic")) {
 						
-						String str = "mightyBlowGraphic";
+						String str = "mghtyBlowGraphic";
 						sendToAllClients(str);
+						
+						mightyBlowGraphic();
 					}
 					
 					else if (read.contains("criticalMissGraphic")) {
 						
 						String str = "criticalMissGraphic";
 						sendToAllClients(str);
+						
+						criticalMissGraphic();
 					}
 					
 					else if (read.contains("stopGraphics")) {
 						
 						String str = "stopGraphics";
 						sendToAllClients(str);
+						
+						stopGraphics();
 					}					
 					
 					else if (read.contains("usedHaste0")) {
@@ -19347,13 +19698,44 @@ public class Host extends Activity {
 						
 						computerTwentySidedRollFromLeft19();						
 					}
-					else if (read.contains("computerTwentySidedRollFromLeft20")) {						
+					else if (read.contains("cputerTwentySidedRollFromLeft20")) {						
 							
 						//ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
 	  	  	  			//img.bringToFront();
 						
 						computerTwentySidedRollFromLeft20();
-					}					
+					}
+					
+					
+					else if (read.contains("computerSixSidedRollFromLeft1")) {				
+						
+						computerSixSidedRollFromLeft1();
+					}
+					
+					else if (read.contains("computerSixSidedRollFromLeft2")) {				
+						
+						computerSixSidedRollFromLeft2();
+					}
+					
+					else if (read.contains("computerSixSidedRollFromLeft3")) {				
+						
+						computerSixSidedRollFromLeft3();
+					}
+					
+					else if (read.contains("computerSixSidedRollFromLeft4")) {				
+						
+						computerSixSidedRollFromLeft4();
+					}
+					
+					else if (read.contains("computerSixSidedRollFromLeft5")) {				
+						
+						computerSixSidedRollFromLeft5();
+					}
+					
+					else if (read.contains("computerSixSidedRollFromLeft6")) {				
+						
+						computerSixSidedRollFromLeft6();
+					}
 					
 					else {
 						

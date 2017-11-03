@@ -2531,6 +2531,13 @@ public class Client2 extends Activity {
 			@Override
 			public void run() {
 				
+				// Use a blank drawable to hide the imageview animation:
+				// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+				img1.setBackgroundResource(R.drawable.twentytwentyblank);
+				img1.setImageResource(R.drawable.twentytwentyblank);
+				
+				
 				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
 				
 				Animation a = AnimationUtils.loadAnimation(Client2.this, R.anim.textscaletobig);					  	  	  	
@@ -2574,6 +2581,13 @@ public class Client2 extends Activity {
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
+				
+				// Use a blank drawable to hide the imageview animation:
+				// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+				img1.setBackgroundResource(R.drawable.twentytwentyblank);
+				img1.setImageResource(R.drawable.twentytwentyblank);
+				
 				
 				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
 				
@@ -2619,6 +2633,13 @@ public class Client2 extends Activity {
 			@Override
 			public void run() {
 				
+				// Use a blank drawable to hide the imageview animation:
+				// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+				img1.setBackgroundResource(R.drawable.twentytwentyblank);
+				img1.setImageResource(R.drawable.twentytwentyblank);
+				
+				
 				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
 				
 				Animation a = AnimationUtils.loadAnimation(Client2.this, R.anim.textscaletobig);					  	  	  	
@@ -2663,6 +2684,13 @@ public class Client2 extends Activity {
 			@Override
 			public void run() {
 				
+				// Use a blank drawable to hide the imageview animation:
+				// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+				img1.setBackgroundResource(R.drawable.twentytwentyblank);
+				img1.setImageResource(R.drawable.twentytwentyblank);				
+				
+				
 				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
 				
 				Animation a = AnimationUtils.loadAnimation(Client2.this, R.anim.textscaletobig);					  	  	  	
@@ -2698,7 +2726,7 @@ public class Client2 extends Activity {
 		  	  		}	  	  		
 		  	  	}, 3000);				
 			}
-		});				
+		});
 	}
 	
 	
@@ -2774,6 +2802,12 @@ public class Client2 extends Activity {
 		  	  	// Animation is just 1 slide so user can see title.
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
+		  	  	
+		  	  	if (issixsidedrolledforinitiative.equals("yes")) {
+		  	  		
+			  	  	String str = "computerSixSidedRollFromLeft1";
+					sendToHost(str);
+		  	  	}
 	  	    }
   		});
 	}
@@ -2794,6 +2828,12 @@ public class Client2 extends Activity {
 		  	  	// Animation is just 1 slide so user can see title.
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
+		  	  	
+		  	  	if (issixsidedrolledforinitiative.equals("yes")) {
+		  	  		
+		  	  		String str = "computerSixSidedRollFromLeft2";
+		  	  		sendToHost(str);
+		  	  	}
 	  	    }
   		});
 	}
@@ -2814,6 +2854,12 @@ public class Client2 extends Activity {
 		  	  	// Animation is just 1 slide so user can see title.
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
+		  	  	
+		  	  	if (issixsidedrolledforinitiative.equals("yes")) {
+		  	  		
+		  	  		String str = "computerSixSidedRollFromLeft3";
+		  	  		sendToHost(str);
+		  	  	}
 	  	    }
   		});
 	}
@@ -2834,6 +2880,12 @@ public class Client2 extends Activity {
 		  	  	// Animation is just 1 slide so user can see title.
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
+		  	  	
+		  	  	if (issixsidedrolledforinitiative.equals("yes")) {
+		  	  		
+		  	  		String str = "computerSixSidedRollFromLeft4";
+		  	  		sendToHost(str);
+		  	  	}
 	  	    }
   		});
 	}
@@ -2854,6 +2906,12 @@ public class Client2 extends Activity {
 		  	  	// Animation is just 1 slide so user can see title.
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
+		  	  	
+		  	  	if (issixsidedrolledforinitiative.equals("yes")) {
+		  	  		
+		  	  		String str = "computerSixSidedRollFromLeft5";
+		  	  		sendToHost(str);
+		  	  	}
 	  	    }
   		});
 	}
@@ -2874,6 +2932,12 @@ public class Client2 extends Activity {
 		  	  	// Animation is just 1 slide so user can see title.
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
+		  	  	
+		  	  	if (issixsidedrolledforinitiative.equals("yes")) {
+		  	  		
+		  	  		String str = "computerSixSidedRollFromLeft6";
+		  	  		sendToHost(str);
+		  	  	}
 	  	    }
   		});
 	}
@@ -2894,6 +2958,12 @@ public class Client2 extends Activity {
 		  	  	// Animation is just 1 slide so user can see title.
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
+		  	  	
+		  	  	if (issixsidedrolledforinitiative.equals("yes")) {
+		  	  		
+		  	  		String str = "computerSixSidedRollFromLeft1";
+		  	  		sendToHost(str);
+		  	  	}
 	  	    }
   		});
 	}
@@ -2914,6 +2984,12 @@ public class Client2 extends Activity {
 		  	  	// Animation is just 1 slide so user can see title.
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
+		  	  	
+		  	  	if (issixsidedrolledforinitiative.equals("yes")) {
+		  	  		
+		  	  		String str = "computerSixSidedRollFromLeft2";
+		  	  		sendToHost(str);
+		  	  	}
 	  	    }
   		});
 	}
@@ -2934,6 +3010,12 @@ public class Client2 extends Activity {
 		  	  	// Animation is just 1 slide so user can see title.
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
+		  	  	
+		  	  	if (issixsidedrolledforinitiative.equals("yes")) {
+		  	  		
+		  	  		String str = "computerSixSidedRollFromLeft3";
+		  	  		sendToHost(str);
+		  	  	}
 	  	    }
   		});
 	}
@@ -2954,6 +3036,12 @@ public class Client2 extends Activity {
 		  	  	// Animation is just 1 slide so user can see title.
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
+		  	  	
+		  	  	if (issixsidedrolledforinitiative.equals("yes")) {
+		  	  		
+		  	  		String str = "computerSixSidedRollFromLeft4";
+		  	  		sendToHost(str);
+		  	  	}
 	  	    }
   		});
 	}
@@ -2974,6 +3062,12 @@ public class Client2 extends Activity {
 		  	  	// Animation is just 1 slide so user can see title.
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
+		  	  	
+		  	  	if (issixsidedrolledforinitiative.equals("yes")) {
+		  	  		
+		  	  		String str = "computerSixSidedRollFromLeft5";
+		  	  		sendToHost(str);
+		  	  	}
 	  	    }
   		});
 	}
@@ -2994,6 +3088,12 @@ public class Client2 extends Activity {
 		  	  	// Animation is just 1 slide so user can see title.
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
+		  	  	
+		  	  	if (issixsidedrolledforinitiative.equals("yes")) {
+		  	  		
+		  	  		String str = "computerSixSidedRollFromLeft6";
+		  	  		sendToHost(str);
+		  	  	}
 	  	    }
   		});
 	}
@@ -3004,6 +3104,14 @@ public class Client2 extends Activity {
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
+				
+				// Use a blank drawable to hide the imageview animation:
+				// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+				img1.setBackgroundResource(R.drawable.twentytwentyblank);
+				img1.setImageResource(R.drawable.twentytwentyblank);
+				
+				
 				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
 				img.setBackgroundResource(R.anim.computersixsidedrollfromleft1);
 				img.bringToFront();
@@ -3024,6 +3132,14 @@ public class Client2 extends Activity {
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
+				
+				// Use a blank drawable to hide the imageview animation:
+				// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+				img1.setBackgroundResource(R.drawable.twentytwentyblank);
+				img1.setImageResource(R.drawable.twentytwentyblank);
+				
+				
 				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
 				img.setBackgroundResource(R.anim.computersixsidedrollfromleft2);
 				img.bringToFront();
@@ -3044,6 +3160,14 @@ public class Client2 extends Activity {
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
+				
+				// Use a blank drawable to hide the imageview animation:
+				// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+				img1.setBackgroundResource(R.drawable.twentytwentyblank);
+				img1.setImageResource(R.drawable.twentytwentyblank);
+				
+				
 				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
 				img.setBackgroundResource(R.anim.computersixsidedrollfromleft3);
 				img.bringToFront();
@@ -3064,6 +3188,14 @@ public class Client2 extends Activity {
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
+				
+				// Use a blank drawable to hide the imageview animation:
+				// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+				img1.setBackgroundResource(R.drawable.twentytwentyblank);
+				img1.setImageResource(R.drawable.twentytwentyblank);
+				
+				
 				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
 				img.setBackgroundResource(R.anim.computersixsidedrollfromleft4);
 				img.bringToFront();
@@ -3084,6 +3216,14 @@ public class Client2 extends Activity {
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
+				
+				// Use a blank drawable to hide the imageview animation:
+				// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+				img1.setBackgroundResource(R.drawable.twentytwentyblank);
+				img1.setImageResource(R.drawable.twentytwentyblank);
+				
+				
 				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
 				img.setBackgroundResource(R.anim.computersixsidedrollfromleft5);
 				img.bringToFront();
@@ -3104,6 +3244,14 @@ public class Client2 extends Activity {
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
+				
+				// Use a blank drawable to hide the imageview animation:
+				// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+				img1.setBackgroundResource(R.drawable.twentytwentyblank);
+				img1.setImageResource(R.drawable.twentytwentyblank);
+				
+				
 				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
 				img.setBackgroundResource(R.anim.computersixsidedrollfromleft6);
 				img.bringToFront();
@@ -4078,7 +4226,7 @@ public class Client2 extends Activity {
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
 		  	  	
-		  	  	String str = "computerTwentySidedRollFromLeft20";
+		  	  	String str = "cputerTwentySidedRollFromLeft20";
 				sendToHost(str);
 	  	    }
   		});
@@ -4539,7 +4687,7 @@ public class Client2 extends Activity {
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
 		  	  	
-		  	  	String str = "computerTwentySidedRollFromLeft20";
+		  	  	String str = "cputerTwentySidedRollFromLeft20";
 				sendToHost(str);
 	  	    }
   		});
@@ -6793,7 +6941,7 @@ public class Client2 extends Activity {
   	  	    	
 	  			//mightyBlowGraphic();
 	  			
-	  			String str = "mightyBlowGraphic";
+	  			String str = "mghtyBlowGraphic";
 	  			sendToHost(str);
 				
 				
@@ -6998,9 +7146,9 @@ public class Client2 extends Activity {
 						sendToHost(str);
 						
 						
-						ArrayOfHitPoints.hitpoints[0] = ArrayOfHitPoints.hitpoints[0] + cureResult;
+						ArrayOfHitPoints.hitpoints[0] = (ArrayOfHitPoints.hitpoints[0] + cureResult);
 						
-						String str2 = "ArrayOfHitPoints.hitpoints :" + ArrayOfHitPoints.hitpoints[0];
+						String str2 = "Cure.hitpoints :" + ArrayOfHitPoints.hitpoints[0];
 						sendToHost(str2);
 						
 						
@@ -7571,7 +7719,7 @@ public class Client2 extends Activity {
 				
 	  			//mightyBlowGraphic();	  			
 	  			
-	  			String str = "mightyBlowGraphic";
+	  			String str = "mghtyBlowGraphic";
 	  			sendToHost(str);	  				  			
 									
 					
@@ -9057,27 +9205,27 @@ public class Client2 extends Activity {
 						
 						if (id == 0) {
 							
-							String str2 = "ArrayOfHitPoints.hitpoints[0] :" + finalAttackDamage;
+							String str2 = "0ArrayOfHitPoints.hitpoints[0] :" + finalAttackDamage;
 							sendToHost(str2);			
 						}
 						else if (id == 1) {
 							
-							String str3 = "ArrayOfHitPoints.hitpoints[1] :" + finalAttackDamage;
+							String str3 = "1ArrayOfHitPoints.hitpoints[1] :" + finalAttackDamage;
 							sendToHost(str3);			
 						}
 						else if (id == 2) {
 							
-							String str4 = "ArrayOfHitPoints.hitpoints[2] :" + finalAttackDamage;
+							String str4 = "2ArrayOfHitPoints.hitpoints[2] :" + finalAttackDamage;
 							sendToHost(str4);			
 						}
 						else if (id == 3) {
 							
-							String str5 = "ArrayOfHitPoints.hitpoints[3] :" + finalAttackDamage;
+							String str5 = "3ArrayOfHitPoints.hitpoints[3] :" + finalAttackDamage;
 							sendToHost(str5);			
 						}
 						else if (id == 4) {
 							
-							String str6 = "ArrayOfHitPoints.hitpoints[4] :" + finalAttackDamage;
+							String str6 = "4ArrayOfHitPoints.hitpoints[4] :" + finalAttackDamage;
 							sendToHost(str6);			
 						}		
 						
@@ -9748,33 +9896,33 @@ public class Client2 extends Activity {
 		
 		if (playerNumberAttacked == 0) {
 			
-			String str = "ArrayOfHitPoints.hitpoints[0] :" + finalAttackDamage;
+			String str = "0ArrayOfHitPoints.hitpoints[0] :" + finalAttackDamage;
 			sendToHost(str);			
 		}
 		else if (playerNumberAttacked == 1) {
 			
-			String str = "ArrayOfHitPoints.hitpoints[1] :" + finalAttackDamage;
+			String str = "1ArrayOfHitPoints.hitpoints[1] :" + finalAttackDamage;
 			sendToHost(str);			
 		}
 		else if (playerNumberAttacked == 2) {
 			
-			String str = "ArrayOfHitPoints.hitpoints[2] :" + finalAttackDamage;
+			String str = "2ArrayOfHitPoints.hitpoints[2] :" + finalAttackDamage;
 			sendToHost(str);			
 		}
 		else if (playerNumberAttacked == 3) {
 			
-			String str = "ArrayOfHitPoints.hitpoints[3] :" + finalAttackDamage;
+			String str = "3ArrayOfHitPoints.hitpoints[3] :" + finalAttackDamage;
 			sendToHost(str);			
 		}
 		else if (playerNumberAttacked == 4) {
 			
-			String str = "ArrayOfHitPoints.hitpoints[4] :" + finalAttackDamage;
+			String str = "4ArrayOfHitPoints.hitpoints[4] :" + finalAttackDamage;
 			sendToHost(str);			
 		}
 		else if (playerNumberAttacked == 5) {
 			
-			String str = "ArrayOfHitPoints.hitpoints[5] :" + finalAttackDamage;
-			sendToHost(str);			
+			String str = "5ArrayOfHitPoints.hitpoints[5] :" + finalAttackDamage;
+			sendToHost(str);		
 		}
 	}
 	
@@ -9965,9 +10113,9 @@ public class Client2 extends Activity {
 					}
 					else if (read.contains("hastePartTwo")) {
 						
-						hastePartTwo();																	
+						hastePartTwo();
 					}
-					else if (read.contains("ArrayOfHitPoints.hitpoints[5]")) {
+					else if (read.contains("5ArrayOfHitPoints.hitpoints[5]")) {
 						
 						String[] parts = read.split(":");
 						String part1 = parts[0];  
@@ -9978,7 +10126,7 @@ public class Client2 extends Activity {
 						
 						changeHostHitPoints();
 					}
-					else if (read.contains("ArrayOfHitPoints.hitpoints[0]")) {
+					else if (read.contains("0ArrayOfHitPoints.hitpoints[0]")) {
 						
 						String[] parts = read.split(":");
 						String part1 = parts[0];  
@@ -10046,7 +10194,7 @@ public class Client2 extends Activity {
 												
 						disarmedTurnStart[0]=Integer.parseInt(part2);//USES [0] IN DISARMEDACTION SO CLIENT DOESN'T USE HASTE ON 2ND RD OF BEING DISARMED.				
 					}
-					else if (read.contains("didHumanCriticalMiss0")) {
+					else if (read.contains("0didHumanCriticalMiss0")) {
 						
 						String[] parts = read.split(":");
 						String part1 = parts[0];  
@@ -10055,7 +10203,7 @@ public class Client2 extends Activity {
 												
 						didHumanCriticalMiss[0]=part2;											
 					}
-					else if (read.contains("didHumanCriticalMiss1")) {
+					else if (read.contains("1didHumanCriticalMiss1")) {
 						
 						String[] parts = read.split(":");
 						String part1 = parts[0];  
@@ -10064,7 +10212,7 @@ public class Client2 extends Activity {
 												
 						didHumanCriticalMiss[1]=part2;											
 					}
-					else if (read.contains("didHumanCriticalMiss2")) {
+					else if (read.contains("2didHumanCriticalMiss2")) {
 						
 						String[] parts = read.split(":");
 						String part1 = parts[0];  
@@ -10073,7 +10221,7 @@ public class Client2 extends Activity {
 												
 						didHumanCriticalMiss[2]=part2;											
 					}
-					else if (read.contains("didHumanCriticalMiss3")) {
+					else if (read.contains("3didHumanCriticalMiss3")) {
 						
 						String[] parts = read.split(":");
 						String part1 = parts[0];  
@@ -10082,7 +10230,7 @@ public class Client2 extends Activity {
 												
 						didHumanCriticalMiss[3]=part2;											
 					}
-					else if (read.contains("didHumanCriticalMiss4")) {
+					else if (read.contains("4didHumanCriticalMiss4")) {
 						
 						String[] parts = read.split(":");
 						String part1 = parts[0];  
@@ -10091,7 +10239,7 @@ public class Client2 extends Activity {
 												
 						didHumanCriticalMiss[4]=part2;											
 					}
-					else if (read.contains("didHumanCriticalMiss5")) {
+					else if (read.contains("5didHumanCriticalMiss5")) {
 						
 						String[] parts = read.split(":");
 						String part1 = parts[0];  
@@ -10100,7 +10248,7 @@ public class Client2 extends Activity {
 												
 						didHumanCriticalMiss[5]=part2;											
 					}
-					else if (read.contains("canHasDisarmed0")) {
+					else if (read.contains("0canHasDisarmed0")) {
 						
 						String[] parts = read.split(":");
 						String part1 = parts[0];  
@@ -10109,7 +10257,7 @@ public class Client2 extends Activity {
 												
 						canHasDisarmed[0]=part2;											
 					}
-					else if (read.contains("canHasDisarmed1")) {
+					else if (read.contains("1canHasDisarmed1")) {
 						
 						String[] parts = read.split(":");
 						String part1 = parts[0];  
@@ -10118,7 +10266,7 @@ public class Client2 extends Activity {
 												
 						canHasDisarmed[1]=part2;											
 					}
-					else if (read.contains("canHasDisarmed2")) {
+					else if (read.contains("2canHasDisarmed2")) {
 						
 						String[] parts = read.split(":");
 						String part1 = parts[0];  
@@ -10127,7 +10275,7 @@ public class Client2 extends Activity {
 												
 						canHasDisarmed[2]=part2;											
 					}
-					else if (read.contains("canHasDisarmed3")) {
+					else if (read.contains("3canHasDisarmed3")) {
 						
 						String[] parts = read.split(":");
 						String part1 = parts[0];  
@@ -10136,7 +10284,7 @@ public class Client2 extends Activity {
 												
 						canHasDisarmed[3]=part2;											
 					}
-					else if (read.contains("canHasDisarmed4")) {
+					else if (read.contains("4canHasDisarmed4")) {
 						
 						String[] parts = read.split(":");
 						String part1 = parts[0];  
@@ -10145,7 +10293,7 @@ public class Client2 extends Activity {
 												
 						canHasDisarmed[4]=part2;											
 					}
-					else if (read.contains("canHasDisarmed5")) {
+					else if (read.contains("5canHasDisarmed5")) {
 						
 						String[] parts = read.split(":");
 						String part1 = parts[0];  
@@ -10658,7 +10806,7 @@ public class Client2 extends Activity {
 						*/
 						computerTwentySidedRollFromLeft19();
 					}
-					else if (read.contains("computerTwentySidedRollFromLeft20")) {
+					else if (read.contains("cmputerTwentySidedRollFromLeft20")) {
 						/*
 						runOnUiThread(new Runnable() {
 							@Override
@@ -10684,7 +10832,7 @@ public class Client2 extends Activity {
 						computerTwentySidedRollFromLeft20();
 					}					
 					
-					else if (read.contains("computerSixSidedRollFromLeft1")) {
+					else if (read.contains("1computerSixSidedRollFromLeft1")) {
 						/*
 						ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 						img1.setBackgroundResource(R.drawable.twentytwentyblank);
@@ -10692,7 +10840,7 @@ public class Client2 extends Activity {
 						*/
 						computerSixSidedRollFromLeft1();																	
 					}
-					else if (read.contains("computerSixSidedRollFromLeft2")) {
+					else if (read.contains("2computerSixSidedRollFromLeft2")) {
 						/*
 						ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 						img1.setBackgroundResource(R.drawable.twentytwentyblank);
@@ -10700,7 +10848,7 @@ public class Client2 extends Activity {
 						*/
 						computerSixSidedRollFromLeft2();																	
 					}
-					else if (read.contains("computerSixSidedRollFromLeft3")) {
+					else if (read.contains("3computerSixSidedRollFromLeft3")) {
 						/*
 						ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 						img1.setBackgroundResource(R.drawable.twentytwentyblank);
@@ -10708,7 +10856,7 @@ public class Client2 extends Activity {
 						*/
 						computerSixSidedRollFromLeft3();																	
 					}
-					else if (read.contains("computerSixSidedRollFromLeft4")) {
+					else if (read.contains("4computerSixSidedRollFromLeft4")) {
 						/*
 						ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 						img1.setBackgroundResource(R.drawable.twentytwentyblank);
@@ -10716,7 +10864,7 @@ public class Client2 extends Activity {
 						*/
 						computerSixSidedRollFromLeft4();																	
 					}
-					else if (read.contains("computerSixSidedRollFromLeft5")) {
+					else if (read.contains("5computerSixSidedRollFromLeft5")) {
 						/*
 						ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 						img1.setBackgroundResource(R.drawable.twentytwentyblank);
@@ -10724,7 +10872,7 @@ public class Client2 extends Activity {
 						*/
 						computerSixSidedRollFromLeft5();																	
 					}
-					else if (read.contains("computerSixSidedRollFromLeft6")) {
+					else if (read.contains("6computerSixSidedRollFromLeft6")) {
 						/*
 						ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 						img1.setBackgroundResource(R.drawable.twentytwentyblank);
@@ -10757,7 +10905,7 @@ public class Client2 extends Activity {
 						
 						dodgeGraphic();														
 					}
-					else if (read.contains("mightyBlowGraphic")) {
+					else if (read.contains("mghtyBlowGraphic")) {
 						
 						mightyBlowGraphic();														
 					}
