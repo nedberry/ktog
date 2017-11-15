@@ -152,22 +152,22 @@ public class Host extends Activity {
 	
 	
 	int computerAttackDamageDisarmed;
-	public static int[] attackDamageOneDisarmed = new int[1];
-	public static int[] attackDamageTwoDisarmed = new int[1];	
+	public int[] attackDamageOneDisarmed = new int[1];
+	public int[] attackDamageTwoDisarmed = new int[1];	
 	
 	
-	public static int[] disarmedTurnStart = new int[6];
+	public int[] disarmedTurnStart = new int[6];
 	//String didHumanCriticalMiss = "no";
 	//String didComputerCriticalMiss = "no";
 	String[] didHumanCriticalMiss = new String[] {"no", "no", "no", "no", "no", "no"};
 		
 	
 	// SOME OF THESE MAY NEED TO BE AN ARRAY-CLASS:
-	public static int[] blessSpell = new int[] {1, 1, 1, 1, 1, 1, 1};// {1, 1, 1, 1, 1, 1, 1};
-	public static int[] cureSpell = new int[] {1, 1, 1, 1, 1, 1, 1};// {1, 1, 1, 1, 1, 1, 1};
-	public static int[] dodgeBlowSpell = new int[] {1, 1, 1, 1, 1, 1, 1};// {1, 1, 1, 1, 1, 1, 1};
-	public static int[] mightyBlowSpell = new int[] {1, 1, 1, 1, 1, 1, 1};// {1, 1, 1, 1, 1, 1, 1};
-	public static int[] hasteSpell = new int[] {2, 2, 2, 2, 2, 2, 2};//	{2, 2, 2, 2, 2, 2, 2};
+	public int[] blessSpell = new int[] {1, 1, 1, 1, 1, 1, 1};// {1, 1, 1, 1, 1, 1, 1};
+	public int[] cureSpell = new int[] {1, 1, 1, 1, 1, 1, 1};// {1, 1, 1, 1, 1, 1, 1};
+	public int[] dodgeBlowSpell = new int[] {1, 1, 1, 1, 1, 1, 1};// {1, 1, 1, 1, 1, 1, 1};
+	public int[] mightyBlowSpell = new int[] {1, 1, 1, 1, 1, 1, 1};// {1, 1, 1, 1, 1, 1, 1};
+	public int[] hasteSpell = new int[] {2, 2, 2, 2, 2, 2, 2};//	{2, 2, 2, 2, 2, 2, 2};
 	
 	
 	// FOR ORDERING PURPOSES IN TITLE:
@@ -182,7 +182,7 @@ public class Host extends Activity {
 	String isInvokingService = "true";	
 	
 	String isinitiativestarted = "no";	
-	static String isinitiativestartedinterrupted = "no";
+	String isinitiativestartedinterrupted = "no";
 	String issixsidedrolledforinitiative = "no";
 	String aretheredoubles = "yes";
 	
@@ -226,9 +226,9 @@ public class Host extends Activity {
 	
 	
 	// SOME OF THESE MAY NEED TO BE AN ARRAY-CLASS:
-	public static String[] playerDeadYet = new String[] {"yes", "yes", "yes", "yes", "yes", "yes"}; // NEED 6?????????	
+	public String[] playerDeadYet = new String[] {"yes", "yes", "yes", "yes", "yes", "yes"}; // NEED 6?????????	
 	//String playerDeadYet[] = {"yes", "yes", "yes", "yes", "yes", "yes"};
-	public static String[] canHasDisarmed = new String[] {"no", "no", "no", "no", "no", "no"}; // NEED 6?????????		
+	public String[] canHasDisarmed = new String[] {"no", "no", "no", "no", "no", "no"}; // NEED 6?????????		
 	
 	
 	//FOR onResume
@@ -581,22 +581,22 @@ public class Host extends Activity {
 	              		
 	              		titleBlankButton.setEnabled(false);// HERE & BELOW BECUSE GETTING WEIRD BEHAVIOR WHEN BUTTON WAS HIT AN ODD NUMBER OF TIMES (EXCEPT THE FIRST TIME).
 	              		
-	              		
+	              		/*
 	              		if (numberOfPlayers == 2) {
 	              		
 		              		if (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) {
 		              			
-		              			firstsubscript = 0;
-		              			secondsubscript = 1;
+		              			firstsubscript = 5;
+		              			secondsubscript = 0;
 		              		}
 		              		
 		              		else if (ArrayOfInitiative.initiative[5] < ArrayOfInitiative.initiative[0]) {
 		              			
-		              			firstsubscript = 1;
-		              			secondsubscript = 0;
+		              			firstsubscript = 0;
+		              			secondsubscript = 5;
 		              		}
 	              		}
-	              		
+	              		*/
 	              		
 	              		final Handler h = new Handler();
 	  		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -2376,7 +2376,29 @@ public class Host extends Activity {
 		  	  	frameAnimation.start();			
 			}
   		});
-	}	
+	}
+	
+	public void foldScrolls() {		
+		
+		// USING "runOnUiThread(new Runnable() {}" TO SEE IF IT WORKS BETTER THAN NOT USING IT.
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				// Setting up scroll frame animation.
+				ImageView img = (ImageView)findViewById(R.id.scrollanimation);
+				img.setBackgroundResource(R.anim.scrollanimationdown);
+				
+				img.bringToFront();
+			
+				// Get the background, which has been compiled to an AnimationDrawable object.
+				AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+							
+				// Start the animation.
+				frameAnimation.stop();
+				frameAnimation.start();				
+	  	    }
+  		});	
+	}
 	
 	
 	/*
@@ -4743,7 +4765,7 @@ public class Host extends Activity {
 		waitToSetInterruptVariable();
 	}
 	
-	public static String waitToSetInterruptVariable() {
+	public String waitToSetInterruptVariable() {
 		
 		final Handler h1 = new Handler();
 	  	  	h1.postDelayed(new Runnable() {
@@ -5052,16 +5074,50 @@ public class Host extends Activity {
 		
 		// NEED THIS ANYMORE????
 		if ((initiativeRolled[5].equals("yes")) && (initiativeRolled[0].equals("yes"))) {
+			
 			numberOfPlayers = 2;
+			
+			String str = "numberOfPlayers :" + 2;
+			sendToClient0(str);			
 		}
 		if ((initiativeRolled[5].equals("yes")) && (initiativeRolled[0].equals("yes")) && (initiativeRolled[1].equals("yes"))) {
-			numberOfPlayers = 3;			
+			
+			numberOfPlayers = 3;
+			
+			String str = "numberOfPlayers :" + 3;
+			sendToClient0(str);
+			
+			String str2 = "numberOfPlayers :" + 3;
+			sendToClient1(str2);
 		}
 		if ((initiativeRolled[5].equals("yes")) && (initiativeRolled[0].equals("yes")) && (initiativeRolled[1].equals("yes")) && (initiativeRolled[2].equals("yes"))) {
+			
 			numberOfPlayers = 4;
+			
+			String str = "numberOfPlayers :" + 4;
+			sendToClient0(str);
+			
+			String str2 = "numberOfPlayers :" + 4;
+			sendToClient1(str2);
+			
+			String str3 = "numberOfPlayers :" + 4;
+			sendToClient2(str3);
 		}
 		if ((initiativeRolled[5].equals("yes")) && (initiativeRolled[0].equals("yes")) && (initiativeRolled[1].equals("yes")) && (initiativeRolled[2].equals("yes")) && (initiativeRolled[3].equals("yes"))) {
+			
 			numberOfPlayers = 5;
+			
+			String str = "numberOfPlayers :" + 5;
+			sendToClient0(str);
+			
+			String str2 = "numberOfPlayers :" + 5;
+			sendToClient1(str2);
+			
+			String str3 = "numberOfPlayers :" + 5;
+			sendToClient2(str3);
+			
+			String str4 = "numberOfPlayers :" + 5;
+			sendToClient3(str4);
 		}
 		/*
 		if ((initiativeRolled[5].equals("yes")) && (initiativeRolled[0].equals("yes")) && (initiativeRolled[1].equals("yes")) && (initiativeRolled[2].equals("yes")) && (initiativeRolled[3].equals("yes")) && (initiativeRolled[4].equals("yes"))) {
@@ -10802,6 +10858,23 @@ public class Host extends Activity {
   	    				sendToClient0(str2);
   	    				final String str3 = ArrayOfPlayers.player[0] + "..." + client0 + doublesModifierOfInitiativeClient0;
   	    				sendToClient0(str3);
+  	    				
+  	    				
+  	    				String str4 = "PlayerName5 :" + ArrayOfPlayers.player[5];
+  	    				sendToClient0(str4);
+  	    				
+  	    				
+  	    				ArrayOfHitPoints.hitpoints[0] = 20;//20
+  	    				
+  	    				
+  	    				firstsubscript = 5;
+	  	  				secondsubscript = 0;
+	  	  				
+	  	  				String str5 = "FirstSubscript :" + 5;
+	  	  				sendToAllClients(str5);
+	  	  				
+	  	  				String str6 = "Secondsbscript :" + 0;
+	  	  				sendToAllClients(str6);
   	    			}
   	    			else if (initiativeFinal[0] > initiativeFinal[5]) {
   	    				
@@ -10812,6 +10885,23 @@ public class Host extends Activity {
   	    				sendToClient0(str2);
   	    				final String str3 = ArrayOfPlayers.player[5] + "..." + host + doublesModifierOfInitiativeHost;
   	    				sendToClient0(str3);
+  	    				
+  	    				
+  	    				String str4 = "PlayerName5 :" + ArrayOfPlayers.player[5];
+  	    				sendToClient0(str4);
+  	    				
+  	    				
+  	    				ArrayOfHitPoints.hitpoints[0] = 20;//20
+  	    				
+  	    				
+  	    				firstsubscript = 0;
+	  	  				secondsubscript = 5;
+	  	  				
+	  	  				String str5 = "FirstSubscript :" + 0;
+	  	  				sendToAllClients(str5);
+	  	  				
+	  	  				String str6 = "Secondsbscript :" + 5;
+	  	  				sendToAllClients(str6);
   	    			}
   	    			
   	    			final Handler h = new Handler();
@@ -10820,7 +10910,12 @@ public class Host extends Activity {
 		  	  	  		@Override
 			  	  	  	public void run() {
 		  	  	  			
-		  	  	  			gameEngine();
+		  	  	  			finishInitiative();
+		  	  	  			
+		  	  	  			String str = "finishInitiative";
+		  	  	  			sendToClient0(str);
+		  	  	  			
+		  	  	  			//gameEngine();
 			  	  	  	}
 		  	  	  	}, 3000);
   	    		}
@@ -10971,7 +11066,12 @@ public class Host extends Activity {
 		  	  	  		@Override
 			  	  	  	public void run() {
 		  	  	  			
-		  	  	  			gameEngine();
+			  	  	  		finishInitiative();
+		  	  	  			
+		  	  	  			String str = "finishInitiative";
+		  	  	  			sendToClient0(str);
+		  	  	  			
+		  	  	  			//gameEngine();
 			  	  	  	}
 		  	  	  	}, 3000);
   	    		}
@@ -11860,7 +11960,12 @@ public class Host extends Activity {
 		  	  	  		@Override
 			  	  	  	public void run() {
 		  	  	  			
-		  	  	  			gameEngine();
+			  	  	  		finishInitiative();
+		  	  	  			
+		  	  	  			String str = "finishInitiative";
+		  	  	  			sendToClient0(str);
+		  	  	  			
+		  	  	  			//gameEngine();
 			  	  	  	}
 		  	  	  	}, 3000);
   	    		}
@@ -11870,6 +11975,310 @@ public class Host extends Activity {
   	    		}  	    							
   	  	    }
   	  	});			
+	}
+	
+	public void finishInitiative() {
+		
+		final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+		//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+		
+		Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+		centerscrolltext.setTypeface(typeFace);
+		
+		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+		
+		// CRASHES IF USE THIS:
+		//img.setVisibility(View.INVISIBLE);
+		
+  		// Use a blank drawable to hide the imageview animation:
+  		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
+  		img.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+		img.setImageResource(R.drawable.sixsixrightleftrotateblank);		
+  		
+		
+		// Re-enables ability to use srollbar:
+		centerscrolltext.bringToFront();												
+		
+		centerscrolltext.setVisibility(View.VISIBLE);													
+  		centerscrolltext.startAnimation(animAlphaText);
+		centerscrolltext.append("\n" + "> Let the battle begin...");
+		
+		String str = "> Let the battle begin...";
+		//sendToClient0(str);		
+		sendToAllClients(str);				
+		
+		/*
+		if (numberOfPlayers == 2) {
+			
+			ArrayOfHitPoints.hitpoints[0] = 20;//20
+			
+			
+			if (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) {
+				
+				firstsubscript = 5;
+				secondsubscript = 0;
+				
+				String str3 = "firstsubscript :" + 5;
+				sendToAllClients(str3);
+				
+				String str4 = "secondsubscript :" + 0;
+				sendToAllClients(str4);
+			}
+			
+			else if (ArrayOfInitiative.initiative[5] < ArrayOfInitiative.initiative[0]) {
+				
+				firstsubscript = 0;
+				secondsubscript = 5;
+				
+				String str3 = "firstsubscript :" + 0;
+				sendToAllClients(str3);
+				
+				String str4 = "secondsubscript :" + 5;
+				sendToAllClients(str4);
+			}			
+		}
+		*/
+		
+		myInitiativeTransition();
+		
+		//String str2 = "myInitiativeTransition";
+		//sendToAllClients(str2);
+	  	  		
+	  	  		
+  	  	final Handler h = new Handler();
+  		h.postDelayed(new Runnable() {		  	  	  			
+  	  			
+  	  		@Override
+  	  	  	public void run() {
+  	  			
+  	  			TextView titleinitiativetext = (TextView) findViewById(R.id.textviewtitleinitiativetext);
+  	  			titleinitiativetext.setVisibility(View.INVISIBLE);
+  	  			
+  	  			
+  	  			// NOTICE THE append's BELOW, JUST FOR INTRO (USED setText IN TITLE BUTTON):
+  	  			final TableLayout summaryTableLayout = (TableLayout) findViewById(R.id.summaryTable);
+  	  			final View lineInSummaryTableLayout = (View) findViewById(R.id.line);	  	  		
+  	  			
+	  	  		Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  	  		//titlerulestext.setTypeface(typeFace);
+	  			
+				//titletext.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(100));
+					
+	  	  		summaryTableLayout.setVisibility(View.VISIBLE);
+	  	  		//summaryTableLayout.setMovementMethod(new ScrollingMovementMethod());
+	  	  		lineInSummaryTableLayout.setVisibility(View.VISIBLE);
+	  	  		/*
+	  	  		titlerulestext.append("Quick Instructions" + "\n" + "==================" + "\n" +
+	  	  		"1. Determine who goes first (Initiative)." + "\n" + 
+	  	  		"2. Take an action when prompted." + "\n" +
+	  	  		"3. Win by reducing opponent's hit points to zero or below.");
+	  	  		*/
+	  	  		
+		  	  	TextView statisticstextview = (TextView) findViewById(R.id.summarytext);
+	  	  		statisticstextview.setTypeface(typeFace);
+	  	  		statisticstextview.append("Player Summary");
+	  	  		statisticstextview.setVisibility(View.VISIBLE);
+	  	  		
+		  	  	TextView blanktextview = (TextView) findViewById(R.id.blanktext);
+		  	  	blanktextview.setTypeface(typeFace);
+		  	  	blanktextview.append("");
+		  	  	blanktextview.setVisibility(View.VISIBLE);
+	  	  		
+	  	  		TextView hitpointstextview = (TextView) findViewById(R.id.hitpointstext);
+	  	  		hitpointstextview.setTypeface(typeFace);
+	  	  		hitpointstextview.append("HP");
+	  	  		hitpointstextview.setVisibility(View.VISIBLE);
+	  	  		
+		  	  	TextView blesstextview = (TextView) findViewById(R.id.blesstext);
+		  	  	blesstextview.setTypeface(typeFace);
+		  	  	blesstextview.append("Bless");
+		  	  	blesstextview.setVisibility(View.VISIBLE);
+	  	  		
+		  	  	TextView curetextview = (TextView) findViewById(R.id.curetext);
+		  	  	curetextview.setTypeface(typeFace);
+		  	  	curetextview.append("Cure");
+		  	  	curetextview.setVisibility(View.VISIBLE);
+	  	  		
+		  	  	TextView dodgetextview = (TextView) findViewById(R.id.dodgetext);
+		  	  	dodgetextview.setTypeface(typeFace);
+		  	  	dodgetextview.append("Dodge");
+		  	  	dodgetextview.setVisibility(View.VISIBLE);
+	  	  		
+		  	  	TextView mightyblowtextview = (TextView) findViewById(R.id.mightyblowtext);
+		  	  	mightyblowtextview.setTypeface(typeFace);
+		  	  	mightyblowtextview.append("MB");
+		  	  	mightyblowtextview.setVisibility(View.VISIBLE);
+		  	  	
+		  	  	TextView hastetextview = (TextView) findViewById(R.id.hastetext);
+		  	  	hastetextview.setTypeface(typeFace);
+		  	  	hastetextview.append("Haste");
+		  	  	hastetextview.setVisibility(View.VISIBLE);
+		  	  	
+	  	  		
+		  	  	TextView player1textview = (TextView) findViewById(R.id.player1);
+		  	  	player1textview.setTypeface(typeFace);
+		  	  	player1textview.append(ArrayOfPlayers.player[firstsubscript]);
+		  	  	player1textview.setVisibility(View.VISIBLE);
+		  	  	
+		  	  	TextView hitpointsplayer1textview = (TextView) findViewById(R.id.hitpointsplayer1);
+		  	  	hitpointsplayer1textview.setTypeface(typeFace);
+		  	  	String hitpointsplayer1String = Integer.toString(ArrayOfHitPoints.hitpoints[firstsubscript]);
+		  	  	hitpointsplayer1textview.append(hitpointsplayer1String);
+		  		hitpointsplayer1textview.setVisibility(View.VISIBLE);
+		  	  	
+		  	  	TextView blessplayer1textview = (TextView) findViewById(R.id.blessplayer1);
+		  	  	blessplayer1textview.setTypeface(typeFace);
+		  	  	String blessplayer1String = Integer.toString(blessSpell[firstsubscript]);
+		  	  	blessplayer1textview.append(blessplayer1String);
+		  	  	blessplayer1textview.setVisibility(View.VISIBLE);
+		  	  	
+		  	  	TextView cureplayer1textview = (TextView) findViewById(R.id.cureplayer1);
+		  	  	cureplayer1textview.setTypeface(typeFace);
+		  	  	String cureplayer1String = Integer.toString(cureSpell[firstsubscript]);
+		  	  	cureplayer1textview.append(cureplayer1String);
+		  	  	cureplayer1textview.setVisibility(View.VISIBLE);
+		  	  	
+		  	  	TextView dodgeplayer1textview = (TextView) findViewById(R.id.dodgeplayer1);
+		  	  	dodgeplayer1textview.setTypeface(typeFace);
+		  	  	String dodgeplayer1String = Integer.toString(dodgeBlowSpell[firstsubscript]);
+		  	  	dodgeplayer1textview.append(dodgeplayer1String);
+		  	  	dodgeplayer1textview.setVisibility(View.VISIBLE);
+		  	  	
+		  	  	TextView mightyblowplayer1textview = (TextView) findViewById(R.id.mightyblowplayer1);
+		  	  	mightyblowplayer1textview.setTypeface(typeFace);
+		  	  	String mightyblowplayer1String = Integer.toString(mightyBlowSpell[firstsubscript]);
+		  	  	mightyblowplayer1textview.append(mightyblowplayer1String);
+		  	  	mightyblowplayer1textview.setVisibility(View.VISIBLE);
+		  	  	
+		  	  	TextView hasteplayer1textview = (TextView) findViewById(R.id.hasteplayer1);
+		  	  	hasteplayer1textview.setTypeface(typeFace);
+		  	  	String hasteplayer1String = Integer.toString(hasteSpell[firstsubscript]);
+		  	  	hasteplayer1textview.append(hasteplayer1String);
+		  	  	hasteplayer1textview.setVisibility(View.VISIBLE);  	
+		  	  	
+		  	  	
+		  	  	TextView player2textview = (TextView) findViewById(R.id.player2);
+		  	  	player2textview.setTypeface(typeFace);
+		  	  	player2textview.append(ArrayOfPlayers.player[secondsubscript]);
+		  	  	player2textview.setVisibility(View.VISIBLE);		  	  	
+		  	  	
+		  	  	TextView hitpoints2textview = (TextView) findViewById(R.id.hitpointsplayer2);
+		  	  	hitpoints2textview.setTypeface(typeFace);
+		  	  	String hitpoints2String = Integer.toString(ArrayOfHitPoints.hitpoints[secondsubscript]);
+		  	  	hitpoints2textview.append(hitpoints2String);
+		  	  	hitpoints2textview.setVisibility(View.VISIBLE);
+		  	  	
+		  	  	TextView blessplayer2textview = (TextView) findViewById(R.id.blessplayer2);
+		  	  	blessplayer2textview.setTypeface(typeFace);
+		  	  	String blessplayer2String = Integer.toString(blessSpell[secondsubscript]);
+		  	  	blessplayer2textview.append(blessplayer2String);
+		  	  	blessplayer2textview.setVisibility(View.VISIBLE);
+		  	  	
+		  	  	TextView cureplayer2textview = (TextView) findViewById(R.id.cureplayer2);
+		  	  	cureplayer2textview.setTypeface(typeFace);
+		  	  	String cureplayer2String = Integer.toString(cureSpell[secondsubscript]);
+		  	  	cureplayer2textview.append(cureplayer2String);
+		  	  	cureplayer2textview.setVisibility(View.VISIBLE);
+		  	  	
+		  	  	TextView dodgeplayer2textview = (TextView) findViewById(R.id.dodgeplayer2);
+		  	  	dodgeplayer2textview.setTypeface(typeFace);
+		  	  	String dodgeplayer2String = Integer.toString(dodgeBlowSpell[secondsubscript]);
+		  	  	dodgeplayer2textview.append(dodgeplayer2String);
+		  	  	dodgeplayer2textview.setVisibility(View.VISIBLE);
+		  	  	
+		  	  	TextView mightyblowplayer2textview = (TextView) findViewById(R.id.mightyblowplayer2);
+		  	  	mightyblowplayer2textview.setTypeface(typeFace);
+		  	  	String mightyblowplayer2String = Integer.toString(mightyBlowSpell[secondsubscript]);
+		  	  	mightyblowplayer2textview.append(mightyblowplayer2String);
+		  	  	mightyblowplayer2textview.setVisibility(View.VISIBLE);
+		  	  	
+		  	  	TextView hasteplayer2textview = (TextView) findViewById(R.id.hasteplayer2);
+		  	  	hasteplayer2textview.setTypeface(typeFace);
+		  	  	String hasteplayer2String = Integer.toString(hasteSpell[secondsubscript]);
+		  	  	hasteplayer2textview.append(hasteplayer2String);
+		  	  	hasteplayer2textview.setVisibility(View.VISIBLE);
+	  	  		
+	  	  		
+	  	  		//titlerulestext.bringToFront();
+	  	  		
+  	  			  	  			
+	  	  		final Handler h3 = new Handler();
+		  	  	h3.postDelayed(new Runnable() {
+	
+		  	  		@Override
+		  	  		public void run()
+		  	  		{
+		  	  			//titlerulestext.setVisibility(View.INVISIBLE);
+		  	  			summaryTableLayout.setVisibility(View.INVISIBLE);		  	  			
+			  	  		
+		  	  	  		lineInSummaryTableLayout.setVisibility(View.INVISIBLE);
+		  	  			
+		  	  			TextView titletext = (TextView) findViewById(R.id.textviewtitlektogtext);
+		  	  			
+			  	  		Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+			  	  		titletext.setTypeface(typeFace);
+			  			
+						//titletext.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(100));
+							
+			  	  		titletext.setVisibility(View.VISIBLE);
+			  	  		//THIS IS ALREADY VISIBLE (NOT GONE):
+			  	  		//titletext.append("KtOG");
+			  	  		
+		  	  			
+		  	  			
+		  	  			
+		  	  			final ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+		  	  			titleBlankButton.setVisibility(View.VISIBLE);
+		  	  			titleBlankButton.bringToFront();		  	  			
+		  	  			
+		  	  			
+		  	  			startGameNow ="yes";
+		  	  			
+		  	  			
+		  	  			/*
+		  	  			// Calls method from another class:
+			  	  		Engine  engine = new Engine();
+			  	  		Engine.gameEngine();
+			  	  		*/
+			  	  		
+		  	  					  	  			
+		  	  			//gameEngine(null, gameOn, gameOn);
+		  	  			gameEngine();
+		  	  			
+		  	  			
+		  	  			
+		  	  			//preventinitiativediefromleaking.equals("on");
+		  	  			
+		  	  			
+		  	  			//Thread myThread = new Thread(myRunnable);
+		  	  			//myThread.start();
+			  	  		
+		  	  		}
+		  	  	}, 10325); // FINAGELED!	  	  			
+  	  	  	}
+  	  	}, 675); // SHOULD BE AT LEAST 675? WAS 525 		  	    	  	  			  	  			
+	
+	  	//Toast.makeText(MainActivity2.this,"isinitiativestarted = " +  isinitiativestarted + " aretheredoubles = " + aretheredoubles, Toast.LENGTH_SHORT).show();  	 	
+	  	  		
+	}
+	
+	public void myInitiativeTransition() {
+		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {		
+		
+				final ImageView img = (ImageView)findViewById(R.id.titleanimation);		
+				img.setBackgroundResource(R.anim.titleanimationyesinitiative);
+		  
+				// Get the background, which has been compiled to an AnimationDrawable object.
+				final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+		
+				// Animation is just 1 slide so user can see title.
+				frameAnimation.stop();
+				frameAnimation.start();
+			}
+  		});
 	}
 	
 	
@@ -11888,6 +12297,9 @@ public class Host extends Activity {
 		
 		issixsidedrolledforinitiative = "yes";
 		
+		aretheredoubles = "no";
+		
+		
 		if (numberOfPlayers == 2) {
 			
 			//issixsidedrolledforinitiative = "yes";
@@ -11900,7 +12312,7 @@ public class Host extends Activity {
 			computerNameTextView.setText(ArrayOfPlayers.player[0]);
 			//computerNameTextView.setVisibility(View.INVISIBLE);
 
-			ArrayOfHitPoints.hitpoints[0] = 20;//20
+			//ArrayOfHitPoints.hitpoints[0] = 20;//20
 			final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
 			computerHitPointsTextView.setTypeface(typeFace);
 			//computerHitPointsTextView.setVisibility(View.INVISIBLE);
@@ -11913,8 +12325,8 @@ public class Host extends Activity {
 			unfoldRightScroll();
 			
 			
-			String str = "PlayerName5 :" + ArrayOfPlayers.player[5];
-			sendToClient0(str);			
+			//String str = "PlayerName5 :" + ArrayOfPlayers.player[5];
+			//sendToClient0(str);			
 			
 			
 			String str2 = "GameEngine2Player";
@@ -11925,8 +12337,8 @@ public class Host extends Activity {
 			sendToClient0(str3);
 			
 			
-			String str4 = "numberOfPlayers :" + 2;
-			sendToClient0(str4);
+			//String str4 = "numberOfPlayers :" + 2;
+			//sendToClient0(str4);
 			
 			
 			playerDeadYet[5] = "no";
@@ -12225,7 +12637,7 @@ public class Host extends Activity {
 			
 			canHasDisarmed[0] = "no";
 			
-			String str = "0canHasDisarmed0 :" + "no";
+			String str = "CanHasDisarmed0 :" + "no";
 			sendToClient0(str);
 			
 			
@@ -12238,7 +12650,7 @@ public class Host extends Activity {
 			
 			didHumanCriticalMiss[0] = "no";
 			
-			String str3 = "0didHumanCriticalMiss0 :" + "no";
+			String str3 = "DidHumanCriticalMiss0 :" + "no";
 			sendToClient0(str3);
 		}	
 		
@@ -12312,7 +12724,7 @@ public class Host extends Activity {
 				  									
 				  				canHasDisarmed[5] = "no";
 				  				
-				  				String str7 = "5canHasDisarmed5 :" + "no";
+				  				String str7 = "canHaSDisarmed5 :" + "no";
 				  				sendToClient0(str7);
 				  				
 				  			
@@ -12357,20 +12769,24 @@ public class Host extends Activity {
 		
 		//Toast.makeText(MainActivity2.this, "Turn = " + ArrayOfTurn.turn[0], Toast.LENGTH_SHORT).show();
 		
+		
+		String str = "issecondroundofhasteused :" + "no";
+		sendToClient0(str);
+		
     	
     	if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0]) {
 			
     		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
 	  		disarmedtextright.setVisibility(View.INVISIBLE);
 	  		
-	  		String str = "clientNotDisarmed";
-			sendToClient0(str);
+	  		String str2 = "clientNotDisarmed";
+			sendToClient0(str2);
     		
 			
 			canHasDisarmed[0] = "no";
 			
-			String str2 = "0canHasDisarmed0 :" + "no";
-			sendToClient0(str2);
+			String str3 = "CanHasDisarmed0 :" + "no";
+			sendToClient0(str3);
 		}
     	
     	//THIS WAS "else if" (WANT THIS AND THE IF ABOVE TO BOTH BE EVALUATED):
@@ -12378,14 +12794,14 @@ public class Host extends Activity {
     		
     		canHasDisarmed[5] = "no";
     		
-    		String str = "5canHasDisarmed5 :" + "no";
-			sendToClient0(str);
+    		String str4 = "canHaSDisarmed5 :" + "no";
+			sendToClient0(str4);
     		
 				
 			didHumanCriticalMiss[5] = "no";
 			
-			String str2 = "5didHumanCriticalMiss5 :" + "no";
-			sendToClient0(str2);
+			String str5 = "didHuManCriticalMiss5 :" + "no";
+			sendToClient0(str5);
 			
 			TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
 	  		disarmedtextleft.setVisibility(View.INVISIBLE);
@@ -12422,7 +12838,8 @@ public class Host extends Activity {
   	  	    	
 	  			
 	  			playerCardStopFadeInFadeOut();
-	  			computerCardStartFadeInFadeOut();		
+	  			computerCardStartFadeInFadeOut();
+	  			
 	  			
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			
@@ -12434,8 +12851,8 @@ public class Host extends Activity {
 	  			//computerHitPointsTextView.startAnimation(animPulsingAnimation);
 	  			
 	  			
-	  			String str = "turn1V105";//2 PLAYER(1V1), CLIENT GOES FIRST(05)
-    			sendToClient0(str);
+	  			String str6 = "turn1V105";//2 PLAYER(1V1), CLIENT GOES FIRST(05)
+    			sendToClient0(str6);
 	  			
 	  			
 	  			final Handler h = new Handler();
@@ -12450,20 +12867,20 @@ public class Host extends Activity {
 		  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
 				  	  	  	disarmedtextright.bringToFront();
 				  	  	  	
-				  	  	  	String str = "clientDisarmed";
-				  	  	  	sendToClient0(str);
+				  	  	  	String str7 = "clientDisarmed";
+				  	  	  	sendToClient0(str7);
 			  				
 			  				
 			  				if ((didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0])) {
 			  	  				
-			  					String str2 = "disarmedAction";
-					  	  	  	sendToClient0(str2);			  	  												
+			  					String str8 = "disarmedAction";
+					  	  	  	sendToClient0(str8);			  	  												
 			  	  			}
 			  	  			
 			  	  			else if ((didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 1 == ArrayOfTurn.turn[0])) { //HUMAN MUST HAVE DISARMED HUMAN
 			  	  												
-			  	  				String str2 = "disarmedAction";
-			  	  				sendToClient0(str2);										  	  			
+			  	  				String str9 = "disarmedAction";
+			  	  				sendToClient0(str9);										  	  			
 			  	  			}
 			  			}
 			  			
@@ -12472,12 +12889,12 @@ public class Host extends Activity {
 			  				TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
 		  	  	  			disarmedtextright.setVisibility(View.INVISIBLE);
 		  	  	  			
-		  	  	  			String str = "clientNotDisarmed";
-		  	  	  			sendToClient0(str);
+		  	  	  			String str10 = "clientNotDisarmed";
+		  	  	  			sendToClient0(str10);
 			  				
 		  	  	  			
-		  	  	  			String str2 = "runActionsOnUi";
-		  	  	  			sendToClient0(str2);
+		  	  	  			String str11 = "runActionsOnUi";
+		  	  	  			sendToClient0(str11);
 			  			}	  	  	  			
 	  	  	  		}
 	  	  	  	}, 2000);	  			
@@ -12490,7 +12907,7 @@ public class Host extends Activity {
 		
 		//final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
-		issecondroundofhasteused = "no"; // SO HUMIE CAN USE MB AFTER THE 2RD ROUND OF A HASTE.
+		//issecondroundofhasteused = "no"; // SO HUMIE CAN USE MB AFTER THE 2RD ROUND OF A HASTE.
 		
 		String str = "issecondroundofhasteused :" + "no";
 		sendToClient0(str);		
@@ -12499,7 +12916,7 @@ public class Host extends Activity {
 			
 			canHasDisarmed[5] = "no";			
 			
-			String str2 = "5canHasDisarmed5 :" + "no";
+			String str2 = "canHaSDisarmed5 :" + "no";
 			sendToClient0(str2);
 			
 			
@@ -12512,7 +12929,7 @@ public class Host extends Activity {
 			
 			didHumanCriticalMiss[5] = "no";
 			
-			String str4 = "5didHumanCriticalMiss5 :" + "no";
+			String str4 = "didHuManCriticalMiss5 :" + "no";
 			sendToClient0(str4);
 		}	
 		
@@ -12570,7 +12987,7 @@ public class Host extends Activity {
 				  									
 				  				canHasDisarmed[0] = "no";
 				  				
-				  				String str8 = "0canHasDisarmed0 :" + "no";
+				  				String str8 = "CanHasDisarmed0 :" + "no";
 				  				sendToClient0(str8);
 				  				
 				  			
@@ -12626,6 +13043,9 @@ public class Host extends Activity {
 		
 		//Toast.makeText(MainActivity2.this, "Turn = " + ArrayOfTurn.turn[0], Toast.LENGTH_SHORT).show();
 		
+		
+		issecondroundofhasteused = "no"; // SO HUMIE CAN USE MB AFTER THE 2RD ROUND OF A HASTE.
+		
     	
     	if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0]) {
 			
@@ -12638,7 +13058,7 @@ public class Host extends Activity {
 			
 			canHasDisarmed[5] = "no";
 			
-			String str2 = "5canHasDisarmed5 :" + "no";
+			String str2 = "canHaSDisarmed5 :" + "no";
 			sendToClient0(str2);
 		}
     	
@@ -12647,13 +13067,13 @@ public class Host extends Activity {
     		
     		canHasDisarmed[0] = "no";
     		
-    		String str3 = "0canHasDisarmed0 :" + "no";
+    		String str3 = "CanHasDisarmed0 :" + "no";
 			sendToClient0(str3);
     		
 				
 			didHumanCriticalMiss[0] = "no";
 			
-			String str4 = "0didHumanCriticalMiss0 :" + "no";
+			String str4 = "DidHumanCriticalMiss0 :" + "no";
 			sendToClient0(str4);
 			
 			
@@ -12985,6 +13405,14 @@ public class Host extends Activity {
 					  	  	  			
 					  	  	  			foldScrolls();
 					  	  	  			
+					  	  	  			String str4 = "foldScrolls";
+					  	  	  			sendToClient0(str4);
+					  	  	  			
+					  	  	  			
+						  	  	  		playerCardStopFadeInFadeOut();
+						  	  	  		computerCardStopFadeInFadeOut();					  	  	  	
+					  	  	  			
+					  	  	  			/*
 						  	  	  		final Handler h = new Handler();
 							  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 							  	  	  			
@@ -13001,6 +13429,7 @@ public class Host extends Activity {
 								    			startActivity(intent);						  	  	  			
 								  	  	  	}
 							  	  	  	}, 500);
+							  	  	  	*/
 						  	  	  	}
 					  	  	  	}, 2000);
 				  	  	  	}
@@ -13056,6 +13485,14 @@ public class Host extends Activity {
 					  	  	  			
 					  	  	  			foldScrolls();
 					  	  	  			
+					  	  	  			String str6 = "foldScrolls";
+					  	  	  			sendToClient0(str6);
+					  	  	  			
+					  	  	  			
+						  	  	  		playerCardStopFadeInFadeOut();
+						  	  	  		computerCardStopFadeInFadeOut();
+					  	  	  			
+					  	  	  			/*
 						  	  	  		final Handler h = new Handler();
 							  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 							  	  	  			
@@ -13072,6 +13509,7 @@ public class Host extends Activity {
 								    			startActivity(intent);			  	  	  			
 								  	  	  	}
 							  	  	  	}, 500);
+							  	  	  	*/
 						  	  	  	}
 					  	  	  	}, 2000);
 				  	  	  	}
@@ -13191,28 +13629,6 @@ public class Host extends Activity {
 							
 			}
   		});
-	}
-	
-	public void foldScrolls() {		
-		
-		// USING "runOnUiThread(new Runnable() {}" TO SEE IF IT WORKS BETTER THAN NOT USING IT.
-		runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
-				// Setting up scroll frame animation.
-				ImageView img = (ImageView)findViewById(R.id.scrollanimation);
-				img.setBackgroundResource(R.anim.scrollanimationdown);
-				
-				img.bringToFront();
-			
-				// Get the background, which has been compiled to an AnimationDrawable object.
-				AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
-							
-				// Start the animation.
-				frameAnimation.stop();
-				frameAnimation.start();				
-	  	    }
-  		});	
 	}
 	
 	
@@ -13734,11 +14150,11 @@ public class Host extends Activity {
 		
 		if (numberOfPlayers == 2) {
 			
-			if ((ArrayOfInitiative.initiative[5] < ArrayOfInitiative.initiative[0]) && ishasteused.equals("no")) {				
+			if ((ArrayOfInitiative.initiative[5] < ArrayOfInitiative.initiative[0]) && ishasteused0.equals("no")) {				
 				
 				gameEngine1V1052();
 			}	
-			else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) && ishasteused.equals("no")) {		
+			else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) && ishasteused0.equals("no")) {		
     			
     			turn();
 			}
@@ -13749,24 +14165,24 @@ public class Host extends Activity {
 		
 		if (numberOfPlayers == 2) {
   			
-  	  		if ((ArrayOfInitiative.initiative[5] < ArrayOfInitiative.initiative[0]) && ishasteused.equals("no")) {  	  			
+  	  		if ((ArrayOfInitiative.initiative[5] < ArrayOfInitiative.initiative[0]) && ishasteused0.equals("no")) {  	  			
 				
 	  	  		gameEngine1V1052();
 			}			
-  	  		else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) && ishasteused.equals("no")) {		
+  	  		else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) && ishasteused0.equals("no")) {		
     			
     			turn();
 			}
 			
 			// TAKE THIS OUT?:											
-  	  		else if ((ArrayOfInitiative.initiative[5] < ArrayOfInitiative.initiative[0]) && ishasteused.equals("yes")) {				
+  	  		else if ((ArrayOfInitiative.initiative[5] < ArrayOfInitiative.initiative[0]) && ishasteused0.equals("yes")) {				
 				
   	  			String str = "hastePartTwo";
   	  			sendToClient0(str);
   	  			
     			//hastePartTwo();
 			}			
-  	  		else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) && ishasteused.equals("yes")) {		
+  	  		else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) && ishasteused0.equals("yes")) {		
     			
   	  			String str = "hastePartTwo";
 	  			sendToClient0(str);
@@ -13780,22 +14196,22 @@ public class Host extends Activity {
 		
 		if (numberOfPlayers == 2) {
 			
-			if ((ArrayOfInitiative.initiative[5] < ArrayOfInitiative.initiative[0]) && ishasteused.equals("no")) {				
+			if ((ArrayOfInitiative.initiative[5] < ArrayOfInitiative.initiative[0]) && ishasteused0.equals("no")) {				
 				
   				gameEngine1V1052();
 			}	
-  			else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) && ishasteused.equals("no")) {		
+  			else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) && ishasteused0.equals("no")) {		
     			
     			turn();
 			}													
-  			else if ((ArrayOfInitiative.initiative[5] < ArrayOfInitiative.initiative[0]) && ishasteused.equals("yes")) {				
+  			else if ((ArrayOfInitiative.initiative[5] < ArrayOfInitiative.initiative[0]) && ishasteused0.equals("yes")) {				
 				
   				String str = "hastePartTwo";
   	  			sendToClient0(str);
   				
     			//hastePartTwo();
 			}	
-  			else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) && ishasteused.equals("yes")) {		
+  			else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) && ishasteused0.equals("yes")) {		
     			
   				String str = "hastePartTwo";
   	  			sendToClient0(str);
@@ -14046,7 +14462,7 @@ public class Host extends Activity {
 		  		  	  	  		
 		  		  	  	  		canHasDisarmed[5] = "no";
 		  		  	  	  		
-		  		  	  	  		String str7 = "5canHasDisarmed5 :" + "no";
+		  		  	  	  		String str7 = "canHaSDisarmed5 :" + "no";
 		  		  	  	  		sendToAllClients(str7);
 		  		  	  	  		
 
@@ -14247,7 +14663,7 @@ public class Host extends Activity {
 	  			centerscrolltext.setTypeface(typeFace);
   	  	    	
 		
-				if (blessSpell[5] > 0) {				
+				if (blessSpell[5] > 0) {
 						
 					isblessrolled = "yes";
 					
@@ -15018,7 +15434,7 @@ public class Host extends Activity {
 					  	  	  		
 									if (playerNumberAttacked == 0) {
 										
-										String str = "0canHasDisarmed0 :" + "yes";
+										String str = "CanHasDisarmed0 :" + "yes";
 										sendToAllClients(str);
 										
 										String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
@@ -15026,7 +15442,7 @@ public class Host extends Activity {
 									}
 									else if (playerNumberAttacked == 1) {
 										
-										String str = "1canHasDisarmed1 :" + "yes";
+										String str = "cAnHasDisarmed1 :" + "yes";
 										sendToAllClients(str);
 										
 										String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
@@ -15034,7 +15450,7 @@ public class Host extends Activity {
 									}
 									else if (playerNumberAttacked == 2) {
 										
-										String str = "2canHasDisarmed2 :" + "yes";
+										String str = "caNHasDisarmed2 :" + "yes";
 										sendToAllClients(str);
 										
 										String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
@@ -15042,7 +15458,7 @@ public class Host extends Activity {
 									}
 									else if (playerNumberAttacked == 3) {
 										
-										String str = "3canHasDisarmed3 :" + "yes";
+										String str = "canhasDisarmed3 :" + "yes";
 										sendToAllClients(str);
 										
 										String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
@@ -15050,7 +15466,7 @@ public class Host extends Activity {
 									}
 									else if (playerNumberAttacked == 4) {
 										
-										String str = "4canHasDisarmed4 :" + "yes";
+										String str = "canHAsDisarmed4 :" + "yes";
 										sendToAllClients(str);
 										
 										String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
@@ -15190,7 +15606,7 @@ public class Host extends Activity {
 					  	  	  		
 									if (playerNumberAttacked == 0) {
 										
-										String str = "0canHasDisarmed0 :" + "yes";
+										String str = "CanHasDisarmed0 :" + "yes";
 										sendToAllClients(str);
 										
 										String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
@@ -15198,7 +15614,7 @@ public class Host extends Activity {
 									}
 									else if (playerNumberAttacked == 1) {
 										
-										String str = "1canHasDisarmed1 :" + "yes";
+										String str = "cAnHasDisarmed1 :" + "yes";
 										sendToAllClients(str);
 										
 										String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
@@ -15206,7 +15622,7 @@ public class Host extends Activity {
 									}
 									else if (playerNumberAttacked == 2) {
 										
-										String str = "2canHasDisarmed2 :" + "yes";
+										String str = "caNHasDisarmed2 :" + "yes";
 										sendToAllClients(str);
 										
 										String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
@@ -15214,7 +15630,7 @@ public class Host extends Activity {
 									}
 									else if (playerNumberAttacked == 3) {
 										
-										String str = "3canHasDisarmed3 :" + "yes";
+										String str = "canhasDisarmed3 :" + "yes";
 										sendToAllClients(str);
 										
 										String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
@@ -15222,7 +15638,7 @@ public class Host extends Activity {
 									}
 									else if (playerNumberAttacked == 4) {
 										
-										String str = "4canHasDisarmed4 :" + "yes";
+										String str = "canHAsDisarmed4 :" + "yes";
 										sendToAllClients(str);
 										
 										String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
@@ -15653,13 +16069,13 @@ public class Host extends Activity {
 							
 							canHasDisarmed[5] = "yes";
 							
-							String str2 = "5canHasDisarmed5 :" + "yes";
+							String str2 = "canHaSDisarmed5 :" + "yes";
 							sendToAllClients(str2);
 							
 							
 							didHumanCriticalMiss[5] = "yes";
 							
-							String str3 = "5didHumanCriticalMiss5 :" + "yes";
+							String str3 = "didHuManCriticalMiss5 :" + "yes";
 							sendToAllClients(str3);
 							
 							
@@ -17206,25 +17622,33 @@ public class Host extends Activity {
 	  	  	  			
 						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] <= 0) {
 							
-							String str = ArrayOfPlayers.player[playerNumberAttacked] + "has been slain!";
+							centerscrolltext.setVisibility(View.VISIBLE);
+					  		centerscrolltext.startAnimation(animAlphaText);
+							centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[playerNumberAttacked] + " has been slain!");
+							
+							String str = ArrayOfPlayers.player[playerNumberAttacked] + " has been slain!";
 							sendToAllClients(str);
 							
-							/*
-							 * 
-							 * Picture of one sword destroying another.
-							 * 
-							 * deathGraphic();
-							 * 
-							 */
 							
+							playerDeadYet[playerNumberAttacked] = "yes";
+				    		
+				    		gameOverCheck();							
+							
+							  
+							// Picture of one sword destroying another.
+							 
+							// deathGraphic();
+							 
+							
+				    		/*
 							AlertDialog.Builder alert = new AlertDialog.Builder(Host.this);
 						    
 							alert.setCancelable(false);
 							
 							alert.setTitle(ArrayOfPlayers.player[playerNumberAttacked] + " has been slain.");
-				  	    	/*
-				  	    	alert.setMessage("something");
-				  	    	*/	    	
+				  	    	
+				  	    	//alert.setMessage("something");
+				  	    		    	
 					    	
 							
 							// if back pressed: DOES THIS WORK????????????
@@ -17255,7 +17679,8 @@ public class Host extends Activity {
 						    		dialog.dismiss();
 						    	}
 					    	});								    	
-					    	alert.show();																			
+					    	alert.show();
+					    	*/
 						}
 						
 						else {
@@ -17464,25 +17889,33 @@ public class Host extends Activity {
 	  	  	  			
 						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] <= 0) {
 							
-							String str = ArrayOfPlayers.player[playerNumberAttacked] + "has been slain!";
+							centerscrolltext.setVisibility(View.VISIBLE);
+					  		centerscrolltext.startAnimation(animAlphaText);
+							centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[playerNumberAttacked] + " has been slain!");
+							
+							String str = ArrayOfPlayers.player[playerNumberAttacked] + " has been slain!";
 							sendToAllClients(str);
 							
-							/*
-							 * 
-							 * Picture of one sword destroying another.
-							 * 
-							 * deathGraphic();
-							 * 
-							 */
 							
+							playerDeadYet[playerNumberAttacked] = "yes";
+				    		
+				    		gameOverCheck();							
+							
+							 
+							// Picture of one sword destroying another.
+							 
+							// deathGraphic();
+							 
+							
+							/*
 							AlertDialog.Builder alert = new AlertDialog.Builder(Host.this);
 						    
 							alert.setCancelable(false);							
 							
 							alert.setTitle(ArrayOfPlayers.player[playerNumberAttacked] + " has been slain.");
-				  	    	/*
-				  	    	alert.setMessage("something");
-				  	    	*/	    	
+				  	    	
+				  	    	//alert.setMessage("something");
+				  	    		    	
 					    	
 							// if back pressed: DOES THIS WORK????????????
 							alert.setOnCancelListener(new DialogInterface.OnCancelListener() {
@@ -17511,7 +17944,8 @@ public class Host extends Activity {
 						    		dialog.dismiss();
 						    	}
 					    	});								    	
-					    	alert.show();																			
+					    	alert.show();
+					    	*/																			
 						}
 						
 						else {
@@ -17728,25 +18162,33 @@ public class Host extends Activity {
 		  	  			
 						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] <= 0) {
 							
-							String str = ArrayOfPlayers.player[playerNumberAttacked] + "has been slain!";
+							centerscrolltext.setVisibility(View.VISIBLE);
+					  		centerscrolltext.startAnimation(animAlphaText);
+							centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[playerNumberAttacked] + " has been slain!");
+							
+							String str = ArrayOfPlayers.player[playerNumberAttacked] + " has been slain!";
 							sendToAllClients(str);
 							
-							/*
-							 * 
-							 * Picture of one sword destroying another.
-							 * 
-							 * deathGraphic();
-							 * 
-							 */
 							
+							playerDeadYet[playerNumberAttacked] = "yes";
+				    		
+				    		gameOverCheck();						
+							
+							 
+							// Picture of one sword destroying another.
+							 
+							// deathGraphic();
+							 
+							
+							/*
 							AlertDialog.Builder alert = new AlertDialog.Builder(Host.this);
 						    
 							alert.setCancelable(false);
 							
 							alert.setTitle(ArrayOfPlayers.player[playerNumberAttacked] + " has been slain.");
-				  	    	/*
-				  	    	alert.setMessage("something");
-				  	    	*/	    	
+				  	    	
+				  	    	//alert.setMessage("something");
+				  	    		    	
 					    	
 							// if back pressed: DOES THIS WORK????????????
 							alert.setOnCancelListener(new DialogInterface.OnCancelListener() {
@@ -17775,7 +18217,8 @@ public class Host extends Activity {
 						    		dialog.dismiss();
 						    	}
 					    	});								    	
-					    	alert.show();																			
+					    	alert.show();
+					    	*/																			
 						}
 						
 						else {
@@ -18049,25 +18492,33 @@ public class Host extends Activity {
 		  	  			
 						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] <= 0) {
 							
-							String str = ArrayOfPlayers.player[playerNumberAttacked] + "has been slain!";
+							centerscrolltext.setVisibility(View.VISIBLE);
+					  		centerscrolltext.startAnimation(animAlphaText);
+							centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[playerNumberAttacked] + " has been slain!");
+							
+							String str = ArrayOfPlayers.player[playerNumberAttacked] + " has been slain!";
 							sendToAllClients(str);
 							
-							/*
-							 * 
-							 * Picture of one sword destroying another.
-							 * 
-							 * deathGraphic();
-							 * 
-							 */
 							
+							playerDeadYet[playerNumberAttacked] = "yes";
+				    		
+				    		gameOverCheck();						
+							
+							 
+							// Picture of one sword destroying another.
+							 
+							// deathGraphic();
+							 
+							
+							/*
 							AlertDialog.Builder alert = new AlertDialog.Builder(Host.this);
 						    
 							alert.setCancelable(false);
 							
 							alert.setTitle(ArrayOfPlayers.player[playerNumberAttacked] + " has been slain.");
-				  	    	/*
-				  	    	alert.setMessage("something");
-				  	    	*/	    	
+				  	    	
+				  	    	//alert.setMessage("something");
+				  	    		    	
 					    	
 							// if back pressed: DOES THIS WORK????????????
 							alert.setOnCancelListener(new DialogInterface.OnCancelListener() {
@@ -18096,7 +18547,8 @@ public class Host extends Activity {
 						    		dialog.dismiss();
 						    	}
 					    	});								    	
-					    	alert.show();																			
+					    	alert.show();
+					    	*/																		
 						}
 						
 						else {
@@ -19046,27 +19498,35 @@ public class Host extends Activity {
 					  	  	  			
 					  	  	  		@Override
 						  	  	  	public void run() {			
-											
-										String str = ArrayOfPlayers.player[deadGuy] + "has been slain!";
-										sendToAllClients(str);					
+										
+					  	  	  			
+						  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
+								  		//centerscrolltext.startAnimation(animAlphaText);
+										centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[deadGuy] + " has been slain!");
+										
+										String str = ArrayOfPlayers.player[deadGuy] + " has been slain!";
+										sendToAllClients(str);
 										
 										
-										/*
-										 * 
-										 * Picture of one sword destroying another.
-										 * 
-										 * deathGraphic();
-										 * 
-										 */
+										playerDeadYet[deadGuy] = "yes";
+							    		
+							    		gameOverCheck();			
 										
+										 
+										// Picture of one sword destroying another.
+										 
+										// deathGraphic();										 
+										
+										
+							    		/*
 										AlertDialog.Builder alert = new AlertDialog.Builder(Host.this);
 									    
 										alert.setCancelable(false);
 										
 										alert.setTitle(ArrayOfPlayers.player[deadGuy] + " has been slain.");
-							  	    	/*
-							  	    	alert.setMessage("something");
-							  	    	*/	    	
+							  	    	
+							  	    	//alert.setMessage("something");
+							  	    		    	
 								    	
 										
 										// if back pressed: DOES THIS WORK????????????
@@ -19098,6 +19558,7 @@ public class Host extends Activity {
 									    	}
 								    	});								    	
 								    	alert.show();
+								    	*/
 					  	  	  		}
 					  	  	  	}, 2000);
 					  	    }
@@ -19117,7 +19578,7 @@ public class Host extends Activity {
 							
 							disarmedTurnStart[0] = ArrayOfTurn.turn[0];
 							
-							String str = "0canHasDisarmed0" + part2;
+							String str = "CanHasDisarmed0 :" + part2;
 							sendToAllClients(str);
 							
 							String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
@@ -19129,7 +19590,7 @@ public class Host extends Activity {
 							
 							disarmedTurnStart[1] = ArrayOfTurn.turn[0];
 							
-							String str = "1canHasDisarmed1" + part2;
+							String str = "cAnHasDisarmed1" + part2;
 							sendToAllClients(str);
 							
 							String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
@@ -19141,7 +19602,7 @@ public class Host extends Activity {
 							
 							disarmedTurnStart[2] = ArrayOfTurn.turn[0];
 							
-							String str = "2canHasDisarmed2" + part2;
+							String str = "caNHasDisarmed2" + part2;
 							sendToAllClients(str);
 							
 							String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
@@ -19153,7 +19614,7 @@ public class Host extends Activity {
 							
 							disarmedTurnStart[3] = ArrayOfTurn.turn[0];
 							
-							String str = "3canHasDisarmed3" + part2;
+							String str = "canhasDisarmed3" + part2;
 							sendToAllClients(str);
 							
 							String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
@@ -19165,7 +19626,7 @@ public class Host extends Activity {
 							
 							disarmedTurnStart[4] = ArrayOfTurn.turn[0];
 							
-							String str = "4canHasDisarmed4" + part2;
+							String str = "canHAsDisarmed4" + part2;
 							sendToAllClients(str);
 							
 							String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
@@ -19189,7 +19650,7 @@ public class Host extends Activity {
 						
 						if (playerDisarmed == 0) {
 							
-							String str = "0canHasDisarmed0 :" + "yes";
+							String str = "CanHasDisarmed0 :" + "yes";
 							sendToAllClients(str);
 							
 							String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
@@ -19197,7 +19658,7 @@ public class Host extends Activity {
 						}
 						else if (playerDisarmed == 1) {
 							
-							String str = "1canHasDisarmed1 :" + "yes";
+							String str = "cAnHasDisarmed1 :" + "yes";
 							sendToAllClients(str);
 							
 							String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
@@ -19205,7 +19666,7 @@ public class Host extends Activity {
 						}
 						else if (playerDisarmed == 2) {
 							
-							String str = "2canHasDisarmed2 :" + "yes";
+							String str = "caNHasDisarmed2 :" + "yes";
 							sendToAllClients(str);
 							
 							String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
@@ -19213,7 +19674,7 @@ public class Host extends Activity {
 						}
 						else if (playerDisarmed == 3) {
 							
-							String str = "3canHasDisarmed3 :" + "yes";
+							String str = "canhasDisarmed3 :" + "yes";
 							sendToAllClients(str);
 							
 							String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
@@ -19221,7 +19682,7 @@ public class Host extends Activity {
 						}
 						else if (playerDisarmed == 4) {
 							
-							String str = "4canHasDisarmed4 :" + "yes";
+							String str = "canHAsDisarmed4 :" + "yes";
 							sendToAllClients(str);
 							
 							String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
@@ -19229,7 +19690,7 @@ public class Host extends Activity {
 						}
 						else if (playerDisarmed == 5) {
 							
-							String str = "5canHasDisarmed5 :" + "yes";
+							String str = "canHaSDisarmed5 :" + "yes";
 							sendToAllClients(str);
 							
 							//DONT NEED TO SEND disarmedTurnStart TO HOST BECAUSE IT'S DEFINED ABOVE.
@@ -19247,35 +19708,35 @@ public class Host extends Activity {
 							
 							didHumanCriticalMiss[0]=part2;						
 							
-							String str = "0didHumanCriticalMiss0";
+							String str = "DidHumanCriticalMiss0";
 							sendToAllClients(str);
 						}
 						else if (id == 1) {
 							
 							didHumanCriticalMiss[1]=part2;						
 							
-							String str = "1didHumanCriticalMiss1";
+							String str = "dIdHumanCriticalMiss1";
 							sendToAllClients(str);
 						}
 						else if (id == 2) {
 							
 							didHumanCriticalMiss[2]=part2;							
 							
-							String str = "2didHumanCriticalMiss2";
+							String str = "diDHumanCriticalMiss2";
 							sendToAllClients(str);
 						}
 						else if (id == 3) {
 							
 							didHumanCriticalMiss[3]=part2;							
 							
-							String str = "3didHumanCriticalMiss3";
+							String str = "didhumanCriticalMiss3";
 							sendToAllClients(str);
 						}
 						else if (id == 4) {
 							
 							didHumanCriticalMiss[4]=part2;
 													
-							String str = "4didHumanCriticalMiss4";
+							String str = "didHUmanCriticalMiss4";
 							sendToAllClients(str);
 						}																	
 					}
@@ -19364,7 +19825,7 @@ public class Host extends Activity {
 						stopGraphics();
 					}					
 					
-					else if (read.contains("usedHaste0")) {
+					else if (read.contains("secondroundofhasteused")) {
 						
 						if (id == 0) {				
 							

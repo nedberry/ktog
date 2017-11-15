@@ -67,7 +67,7 @@ public class Client2 extends Activity {
 	
 	private Socket socket;
 
-	private static final int SERVERPORT = 2000;// WAS 5000
+	private final int SERVERPORT = 2000;// WAS 5000
 	String hostIP;//WAS: private static final String SERVER_IP = "192.168.1.208";
 	
 	
@@ -88,7 +88,7 @@ public class Client2 extends Activity {
 	int max = 0;
 	//int numberOfPlayers = 2;
 	
-	static int numberOfPlayers = 1; // NEED THIS???????????
+	int numberOfPlayers = 1; // NEED THIS???????????
 	
 	//static int playerNumberAttacked;
 	
@@ -102,8 +102,8 @@ public class Client2 extends Activity {
 	//int computerAttackResultAgainstDisarmed;
 	
 	int computerAttackDamageDisarmed;
-	public static int[] attackDamageOneDisarmed = new int[1];
-	public static int[] attackDamageTwoDisarmed = new int[1];
+	public int[] attackDamageOneDisarmed = new int[1];
+	public int[] attackDamageTwoDisarmed = new int[1];
 	
 	
 	//int turnhumandisarmedcomputer; ========= disarmedTurnStart[1] = turn;
@@ -113,11 +113,11 @@ public class Client2 extends Activity {
 	
 	
 	// SOME OF THESE MAY NEED TO BE AN ARRAY-CLASS:
-	public static int[] blessSpell = new int[] {1, 1, 1, 1, 1, 1, 1};// {1, 1, 1, 1, 1, 1, 1};
-	public static int[] cureSpell = new int[] {1, 1, 1, 1, 1, 1, 1};// {1, 1, 1, 1, 1, 1, 1};
-	public static int[] dodgeBlowSpell = new int[] {1, 1, 1, 1, 1, 1, 1};// {1, 1, 1, 1, 1, 1, 1};
-	public static int[] mightyBlowSpell = new int[] {1, 1, 1, 1, 1, 1, 1};// {1, 1, 1, 1, 1, 1, 1};
-	public static int[] hasteSpell = new int[] {2, 2, 2, 2, 2, 2, 2};//	{2, 2, 2, 2, 2, 2, 2};
+	public int[] blessSpell = new int[] {1, 1, 1, 1, 1, 1, 1};// {1, 1, 1, 1, 1, 1, 1};
+	public int[] cureSpell = new int[] {1, 1, 1, 1, 1, 1, 1};// {1, 1, 1, 1, 1, 1, 1};
+	public int[] dodgeBlowSpell = new int[] {1, 1, 1, 1, 1, 1, 1};// {1, 1, 1, 1, 1, 1, 1};
+	public int[] mightyBlowSpell = new int[] {1, 1, 1, 1, 1, 1, 1};// {1, 1, 1, 1, 1, 1, 1};
+	public int[] hasteSpell = new int[] {2, 2, 2, 2, 2, 2, 2};//	{2, 2, 2, 2, 2, 2, 2};
 	
 	
 	// FOR ORDERING PURPOSES IN TITLE:
@@ -137,7 +137,7 @@ public class Client2 extends Activity {
 	//String isInvokingService = "true";	
 	
 	String isinitiativestarted = "no";	
-	static String isinitiativestartedinterrupted = "no";
+	String isinitiativestartedinterrupted = "no";
 	String issixsidedrolledforinitiative = "no";
 	String aretheredoubles = "yes";	
 	
@@ -174,11 +174,11 @@ public class Client2 extends Activity {
 	
 	
 	// SOME OF THESE MAY NEED TO BE AN ARRAY-CLASS:
-	public static String[] playerDeadYet = new String[] {"yes", "yes", "yes", "yes", "yes", "yes"}; // NEED 6?????????	
+	public String[] playerDeadYet = new String[] {"yes", "yes", "yes", "yes", "yes", "yes"}; // NEED 6?????????	
 	//String playerDeadYet[] = {"yes", "yes", "yes", "yes", "yes", "yes"};
-	public static String[] canHasDisarmed = new String[] {"no", "no", "no", "no", "no", "no"}; // NEED 6?????????
+	public String[] canHasDisarmed = new String[] {"no", "no", "no", "no", "no", "no"}; // NEED 6?????????
 	
-	public static int[] disarmedTurnStart = new int[6];
+	public int[] disarmedTurnStart = new int[6];
 	//String didHumanCriticalMiss = "no";
 	//String didComputerCriticalMiss = "no";
 	String[] didHumanCriticalMiss = new String[] {"no", "no", "no", "no", "no", "no"};
@@ -655,22 +655,22 @@ public class Client2 extends Activity {
 	              		
 	              		titleBlankButton.setEnabled(false);// HERE & BELOW BECUSE GETTING WEIRD BEHAVIOR WHEN BUTTON WAS HIT AN ODD NUMBER OF TIMES (EXCEPT THE FIRST TIME).
 	              		
-	              		
+	              		/*
 	              		if (numberOfPlayers == 2) {
 	              		
 		              		if (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) {
 		              			
-		              			firstsubscript = 0;
-		              			secondsubscript = 1;
+		              			firstsubscript = 5;
+		              			secondsubscript = 0;
 		              		}
 		              		
 		              		else if (ArrayOfInitiative.initiative[5] < ArrayOfInitiative.initiative[0]) {
 		              			
-		              			firstsubscript = 1;
-		              			secondsubscript = 0;
+		              			firstsubscript = 0;
+		              			secondsubscript = 5;
 		              		}
 	              		}
-	              		
+	              		*/
 	              		
 	              		final Handler h = new Handler();
 	  		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -2341,7 +2341,34 @@ public class Client2 extends Activity {
 				frameAnimation.start();
 	  	    }
   		});	
-	}	
+	}
+	
+	public void foldScrolls() {		
+		
+		// USING "runOnUiThread(new Runnable() {}" TO SEE IF IT WORKS BETTER THAN NOT USING IT.
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				
+				playerCardStopFadeInFadeOut();
+  	  	  		computerCardStopFadeInFadeOut();
+				
+				
+				// Setting up scroll frame animation.
+				ImageView img = (ImageView)findViewById(R.id.scrollanimation);
+				img.setBackgroundResource(R.anim.scrollanimationdown);
+				
+				img.bringToFront();
+			
+				// Get the background, which has been compiled to an AnimationDrawable object.
+				AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+							
+				// Start the animation.
+				frameAnimation.stop();
+				frameAnimation.start();				
+	  	    }
+  		});	
+	}
 	
 	
 	/*
@@ -4720,7 +4747,7 @@ public class Client2 extends Activity {
 		waitToSetInterruptVariable();
 	}
 	
-	public static String waitToSetInterruptVariable() {
+	public String waitToSetInterruptVariable() {
 		
 		final Handler h1 = new Handler();
 	  	  	h1.postDelayed(new Runnable() {
@@ -4988,6 +5015,303 @@ public class Client2 extends Activity {
 		});
 	}
 	
+	public void finishInitiative() {
+		
+		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+		
+				final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+				//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+				
+				Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+				centerscrolltext.setTypeface(typeFace);
+				
+				//final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+				
+				// CRASHES IF USE THIS:
+				//img.setVisibility(View.INVISIBLE);
+				
+		  		// Use a blank drawable to hide the imageview animation:
+		  		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
+		  		img.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+				img.setImageResource(R.drawable.sixsixrightleftrotateblank);		
+		  		
+				
+				// Re-enables ability to use srollbar:
+				centerscrolltext.bringToFront();												
+				/*
+				centerscrolltext.setVisibility(View.VISIBLE);													
+		  		centerscrolltext.startAnimation(animAlphaText);
+				centerscrolltext.append("\n" + "> Let the battle begin...");		
+				*/
+				
+				
+				//test();
+				
+				myInitiativeTransition();
+				
+				
+				/*
+				if (numberOfPlayers == 2) {
+					
+					if (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) {
+						
+						firstsubscript = 5;
+						secondsubscript = 0;
+					}
+					
+					else if (ArrayOfInitiative.initiative[5] < ArrayOfInitiative.initiative[0]) {
+						
+						firstsubscript = 0;
+						secondsubscript = 5;
+					}					
+				}				
+			  	*/ 		
+			  	  		
+		  	  	final Handler h = new Handler();
+		  		h.postDelayed(new Runnable() {		  	  	  			
+		  	  			
+		  	  		@Override
+		  	  	  	public void run() {
+		  	  			
+		  	  			ArrayOfHitPoints.hitpoints[5] = 20;//20
+		  	  			
+		  	  			
+		  	  			TextView titleinitiativetext = (TextView) findViewById(R.id.textviewtitleinitiativetext);
+		  	  			titleinitiativetext.setVisibility(View.INVISIBLE);
+		  	  			
+		  	  			
+		  	  			// NOTICE THE append's BELOW, JUST FOR INTRO (USED setText IN TITLE BUTTON):
+		  	  			final TableLayout summaryTableLayout = (TableLayout) findViewById(R.id.summaryTable);
+		  	  			final View lineInSummaryTableLayout = (View) findViewById(R.id.line);	  	  		
+		  	  			
+			  	  		Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+			  	  		//titlerulestext.setTypeface(typeFace);
+			  			
+						//titletext.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(100));
+							
+			  	  		summaryTableLayout.setVisibility(View.VISIBLE);
+			  	  		//summaryTableLayout.setMovementMethod(new ScrollingMovementMethod());
+			  	  		lineInSummaryTableLayout.setVisibility(View.VISIBLE);
+			  	  		/*
+			  	  		titlerulestext.append("Quick Instructions" + "\n" + "==================" + "\n" +
+			  	  		"1. Determine who goes first (Initiative)." + "\n" + 
+			  	  		"2. Take an action when prompted." + "\n" +
+			  	  		"3. Win by reducing opponent's hit points to zero or below.");
+			  	  		*/
+			  	  		
+				  	  	TextView statisticstextview = (TextView) findViewById(R.id.summarytext);
+			  	  		statisticstextview.setTypeface(typeFace);
+			  	  		statisticstextview.append("Player Summary");
+			  	  		statisticstextview.setVisibility(View.VISIBLE);
+			  	  		
+				  	  	TextView blanktextview = (TextView) findViewById(R.id.blanktext);
+				  	  	blanktextview.setTypeface(typeFace);
+				  	  	blanktextview.append("");
+				  	  	blanktextview.setVisibility(View.VISIBLE);
+			  	  		
+			  	  		TextView hitpointstextview = (TextView) findViewById(R.id.hitpointstext);
+			  	  		hitpointstextview.setTypeface(typeFace);
+			  	  		hitpointstextview.append("HP");
+			  	  		hitpointstextview.setVisibility(View.VISIBLE);
+			  	  		
+				  	  	TextView blesstextview = (TextView) findViewById(R.id.blesstext);
+				  	  	blesstextview.setTypeface(typeFace);
+				  	  	blesstextview.append("Bless");
+				  	  	blesstextview.setVisibility(View.VISIBLE);
+			  	  		
+				  	  	TextView curetextview = (TextView) findViewById(R.id.curetext);
+				  	  	curetextview.setTypeface(typeFace);
+				  	  	curetextview.append("Cure");
+				  	  	curetextview.setVisibility(View.VISIBLE);
+			  	  		
+				  	  	TextView dodgetextview = (TextView) findViewById(R.id.dodgetext);
+				  	  	dodgetextview.setTypeface(typeFace);
+				  	  	dodgetextview.append("Dodge");
+				  	  	dodgetextview.setVisibility(View.VISIBLE);
+			  	  		
+				  	  	TextView mightyblowtextview = (TextView) findViewById(R.id.mightyblowtext);
+				  	  	mightyblowtextview.setTypeface(typeFace);
+				  	  	mightyblowtextview.append("MB");
+				  	  	mightyblowtextview.setVisibility(View.VISIBLE);
+				  	  	
+				  	  	TextView hastetextview = (TextView) findViewById(R.id.hastetext);
+				  	  	hastetextview.setTypeface(typeFace);
+				  	  	hastetextview.append("Haste");
+				  	  	hastetextview.setVisibility(View.VISIBLE);
+				  	  	
+			  	  		
+				  	  	TextView player1textview = (TextView) findViewById(R.id.player1);
+				  	  	player1textview.setTypeface(typeFace);
+				  	  	player1textview.append(ArrayOfPlayers.player[firstsubscript]);
+				  	  	player1textview.setVisibility(View.VISIBLE);
+				  	  	
+				  	  	TextView hitpointsplayer1textview = (TextView) findViewById(R.id.hitpointsplayer1);
+				  	  	hitpointsplayer1textview.setTypeface(typeFace);
+				  	  	String hitpointsplayer1String = Integer.toString(ArrayOfHitPoints.hitpoints[firstsubscript]);
+				  	  	hitpointsplayer1textview.append(hitpointsplayer1String);
+				  		hitpointsplayer1textview.setVisibility(View.VISIBLE);
+				  	  	
+				  	  	TextView blessplayer1textview = (TextView) findViewById(R.id.blessplayer1);
+				  	  	blessplayer1textview.setTypeface(typeFace);
+				  	  	String blessplayer1String = Integer.toString(blessSpell[firstsubscript]);
+				  	  	blessplayer1textview.append(blessplayer1String);
+				  	  	blessplayer1textview.setVisibility(View.VISIBLE);
+				  	  	
+				  	  	TextView cureplayer1textview = (TextView) findViewById(R.id.cureplayer1);
+				  	  	cureplayer1textview.setTypeface(typeFace);
+				  	  	String cureplayer1String = Integer.toString(cureSpell[firstsubscript]);
+				  	  	cureplayer1textview.append(cureplayer1String);
+				  	  	cureplayer1textview.setVisibility(View.VISIBLE);
+				  	  	
+				  	  	TextView dodgeplayer1textview = (TextView) findViewById(R.id.dodgeplayer1);
+				  	  	dodgeplayer1textview.setTypeface(typeFace);
+				  	  	String dodgeplayer1String = Integer.toString(dodgeBlowSpell[firstsubscript]);
+				  	  	dodgeplayer1textview.append(dodgeplayer1String);
+				  	  	dodgeplayer1textview.setVisibility(View.VISIBLE);
+				  	  	
+				  	  	TextView mightyblowplayer1textview = (TextView) findViewById(R.id.mightyblowplayer1);
+				  	  	mightyblowplayer1textview.setTypeface(typeFace);
+				  	  	String mightyblowplayer1String = Integer.toString(mightyBlowSpell[firstsubscript]);
+				  	  	mightyblowplayer1textview.append(mightyblowplayer1String);
+				  	  	mightyblowplayer1textview.setVisibility(View.VISIBLE);
+				  	  	
+				  	  	TextView hasteplayer1textview = (TextView) findViewById(R.id.hasteplayer1);
+				  	  	hasteplayer1textview.setTypeface(typeFace);
+				  	  	String hasteplayer1String = Integer.toString(hasteSpell[firstsubscript]);
+				  	  	hasteplayer1textview.append(hasteplayer1String);
+				  	  	hasteplayer1textview.setVisibility(View.VISIBLE);  	
+				  	  	
+				  	  	
+				  	  	TextView player2textview = (TextView) findViewById(R.id.player2);
+				  	  	player2textview.setTypeface(typeFace);
+				  	  	player2textview.append(ArrayOfPlayers.player[secondsubscript]);
+				  	  	player2textview.setVisibility(View.VISIBLE);		  	  	
+				  	  	
+				  	  	TextView hitpoints2textview = (TextView) findViewById(R.id.hitpointsplayer2);
+				  	  	hitpoints2textview.setTypeface(typeFace);
+				  	  	String hitpoints2String = Integer.toString(ArrayOfHitPoints.hitpoints[secondsubscript]);
+				  	  	hitpoints2textview.append(hitpoints2String);
+				  	  	hitpoints2textview.setVisibility(View.VISIBLE);
+				  	  	
+				  	  	TextView blessplayer2textview = (TextView) findViewById(R.id.blessplayer2);
+				  	  	blessplayer2textview.setTypeface(typeFace);
+				  	  	String blessplayer2String = Integer.toString(blessSpell[secondsubscript]);
+				  	  	blessplayer2textview.append(blessplayer2String);
+				  	  	blessplayer2textview.setVisibility(View.VISIBLE);
+				  	  	
+				  	  	TextView cureplayer2textview = (TextView) findViewById(R.id.cureplayer2);
+				  	  	cureplayer2textview.setTypeface(typeFace);
+				  	  	String cureplayer2String = Integer.toString(cureSpell[secondsubscript]);
+				  	  	cureplayer2textview.append(cureplayer2String);
+				  	  	cureplayer2textview.setVisibility(View.VISIBLE);
+				  	  	
+				  	  	TextView dodgeplayer2textview = (TextView) findViewById(R.id.dodgeplayer2);
+				  	  	dodgeplayer2textview.setTypeface(typeFace);
+				  	  	String dodgeplayer2String = Integer.toString(dodgeBlowSpell[secondsubscript]);
+				  	  	dodgeplayer2textview.append(dodgeplayer2String);
+				  	  	dodgeplayer2textview.setVisibility(View.VISIBLE);
+				  	  	
+				  	  	TextView mightyblowplayer2textview = (TextView) findViewById(R.id.mightyblowplayer2);
+				  	  	mightyblowplayer2textview.setTypeface(typeFace);
+				  	  	String mightyblowplayer2String = Integer.toString(mightyBlowSpell[secondsubscript]);
+				  	  	mightyblowplayer2textview.append(mightyblowplayer2String);
+				  	  	mightyblowplayer2textview.setVisibility(View.VISIBLE);
+				  	  	
+				  	  	TextView hasteplayer2textview = (TextView) findViewById(R.id.hasteplayer2);
+				  	  	hasteplayer2textview.setTypeface(typeFace);
+				  	  	String hasteplayer2String = Integer.toString(hasteSpell[secondsubscript]);
+				  	  	hasteplayer2textview.append(hasteplayer2String);
+				  	  	hasteplayer2textview.setVisibility(View.VISIBLE);
+			  	  		
+			  	  		
+			  	  		//titlerulestext.bringToFront();
+			  	  		
+		  	  			  	  			
+			  	  		final Handler h3 = new Handler();
+				  	  	h3.postDelayed(new Runnable() {
+			
+				  	  		@Override
+				  	  		public void run()
+				  	  		{
+				  	  			//titlerulestext.setVisibility(View.INVISIBLE);
+				  	  			summaryTableLayout.setVisibility(View.INVISIBLE);		  	  			
+					  	  		
+				  	  	  		lineInSummaryTableLayout.setVisibility(View.INVISIBLE);
+				  	  			
+				  	  			TextView titletext = (TextView) findViewById(R.id.textviewtitlektogtext);
+				  	  			
+					  	  		Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+					  	  		titletext.setTypeface(typeFace);
+					  			
+								//titletext.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(100));
+									
+					  	  		titletext.setVisibility(View.VISIBLE);
+					  	  		//THIS IS ALREADY VISIBLE (NOT GONE):
+					  	  		//titletext.append("KtOG");
+					  	  		
+				  	  			
+				  	  			
+				  	  			
+				  	  			final ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+				  	  			titleBlankButton.setVisibility(View.VISIBLE);
+				  	  			titleBlankButton.bringToFront();		  	  			
+				  	  			
+				  	  			
+				  	  			startGameNow ="yes";
+				  	  			
+				  	  			
+				  	  			/*
+				  	  			// Calls method from another class:
+					  	  		Engine  engine = new Engine();
+					  	  		Engine.gameEngine();
+					  	  		*/
+					  	  		
+				  	  					  	  			
+				  	  			//gameEngine(null, gameOn, gameOn);
+				  	  			//gameEngine();
+				  	  			
+				  	  			
+				  	  			
+				  	  			//preventinitiativediefromleaking.equals("on");
+				  	  			
+				  	  			
+				  	  			//Thread myThread = new Thread(myRunnable);
+				  	  			//myThread.start();
+					  	  		
+				  	  		}
+				  	  	}, 10325); // FINAGELED!	  	  			
+		  	  	  	}
+		  	  	}, 675); // SHOULD BE AT LEAST 675? WAS 525 		  	    	  	  			  	  			
+	
+	  			//Toast.makeText(MainActivity2.this,"isinitiativestarted = " +  isinitiativestarted + " aretheredoubles = " + aretheredoubles, Toast.LENGTH_SHORT).show();  	 	
+	  	
+			}
+  		});
+	}
+	
+	public void myInitiativeTransition() {
+		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {		
+		
+				final ImageView img = (ImageView)findViewById(R.id.titleanimation);		
+				img.setBackgroundResource(R.anim.titleanimationyesinitiative);
+		  
+				// Get the background, which has been compiled to an AnimationDrawable object.
+				final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+		
+				// Animation is just 1 slide so user can see title.
+				frameAnimation.stop();
+				frameAnimation.start();
+			}
+  		});
+	}
+	
 	
 	/*
 	 * 
@@ -5004,6 +5328,9 @@ public class Client2 extends Activity {
 		
 		issixsidedrolledforinitiative = "yes";
 		
+		aretheredoubles = "no";
+		
+		
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
@@ -5014,7 +5341,7 @@ public class Client2 extends Activity {
 				playerNameTextView.setTypeface(typeFace);		
 				playerNameTextView.setText(ArrayOfPlayers.player[5]);
 				
-				ArrayOfHitPoints.hitpoints[5] = 20;//20		
+				//ArrayOfHitPoints.hitpoints[5] = 20;//20		
 				final TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
 				playerHitPointsTextView.setTypeface(typeFace);
 				playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[5]));
@@ -5387,6 +5714,7 @@ public class Client2 extends Activity {
 								if (playerDeadYet[5] == "no" && playerDeadYet[0] == "yes") {
 									
 									titlevictorydefeat.append("Victory");
+									titlevictorydefeat.bringToFront();
 									
 									istitlestatsopen = "no";
 								}
@@ -5394,6 +5722,7 @@ public class Client2 extends Activity {
 								else if (playerDeadYet[0] == "no" && playerDeadYet[5] == "yes") {
 									
 									titlevictorydefeat.append("Defeat");
+									titlevictorydefeat.bringToFront();
 									
 									istitlestatsopen = "no";
 								}
@@ -5437,11 +5766,13 @@ public class Client2 extends Activity {
 								if (playerDeadYet[5] == "no" && playerDeadYet[0] == "yes") {
 									
 									titlevictorydefeat.append("Victory");
+									titlevictorydefeat.bringToFront();
 								}
 								
 								else if (playerDeadYet[0] == "no" && playerDeadYet[5] == "yes") {
 									
 									titlevictorydefeat.append("Defeat");
+									titlevictorydefeat.bringToFront();
 								}
 							}
 			  	  	  	}
@@ -7533,7 +7864,7 @@ public class Client2 extends Activity {
 	  			
 	  			if (dodgeBlowSpell[playerNumberAttacked] > 0) {
 	  				
-	  				if(numberOfPlayers == 2) {  					
+	  				if (numberOfPlayers == 2) {  					
 						
 	  					String str = "rollDodgeFor :" + "damage2";
 						sendToHost(str);
@@ -9816,7 +10147,7 @@ public class Client2 extends Activity {
 			
 			ishasteused = "no";
 			
-			String str2 = "ishasteused0";
+			String str2 = "secondroundofhasteused";
 			sendToHost(str2);
 			
 			issecondroundofhasteused = "yes";
@@ -9926,13 +10257,22 @@ public class Client2 extends Activity {
 		}
 	}
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public void test() {
 		
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {			
 				
-				Toast.makeText(Client2.this, "DOES NOT CONTAIN :", Toast.LENGTH_LONG).show();
+				Toast.makeText(Client2.this, "First = " + firstsubscript + "  Second = " + secondsubscript, Toast.LENGTH_LONG).show();
 			}
 		});
 		
@@ -10023,6 +10363,32 @@ public class Client2 extends Activity {
 					else if (read.contains("rerllInitiative")) {			
 						
 						reRollInitiative();						
+					}
+					else if (read.contains("finishInitiative")) {			
+						
+						finishInitiative();						
+					}
+					else if (read.contains("myInitiativeTransition")) {			
+						
+						myInitiativeTransition();						
+					}
+					else if (read.contains("FirstSubscript")) {
+						
+						String[] parts = read.split(":");
+						String part1 = parts[0];  
+						//String part2 = parts[1].trim();//IF THERE WAS A SPACE
+						String part2 = parts[1];				
+												
+						firstsubscript=Integer.parseInt(part2);											
+					}
+					else if (read.contains("Secondsbscript")) {
+	
+						String[] parts = read.split(":");
+						String part1 = parts[0];  
+						//String part2 = parts[1].trim();//IF THERE WAS A SPACE
+						String part2 = parts[1];				
+												
+						secondsubscript=Integer.parseInt(part2);											
 					}
 					else if (read.contains("playerNumberAttacked")) {
 						
@@ -10194,7 +10560,7 @@ public class Client2 extends Activity {
 												
 						disarmedTurnStart[0]=Integer.parseInt(part2);//USES [0] IN DISARMEDACTION SO CLIENT DOESN'T USE HASTE ON 2ND RD OF BEING DISARMED.				
 					}
-					else if (read.contains("0didHumanCriticalMiss0")) {
+					else if (read.contains("DidHumanCriticalMiss0")) {
 						
 						String[] parts = read.split(":");
 						String part1 = parts[0];  
@@ -10203,7 +10569,7 @@ public class Client2 extends Activity {
 												
 						didHumanCriticalMiss[0]=part2;											
 					}
-					else if (read.contains("1didHumanCriticalMiss1")) {
+					else if (read.contains("dIdHumanCriticalMiss1")) {
 						
 						String[] parts = read.split(":");
 						String part1 = parts[0];  
@@ -10212,7 +10578,7 @@ public class Client2 extends Activity {
 												
 						didHumanCriticalMiss[1]=part2;											
 					}
-					else if (read.contains("2didHumanCriticalMiss2")) {
+					else if (read.contains("diDHumanCriticalMiss2")) {
 						
 						String[] parts = read.split(":");
 						String part1 = parts[0];  
@@ -10221,7 +10587,7 @@ public class Client2 extends Activity {
 												
 						didHumanCriticalMiss[2]=part2;											
 					}
-					else if (read.contains("3didHumanCriticalMiss3")) {
+					else if (read.contains("didhumanCriticalMiss3")) {
 						
 						String[] parts = read.split(":");
 						String part1 = parts[0];  
@@ -10230,7 +10596,7 @@ public class Client2 extends Activity {
 												
 						didHumanCriticalMiss[3]=part2;											
 					}
-					else if (read.contains("4didHumanCriticalMiss4")) {
+					else if (read.contains("didHUmanCriticalMiss4")) {
 						
 						String[] parts = read.split(":");
 						String part1 = parts[0];  
@@ -10239,25 +10605,25 @@ public class Client2 extends Activity {
 												
 						didHumanCriticalMiss[4]=part2;											
 					}
-					else if (read.contains("5didHumanCriticalMiss5")) {
+					else if (read.contains("didHuManCriticalMiss5")) {
 						
 						String[] parts = read.split(":");
 						String part1 = parts[0];  
 						//String part2 = parts[1].trim();//IF THERE WAS A SPACE
-						String part2 = parts[1];				
+						String part2 = parts[1];	
 												
 						didHumanCriticalMiss[5]=part2;											
 					}
-					else if (read.contains("0canHasDisarmed0")) {
+					else if (read.contains("CanHasDisarmed0")) {
 						
 						String[] parts = read.split(":");
 						String part1 = parts[0];  
 						//String part2 = parts[1].trim();//IF THERE WAS A SPACE
-						String part2 = parts[1];				
+						String part2 = parts[1];		
 												
 						canHasDisarmed[0]=part2;											
 					}
-					else if (read.contains("1canHasDisarmed1")) {
+					else if (read.contains("cAnHasDisarmed1")) {
 						
 						String[] parts = read.split(":");
 						String part1 = parts[0];  
@@ -10266,7 +10632,7 @@ public class Client2 extends Activity {
 												
 						canHasDisarmed[1]=part2;											
 					}
-					else if (read.contains("2canHasDisarmed2")) {
+					else if (read.contains("caNHasDisarmed2")) {
 						
 						String[] parts = read.split(":");
 						String part1 = parts[0];  
@@ -10275,7 +10641,7 @@ public class Client2 extends Activity {
 												
 						canHasDisarmed[2]=part2;											
 					}
-					else if (read.contains("3canHasDisarmed3")) {
+					else if (read.contains("canhasDisarmed3")) {
 						
 						String[] parts = read.split(":");
 						String part1 = parts[0];  
@@ -10284,7 +10650,7 @@ public class Client2 extends Activity {
 												
 						canHasDisarmed[3]=part2;											
 					}
-					else if (read.contains("4canHasDisarmed4")) {
+					else if (read.contains("canHAsDisarmed4")) {
 						
 						String[] parts = read.split(":");
 						String part1 = parts[0];  
@@ -10293,7 +10659,7 @@ public class Client2 extends Activity {
 												
 						canHasDisarmed[4]=part2;											
 					}
-					else if (read.contains("5canHasDisarmed5")) {
+					else if (read.contains("canHaSDisarmed5")) {
 						
 						String[] parts = read.split(":");
 						String part1 = parts[0];  
@@ -10912,6 +11278,10 @@ public class Client2 extends Activity {
 					else if (read.contains("stopGraphics")) {
 						
 						stopGraphics();															
+					}
+					else if (read.contains("foldScrolls")) {
+						
+						foldScrolls();															
 					}
 					else {
 						updateConversationHandler.post(new updateUIThread(read));
