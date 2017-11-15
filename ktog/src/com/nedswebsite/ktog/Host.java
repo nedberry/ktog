@@ -12344,6 +12344,13 @@ public class Host extends Activity {
 			playerDeadYet[5] = "no";
 			playerDeadYet[0] = "no";
 			
+			String str4 = "playerDeadYet5 :" + "no";
+			sendToClient0(str4);
+			
+			String str5 = "playerDeadYet0 :" + "no";
+			sendToClient0(str5);
+			
+			
 			final int gameOn = 1;			
 			
 			ArrayOfTurn.turn[0] = 0;			
@@ -12363,6 +12370,16 @@ public class Host extends Activity {
 			playerDeadYet[0] = "no";
 			playerDeadYet[1] = "no";
 			
+			String str4 = "playerDeadYet5 :" + "no";
+			sendToAllClients(str4);
+			
+			String str5 = "playerDeadYet0 :" + "no";
+			sendToAllClients(str5);
+			
+			String str6 = "playerDeadYet1 :" + "no";
+			sendToAllClients(str6);
+			
+			
 			final int gameOn = 1;			
 			
 			ArrayOfTurn.turn[0] = 0;			
@@ -12380,6 +12397,19 @@ public class Host extends Activity {
 			playerDeadYet[0] = "no";
 			playerDeadYet[1] = "no";
 			playerDeadYet[2] = "no";
+			
+			String str4 = "playerDeadYet5 :" + "no";
+			sendToAllClients(str4);
+			
+			String str5 = "playerDeadYet0 :" + "no";
+			sendToAllClients(str5);
+			
+			String str6 = "playerDeadYet1 :" + "no";
+			sendToAllClients(str6);
+			
+			String str7 = "playerDeadYet2 :" + "no";
+			sendToAllClients(str7);
+			
 			
 			final int gameOn = 1;			
 			
@@ -12401,7 +12431,23 @@ public class Host extends Activity {
 			playerDeadYet[2] = "no";
 			playerDeadYet[3] = "no";
 			
-			final int gameOn = 1;			
+			String str4 = "playerDeadYet5 :" + "no";
+			sendToAllClients(str4);
+			
+			String str5 = "playerDeadYet0 :" + "no";
+			sendToAllClients(str5);
+			
+			String str6 = "playerDeadYet1 :" + "no";
+			sendToAllClients(str6);
+			
+			String str7 = "playerDeadYet2 :" + "no";
+			sendToAllClients(str7);
+			
+			String str8 = "playerDeadYet3 :" + "no";
+			sendToAllClients(str8);
+			
+			
+			final int gameOn = 1;		
 			
 			ArrayOfTurn.turn[0] = 0;			
 		    
@@ -13312,6 +13358,10 @@ public class Host extends Activity {
 						
 						playerDeadYet[5] = "yes";
 						
+						String str = "playerDeadYet5 :" + "yes";
+						sendToClient0(str);
+						
+						
 						gameOverCheck();
 						
 						//isInvokingService = "true";
@@ -13323,6 +13373,10 @@ public class Host extends Activity {
 					else if (ArrayOfHitPoints.hitpoints[0] <= 0) {
 						
 						playerDeadYet[0] = "yes";
+						
+						String str = "playerDeadYet0 :" + "yes";
+						sendToClient0(str);
+						
 						
 						gameOverCheck();
 						
@@ -13358,7 +13412,7 @@ public class Host extends Activity {
   	  	    	
   	  	    	if (numberOfPlayers == 2) { 	  	    	
   	  	    	
-					if (playerDeadYet[5] == "no" && playerDeadYet[0] == "yes") {
+					if (playerDeadYet[5].equals("no") && playerDeadYet[0].equals("yes")) {
 					/*&& playerDeadYet[2] == "yes" && playerDeadYet[3] == "yes"	&& playerDeadYet[4] == "yes" && playerDeadYet[5] == "yes"*/
 						
 						gameOn = 0;
@@ -13436,7 +13490,7 @@ public class Host extends Activity {
 			  	  	  	}, 2000);					
 					}
 					
-					if (playerDeadYet[0] == "no" && playerDeadYet[5] == "yes"
+					if (playerDeadYet[0].equals("no") && playerDeadYet[5].equals("yes")
 							/*&& playerDeadYet[2] == "yes" && playerDeadYet[3] == "yes"
 							&& playerDeadYet[4] == "yes" && playerDeadYet[5] == "yes"*/) {
 						
@@ -13563,14 +13617,14 @@ public class Host extends Activity {
 							
 							if (numberOfPlayers == 2) {
 							
-								if (playerDeadYet[5] == "no" && playerDeadYet[0] == "yes") {
+								if (playerDeadYet[5].equals("no") && playerDeadYet[0].equals("yes")) {
 									
 									titlevictorydefeat.append("Victory");
 									
 									istitlestatsopen = "no";
 								}
 								
-								else if (playerDeadYet[0] == "no" && playerDeadYet[5] == "yes") {
+								else if (playerDeadYet[0].equals("no") && playerDeadYet[5].equals("yes")) {
 									
 									titlevictorydefeat.append("Defeat");
 									
@@ -13613,12 +13667,12 @@ public class Host extends Activity {
 							
 							if (numberOfPlayers == 2) {
 							
-								if (playerDeadYet[5] == "no" && playerDeadYet[0] == "yes") {
+								if (playerDeadYet[5].equals("no") && playerDeadYet[0].equals("yes")) {
 									
 									titlevictorydefeat.append("Victory");
 								}
 								
-								else if (playerDeadYet[0] == "no" && playerDeadYet[5] == "yes") {
+								else if (playerDeadYet[0].equals("no") && playerDeadYet[5].equals("yes")) {
 									
 									titlevictorydefeat.append("Defeat");
 								}
@@ -16920,6 +16974,10 @@ public class Host extends Activity {
 										public void onCancel(DialogInterface dialog) {
 											
 											playerDeadYet[5] = "yes";
+											
+											String str4 = "playerDeadYet5 :" + "yes";
+											sendToAllClients(str4);
+											
 								    		
 								    		gameOverCheck();
 								    		
@@ -16934,6 +16992,10 @@ public class Host extends Activity {
 								    		//hideNavigation();
 								    		
 								    		playerDeadYet[5] = "yes";
+								    		
+								    		String str4 = "playerDeadYet5 :" + "yes";
+											sendToAllClients(str4);
+								    		
 								    		
 								    		gameOverCheck();
 								    		
@@ -17631,6 +17693,10 @@ public class Host extends Activity {
 							
 							
 							playerDeadYet[playerNumberAttacked] = "yes";
+							
+							String str2 = "playerDeadYet" + playerNumberAttacked + " :" + "yes";
+							sendToAllClients(str2);
+							
 				    		
 				    		gameOverCheck();							
 							
@@ -17898,6 +17964,10 @@ public class Host extends Activity {
 							
 							
 							playerDeadYet[playerNumberAttacked] = "yes";
+							
+							String str2 = "playerDeadYet" + playerNumberAttacked + " :" + "yes";
+							sendToAllClients(str2);
+							
 				    		
 				    		gameOverCheck();							
 							
@@ -18171,6 +18241,10 @@ public class Host extends Activity {
 							
 							
 							playerDeadYet[playerNumberAttacked] = "yes";
+							
+							String str2 = "playerDeadYet" + playerNumberAttacked + " :" + "yes";
+							sendToAllClients(str2);
+							
 				    		
 				    		gameOverCheck();						
 							
@@ -18501,6 +18575,10 @@ public class Host extends Activity {
 							
 							
 							playerDeadYet[playerNumberAttacked] = "yes";
+							
+							String str2 = "playerDeadYet" + playerNumberAttacked + " :" + "yes";
+							sendToAllClients(str2);
+							
 				    		
 				    		gameOverCheck();						
 							
@@ -19504,61 +19582,73 @@ public class Host extends Activity {
 								  		//centerscrolltext.startAnimation(animAlphaText);
 										centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[deadGuy] + " has been slain!");
 										
-										String str = ArrayOfPlayers.player[deadGuy] + " has been slain!";
+										String str = "> " + ArrayOfPlayers.player[deadGuy] + " has been slain!";
 										sendToAllClients(str);
 										
 										
 										playerDeadYet[deadGuy] = "yes";
+										
+										String str2 = "playerDeadYet" + deadGuy + " :" + "yes";
+										sendToAllClients(str2);
+										
 							    		
-							    		gameOverCheck();			
+										final Handler h2 = new Handler();
+							  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
+							  	  	  			
+							  	  	  		@Override
+								  	  	  	public void run() {						
 										
-										 
-										// Picture of one sword destroying another.
-										 
-										// deathGraphic();										 
-										
-										
-							    		/*
-										AlertDialog.Builder alert = new AlertDialog.Builder(Host.this);
-									    
-										alert.setCancelable(false);
-										
-										alert.setTitle(ArrayOfPlayers.player[deadGuy] + " has been slain.");
-							  	    	
-							  	    	//alert.setMessage("something");
-							  	    		    	
-								    	
-										
-										// if back pressed: DOES THIS WORK????????????
-										alert.setOnCancelListener(new DialogInterface.OnCancelListener() {
-											@Override
-											public void onCancel(DialogInterface dialog) {
+									    		gameOverCheck();			
 												
-												//hideNavigation();
-									    		
-									    		playerDeadYet[deadGuy] = "yes";
-									    		
-									    		gameOverCheck();
-									    		
-									    		dialog.dismiss();
-											}
-										});
-										
-										
-								    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-									    	public void onClick(DialogInterface dialog, int whichButton) {
-									    		
-									    		//hideNavigation();
-									    		
-									    		playerDeadYet[deadGuy] = "yes";
-									    		
-									    		gameOverCheck();
-									    		
-									    		dialog.dismiss();
-									    	}
-								    	});								    	
-								    	alert.show();
-								    	*/
+												 
+												// Picture of one sword destroying another.
+												 
+												// deathGraphic();										 
+												
+												
+									    		/*
+												AlertDialog.Builder alert = new AlertDialog.Builder(Host.this);
+											    
+												alert.setCancelable(false);
+												
+												alert.setTitle(ArrayOfPlayers.player[deadGuy] + " has been slain.");
+									  	    	
+									  	    	//alert.setMessage("something");
+									  	    		    	
+										    	
+												
+												// if back pressed: DOES THIS WORK????????????
+												alert.setOnCancelListener(new DialogInterface.OnCancelListener() {
+													@Override
+													public void onCancel(DialogInterface dialog) {
+														
+														//hideNavigation();
+											    		
+											    		playerDeadYet[deadGuy] = "yes";
+											    		
+											    		gameOverCheck();
+											    		
+											    		dialog.dismiss();
+													}
+												});
+												
+												
+										    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+											    	public void onClick(DialogInterface dialog, int whichButton) {
+											    		
+											    		//hideNavigation();
+											    		
+											    		playerDeadYet[deadGuy] = "yes";
+											    		
+											    		gameOverCheck();
+											    		
+											    		dialog.dismiss();
+											    	}
+										    	});								    	
+										    	alert.show();
+										    	*/
+							  	  	  		}
+							  	  	  	}, 2000);
 					  	  	  		}
 					  	  	  	}, 2000);
 					  	    }
@@ -19708,35 +19798,35 @@ public class Host extends Activity {
 							
 							didHumanCriticalMiss[0]=part2;						
 							
-							String str = "DidHumanCriticalMiss0";
+							String str = "DidHumanCriticalMiss0 :" + "yes";
 							sendToAllClients(str);
 						}
 						else if (id == 1) {
 							
 							didHumanCriticalMiss[1]=part2;						
 							
-							String str = "dIdHumanCriticalMiss1";
+							String str = "dIdHumanCriticalMiss1 :" + "yes";
 							sendToAllClients(str);
 						}
 						else if (id == 2) {
 							
 							didHumanCriticalMiss[2]=part2;							
 							
-							String str = "diDHumanCriticalMiss2";
+							String str = "diDHumanCriticalMiss2 :" + "yes";
 							sendToAllClients(str);
 						}
 						else if (id == 3) {
 							
 							didHumanCriticalMiss[3]=part2;							
 							
-							String str = "didhumanCriticalMiss3";
+							String str = "didhumanCriticalMiss3 :" + "yes";
 							sendToAllClients(str);
 						}
 						else if (id == 4) {
 							
 							didHumanCriticalMiss[4]=part2;
 													
-							String str = "didHUmanCriticalMiss4";
+							String str = "didHUmanCriticalMiss4 :" + "yes";
 							sendToAllClients(str);
 						}																	
 					}

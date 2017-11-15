@@ -5668,11 +5668,18 @@ public class Client2 extends Activity {
   		});
 	}
 	
-	public void victoryDefeatAnimation() {
+	public void victoryDefeatAnimation() {		
 		
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {						
+				
+				ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+				titleBlankButton.setEnabled(false);
+				
+				
+				test();
+				
 				
 				if (istitlestatsopen.equals("yes")) {
 					
@@ -5711,18 +5718,16 @@ public class Client2 extends Activity {
 							
 							if (numberOfPlayers == 2) {
 							
-								if (playerDeadYet[5] == "no" && playerDeadYet[0] == "yes") {
+								if (playerDeadYet[5].equals("no") && playerDeadYet[0].equals("yes")) {
 									
-									titlevictorydefeat.append("Victory");
-									titlevictorydefeat.bringToFront();
+									titlevictorydefeat.append("Defeat");									
 									
 									istitlestatsopen = "no";
 								}
 								
-								else if (playerDeadYet[0] == "no" && playerDeadYet[5] == "yes") {
+								else if (playerDeadYet[0].equals("no") && playerDeadYet[5].equals("yes")) {
 									
-									titlevictorydefeat.append("Defeat");
-									titlevictorydefeat.bringToFront();
+									titlevictorydefeat.append("Victory");									
 									
 									istitlestatsopen = "no";
 								}
@@ -5763,16 +5768,14 @@ public class Client2 extends Activity {
 							
 							if (numberOfPlayers == 2) {
 							
-								if (playerDeadYet[5] == "no" && playerDeadYet[0] == "yes") {
+								if (playerDeadYet[5].equals("no") && playerDeadYet[0].equals("yes")) {
 									
-									titlevictorydefeat.append("Victory");
-									titlevictorydefeat.bringToFront();
+									titlevictorydefeat.append("Defeat");									
 								}
 								
-								else if (playerDeadYet[0] == "no" && playerDeadYet[5] == "yes") {
+								else if (playerDeadYet[0].equals("no") && playerDeadYet[5].equals("yes")) {
 									
-									titlevictorydefeat.append("Defeat");
-									titlevictorydefeat.bringToFront();
+									titlevictorydefeat.append("Victory");									
 								}
 							}
 			  	  	  	}
@@ -9267,7 +9270,7 @@ public class Client2 extends Activity {
 		  	  	  	}
 	  	  	  	}, 2000);
   	  	    }
-		});	
+		});
 	}
 	
 	public void mightyBlowResults() {
@@ -10096,7 +10099,7 @@ public class Client2 extends Activity {
   	  	    	
 	  			
   	    		final Handler h4 = new Handler();
-		  	  	h4.postDelayed(new Runnable() {		  	  	  			
+		  	  	h4.postDelayed(new Runnable() {	  	  	  			
 		  	  			
 		  	  		@Override
 		  	  		public void run() {
@@ -10272,7 +10275,7 @@ public class Client2 extends Activity {
 			@Override
 			public void run() {			
 				
-				Toast.makeText(Client2.this, "First = " + firstsubscript + "  Second = " + secondsubscript, Toast.LENGTH_LONG).show();
+				Toast.makeText(Client2.this, "5 = " + playerDeadYet[5] + "  0 = " + playerDeadYet[0], Toast.LENGTH_LONG).show();
 			}
 		});
 		
@@ -10355,6 +10358,51 @@ public class Client2 extends Activity {
 						String part2 = parts[1];
 												
 						id=Integer.parseInt(part2);											
+					}
+					else if (read.contains("playerDeadYet5")) {
+						
+						String[] parts = read.split(":");
+						String part1 = parts[0];  
+						//String part2 = parts[1].trim();//IF THERE WAS A SPACE
+						String part2 = parts[1];				
+												
+						playerDeadYet[5]=part2;																		
+					}
+					else if (read.contains("playerDeadYet0")) {
+	
+						String[] parts = read.split(":");
+						String part1 = parts[0];  
+						//String part2 = parts[1].trim();//IF THERE WAS A SPACE
+						String part2 = parts[1];				
+												
+						playerDeadYet[0]=part2;																		
+					}
+					else if (read.contains("playerDeadYet1")) {
+						
+						String[] parts = read.split(":");
+						String part1 = parts[0];  
+						//String part2 = parts[1].trim();//IF THERE WAS A SPACE
+						String part2 = parts[1];				
+												
+						playerDeadYet[1]=part2;																		
+					}
+					else if (read.contains("playerDeadYet2")) {
+						
+						String[] parts = read.split(":");
+						String part1 = parts[0];  
+						//String part2 = parts[1].trim();//IF THERE WAS A SPACE
+						String part2 = parts[1];				
+												
+						playerDeadYet[2]=part2;																		
+					}
+					else if (read.contains("playerDeadYet3")) {
+						
+						String[] parts = read.split(":");
+						String part1 = parts[0];  
+						//String part2 = parts[1].trim();//IF THERE WAS A SPACE
+						String part2 = parts[1];				
+												
+						playerDeadYet[3]=part2;																
 					}
 					else if (read.contains("rollInitiative")) {
 						
