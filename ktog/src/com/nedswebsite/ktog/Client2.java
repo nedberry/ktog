@@ -5707,7 +5707,11 @@ public class Client2 extends Activity {
 				titleBlankButton.setEnabled(false);
 				
 				
-				test();
+				ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+		  		chatBlankButton.bringToFront();
+				
+				
+				//test();
 				
 				
 				if (istitlestatsopen.equals("yes")) {
@@ -10528,7 +10532,7 @@ public class Client2 extends Activity {
 	
 	
 	
-	
+	/*
 	public void test() {
 		
 		runOnUiThread(new Runnable() {
@@ -10540,6 +10544,7 @@ public class Client2 extends Activity {
 		});
 		
 	}
+	*/
 	
 	//=============================================================================================
 	//SEPERATOR
@@ -10763,11 +10768,12 @@ public class Client2 extends Activity {
 													
 							ArrayOfTurn.turn[0]=Integer.parseInt(part2);
 						}
+						/*
 						else {
 							
 							test();
 						}
-						
+						*/
 					}					
 					else if (read.contains("displayTrn")) {
 						
@@ -11074,7 +11080,7 @@ public class Client2 extends Activity {
 					}
 					else if (read.contains("victoryDefeatAnimation")) {
 						
-						victoryDefeatAnimation();																	
+						victoryDefeatAnimation();
 					}
 					
 					else if (read.contains("cmputerTwentySidedRollFromLeft1")) {
