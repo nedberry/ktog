@@ -5015,7 +5015,7 @@ public class Client2 extends Activity {
 		});
 	}
 	
-	public void finishInitiative() {
+	public void finishInitiative() {		
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
@@ -5229,6 +5229,9 @@ public class Client2 extends Activity {
 			  	  		
 			  	  		
 			  	  		//titlerulestext.bringToFront();
+				  	  	
+				  	  	
+				  	  	forChat();
 			  	  		
 		  	  			  	  			
 			  	  		final Handler h3 = new Handler();
@@ -5251,9 +5254,7 @@ public class Client2 extends Activity {
 									
 					  	  		titletext.setVisibility(View.VISIBLE);
 					  	  		//THIS IS ALREADY VISIBLE (NOT GONE):
-					  	  		//titletext.append("KtOG");
-					  	  		
-				  	  			
+					  	  		//titletext.append("KtOG");				  	  			
 				  	  			
 				  	  			
 				  	  			final ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
@@ -5293,11 +5294,23 @@ public class Client2 extends Activity {
   		});
 	}
 	
+	public void forChat() {
+		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				
+				ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+				chatBlankButton.bringToFront();
+			}
+  		});		
+	}
+	
 	public void myInitiativeTransition() {
 		
 		runOnUiThread(new Runnable() {
 			@Override
-			public void run() {		
+			public void run() {
 		
 				final ImageView img = (ImageView)findViewById(R.id.titleanimation);		
 				img.setBackgroundResource(R.anim.titleanimationyesinitiative);
@@ -5360,7 +5373,11 @@ public class Client2 extends Activity {
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-		
+				
+				ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+	  			chatBlankButton.bringToFront();
+				
+				
 				//hideImageView();
 				
 				// Use a blank drawable to hide the imageview animation:
@@ -5405,6 +5422,10 @@ public class Client2 extends Activity {
 			@Override
 			public void run() {				
 				
+				//ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+	  			//chatBlankButton.bringToFront();
+				
+				
 				//hideImageView();
 				
 				// Use a blank drawable to hide the imageview animation:
@@ -5447,8 +5468,8 @@ public class Client2 extends Activity {
 		
 		runOnUiThread(new Runnable() {
 			@Override
-			public void run() {
-		
+			public void run() {			
+				
 				//hideImageView();
 				
 				// Use a blank drawable to hide the imageview animation:
@@ -5469,6 +5490,10 @@ public class Client2 extends Activity {
 				
 				ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
 		    	titleBlankButton.bringToFront();
+		    	
+		    	
+		    	ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+	  			chatBlankButton.bringToFront();
 				
 				
 		    	computerCardStopFadeInFadeOut();
@@ -5521,6 +5546,10 @@ public class Client2 extends Activity {
 	  			
 	  			ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
   	  	    	titleBlankButton.bringToFront();
+  	  	    	
+  	  	    	
+  	  	    	ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+  	  	    	chatBlankButton.bringToFront();
 	  			
 				
 				centerscrolltext.setVisibility(View.VISIBLE);													
@@ -5789,28 +5818,52 @@ public class Client2 extends Activity {
 	
 	public void clientNotDisarmed() {
 		
-		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
-  		disarmedtextright.setVisibility(View.INVISIBLE);
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {
+		
+				TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+		  		disarmedtextright.setVisibility(View.INVISIBLE);
+  	  	    }
+		});
 	}
 	
 	public void hostSideNotDisarmed() {
 		
-		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
-  		disarmedtextleft.setVisibility(View.INVISIBLE);
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {
+		
+				TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+		  		disarmedtextleft.setVisibility(View.INVISIBLE);
+  	  	    }
+		});
 	}
 	
 	public void clientDisarmed() {
 		
-		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
-		disarmedtextright.setVisibility(View.VISIBLE);
-  	  	disarmedtextright.bringToFront();
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {
+		
+				TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+				disarmedtextright.setVisibility(View.VISIBLE);
+		  	  	disarmedtextright.bringToFront();
+  	  	    }
+		});
 	}
 	
 	public void hostSideDisarmed() {
 		
-		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
-		disarmedtextleft.setVisibility(View.VISIBLE);
-  	  	disarmedtextleft.bringToFront();		
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {
+		
+				TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+				disarmedtextleft.setVisibility(View.VISIBLE);
+		  	  	disarmedtextleft.bringToFront();
+  	  	    }
+		});
 	}
 	
 	
@@ -5997,12 +6050,18 @@ public class Client2 extends Activity {
 	                        public void onClick(final DialogInterface dialog, int item) {
 	                        	
 	                        	if (item == 0) {										
-									/*
+									
+	                        		attack();
+									
+									dialog.dismiss();
+	                        		
+	                        		/*
 									centerscrolltext.setVisibility(View.VISIBLE);													
 							  		centerscrolltext.startAnimation(animAlphaText);
 									centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + " attacks...");
 									*/
 									
+									/*
 									String str = "> " + ArrayOfPlayers.player[0] + " attacks...";
 									sendToHost(str);																
 									
@@ -6018,16 +6077,23 @@ public class Client2 extends Activity {
 											
 											dialog.dismiss();
 							  	  	  	}
-						  	  	  	}, 1000);										
+						  	  	  	}, 1000);
+						  	  	  	*/										
 								}
 	                        	
 	                        	else if (item == 1) {
-									/*
+									
+	                        		disarm();
+									
+									dialog.dismiss();
+	                        		
+	                        		/*
 									centerscrolltext.setVisibility(View.VISIBLE);													
 							  		centerscrolltext.startAnimation(animAlphaText);
 									centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + " attempts to disarm...");
 									*/
 									
+									/*
 									String str = "> " + ArrayOfPlayers.player[0] + " attempts to disarm...";
 									sendToHost(str);									
 									
@@ -6043,16 +6109,23 @@ public class Client2 extends Activity {
 											
 											dialog.dismiss();
 							  	  	  	}
-						  	  	  	}, 1000);										
+						  	  	  	}, 1000);
+						  	  	  	*/									
 								}
 	                        	
 	                        	else if (item == 2) {
-									/*
+									
+	                        		haste();
+	                        		
+	                        		dialog.dismiss();
+	                        		
+	                        		/*
 									centerscrolltext.setVisibility(View.VISIBLE);													
 							  		centerscrolltext.startAnimation(animAlphaText);
 									centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + " casts haste...");
 									*/
 									
+	                        		/*
 									String str = "> " + ArrayOfPlayers.player[0] + " casts haste...";
 									sendToHost(str);									
 									
@@ -6067,16 +6140,23 @@ public class Client2 extends Activity {
 											
 											dialog.dismiss();
 							  	  	  	}
-						  	  	  	}, 1000);									
+						  	  	  	}, 1000);
+						  	  	  	*/								
 								}
 	                        	
 	                        	else if (item == 3) {
-									/*
+									
+	                        		cure();
+									
+									dialog.dismiss();
+	                        		
+	                        		/*
 									centerscrolltext.setVisibility(View.VISIBLE);													
 							  		centerscrolltext.startAnimation(animAlphaText);
 									centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + " casts cure...");
 									*/
 									
+									/*
 									String str = "> " + ArrayOfPlayers.player[0] + " casts cure...";
 									sendToHost(str);									
 									
@@ -6091,16 +6171,23 @@ public class Client2 extends Activity {
 											
 											dialog.dismiss();
 							  	  	  	}
-						  	  	  	}, 1000);										
+						  	  	  	}, 1000);
+						  	  	  	*/										
 								}
 	                        	
 	                        	else if (item == 4) {
+	                        		
+	                        		bless();
+									
+									dialog.dismiss();
+	                        		
 									/*
 									centerscrolltext.setVisibility(View.VISIBLE);													
 							  		centerscrolltext.startAnimation(animAlphaText);
 									centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + " casts bless...");
 									*/
 									
+									/*
 									String str = "> " + ArrayOfPlayers.player[0] + " casts bless...";
 									sendToHost(str);									
 									
@@ -6116,7 +6203,8 @@ public class Client2 extends Activity {
 											
 											dialog.dismiss();
 							  	  	  	}
-						  	  	  	}, 1000);									
+						  	  	  	}, 1000);
+						  	  	  	*/								
 								}
 								
 								//((AlertDialog) dialog).getButton(dialog.BUTTON1).setGravity(Gravity.CENTER);
@@ -6264,12 +6352,18 @@ public class Client2 extends Activity {
 	  		                        public void onClick(final DialogInterface dialog, int item) {
 	  		                        	
 	  		                        	if (item == 0) {										
-	  										/*
+	  										
+	  		                        		attack();
+						  	  	  			
+						  	  	  			dialog.dismiss();
+	  		                        		
+	  		                        		/*
 	  		                        		centerscrolltext.setVisibility(View.VISIBLE);													
 									  		centerscrolltext.startAnimation(animAlphaText);
 											centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + " attacks...");
 											*/
 											
+						  	  	  			/*
 											String str = "> " + ArrayOfPlayers.player[0] + " attacks...";
 											sendToHost(str);											
 											
@@ -6284,28 +6378,64 @@ public class Client2 extends Activity {
 								  	  	  			
 								  	  	  			// CHOOSE PLAYER
 								  	  	  			attack();
+								  	  	  			
+								  	  	  			dialog.dismiss();
 									  	  	  	}
-								  	  	  	}, 1000);										
+								  	  	  	}, 1000);
+								  	  	  	*/									
 	  									}
 	  		                        	
 	  		                        	else if (item == 1) {	  		                        														
 											
 											if (hasteSpell[0] < 1) {
 												
+												dialog.dismiss();
+												
+												
+												AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this);
+											      
+												alert.setTitle(ArrayOfPlayers.player[0] + ", you have already used your Haste spells.");
+									  	    	/*
+									  	    	alert.setMessage("something");
+									  	    	*/	    	
+										    	
+										    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+											    	public void onClick(DialogInterface dialog, int whichButton) {
+											    		
+											    		//hideNavigation();
+											    		
+											    		disarmedAction();
+											    		
+											    		dialog.dismiss();
+											    	}
+										    	});								    	
+										    	alert.show();									
+												
+												
+										    	/*
 												centerscrolltext.setVisibility(View.VISIBLE);
 										  		centerscrolltext.startAnimation(animAlphaText);
 										  		centerscrolltext.append("\n" + "> You have already used your Haste spells.");
 												
 												disarmedAction();
+												*/
 											}												
 											
 											else if ((hasteSpell[0] > 0) && !(disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0])) {
+												
+												haste();
+												
+												//disarmedAction();
+							  	  	  			
+							  	  	  			dialog.dismiss();
+												
 												/*
 												centerscrolltext.setVisibility(View.VISIBLE);													
 										  		centerscrolltext.startAnimation(animAlphaText);
 												centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + " casts haste...");
 												*/
 												
+							  	  	  			/*
 												String str = "> " + ArrayOfPlayers.player[0] + " casts haste...";
 												sendToHost(str);												
 												
@@ -6317,25 +6447,38 @@ public class Client2 extends Activity {
 										  	  	  	public void run() {
 									  	  	  			
 									  	  	  			haste();
+									  	  	  			
+									  	  	  		dialog.dismiss();
 										  	  	  	}
-									  	  	  	}, 1000);												
+									  	  	  	}, 1000);
+									  	  	  	*/												
 											}
 											
 											else {
 												
 												disarmedAction();
+												
+												//haste();
+												
+												dialog.dismiss();
 											}										
 	  									}
 	  		                        	
 	  		                        	else if (item == 2) {	  										
 	  		                        		
 											if (cureSpell[0] > 0) {
+												
+												cure();
+							  	  	  			
+							  	  	  			dialog.dismiss();
+												
 												/*
 												centerscrolltext.setVisibility(View.VISIBLE);													
 										  		centerscrolltext.startAnimation(animAlphaText);
 												centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + " casts cure...");
 												*/
 												
+							  	  	  			/*
 												String str = "> " + ArrayOfPlayers.player[0] + " casts cure...";
 												sendToHost(str);												
 												
@@ -6347,19 +6490,44 @@ public class Client2 extends Activity {
 										  	  	  	public void run() {
 									  	  	  			
 									  	  	  			cure();
+									  	  	  			
+									  	  	  			dialog.dismiss();
 										  	  	  	}
-									  	  	  	}, 1000);													
+									  	  	  	}, 1000);
+									  	  	  	*/													
 											}
 											
 											else if (cureSpell[0] < 1) {
 												
-												disarmedAction();
+												dialog.dismiss();
+												
+												
+												AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this);
+											      
+												alert.setTitle(ArrayOfPlayers.player[0] + ", you have already used your Cure spell.");
+									  	    	/*
+									  	    	alert.setMessage("something");
+									  	    	*/	    	
+										    	
+										    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+											    	public void onClick(DialogInterface dialog, int whichButton) {
+											    		
+											    		//hideNavigation();
+											    		
+											    		disarmedAction();
+											    		
+											    		dialog.dismiss();
+											    	}
+										    	});								    	
+										    	alert.show();
+												
+												//disarmedAction();
 											}									
 	  									}	  									
 	  									
 	  									//isInvokingService = "true";
 	  		                        	
-	  		                            dialog.dismiss();
+	  		                            //dialog.dismiss();
 	  		                        }
 	  		                    });	            
 	  		            
@@ -6384,14 +6552,17 @@ public class Client2 extends Activity {
 		
 		runOnUiThread(new Runnable() {
   	  	    @Override
-  	  	    public void run() {  	  	    	
+  	  	    public void run() {	  	    	
   	  	    	
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 	  			
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);  	  	    	
-	  						 
+	  			
+	  			String str = "> " + ArrayOfPlayers.player[0] + " attacks...";
+				sendToHost(str);
+	  			
 				
   	  	  		final Handler h2 = new Handler();
 	  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
@@ -6429,6 +6600,10 @@ public class Client2 extends Activity {
 								
 								
 					  			centerscrolltext.bringToFront();
+					  			
+					  			
+					  			ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+				  	  	    	chatBlankButton.bringToFront();
 			  	  	  		}
 			  	  	  	}, 750);					  	  	  		
 	  	  	  		}
@@ -6445,18 +6620,25 @@ public class Client2 extends Activity {
   	  	    @Override
   	  	    public void run() {
   	  	    	
+  	  	    	ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+  	  	    	chatBlankButton.bringToFront();
+  	  	    	
+  	  	    	
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 	  			
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);
 	  			
-	  			if (hasteSpell[0] > 0) {	  				
-	  					
+	  			if (hasteSpell[0] > 0) {			
+	  				
+	  				String str = "> " + ArrayOfPlayers.player[0] + " casts haste...";
+					sendToHost(str);
+	  				
   					//hasteGraphic();  					
   					
-  					String str = "hasteGraphic";
-  					sendToHost(str);  					
+  					String str2 = "hasteGraphic";
+  					sendToHost(str2);  					
   					
   					
   					final Handler h1 = new Handler();
@@ -6467,20 +6649,20 @@ public class Client2 extends Activity {
   		  	  	  			
   		  	  	  			hasteSpell[0] = hasteSpell[0] - 1;
   		  	  	  			
-  		  	  	  			String str2 = "usedHaste";
-  		  	  	  			sendToHost(str2);
+  		  	  	  			String str3 = "usedHaste";
+  		  	  	  			sendToHost(str3);
   		  	  	  			
   		  	  	  			
   		  	  	  			//skillsCheck();
   		  	  	  			
-  		  	  	  			String str3 = "skillsCheck";
-  		  	  	  			sendToHost(str3);
+  		  	  	  			String str4 = "skillsCheck";
+  		  	  	  			sendToHost(str4);
   		  	  	  			
   		  	  	  			
   		  	  	  			//stopGraphics();
   		  	  	  			
-  		  	  	  			String str4 = "stopGraphics";
-  		  	  	  			sendToHost(str4);
+  		  	  	  			String str5 = "stopGraphics";
+  		  	  	  			sendToHost(str5);
   		  	  	  			
   		  	  	  			
   		  	  	  			if (canHasDisarmed[0].equals("no")) {	  		  	  	  				
@@ -6497,8 +6679,8 @@ public class Client2 extends Activity {
 								centerscrolltext.startAnimation(animAlphaText);
 								centerscrolltext.append("\n" + "> TWO attacks...");
 								*/
-								String str5 = "> TWO attacks...";
-								sendToHost(str5);								
+								String str6 = "> TWO attacks...";
+								sendToHost(str6);								
 																
 								
 								final Handler h2 = new Handler();
@@ -6512,8 +6694,8 @@ public class Client2 extends Activity {
 								  		centerscrolltext.startAnimation(animAlphaText);
 										centerscrolltext.append("\n" + "> FIRST attack...");
 										*/
-										String str6 = "> FIRST attack...";
-										sendToHost(str6);										
+										String str7 = "> FIRST attack...";
+										sendToHost(str7);										
 																				
 										
 										final Handler h3 = new Handler();
@@ -6533,20 +6715,24 @@ public class Client2 extends Activity {
 		  		  	  	  		
 		  		  	  	  		canHasDisarmed[0] = "no";
 		  		  	  	  		
-		  		  	  	  		String str7 = "canHasDisarmed :" + "no";
-		  		  	  	  		sendToHost(str7);
+		  		  	  	  		String str6 = "canHasDisarmed :" + "no";
+		  		  	  	  		sendToHost(str6);
 		  		  	  	  		
 
-				  	  	  		final TextView hasteGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
-				  	  	  		hasteGraphic.setVisibility(View.INVISIBLE);
+				  	  	  		//final TextView hasteGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+				  	  	  		//hasteGraphic.setVisibility(View.INVISIBLE);
+		  		  	  	  		
+		  		  	  	  		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+		  		  	  	  		disarmedtextright.setVisibility(View.INVISIBLE);
+		  		  	  	  		
 			  	  	  			
 				  	  	  		/*
 				  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 						  		centerscrolltext.startAnimation(animAlphaText);
 								centerscrolltext.append("\n" + "> You are no longer disarmed.");
 								*/
-								String str8 = "> " +  ArrayOfPlayers.player[0] + " is no longer disarmed.";
-								sendToHost(str8);
+								String str7 = "> " +  ArrayOfPlayers.player[0] + " is no longer disarmed.";
+								sendToHost(str7);
 								
 								
 								TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
@@ -6558,8 +6744,8 @@ public class Client2 extends Activity {
 					  	  	  		@Override
 						  	  	  	public void run() {
 					  	  	  			
-					  	  	  			String str9 = "hasteCureDisarmWithBlessDisarmNoBlessBlessCompleted";
-					  	  	  			sendToHost(str9);
+					  	  	  			String str8 = "hasteCureDisarmWithBlessDisarmNoBlessBlessCompleted";
+					  	  	  			sendToHost(str8);
 						  	  	  	}
 					  	  	  	}, 2000);						  	  	  																						
 							}	  		  	  	  			
@@ -6585,7 +6771,7 @@ public class Client2 extends Activity {
 				    		
 				    		dialog.dismiss();
 				    	}
-			    	});								    	
+			    	});							    	
 			    	alert.show();  					  	  	  	
 				}	  	  	    				 
   	  	    }
@@ -6598,7 +6784,7 @@ public class Client2 extends Activity {
 		
 		runOnUiThread(new Runnable() {
   	  	    @Override
-  	  	    public void run() {
+  	  	    public void run() {    	
   	  	    	
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
@@ -6608,23 +6794,27 @@ public class Client2 extends Activity {
   	  	    	
 		
 				if (cureSpell[0] > 0) {					
-						
+					
+					String str = "> " + ArrayOfPlayers.player[0] + " casts cure...";
+					sendToHost(str);
+					
+					
 					cureSpell[0] = cureSpell[0] - 1;
 					
-					String str = "usedCure";
-					sendToHost(str);
+					String str2 = "usedCure";
+					sendToHost(str2);
 					
 					
 					//skillsCheck();
 					
-					String str2 = "skillsCheck";
-					sendToHost(str2);
+					String str3 = "skillsCheck";
+					sendToHost(str3);
 					
 					
 					//cureGraphic();
 					
-					String str3 = "cureGraphic";
-					sendToHost(str3);			
+					String str4 = "cureGraphic";
+					sendToHost(str4);			
 		  	  	  			
 					
 	  	  	  		final Handler h2 = new Handler();
@@ -6638,8 +6828,8 @@ public class Client2 extends Activity {
 		  	  	  			
 		  	  	  			//stopGraphics();
 		  	  	  			
-		  	  	  			String str4 = "stopGraphics";
-		  	  	  			sendToHost(str4);
+		  	  	  			String str5 = "stopGraphics";
+		  	  	  			sendToHost(str5);
 		  	  	  			
 		  	  	  			
 		  	  	  			ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
@@ -6678,6 +6868,9 @@ public class Client2 extends Activity {
 									
 									iscurerolled = "yes";
 									
+									
+									ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+					  	  	    	chatBlankButton.bringToFront();									
 				  	  	  		}
 				  	  	  	}, 750);					  	  	  		
 		  	  	  		}
@@ -6717,11 +6910,19 @@ public class Client2 extends Activity {
   	  	    @Override
   	  	    public void run() {
   	  	    	
+  	  	    	//ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+  	  	    	//chatBlankButton.bringToFront();
+  	  	    	
+  	  	    	
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 	  			
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-	  			centerscrolltext.setTypeface(typeFace);		
+	  			centerscrolltext.setTypeface(typeFace);
+	  			
+	  			
+	  			String str = "> " + ArrayOfPlayers.player[0] + " attempts to disarm...";
+				sendToHost(str);
 				
 					
 				if (blessSpell[0] > 0) {		
@@ -6742,14 +6943,14 @@ public class Client2 extends Activity {
 		  		    		
 		  		    		blessSpell[0] = blessSpell[0] - 1;
 		  		    		
-		  		    		String str = "usedBless";
-		  		    		sendToHost(str);
+		  		    		String str2 = "usedBless";
+		  		    		sendToHost(str2);
 		  		    		
 							
 		  		    		//skillsCheck();
 		  		    		
-		  		    		String str2 = "skillsCheck";
-		  		    		sendToHost(str2);
+		  		    		String str3 = "skillsCheck";
+		  		    		sendToHost(str3);
 		  		    		
 		  		    		
 		  		    		dialog.dismiss();
@@ -6795,7 +6996,7 @@ public class Client2 extends Activity {
 		
 		runOnUiThread(new Runnable() {
   	  	    @Override
-  	  	    public void run() {
+  	  	    public void run() {    	
   	  	    	
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
@@ -6861,7 +7062,11 @@ public class Client2 extends Activity {
 						  		ArrayOfAttackResult.attackResult[0] = (int) ((Math.random() * 20) + 1);
 								//int attackResult = (int) ((Math.random() * 20) + 1);
 						  		
-						  		isdisarmwithblessrolled = "yes";					  		
+						  		isdisarmwithblessrolled = "yes";
+						  		
+						  		
+						  		ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+				  	  	    	chatBlankButton.bringToFront();
 			  	  	  		}
 			  	  	  	}, 750);					  	  	  		
 	  	  	  		}
@@ -6877,6 +7082,10 @@ public class Client2 extends Activity {
 		runOnUiThread(new Runnable() {
   	  	    @Override
   	  	    public void run() {
+  	  	    	
+  	  	    	//ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+  	  	    	//chatBlankButton.bringToFront();
+  	  	    	
   	  	    	
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
@@ -6904,23 +7113,26 @@ public class Client2 extends Activity {
 			  	  	  		@Override
 				  	  	  	public void run() {
 			  	  	  		
-			  	  	  		twentySidedWobbleStart();
-			  	  	  		
-			  	  	  		isTwentySidedReadyToBeRolled = "yes";
-			  	  	  		
-			  	  	  		centerscrolltext.bringToFront();
-			  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
-					  		centerscrolltext.startAnimation(animAlphaText);
-					  		centerscrolltext.append("\n" + "> Press slide the die... ");
-					  		
-					  		ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
-			  	  	    	titleBlankButton.bringToFront();					  		
-					  										  		
-							
-							ArrayOfAttackResult.attackResult[0] = (int) ((Math.random() * 20) + 1);
-							
-							isdisarmnoblessrolled = "yes";
-							
+				  	  	  		twentySidedWobbleStart();
+				  	  	  		
+				  	  	  		isTwentySidedReadyToBeRolled = "yes";
+				  	  	  		
+				  	  	  		centerscrolltext.bringToFront();
+				  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
+						  		centerscrolltext.startAnimation(animAlphaText);
+						  		centerscrolltext.append("\n" + "> Press slide the die... ");
+						  		
+						  		ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+				  	  	    	titleBlankButton.bringToFront();					  		
+						  										  		
+								
+								ArrayOfAttackResult.attackResult[0] = (int) ((Math.random() * 20) + 1);
+								
+								isdisarmnoblessrolled = "yes";
+								
+								
+								ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+				  	  	    	chatBlankButton.bringToFront();
 			  	  	  		}
 			  	  	  	}, 750);				  	  	  		
 	  	  	  		}
@@ -6937,6 +7149,10 @@ public class Client2 extends Activity {
   	  	    @Override
   	  	    public void run() {
   	  	    	
+  	  	    	//ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+  	  	    	//chatBlankButton.bringToFront();
+  	  	    	
+  	  	    	
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 	  			
@@ -6945,25 +7161,29 @@ public class Client2 extends Activity {
   	  	    	
 		
 				if (blessSpell[0] > 0) {				
-						
+					
+					String str = "> " + ArrayOfPlayers.player[0] + " casts bless...";
+					sendToHost(str);
+					
+					
 					isblessrolled = "yes";
 					
 					blessSpell[0] = blessSpell[0] - 1;
 					
-					String str = "usedBless";
-					sendToHost(str);
+					String str2 = "usedBless";
+					sendToHost(str2);
 					
 					
 					//skillsCheck();
 					
-					String str2 = "skillsCheck";
-					sendToHost(str2);
+					String str3 = "skillsCheck";
+					sendToHost(str3);
 					
 					
 					//blessGraphic();	  			 	  	  							  	  	  		
 					
-					String str3 = "blessGraphic";
-					sendToHost(str3);
+					String str4 = "blessGraphic";
+					sendToHost(str4);
 					
 					  	  	  		
 		  	  	  	final Handler h2 = new Handler();
@@ -6977,8 +7197,8 @@ public class Client2 extends Activity {
 		  	  	  			
 		  	  	  			stopGraphics();
 		  	  	  			
-		  	  	  			String str4 = "stopGraphics";
-		  	  	  			sendToHost(str4);
+		  	  	  			String str5 = "stopGraphics";
+		  	  	  			sendToHost(str5);
 		  	  	  			
 		  	  	  			
 		  	  	  			ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
@@ -7009,6 +7229,9 @@ public class Client2 extends Activity {
 									
 									isblessrolled = "yes";
 									
+									
+									ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+					  	  	    	chatBlankButton.bringToFront();									
 				  	  	  		}
 				  	  	  	}, 750);					  	  	  		
 		  	  	  		}			  	  	  		
@@ -7336,7 +7559,11 @@ public class Client2 extends Activity {
 								        //(Math.random()*6) returns a number between 0 (inclusive) and 6 (exclusive)
 								        //same as: (int) Math.ceil(Math.random()*6); ?										
 										
-										iscriticalhitmightyblowfirstrollrolled = "yes";										
+										iscriticalhitmightyblowfirstrollrolled = "yes";
+										
+										
+										ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+					  		  			chatBlankButton.bringToFront();
 					  	  	  		}
 					  	  	  	}, 750);					  	  	  		
 			  	  	  		}
@@ -7419,7 +7646,11 @@ public class Client2 extends Activity {
 								        //(Math.random()*6) returns a number between 0 (inclusive) and 6 (exclusive)
 								        //same as: (int) Math.ceil(Math.random()*6); ?										
 										
-										iscriticalhitfirstrollrolled = "yes";											
+										iscriticalhitfirstrollrolled = "yes";
+										
+										
+										ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+					  		  			chatBlankButton.bringToFront();
 					  	  	  		}
 					  	  	  	}, 750);					  	  	  		
 			  	  	  		}
@@ -7756,7 +7987,8 @@ public class Client2 extends Activity {
 								  	  	  		@Override
 									  	  	  	public void run() {  	  		
 							  	  	  				
-									  	  	  		String str13 = "attackDamageCriticalHitDamageCriticalHitMightyBlowDamageCompleted";
+									  	  	  		//String str13 = "attackDamageCriticalHitDamageCriticalHitMightyBlowDamageCompleted";THIS WAS DIRECTING TO A SECOND ATTACK(LIKE FOR HASTE)
+								  	  	  			String str13 = "hasteCureDisarmWithBlessDisarmNoBlessBlessCompleted";
 								  	  	  			sendToHost(str13);
 									  	  	  	}
 								  	  	  	}, 2000);
@@ -8111,7 +8343,11 @@ public class Client2 extends Activity {
 						        //same as: (int) Math.ceil(Math.random()*6); ?										
 								
 								ismightyblowdamagerolled = "yes";
-								preventattackdamagediefromleaking = "off";								
+								preventattackdamagediefromleaking = "off";
+								
+								
+								ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+			  		  			chatBlankButton.bringToFront();
 			  	  	  		}
 			  	  	  	}, 750);
 	  	  	  		}
@@ -8200,7 +8436,11 @@ public class Client2 extends Activity {
 								
 								isattackdamagerolled = "yes";
 								
-								preventattackdamagediefromleaking = "off";							
+								preventattackdamagediefromleaking = "off";
+								
+								
+								ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+			  		  			chatBlankButton.bringToFront();
 			  	  	  		}
 			  	  	  	}, 750);					  	  	  		
 	  	  	  		}
@@ -8318,6 +8558,10 @@ public class Client2 extends Activity {
 								
 								// Re-enables ability to use srollbar:
 					  			centerscrolltext.bringToFront();
+					  			
+					  			
+					  			ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+			  		  			chatBlankButton.bringToFront();
 			  	  	  		}
 			  	  	  	}, 750);					  	  	  		
 	  	  	  		}
@@ -8909,6 +9153,10 @@ public class Client2 extends Activity {
 								
 								iscriticalmissdamagerolled = "yes";
 								preventattackdamagediefromleaking = "off";
+								
+								
+								ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+			  		  			chatBlankButton.bringToFront();
 			  	  	  		}
 			  	  	  	}, 750);					  	  	  		
 	  	  	  		}
@@ -8917,7 +9165,7 @@ public class Client2 extends Activity {
 		});		
 	}
 
-	public void criticalMissLoseWeapon() {	
+	public void criticalMissLoseWeapon() {
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
@@ -8967,6 +9215,10 @@ public class Client2 extends Activity {
 								
 								// Re-enables ability to use srollbar:
 					  			centerscrolltext.bringToFront();
+					  			
+					  			
+					  			ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+			  		  			chatBlankButton.bringToFront();
 			  	  	  		}
 			  	  	  	}, 750);					  	  	  		
 	  	  	  		}
@@ -9680,7 +9932,11 @@ public class Client2 extends Activity {
 						        //(Math.random()*6) returns a number between 0 (inclusive) and 6 (exclusive)
 						        //same as: (int) Math.ceil(Math.random()*6); ?										
 								
-								iscriticalhitsecondrollrolled = "yes";								
+								iscriticalhitsecondrollrolled = "yes";
+								
+								
+								ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+			  		  			chatBlankButton.bringToFront();
 			  	  	  		}
 			  	  	  	}, 750);					  	  	  		
 	  	  	  		}
@@ -9919,7 +10175,11 @@ public class Client2 extends Activity {
 								        //(Math.random()*6) returns a number between 0 (inclusive) and 6 (exclusive)
 								        //same as: (int) Math.ceil(Math.random()*6); ?										
 										
-										iscriticalhitmightyblowsecondrollrolled = "yes";								
+										iscriticalhitmightyblowsecondrollrolled = "yes";
+										
+										
+										ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+					  		  			chatBlankButton.bringToFront();
 					  	  	  		}
 					  	  	  	}, 750);					  	  	  		
 			  	  	  		}
@@ -10669,7 +10929,19 @@ public class Client2 extends Activity {
 						//String part2 = parts[1].trim();//IF THERE WAS A SPACE
 						String part2 = parts[1];		
 												
-						canHasDisarmed[0]=part2;											
+						canHasDisarmed[0]=part2;
+						
+						if (part2.equals("no")) {
+							
+							runOnUiThread(new Runnable() {
+					  	  	    @Override
+					  	  	    public void run() {
+					  	  	    	
+					  	  	    	TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+					  	  	    	disarmedtextleft.setVisibility(View.INVISIBLE);
+					  	  	    }
+							});
+						}
 					}
 					else if (read.contains("cAnHasDisarmed1")) {
 						
@@ -10678,7 +10950,19 @@ public class Client2 extends Activity {
 						//String part2 = parts[1].trim();//IF THERE WAS A SPACE
 						String part2 = parts[1];				
 												
-						canHasDisarmed[1]=part2;											
+						canHasDisarmed[1]=part2;
+						
+						if (part2.equals("no")) {
+							
+							runOnUiThread(new Runnable() {
+					  	  	    @Override
+					  	  	    public void run() {
+					  	  	    	
+					  	  	    	TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+					  	  	    	disarmedtextleft.setVisibility(View.INVISIBLE);
+					  	  	    }
+							});
+						}
 					}
 					else if (read.contains("caNHasDisarmed2")) {
 						
@@ -10687,7 +10971,19 @@ public class Client2 extends Activity {
 						//String part2 = parts[1].trim();//IF THERE WAS A SPACE
 						String part2 = parts[1];				
 												
-						canHasDisarmed[2]=part2;											
+						canHasDisarmed[2]=part2;
+						
+						if (part2.equals("no")) {
+							
+							runOnUiThread(new Runnable() {
+					  	  	    @Override
+					  	  	    public void run() {
+					  	  	    	
+					  	  	    	TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+					  	  	    	disarmedtextleft.setVisibility(View.INVISIBLE);
+					  	  	    }
+							});
+						}
 					}
 					else if (read.contains("canhasDisarmed3")) {
 						
@@ -10696,7 +10992,19 @@ public class Client2 extends Activity {
 						//String part2 = parts[1].trim();//IF THERE WAS A SPACE
 						String part2 = parts[1];				
 												
-						canHasDisarmed[3]=part2;											
+						canHasDisarmed[3]=part2;
+						
+						if (part2.equals("no")) {
+							
+							runOnUiThread(new Runnable() {
+					  	  	    @Override
+					  	  	    public void run() {
+					  	  	    	
+					  	  	    	TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+					  	  	    	disarmedtextleft.setVisibility(View.INVISIBLE);
+					  	  	    }
+							});
+						}
 					}
 					else if (read.contains("canHAsDisarmed4")) {
 						
@@ -10705,7 +11013,19 @@ public class Client2 extends Activity {
 						//String part2 = parts[1].trim();//IF THERE WAS A SPACE
 						String part2 = parts[1];				
 												
-						canHasDisarmed[4]=part2;											
+						canHasDisarmed[4]=part2;
+						
+						if (part2.equals("no")) {
+							
+							runOnUiThread(new Runnable() {
+					  	  	    @Override
+					  	  	    public void run() {
+					  	  	    	
+					  	  	    	TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+					  	  	    	disarmedtextleft.setVisibility(View.INVISIBLE);
+					  	  	    }
+							});
+						}
 					}
 					else if (read.contains("canHaSDisarmed5")) {
 						
@@ -10714,7 +11034,19 @@ public class Client2 extends Activity {
 						//String part2 = parts[1].trim();//IF THERE WAS A SPACE
 						String part2 = parts[1];				
 												
-						canHasDisarmed[5]=part2;											
+						canHasDisarmed[5]=part2;
+						
+						if (part2.equals("no")) {
+							
+							runOnUiThread(new Runnable() {
+					  	  	    @Override
+					  	  	    public void run() {
+					  	  	    	
+					  	  	    	TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+					  	  	    	disarmedtextleft.setVisibility(View.INVISIBLE);
+					  	  	    }
+							});
+						}
 					}
 					else if (read.contains("clientNotDisarmed")) {
 						
@@ -10726,7 +11058,7 @@ public class Client2 extends Activity {
 					}
 					else if (read.contains("clientDisarmed")) {
 						
-						clientDisarmed();																	
+						clientDisarmed();																
 					}
 					else if (read.contains("hostSideDisarmed")) {
 						

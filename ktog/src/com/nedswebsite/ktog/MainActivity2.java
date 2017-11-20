@@ -18556,14 +18556,18 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 										  	  	  		@Override
 											  	  	  	public void run() {
 										  	  	  			
-										  	  	  			haste();
+										  	  	  			//haste();
+										  	  	  			
+										  	  	  			disarmedAction();
 											  	  	  	}
 										  	  	  	}, 1000);												
 												}
 												
 												else {
 													
-													disarmedAction();
+													//disarmedAction();
+													
+													haste();
 												}										
 		  									}
 		  		                        	
@@ -19117,7 +19121,9 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 	  			
 	  			
 	  			// NEED THIS?:
-	  			iscomputerhasteused.equals("no");// so computer doesn't use a haste during a haste.		
+	  			//iscomputerhasteused.equals("no");// so computer doesn't use a haste during a haste.
+  	  	    	iscomputerhasteused = "no";
+  	  	    	
 	  			
 	  			playerCardStopFadeInFadeOut();
 	  			computerCardStartFadeInFadeOut();		
