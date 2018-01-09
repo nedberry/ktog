@@ -57,6 +57,27 @@ import android.widget.Toast;
 
 public class Host extends Activity {
 	
+	
+	
+	String has5TakenTurn = "no";
+	String Has0TakenTurn = "no";
+	String hAs1TakenTurn = "no";
+	String haS2TakenTurn = "no";
+	String has3takenTurn = "no";
+	
+	/*
+	String player5V0 = "no";
+	String Player5V1 = "no";
+	String pLayer5V2 = "no";
+	String plAyer5V3 = "no";
+	String plaYer0V1 = "no";
+	String playEr0V2 = "no";
+	String playeR0V3 = "no";
+	String PLayer1V2 = "no";
+	String pLAyer1V3 = "no";
+	String plAYer2V3 = "no";	
+	*/
+	
 	float[] initiativeFinal = new float[6];
 	
 	String rollOff = "no";
@@ -139,6 +160,8 @@ public class Host extends Activity {
 	
 	
 	int playerNumberAttacked;
+	
+	String playersFighting;
 		
 	
 	int gameOn;
@@ -172,7 +195,9 @@ public class Host extends Activity {
 	
 	// FOR ORDERING PURPOSES IN TITLE:
 	int firstsubscript;
-	int secondsubscript;	
+	int secondsubscript;
+	int thirdsubscript;
+	int fourthsubscript;
 	
 	
 	//IS THIS WORKING NOW (W NEW onbackpressed CODE)????????????
@@ -740,7 +765,138 @@ public class Host extends Activity {
 			    		  	  	hasteplayer2textview.setTypeface(typeFace);
 			    		  	  	String hasteplayer2String = Integer.toString(hasteSpell[secondsubscript]);
 			    		  	  	hasteplayer2textview.setText(hasteplayer2String);
-			    		  	  	hasteplayer2textview.setVisibility(View.VISIBLE);	    			  	  		
+			    		  	  	hasteplayer2textview.setVisibility(View.VISIBLE);
+			    		  	  	
+			    		  	  	
+			    		  	  	if (numberOfPlayers == 3) {
+			  		  	  		
+				  			  	  	TextView player3textview = (TextView) findViewById(R.id.player3);
+				  			  	  	player3textview.setTypeface(typeFace);
+				  			  	  	player3textview.append(ArrayOfPlayers.player[thirdsubscript]);
+				  			  	  	player3textview.setVisibility(View.VISIBLE);		  	  	
+				  			  	  	
+				  			  	  	TextView hitpoints3textview = (TextView) findViewById(R.id.hitpointsplayer3);
+				  			  	  	hitpoints3textview.setTypeface(typeFace);
+				  			  	  	String hitpoints3String = Integer.toString(ArrayOfHitPoints.hitpoints[thirdsubscript]);
+				  			  	  	hitpoints3textview.append(hitpoints3String);
+				  			  	  	hitpoints3textview.setVisibility(View.VISIBLE);
+				  			  	  	
+				  			  	  	TextView blessplayer3textview = (TextView) findViewById(R.id.blessplayer3);
+				  			  	  	blessplayer3textview.setTypeface(typeFace);
+				  			  	  	String blessplayer3String = Integer.toString(blessSpell[thirdsubscript]);
+				  			  	  	blessplayer3textview.append(blessplayer3String);
+				  			  	  	blessplayer3textview.setVisibility(View.VISIBLE);
+				  			  	  	
+				  			  	  	TextView cureplayer3textview = (TextView) findViewById(R.id.cureplayer3);
+				  			  	  	cureplayer3textview.setTypeface(typeFace);
+				  			  	  	String cureplayer3String = Integer.toString(cureSpell[thirdsubscript]);
+				  			  	  	cureplayer3textview.append(cureplayer3String);
+				  			  	  	cureplayer3textview.setVisibility(View.VISIBLE);
+				  			  	  	
+				  			  	  	TextView dodgeplayer3textview = (TextView) findViewById(R.id.dodgeplayer3);
+				  			  	  	dodgeplayer3textview.setTypeface(typeFace);
+				  			  	  	String dodgeplayer3String = Integer.toString(dodgeBlowSpell[thirdsubscript]);
+				  			  	  	dodgeplayer3textview.append(dodgeplayer3String);
+				  			  	  	dodgeplayer3textview.setVisibility(View.VISIBLE);
+				  			  	  	
+				  			  	  	TextView mightyblowplayer3textview = (TextView) findViewById(R.id.mightyblowplayer3);
+				  			  	  	mightyblowplayer3textview.setTypeface(typeFace);
+				  			  	  	String mightyblowplayer3String = Integer.toString(mightyBlowSpell[thirdsubscript]);
+				  			  	  	mightyblowplayer3textview.append(mightyblowplayer3String);
+				  			  	  	mightyblowplayer3textview.setVisibility(View.VISIBLE);
+				  			  	  	
+				  			  	  	TextView hasteplayer3textview = (TextView) findViewById(R.id.hasteplayer3);
+				  			  	  	hasteplayer3textview.setTypeface(typeFace);
+				  			  	  	String hasteplayer3String = Integer.toString(hasteSpell[thirdsubscript]);
+				  			  	  	hasteplayer3textview.append(hasteplayer3String);
+				  			  	  	hasteplayer3textview.setVisibility(View.VISIBLE);		  	  		
+			    		  	  	}
+			  		  	  	
+			    		  	  	else if (numberOfPlayers == 4) {
+			  		  	  		
+				  			  	  	TextView player3textview = (TextView) findViewById(R.id.player3);
+				  			  	  	player3textview.setTypeface(typeFace);
+				  			  	  	player3textview.append(ArrayOfPlayers.player[thirdsubscript]);
+				  			  	  	player3textview.setVisibility(View.VISIBLE);		  	  	
+				  			  	  	
+				  			  	  	TextView hitpoints3textview = (TextView) findViewById(R.id.hitpointsplayer3);
+				  			  	  	hitpoints3textview.setTypeface(typeFace);
+				  			  	  	String hitpoints3String = Integer.toString(ArrayOfHitPoints.hitpoints[thirdsubscript]);
+				  			  	  	hitpoints3textview.append(hitpoints3String);
+				  			  	  	hitpoints3textview.setVisibility(View.VISIBLE);
+				  			  	  	
+				  			  	  	TextView blessplayer3textview = (TextView) findViewById(R.id.blessplayer3);
+				  			  	  	blessplayer3textview.setTypeface(typeFace);
+				  			  	  	String blessplayer3String = Integer.toString(blessSpell[thirdsubscript]);
+				  			  	  	blessplayer3textview.append(blessplayer3String);
+				  			  	  	blessplayer3textview.setVisibility(View.VISIBLE);
+				  			  	  	
+				  			  	  	TextView cureplayer3textview = (TextView) findViewById(R.id.cureplayer3);
+				  			  	  	cureplayer3textview.setTypeface(typeFace);
+				  			  	  	String cureplayer3String = Integer.toString(cureSpell[thirdsubscript]);
+				  			  	  	cureplayer3textview.append(cureplayer3String);
+				  			  	  	cureplayer3textview.setVisibility(View.VISIBLE);
+				  			  	  	
+				  			  	  	TextView dodgeplayer3textview = (TextView) findViewById(R.id.dodgeplayer3);
+				  			  	  	dodgeplayer3textview.setTypeface(typeFace);
+				  			  	  	String dodgeplayer3String = Integer.toString(dodgeBlowSpell[thirdsubscript]);
+				  			  	  	dodgeplayer3textview.append(dodgeplayer3String);
+				  			  	  	dodgeplayer3textview.setVisibility(View.VISIBLE);
+				  			  	  	
+				  			  	  	TextView mightyblowplayer3textview = (TextView) findViewById(R.id.mightyblowplayer3);
+				  			  	  	mightyblowplayer3textview.setTypeface(typeFace);
+				  			  	  	String mightyblowplayer3String = Integer.toString(mightyBlowSpell[thirdsubscript]);
+				  			  	  	mightyblowplayer3textview.append(mightyblowplayer3String);
+				  			  	  	mightyblowplayer3textview.setVisibility(View.VISIBLE);
+				  			  	  	
+				  			  	  	TextView hasteplayer3textview = (TextView) findViewById(R.id.hasteplayer3);
+				  			  	  	hasteplayer3textview.setTypeface(typeFace);
+				  			  	  	String hasteplayer3String = Integer.toString(hasteSpell[thirdsubscript]);
+				  			  	  	hasteplayer3textview.append(hasteplayer3String);
+				  			  	  	hasteplayer3textview.setVisibility(View.VISIBLE);
+				  			  	  	
+				  			  	  	
+				  			  	  	TextView player4textview = (TextView) findViewById(R.id.player4);
+				  			  	  	player4textview.setTypeface(typeFace);
+				  			  	  	player4textview.append(ArrayOfPlayers.player[fourthsubscript]);
+				  			  	  	player4textview.setVisibility(View.VISIBLE);		  	  	
+				  			  	  	
+				  			  	  	TextView hitpoints4textview = (TextView) findViewById(R.id.hitpointsplayer4);
+				  			  	  	hitpoints4textview.setTypeface(typeFace);
+				  			  	  	String hitpoints4String = Integer.toString(ArrayOfHitPoints.hitpoints[fourthsubscript]);
+				  			  	  	hitpoints4textview.append(hitpoints4String);
+				  			  	  	hitpoints4textview.setVisibility(View.VISIBLE);
+				  			  	  	
+				  			  	  	TextView blessplayer4textview = (TextView) findViewById(R.id.blessplayer4);
+				  			  	  	blessplayer4textview.setTypeface(typeFace);
+				  			  	  	String blessplayer4String = Integer.toString(blessSpell[fourthsubscript]);
+				  			  	  	blessplayer4textview.append(blessplayer4String);
+				  			  	  	blessplayer4textview.setVisibility(View.VISIBLE);
+				  			  	  	
+				  			  	  	TextView cureplayer4textview = (TextView) findViewById(R.id.cureplayer4);
+				  			  	  	cureplayer4textview.setTypeface(typeFace);
+				  			  	  	String cureplayer4String = Integer.toString(cureSpell[fourthsubscript]);
+				  			  	  	cureplayer4textview.append(cureplayer4String);
+				  			  	  	cureplayer4textview.setVisibility(View.VISIBLE);
+				  			  	  	
+				  			  	  	TextView dodgeplayer4textview = (TextView) findViewById(R.id.dodgeplayer4);
+				  			  	  	dodgeplayer4textview.setTypeface(typeFace);
+				  			  	  	String dodgeplayer4String = Integer.toString(dodgeBlowSpell[fourthsubscript]);
+				  			  	  	dodgeplayer4textview.append(dodgeplayer4String);
+				  			  	  	dodgeplayer4textview.setVisibility(View.VISIBLE);
+				  			  	  	
+				  			  	  	TextView mightyblowplayer4textview = (TextView) findViewById(R.id.mightyblowplayer4);
+				  			  	  	mightyblowplayer4textview.setTypeface(typeFace);
+				  			  	  	String mightyblowplayer4String = Integer.toString(mightyBlowSpell[fourthsubscript]);
+				  			  	  	mightyblowplayer4textview.append(mightyblowplayer4String);
+				  			  	  	mightyblowplayer4textview.setVisibility(View.VISIBLE);
+				  			  	  	
+				  			  	  	TextView hasteplayer4textview = (TextView) findViewById(R.id.hasteplayer4);
+				  			  	  	hasteplayer4textview.setTypeface(typeFace);
+				  			  	  	String hasteplayer4String = Integer.toString(hasteSpell[fourthsubscript]);
+				  			  	  	hasteplayer4textview.append(hasteplayer4String);
+				  			  	  	hasteplayer4textview.setVisibility(View.VISIBLE);
+			    		  	  	}
 	    			  	  		
 	    			  	  		
 		    			  	  	final Handler h = new Handler();
@@ -2280,6 +2436,27 @@ public class Host extends Activity {
   		});	
 	}
 	
+	//@SuppressWarnings("deprecation")
+	public void unfoldLeftScrollReverse() {		
+		
+		// USING "runOnUiThread(new Runnable() {}" TO SEE IF IT WORKS BETTER THAN NOT USING IT.
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				// Setting up scroll frame animation.
+				ImageView img = (ImageView)findViewById(R.id.scrollanimation);
+				img.setBackgroundResource(R.anim.scrollanimationleftupreverse);
+			
+				// Get the background, which has been compiled to an AnimationDrawable object.
+				AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+							
+				// Start the animation.
+				frameAnimation.stop();
+				frameAnimation.start();
+	  	    }
+  		});	
+	}
+	
 	public void unfoldRightScroll() {	
 		
 		// USING "runOnUiThread(new Runnable() {}" TO SEE IF IT WORKS BETTER THAN NOT USING IT.
@@ -2396,6 +2573,48 @@ public class Host extends Activity {
 				// Start the animation.
 				frameAnimation.stop();
 				frameAnimation.start();				
+	  	    }
+  		});	
+	}
+	
+	public void scrollAnimationLeftDown() {		
+		
+		// USING "runOnUiThread(new Runnable() {}" TO SEE IF IT WORKS BETTER THAN NOT USING IT.
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				// Setting up scroll frame animation.
+				ImageView img = (ImageView)findViewById(R.id.scrollanimation);
+				img.setBackgroundResource(R.anim.scrollanimationleftdown);
+				
+				img.bringToFront();
+			
+				// Get the background, which has been compiled to an AnimationDrawable object.
+				AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+							
+				// Start the animation.
+				frameAnimation.stop();
+				frameAnimation.start();				
+	  	    }
+  		});	
+	}
+	
+	public void scrollAnimationLeftUpNoRight() {		
+		
+		// USING "runOnUiThread(new Runnable() {}" TO SEE IF IT WORKS BETTER THAN NOT USING IT.
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				// Setting up scroll frame animation.
+				ImageView img = (ImageView)findViewById(R.id.scrollanimation);
+				img.setBackgroundResource(R.anim.scrollanimationleftupnoright);
+			
+				// Get the background, which has been compiled to an AnimationDrawable object.
+				AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+							
+				// Start the animation.
+				frameAnimation.stop();
+				frameAnimation.start();
 	  	    }
   		});	
 	}
@@ -10772,8 +10991,7 @@ public class Host extends Activity {
 	  	  	  		}
 	  	  	  	}, 1000);						
 			}
-  		});
-		
+  		});		
 	}
 	
 	
@@ -10953,6 +11171,29 @@ public class Host extends Activity {
 	  	    				sendToClient1(str6);
 	  	    				final String str7 = ArrayOfPlayers.player[1] + "..." + client1 + doublesModifierOfInitiativeClient1;
 	  	    				sendToClient1(str7);
+	  	    				
+	  	    				
+	  	    				String str9 = "PlayerName5 :" + ArrayOfPlayers.player[5];
+	  	    				sendToAllClients(str9);
+	  	    				
+	  	    				
+	  	    				ArrayOfHitPoints.hitpoints[0] = 20;//20
+	  	    				
+	  	    				ArrayOfHitPoints.hitpoints[1] = 20;//20
+	  	    				
+	  	    				
+	  	    				firstsubscript = 5;
+		  	  				secondsubscript = 0;
+		  	  				thirdsubscript = 1;
+		  	  				
+		  	  				String str10 = "FirstSubscript :" + 5;
+		  	  				sendToAllClients(str10);
+		  	  				
+		  	  				String str11 = "Secondsbscript :" + 0;
+		  	  				sendToAllClients(str11);
+		  	  				
+		  	  				String str12 = "Thirdsuscript :" + 1;
+		  	  				sendToAllClients(str12);
   	    				}
   	    				else if (initiativeFinal[1] > initiativeFinal[0]) {
   	    					
@@ -10973,6 +11214,29 @@ public class Host extends Activity {
 	  	    				sendToClient1(str6);
 	  	    				final String str7 = ArrayOfPlayers.player[0] + "..." + client0 + doublesModifierOfInitiativeClient0;
 	  	    				sendToClient1(str7);
+	  	    				
+	  	    				
+	  	    				String str9 = "PlayerName5 :" + ArrayOfPlayers.player[5];
+	  	    				sendToAllClients(str9);
+	  	    				
+	  	    				
+	  	    				ArrayOfHitPoints.hitpoints[0] = 20;//20
+	  	    				
+	  	    				ArrayOfHitPoints.hitpoints[1] = 20;//20
+	  	    				
+	  	    				
+	  	    				firstsubscript = 5;
+		  	  				secondsubscript = 1;
+		  	  				thirdsubscript = 0;
+		  	  				
+		  	  				String str10 = "FirstSubscript :" + 5;
+		  	  				sendToAllClients(str10);
+		  	  				
+		  	  				String str11 = "Secondsbscript :" + 1;
+		  	  				sendToAllClients(str11);
+		  	  				
+		  	  				String str12 = "Thirdsuscript :" + 0;
+		  	  				sendToAllClients(str12);
   	    				} 	    				
   	    			}
   	    			else if ((initiativeFinal[0] > initiativeFinal[5]) && (initiativeFinal[0] > initiativeFinal[1])) {
@@ -10996,6 +11260,29 @@ public class Host extends Activity {
 	  	    				sendToClient1(str6);
 	  	    				final String str7 = ArrayOfPlayers.player[1] + "..." + client1 + doublesModifierOfInitiativeClient1;
 	  	    				sendToClient1(str7);
+	  	    				
+	  	    				
+	  	    				String str9 = "PlayerName5 :" + ArrayOfPlayers.player[5];
+	  	    				sendToAllClients(str9);
+	  	    				
+	  	    				
+	  	    				ArrayOfHitPoints.hitpoints[0] = 20;//20
+	  	    				
+	  	    				ArrayOfHitPoints.hitpoints[1] = 20;//20
+	  	    				
+	  	    				
+	  	    				firstsubscript = 0;
+		  	  				secondsubscript = 5;
+		  	  				thirdsubscript = 1;
+		  	  				
+		  	  				String str10 = "FirstSubscript :" + 0;
+		  	  				sendToAllClients(str10);
+		  	  				
+		  	  				String str11 = "Secondsbscript :" + 5;
+		  	  				sendToAllClients(str11);
+		  	  				
+		  	  				String str12 = "Thirdsuscript :" + 1;
+		  	  				sendToAllClients(str12);
   	    				}
   	    				else if (initiativeFinal[1] > initiativeFinal[5]) {
   	    					
@@ -11016,6 +11303,29 @@ public class Host extends Activity {
 	  	    				sendToClient1(str6);
 	  	    				final String str7 = ArrayOfPlayers.player[5] + "..." + host + doublesModifierOfInitiativeHost;
 	  	    				sendToClient1(str7);
+	  	    				
+	  	    				
+	  	    				String str9 = "PlayerName5 :" + ArrayOfPlayers.player[5];
+	  	    				sendToAllClients(str9);
+	  	    				
+	  	    				
+	  	    				ArrayOfHitPoints.hitpoints[0] = 20;//20
+	  	    				
+	  	    				ArrayOfHitPoints.hitpoints[1] = 20;//20
+	  	    				
+	  	    				
+	  	    				firstsubscript = 0;
+		  	  				secondsubscript = 1;
+		  	  				thirdsubscript = 5;
+		  	  				
+		  	  				String str10 = "FirstSubscript :" + 0;
+		  	  				sendToAllClients(str10);
+		  	  				
+		  	  				String str11 = "Secondsbscript :" + 1;
+		  	  				sendToAllClients(str11);
+		  	  				
+		  	  				String str12 = "Thirdsuscript :" + 5;
+		  	  				sendToAllClients(str12);
   	    				}
   	    			}
   	    			else if ((initiativeFinal[1] > initiativeFinal[5]) && (initiativeFinal[1] > initiativeFinal[0])) {
@@ -11039,6 +11349,29 @@ public class Host extends Activity {
 	  	    				sendToClient1(str6);
 	  	    				final String str7 = ArrayOfPlayers.player[0] + "..." + client0 + doublesModifierOfInitiativeClient0;
 	  	    				sendToClient1(str7);
+	  	    				
+	  	    				
+	  	    				String str9 = "PlayerName5 :" + ArrayOfPlayers.player[5];
+	  	    				sendToAllClients(str9);
+	  	    				
+	  	    				
+	  	    				ArrayOfHitPoints.hitpoints[0] = 20;//20
+	  	    				
+	  	    				ArrayOfHitPoints.hitpoints[1] = 20;//20
+	  	    				
+	  	    				
+	  	    				firstsubscript = 1;
+		  	  				secondsubscript = 5;
+		  	  				thirdsubscript = 0;
+		  	  				
+		  	  				String str10 = "FirstSubscript :" + 1;
+		  	  				sendToAllClients(str10);
+		  	  				
+		  	  				String str11 = "Secondsbscript :" + 5;
+		  	  				sendToAllClients(str11);
+		  	  				
+		  	  				String str12 = "Thirdsuscript :" + 0;
+		  	  				sendToAllClients(str12);
   	    				}
   	    				else if (initiativeFinal[0] > initiativeFinal[5]) {
   	    					
@@ -11059,6 +11392,29 @@ public class Host extends Activity {
 	  	    				sendToClient1(str6);
 	  	    				final String str7 = ArrayOfPlayers.player[5] + "..." + host + doublesModifierOfInitiativeHost;
 	  	    				sendToClient1(str7);
+	  	    				
+	  	    				
+	  	    				String str9 = "PlayerName5 :" + ArrayOfPlayers.player[5];
+	  	    				sendToAllClients(str9);
+	  	    				
+	  	    				
+	  	    				ArrayOfHitPoints.hitpoints[0] = 20;//20
+	  	    				
+	  	    				ArrayOfHitPoints.hitpoints[1] = 20;//20
+	  	    				
+	  	    				
+	  	    				firstsubscript = 1;
+		  	  				secondsubscript = 0;
+		  	  				thirdsubscript = 5;
+		  	  				
+		  	  				String str10 = "FirstSubscript :" + 1;
+		  	  				sendToAllClients(str10);
+		  	  				
+		  	  				String str11 = "Secondsbscript :" + 0;
+		  	  				sendToAllClients(str11);
+		  	  				
+		  	  				String str12 = "Thirdsuscript :" + 5;
+		  	  				sendToAllClients(str12);
   	    				}
   	    			}
   	    			
@@ -11128,6 +11484,35 @@ public class Host extends Activity {
 	  	  	    				sendToClient2(str12);
 	  	  	    				final String str13 = ArrayOfPlayers.player[2] + "..." + client2 + doublesModifierOfInitiativeClient2;
 	  	  	    				sendToClient2(str13);
+	  	  	    				
+	  	  	    				
+		  	  	    			String str16 = "PlayerName5 :" + ArrayOfPlayers.player[5];
+		  	    				sendToAllClients(str16);
+		  	    				
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[0] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[1] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[2] = 20;//20
+		  	    				
+		  	    				
+		  	    				firstsubscript = 5;
+			  	  				secondsubscript = 0;
+			  	  				thirdsubscript = 1;
+			  	  				fourthsubscript = 2;
+			  	  				
+			  	  				String str17 = "FirstSubscript :" + 5;
+			  	  				sendToAllClients(str17);
+			  	  				
+			  	  				String str18 = "Secondsbscript :" + 0;
+			  	  				sendToAllClients(str18);
+			  	  				
+			  	  				String str19 = "Thirdsuscript :" + 1;
+			  	  				sendToAllClients(str19);
+			  	  				
+			  	  				String str20 = "Fourthsubcript :" + 2;
+			  	  				sendToAllClients(str20);
   	    					}
   	    					else if ((initiativeFinal[2] > initiativeFinal[1])) {
   	    						
@@ -11162,6 +11547,35 @@ public class Host extends Activity {
 	  	  	    				sendToClient2(str12);
 	  	  	    				final String str13 = ArrayOfPlayers.player[1] + "..." + client1 + doublesModifierOfInitiativeClient1;
 	  	  	    				sendToClient2(str13);
+	  	  	    				
+	  	  	    				
+		  	  	    			String str16 = "PlayerName5 :" + ArrayOfPlayers.player[5];
+		  	    				sendToAllClients(str16);
+		  	    				
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[0] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[1] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[2] = 20;//20
+		  	    				
+		  	    				
+		  	    				firstsubscript = 5;
+			  	  				secondsubscript = 0;
+			  	  				thirdsubscript = 2;
+			  	  				fourthsubscript = 1;
+			  	  				
+			  	  				String str17 = "FirstSubscript :" + 5;
+			  	  				sendToAllClients(str17);
+			  	  				
+			  	  				String str18 = "Secondsbscript :" + 0;
+			  	  				sendToAllClients(str18);
+			  	  				
+			  	  				String str19 = "Thirdsuscript :" + 2;
+			  	  				sendToAllClients(str19);
+			  	  				
+			  	  				String str20 = "Fourthsubcript :" + 1;
+			  	  				sendToAllClients(str20);
   	    					}
   	    				}
   	    				else if ((initiativeFinal[1] > initiativeFinal[0]) && (initiativeFinal[1] > initiativeFinal[2])) {
@@ -11199,6 +11613,35 @@ public class Host extends Activity {
 	  	  	    				sendToClient2(str12);
 	  	  	    				final String str13 = ArrayOfPlayers.player[2] + "..." + client2 + doublesModifierOfInitiativeClient2;
 	  	  	    				sendToClient2(str13);
+	  	  	    				
+	  	  	    				
+		  	  	    			String str16 = "PlayerName5 :" + ArrayOfPlayers.player[5];
+		  	    				sendToAllClients(str16);
+		  	    				
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[0] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[1] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[2] = 20;//20
+		  	    				
+		  	    				
+		  	    				firstsubscript = 5;
+			  	  				secondsubscript = 1;
+			  	  				thirdsubscript = 0;
+			  	  				fourthsubscript = 2;
+			  	  				
+			  	  				String str17 = "FirstSubscript :" + 5;
+			  	  				sendToAllClients(str17);
+			  	  				
+			  	  				String str18 = "Secondsbscript :" + 1;
+			  	  				sendToAllClients(str18);
+			  	  				
+			  	  				String str19 = "Thirdsuscript :" + 0;
+			  	  				sendToAllClients(str19);
+			  	  				
+			  	  				String str20 = "Fourthsubcript :" + 2;
+			  	  				sendToAllClients(str20);
   	    					}
   	    					else if ((initiativeFinal[2] > initiativeFinal[0])) {
   	    						
@@ -11233,6 +11676,35 @@ public class Host extends Activity {
 	  	  	    				sendToClient2(str12);
 	  	  	    				final String str13 = ArrayOfPlayers.player[0] + "..." + client0 + doublesModifierOfInitiativeClient0;
 	  	  	    				sendToClient2(str13);
+	  	  	    				
+	  	  	    				
+		  	  	    			String str16 = "PlayerName5 :" + ArrayOfPlayers.player[5];
+		  	    				sendToAllClients(str16);
+		  	    				
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[0] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[1] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[2] = 20;//20
+		  	    				
+		  	    				
+		  	    				firstsubscript = 5;
+			  	  				secondsubscript = 1;
+			  	  				thirdsubscript = 2;
+			  	  				fourthsubscript = 0;
+			  	  				
+			  	  				String str17 = "FirstSubscript :" + 5;
+			  	  				sendToAllClients(str17);
+			  	  				
+			  	  				String str18 = "Secondsbscript :" + 1;
+			  	  				sendToAllClients(str18);
+			  	  				
+			  	  				String str19 = "Thirdsuscript :" + 2;
+			  	  				sendToAllClients(str19);
+			  	  				
+			  	  				String str20 = "Fourthsubcript :" + 0;
+			  	  				sendToAllClients(str20);
   	    					}
   	    				}
   	    				else if ((initiativeFinal[2] > initiativeFinal[0]) && (initiativeFinal[2] > initiativeFinal[1])) {
@@ -11270,6 +11742,35 @@ public class Host extends Activity {
 	  	  	    				sendToClient2(str12);
 	  	  	    				final String str13 = ArrayOfPlayers.player[1] + "..." + client1 + doublesModifierOfInitiativeClient1;
 	  	  	    				sendToClient2(str13);
+	  	  	    				
+	  	  	    				
+		  	  	    			String str16 = "PlayerName5 :" + ArrayOfPlayers.player[5];
+		  	    				sendToAllClients(str16);
+		  	    				
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[0] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[1] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[2] = 20;//20
+		  	    				
+		  	    				
+		  	    				firstsubscript = 5;
+			  	  				secondsubscript = 2;
+			  	  				thirdsubscript = 0;
+			  	  				fourthsubscript = 1;
+			  	  				
+			  	  				String str17 = "FirstSubscript :" + 5;
+			  	  				sendToAllClients(str17);
+			  	  				
+			  	  				String str18 = "Secondsbscript :" + 2;
+			  	  				sendToAllClients(str18);
+			  	  				
+			  	  				String str19 = "Thirdsuscript :" + 0;
+			  	  				sendToAllClients(str19);
+			  	  				
+			  	  				String str20 = "Fourthsubcript :" + 1;
+			  	  				sendToAllClients(str20);
   	    					}
   	    					else if ((initiativeFinal[1] > initiativeFinal[0])) {
   	    						
@@ -11304,6 +11805,35 @@ public class Host extends Activity {
 	  	  	    				sendToClient2(str12);
 	  	  	    				final String str13 = ArrayOfPlayers.player[0] + "..." + client0 + doublesModifierOfInitiativeClient0;
 	  	  	    				sendToClient2(str13);
+	  	  	    				
+	  	  	    				
+		  	  	    			String str16 = "PlayerName5 :" + ArrayOfPlayers.player[5];
+		  	    				sendToAllClients(str16);
+		  	    				
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[0] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[1] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[2] = 20;//20
+		  	    				
+		  	    				
+		  	    				firstsubscript = 5;
+			  	  				secondsubscript = 2;
+			  	  				thirdsubscript = 1;
+			  	  				fourthsubscript = 0;
+			  	  				
+			  	  				String str17 = "FirstSubscript :" + 5;
+			  	  				sendToAllClients(str17);
+			  	  				
+			  	  				String str18 = "Secondsbscript :" + 2;
+			  	  				sendToAllClients(str18);
+			  	  				
+			  	  				String str19 = "Thirdsuscript :" + 1;
+			  	  				sendToAllClients(str19);
+			  	  				
+			  	  				String str20 = "Fourthsubcript :" + 0;
+			  	  				sendToAllClients(str20);
   	    					}
   	    				}
   	    			}
@@ -11344,6 +11874,35 @@ public class Host extends Activity {
 	  	  	    				sendToClient2(str12);
 	  	  	    				final String str13 = ArrayOfPlayers.player[2] + "..." + client2 + doublesModifierOfInitiativeClient2;
 	  	  	    				sendToClient2(str13);
+	  	  	    				
+	  	  	    				
+		  	  	    			String str16 = "PlayerName5 :" + ArrayOfPlayers.player[5];
+		  	    				sendToAllClients(str16);
+		  	    				
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[0] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[1] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[2] = 20;//20
+		  	    				
+		  	    				
+		  	    				firstsubscript = 0;
+			  	  				secondsubscript = 5;
+			  	  				thirdsubscript = 1;
+			  	  				fourthsubscript = 2;
+			  	  				
+			  	  				String str17 = "FirstSubscript :" + 0;
+			  	  				sendToAllClients(str17);
+			  	  				
+			  	  				String str18 = "Secondsbscript :" + 5;
+			  	  				sendToAllClients(str18);
+			  	  				
+			  	  				String str19 = "Thirdsuscript :" + 1;
+			  	  				sendToAllClients(str19);
+			  	  				
+			  	  				String str20 = "Fourthsubcript :" + 2;
+			  	  				sendToAllClients(str20);
   	    					}
   	    					else if ((initiativeFinal[2] > initiativeFinal[1])) {
   	    						
@@ -11378,6 +11937,35 @@ public class Host extends Activity {
 	  	  	    				sendToClient2(str12);
 	  	  	    				final String str13 = ArrayOfPlayers.player[1] + "..." + client1 + doublesModifierOfInitiativeClient1;
 	  	  	    				sendToClient2(str13);
+	  	  	    				
+	  	  	    				
+		  	  	    			String str16 = "PlayerName5 :" + ArrayOfPlayers.player[5];
+		  	    				sendToAllClients(str16);
+		  	    				
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[0] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[1] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[2] = 20;//20
+		  	    				
+		  	    				
+		  	    				firstsubscript = 0;
+			  	  				secondsubscript = 5;
+			  	  				thirdsubscript = 2;
+			  	  				fourthsubscript = 1;
+			  	  				
+			  	  				String str17 = "FirstSubscript :" + 0;
+			  	  				sendToAllClients(str17);
+			  	  				
+			  	  				String str18 = "Secondsbscript :" + 5;
+			  	  				sendToAllClients(str18);
+			  	  				
+			  	  				String str19 = "Thirdsuscript :" + 2;
+			  	  				sendToAllClients(str19);
+			  	  				
+			  	  				String str20 = "Fourthsubcript :" + 1;
+			  	  				sendToAllClients(str20);
   	    					}
   	    				}
   	    				else if ((initiativeFinal[1] > initiativeFinal[5]) && (initiativeFinal[1] > initiativeFinal[2])) {
@@ -11415,6 +12003,35 @@ public class Host extends Activity {
 	  	  	    				sendToClient2(str12);
 	  	  	    				final String str13 = ArrayOfPlayers.player[2] + "..." + client2 + doublesModifierOfInitiativeClient2;
 	  	  	    				sendToClient2(str13);
+	  	  	    				
+	  	  	    				
+		  	  	    			String str16 = "PlayerName5 :" + ArrayOfPlayers.player[5];
+		  	    				sendToAllClients(str16);
+		  	    				
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[0] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[1] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[2] = 20;//20
+		  	    				
+		  	    				
+		  	    				firstsubscript = 0;
+			  	  				secondsubscript = 1;
+			  	  				thirdsubscript = 5;
+			  	  				fourthsubscript = 2;
+			  	  				
+			  	  				String str17 = "FirstSubscript :" + 0;
+			  	  				sendToAllClients(str17);
+			  	  				
+			  	  				String str18 = "Secondsbscript :" + 1;
+			  	  				sendToAllClients(str18);
+			  	  				
+			  	  				String str19 = "Thirdsuscript :" + 5;
+			  	  				sendToAllClients(str19);
+			  	  				
+			  	  				String str20 = "Fourthsubcript :" + 2;
+			  	  				sendToAllClients(str20);
   	    					}
   	    					else if ((initiativeFinal[2] > initiativeFinal[5])) {
   	    						
@@ -11449,6 +12066,35 @@ public class Host extends Activity {
 	  	  	    				sendToClient2(str12);
 	  	  	    				final String str13 = ArrayOfPlayers.player[5] + "..." + host + doublesModifierOfInitiativeHost;
 	  	  	    				sendToClient2(str13);
+	  	  	    				
+	  	  	    				
+		  	  	    			String str16 = "PlayerName5 :" + ArrayOfPlayers.player[5];
+		  	    				sendToAllClients(str16);
+		  	    				
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[0] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[1] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[2] = 20;//20
+		  	    				
+		  	    				
+		  	    				firstsubscript = 0;
+			  	  				secondsubscript = 1;
+			  	  				thirdsubscript = 2;
+			  	  				fourthsubscript = 5;
+			  	  				
+			  	  				String str17 = "FirstSubscript :" + 0;
+			  	  				sendToAllClients(str17);
+			  	  				
+			  	  				String str18 = "Secondsbscript :" + 1;
+			  	  				sendToAllClients(str18);
+			  	  				
+			  	  				String str19 = "Thirdsuscript :" + 2;
+			  	  				sendToAllClients(str19);
+			  	  				
+			  	  				String str20 = "Fourthsubcript :" + 5;
+			  	  				sendToAllClients(str20);
   	    					}
   	    				}
   	    				else if ((initiativeFinal[2] > initiativeFinal[5]) && (initiativeFinal[2] > initiativeFinal[1])) {
@@ -11486,6 +12132,35 @@ public class Host extends Activity {
 	  	  	    				sendToClient2(str12);
 	  	  	    				final String str13 = ArrayOfPlayers.player[1] + "..." + client1 + doublesModifierOfInitiativeClient1;
 	  	  	    				sendToClient2(str13);
+	  	  	    				
+	  	  	    				
+		  	  	    			String str16 = "PlayerName5 :" + ArrayOfPlayers.player[5];
+		  	    				sendToAllClients(str16);
+		  	    				
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[0] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[1] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[2] = 20;//20
+		  	    				
+		  	    				
+		  	    				firstsubscript = 0;
+			  	  				secondsubscript = 2;
+			  	  				thirdsubscript = 5;
+			  	  				fourthsubscript = 1;
+			  	  				
+			  	  				String str17 = "FirstSubscript :" + 0;
+			  	  				sendToAllClients(str17);
+			  	  				
+			  	  				String str18 = "Secondsbscript :" + 2;
+			  	  				sendToAllClients(str18);
+			  	  				
+			  	  				String str19 = "Thirdsuscript :" + 5;
+			  	  				sendToAllClients(str19);
+			  	  				
+			  	  				String str20 = "Fourthsubcript :" + 1;
+			  	  				sendToAllClients(str20);
   	    					}
   	    					else if ((initiativeFinal[1] > initiativeFinal[5])) {
   	    						
@@ -11520,6 +12195,35 @@ public class Host extends Activity {
 	  	  	    				sendToClient2(str12);
 	  	  	    				final String str13 = ArrayOfPlayers.player[5] + "..." + host + doublesModifierOfInitiativeHost;
 	  	  	    				sendToClient2(str13);
+	  	  	    				
+	  	  	    				
+		  	  	    			String str16 = "PlayerName5 :" + ArrayOfPlayers.player[5];
+		  	    				sendToAllClients(str16);
+		  	    				
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[0] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[1] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[2] = 20;//20
+		  	    				
+		  	    				
+		  	    				firstsubscript = 0;
+			  	  				secondsubscript = 2;
+			  	  				thirdsubscript = 1;
+			  	  				fourthsubscript = 5;
+			  	  				
+			  	  				String str17 = "FirstSubscript :" + 0;
+			  	  				sendToAllClients(str17);
+			  	  				
+			  	  				String str18 = "Secondsbscript :" + 2;
+			  	  				sendToAllClients(str18);
+			  	  				
+			  	  				String str19 = "Thirdsuscript :" + 1;
+			  	  				sendToAllClients(str19);
+			  	  				
+			  	  				String str20 = "Fourthsubcript :" + 5;
+			  	  				sendToAllClients(str20);
   	    					}
   	    				}
   	    			}
@@ -11560,6 +12264,35 @@ public class Host extends Activity {
 	  	  	    				sendToClient2(str12);
 	  	  	    				final String str13 = ArrayOfPlayers.player[2] + "..." + client2 + doublesModifierOfInitiativeClient2;
 	  	  	    				sendToClient2(str13);
+	  	  	    				
+	  	  	    				
+		  	  	    			String str16 = "PlayerName5 :" + ArrayOfPlayers.player[5];
+		  	    				sendToAllClients(str16);
+		  	    				
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[0] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[1] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[2] = 20;//20
+		  	    				
+		  	    				
+		  	    				firstsubscript = 1;
+			  	  				secondsubscript = 5;
+			  	  				thirdsubscript = 0;
+			  	  				fourthsubscript = 2;
+			  	  				
+			  	  				String str17 = "FirstSubscript :" + 1;
+			  	  				sendToAllClients(str17);
+			  	  				
+			  	  				String str18 = "Secondsbscript :" + 5;
+			  	  				sendToAllClients(str18);
+			  	  				
+			  	  				String str19 = "Thirdsuscript :" + 0;
+			  	  				sendToAllClients(str19);
+			  	  				
+			  	  				String str20 = "Fourthsubcript :" + 2;
+			  	  				sendToAllClients(str20);
   	    					}
   	    					else if ((initiativeFinal[2] > initiativeFinal[0])) {
   	    						
@@ -11594,6 +12327,35 @@ public class Host extends Activity {
 	  	  	    				sendToClient2(str12);
 	  	  	    				final String str13 = ArrayOfPlayers.player[0] + "..." + client0 + doublesModifierOfInitiativeClient0;
 	  	  	    				sendToClient2(str13);
+	  	  	    				
+	  	  	    				
+		  	  	    			String str16 = "PlayerName5 :" + ArrayOfPlayers.player[5];
+		  	    				sendToAllClients(str16);
+		  	    				
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[0] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[1] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[2] = 20;//20
+		  	    				
+		  	    				
+		  	    				firstsubscript = 1;
+			  	  				secondsubscript = 5;
+			  	  				thirdsubscript = 2;
+			  	  				fourthsubscript = 0;
+			  	  				
+			  	  				String str17 = "FirstSubscript :" + 1;
+			  	  				sendToAllClients(str17);
+			  	  				
+			  	  				String str18 = "Secondsbscript :" + 5;
+			  	  				sendToAllClients(str18);
+			  	  				
+			  	  				String str19 = "Thirdsuscript :" + 2;
+			  	  				sendToAllClients(str19);
+			  	  				
+			  	  				String str20 = "Fourthsubcript :" + 0;
+			  	  				sendToAllClients(str20);
   	    					}
   	    				}
   	    				else if ((initiativeFinal[0] > initiativeFinal[5]) && (initiativeFinal[0] > initiativeFinal[2])) {
@@ -11631,6 +12393,35 @@ public class Host extends Activity {
 	  	  	    				sendToClient2(str12);
 	  	  	    				final String str13 = ArrayOfPlayers.player[2] + "..." + client2 + doublesModifierOfInitiativeClient2;
 	  	  	    				sendToClient2(str13);
+	  	  	    				
+	  	  	    				
+		  	  	    			String str16 = "PlayerName5 :" + ArrayOfPlayers.player[5];
+		  	    				sendToAllClients(str16);
+		  	    				
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[0] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[1] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[2] = 20;//20
+		  	    				
+		  	    				
+		  	    				firstsubscript = 1;
+			  	  				secondsubscript = 0;
+			  	  				thirdsubscript = 5;
+			  	  				fourthsubscript = 2;
+			  	  				
+			  	  				String str17 = "FirstSubscript :" + 1;
+			  	  				sendToAllClients(str17);
+			  	  				
+			  	  				String str18 = "Secondsbscript :" + 0;
+			  	  				sendToAllClients(str18);
+			  	  				
+			  	  				String str19 = "Thirdsuscript :" + 5;
+			  	  				sendToAllClients(str19);
+			  	  				
+			  	  				String str20 = "Fourthsubcript :" + 2;
+			  	  				sendToAllClients(str20);
   	    					}
   	    					else if ((initiativeFinal[2] > initiativeFinal[5])) {
   	    						
@@ -11665,6 +12456,35 @@ public class Host extends Activity {
 	  	  	    				sendToClient2(str12);
 	  	  	    				final String str13 = ArrayOfPlayers.player[5] + "..." + host + doublesModifierOfInitiativeHost;
 	  	  	    				sendToClient2(str13);
+	  	  	    				
+	  	  	    				
+		  	  	    			String str16 = "PlayerName5 :" + ArrayOfPlayers.player[5];
+		  	    				sendToAllClients(str16);
+		  	    				
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[0] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[1] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[2] = 20;//20
+		  	    				
+		  	    				
+		  	    				firstsubscript = 1;
+			  	  				secondsubscript = 0;
+			  	  				thirdsubscript = 2;
+			  	  				fourthsubscript = 5;
+			  	  				
+			  	  				String str17 = "FirstSubscript :" + 1;
+			  	  				sendToAllClients(str17);
+			  	  				
+			  	  				String str18 = "Secondsbscript :" + 0;
+			  	  				sendToAllClients(str18);
+			  	  				
+			  	  				String str19 = "Thirdsuscript :" + 2;
+			  	  				sendToAllClients(str19);
+			  	  				
+			  	  				String str20 = "Fourthsubcript :" + 5;
+			  	  				sendToAllClients(str20);
   	    					}
   	    				}
   	    				else if ((initiativeFinal[2] > initiativeFinal[5]) && (initiativeFinal[2] > initiativeFinal[0])) {
@@ -11702,6 +12522,35 @@ public class Host extends Activity {
 	  	  	    				sendToClient2(str12);
 	  	  	    				final String str13 = ArrayOfPlayers.player[0] + "..." + client0 + doublesModifierOfInitiativeClient0;
 	  	  	    				sendToClient2(str13);
+	  	  	    				
+	  	  	    				
+		  	  	    			String str16 = "PlayerName5 :" + ArrayOfPlayers.player[5];
+		  	    				sendToAllClients(str16);
+		  	    				
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[0] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[1] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[2] = 20;//20
+		  	    				
+		  	    				
+		  	    				firstsubscript = 1;
+			  	  				secondsubscript = 2;
+			  	  				thirdsubscript = 5;
+			  	  				fourthsubscript = 0;
+			  	  				
+			  	  				String str17 = "FirstSubscript :" + 1;
+			  	  				sendToAllClients(str17);
+			  	  				
+			  	  				String str18 = "Secondsbscript :" + 2;
+			  	  				sendToAllClients(str18);
+			  	  				
+			  	  				String str19 = "Thirdsuscript :" + 5;
+			  	  				sendToAllClients(str19);
+			  	  				
+			  	  				String str20 = "Fourthsubcript :" + 0;
+			  	  				sendToAllClients(str20);
   	    					}
   	    					else if ((initiativeFinal[0] > initiativeFinal[5])) {
   	    						
@@ -11736,6 +12585,35 @@ public class Host extends Activity {
 	  	  	    				sendToClient2(str12);
 	  	  	    				final String str13 = ArrayOfPlayers.player[5] + "..." + host + doublesModifierOfInitiativeHost;
 	  	  	    				sendToClient2(str13);
+	  	  	    				
+	  	  	    				
+		  	  	    			String str16 = "PlayerName5 :" + ArrayOfPlayers.player[5];
+		  	    				sendToAllClients(str16);
+		  	    				
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[0] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[1] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[2] = 20;//20
+		  	    				
+		  	    				
+		  	    				firstsubscript = 1;
+			  	  				secondsubscript = 2;
+			  	  				thirdsubscript = 0;
+			  	  				fourthsubscript = 5;
+			  	  				
+			  	  				String str17 = "FirstSubscript :" + 1;
+			  	  				sendToAllClients(str17);
+			  	  				
+			  	  				String str18 = "Secondsbscript :" + 2;
+			  	  				sendToAllClients(str18);
+			  	  				
+			  	  				String str19 = "Thirdsuscript :" + 0;
+			  	  				sendToAllClients(str19);
+			  	  				
+			  	  				String str20 = "Fourthsubcript :" + 5;
+			  	  				sendToAllClients(str20);
   	    					}
   	    				}
   	    			}
@@ -11776,6 +12654,35 @@ public class Host extends Activity {
 	  	  	    				sendToClient2(str12);
 	  	  	    				final String str13 = ArrayOfPlayers.player[1] + "..." + client1 + doublesModifierOfInitiativeClient1;
 	  	  	    				sendToClient2(str13);
+	  	  	    				
+	  	  	    				
+		  	  	    			String str16 = "PlayerName5 :" + ArrayOfPlayers.player[5];
+		  	    				sendToAllClients(str16);
+		  	    				
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[0] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[1] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[2] = 20;//20
+		  	    				
+		  	    				
+		  	    				firstsubscript = 2;
+			  	  				secondsubscript = 5;
+			  	  				thirdsubscript = 0;
+			  	  				fourthsubscript = 1;
+			  	  				
+			  	  				String str17 = "FirstSubscript :" + 2;
+			  	  				sendToAllClients(str17);
+			  	  				
+			  	  				String str18 = "Secondsbscript :" + 5;
+			  	  				sendToAllClients(str18);
+			  	  				
+			  	  				String str19 = "Thirdsuscript :" + 0;
+			  	  				sendToAllClients(str19);
+			  	  				
+			  	  				String str20 = "Fourthsubcript :" + 1;
+			  	  				sendToAllClients(str20);
   	    					}
   	    					else if ((initiativeFinal[1] > initiativeFinal[0])) {
   	    						
@@ -11810,6 +12717,35 @@ public class Host extends Activity {
 	  	  	    				sendToClient2(str12);
 	  	  	    				final String str13 = ArrayOfPlayers.player[0] + "..." + client0 + doublesModifierOfInitiativeClient0;
 	  	  	    				sendToClient2(str13);
+	  	  	    				
+	  	  	    				
+		  	  	    			String str16 = "PlayerName5 :" + ArrayOfPlayers.player[5];
+		  	    				sendToAllClients(str16);
+		  	    				
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[0] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[1] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[2] = 20;//20
+		  	    				
+		  	    				
+		  	    				firstsubscript = 2;
+			  	  				secondsubscript = 5;
+			  	  				thirdsubscript = 1;
+			  	  				fourthsubscript = 0;
+			  	  				
+			  	  				String str17 = "FirstSubscript :" + 2;
+			  	  				sendToAllClients(str17);
+			  	  				
+			  	  				String str18 = "Secondsbscript :" + 5;
+			  	  				sendToAllClients(str18);
+			  	  				
+			  	  				String str19 = "Thirdsuscript :" + 1;
+			  	  				sendToAllClients(str19);
+			  	  				
+			  	  				String str20 = "Fourthsubcript :" + 0;
+			  	  				sendToAllClients(str20);
   	    					}
   	    				}
   	    				else if ((initiativeFinal[0] > initiativeFinal[5]) && (initiativeFinal[0] > initiativeFinal[1])) {
@@ -11847,6 +12783,35 @@ public class Host extends Activity {
 	  	  	    				sendToClient2(str12);
 	  	  	    				final String str13 = ArrayOfPlayers.player[1] + "..." + client1 + doublesModifierOfInitiativeClient1;
 	  	  	    				sendToClient2(str13);
+	  	  	    				
+	  	  	    				
+		  	  	    			String str16 = "PlayerName5 :" + ArrayOfPlayers.player[5];
+		  	    				sendToAllClients(str16);
+		  	    				
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[0] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[1] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[2] = 20;//20
+		  	    				
+		  	    				
+		  	    				firstsubscript = 2;
+			  	  				secondsubscript = 0;
+			  	  				thirdsubscript = 5;
+			  	  				fourthsubscript = 1;
+			  	  				
+			  	  				String str17 = "FirstSubscript :" + 2;
+			  	  				sendToAllClients(str17);
+			  	  				
+			  	  				String str18 = "Secondsbscript :" + 0;
+			  	  				sendToAllClients(str18);
+			  	  				
+			  	  				String str19 = "Thirdsuscript :" + 5;
+			  	  				sendToAllClients(str19);
+			  	  				
+			  	  				String str20 = "Fourthsubcript :" + 1;
+			  	  				sendToAllClients(str20);
   	    					}
   	    					else if ((initiativeFinal[1] > initiativeFinal[5])) {
   	    						
@@ -11881,6 +12846,35 @@ public class Host extends Activity {
 	  	  	    				sendToClient2(str12);
 	  	  	    				final String str13 = ArrayOfPlayers.player[5] + "..." + host + doublesModifierOfInitiativeHost;
 	  	  	    				sendToClient2(str13);
+	  	  	    				
+	  	  	    				
+		  	  	    			String str16 = "PlayerName5 :" + ArrayOfPlayers.player[5];
+		  	    				sendToAllClients(str16);
+		  	    				
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[0] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[1] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[2] = 20;//20
+		  	    				
+		  	    				
+		  	    				firstsubscript = 2;
+			  	  				secondsubscript = 0;
+			  	  				thirdsubscript = 1;
+			  	  				fourthsubscript = 5;
+			  	  				
+			  	  				String str17 = "FirstSubscript :" + 2;
+			  	  				sendToAllClients(str17);
+			  	  				
+			  	  				String str18 = "Secondsbscript :" + 0;
+			  	  				sendToAllClients(str18);
+			  	  				
+			  	  				String str19 = "Thirdsuscript :" + 1;
+			  	  				sendToAllClients(str19);
+			  	  				
+			  	  				String str20 = "Fourthsubcript :" + 5;
+			  	  				sendToAllClients(str20);
   	    					}
   	    				}
   	    				else if ((initiativeFinal[1] > initiativeFinal[5]) && (initiativeFinal[1] > initiativeFinal[0])) {
@@ -11918,6 +12912,35 @@ public class Host extends Activity {
 	  	  	    				sendToClient2(str12);
 	  	  	    				final String str13 = ArrayOfPlayers.player[0] + "..." + client0 + doublesModifierOfInitiativeClient0;
 	  	  	    				sendToClient2(str13);
+	  	  	    				
+	  	  	    				
+		  	  	    			String str16 = "PlayerName5 :" + ArrayOfPlayers.player[5];
+		  	    				sendToAllClients(str16);
+		  	    				
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[0] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[1] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[2] = 20;//20
+		  	    				
+		  	    				
+		  	    				firstsubscript = 2;
+			  	  				secondsubscript = 1;
+			  	  				thirdsubscript = 5;
+			  	  				fourthsubscript = 0;
+			  	  				
+			  	  				String str17 = "FirstSubscript :" + 2;
+			  	  				sendToAllClients(str17);
+			  	  				
+			  	  				String str18 = "Secondsbscript :" + 1;
+			  	  				sendToAllClients(str18);
+			  	  				
+			  	  				String str19 = "Thirdsuscript :" + 5;
+			  	  				sendToAllClients(str19);
+			  	  				
+			  	  				String str20 = "Fourthsubcript :" + 0;
+			  	  				sendToAllClients(str20);
   	    					}
   	    					else if ((initiativeFinal[0] > initiativeFinal[5])) {
   	    						
@@ -11952,6 +12975,35 @@ public class Host extends Activity {
 	  	  	    				sendToClient2(str12);
 	  	  	    				final String str13 = ArrayOfPlayers.player[5] + "..." + host + doublesModifierOfInitiativeHost;
 	  	  	    				sendToClient2(str13);
+	  	  	    				
+	  	  	    				
+		  	  	    			String str16 = "PlayerName5 :" + ArrayOfPlayers.player[5];
+		  	    				sendToAllClients(str16);
+		  	    				
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[0] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[1] = 20;//20
+		  	    				
+		  	    				ArrayOfHitPoints.hitpoints[2] = 20;//20
+		  	    				
+		  	    				
+		  	    				firstsubscript = 2;
+			  	  				secondsubscript = 1;
+			  	  				thirdsubscript = 0;
+			  	  				fourthsubscript = 5;
+			  	  				
+			  	  				String str17 = "FirstSubscript :" + 2;
+			  	  				sendToAllClients(str17);
+			  	  				
+			  	  				String str18 = "Secondsbscript :" + 1;
+			  	  				sendToAllClients(str18);
+			  	  				
+			  	  				String str19 = "Thirdsuscript :" + 0;
+			  	  				sendToAllClients(str19);
+			  	  				
+			  	  				String str20 = "Fourthsubcript :" + 5;
+			  	  				sendToAllClients(str20);
   	    					}
   	    				}
   	    			}
@@ -12199,6 +13251,137 @@ public class Host extends Activity {
 		  	  	String hasteplayer2String = Integer.toString(hasteSpell[secondsubscript]);
 		  	  	hasteplayer2textview.append(hasteplayer2String);
 		  	  	hasteplayer2textview.setVisibility(View.VISIBLE);
+		  	  	
+		  	  	
+		  	  	if (numberOfPlayers == 3) {
+		  	  		
+			  	  	TextView player3textview = (TextView) findViewById(R.id.player3);
+			  	  	player3textview.setTypeface(typeFace);
+			  	  	player3textview.append(ArrayOfPlayers.player[thirdsubscript]);
+			  	  	player3textview.setVisibility(View.VISIBLE);		  	  	
+			  	  	
+			  	  	TextView hitpoints3textview = (TextView) findViewById(R.id.hitpointsplayer3);
+			  	  	hitpoints3textview.setTypeface(typeFace);
+			  	  	String hitpoints3String = Integer.toString(ArrayOfHitPoints.hitpoints[thirdsubscript]);
+			  	  	hitpoints3textview.append(hitpoints3String);
+			  	  	hitpoints3textview.setVisibility(View.VISIBLE);
+			  	  	
+			  	  	TextView blessplayer3textview = (TextView) findViewById(R.id.blessplayer3);
+			  	  	blessplayer3textview.setTypeface(typeFace);
+			  	  	String blessplayer3String = Integer.toString(blessSpell[thirdsubscript]);
+			  	  	blessplayer3textview.append(blessplayer3String);
+			  	  	blessplayer3textview.setVisibility(View.VISIBLE);
+			  	  	
+			  	  	TextView cureplayer3textview = (TextView) findViewById(R.id.cureplayer3);
+			  	  	cureplayer3textview.setTypeface(typeFace);
+			  	  	String cureplayer3String = Integer.toString(cureSpell[thirdsubscript]);
+			  	  	cureplayer3textview.append(cureplayer3String);
+			  	  	cureplayer3textview.setVisibility(View.VISIBLE);
+			  	  	
+			  	  	TextView dodgeplayer3textview = (TextView) findViewById(R.id.dodgeplayer3);
+			  	  	dodgeplayer3textview.setTypeface(typeFace);
+			  	  	String dodgeplayer3String = Integer.toString(dodgeBlowSpell[thirdsubscript]);
+			  	  	dodgeplayer3textview.append(dodgeplayer3String);
+			  	  	dodgeplayer3textview.setVisibility(View.VISIBLE);
+			  	  	
+			  	  	TextView mightyblowplayer3textview = (TextView) findViewById(R.id.mightyblowplayer3);
+			  	  	mightyblowplayer3textview.setTypeface(typeFace);
+			  	  	String mightyblowplayer3String = Integer.toString(mightyBlowSpell[thirdsubscript]);
+			  	  	mightyblowplayer3textview.append(mightyblowplayer3String);
+			  	  	mightyblowplayer3textview.setVisibility(View.VISIBLE);
+			  	  	
+			  	  	TextView hasteplayer3textview = (TextView) findViewById(R.id.hasteplayer3);
+			  	  	hasteplayer3textview.setTypeface(typeFace);
+			  	  	String hasteplayer3String = Integer.toString(hasteSpell[thirdsubscript]);
+			  	  	hasteplayer3textview.append(hasteplayer3String);
+			  	  	hasteplayer3textview.setVisibility(View.VISIBLE);		  	  		
+		  	  	}
+		  	  	
+		  	  	else if (numberOfPlayers == 4) {
+		  	  		
+			  	  	TextView player3textview = (TextView) findViewById(R.id.player3);
+			  	  	player3textview.setTypeface(typeFace);
+			  	  	player3textview.append(ArrayOfPlayers.player[thirdsubscript]);
+			  	  	player3textview.setVisibility(View.VISIBLE);		  	  	
+			  	  	
+			  	  	TextView hitpoints3textview = (TextView) findViewById(R.id.hitpointsplayer3);
+			  	  	hitpoints3textview.setTypeface(typeFace);
+			  	  	String hitpoints3String = Integer.toString(ArrayOfHitPoints.hitpoints[thirdsubscript]);
+			  	  	hitpoints3textview.append(hitpoints3String);
+			  	  	hitpoints3textview.setVisibility(View.VISIBLE);
+			  	  	
+			  	  	TextView blessplayer3textview = (TextView) findViewById(R.id.blessplayer3);
+			  	  	blessplayer3textview.setTypeface(typeFace);
+			  	  	String blessplayer3String = Integer.toString(blessSpell[thirdsubscript]);
+			  	  	blessplayer3textview.append(blessplayer3String);
+			  	  	blessplayer3textview.setVisibility(View.VISIBLE);
+			  	  	
+			  	  	TextView cureplayer3textview = (TextView) findViewById(R.id.cureplayer3);
+			  	  	cureplayer3textview.setTypeface(typeFace);
+			  	  	String cureplayer3String = Integer.toString(cureSpell[thirdsubscript]);
+			  	  	cureplayer3textview.append(cureplayer3String);
+			  	  	cureplayer3textview.setVisibility(View.VISIBLE);
+			  	  	
+			  	  	TextView dodgeplayer3textview = (TextView) findViewById(R.id.dodgeplayer3);
+			  	  	dodgeplayer3textview.setTypeface(typeFace);
+			  	  	String dodgeplayer3String = Integer.toString(dodgeBlowSpell[thirdsubscript]);
+			  	  	dodgeplayer3textview.append(dodgeplayer3String);
+			  	  	dodgeplayer3textview.setVisibility(View.VISIBLE);
+			  	  	
+			  	  	TextView mightyblowplayer3textview = (TextView) findViewById(R.id.mightyblowplayer3);
+			  	  	mightyblowplayer3textview.setTypeface(typeFace);
+			  	  	String mightyblowplayer3String = Integer.toString(mightyBlowSpell[thirdsubscript]);
+			  	  	mightyblowplayer3textview.append(mightyblowplayer3String);
+			  	  	mightyblowplayer3textview.setVisibility(View.VISIBLE);
+			  	  	
+			  	  	TextView hasteplayer3textview = (TextView) findViewById(R.id.hasteplayer3);
+			  	  	hasteplayer3textview.setTypeface(typeFace);
+			  	  	String hasteplayer3String = Integer.toString(hasteSpell[thirdsubscript]);
+			  	  	hasteplayer3textview.append(hasteplayer3String);
+			  	  	hasteplayer3textview.setVisibility(View.VISIBLE);
+			  	  	
+			  	  	
+			  	  	TextView player4textview = (TextView) findViewById(R.id.player4);
+			  	  	player4textview.setTypeface(typeFace);
+			  	  	player4textview.append(ArrayOfPlayers.player[fourthsubscript]);
+			  	  	player4textview.setVisibility(View.VISIBLE);		  	  	
+			  	  	
+			  	  	TextView hitpoints4textview = (TextView) findViewById(R.id.hitpointsplayer4);
+			  	  	hitpoints4textview.setTypeface(typeFace);
+			  	  	String hitpoints4String = Integer.toString(ArrayOfHitPoints.hitpoints[fourthsubscript]);
+			  	  	hitpoints4textview.append(hitpoints4String);
+			  	  	hitpoints4textview.setVisibility(View.VISIBLE);
+			  	  	
+			  	  	TextView blessplayer4textview = (TextView) findViewById(R.id.blessplayer4);
+			  	  	blessplayer4textview.setTypeface(typeFace);
+			  	  	String blessplayer4String = Integer.toString(blessSpell[fourthsubscript]);
+			  	  	blessplayer4textview.append(blessplayer4String);
+			  	  	blessplayer4textview.setVisibility(View.VISIBLE);
+			  	  	
+			  	  	TextView cureplayer4textview = (TextView) findViewById(R.id.cureplayer4);
+			  	  	cureplayer4textview.setTypeface(typeFace);
+			  	  	String cureplayer4String = Integer.toString(cureSpell[fourthsubscript]);
+			  	  	cureplayer4textview.append(cureplayer4String);
+			  	  	cureplayer4textview.setVisibility(View.VISIBLE);
+			  	  	
+			  	  	TextView dodgeplayer4textview = (TextView) findViewById(R.id.dodgeplayer4);
+			  	  	dodgeplayer4textview.setTypeface(typeFace);
+			  	  	String dodgeplayer4String = Integer.toString(dodgeBlowSpell[fourthsubscript]);
+			  	  	dodgeplayer4textview.append(dodgeplayer4String);
+			  	  	dodgeplayer4textview.setVisibility(View.VISIBLE);
+			  	  	
+			  	  	TextView mightyblowplayer4textview = (TextView) findViewById(R.id.mightyblowplayer4);
+			  	  	mightyblowplayer4textview.setTypeface(typeFace);
+			  	  	String mightyblowplayer4String = Integer.toString(mightyBlowSpell[fourthsubscript]);
+			  	  	mightyblowplayer4textview.append(mightyblowplayer4String);
+			  	  	mightyblowplayer4textview.setVisibility(View.VISIBLE);
+			  	  	
+			  	  	TextView hasteplayer4textview = (TextView) findViewById(R.id.hasteplayer4);
+			  	  	hasteplayer4textview.setTypeface(typeFace);
+			  	  	String hasteplayer4String = Integer.toString(hasteSpell[fourthsubscript]);
+			  	  	hasteplayer4textview.append(hasteplayer4String);
+			  	  	hasteplayer4textview.setVisibility(View.VISIBLE);
+		  	  	}
 	  	  		
 	  	  		
 	  	  		//titlerulestext.bringToFront();
@@ -12361,14 +13544,17 @@ public class Host extends Activity {
 			
 			playerNumberAttacked = 0;
 			
+			playersFighting = "fiveVsZero";
+			
 		    
 		    turn();
-		}
+		}		
 		
 		else if (numberOfPlayers == 3) {
 			
-			ArrayOfHitPoints.hitpoints[0] = 20;
-			ArrayOfHitPoints.hitpoints[1] = 20;
+			String str2 = "gameEngineMultiPlayer";
+			sendToAllClients(str2);
+			
 			
 			playerDeadYet[5] = "no";
 			playerDeadYet[0] = "no";
@@ -12386,16 +13572,55 @@ public class Host extends Activity {
 			
 			final int gameOn = 1;			
 			
-			ArrayOfTurn.turn[0] = 0;			
+			ArrayOfTurn.turn[0] = 0;
+			
+			
+			if ((initiativeFinal[0] > initiativeFinal[5] && initiativeFinal[0] > initiativeFinal[1]) ||	(initiativeFinal[1] > initiativeFinal[5] && initiativeFinal[1] > initiativeFinal[0])) {
+				
+				unfoldLeftScrollReverse();
+			}
+			else if (initiativeFinal[0] > initiativeFinal[5] && initiativeFinal[0] > initiativeFinal[1]) {
+				
+				String str7 = "closeRightScroll";
+				sendToClient1(str7);
+				
+				final Handler h = new Handler();
+	  	  	  	h.postDelayed(new Runnable() {
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {				    							    			
+		    			
+	  	  	  			String str8 = "reveal0onright";
+	  	  	  			sendToClient1(str8);
+	  	  	  		}
+	  	  	  	}, 1000);
+			}
+			else if (initiativeFinal[1] > initiativeFinal[5] && initiativeFinal[1] > initiativeFinal[0]) {
+				
+				String str9 = "closeRightScroll";
+				sendToClient0(str9);
+				
+				final Handler h = new Handler();
+	  	  	  	h.postDelayed(new Runnable() {
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {				    							    			
+		    			
+	  	  	  			String str10 = "rEveal1onright";
+	  	  	  			sendToClient0(str10);
+	  	  	  		}
+	  	  	  	}, 1000);
+			}
+			
 		    
 		    turn();
 		}
 		
-		else if (numberOfPlayers == 4) {
+		else if (numberOfPlayers == 4) {			
 			
-			ArrayOfHitPoints.hitpoints[0] = 20;
-			ArrayOfHitPoints.hitpoints[1] = 20;
-			ArrayOfHitPoints.hitpoints[2] = 20;
+			String str2 = "gameEngineMultiPlayer";
+			sendToAllClients(str2);
+			
 			
 			playerDeadYet[5] = "no";
 			playerDeadYet[0] = "no";
@@ -12417,17 +13642,17 @@ public class Host extends Activity {
 			
 			final int gameOn = 1;			
 			
-			ArrayOfTurn.turn[0] = 0;			
+			ArrayOfTurn.turn[0] = 0;
+			
 		    
 		    turn();
 		}
 		
 		else if (numberOfPlayers == 5) {
 			
-			ArrayOfHitPoints.hitpoints[0] = 20;
-			ArrayOfHitPoints.hitpoints[1] = 20;
-			ArrayOfHitPoints.hitpoints[2] = 20;
-			ArrayOfHitPoints.hitpoints[3] = 20;
+			String str2 = "gameEngineMultiPlayer";
+			sendToAllClients(str2);
+			
 			
 			playerDeadYet[5] = "no";
 			playerDeadYet[0] = "no";
@@ -12453,7 +13678,8 @@ public class Host extends Activity {
 			
 			final int gameOn = 1;		
 			
-			ArrayOfTurn.turn[0] = 0;			
+			ArrayOfTurn.turn[0] = 0;
+			
 		    
 		    turn();
 		}		
@@ -12491,7 +13717,7 @@ public class Host extends Activity {
 	
 	public void turn() {
 		
-		if (numberOfPlayers == 2) {			
+		if (numberOfPlayers == 2) {
 			
 			if (initiativeFinal[5] > initiativeFinal[0]) {
 				
@@ -12589,41 +13815,236 @@ public class Host extends Activity {
 		  	  	    }
 		  		});
 			}			
-		}
+		}	
 		
-		else if (numberOfPlayers == 3) {//WILL NEED DIALOG TO PICK OPPONENT
+		else if (numberOfPlayers == 3) {
 			
-			if (initiativeFinal[5] > initiativeFinal[0] && initiativeFinal[5] > initiativeFinal[1]) {
+			if (initiativeFinal[5] > initiativeFinal[0] && initiativeFinal[5] > initiativeFinal[1]) { //TOOK OUT: && has5TakenTurn.equals("no")
 				
+				has5TakenTurn = "no";
+				Has0TakenTurn = "no";
+				hAs1TakenTurn = "no";
+				
+				runOnUiThread(new Runnable() {
+		  	  	    @Override
+		  	  	    public void run() {
+				
+						// Use a blank drawable to hide the imageview animation:
+						// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+						ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+						img1.setBackgroundResource(R.drawable.twentytwentyblank);
+						img1.setImageResource(R.drawable.twentytwentyblank);
+		
+						// Use a blank drawable to hide the imageview animation:
+						ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
+						img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+						img2.setImageResource(R.drawable.sixsixrightleftrotateblank);						
+						
+		    			
+		    			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+		    			
+		    			//NEED THIS??
+		    			TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+		    			playerHitPointsTextView.setTypeface(typeFace);
+		    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[5]));
+		    			//Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);
+		    			//playerHitPointsTextView.startAnimation(animPulsingAnimation);
+						
+		    			
+		    			computerCardStopFadeInFadeOut();
+		    			playerCardStartFadeInFadeOut();		    			
+		    			
+		    			
+		    			String str = "Trn3V35";
+		    			sendToClient0(str);
+		    			
+						
+						ArrayOfTurn.turn[0] = ArrayOfTurn.turn[0] + 1;	
+						
+						
+						chooseOpponent();			  	  	  		
+		  	  	    }
+		  		});
+				
+				/*
 				if (initiativeFinal[0] > initiativeFinal[1]) {
 					
 				}
 				else if (initiativeFinal[1] > initiativeFinal[0]) {
 					
-				}				
+				}
+				*/
 			}
 			
-			else if (initiativeFinal[0] > initiativeFinal[5] && initiativeFinal[0] > initiativeFinal[1]) {
+			else if (initiativeFinal[0] > initiativeFinal[5] && initiativeFinal[0] > initiativeFinal[1] && has5TakenTurn.equals("yes")) { //TOOK OUT: && Has0TakenTurn.equals("no")	
 				
+				has5TakenTurn = "no";
+				Has0TakenTurn = "no";
+				hAs1TakenTurn = "no";
+				
+				runOnUiThread(new Runnable() {
+		  	  	    @Override
+		  	  	    public void run() {
+				
+						// Use a blank drawable to hide the imageview animation:
+						// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+						ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+						img1.setBackgroundResource(R.drawable.twentytwentyblank);
+						img1.setImageResource(R.drawable.twentytwentyblank);
+		
+						// Use a blank drawable to hide the imageview animation:
+						ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
+						img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+						img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+						
+						
+						//unfoldLeftScrollReverse(); DO THIS BEFORE
+						
+						
+						final Handler h = new Handler();
+			  	  	  	h.postDelayed(new Runnable() {
+			  	  	  			
+			  	  	  		@Override
+				  	  	  	public void run() {				    							    			
+				    			
+	                  			final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+		                  			
+	                  			TextView computerNameTextView = (TextView)findViewById(R.id.textviewnameright);
+	                  			computerNameTextView.setTypeface(typeFace);
+	                  			computerNameTextView.setText(ArrayOfPlayers.player[0]);
+	                  			//computerNameTextView.setVisibility(View.INVISIBLE);
+
+	                  			//ArrayOfHitPoints.hitpoints[0] = 20;//20
+	                  			final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+	                  			computerHitPointsTextView.setTypeface(typeFace);
+	                  			//computerHitPointsTextView.setVisibility(View.INVISIBLE);
+	                  			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+
+	                  			ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+	                  			clientAvatar.setVisibility(View.VISIBLE);           			
+	                  			
+				    			
+				    			scrollAnimationLeftDown();
+				    			
+				    			
+				    			computerCardStartFadeInFadeOut();
+				    			playerCardStopFadeInFadeOut();				    			
+				    			
+				    			
+				    			
+				    			String str = "0attackingFirst :" + "yes";
+				    			sendToClient0(str);
+				    			
+				    			
+				    			String str2 = "chooseOpponent";
+				    			sendToClient0(str2);
+				    			
+								
+								ArrayOfTurn.turn[0] = ArrayOfTurn.turn[0] + 1;	
+								
+								
+								//gameEngine3V30();
+			  	  	  		}
+			  	  	  	}, 1000);
+		  	  	    }
+		  		});
+				
+				
+				/*
 				if (initiativeFinal[5] > initiativeFinal[1]) {
 					
 				}
 				else if (initiativeFinal[1] > initiativeFinal[5]) {
 					
-				}				
+				}
+				*/
 			}
 			
-			else if (initiativeFinal[1] > initiativeFinal[5] && initiativeFinal[1] > initiativeFinal[0]) {
+			else if (initiativeFinal[1] > initiativeFinal[5] && initiativeFinal[1] > initiativeFinal[0] && has5TakenTurn.equals("yes")) { //TOOK OUT: && Has0TakenTurn.equals("yes")			
 				
+				has5TakenTurn = "no";
+				Has0TakenTurn = "no";
+				hAs1TakenTurn = "no";
+				
+				runOnUiThread(new Runnable() {
+		  	  	    @Override
+		  	  	    public void run() {
+				
+						// Use a blank drawable to hide the imageview animation:
+						// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+						ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+						img1.setBackgroundResource(R.drawable.twentytwentyblank);
+						img1.setImageResource(R.drawable.twentytwentyblank);
+		
+						// Use a blank drawable to hide the imageview animation:
+						ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
+						img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+						img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+						
+						
+						//unfoldLeftScrollReverse(); DO THIS BEFORE
+						
+						
+						final Handler h = new Handler();
+			  	  	  	h.postDelayed(new Runnable() {
+			  	  	  			
+			  	  	  		@Override
+				  	  	  	public void run() {
+		    			
+				  	  	  		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	                  			
+	                  			TextView computerNameTextView = (TextView)findViewById(R.id.textviewnameright);
+	                  			computerNameTextView.setTypeface(typeFace);
+	                  			computerNameTextView.setText(ArrayOfPlayers.player[1]);
+	                  			//computerNameTextView.setVisibility(View.INVISIBLE);
+	
+	                  			//ArrayOfHitPoints.hitpoints[0] = 20;//20
+	                  			final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+	                  			computerHitPointsTextView.setTypeface(typeFace);
+	                  			//computerHitPointsTextView.setVisibility(View.INVISIBLE);
+	                  			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
+	
+	                  			ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+	                  			clientAvatar.setVisibility(View.VISIBLE);
+								
+				    			
+				    			scrollAnimationLeftDown();
+				    			
+				    			
+				    			computerCardStartFadeInFadeOut();
+				    			playerCardStopFadeInFadeOut();				    			
+				    			
+				    			
+				    			
+				    			String str = "1AttackingFirst :" + "yes";
+				    			sendToClient0(str);
+				    			
+				    			
+				    			String str2 = "chooseOpponent";
+				    			sendToClient0(str2);
+				    			
+								
+								ArrayOfTurn.turn[0] = ArrayOfTurn.turn[0] + 1;	
+								
+								
+								//gameEngine3V31();
+			  	  	  		}
+			  	  	  	}, 1000);
+		  	  	    }
+		  		});
+				
+				
+				/*
 				if (initiativeFinal[5] > initiativeFinal[0]) {
 					
 				}
 				else if (initiativeFinal[0] > initiativeFinal[5]) {
 					
-				}				
+				}
+				*/
 			}			
-		}
-		//NOT FINISHED WITH BELOW:
+		}		
+		
 		else if (numberOfPlayers == 4) {
 			
 			if (initiativeFinal[5] > initiativeFinal[0] && initiativeFinal[5] > initiativeFinal[1] && initiativeFinal[5] > initiativeFinal[2]) {
@@ -12674,6 +14095,205 @@ public class Host extends Activity {
 				
 			}			
 		}		
+	}
+	
+	
+	public void chooseOpponent() {
+		
+		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);		
+		
+		
+		runOnUiThread(new Runnable() {
+			
+  	  	    @Override
+  	  	    public void run() {
+  	  	    	
+	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+	  			
+	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  			centerscrolltext.setTypeface(typeFace);
+	  			
+	  			centerscrolltext.setVisibility(View.VISIBLE);													
+		  		centerscrolltext.startAnimation(animAlphaText);
+				centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[5] + " is choosing player to attack...");									
+				
+				String str = "> " + ArrayOfPlayers.player[5] + " is choosing player to attack...";
+				sendToAllClients(str);
+  	  	    					
+				
+				final Handler h = new Handler();
+	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {	  	  	  			
+	  	  	  			
+	  	  	  			if (numberOfPlayers == 3) {
+	  	  	  				
+		  	  	  			final String[] items = {ArrayOfPlayers.player[0], ArrayOfPlayers.player[1]};
+		  	  	  		
+		  			  		// Instead of String[] items, Here you can also use ArrayList for your custom object..
+		  		
+		  			  		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.list_row, R.id.title,items) {
+		  		
+		  			  		    ViewHolder holder;
+		  			  		    Drawable icon;
+		  		
+		  			  		    class ViewHolder {
+		  			  		        ImageView icon;
+		  			  		        TextView title;						
+		  			  		    }
+		  		
+		  			  		    public View getView(int position, View convertView, ViewGroup parent) {
+		  			  		        final LayoutInflater inflater = (LayoutInflater) getApplicationContext()
+		  			  		                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);		  			  		        
+		  		
+		  			  		        if (convertView == null) {
+		  			  		            convertView = inflater.inflate(R.layout.list_row, null);
+		  		
+		  			  		            holder = new ViewHolder();
+		  			  		            holder.icon = (ImageView) convertView.findViewById(R.id.icon);
+		  			  		            holder.title = (TextView) convertView.findViewById(R.id.title);		  		           
+		  			  		            
+		  			  		            convertView.setTag(holder);
+		  			  		        }
+		  			  		        
+		  			  		        else {
+		  			  		            // view already defined, retrieve view holder
+		  			  		            holder = (ViewHolder) convertView.getTag();
+		  			  		        }       
+		  		
+		  			  		       // Drawable drawable = getResources().getDrawable(R.drawable.list_icon); //this is an image from the drawables folder
+		  		
+		  			  		        holder.title.setText(items[position]);
+		  			  		        //holder.icon.setImageDrawable(drawable);     
+		  			  		        
+		  		
+		  			  		        return convertView;
+		  			  		    }
+		  			  		};
+		  			  		
+		  			  		
+		  			  		// THIS WAY ALLOWS YOU TO STYLE THE DIALOG (ex. background doesn't dim.):
+		  			  		ContextThemeWrapper cw = new ContextThemeWrapper(Host.this, R.style.DialogWindowTitle_Holo);
+		  			  		AlertDialog.Builder builder = new AlertDialog.Builder(cw);		  			  		
+		  			  		
+		  		  			
+		  		  			builder.setCancelable(false);	  			
+		  		  			
+		  		  			builder.setTitle("Choose Player To Attack"); 		  			
+		  		  			
+		  		  			
+		  					builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+		  						@Override
+		  						public void onCancel(DialogInterface dialog) {		  							
+		  							
+		  							chooseOpponent();
+		  						}
+		  					});
+		  		  			
+		  					
+		  		            builder.setAdapter(adapter,
+		  		                    new DialogInterface.OnClickListener() {
+		  		                        @Override
+		  		                        public void onClick(final DialogInterface dialog, int item) {
+		  		                        	
+		  		                        	if (item == 0) {										
+		  										
+		  		                        		playerNumberAttacked = 0;
+		  		                        		
+		  		                        		
+		  		                        		has5TakenTurn = "yes";
+		  		                        		
+		  		                        		
+		  		                        		gameEngine3V35Part1For50();
+		  		                        		
+		  		                        		String str = "gameEngine3V350";
+		  		                        		sendToAllClients(str);
+		  		                        		
+		  		                        		
+		  		                        		playersFighting = "fiveVsZero";
+		  		                        		
+		  		                        		
+		  		                        		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+		  		                  			
+			  		                  			TextView computerNameTextView = (TextView)findViewById(R.id.textviewnameright);
+			  		                  			computerNameTextView.setTypeface(typeFace);
+			  		                  			computerNameTextView.setText(ArrayOfPlayers.player[0]);
+			  		                  			//computerNameTextView.setVisibility(View.INVISIBLE);
+	
+			  		                  			//ArrayOfHitPoints.hitpoints[0] = 20;//20
+			  		                  			final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+			  		                  			computerHitPointsTextView.setTypeface(typeFace);
+			  		                  			//computerHitPointsTextView.setVisibility(View.INVISIBLE);
+			  		                  			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+	
+			  		                  			ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+			  		                  			clientAvatar.setVisibility(View.VISIBLE);
+			  		                  			
+			  		                  			
+			  		                  			unfoldRightScroll();
+		  		                        		
+												
+												dialog.dismiss();
+		  									}
+		  		                        	
+		  		                        	else if (item == 1) {
+		  		                        		
+		  		                        		playerNumberAttacked = 1;
+		  		                        		
+		  		                        		
+		  		                        		has5TakenTurn = "yes";
+		  		                        		
+		  		                        		
+												gameEngine3V35Part1For51();
+												
+												String str = "gAmeEngine3V351";
+		  		                        		sendToAllClients(str);
+		  		                        		
+		  		                        		
+		  		                        		playersFighting = "fiveVsOne";
+		  		                        		
+		  		                        		
+		  		                        		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+			  		                  			
+			  		                  			TextView computerNameTextView = (TextView)findViewById(R.id.textviewnameright);
+			  		                  			computerNameTextView.setTypeface(typeFace);
+			  		                  			computerNameTextView.setText(ArrayOfPlayers.player[1]);
+			  		                  			//computerNameTextView.setVisibility(View.INVISIBLE);
+	
+			  		                  			//ArrayOfHitPoints.hitpoints[0] = 20;//20
+			  		                  			final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+			  		                  			computerHitPointsTextView.setTypeface(typeFace);
+			  		                  			//computerHitPointsTextView.setVisibility(View.INVISIBLE);
+			  		                  			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
+	
+			  		                  			ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+			  		                  			clientAvatar.setVisibility(View.VISIBLE);
+			  		                  			
+			  		                  			
+			  		                  			unfoldRightScroll();
+												
+												
+												dialog.dismiss();																						
+		  									}		  		                        		  		                            
+		  		                        }
+		  		                    });	            
+		  		            
+		  		            AlertDialog alert = builder.create();
+		  		            alert.show();	            
+		  		            
+		  		            
+		  		            WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+	
+		  		            lp.copyFrom(alert.getWindow().getAttributes());
+		  		            lp.width = 1050;	            
+		  		            alert.getWindow().setAttributes(lp);  				
+	  	  	  			}	  	  	  			
+		  	  	  	}
+	  	  	  	}, 2000);					
+  	  	    }
+		});
 	}
 	
 	
@@ -13246,8 +14866,1729 @@ public class Host extends Activity {
 	  	  	  		}
 	  	  	  	}, 2000);	  			
   	  	    }
+		});
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	public void gameEngine3V35Part1For50() {
+		
+		//final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+		
+		issecondroundofhasteused = "no"; // SO HUMIE CAN USE MB AFTER THE 2RD ROUND OF A HASTE.
+		
+		if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] + 3 == ArrayOfTurn.turn[0]) {//CHANGED FROM 3 TO 2, SHOULD BE 3?
+			
+			canHasDisarmed[0] = "no";
+			
+			String str = "CanHasDisarmed0 :" + "no";
+			sendToAllClients(str);
+			
+			
+			TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+	  		disarmedtextright.setVisibility(View.INVISIBLE);
+	  		
+	  		String str2 = "clientNotDisarmed";
+	  		sendToAllClients(str2);	  		
+			
+			
+			didHumanCriticalMiss[0] = "no";
+			
+			String str3 = "DidHumanCriticalMiss0 :" + "no";
+			sendToAllClients(str3);
+		}		
+		
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() { 	  	    	
+  	  	    	
+  	  	    	//ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+	  			//chatBlankButton.bringToFront();
+  	  	    	
+  	  	    	
+  	  	    	displayTurn();
+  	  	    	
+  	  	    	//int turnVariable = ArrayOfTurn.turn[0];
+  	  	    	
+	  	  	    String str4 = "Turn :" + ArrayOfTurn.turn[0];
+	  	  	    sendToAllClients(str4);
+  	  	    	
+	  	  	    String str5 = "displayTrn";
+	  	  	    sendToAllClients(str5);  	  	    	
+  	  	    	
+				
+				final Handler h = new Handler();
+	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {
+	  	  	  			
+	  	  	  			
+			  	  		if (canHasDisarmed[5].equals("yes")) {
+							
+				  	  		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+		  	  	  			disarmedtextleft.setVisibility(View.VISIBLE);
+				  	  	  	disarmedtextleft.bringToFront();
+				  	  	  	
+				  	  	  	String str6 = "hostSideDisarmed";
+				  	  	  	sendToAllClients(str6);				  	  	
+			  	  			
+							
+			  	  			if ((didHumanCriticalMiss[5].equals("yes") && disarmedTurnStart[5] == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[5].equals("yes") && disarmedTurnStart[5] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[5].equals("yes") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0])) {			  	  				
+				  	  										
+			  	  				disarmedAction();				  	  			
+			  	  			}
+			  	  			
+			  	  			else if ((didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0])) {
+			  	  						  	  											
+								disarmedAction();
+												  	  			
+			  	  			}			  	  			
+				  	    	
+				  			else if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 3 == ArrayOfTurn.turn[0]) {
+				  									
+				  				canHasDisarmed[5] = "no";
+				  				
+				  				String str7 = "canHaSDisarmed5 :" + "no";
+				  				sendToAllClients(str7);
+				  				
+				  			
+				  				//didHumanCriticalMiss = "no";				  				
+				  				
+				  		  		disarmedtextleft.setVisibility(View.INVISIBLE);
+				  		  		
+				  		  		String str8 = "hostSideNotDisarmed";
+				  		  		sendToAllClients(str8);
+				  		  		
+				  				
+				  				if (isInvokingService.equals("true")){
+									//NEED THIS?
+									SystemClock.sleep(1000);	        		
+										
+									runActionsOnUi();
+								}
+				  			}
+						}
+			  	  		
+			  	  		else {							
+			  	  			
+				  	  		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+					  		disarmedtextleft.setVisibility(View.INVISIBLE);
+			  	  			
+							if (isInvokingService.equals("true")){
+								//NEED THIS?
+								SystemClock.sleep(1000);	        		
+									
+								runActionsOnUi();
+							}
+			  	  		}
+		  	  	  	}
+	  	  	  	}, 1000);				
+  	  	    }
+		});
+	}
+	
+	public void gameEngine3V35Part1For51() {
+		
+		//final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+		
+		issecondroundofhasteused = "no"; // SO HUMIE CAN USE MB AFTER THE 2RD ROUND OF A HASTE.
+		
+		if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] + 3 == ArrayOfTurn.turn[0]) {//CHANGED FROM 3 TO 2, SHOULD BE 3?
+			
+			canHasDisarmed[1] = "no";
+			
+			String str = "cAnHasDisarmed1 :" + "no";
+			sendToAllClients(str);
+			
+			
+			TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+	  		disarmedtextright.setVisibility(View.INVISIBLE);
+	  		
+	  		String str2 = "clientNotDisarmed";
+	  		sendToAllClients(str2);	  		
+			
+			
+			didHumanCriticalMiss[1] = "no";
+			
+			String str3 = "dIdHumanCriticalMiss1 :" + "no";
+			sendToAllClients(str3);
+		}		
+		
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() { 	  	    	
+  	  	    	
+  	  	    	//ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+	  			//chatBlankButton.bringToFront();
+  	  	    	
+  	  	    	
+  	  	    	displayTurn();
+  	  	    	
+  	  	    	//int turnVariable = ArrayOfTurn.turn[0];
+  	  	    	
+	  	  	    String str4 = "Turn :" + ArrayOfTurn.turn[0];
+	  	  	    sendToAllClients(str4);
+  	  	    	
+	  	  	    String str5 = "displayTrn";
+	  	  	    sendToAllClients(str5);  	  	    	
+  	  	    	
+				
+				final Handler h = new Handler();
+	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {
+	  	  	  			
+	  	  	  			
+			  	  		if (canHasDisarmed[5].equals("yes")) {
+							
+				  	  		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+		  	  	  			disarmedtextleft.setVisibility(View.VISIBLE);
+				  	  	  	disarmedtextleft.bringToFront();
+				  	  	  	
+				  	  	  	String str6 = "hostSideDisarmed";
+				  	  	  	sendToAllClients(str6);				  	  	
+			  	  			
+							
+			  	  			if ((didHumanCriticalMiss[5].equals("yes") && disarmedTurnStart[5] == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[5].equals("yes") && disarmedTurnStart[5] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[5].equals("yes") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0])) {			  	  				
+				  	  										
+			  	  				disarmedAction();				  	  			
+			  	  			}
+			  	  			
+			  	  			else if ((didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0])) {
+			  	  						  	  											
+								disarmedAction();
+												  	  			
+			  	  			}			  	  			
+				  	    	
+				  			else if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 3 == ArrayOfTurn.turn[0]) {
+				  									
+				  				canHasDisarmed[5] = "no";
+				  				
+				  				String str7 = "canHaSDisarmed5 :" + "no";
+				  				sendToAllClients(str7);
+				  				
+				  			
+				  				//didHumanCriticalMiss = "no";				  				
+				  				
+				  		  		disarmedtextleft.setVisibility(View.INVISIBLE);
+				  		  		
+				  		  		String str8 = "hostSideNotDisarmed";
+				  		  		sendToAllClients(str8);
+				  		  		
+				  				
+				  				if (isInvokingService.equals("true")){
+									//NEED THIS?
+									SystemClock.sleep(1000);	        		
+										
+									runActionsOnUi();
+								}
+				  			}
+						}
+			  	  		
+			  	  		else {							
+			  	  			
+				  	  		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+					  		disarmedtextleft.setVisibility(View.INVISIBLE);
+			  	  			
+							if (isInvokingService.equals("true")){
+								//NEED THIS?
+								SystemClock.sleep(1000);	        		
+									
+								runActionsOnUi();
+							}
+			  	  		}
+		  	  	  	}
+	  	  	  	}, 1000);				
+  	  	    }
+		});
+	}
+	
+	
+	
+	
+	
+	//REDIRECT HERE FOR 0 NEXT
+	public void gameEngine3V35Part2For0Part1() {//FOR 0 ATTACKING PT 1
+		
+		//Toast.makeText(MainActivity2.this, "COMPUTER TURN START", Toast.LENGTH_SHORT).show();	
+		
+		//Toast.makeText(MainActivity2.this, "Turn = " + ArrayOfTurn.turn[0], Toast.LENGTH_SHORT).show();	
+		
+		
+		// THIS THREAD IS BEING USED TO TEST ACCESS TO CENTERSCROLLTEXT
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {
+  	  	    	
+  	  	    	// Use a blank drawable to hide the imageview animation:
+				// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+				img1.setBackgroundResource(R.drawable.twentytwentyblank);
+				img1.setImageResource(R.drawable.twentytwentyblank);
+
+				// Use a blank drawable to hide the imageview animation:
+				ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
+				img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+  	  	    	
+  	  	    	
+	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+	  			// Re-enables ability to use srollbar:
+	  			centerscrolltext.bringToFront();
+	  			
+	  			ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+  	  	    	titleBlankButton.bringToFront();
+  	  	    	
+  	  	    	
+  	  	    	ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+	  	    	chatBlankButton.bringToFront();
+	  			
+	  			
+	  			// NEED THIS?:
+  	  	    	//ishasteused0.equals("no");// so computer doesn't use a haste during a haste. NEEDS '=' BTW
+  	  	    	ishasteused0 = "no";
+  	  	    	
+	  			
+	  			playerCardStopFadeInFadeOut();
+	  				  			
+	  		  	
+	  			foldScrolls();
+	  		  	
+	  			String str6 = "foldScrolls";
+	  			sendToAllClients(str6);
+	  			
+	  			
+	  			
+	  			final Handler h = new Handler();
+	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {
+						
+	  	  	  			final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+            			
+            			TextView computerNameTextView = (TextView)findViewById(R.id.textviewnameright);
+            			computerNameTextView.setTypeface(typeFace);
+            			computerNameTextView.setText(ArrayOfPlayers.player[0]);
+            			//computerNameTextView.setVisibility(View.INVISIBLE);
+
+            			//ArrayOfHitPoints.hitpoints[0] = 20;//20
+            			final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+            			computerHitPointsTextView.setTypeface(typeFace);
+            			//computerHitPointsTextView.setVisibility(View.INVISIBLE);
+            			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+
+            			ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+            			clientAvatar.setVisibility(View.VISIBLE);
+	  	  	  			
+	  	  	  			
+            			scrollAnimationLeftDown();
+	  	  	  			
+	  	  	  			String str7 = "reveal0onright";
+	  	  	  			sendToAllClients(str7);
+	  	  	  			
+	  	  	  			
+	  	  	  			computerCardStartFadeInFadeOut();
+	  	  	  			
+	  	  	  			
+	  	  	  			String str8 = "chooseOpponent";
+	  	  	  			sendToClient0(str8);
+	  	  	  		}
+	  	  	  	}, 1000);		
+  	  	    }
+		});
+	}
+	
+	public void gameEngine3V35Part2For05Part2() {//FOR 0 ATTACKING 5 PT 2
+		
+		playersFighting = "zeroVsFive";
+		
+		String str = "issecondroundofhasteused :" + "no";
+		sendToClient0(str);
+		
+    	
+    	if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0]) {
+			
+    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+	  		disarmedtextright.setVisibility(View.INVISIBLE);
+	  		
+	  		String str2 = "clientNotDisarmed";
+	  		sendToAllClients(str2);
+    		
+			
+			canHasDisarmed[0] = "no";
+			
+			String str3 = "CanHasDisarmed0 :" + "no";
+			sendToAllClients(str3);
+		}
+    	
+    	//THIS WAS "else if" (WANT THIS AND THE IF ABOVE TO BOTH BE EVALUATED):
+    	if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("yes") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0]) {
+    		
+    		canHasDisarmed[5] = "no";
+    		
+    		String str4 = "canHaSDisarmed5 :" + "no";
+    		sendToAllClients(str4);
+    		
+				
+			didHumanCriticalMiss[5] = "no";
+			
+			String str5 = "didHuManCriticalMiss5 :" + "no";
+			sendToAllClients(str5);
+			
+			TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+	  		disarmedtextleft.setVisibility(View.INVISIBLE);
+    	}
+    	
+		
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {  	  	    				
+	  			
+  	  	    	final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+				
+				TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);		
+				playerNameTextView.setTypeface(typeFace);		
+				playerNameTextView.setText(ArrayOfPlayers.player[5]);							
+						
+				final TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+				playerHitPointsTextView.setTypeface(typeFace);
+				playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[5]));
+				
+				ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
+				computerAvatar.setVisibility(View.VISIBLE);
+    			
+    			
+    			scrollAnimationLeftUpNoRight(); 	  	    	
+  	  	    	
+  	  	    	
+	  			//String str6 = "turn1V105";//USED JUST TO CLEAR DICE..DO THIS IN CHOOSEOPPONENT FOR CLIENT.
+	  			//sendToAllClients(str6);	  			
+	  			
+	  			
+	  			final Handler h = new Handler();
+	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {	  	  	  			
+						
+			  			if (canHasDisarmed[0].equals("yes")) {
+			  				
+			  				TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+		  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
+				  	  	  	disarmedtextright.bringToFront();
+				  	  	  	
+				  	  	  	String str7 = "clientDisarmed";
+				  	  	  	sendToAllClients(str7);
+			  				
+			  				
+			  				if ((didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0])) {
+			  	  				
+			  					String str8 = "disarmedAction";
+					  	  	  	sendToClient0(str8);			  	  												
+			  	  			}
+			  	  			
+			  	  			else if ((didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 1 == ArrayOfTurn.turn[0])) { //HUMAN MUST HAVE DISARMED HUMAN
+			  	  												
+			  	  				String str9 = "disarmedAction";
+			  	  				sendToClient0(str9);										  	  			
+			  	  			}
+			  			}
+			  			
+			  			else {  				
+			  				
+			  				TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+		  	  	  			disarmedtextright.setVisibility(View.INVISIBLE);
+		  	  	  			
+		  	  	  			String str10 = "clientNotDisarmed";
+		  	  	  			sendToAllClients(str10);
+			  				
+		  	  	  			
+		  	  	  			String str11 = "runActionsOnUi";
+		  	  	  			sendToClient0(str11);
+			  			}	  	  	  			
+	  	  	  		}
+	  	  	  	}, 2000);
+  	  	    	
+  	  	    }
+		});
+	}
+	
+	public void gameEngine3V35Part2For01Part2() {//FOR 0 ATTACKING 1 PT 2		
+		
+		playersFighting = "zeroVsOne";
+		
+		String str = "issecondroundofhasteused :" + "no";
+		sendToClient0(str);
+		
+    	
+    	if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0]) {
+			
+    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+	  		disarmedtextright.setVisibility(View.INVISIBLE);
+	  		
+	  		String str2 = "clientNotDisarmed";
+	  		sendToAllClients(str2);
+    		
+			
+			canHasDisarmed[0] = "no";
+			
+			String str3 = "CanHasDisarmed0 :" + "no";
+			sendToAllClients(str3);
+		}
+    	
+    	//THIS WAS "else if" (WANT THIS AND THE IF ABOVE TO BOTH BE EVALUATED):
+    	if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0]) {
+    		
+    		canHasDisarmed[1] = "no";
+    		
+    		String str4 = "cAnHasDisarmed1 :" + "no";
+    		sendToAllClients(str4);
+    		
+				
+			didHumanCriticalMiss[1] = "no";
+			
+			String str5 = "dIdHumanCriticalMiss1 :" + "no";
+			sendToAllClients(str5);
+			
+			TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+	  		disarmedtextleft.setVisibility(View.INVISIBLE);
+    	}
+		
+    	
+    	runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {  	  	    				
+	  			
+  	  	    	final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+				
+				TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);		
+				playerNameTextView.setTypeface(typeFace);		
+				playerNameTextView.setText(ArrayOfPlayers.player[1]);							
+						
+				final TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+				playerHitPointsTextView.setTypeface(typeFace);
+				playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
+				
+				ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
+				computerAvatar.setVisibility(View.VISIBLE);
+    			
+    			
+    			scrollAnimationLeftUpNoRight(); 	  	    	
+  	  	    	
+  	  	    	
+	  			//String str6 = "turn1V105";//USED JUST TO CLEAR DICE..DO THIS IN CHOOSEOPPONENT FOR CLIENT.
+	  			//sendToAllClients(str6);	  			
+	  			
+	  			
+	  			final Handler h = new Handler();
+	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {	  	  	  			
+						
+			  			if (canHasDisarmed[0].equals("yes")) {
+			  				
+			  				TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+		  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
+				  	  	  	disarmedtextright.bringToFront();
+				  	  	  	
+				  	  	  	String str7 = "clientDisarmed";
+				  	  	  	sendToAllClients(str7);
+			  				
+			  				
+			  				if ((didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0])) {
+			  	  				
+			  					String str8 = "disarmedAction";
+					  	  	  	sendToClient0(str8);			  	  												
+			  	  			}
+			  	  			
+			  	  			else if ((didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 1 == ArrayOfTurn.turn[0])) { //HUMAN MUST HAVE DISARMED HUMAN
+			  	  												
+			  	  				String str9 = "disarmedAction";
+			  	  				sendToClient0(str9);										  	  			
+			  	  			}
+			  			}
+			  			
+			  			else {  				
+			  				
+			  				TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+		  	  	  			disarmedtextright.setVisibility(View.INVISIBLE);
+		  	  	  			
+		  	  	  			String str10 = "clientNotDisarmed";
+		  	  	  			sendToAllClients(str10);
+			  				
+		  	  	  			
+		  	  	  			String str11 = "runActionsOnUi";
+		  	  	  			sendToClient0(str11);
+			  			}	  	  	  			
+	  	  	  		}
+	  	  	  	}, 2000);  	  	    	
+  	  	    }
+		});
+	}
+	
+	
+	
+	
+	
+	//REDIRECT HERE FOR 1 NEXT
+	public void gameEngine3V35Part2For1Part1() {//FOR 1 ATTACKING PT 1
+		
+		//Toast.makeText(MainActivity2.this, "COMPUTER TURN START", Toast.LENGTH_SHORT).show();	
+		
+		//Toast.makeText(MainActivity2.this, "Turn = " + ArrayOfTurn.turn[0], Toast.LENGTH_SHORT).show();	
+		
+		
+		// THIS THREAD IS BEING USED TO TEST ACCESS TO CENTERSCROLLTEXT
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {
+  	  	    	
+  	  	    	// Use a blank drawable to hide the imageview animation:
+				// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+				img1.setBackgroundResource(R.drawable.twentytwentyblank);
+				img1.setImageResource(R.drawable.twentytwentyblank);
+
+				// Use a blank drawable to hide the imageview animation:
+				ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
+				img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+  	  	    	
+  	  	    	
+	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+	  			// Re-enables ability to use srollbar:
+	  			centerscrolltext.bringToFront();
+	  			
+	  			ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+  	  	    	titleBlankButton.bringToFront();
+  	  	    	
+  	  	    	
+  	  	    	ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+	  	    	chatBlankButton.bringToFront();
+	  			
+	  			
+	  			// NEED THIS?:
+  	  	    	//ishasteused0.equals("no");// so computer doesn't use a haste during a haste. NEEDS '=' BTW
+  	  	    	ishasteused1 = "no";
+  	  	    	
+	  			
+	  			playerCardStopFadeInFadeOut();
+	  				  			
+	  		  	
+	  			foldScrolls();
+	  		  	
+	  			String str6 = "foldScrolls";
+	  			sendToAllClients(str6);
+	  			
+	  			
+	  			
+	  			final Handler h = new Handler();
+	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {
+						
+	  	  	  			final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+            			
+            			TextView computerNameTextView = (TextView)findViewById(R.id.textviewnameright);
+            			computerNameTextView.setTypeface(typeFace);
+            			computerNameTextView.setText(ArrayOfPlayers.player[1]);
+            			//computerNameTextView.setVisibility(View.INVISIBLE);
+
+            			//ArrayOfHitPoints.hitpoints[0] = 20;//20
+            			final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+            			computerHitPointsTextView.setTypeface(typeFace);
+            			//computerHitPointsTextView.setVisibility(View.INVISIBLE);
+            			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
+
+            			ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+            			clientAvatar.setVisibility(View.VISIBLE);
+	  	  	  			
+	  	  	  			
+            			scrollAnimationLeftDown();
+	  	  	  			
+	  	  	  			String str7 = "rEveal1onright";
+	  	  	  			sendToAllClients(str7);
+	  	  	  			
+	  	  	  			
+	  	  	  			computerCardStartFadeInFadeOut();
+	  	  	  			
+	  	  	  			
+	  	  	  			String str8 = "chooseOpponent";
+	  	  	  			sendToClient1(str8);
+	  	  	  		}
+	  	  	  	}, 1000);		
+  	  	    }
+		});
+	}
+	
+	public void gameEngine3V35Part2For15Part2() {//FOR 1 ATTACKING 5 PT 2		
+		
+		playersFighting = "oneVsFive";
+		
+		String str = "issecondroundofhasteused :" + "no";
+		sendToClient1(str);
+		
+    	
+    	if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0]) {
+			
+    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+	  		disarmedtextright.setVisibility(View.INVISIBLE);
+	  		
+	  		String str2 = "clientNotDisarmed";
+	  		sendToAllClients(str2);
+    		
+			
+			canHasDisarmed[1] = "no";
+			
+			String str3 = "cAnHasDisarmed1 :" + "no";
+			sendToAllClients(str3);
+		}
+    	
+    	//THIS WAS "else if" (WANT THIS AND THE IF ABOVE TO BOTH BE EVALUATED):
+    	if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("yes") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0]) {
+    		
+    		canHasDisarmed[5] = "no";
+    		
+    		String str4 = "canHaSDisarmed5 :" + "no";
+    		sendToAllClients(str4);
+    		
+				
+			didHumanCriticalMiss[5] = "no";
+			
+			String str5 = "didHuManCriticalMiss5 :" + "no";
+			sendToAllClients(str5);
+			
+			TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+	  		disarmedtextleft.setVisibility(View.INVISIBLE);
+    	}
+    	
+		
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {  	  	    				
+	  			
+  	  	    	final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+				
+				TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);		
+				playerNameTextView.setTypeface(typeFace);		
+				playerNameTextView.setText(ArrayOfPlayers.player[5]);							
+						
+				final TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+				playerHitPointsTextView.setTypeface(typeFace);
+				playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[5]));
+				
+				ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
+				computerAvatar.setVisibility(View.VISIBLE);
+    			
+    			
+    			scrollAnimationLeftUpNoRight(); 	  	    	
+  	  	    	
+  	  	    	
+	  			//String str6 = "turn1V105";//USED JUST TO CLEAR DICE..DO THIS IN CHOOSEOPPONENT FOR CLIENT.
+	  			//sendToAllClients(str6);	  			
+	  			
+	  			
+	  			final Handler h = new Handler();
+	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {	  	  	  			
+						
+			  			if (canHasDisarmed[1].equals("yes")) {
+			  				
+			  				TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+		  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
+				  	  	  	disarmedtextright.bringToFront();
+				  	  	  	
+				  	  	  	String str7 = "clientDisarmed";
+				  	  	  	sendToAllClients(str7);
+			  				
+			  				
+			  				if ((didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0])) {
+			  	  				
+			  					String str8 = "disarmedAction";
+					  	  	  	sendToClient1(str8);			  	  												
+			  	  			}
+			  	  			
+			  	  			else if ((didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 1 == ArrayOfTurn.turn[0])) { //HUMAN MUST HAVE DISARMED HUMAN
+			  	  												
+			  	  				String str9 = "disarmedAction";
+			  	  				sendToClient1(str9);										  	  			
+			  	  			}
+			  			}
+			  			
+			  			else {  				
+			  				
+			  				TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+		  	  	  			disarmedtextright.setVisibility(View.INVISIBLE);
+		  	  	  			
+		  	  	  			String str10 = "clientNotDisarmed";
+		  	  	  			sendToAllClients(str10);
+			  				
+		  	  	  			
+		  	  	  			String str11 = "runActionsOnUi";
+		  	  	  			sendToClient1(str11);
+			  			}	  	  	  			
+	  	  	  		}
+	  	  	  	}, 2000);
+  	  	    	
+  	  	    }
 		});	
 	}
+	
+	public void gameEngine3V35Part2For10Part2() {//FOR 1 ATTACKING 0 PT 2		
+		
+		playersFighting = "oneVsZero";
+		
+		String str = "issecondroundofhasteused :" + "no";
+		sendToClient1(str);
+		
+    	
+    	if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0]) {
+			
+    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+	  		disarmedtextright.setVisibility(View.INVISIBLE);
+	  		
+	  		String str2 = "clientNotDisarmed";
+	  		sendToAllClients(str2);
+    		
+			
+			canHasDisarmed[1] = "no";
+			
+			String str3 = "cAnHasDisarmed1 :" + "no";
+			sendToAllClients(str3);
+		}
+    	
+    	//THIS WAS "else if" (WANT THIS AND THE IF ABOVE TO BOTH BE EVALUATED):
+    	if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0]) {
+    		
+    		canHasDisarmed[0] = "no";
+    		
+    		String str4 = "CanHasDisarmed0 :" + "no";
+    		sendToAllClients(str4);
+    		
+				
+			didHumanCriticalMiss[0] = "no";
+			
+			String str5 = "DidHumanCriticalMiss0 :" + "no";
+			sendToAllClients(str5);
+			
+			TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+	  		disarmedtextleft.setVisibility(View.INVISIBLE);
+    	}
+		
+    	
+    	runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {  	  	    				
+	  			
+  	  	    	final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+				
+				TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);		
+				playerNameTextView.setTypeface(typeFace);		
+				playerNameTextView.setText(ArrayOfPlayers.player[0]);							
+						
+				final TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+				playerHitPointsTextView.setTypeface(typeFace);
+				playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+				
+				ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
+				computerAvatar.setVisibility(View.VISIBLE);
+    			
+    			
+    			scrollAnimationLeftUpNoRight(); 	  	    	
+  	  	    	
+  	  	    	
+	  			//String str6 = "turn1V105";//USED JUST TO CLEAR DICE..DO THIS IN CHOOSEOPPONENT FOR CLIENT.
+	  			//sendToAllClients(str6);	  			
+	  			
+	  			
+	  			final Handler h = new Handler();
+	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {	  	  	  			
+						
+			  			if (canHasDisarmed[1].equals("yes")) {
+			  				
+			  				TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+		  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
+				  	  	  	disarmedtextright.bringToFront();
+				  	  	  	
+				  	  	  	String str7 = "clientDisarmed";
+				  	  	  	sendToAllClients(str7);
+			  				
+			  				
+			  				if ((didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0])) {
+			  	  				
+			  					String str8 = "disarmedAction";
+					  	  	  	sendToClient1(str8);			  	  												
+			  	  			}
+			  	  			
+			  	  			else if ((didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 1 == ArrayOfTurn.turn[0])) { //HUMAN MUST HAVE DISARMED HUMAN
+			  	  												
+			  	  				String str9 = "disarmedAction";
+			  	  				sendToClient1(str9);										  	  			
+			  	  			}
+			  			}
+			  			
+			  			else {  				
+			  				
+			  				TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+		  	  	  			disarmedtextright.setVisibility(View.INVISIBLE);
+		  	  	  			
+		  	  	  			String str10 = "clientNotDisarmed";
+		  	  	  			sendToAllClients(str10);
+			  				
+		  	  	  			
+		  	  	  			String str11 = "runActionsOnUi";
+		  	  	  			sendToClient1(str11);
+			  			}	  	  	  			
+	  	  	  		}
+	  	  	  	}, 2000);  	  	    	
+  	  	    }
+		});		
+	}
+	
+	
+	
+	
+	
+	public void gameEngine3V30Part1For05() {
+		
+		playersFighting = "zeroVsFive";
+	
+		String str = "issecondroundofhasteused :" + "no";
+		sendToClient0(str);
+		
+		
+		if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("yes") && disarmedTurnStart[5] + 3 == ArrayOfTurn.turn[0]) {//CHANGED FROM 3 TO 2, SHOULD BE 3?
+			
+			canHasDisarmed[5] = "no";
+			
+			String str2 = "canHaSDisarmed5 :" + "no";
+			sendToAllClients(str2);
+			
+			
+			TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+	  		disarmedtextleft.setVisibility(View.INVISIBLE);
+	  		
+	  		String str3 = "hostSideNotDisarmed";
+	  		sendToAllClients(str3);
+			
+	  		
+			didHumanCriticalMiss[5] = "no";
+			
+			String str4 = "didHuManCriticalMiss5 :" + "no";
+			sendToAllClients(str4);
+		}		
+		
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() { 	  	    	
+  	  	    	
+  	  	    	//ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+	  			//chatBlankButton.bringToFront();
+  	  	    	
+  	  	    	
+  	  	    	displayTurn();
+  	  	    	
+  	  	    	//int turnVariable = ArrayOfTurn.turn[0];
+  	  	    	
+	  	  	    String str5 = "Turn :" + ArrayOfTurn.turn[0];
+	  	  	    sendToAllClients(str5);
+  	  	    	
+	  	  	    String str6 = "displayTrn";
+	  	  	    sendToAllClients(str6);  	  	    	
+  	  	    	
+				
+				final Handler h = new Handler();
+	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {	  	  	  			
+	  	  	  			
+			  	  		if (canHasDisarmed[0].equals("yes")) {
+							
+				  	  		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+		  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
+				  	  	  	disarmedtextright.bringToFront();
+				  	  	  	
+				  	  	  	String str7 = "clientDisarmed";
+				  	  	  	sendToAllClients(str7);			  	  			
+			  	  			
+							
+			  	  			if ((didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0])) {			  	  				
+				  	  			
+			  	  				String str8 = "disarmedAction";
+			  	  				sendToClient0(str8);			  	  								  	  			
+			  	  			}
+			  	  			
+			  	  			else if ((didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0])) {
+			  	  						  	  											
+			  	  				String str9 = "disarmedAction";
+			  	  				sendToClient0(str9);												  	  			
+			  	  			}			  	  			
+				  	    	
+				  			else if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 3 == ArrayOfTurn.turn[0]) {
+				  									
+				  				canHasDisarmed[0] = "no";
+				  				
+				  				String str10 = "CanHasDisarmed0 :" + "no";
+				  				sendToAllClients(str10);	  				
+				  				
+				  				
+			  	  	  			disarmedtextright.setVisibility(View.INVISIBLE);
+			  	  	  			
+			  	  	  			String str11 = "clientNotDisarmed";
+			  	  	  			sendToAllClients(str11);
+				  				
+			  	  	  			
+				  				if (isInvokingService.equals("true")){
+									//NEED THIS?
+									SystemClock.sleep(1000);	        		
+										
+									String str12 = "runActionsOnUi";
+				  	  	  			sendToClient0(str12);
+								}
+				  			}
+						}
+			  	  		
+			  	  		else {							
+			  	  			
+			  	  			TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+			  	  			disarmedtextright.setVisibility(View.INVISIBLE);
+			  	  			
+			  	  			String str13 = "clientNotDisarmed";
+			  	  			sendToAllClients(str13);
+			  	  			
+			  	  			
+							if (isInvokingService.equals("true")){
+								//NEED THIS?
+								SystemClock.sleep(1000);	        		
+									
+								String str14 = "runActionsOnUi";
+			  	  	  			sendToClient0(str14);
+							}
+			  	  		}
+		  	  	  	}
+	  	  	  	}, 1000);				
+  	  	    }
+		});
+	}
+	
+	public void gameEngine3V30Part1For01() {
+		
+		playersFighting = "zeroVsOne";
+		
+		String str = "issecondroundofhasteused :" + "no";
+		sendToClient0(str);		
+		
+		
+		if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] + 3 == ArrayOfTurn.turn[0]) {//CHANGED FROM 3 TO 2, SHOULD BE 3?
+			
+			canHasDisarmed[1] = "no";
+			
+			String str2 = "cAnHasDisarmed1 :" + "no";
+			sendToAllClients(str2);			
+			
+			
+			TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+	  		disarmedtextleft.setVisibility(View.INVISIBLE);			
+			
+	  		String str3 = "hostSideNotDisarmed";
+	  		sendToAllClients(str3);	  		
+			
+	  		
+			didHumanCriticalMiss[1] = "no";
+			
+			String str4 = "dIdHumanCriticalMiss1 :" + "no";
+			sendToAllClients(str4);
+		}		
+		
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {
+  	  	    	
+  	  	    	//ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+	  			//chatBlankButton.bringToFront();
+  	  	    	
+  	  	    	
+  	  	    	displayTurn();
+  	  	    	
+  	  	    	//int turnVariable = ArrayOfTurn.turn[0];
+  	  	    	
+	  	  	    String str5 = "Turn :" + ArrayOfTurn.turn[0];
+	  	  	    sendToAllClients(str5);
+  	  	    	
+	  	  	    String str6 = "displayTrn";
+	  	  	    sendToAllClients(str6);  	  	    	
+  	  	    	
+				
+				final Handler h = new Handler();
+	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {	  	  	  			
+	  	  	  			
+			  	  		if (canHasDisarmed[0].equals("yes")) {							
+				  	  		
+					  	  	String str7 = "clientDisarmed";
+				  	  	  	sendToAllClients(str7);
+				  	  	  	
+				  	  	  	TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+				  	  	  	disarmedtextright.setVisibility(View.VISIBLE);
+				  	  	  	disarmedtextright.bringToFront();				  	  	  	
+			  	  			
+							
+			  	  			if ((didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0])) {			  	  				
+				  	  							  	  			
+				  	  			String str8 = "disarmedAction";
+			  	  				sendToClient0(str8);
+			  	  			}
+			  	  			
+			  	  			else if ((didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0])) {
+			  	  				
+			  	  				String str9 = "disarmedAction";
+			  	  				sendToClient0(str9);												  	  			
+			  	  			}			  	  			
+				  	    	
+				  			else if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 3 == ArrayOfTurn.turn[0]) {
+				  									
+				  				canHasDisarmed[0] = "no";
+				  				
+				  				String str10 = "CanHasDisarmed0 :" + "no";
+				  				sendToAllClients(str10);
+				  				
+				  				
+				  				disarmedtextright.setVisibility(View.INVISIBLE);				  		  		
+				  		  		
+				  		  		String str11 = "clientNotDisarmed";
+				  		  		sendToAllClients(str11);
+				  		  		
+				  				
+				  				if (isInvokingService.equals("true")){
+									//NEED THIS?
+									SystemClock.sleep(1000);	        		
+									
+				  					String str12 = "runActionsOnUi";
+			  	  	  				sendToClient0(str12);									
+								}
+				  			}
+						}
+			  	  		
+			  	  		else {							
+			  	  			
+			  	  			TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+			  	  			disarmedtextright.setVisibility(View.INVISIBLE);
+			  	  			
+			  	  			String str13 = "clientNotDisarmed";
+			  	  			sendToAllClients(str13);
+			  	  			
+			  	  			
+							if (isInvokingService.equals("true")){
+								//NEED THIS?
+								SystemClock.sleep(1000);	        		
+									
+								String str14 = "runActionsOnUi";
+		  	  	  				sendToClient0(str14);
+							}
+			  	  		}
+		  	  	  	}
+	  	  	  	}, 1000);				
+  	  	    }
+		});
+	}
+	
+	public void gameEngine3V31Part1For15() {
+		
+		playersFighting = "oneVsFive";
+	
+		String str = "issecondroundofhasteused :" + "no";
+		sendToClient1(str);
+		
+		
+		if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("yes") && disarmedTurnStart[5] + 3 == ArrayOfTurn.turn[0]) {//CHANGED FROM 3 TO 2, SHOULD BE 3?
+			
+			canHasDisarmed[5] = "no";
+			
+			String str2 = "canHaSDisarmed5 :" + "no";
+			sendToAllClients(str2);
+			
+			
+			TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+	  		disarmedtextleft.setVisibility(View.INVISIBLE);
+	  		
+	  		String str3 = "hostSideNotDisarmed";
+	  		sendToAllClients(str3);
+			
+	  		
+			didHumanCriticalMiss[5] = "no";
+			
+			String str4 = "didHuManCriticalMiss5 :" + "no";
+			sendToAllClients(str4);
+		}		
+		
+		runOnUiThread(new Runnable() {
+	  	    @Override
+	  	    public void run() {
+	  	    	
+	  	    	//ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+	  			//chatBlankButton.bringToFront();
+		  	    	
+		  	    	
+	  	    	displayTurn();
+		  	    	
+	  	    	//int turnVariable = ArrayOfTurn.turn[0];
+		  	    	
+	  	  	    String str5 = "Turn :" + ArrayOfTurn.turn[0];
+	  	  	    sendToAllClients(str5);
+		  	    	
+	  	  	    String str6 = "displayTrn";
+	  	  	    sendToAllClients(str6);  	  	    	
+		  	    	
+				
+				final Handler h = new Handler();
+	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {
+	  	  	  			
+	  	  	  			
+			  	  		if (canHasDisarmed[1].equals("yes")) {
+							
+				  	  		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+		  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
+				  	  	  	disarmedtextright.bringToFront();
+				  	  	  	
+				  	  	  	String str7 = "clientDisarmed";
+				  	  	  	sendToAllClients(str7);			  	  			
+			  	  			
+							
+			  	  			if ((didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0])) {			  	  				
+				  	  			
+			  	  				String str8 = "disarmedAction";
+			  	  				sendToClient1(str8);			  	  								  	  			
+			  	  			}
+			  	  			
+			  	  			else if ((didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0])) {
+			  	  						  	  											
+			  	  				String str9 = "disarmedAction";
+			  	  				sendToClient1(str9);												  	  			
+			  	  			}			  	  			
+				  	    	
+				  			else if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 3 == ArrayOfTurn.turn[0]) {
+				  									
+				  				canHasDisarmed[1] = "no";
+				  				
+				  				String str10 = "cAnHasDisarmed1 :" + "no";
+				  				sendToAllClients(str10);	  				
+				  				
+				  				
+			  	  	  			disarmedtextright.setVisibility(View.INVISIBLE);
+			  	  	  			
+			  	  	  			String str11 = "clientNotDisarmed";
+			  	  	  			sendToAllClients(str11);
+				  				
+			  	  	  			
+				  				if (isInvokingService.equals("true")){
+									//NEED THIS?
+									SystemClock.sleep(1000);	        		
+										
+									String str12 = "runActionsOnUi";
+				  	  	  			sendToClient1(str12);
+								}
+				  			}
+						}
+			  	  		
+			  	  		else {							
+			  	  			
+			  	  			TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+			  	  			disarmedtextright.setVisibility(View.INVISIBLE);
+			  	  			
+			  	  			String str13 = "clientNotDisarmed";
+			  	  			sendToAllClients(str13);
+			  	  			
+			  	  			
+							if (isInvokingService.equals("true")){
+								//NEED THIS?
+								SystemClock.sleep(1000);	        		
+									
+								String str14 = "runActionsOnUi";
+			  	  	  			sendToClient1(str14);
+							}
+			  	  		}
+		  	  	  	}
+	  	  	  	}, 1000);				
+	  	    }
+		});
+	}
+	
+	public void gameEngine3V31Part1For10() {
+		
+		playersFighting = "oneVsZero";
+	
+		String str = "issecondroundofhasteused :" + "no";
+		sendToClient1(str);
+		
+		
+		if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] + 3 == ArrayOfTurn.turn[0]) {//CHANGED FROM 3 TO 2, SHOULD BE 3?
+			
+			canHasDisarmed[0] = "no";
+			
+			String str2 = "CanHasDisarmed0 :" + "no";
+			sendToAllClients(str2);
+			
+			
+			TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+			disarmedtextleft.setVisibility(View.INVISIBLE);
+			
+			String str3 = "hostSideNotDisarmed";
+			sendToAllClients(str3);
+			
+			
+			didHumanCriticalMiss[0] = "no";
+			
+			String str4 = "DidHumanCriticalMiss0 :" + "no";
+			sendToAllClients(str4);
+		}		
+		
+		runOnUiThread(new Runnable() {
+		    @Override
+		    public void run() {
+		    	
+		    	//ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+				//chatBlankButton.bringToFront();
+		  	    	
+		  	    	
+		    	displayTurn();
+		  	    	
+		    	//int turnVariable = ArrayOfTurn.turn[0];
+		  	    	
+		  	    String str5 = "Turn :" + ArrayOfTurn.turn[0];
+		  	    sendToAllClients(str5);
+		  	    	
+		  	    String str6 = "displayTrn";
+		  	    sendToAllClients(str6);  	  	    	
+		  	    	
+				
+				final Handler h = new Handler();
+		  	  	h.postDelayed(new Runnable() {		  	  	  			
+		  	  			
+		  	  		@Override
+		  	  	  	public void run() {
+		  	  			
+		  	  			
+			  	  		if (canHasDisarmed[1].equals("yes")) {
+							
+				  	  		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+		  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
+				  	  	  	disarmedtextright.bringToFront();
+				  	  	  	
+				  	  	  	String str7 = "clientDisarmed";
+				  	  	  	sendToAllClients(str7);			  	  			
+			  	  			
+							
+			  	  			if ((didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0])) {			  	  				
+				  	  			
+			  	  				String str8 = "disarmedAction";
+			  	  				sendToClient1(str8);			  	  								  	  			
+			  	  			}
+			  	  			
+			  	  			else if ((didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0])) {
+			  	  						  	  											
+			  	  				String str9 = "disarmedAction";
+			  	  				sendToClient1(str9);												  	  			
+			  	  			}			  	  			
+				  	    	
+				  			else if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 3 == ArrayOfTurn.turn[0]) {
+				  									
+				  				canHasDisarmed[1] = "no";
+				  				
+				  				String str10 = "cAnHasDisarmed1 :" + "no";
+				  				sendToAllClients(str10);	  				
+				  				
+				  				
+			  	  	  			disarmedtextright.setVisibility(View.INVISIBLE);
+			  	  	  			
+			  	  	  			String str11 = "clientNotDisarmed";
+			  	  	  			sendToAllClients(str11);
+				  				
+			  	  	  			
+				  				if (isInvokingService.equals("true")){
+									//NEED THIS?
+									SystemClock.sleep(1000);	        		
+										
+									String str12 = "runActionsOnUi";
+				  	  	  			sendToClient1(str12);
+								}
+				  			}
+						}
+			  	  		
+			  	  		else {							
+			  	  			
+			  	  			TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+			  	  			disarmedtextright.setVisibility(View.INVISIBLE);
+			  	  			
+			  	  			String str13 = "clientNotDisarmed";
+			  	  			sendToAllClients(str13);
+			  	  			
+			  	  			
+							if (isInvokingService.equals("true")){
+								//NEED THIS?
+								SystemClock.sleep(1000);	        		
+									
+								String str14 = "runActionsOnUi";
+			  	  	  			sendToClient1(str14);
+							}
+			  	  		}
+		  	  	  	}
+		  	  	}, 1000);				
+		    }
+		});
+	}
+	
+	
+	//REDIRECT HERE FOR 5 NEXT
+	public void gameEngine3V3XPart2For5Part1() {//FOR 5 ATTACKING PT 1
+		
+		//Toast.makeText(MainActivity2.this, "COMPUTER TURN START", Toast.LENGTH_SHORT).show();	
+		
+		//Toast.makeText(MainActivity2.this, "Turn = " + ArrayOfTurn.turn[0], Toast.LENGTH_SHORT).show();	
+		
+		
+		// THIS THREAD IS BEING USED TO TEST ACCESS TO CENTERSCROLLTEXT
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {
+  	  	    	
+  	  	    	// Use a blank drawable to hide the imageview animation:
+				// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+				img1.setBackgroundResource(R.drawable.twentytwentyblank);
+				img1.setImageResource(R.drawable.twentytwentyblank);
+
+				// Use a blank drawable to hide the imageview animation:
+				ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
+				img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+  	  	    	
+  	  	    	
+	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+	  			// Re-enables ability to use srollbar:
+	  			centerscrolltext.bringToFront();
+	  			
+	  			ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+  	  	    	titleBlankButton.bringToFront();
+  	  	    	
+  	  	    	
+  	  	    	ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+	  	    	chatBlankButton.bringToFront();
+	  			
+	  			
+	  			// NEED THIS?:
+  	  	    	//ishasteused0.equals("no");// so computer doesn't use a haste during a haste. NEEDS '=' BTW
+  	  	    	ishasteused = "no";
+  	  	    	
+	  			
+	  			computerCardStopFadeInFadeOut();
+	  		  	
+	  			
+	  			foldScrolls();
+	  		  	
+	  			String str6 = "foldScrolls";
+	  			sendToAllClients(str6);
+	  			
+	  			
+	  			
+	  			final Handler h = new Handler();
+	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {
+						
+	  	  	  			final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+            			
+				  	  	TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);		
+						playerNameTextView.setTypeface(typeFace);		
+						playerNameTextView.setText(ArrayOfPlayers.player[5]);							
+								
+						final TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+						playerHitPointsTextView.setTypeface(typeFace);
+						playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[5]));
+						
+						ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
+						computerAvatar.setVisibility(View.VISIBLE);
+						
+						
+						unfoldLeftScroll();
+            			
+	  	  	  			
+	  	  	  			String str7 = "reVeal5onleft";
+	  	  	  			sendToAllClients(str7);
+	  	  	  			
+	  	  	  			
+	  	  	  			playerCardStartFadeInFadeOut();	  	  	  			
+	  	  	  			
+	  	  	  			
+	  	  	  			chooseOpponent();
+	  	  	  		}
+	  	  	  	}, 1000);		
+  	  	    }
+		});
+	}
+	
+	public void gameEngine3V3XPart2For50Part2() {//FOR 5 ATTACKING 0 PT 2
+		
+		playersFighting = "fiveVsZero";
+		
+		issecondroundofhasteused = "no";
+		
+    	
+    	if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0]) {    		
+    		
+    		runOnUiThread(new Runnable() {
+      	  	    @Override
+      	  	    public void run() {
+      	  	    	
+		    		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+			  		disarmedtextleft.setVisibility(View.INVISIBLE);
+      	  	    }
+    		});
+	  		
+	  		String str = "hostSideNotDisarmed";
+			sendToClient0(str);
+    		
+			
+			canHasDisarmed[5] = "no";
+			
+			String str2 = "canHaSDisarmed5 :" + "no";
+			sendToClient0(str2);
+		}
+    	
+    	//THIS WAS "else if" (WANT THIS AND THE IF ABOVE TO BOTH BE EVALUATED):
+    	if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0]) {
+    		
+    		canHasDisarmed[0] = "no";
+    		
+    		String str4 = "CanHasDisarmed0 :" + "no";
+    		sendToAllClients(str4);
+    		
+				
+			didHumanCriticalMiss[0] = "no";
+			
+			String str5 = "DidHumanCriticalMiss0 :" + "no";
+			sendToAllClients(str5);
+			
+			
+			TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+	  		disarmedtextright.setVisibility(View.INVISIBLE);			
+    	}
+    	
+		
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {
+				
+				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+				
+				TextView computerNameTextView = (TextView)findViewById(R.id.textviewnameright);
+				computerNameTextView.setTypeface(typeFace);
+				computerNameTextView.setText(ArrayOfPlayers.player[0]);
+				//computerNameTextView.setVisibility(View.INVISIBLE);
+	
+				//ArrayOfHitPoints.hitpoints[0] = 20;//20
+				final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+				computerHitPointsTextView.setTypeface(typeFace);
+				//computerHitPointsTextView.setVisibility(View.INVISIBLE);
+				computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+	
+				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+				clientAvatar.setVisibility(View.VISIBLE);
+		  			
+		  			
+				scrollAnimationLeftDown();
+				
+  	  	    	
+	  			//String str6 = "turn1V105";//USED JUST TO CLEAR DICE..DO THIS IN CHOOSEOPPONENT FOR CLIENT.
+	  			//sendToAllClients(str6);	  			
+	  			
+	  			
+	  			final Handler h = new Handler();
+	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {	  	  	  			
+						
+			  			if (canHasDisarmed[5].equals("yes")) {
+			  				
+			  				TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+		  	  	  			disarmedtextleft.setVisibility(View.VISIBLE);
+				  	  	  	disarmedtextleft.bringToFront();
+				  	  	  	
+				  	  	  	String str6 = "hostSideDisarmed";
+				  	  	  	sendToAllClients(str6);
+			  				
+			  				if ((didHumanCriticalMiss[5].equals("yes") && disarmedTurnStart[5] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[5].equals("yes") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0])) {
+			  	  				
+			  					disarmedAction();			  	  												
+			  	  			}
+			  	  			
+			  	  			else if ((didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 1 == ArrayOfTurn.turn[0])) { //HUMAN MUST HAVE DISARMED HUMAN
+			  	  												
+			  	  				disarmedAction();										  	  			
+			  	  			}
+			  			}
+			  			
+			  			else {		
+			  				
+			  				TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+	  	  	  				disarmedtextleft.setVisibility(View.INVISIBLE);	  	  	  				
+	  	  	  				
+	  	  	  				String str7 = "hostSideNotDisarmed";	
+	  	  	  				sendToAllClients(str7);
+	  	  	  				
+		  	  	  			
+		  	  	  			runActionsOnUi();
+			  			}	  	  	  			
+	  	  	  		}
+	  	  	  	}, 2000);
+  	  	    	
+  	  	    }
+		});
+	}
+	
+	public void gameEngine3V3XPart2For51Part2() {//FOR 5 ATTACKING 1 PT 2		
+		
+		playersFighting = "fiveVsOne";
+		
+		issecondroundofhasteused = "no";
+		
+    	
+    	if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0]) {    		
+    		
+    		runOnUiThread(new Runnable() {
+      	  	    @Override
+      	  	    public void run() {
+      	  	    	
+		    		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+			  		disarmedtextleft.setVisibility(View.INVISIBLE);
+      	  	    }
+    		});
+	  		
+	  		String str = "hostSideNotDisarmed";
+			sendToClient0(str);
+    		
+			
+			canHasDisarmed[5] = "no";
+			
+			String str2 = "canHaSDisarmed5 :" + "no";
+			sendToClient0(str2);
+		}
+    	
+    	//THIS WAS "else if" (WANT THIS AND THE IF ABOVE TO BOTH BE EVALUATED):
+    	if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0]) {
+    		
+    		canHasDisarmed[1] = "no";
+    		
+    		String str4 = "cAnHasDisarmed1 :" + "no";
+    		sendToAllClients(str4);
+    		
+				
+			didHumanCriticalMiss[1] = "no";
+			
+			String str5 = "dIdHumanCriticalMiss1 :" + "no";
+			sendToAllClients(str5);
+			
+			
+			TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+	  		disarmedtextright.setVisibility(View.INVISIBLE);			
+    	}
+    	
+		
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {
+				
+				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+				
+				TextView computerNameTextView = (TextView)findViewById(R.id.textviewnameright);
+				computerNameTextView.setTypeface(typeFace);
+				computerNameTextView.setText(ArrayOfPlayers.player[1]);
+				//computerNameTextView.setVisibility(View.INVISIBLE);
+	
+				//ArrayOfHitPoints.hitpoints[0] = 20;//20
+				final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+				computerHitPointsTextView.setTypeface(typeFace);
+				//computerHitPointsTextView.setVisibility(View.INVISIBLE);
+				computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
+	
+				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+				clientAvatar.setVisibility(View.VISIBLE);
+		  			
+		  			
+				scrollAnimationLeftDown();
+				
+  	  	    	
+	  			//String str6 = "turn1V105";//USED JUST TO CLEAR DICE..DO THIS IN CHOOSEOPPONENT FOR CLIENT.
+	  			//sendToAllClients(str6);	  			
+	  			
+	  			
+	  			final Handler h = new Handler();
+	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {	  	  	  			
+						
+			  			if (canHasDisarmed[5].equals("yes")) {
+			  				
+			  				TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+		  	  	  			disarmedtextleft.setVisibility(View.VISIBLE);
+				  	  	  	disarmedtextleft.bringToFront();
+				  	  	  	
+				  	  	  	String str6 = "hostSideDisarmed";
+				  	  	  	sendToAllClients(str6);
+			  				
+			  				if ((didHumanCriticalMiss[5].equals("yes") && disarmedTurnStart[5] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[5].equals("yes") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0])) {
+			  	  				
+			  					disarmedAction();			  	  												
+			  	  			}
+			  	  			
+			  	  			else if ((didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 1 == ArrayOfTurn.turn[0])) { //HUMAN MUST HAVE DISARMED HUMAN
+			  	  												
+			  	  				disarmedAction();										  	  			
+			  	  			}
+			  			}
+			  			
+			  			else {		
+			  				
+			  				TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+	  	  	  				disarmedtextleft.setVisibility(View.INVISIBLE);	  	  	  				
+	  	  	  				
+	  	  	  				String str7 = "hostSideNotDisarmed";
+	  	  	  				sendToAllClients(str7);
+			  				
+		  	  	  			
+		  	  	  			runActionsOnUi();
+			  			}	  	  	  			
+	  	  	  		}
+	  	  	  	}, 2000);
+  	  	    	
+  	  	    }
+		});
+	}
+	
+	
 	
 	
 	public void displayTurn() {
@@ -13292,8 +16633,11 @@ public class Host extends Activity {
   	  	    public void run() {
 		
 				//if (numberOfPlayers == 2) {
-					
-					if (blessSpell[5] < 1) {
+  	  	    	//}
+  	  	    	
+  	  	    	if (playersFighting.equals("fiveVsZero") || playersFighting.equals("zeroVsFive")) {
+  	  	    		
+	  	  	    	if (blessSpell[5] < 1) {
 						
 						ImageView blessLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftbless);
 						blessLeft.setVisibility(View.VISIBLE);				
@@ -13358,8 +16702,218 @@ public class Host extends Activity {
 						hasteRight1.setVisibility(View.VISIBLE);
 						ImageView hasteRight2 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste2);
 						hasteRight2.setVisibility(View.VISIBLE);				
-					}								
-				//}
+					}
+  	  	    	}
+  	  	    	
+  	  	    	if (playersFighting.equals("fiveVsOne") || playersFighting.equals("oneVsFive")) {
+	  	    		
+	  	  	    	if (blessSpell[5] < 1) {
+						
+						ImageView blessLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftbless);
+						blessLeft.setVisibility(View.VISIBLE);				
+					}				
+					if (cureSpell[5] < 1) {
+						
+						ImageView cureLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftcure);
+						cureLeft.setVisibility(View.VISIBLE);				
+					}			
+					if (dodgeBlowSpell[5] < 1) {
+						
+						ImageView dodgeLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftdodge);
+						dodgeLeft.setVisibility(View.VISIBLE);				
+					}			
+					if (mightyBlowSpell[5] < 1) {
+						
+						ImageView mbLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftmb);
+						mbLeft.setVisibility(View.VISIBLE);				
+					}			
+					if (hasteSpell[5] < 2) {
+						
+						ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
+						hasteLeft1.setVisibility(View.VISIBLE);				
+					}			
+					if (hasteSpell[5] < 1) {
+						
+						ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
+						hasteLeft1.setVisibility(View.VISIBLE);
+						ImageView hasteLeft2 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste2);
+						hasteLeft2.setVisibility(View.VISIBLE);				
+					}
+					
+					
+					if (blessSpell[1] < 1) {
+						
+						ImageView blessRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightbless);
+						blessRight.setVisibility(View.VISIBLE);				
+					}				
+					if (cureSpell[1] < 1) {
+						
+						ImageView cureRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightcure);
+						cureRight.setVisibility(View.VISIBLE);				
+					}			
+					if (dodgeBlowSpell[1] < 1) {
+						
+						ImageView dodgeRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightdodge);
+						dodgeRight.setVisibility(View.VISIBLE);				
+					}			
+					if (mightyBlowSpell[1] < 1) {
+						
+						ImageView mbRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightmb);
+						mbRight.setVisibility(View.VISIBLE);				
+					}			
+					if (hasteSpell[1] < 2) {
+						
+						ImageView hasteRight1 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste1);
+						hasteRight1.setVisibility(View.VISIBLE);				
+					}			
+					if (hasteSpell[1] < 1) {
+						
+						ImageView hasteRight1 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste1);
+						hasteRight1.setVisibility(View.VISIBLE);
+						ImageView hasteRight2 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste2);
+						hasteRight2.setVisibility(View.VISIBLE);				
+					}
+	  	    	}
+				
+  	  	    	if (playersFighting.equals("zeroVsOne")) {
+  	  	    		
+	  	  	    	if (blessSpell[1] < 1) {
+						
+						ImageView blessLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftbless);
+						blessLeft.setVisibility(View.VISIBLE);				
+					}				
+					if (cureSpell[1] < 1) {
+						
+						ImageView cureLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftcure);
+						cureLeft.setVisibility(View.VISIBLE);				
+					}			
+					if (dodgeBlowSpell[1] < 1) {
+						
+						ImageView dodgeLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftdodge);
+						dodgeLeft.setVisibility(View.VISIBLE);				
+					}			
+					if (mightyBlowSpell[1] < 1) {
+						
+						ImageView mbLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftmb);
+						mbLeft.setVisibility(View.VISIBLE);				
+					}			
+					if (hasteSpell[1] < 2) {
+						
+						ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
+						hasteLeft1.setVisibility(View.VISIBLE);				
+					}			
+					if (hasteSpell[1] < 1) {
+						
+						ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
+						hasteLeft1.setVisibility(View.VISIBLE);
+						ImageView hasteLeft2 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste2);
+						hasteLeft2.setVisibility(View.VISIBLE);				
+					}
+					
+					
+					if (blessSpell[0] < 1) {
+						
+						ImageView blessRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightbless);
+						blessRight.setVisibility(View.VISIBLE);				
+					}				
+					if (cureSpell[0] < 1) {
+						
+						ImageView cureRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightcure);
+						cureRight.setVisibility(View.VISIBLE);				
+					}			
+					if (dodgeBlowSpell[0] < 1) {
+						
+						ImageView dodgeRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightdodge);
+						dodgeRight.setVisibility(View.VISIBLE);				
+					}			
+					if (mightyBlowSpell[0] < 1) {
+						
+						ImageView mbRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightmb);
+						mbRight.setVisibility(View.VISIBLE);				
+					}			
+					if (hasteSpell[0] < 2) {
+						
+						ImageView hasteRight1 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste1);
+						hasteRight1.setVisibility(View.VISIBLE);				
+					}			
+					if (hasteSpell[0] < 1) {
+						
+						ImageView hasteRight1 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste1);
+						hasteRight1.setVisibility(View.VISIBLE);
+						ImageView hasteRight2 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste2);
+						hasteRight2.setVisibility(View.VISIBLE);				
+					}
+  	  	    	}
+  	  	    	
+  	  	    	if (playersFighting.equals("oneVsZero")) {
+	  	    		
+	  	  	    	if (blessSpell[0] < 1) {
+						
+						ImageView blessLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftbless);
+						blessLeft.setVisibility(View.VISIBLE);				
+					}				
+					if (cureSpell[0] < 1) {
+						
+						ImageView cureLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftcure);
+						cureLeft.setVisibility(View.VISIBLE);				
+					}			
+					if (dodgeBlowSpell[0] < 1) {
+						
+						ImageView dodgeLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftdodge);
+						dodgeLeft.setVisibility(View.VISIBLE);				
+					}			
+					if (mightyBlowSpell[0] < 1) {
+						
+						ImageView mbLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftmb);
+						mbLeft.setVisibility(View.VISIBLE);				
+					}			
+					if (hasteSpell[0] < 2) {
+						
+						ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
+						hasteLeft1.setVisibility(View.VISIBLE);				
+					}			
+					if (hasteSpell[0] < 1) {
+						
+						ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
+						hasteLeft1.setVisibility(View.VISIBLE);
+						ImageView hasteLeft2 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste2);
+						hasteLeft2.setVisibility(View.VISIBLE);				
+					}
+					
+					
+					if (blessSpell[1] < 1) {
+						
+						ImageView blessRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightbless);
+						blessRight.setVisibility(View.VISIBLE);				
+					}				
+					if (cureSpell[1] < 1) {
+						
+						ImageView cureRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightcure);
+						cureRight.setVisibility(View.VISIBLE);				
+					}			
+					if (dodgeBlowSpell[1] < 1) {
+						
+						ImageView dodgeRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightdodge);
+						dodgeRight.setVisibility(View.VISIBLE);				
+					}			
+					if (mightyBlowSpell[1] < 1) {
+						
+						ImageView mbRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightmb);
+						mbRight.setVisibility(View.VISIBLE);				
+					}			
+					if (hasteSpell[1] < 2) {
+						
+						ImageView hasteRight1 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste1);
+						hasteRight1.setVisibility(View.VISIBLE);				
+					}			
+					if (hasteSpell[1] < 1) {
+						
+						ImageView hasteRight1 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste1);
+						hasteRight1.setVisibility(View.VISIBLE);
+						ImageView hasteRight2 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste2);
+						hasteRight2.setVisibility(View.VISIBLE);				
+					}
+	  	    	}
   	  	    }
   	  	});
 	}	
@@ -13416,6 +16970,57 @@ public class Host extends Activity {
 						
 						// NEED THIS?:
 						//return;
+					}
+				}
+				
+				else if (numberOfPlayers == 3) {
+					
+					if (ArrayOfHitPoints.hitpoints[5] <= 0) {
+						
+						playerDeadYet[5] = "yes";
+						
+						String str = "playerDeadYet5 :" + "yes";						
+						sendToAllClients(str);
+						
+						
+						gameOverCheck();
+						
+						//isInvokingService = "true";
+						
+						// NEED THIS?:
+						//return;
+					}
+					
+					else if (ArrayOfHitPoints.hitpoints[0] <= 0) {
+						
+						playerDeadYet[0] = "yes";
+						
+						String str = "playerDeadYet0 :" + "yes";
+						sendToAllClients(str);
+						
+						
+						gameOverCheck();
+						
+						//isInvokingService = "true";
+						
+						// NEED THIS?:
+						//return;
+					}
+					
+					else if (ArrayOfHitPoints.hitpoints[1] <= 0) {
+						
+						playerDeadYet[1] = "yes";
+						
+						String str = "playerDeadYet1 :" + "yes";
+						sendToAllClients(str);
+						
+						
+						gameOverCheck();
+						
+						//isInvokingService = "true";
+						
+						// NEED THIS?:
+						//return;
 					}					
 				}
   	  	    }
@@ -13435,15 +17040,21 @@ public class Host extends Activity {
   	  	    	
   	  	    	Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");				
   	  	    	
-    			
+    			/*
   	  	    	victoryDefeatAnimation();
   	  	    	
   	  	    	String str = "victoryDefeatAnimation";
   	  	    	sendToAllClients(str);
+  	  	    	*/
   	  	    	
+  	  	    	if (numberOfPlayers == 2) {
+  	  	    		
+  	  	    		victoryDefeatAnimation();
   	  	    	
-  	  	    	if (numberOfPlayers == 2) { 	  	    	
-  	  	    	
+  	  	    		String str = "victoryDefeatAnimation";
+  	  	    		sendToAllClients(str);
+  	  	    		
+  	  	    		
 					if (playerDeadYet[5].equals("no") && playerDeadYet[0].equals("yes")) {
 					/*&& playerDeadYet[2] == "yes" && playerDeadYet[3] == "yes"	&& playerDeadYet[4] == "yes" && playerDeadYet[5] == "yes"*/
 						
@@ -13601,7 +17212,249 @@ public class Host extends Activity {
 				  	  	  	}
 			  	  	  	}, 2000);					
 					}
-  	  	    	}		
+  	  	    	}
+  	  	    	
+  	  	    	
+  	  	    	else if (numberOfPlayers == 3) {
+	  	    		
+					if (playerDeadYet[5].equals("no") && playerDeadYet[0].equals("yes") && playerDeadYet[1].equals("yes")) {
+					/*&& playerDeadYet[2] == "yes" && playerDeadYet[3] == "yes"	&& playerDeadYet[4] == "yes" && playerDeadYet[5] == "yes"*/
+						
+						gameOn = 0;
+						
+						
+						final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+						//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+						
+						//Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+						centerscrolltext.setTypeface(typeFace);					
+						
+						
+						centerscrolltext.setVisibility(View.VISIBLE);												
+			  	  		centerscrolltext.startAnimation(animAlphaText);
+			  			centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[5] + ", you are victorious!");
+			  			
+			  			String str2 = "> " + ArrayOfPlayers.player[5] + ", is victorious!";
+			  			sendToAllClients(str2);
+						
+			  			
+			  			final Handler h = new Handler();
+			  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+			  	  	  			
+			  	  	  		@Override
+				  	  	  	public void run() {
+			  	  	  			
+			  	  	  			centerscrolltext.setVisibility(View.VISIBLE);												
+			  	  	  			centerscrolltext.startAnimation(animAlphaText);
+			  	  	  			centerscrolltext.append("\n" + "> Game Over!");
+			  	  	  			
+			  	  	  			String str3 = "> Game Over!";
+			  	  	  			sendToAllClients(str3);
+			  	  	  			
+			  	  	  			
+			  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.buttonsound6);
+			  	  	  			
+				  	  	  		final Handler h = new Handler();
+					  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+					  	  	  			
+					  	  	  		@Override
+						  	  	  	public void run() {
+					  	  	  			
+					  	  	  			//MediaPlayerWrapper.play(MainActivity2.this, R.raw.buttonsound6);
+					  	  	  			
+					  	  	  			foldScrolls();
+					  	  	  			
+					  	  	  			String str4 = "foldScrolls";
+					  	  	  			sendToAllClients(str4);
+					  	  	  			
+					  	  	  			
+						  	  	  		playerCardStopFadeInFadeOut();
+						  	  	  		computerCardStopFadeInFadeOut();					  	  	  	
+					  	  	  			
+					  	  	  			/*
+						  	  	  		final Handler h = new Handler();
+							  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+							  	  	  			
+							  	  	  		@Override
+								  	  	  	public void run() {						  	  	  		
+							  	  	  			
+								  	  	  		Intent intent = new Intent(Host.this, MainActivity1.class);
+								    			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+								    			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);  //this combination of flags would start a new instance even if the instance of same Activity exists.
+								    			intent.addFlags(Intent.FLAG_ACTIVITY_TASK_ON_HOME);							    			
+								    			
+								    			
+								    			finish();
+								    			startActivity(intent);						  	  	  			
+								  	  	  	}
+							  	  	  	}, 500);
+							  	  	  	*/
+						  	  	  	}
+					  	  	  	}, 2000);
+				  	  	  	}
+			  	  	  	}, 2000);					
+					}
+					
+					else if (playerDeadYet[0].equals("no") && playerDeadYet[5].equals("yes") && playerDeadYet[1].equals("yes")
+							/*&& playerDeadYet[2] == "yes" && playerDeadYet[3] == "yes"
+							&& playerDeadYet[4] == "yes" && playerDeadYet[5] == "yes"*/) {
+						
+						gameOn = 0;
+						
+						
+						final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+						//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+						
+						//Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+						centerscrolltext.setTypeface(typeFace);				
+						
+						//final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+						
+						centerscrolltext.setVisibility(View.VISIBLE);												
+			  	  		centerscrolltext.startAnimation(animAlphaText);
+			  			centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", is victorious!");
+			  			
+			  			String str4 = "> " + ArrayOfPlayers.player[0] + ", is victorious!";
+			  			sendToAllClients(str4);
+			  			
+			  			
+			  			final Handler h = new Handler();
+			  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+			  	  	  			
+			  	  	  		@Override
+				  	  	  	public void run() {
+			  	  	  			
+			  	  	  			centerscrolltext.setVisibility(View.VISIBLE);												
+			  	  	  			centerscrolltext.startAnimation(animAlphaText);
+			  	  	  			centerscrolltext.append("\n" + "> Game Over!");
+			  	  	  			
+			  	  	  			String str5 = "> Game Over!";
+			  	  	  			sendToAllClients(str5);		  	  	  			
+			  	  	  			
+			  	  	  			
+			  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.buttonsound6);
+			  	  	  			
+				  	  	  		final Handler h = new Handler();
+					  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+					  	  	  			
+					  	  	  		@Override
+						  	  	  	public void run() {
+					  	  	  			
+					  	  	  			//MediaPlayerWrapper.play(MainActivity2.this, R.raw.buttonsound6);
+					  	  	  			
+					  	  	  			foldScrolls();
+					  	  	  			
+					  	  	  			String str6 = "foldScrolls";
+					  	  	  			sendToAllClients(str6);
+					  	  	  			
+					  	  	  			
+						  	  	  		playerCardStopFadeInFadeOut();
+						  	  	  		computerCardStopFadeInFadeOut();
+					  	  	  			
+					  	  	  			/*
+						  	  	  		final Handler h = new Handler();
+							  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+							  	  	  			
+							  	  	  		@Override
+								  	  	  	public void run() {				  	  	  		
+							  	  	  			
+								  	  	  		Intent intent = new Intent(Host.this, MainActivity1.class);
+								    			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+								    			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);  //this combination of flags would start a new instance even if the instance of same Activity exists.
+								    			intent.addFlags(Intent.FLAG_ACTIVITY_TASK_ON_HOME);							    			
+								    			
+								    			
+								    			finish();						    			
+								    			startActivity(intent);			  	  	  			
+								  	  	  	}
+							  	  	  	}, 500);
+							  	  	  	*/
+						  	  	  	}
+					  	  	  	}, 2000);
+				  	  	  	}
+			  	  	  	}, 2000);					
+					}
+					
+					else if (playerDeadYet[1].equals("no") && playerDeadYet[5].equals("yes") && playerDeadYet[0].equals("yes")
+							/*&& playerDeadYet[2] == "yes" && playerDeadYet[3] == "yes"
+							&& playerDeadYet[4] == "yes" && playerDeadYet[5] == "yes"*/) {
+						
+						gameOn = 0;
+						
+						
+						final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+						//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+						
+						//Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+						centerscrolltext.setTypeface(typeFace);				
+						
+						//final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+						
+						centerscrolltext.setVisibility(View.VISIBLE);												
+			  	  		centerscrolltext.startAnimation(animAlphaText);
+			  			centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[1] + ", is victorious!");
+			  			
+			  			String str4 = "> " + ArrayOfPlayers.player[1] + ", is victorious!";
+			  			sendToAllClients(str4);
+			  			
+			  			
+			  			final Handler h = new Handler();
+			  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+			  	  	  			
+			  	  	  		@Override
+				  	  	  	public void run() {
+			  	  	  			
+			  	  	  			centerscrolltext.setVisibility(View.VISIBLE);												
+			  	  	  			centerscrolltext.startAnimation(animAlphaText);
+			  	  	  			centerscrolltext.append("\n" + "> Game Over!");
+			  	  	  			
+			  	  	  			String str5 = "> Game Over!";
+			  	  	  			sendToAllClients(str5);		  	  	  			
+			  	  	  			
+			  	  	  			
+			  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.buttonsound6);
+			  	  	  			
+				  	  	  		final Handler h = new Handler();
+					  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+					  	  	  			
+					  	  	  		@Override
+						  	  	  	public void run() {
+					  	  	  			
+					  	  	  			//MediaPlayerWrapper.play(MainActivity2.this, R.raw.buttonsound6);
+					  	  	  			
+					  	  	  			foldScrolls();
+					  	  	  			
+					  	  	  			String str6 = "foldScrolls";
+					  	  	  			sendToAllClients(str6);
+					  	  	  			
+					  	  	  			
+						  	  	  		playerCardStopFadeInFadeOut();
+						  	  	  		computerCardStopFadeInFadeOut();
+					  	  	  			
+					  	  	  			/*
+						  	  	  		final Handler h = new Handler();
+							  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+							  	  	  			
+							  	  	  		@Override
+								  	  	  	public void run() {				  	  	  		
+							  	  	  			
+								  	  	  		Intent intent = new Intent(Host.this, MainActivity1.class);
+								    			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+								    			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);  //this combination of flags would start a new instance even if the instance of same Activity exists.
+								    			intent.addFlags(Intent.FLAG_ACTIVITY_TASK_ON_HOME);							    			
+								    			
+								    			
+								    			finish();						    			
+								    			startActivity(intent);			  	  	  			
+								  	  	  	}
+							  	  	  	}, 500);
+							  	  	  	*/
+						  	  	  	}
+					  	  	  	}, 2000);
+				  	  	  	}
+			  	  	  	}, 2000);					
+					}
+	  	    	}
   	  	    }
 		});
 	}	
@@ -13663,6 +17516,30 @@ public class Host extends Activity {
 									istitlestatsopen = "no";
 								}
 							}
+							
+							else if (numberOfPlayers == 3) {
+								
+								if (playerDeadYet[5].equals("no") && playerDeadYet[0].equals("yes") && playerDeadYet[1].equals("yes")) {
+									
+									titlevictorydefeat.append("Victory");									
+									
+									istitlestatsopen = "no";
+								}
+								
+								else if (playerDeadYet[1].equals("no") && playerDeadYet[0].equals("yes") && playerDeadYet[5].equals("yes")) {
+									
+									titlevictorydefeat.append("Defeat");									
+									
+									istitlestatsopen = "no";
+								}
+								
+								else if (playerDeadYet[0].equals("no") && playerDeadYet[5].equals("yes") && playerDeadYet[1].equals("yes")) {
+									
+									titlevictorydefeat.append("Defeat");									
+									
+									istitlestatsopen = "no";
+								}								
+							}
 			  	  	  	}
 		  	  	  	}, 600);					
 				}
@@ -13708,6 +17585,30 @@ public class Host extends Activity {
 									
 									titlevictorydefeat.append("Defeat");
 								}
+							}
+							
+							else if (numberOfPlayers == 3) {
+								
+								if (playerDeadYet[5].equals("no") && playerDeadYet[0].equals("yes") && playerDeadYet[1].equals("yes")) {
+									
+									titlevictorydefeat.append("Victory");									
+									
+									istitlestatsopen = "no";
+								}
+								
+								else if (playerDeadYet[1].equals("no") && playerDeadYet[0].equals("yes") && playerDeadYet[5].equals("yes")) {
+									
+									titlevictorydefeat.append("Defeat");									
+									
+									istitlestatsopen = "no";
+								}
+								
+								else if (playerDeadYet[0].equals("no") && playerDeadYet[5].equals("yes") && playerDeadYet[1].equals("yes")) {
+									
+									titlevictorydefeat.append("Defeat");									
+									
+									istitlestatsopen = "no";
+								}								
 							}
 			  	  	  	}
 		  	  	  	}, 600);
@@ -14338,7 +18239,12 @@ public class Host extends Activity {
 			
   	  			turn();
   	  		}
-		}		
+		}
+		
+		else if (numberOfPlayers == 3) {
+				
+				threePlayerRedirect();						
+		}
 	}	
 	
 	public void mightyBlowResultsCompleted() {
@@ -14353,7 +18259,12 @@ public class Host extends Activity {
     			
     			turn();
 			}
-		}		
+		}
+		
+		else if (numberOfPlayers == 3) {
+			
+			threePlayerRedirect();						
+		}
 	}	
 	
 	public void criticalMissLoseWeaponCriticalMissDamageCompleted() {
@@ -14384,7 +18295,12 @@ public class Host extends Activity {
   	  			
 				//hastePartTwo();
 			}
-  		}		
+  		}
+		
+		else if (numberOfPlayers == 3) {
+			
+			threePlayerRedirectWithHasteForClient();
+		}
 	}	
 	
 	public void attackDamageCriticalHitDamageCriticalHitMightyBlowDamageCompleted() {
@@ -14413,9 +18329,286 @@ public class Host extends Activity {
   				
 				//hastePartTwo();
 			}  	  		
+		}
+		
+		else if (numberOfPlayers == 3) {
+			
+			threePlayerRedirectWithHasteForClient();
+		}
+	}
+	
+	
+	public void threePlayerRedirect() {
+		
+		if (initiativeFinal[5] > initiativeFinal[0] && initiativeFinal[5] > initiativeFinal[1]) {
+			
+			if (initiativeFinal[0] > initiativeFinal[1] && Has0TakenTurn.equals("no")) {
+				
+				gameEngine3V35Part2For0Part1();
+			}
+			else if (initiativeFinal[0] > initiativeFinal[1] && Has0TakenTurn.equals("yes")) {
+				
+				gameEngine3V35Part2For1Part1();
+			}
+			else if (initiativeFinal[1] > initiativeFinal[0] && hAs1TakenTurn.equals("no")) {
+				
+				gameEngine3V35Part2For1Part1();
+			}
+			else if (initiativeFinal[1] > initiativeFinal[0] && hAs1TakenTurn.equals("yes")) {
+				
+				gameEngine3V35Part2For0Part1();
+			}
+			else {
+				
+				turn();
+			}
+		}
+		else if (initiativeFinal[0] > initiativeFinal[5] && initiativeFinal[0] > initiativeFinal[1]) {
+			
+			if (initiativeFinal[5] > initiativeFinal[1] && has5TakenTurn.equals("no")) {
+				
+				gameEngine3V3XPart2For5Part1();
+			}
+			else if (initiativeFinal[5] > initiativeFinal[1] && has5TakenTurn.equals("yes")) {
+				
+				gameEngine3V35Part2For1Part1();
+			}
+			else if (initiativeFinal[1] > initiativeFinal[5] && hAs1TakenTurn.equals("no")) {
+				
+				gameEngine3V35Part2For1Part1();
+			}
+			else if (initiativeFinal[1] > initiativeFinal[5] && hAs1TakenTurn.equals("yes")) {
+				
+				gameEngine3V3XPart2For5Part1();
+			}
+			else {
+				
+				turn();
+			}
+		}
+		else if (initiativeFinal[1] > initiativeFinal[5] && initiativeFinal[1] > initiativeFinal[0]) {
+			
+			if (initiativeFinal[5] > initiativeFinal[0] && has5TakenTurn.equals("no")) {
+				
+				gameEngine3V3XPart2For5Part1();
+			}
+			else if (initiativeFinal[5] > initiativeFinal[0] && has5TakenTurn.equals("yes")) {
+				
+				gameEngine3V35Part2For0Part1();
+			}
+			else if (initiativeFinal[0] > initiativeFinal[5] && Has0TakenTurn.equals("no")) {
+				
+				gameEngine3V35Part2For0Part1();
+			}
+			else if (initiativeFinal[0] > initiativeFinal[5] && Has0TakenTurn.equals("yes")) {
+				
+				gameEngine3V3XPart2For5Part1();
+			}
+			else {
+				
+				turn();
+			}
 		}		
 	}
 	
+	public void threePlayerRedirectWithHasteForClient() {
+		
+		if (initiativeFinal[5] > initiativeFinal[0] && initiativeFinal[5] > initiativeFinal[1] && ishasteused0.equals("no") && ishasteused1.equals("no")) {
+			
+			if (initiativeFinal[0] > initiativeFinal[1] && Has0TakenTurn.equals("no")) {
+				
+				gameEngine3V35Part2For0Part1();
+			}
+			else if (initiativeFinal[0] > initiativeFinal[1] && Has0TakenTurn.equals("yes")) {
+				
+				gameEngine3V35Part2For1Part1();
+			}
+			else if (initiativeFinal[1] > initiativeFinal[0] && hAs1TakenTurn.equals("no")) {
+				
+				gameEngine3V35Part2For1Part1();
+			}
+			else if (initiativeFinal[1] > initiativeFinal[0] && hAs1TakenTurn.equals("yes")) {
+				
+				gameEngine3V35Part2For0Part1();
+			}
+			else {
+				
+				turn();
+			}
+		}
+	
+		else if (initiativeFinal[5] > initiativeFinal[0] && initiativeFinal[5] > initiativeFinal[1] && ishasteused0.equals("yes") && ishasteused1.equals("no")) {
+		
+			if (initiativeFinal[0] > initiativeFinal[1] && Has0TakenTurn.equals("no")) {
+				
+				//gameEngine3V35Part2For0Part1();
+				
+				String str = "hastePartTwo";
+  	  			sendToClient0(str);
+			}
+			else if (initiativeFinal[0] > initiativeFinal[1] && Has0TakenTurn.equals("yes")) {
+				
+				gameEngine3V35Part2For1Part1();
+			}
+			else if (initiativeFinal[1] > initiativeFinal[0] && hAs1TakenTurn.equals("no")) {
+				
+				gameEngine3V35Part2For1Part1();
+			}
+			else if (initiativeFinal[1] > initiativeFinal[0] && hAs1TakenTurn.equals("yes")) {
+				
+				//gameEngine3V35Part2For0Part1();
+				
+				String str = "hastePartTwo";
+  	  			sendToClient0(str);
+			}
+			else {
+				
+				turn();
+			}
+		}
+	
+		else if (initiativeFinal[5] > initiativeFinal[0] && initiativeFinal[5] > initiativeFinal[1] && ishasteused0.equals("no") && ishasteused1.equals("yes")) {
+			
+			if (initiativeFinal[0] > initiativeFinal[1] && Has0TakenTurn.equals("no")) {
+				
+				gameEngine3V35Part2For0Part1();
+			}
+			else if (initiativeFinal[0] > initiativeFinal[1] && Has0TakenTurn.equals("yes")) {
+				
+				//gameEngine3V35Part2For1Part1();
+				
+				String str = "hastePartTwo";
+  	  			sendToClient1(str);
+			}
+			else if (initiativeFinal[1] > initiativeFinal[0] && hAs1TakenTurn.equals("no")) {
+				
+				//gameEngine3V35Part2For1Part1();
+				
+				String str = "hastePartTwo";
+  	  			sendToClient1(str);
+			}
+			else if (initiativeFinal[1] > initiativeFinal[0] && hAs1TakenTurn.equals("yes")) {
+				
+				gameEngine3V35Part2For0Part1();
+			}
+			else {
+				
+				turn();
+			}
+		}
+		
+		
+		
+		else if (initiativeFinal[0] > initiativeFinal[5] && initiativeFinal[0] > initiativeFinal[1] && ishasteused1.equals("no")) {
+			
+			if (initiativeFinal[5] > initiativeFinal[1] && has5TakenTurn.equals("no")) {
+				
+				gameEngine3V3XPart2For5Part1();
+			}
+			else if (initiativeFinal[5] > initiativeFinal[1] && has5TakenTurn.equals("yes")) {
+				
+				gameEngine3V35Part2For1Part1();
+			}
+			else if (initiativeFinal[1] > initiativeFinal[5] && hAs1TakenTurn.equals("no")) {
+				
+				gameEngine3V35Part2For1Part1();
+			}
+			else if (initiativeFinal[1] > initiativeFinal[5] && hAs1TakenTurn.equals("yes")) {
+				
+				gameEngine3V3XPart2For5Part1();
+			}
+			else {
+				
+				turn();
+			}
+		}
+		
+		else if (initiativeFinal[0] > initiativeFinal[5] && initiativeFinal[0] > initiativeFinal[1] && ishasteused1.equals("yes")) {
+			
+			if (initiativeFinal[5] > initiativeFinal[1] && has5TakenTurn.equals("no")) {
+				
+				gameEngine3V3XPart2For5Part1();
+			}
+			else if (initiativeFinal[5] > initiativeFinal[1] && has5TakenTurn.equals("yes")) {
+				
+				//gameEngine3V35Part2For1Part1();
+				
+				String str = "hastePartTwo";
+  	  			sendToClient1(str);
+			}
+			else if (initiativeFinal[1] > initiativeFinal[5] && hAs1TakenTurn.equals("no")) {
+				
+				//gameEngine3V35Part2For1Part1();
+				
+				String str = "hastePartTwo";
+  	  			sendToClient1(str);
+			}
+			else if (initiativeFinal[1] > initiativeFinal[5] && hAs1TakenTurn.equals("yes")) {
+				
+				gameEngine3V3XPart2For5Part1();
+			}
+			else {
+				
+				turn();
+			}
+		}
+		
+		
+		
+		else if (initiativeFinal[1] > initiativeFinal[5] && initiativeFinal[1] > initiativeFinal[0] && ishasteused0.equals("no")) {
+			
+			if (initiativeFinal[5] > initiativeFinal[0] && has5TakenTurn.equals("no")) {
+				
+				gameEngine3V3XPart2For5Part1();
+			}
+			else if (initiativeFinal[5] > initiativeFinal[0] && has5TakenTurn.equals("yes")) {
+				
+				gameEngine3V35Part2For0Part1();
+			}
+			else if (initiativeFinal[0] > initiativeFinal[5] && Has0TakenTurn.equals("no")) {
+				
+				gameEngine3V35Part2For0Part1();
+			}
+			else if (initiativeFinal[0] > initiativeFinal[5] && Has0TakenTurn.equals("yes")) {
+				
+				gameEngine3V3XPart2For5Part1();
+			}
+			else {
+				
+				turn();
+			}
+		}
+		
+		else if (initiativeFinal[1] > initiativeFinal[5] && initiativeFinal[1] > initiativeFinal[0] && ishasteused0.equals("yes")) {
+			
+			if (initiativeFinal[5] > initiativeFinal[0] && has5TakenTurn.equals("no")) {
+				
+				gameEngine3V3XPart2For5Part1();
+			}
+			else if (initiativeFinal[5] > initiativeFinal[0] && has5TakenTurn.equals("yes")) {
+				
+				//gameEngine3V35Part2For0Part1();
+				
+				String str = "hastePartTwo";
+  	  			sendToClient0(str);
+			}
+			else if (initiativeFinal[0] > initiativeFinal[5] && Has0TakenTurn.equals("no")) {
+				
+				//gameEngine3V35Part2For0Part1();
+				
+				String str = "hastePartTwo";
+  	  			sendToClient0(str);
+			}
+			else if (initiativeFinal[0] > initiativeFinal[5] && Has0TakenTurn.equals("yes")) {
+				
+				gameEngine3V3XPart2For5Part1();
+			}
+			else {
+				
+				turn();
+			}
+		}
+	}
 	
 	
 	//=============================================================================================
@@ -14729,6 +18922,11 @@ public class Host extends Activity {
 								    			
 								    			turn();   							
 											}
+					  	  	  			}
+					  	  	  			
+					  	  	  			else if (numberOfPlayers == 3) {
+					  	  	  				
+					  	  	  				threePlayerRedirect();
 					  	  	  			}
 						  	  	  	}
 					  	  	  	}, 2000);							  	  	  																						
@@ -15300,6 +19498,11 @@ public class Host extends Activity {
 															hastePartTwo();   							
 														}
 								  	  	  			}
+								  	  	  			
+								  	  	  			if (numberOfPlayers == 3) {
+								  	  	  				
+								  	  	  				threePlayerRedirectWithHasteForClient();
+								  	  	  			}
 									  	  	  	}
 								  	  	  	}, 2000);
 											
@@ -15363,6 +19566,11 @@ public class Host extends Activity {
 											    			
 															hastePartTwo();   							
 														}
+								  	  	  			}
+								  	  	  			
+								  	  	  			else if (numberOfPlayers == 3) {
+								  	  	  				
+								  	  	  				threePlayerRedirectWithHasteForClient();
 								  	  	  			}
 									  	  	  	}
 								  	  	  	}, 2000);
@@ -15472,6 +19680,11 @@ public class Host extends Activity {
 															hastePartTwo();   							
 														}
 								  	  	  			}
+								  	  	  			
+								  	  	  			else if (numberOfPlayers == 3) {
+								  	  	  				
+								  	  	  				threePlayerRedirectWithHasteForClient();
+								  	  	  			}
 									  	  	  	}
 								  	  	  	}, 2000);
 											
@@ -15545,6 +19758,11 @@ public class Host extends Activity {
 											    			
 															hastePartTwo();   							
 														}
+								  	  	  			}
+								  	  	  			
+								  	  	  			else if (numberOfPlayers == 3) {
+								  	  	  				
+								  	  	  				threePlayerRedirectWithHasteForClient();
 								  	  	  			}
 									  	  	  	}
 								  	  	  	}, 2000);
@@ -15655,6 +19873,11 @@ public class Host extends Activity {
 						    			turn();   							
 									}
 			  	  	  			}
+			  	  	  			
+			  	  	  			else if (numberOfPlayers == 3) {
+			  	  	  				
+			  	  	  				threePlayerRedirect();
+			  	  	  			}
 			  	  	  		}
 			  	  	  	}, 2000);
 	  	  	  		}
@@ -15742,14 +19965,6 @@ public class Host extends Activity {
 										String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
 										sendToClient3(str2);
 									}
-									else if (playerNumberAttacked == 4) {
-										
-										String str = "canHAsDisarmed4 :" + "yes";
-										sendToAllClients(str);
-										
-										String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
-										sendToClient4(str2);
-									}									
 				  	  	  			
 				  	  	  			
 					  	  	  		final Handler h = new Handler();
@@ -15782,6 +19997,11 @@ public class Host extends Activity {
 											    			
 											    			turn();   							
 														}
+								  	  	  			}
+								  	  	  			
+								  	  	  			else if (numberOfPlayers == 3) {
+								  	  	  				
+								  	  	  				threePlayerRedirect();
 								  	  	  			}
 									  	  	  	}
 								  	  	  	}, 2000);
@@ -15821,6 +20041,11 @@ public class Host extends Activity {
 											    			
 											    			turn();   							
 														}
+								  	  	  			}
+								  	  	  			
+								  	  	  			else if (numberOfPlayers == 3) {
+								  	  	  				
+								  	  	  				threePlayerRedirect();
 								  	  	  			}
 									  	  	  	}
 								  	  	  	}, 2000);
@@ -15913,14 +20138,6 @@ public class Host extends Activity {
 										
 										String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
 										sendToClient3(str2);
-									}
-									else if (playerNumberAttacked == 4) {
-										
-										String str = "canHAsDisarmed4 :" + "yes";
-										sendToAllClients(str);
-										
-										String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
-										sendToClient4(str2);
 									}									
 				  	  	  			
 				  	  	  			
@@ -15954,6 +20171,11 @@ public class Host extends Activity {
 											    			
 											    			turn();   							
 														}
+								  	  	  			}
+								  	  	  			
+								  	  	  			else if (numberOfPlayers == 3) {
+								  	  	  				
+								  	  	  				threePlayerRedirect();
 								  	  	  			}
 									  	  	  	}
 								  	  	  	}, 2000);
@@ -15993,6 +20215,11 @@ public class Host extends Activity {
 											    			
 											    			turn();   							
 														}
+								  	  	  			}
+								  	  	  			
+								  	  	  			else if (numberOfPlayers == 3) {
+								  	  	  				
+								  	  	  				threePlayerRedirect();
 								  	  	  			}
 									  	  	  	}
 								  	  	  	}, 2000);
@@ -16140,6 +20367,11 @@ public class Host extends Activity {
 										    			turn();   							
 													}
 							  	  	  			}
+							  	  	  			
+							  	  	  			else if (numberOfPlayers == 3) {
+							  	  	  				
+							  	  	  				threePlayerRedirect();
+							  	  	  			}
 								  	  	  	}
 							  	  	  	}, 2000);
 										//NEED THIS?:
@@ -16198,6 +20430,11 @@ public class Host extends Activity {
 										    			
 										    			turn();   							
 													}
+							  	  	  			}
+							  	  	  			
+							  	  	  			else if (numberOfPlayers == 3) {
+							  	  	  				
+							  	  	  				threePlayerRedirect();
 							  	  	  			}
 								  	  	  	}
 							  	  	  	}, 2000);							  	  	  	
@@ -16405,6 +20642,11 @@ public class Host extends Activity {
 													hastePartTwo();   							
 												}
 						  	  	  			}
+						  	  	  			
+						  	  	  			else if (numberOfPlayers == 3) {
+						  	  	  				
+						  	  	  				threePlayerRedirectWithHasteForClient();
+						  	  	  			}
 							  	  	  	}
 						  	  	  	}, 2000);							  						  	  	  			
 					  	  	  	}
@@ -16451,6 +20693,11 @@ public class Host extends Activity {
 									    			
 													hastePartTwo();   							
 												}
+						  	  	  			}
+						  	  	  			
+						  	  	  			else if (numberOfPlayers == 3) {
+						  	  	  				
+						  	  	  				threePlayerRedirectWithHasteForClient();
 						  	  	  			}
 							  	  	  	}
 						  	  	  	}, 2000);							  						  	  	  			
@@ -16512,19 +20759,43 @@ public class Host extends Activity {
 	  	  	  			sendToAllClients(str2);
 	  	  	  			
 	  	  	  			// IF DODGE BLOW:
-	  	  	  			
+	  	  	  			/*
 	  					if (dodgeBlowSpell[playerNumberAttacked] > 0) {	  						
 	  						
-	  						if(numberOfPlayers == 2) {
+	  						if (numberOfPlayers == 2) {
 	  							
 	  							String str3 = "rollDge";
 	  							sendToClient0(str3);
 	  							
 	  							plyerAskedToDodgeCritHit[0] = "yes";
 	  							
-	  							checkForDodgeRoll();
+	  							checkForDodgeRoll0();
 	  						}																
 	  					}		  	  	  			
+	  	  	  			*/
+	  	  	  			if (dodgeBlowSpell[playerNumberAttacked] > 0) {	  						
+  						
+	  						if (playerNumberAttacked == 0) {
+	  							
+	  							String str3 = "rollDge";
+	  							sendToClient0(str3);
+	  							
+	  							plyerAskedToDodgeCritHit[0] = "yes";
+	  							
+	  							checkForDodgeRoll0();
+	  						}
+	  						
+	  						else if (playerNumberAttacked == 1) {
+	  							
+	  							String str3 = "rollDge";
+	  							sendToClient1(str3);
+	  							
+	  							plyerAskedToDodgeCritHit[1] = "yes";
+	  							
+	  							checkForDodgeRoll1();
+	  						}
+	  					}
+	  	  	  			
 	  	  	  			
 	  					// IF NO DODGE BLOW:
 	  					
@@ -16702,19 +20973,43 @@ public class Host extends Activity {
 	  			
 				
 	  			// IF DODGE BLOW:
-	  			
+	  			/*OLD:
 	  			if (dodgeBlowSpell[playerNumberAttacked] > 0) {
 	  				
-	  				if(numberOfPlayers == 2) {  					
+	  				if (numberOfPlayers == 2) {  					
 							
 						String str = "rollDge";
 						sendToClient0(str);
 						
 						playerAskedToDodgeDamage[0] = "yes";
 						
-						checkForDodgeRoll();
+						checkForDodgeRoll0();
 					}										
 				}
+	  			*/
+	  			if (dodgeBlowSpell[playerNumberAttacked] > 0) {
+	  				
+	  				if (playerNumberAttacked == 0) {  					
+							
+						String str = "rollDge";
+						sendToClient0(str);
+						
+						playerAskedToDodgeDamage[0] = "yes";
+						
+						checkForDodgeRoll0();
+					}
+	  				
+	  				else if (playerNumberAttacked == 1) {  					
+						
+						String str = "rollDge";
+						sendToClient1(str);
+						
+						playerAskedToDodgeDamage[1] = "yes";
+						
+						checkForDodgeRoll1();
+					}
+				}
+	  			
 	  			
 	  			// IF NO DODGE BLOW:
 	  			
@@ -17255,6 +21550,11 @@ public class Host extends Activity {
 							    			
 											hastePartTwo();   							
 										}
+									}
+									
+									else if (numberOfPlayers == 3) {
+										
+										threePlayerRedirectWithHasteForClient();
 									}
 								}
 				  	  	  	}
@@ -18021,6 +22321,11 @@ public class Host extends Activity {
 									hastePartTwo();   							
 								}
 							}
+							
+							else if (numberOfPlayers == 3) {
+								
+								threePlayerRedirectWithHasteForClient();
+							}
 						}				  	  	  			
 		  	  	  	}
 	  	  	  	}, 2000);
@@ -18281,6 +22586,11 @@ public class Host extends Activity {
 					    			
 					    			turn();   							
 								}
+							}
+							
+							else if (numberOfPlayers == 3) {
+								
+								threePlayerRedirect();
 							}
 						}				  	  	  			
 		  	  	  	}
@@ -18570,6 +22880,11 @@ public class Host extends Activity {
 					    			
 									hastePartTwo();   							
 								}
+							}
+							
+							else if (numberOfPlayers == 3) {
+								
+								threePlayerRedirectWithHasteForClient();
 							}
 						}				  	  	  			
 		  	  	  	}
@@ -18909,6 +23224,11 @@ public class Host extends Activity {
 									hastePartTwo();   							
 								}
 							}
+							
+							else if (numberOfPlayers == 3) {
+								
+								threePlayerRedirectWithHasteForClient();
+							}
 						}				  	  	  			
 		  	  	  	}
 		  	  	}, 2000);
@@ -18922,59 +23242,137 @@ public class Host extends Activity {
 	//=============================================================================================
 	
 	
-	public void checkForDodgeRoll() {//CLIENT DODGING HOST
+	public void checkForDodgeRoll0() {//CLIENT DODGING HOST & CLIENT DODGING CLIENT
 		
-		if (numberOfPlayers == 2) {
+		if (plyerAskedToDodgeCritHit[0].equals("yes")) {
 			
-			if (plyerAskedToDodgeCritHit[0].equals("yes")) {
+			if (dgeRolled[0].equals("yes")) {					
 				
-				if (dgeRolled[0].equals("yes")) {					
-					
-					plyerAskedToDodgeCritHit[0] = "no";
-					
-					dgeRolled[0] = "null";
-					
-					
-					clientDodged();					
-				}
-				else if (dgeRolled[0].equals("no")) {
-					
-					plyerAskedToDodgeCritHit[0] = "no";
-					
-					dgeRolled[0] = "null";
-					
+				plyerAskedToDodgeCritHit[0] = "no";
+				
+				dgeRolled[0] = "null";
+				
+				
+				clientDodged();				
+			}
+			else if (dgeRolled[0].equals("no")) {
+				
+				plyerAskedToDodgeCritHit[0] = "no";
+				
+				dgeRolled[0] = "null";
+				
+				if (numberOfPlayers == 2) {
 					
 					criticalHit2();
-				}				
-			}
-			
-			else if (playerAskedToDodgeDamage[0].equals("yes")) {
-				
-				if(dgeRolled[0].equals("yes")) {					
-					
-					playerAskedToDodgeDamage[0] = "no";
-					
-					dgeRolled[0] = "null";
-					
-					
-					clientDodged();					
 				}
-				else if (dgeRolled[0].equals("no")) {
+				else if (numberOfPlayers == 3) {
 					
-					playerAskedToDodgeDamage[0] = "no";
-					
-					dgeRolled[0] = "null";
-					
+					String str = "criticalHit2";
+        		  	sendToClient1(str);
+				}
+			}				
+		}
+		
+		else if (playerAskedToDodgeDamage[0].equals("yes")) {
+			
+			if (dgeRolled[0].equals("yes")) {					
+				
+				playerAskedToDodgeDamage[0] = "no";
+				
+				dgeRolled[0] = "null";
+				
+				
+				clientDodged();					
+			}
+			else if (dgeRolled[0].equals("no")) {
+				
+				playerAskedToDodgeDamage[0] = "no";
+				
+				dgeRolled[0] = "null";
+				
+				if (numberOfPlayers == 2) {
 					
 					damage2();
-				}				
-			}
+				}
+				else if (numberOfPlayers == 3) {
+					
+					String str = "damage2";
+    		  		sendToClient1(str);
+				}
+			}				
+		}
+		
+		else {
 			
-			else {
+			String str = "Waiting for " + ArrayOfPlayers.player[playerNumberAttacked] + "...";
+			sendToAllClients(str);				
+		}
+	}
+	
+	public void checkForDodgeRoll1() {//CLIENT DODGING HOST
+			
+		if (plyerAskedToDodgeCritHit[1].equals("yes")) {
+			
+			if (dgeRolled[1].equals("yes")) {					
 				
-				String str = "Waiting for " + ArrayOfPlayers.player[playerNumberAttacked] + "...";
-				sendToAllClients(str);				
+				plyerAskedToDodgeCritHit[1] = "no";
+				
+				dgeRolled[1] = "null";
+				
+				
+				clientDodged();					
 			}
+			else if (dgeRolled[1].equals("no")) {
+				
+				plyerAskedToDodgeCritHit[1] = "no";
+				
+				dgeRolled[1] = "null";
+				
+				if (numberOfPlayers == 2) {
+					
+					criticalHit2();
+				}
+				else if (numberOfPlayers == 3) {
+					
+					String str = "criticalHit2";
+        		  	sendToClient0(str);
+				}
+			}				
+		}
+		
+		else if (playerAskedToDodgeDamage[1].equals("yes")) {
+			
+			if (dgeRolled[1].equals("yes")) {					
+				
+				playerAskedToDodgeDamage[1] = "no";
+				
+				dgeRolled[1] = "null";
+				
+				
+				clientDodged();					
+			}
+			else if (dgeRolled[1].equals("no")) {
+				
+				playerAskedToDodgeDamage[1] = "no";
+				
+				dgeRolled[1] = "null";
+				
+				if (numberOfPlayers == 2) {
+					
+					damage2();
+				}
+				else if (numberOfPlayers == 3) {
+					
+					String str = "damage2";
+    		  		sendToClient0(str);
+				}
+			}				
+		}
+		
+		else {
+			
+			String str = "Waiting for " + ArrayOfPlayers.player[playerNumberAttacked] + "...";
+			sendToAllClients(str);				
 		}
 	}
 	
@@ -19081,6 +23479,11 @@ public class Host extends Activity {
 				    			
 								hastePartTwo();   							
 							}
+		  	  			}
+		  	  			
+		  	  			else if (numberOfPlayers == 3) {
+		  	  				
+		  	  				threePlayerRedirectWithHasteForClient();
 		  	  			}
 		  	  	  	}
 		  	  	}, 6000);
@@ -19232,6 +23635,11 @@ public class Host extends Activity {
 		  						  	  	  			sendToClient0(str);
 		  									  	}
 	  					  	  	  			}
+	  					  	  	  			
+	  					  	  	  			else if (numberOfPlayers == 3) {
+	  					  	  	  				
+	  					  	  	  				threePlayerRedirectWithHasteForClient();
+	  					  	  	  			}
 	  						  	  	  	}
 	  					  	  	  	}, 6000);
 	  			  		    		
@@ -19242,7 +23650,7 @@ public class Host extends Activity {
 	  			  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
 	  			          	  public void onClick(DialogInterface dialog, int whichButton) {
 	  			          		  
-	  			          		  if (numberOfPlayers == 2) {	  			          		  
+	  			          		  if (numberOfPlayers == 2) {//DONT NEED THIS
 	  			          		  
 		  			          		  if (rollDodgeFor.equals("criticalHit")) {
 		  			          		  
@@ -19270,7 +23678,7 @@ public class Host extends Activity {
 								@Override
 								public void onCancel(DialogInterface dialog) {
 									
-									if (numberOfPlayers == 2) {	  			          		  
+									if (numberOfPlayers == 2) {//DONT NEED THIS
 			  			          		  
 			  			          		  if (rollDodgeFor.equals("criticalHit")) {
 			  			          		  
@@ -19456,6 +23864,9 @@ public class Host extends Activity {
 							
 							String str = "ID :" + 0;
 							sendToClient0(str);
+							
+							String str2 = "PLayerName0 :" + part2;
+							sendToAllClients(str2);
 						}
 						else if (id == 1) {
 							ArrayOfPlayers.player[1]=part2;
@@ -19463,6 +23874,9 @@ public class Host extends Activity {
 							
 							String str = "ID :" + 1;
 							sendToClient1(str);
+							
+							String str2 = "PlAyerName1 :" + part2;
+							sendToAllClients(str2);
 						}
 						else if (id == 2) {
 							ArrayOfPlayers.player[2]=part2;
@@ -19470,6 +23884,9 @@ public class Host extends Activity {
 							
 							String str = "ID :" + 2;
 							sendToClient2(str);
+							
+							String str2 = "PlaYerName2 :" + part2;
+							sendToAllClients(str2);
 						}
 						else if (id == 3) {
 							ArrayOfPlayers.player[3]=part2;
@@ -19477,14 +23894,19 @@ public class Host extends Activity {
 							
 							String str = "ID :" + 3;
 							sendToClient3(str);
+							
+							String str2 = "PlayErName3 :" + part2;
+							sendToAllClients(str2);
 						}
+						/*
 						else if (id == 4) {
 							ArrayOfPlayers.player[4]=part2;
 							ArrayOfID.id[4] = 4;
 							
 							String str = "ID :" + 4;
 							sendToClient4(str);
-						}												
+						}
+						*/												
 					}
 					
 					else if (read.contains("InitiativeRolled")) {
@@ -19639,6 +24061,57 @@ public class Host extends Activity {
 						}						
 					}
 					
+					else if (read.contains("0chooses5")) {
+						
+						playerNumberAttacked = 5;
+						
+						gameEngine3V35Part2For05Part2();
+					}
+					else if (read.contains("0chooses1")) {
+						
+						playerNumberAttacked = 1;
+						
+						gameEngine3V35Part2For01Part2();
+					}
+					else if (read.contains("1chooses5")) {
+						
+						playerNumberAttacked = 5;
+						
+						gameEngine3V35Part2For15Part2();
+					}
+					else if (read.contains("1chooses0")) {
+						
+						playerNumberAttacked = 0;
+						
+						gameEngine3V35Part2For10Part2();
+					}
+					
+					else if (read.contains("0FirstChooses5")) {
+						
+						playerNumberAttacked = 5;
+						
+						gameEngine3V30Part1For05();
+					}
+					else if (read.contains("0FIrstChooses1")) {
+						
+						playerNumberAttacked = 1;
+						
+						gameEngine3V30Part1For01();
+					}					
+					
+					else if (read.contains("1FirstChooses5")) {
+						
+						playerNumberAttacked = 5;
+						
+						gameEngine3V31Part1For15();	
+					}
+					else if (read.contains("1FIrstChooses0")) {
+						
+						playerNumberAttacked = 0;
+						
+						gameEngine3V31Part1For10();	
+					}
+					
 					else if (read.contains("Cure.hitpoints")) {//FOR CURE
 						
 						String[] parts = read.split(":");
@@ -19655,7 +24128,7 @@ public class Host extends Activity {
 							sendToAllClients(str);
 							
 							
-							if (numberOfPlayers == 2) {								
+							//if (numberOfPlayers == 2) {//IF THEY'RE ROLLING FOR CURE, THEN THEY ARE ON RIGHT SIDE REGARDLESS OF numberOfPlayers.
 								
 								runOnUiThread(new Runnable() {
 						  	  	    @Override
@@ -19681,8 +24154,8 @@ public class Host extends Activity {
 							    	  	  	}
 						    	  		}, 2000);
 						  	  	    }
-								});								
-							}
+								});
+							//}
 						}
 						else if (id == 1) {
 							
@@ -19690,6 +24163,33 @@ public class Host extends Activity {
 							
 							String str = "1ArrayOfHitPoints.hitpoints[1] :" + ArrayOfHitPoints.hitpoints[1];
 							sendToAllClients(str);
+							
+							
+							runOnUiThread(new Runnable() {
+					  	  	    @Override
+					  	  	    public void run() {
+					  	  	    	
+					  	  	    	final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+					  	  	    	
+						  	  	    final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+									computerHitPointsTextView.setTypeface(typeFace);
+									computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
+					    			//playerHitPointsTextView.bringToFront();
+					    			Animation animPulsingAnimation = AnimationUtils.loadAnimation(Host.this, R.anim.pulsinganimation);
+					    			computerHitPointsTextView.startAnimation(animPulsingAnimation);						    			
+					    			
+					    			
+					    			final Handler h = new Handler();
+					    	  		h.postDelayed(new Runnable() {		  	  	  			
+					    	  	  			
+						      	  		@Override
+						      	  	  	public void run() {  	  		
+						    	  	  			
+						      	  			computerHitPointsTextView.clearAnimation();		
+						    	  	  	}
+					    	  		}, 2000);
+					  	  	    }
+							});
 						}
 						else if (id == 2) {
 							
@@ -19714,7 +24214,7 @@ public class Host extends Activity {
 						}
 					}
 					
-					else if (read.contains("5ArrayOfHitPoints.hitpoints[5]")) {
+					else if (read.contains("5ArrayOfHitPoints.hitpoints[5]")) {//HP CHANGE TO HOST FROM SOME ATTACK
 						
 						String[] parts = read.split(":");
 						String part1 = parts[0];  
@@ -19727,7 +24227,7 @@ public class Host extends Activity {
 						sendToAllClients(str);						
 						
 						
-						if (numberOfPlayers == 2) {							
+						//if (numberOfPlayers == 2) {//WILL ALWAYS BE ON LEFT SIDE
 							
 							runOnUiThread(new Runnable() {
 					  	  	    @Override
@@ -19755,7 +24255,7 @@ public class Host extends Activity {
 					    	  		}, 2000);
 					  	  	    }
 							});								
-						}
+						//}
 					}
 					
 					else if (read.contains("0ArrayOfHitPoints.hitpoints[0]")) {
@@ -19771,7 +24271,7 @@ public class Host extends Activity {
 						sendToAllClients(str);						
 						
 						
-						if (numberOfPlayers == 2) {							
+						if (numberOfPlayers == 2) {
 							
 							runOnUiThread(new Runnable() {
 					  	  	    @Override
@@ -19798,8 +24298,204 @@ public class Host extends Activity {
 						    	  	  	}
 					    	  		}, 2000);
 					  	  	    }
-							});								
+							});
 						}
+						
+						else if (numberOfPlayers == 3) {
+							
+							if (playersFighting.equals("fiveVsZero") || playersFighting.equals("zeroVsFive") || playersFighting.equals("zeroVsOne")) {
+								
+								runOnUiThread(new Runnable() {
+						  	  	    @Override
+						  	  	    public void run() {
+						  	  	    	
+							  	  	    Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+						    			
+						    			
+							  	  	    final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+							  	  	    computerHitPointsTextView.setTypeface(typeFace);								
+							  	  	    computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+						    			
+						    			Animation animPulsingAnimation = AnimationUtils.loadAnimation(Host.this, R.anim.pulsinganimation);
+						    			computerHitPointsTextView.startAnimation(animPulsingAnimation);					    			
+						    			
+						    			
+						    			final Handler h = new Handler();
+						    	  		h.postDelayed(new Runnable() {		  	  	  			
+						    	  	  			
+							      	  		@Override
+							      	  	  	public void run() {  	  			
+							    	  	  			
+							      	  			computerHitPointsTextView.clearAnimation();	  	  			
+							    	  	  	}
+						    	  		}, 2000);
+						  	  	    }
+								});
+							}
+							
+							else if (playersFighting.equals("oneVsZero")) {
+								
+								runOnUiThread(new Runnable() {
+						  	  	    @Override
+						  	  	    public void run() {
+						  	  	    	
+							  	  	    Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+						    			
+						    			
+							  	  	    final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+							  	  	    computerHitPointsTextView.setTypeface(typeFace);								
+							  	  	    computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+						    			
+						    			Animation animPulsingAnimation = AnimationUtils.loadAnimation(Host.this, R.anim.pulsinganimation);
+						    			computerHitPointsTextView.startAnimation(animPulsingAnimation);					    			
+						    			
+						    			
+						    			final Handler h = new Handler();
+						    	  		h.postDelayed(new Runnable() {		  	  	  			
+						    	  	  			
+							      	  		@Override
+							      	  	  	public void run() {  	  			
+							    	  	  			
+							      	  			computerHitPointsTextView.clearAnimation();	  	  			
+							    	  	  	}
+						    	  		}, 2000);
+						  	  	    }
+								});
+							}
+						}
+					}
+					
+					else if (read.contains("1ArrayOfHitPoints.hitpoints[1]")) {
+						
+						String[] parts = read.split(":");
+						String part1 = parts[0];  
+						//String part2 = parts[1].trim();//IF THERE WAS A SPACE
+						String part2 = parts[1];
+						
+						ArrayOfHitPoints.hitpoints[1] = (ArrayOfHitPoints.hitpoints[1] - Integer.parseInt(part2));
+						
+						String str = "1ArrayOfHitPoints.hitpoints[1] :" + ArrayOfHitPoints.hitpoints[1];
+						sendToAllClients(str);
+						
+						
+						if (numberOfPlayers == 2) {
+							
+							runOnUiThread(new Runnable() {
+					  	  	    @Override
+					  	  	    public void run() {
+					  	  	    	
+						  	  	    Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+					    			
+					    			
+						  	  	    final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+						  	  	    computerHitPointsTextView.setTypeface(typeFace);								
+						  	  	    computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+					    			
+					    			Animation animPulsingAnimation = AnimationUtils.loadAnimation(Host.this, R.anim.pulsinganimation);
+					    			computerHitPointsTextView.startAnimation(animPulsingAnimation);					    			
+					    			
+					    			
+					    			final Handler h = new Handler();
+					    	  		h.postDelayed(new Runnable() {		  	  	  			
+					    	  	  			
+						      	  		@Override
+						      	  	  	public void run() {  	  			
+						    	  	  			
+						      	  			computerHitPointsTextView.clearAnimation();	  	  			
+						    	  	  	}
+					    	  		}, 2000);
+					  	  	    }
+							});
+						}
+						
+						else if (numberOfPlayers == 3) {
+							
+if (playersFighting.equals("fiveVsOne") || playersFighting.equals("oneVsFive") || playersFighting.equals("oneVsZero")) {
+								
+								runOnUiThread(new Runnable() {
+						  	  	    @Override
+						  	  	    public void run() {
+						  	  	    	
+							  	  	    Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+						    			
+						    			
+							  	  	    final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+							  	  	    computerHitPointsTextView.setTypeface(typeFace);								
+							  	  	    computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+						    			
+						    			Animation animPulsingAnimation = AnimationUtils.loadAnimation(Host.this, R.anim.pulsinganimation);
+						    			computerHitPointsTextView.startAnimation(animPulsingAnimation);					    			
+						    			
+						    			
+						    			final Handler h = new Handler();
+						    	  		h.postDelayed(new Runnable() {		  	  	  			
+						    	  	  			
+							      	  		@Override
+							      	  	  	public void run() {  	  			
+							    	  	  			
+							      	  			computerHitPointsTextView.clearAnimation();	  	  			
+							    	  	  	}
+						    	  		}, 2000);
+						  	  	    }
+								});
+							}
+							
+							else if (playersFighting.equals("zeroVsOne")) {
+								
+								runOnUiThread(new Runnable() {
+						  	  	    @Override
+						  	  	    public void run() {
+						  	  	    	
+							  	  	    Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+						    			
+						    			
+							  	  	    final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+							  	  	    computerHitPointsTextView.setTypeface(typeFace);								
+							  	  	    computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+						    			
+						    			Animation animPulsingAnimation = AnimationUtils.loadAnimation(Host.this, R.anim.pulsinganimation);
+						    			computerHitPointsTextView.startAnimation(animPulsingAnimation);					    			
+						    			
+						    			
+						    			final Handler h = new Handler();
+						    	  		h.postDelayed(new Runnable() {		  	  	  			
+						    	  	  			
+							      	  		@Override
+							      	  	  	public void run() {  	  			
+							    	  	  			
+							      	  			computerHitPointsTextView.clearAnimation();	  	  			
+							    	  	  	}
+						    	  		}, 2000);
+						  	  	    }
+								});
+							}
+						}
+					}
+					
+					else if (read.contains("2ArrayOfHitPoints.hitpoints[2]")) {
+						
+						String[] parts = read.split(":");
+						String part1 = parts[0];  
+						//String part2 = parts[1].trim();//IF THERE WAS A SPACE
+						String part2 = parts[1];
+						
+						ArrayOfHitPoints.hitpoints[2] = (ArrayOfHitPoints.hitpoints[2] - Integer.parseInt(part2));
+						
+						String str = "2ArrayOfHitPoints.hitpoints[2] :" + ArrayOfHitPoints.hitpoints[2];
+						sendToAllClients(str);						
+					}
+					
+					else if (read.contains("3ArrayOfHitPoints.hitpoints[3]")) {
+						
+						String[] parts = read.split(":");
+						String part1 = parts[0];  
+						//String part2 = parts[1].trim();//IF THERE WAS A SPACE
+						String part2 = parts[1];
+						
+						ArrayOfHitPoints.hitpoints[3] = (ArrayOfHitPoints.hitpoints[3] - Integer.parseInt(part2));
+						
+						String str = "3ArrayOfHitPoints.hitpoints[3] :" + ArrayOfHitPoints.hitpoints[3];
+						sendToAllClients(str);						
 					}
 					
 					else if (read.contains("endGame")) {
@@ -19982,19 +24678,7 @@ public class Host extends Activity {
 							
 							String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
 							sendToClient3(str2);
-						}
-						else if (id == 4) {
-							
-							canHasDisarmed[4]=part2;
-							
-							disarmedTurnStart[4] = ArrayOfTurn.turn[0];
-							
-							String str = "canHAsDisarmed4" + part2;
-							sendToAllClients(str);
-							
-							String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
-							sendToClient4(str2);
-						}																	
+						}						
 					}
 					
 					else if (read.contains("playerDisarmed")) {
@@ -20042,15 +24726,7 @@ public class Host extends Activity {
 							
 							String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
 							sendToClient3(str2);
-						}
-						else if (playerDisarmed == 4) {
-							
-							String str = "canHAsDisarmed4 :" + "yes";
-							sendToAllClients(str);
-							
-							String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
-							sendToClient4(str2);
-						}
+						}						
 						else if (playerDisarmed == 5) {
 							
 							String str = "canHaSDisarmed5 :" + "yes";
@@ -20104,6 +24780,7 @@ public class Host extends Activity {
 						}																	
 					}
 					
+					
 					else if (read.contains("dgeRolled")) {
 						
 						String[] parts = read.split(":");
@@ -20111,18 +24788,132 @@ public class Host extends Activity {
 						//String part2 = parts[1].trim();//IF THERE WAS A SPACE
 						String part2 = parts[1];
 						
-						dgeRolled[0]=part2;
+						
+						//dgeRolled[0]=part2;
 						
 						
-						checkForDodgeRoll();						
+						//checkForDodgeRoll();
+						
+						
+						if (id == 0) {
+							
+							dgeRolled[0]=part2;
+							
+							
+							checkForDodgeRoll0();												
+						}
+						else if (id == 1) {
+							
+							dgeRolled[1]=part2;
+							
+							
+							checkForDodgeRoll1();													
+						}
+						else if (id == 2) {							
+							
+														
+						}
+						else if (id == 3) {							
+							
+														
+						}
+						else if (id == 4) {						
+							
+														
+						}
 					}
 					
 					else if (read.contains("rollDge")) {
 						
-						rollDodge();
+						if (playersFighting.equals("zeroVsOne")) {
+							
+							if (dodgeBlowSpell[1] > 0) {
+									
+			  					if (rollDodgeFor.equals("criticalHit")) {
+			  						
+			  						plyerAskedToDodgeCritHit[1] = "yes";
+		  						}
+
+		  						else if (rollDodgeFor.equals("damage2")) {
+			  							
+			  						playerAskedToDodgeDamage[1] = "yes";
+		  						}
+			  					
+			  					
+								String str = "rollDge";
+								sendToClient1(str);									
+								
+								
+								checkForDodgeRoll1();
+							}
+							
+							else {
+								
+								if (rollDodgeFor.equals("criticalHit")) {
+		  			          		  
+	  			          			//computerCriticalHitDamage();//GOTO CLIENT CRITICAL HIT DAMAGE
+	  			          		  	String str = "criticalHit2";
+	  			          		  	sendToClient1(str);
+  			          		  	}
+  			          		  	else if (rollDodgeFor.equals("damage2")) {
+	  			          		  
+  			          		  		//computerCriticalHitDamage();//GOTO CLIENT CRITICAL HIT DAMAGE
+  			          		  		String str = "damage2";
+  			          		  		sendToClient1(str);
+  			          		  	}
+								
+								rollDodgeFor = "null";
+							}
+						}
+						
+						else if (playersFighting.equals("oneVsZero")) {
+							
+							if (dodgeBlowSpell[0] > 0) {
+									
+			  					if (rollDodgeFor.equals("criticalHit")) {
+			  						
+			  						plyerAskedToDodgeCritHit[0] = "yes";
+		  						}
+
+		  						else if (rollDodgeFor.equals("damage2")) {
+			  							
+			  						playerAskedToDodgeDamage[0] = "yes";
+		  						}
+			  					
+			  					
+								String str = "rollDge";
+								sendToClient0(str);									
+								
+								
+								checkForDodgeRoll0();
+							}
+							
+							else {
+								
+								if (rollDodgeFor.equals("criticalHit")) {
+		  			          		  
+	  			          			//computerCriticalHitDamage();//GOTO CLIENT CRITICAL HIT DAMAGE
+	  			          		  	String str = "criticalHit2";
+	  			          		  	sendToClient0(str);
+  			          		  	}
+  			          		  	else if (rollDodgeFor.equals("damage2")) {
+	  			          		  
+  			          		  		//computerCriticalHitDamage();//GOTO CLIENT CRITICAL HIT DAMAGE
+  			          		  		String str = "damage2";
+  			          		  		sendToClient0(str);
+  			          		  	}
+								
+								rollDodgeFor = "null";
+							}
+						}
+						
+						else {//FOR 2 PLAYER
+							
+							rollDodge();
+						}
 					}
 					
-					else if (read.contains("rollDodgeFor")) {
+					else if (read.contains("rollDodgeFor")) {//WHAT HOST (OR OTHER CLIENT??) SHOULD ROLL DODGE FOR
 						
 						String[] parts = read.split(":");
 						String part1 = parts[0];  
@@ -20131,6 +24922,7 @@ public class Host extends Activity {
 						
 						rollDodgeFor=part2;												
 					}
+					
 					
 					else if (read.contains("hasteGraphic")) {
 						
@@ -20358,36 +25150,84 @@ public class Host extends Activity {
 						}						
 					}
 					
+					
 					else if (read.contains("skillsCheck")) {
 						
 						String str = "skillsCheck";
 						sendToAllClients(str);
 					}										
 					
+					
 					else if (read.contains("hasteCureDisarmWithBlessDisarmNoBlessBlessCompleted")) {
+						
+						if (id == 0) {
+							
+							Has0TakenTurn = "yes";
+						}
+						else if (id == 1) {
+							
+							hAs1TakenTurn = "yes";
+						}						
 						
 						hasteCureDisarmWithBlessDisarmNoBlessBlessCompleted();
 					}				
 					
 					else if (read.contains("mightyBlowResultsCompleted")) {
 						
+						if (id == 0) {
+							
+							Has0TakenTurn = "yes";
+						}
+						else if (id == 1) {
+							
+							hAs1TakenTurn = "yes";
+						}						
+						
 						mightyBlowResultsCompleted();
 					}
 					
 					else if (read.contains("criticalMissLoseWeaponCriticalMissDamageCompleted")) {
+						
+						if (id == 0) {
+							
+							Has0TakenTurn = "yes";
+						}
+						else if (id == 1) {
+							
+							hAs1TakenTurn = "yes";
+						}						
 						
 						criticalMissLoseWeaponCriticalMissDamageCompleted();
 					}
 					
 					else if (read.contains("criticalMissLoseWeaponCriticalMissDamageResultsCompleted")) {
 						
+						if (id == 0) {
+							
+							Has0TakenTurn = "yes";
+						}
+						else if (id == 1) {
+							
+							hAs1TakenTurn = "yes";
+						}						
+						
 						criticalMissLoseWeaponCriticalMissDamageCompleted();
 					}					
 					
 					else if (read.contains("attackDamageCriticalHitDamageCriticalHitMightyBlowDamageCompleted")) {
 						
+						if (id == 0) {
+							
+							Has0TakenTurn = "yes";
+						}
+						else if (id == 1) {
+							
+							hAs1TakenTurn = "yes";
+						}						
+						
 						attackDamageCriticalHitDamageCriticalHitMightyBlowDamageCompleted();
 					}
+					
 					
 					else if (read.contains("cmputerTwentySidedRollFromLeft1")) {						
 							
