@@ -106,9 +106,13 @@
         android:layout_marginTop="12dp"
         android:gravity="top"  	   
 		android:scrollbars="none"
-		android:layout_weight="1">
+		>
 	  	<!--
-		SCROLLVIEW IS WHAT WILL ENABLE SCROLLBARS FOR THE TABLE LAYOUT.    	
+	  		
+	  		1-15 android:scrollbars="none"
+	  		1-15 android:layout_weight="1"
+	  	
+			SCROLLVIEW IS WHAT WILL ENABLE SCROLLBARS FOR THE TABLE LAYOUT.    	
 		-->    
 	    
 		<TableLayout
@@ -124,8 +128,12 @@
 	   	    android:paddingLeft="42dp"   	    	
 		   	android:stretchColumns="*" >
 	   	    <!--
-		    	android:fadeScrollbars="false"   	    
-		   		android:scrollbars="vertical"
+	   	    
+   	    	1-15 android:layout_width="wrap_content"
+   	    	1-12 WAS android:paddingBottom="43dp"
+   	    	
+	    	android:fadeScrollbars="false"   	    
+	   		android:scrollbars="vertical"
 		    -->
 		    
 		   	<TableRow
@@ -138,7 +146,11 @@
 	            android:layout_gravity="center_horizontal"           
 	            android:textSize="13sp" />	        
 	    	</TableRow>    	
-		   	<!-- 
+		   	<!--
+		   	
+		   	1-15 android:layout_width="wrap_content"
+		   	1-13 WAS android:textSize="13sp"
+		   	
 		   	NEED android:stretchColumns (ABOVE) TO CENTER TEXT HERE.
 		   	  	
 	    	android:layout_weight="7"
@@ -388,7 +400,7 @@
 	            android:textSize="9sp" />
 	        	        
 	    	</TableRow>
-	    	
+	    	<!--
 	        <TableRow
 	       	>
 	        <TextView
@@ -447,7 +459,7 @@
 	            android:textSize="9sp" />
 	        	        
 	    	</TableRow>    
-			    
+			-->    
 		</TableLayout>
 	</ScrollView>		
      

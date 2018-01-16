@@ -560,43 +560,78 @@ public class Client2 extends Activity {
 					  	  	  			
 					  	  	  			// Does this thread help:?
 						  	  	  		@Override
-						  	  	  		public void run()
-						  	  	  		{  	  			
-						  	  	  		try {
-						  	  	  		
-							  	  	  		//Toast.makeText(Client2.this, "THIS IS THE HOSTIP" + hostIP, Toast.LENGTH_LONG).show();
+						  	  	  		public void run() {
 						  	  	  			
-							  	  			String str = ArrayOfPlayers.player[0] + " has entered the game!";
-							  	  			PrintWriter out = new PrintWriter(new BufferedWriter(
+						  	  	  			try {
+						  	  	  		
+								  	  	  		//Toast.makeText(Client2.this, "THIS IS THE HOSTIP" + hostIP, Toast.LENGTH_LONG).show();
+							  	  	  			
+								  	  			
+						  	  	  				PrintWriter out = new PrintWriter(new BufferedWriter(
 							  	  					new OutputStreamWriter(socket.getOutputStream())),
 							  	  					true);
-							  	  			out.println(str);
-							  	  		
-							  	  			
-							  	  			String str2 = ArrayOfPlayers.player[0];
-							  	  			out.println("PlayerName :" + str2);
-							  	  			
-							  	  			
-							  	  			//gameEngine();
-							  	  			
-							  	  			
-							  	  			//NEW:
-							  	  			/*
-							  	  			out.flush();
-							  	  			out.close();
-							  	  			*/
-							  	  			/*
-								  	  		centerscrolltext.setVisibility(View.VISIBLE);
-						  		  	  		centerscrolltext.startAnimation(animAlphaText);
-						  		  			centerscrolltext.append("\n" + ArrayOfPlayers.player[1] + " has entered the game!");
-							  	  			*/
-							  	  		} catch (UnknownHostException e) {
-							  	  			e.printStackTrace();
-							  	  		} catch (IOException e) {
-							  	  			e.printStackTrace();
-							  	  		} catch (Exception e) {
-							  	  			e.printStackTrace();
-							  	  		}
+						  	  	  				
+								  	  			String str2 = ArrayOfPlayers.player[0];
+								  	  			out.println("PlayerName :" + str2);
+								  	  			
+								  	  			
+									  	  		final Handler h6 = new Handler();
+									  	  	  	h6.postDelayed(new Runnable() {
+									  	  	  			
+									  	  	  		@Override
+									  	  	  		public void run() {
+									  	  	  			
+									  	  	  			try {
+									  	  	  			
+										  	  	  			PrintWriter out = new PrintWriter(new BufferedWriter(
+										  	  					new OutputStreamWriter(socket.getOutputStream())),
+										  	  					true);
+										  	  	  			
+										  	  	  			if (id == 0) {
+										  	  	  				
+											  	  	  			String str = ArrayOfPlayers.player[0] + " has entered the game!";
+											  	  	  			out.println(str);
+										  	  	  			}
+										  	  	  			else if (id == 1) {
+										  	  	  				
+											  	  	  			String str = ArrayOfPlayers.player[1] + " has entered the game!";
+											  	  	  			out.println(str);
+										  	  	  			}
+										  	  	  			
+
+										  	  	  			//names();
+										  	  	  			
+										  	  	  		} catch (UnknownHostException e) {
+											  	  			e.printStackTrace();
+											  	  		} catch (IOException e) {
+											  	  			e.printStackTrace();
+											  	  		} catch (Exception e) {
+											  	  			e.printStackTrace();
+											  	  		}
+									  	  	  		}
+									  	  	  	}, 1000);
+									  	  	  	
+								  	  			
+								  	  			//gameEngine();
+								  	  			
+								  	  			
+								  	  			//NEW:
+								  	  			/*
+								  	  			out.flush();
+								  	  			out.close();
+								  	  			*/
+								  	  			/*
+									  	  		centerscrolltext.setVisibility(View.VISIBLE);
+							  		  	  		centerscrolltext.startAnimation(animAlphaText);
+							  		  			centerscrolltext.append("\n" + ArrayOfPlayers.player[1] + " has entered the game!");
+								  	  			*/
+								  	  		} catch (UnknownHostException e) {
+								  	  			e.printStackTrace();
+								  	  		} catch (IOException e) {
+								  	  			e.printStackTrace();
+								  	  		} catch (Exception e) {
+								  	  			e.printStackTrace();
+								  	  		}
 						  	  	  			
 						  	  	  			
 						  	  	  			
@@ -623,7 +658,7 @@ public class Client2 extends Activity {
 						  		  			//preventinitiativediefromleaking = "off";
 						  		  			 */
 					  	  	  		}
-					  	  	  	}, 750);
+					  	  	  	}, 500);
 			  	  	  		}
 			  	  	  	}, 2000);
 		  	  	  	}
@@ -689,7 +724,7 @@ public class Client2 extends Activity {
 	  		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 	  		  	  	  			
 	  		  	  	  		@Override
-	  			  	  	  	public void run() {  		  	  	  			
+	  			  	  	  	public void run() {//HAVE TO USE .setText INSTEAD OF .append (INITIATIVE)
 	  		  	  	  			
 	    		  	  	  		final TextView titletext = (TextView) findViewById(R.id.textviewtitlektogtext);    			  	  		    						
 	    							
@@ -698,6 +733,9 @@ public class Client2 extends Activity {
 	    		  	  	  		//final TextView titlerulestext = (TextView) findViewById(R.id.textviewtitlerulestext);	    							
 	    			  	  		//titlerulestext.setVisibility(View.VISIBLE);
 			    		  	  	final TableLayout summaryTableLayout = (TableLayout) findViewById(R.id.summaryTable);
+			    		  	  	
+			    		  	  	//summaryTableLayout.removeAllViews();
+			    		  	  	
 			    				summaryTableLayout.setVisibility(View.VISIBLE);
 			    				//summaryTableLayout.setMovementMethod(new ScrollingMovementMethod());
 			    				
@@ -833,132 +871,132 @@ public class Client2 extends Activity {
 				  		  	  		
 				  			  	  	TextView player3textview = (TextView) findViewById(R.id.player3);
 				  			  	  	player3textview.setTypeface(typeFace);
-				  			  	  	player3textview.append(ArrayOfPlayers.player[thirdsubscript]);
+				  			  	  	player3textview.setText(ArrayOfPlayers.player[thirdsubscript]);
 				  			  	  	player3textview.setVisibility(View.VISIBLE);		  	  	
 				  			  	  	
 				  			  	  	TextView hitpoints3textview = (TextView) findViewById(R.id.hitpointsplayer3);
 				  			  	  	hitpoints3textview.setTypeface(typeFace);
 				  			  	  	String hitpoints3String = Integer.toString(ArrayOfHitPoints.hitpoints[thirdsubscript]);
-				  			  	  	hitpoints3textview.append(hitpoints3String);
+				  			  	  	hitpoints3textview.setText(hitpoints3String);
 				  			  	  	hitpoints3textview.setVisibility(View.VISIBLE);
 				  			  	  	
 				  			  	  	TextView blessplayer3textview = (TextView) findViewById(R.id.blessplayer3);
 				  			  	  	blessplayer3textview.setTypeface(typeFace);
 				  			  	  	String blessplayer3String = Integer.toString(blessSpell[thirdsubscript]);
-				  			  	  	blessplayer3textview.append(blessplayer3String);
+				  			  	  	blessplayer3textview.setText(blessplayer3String);
 				  			  	  	blessplayer3textview.setVisibility(View.VISIBLE);
 				  			  	  	
 				  			  	  	TextView cureplayer3textview = (TextView) findViewById(R.id.cureplayer3);
 				  			  	  	cureplayer3textview.setTypeface(typeFace);
 				  			  	  	String cureplayer3String = Integer.toString(cureSpell[thirdsubscript]);
-				  			  	  	cureplayer3textview.append(cureplayer3String);
+				  			  	  	cureplayer3textview.setText(cureplayer3String);
 				  			  	  	cureplayer3textview.setVisibility(View.VISIBLE);
 				  			  	  	
 				  			  	  	TextView dodgeplayer3textview = (TextView) findViewById(R.id.dodgeplayer3);
 				  			  	  	dodgeplayer3textview.setTypeface(typeFace);
 				  			  	  	String dodgeplayer3String = Integer.toString(dodgeBlowSpell[thirdsubscript]);
-				  			  	  	dodgeplayer3textview.append(dodgeplayer3String);
+				  			  	  	dodgeplayer3textview.setText(dodgeplayer3String);
 				  			  	  	dodgeplayer3textview.setVisibility(View.VISIBLE);
 				  			  	  	
 				  			  	  	TextView mightyblowplayer3textview = (TextView) findViewById(R.id.mightyblowplayer3);
 				  			  	  	mightyblowplayer3textview.setTypeface(typeFace);
 				  			  	  	String mightyblowplayer3String = Integer.toString(mightyBlowSpell[thirdsubscript]);
-				  			  	  	mightyblowplayer3textview.append(mightyblowplayer3String);
+				  			  	  	mightyblowplayer3textview.setText(mightyblowplayer3String);
 				  			  	  	mightyblowplayer3textview.setVisibility(View.VISIBLE);
 				  			  	  	
 				  			  	  	TextView hasteplayer3textview = (TextView) findViewById(R.id.hasteplayer3);
 				  			  	  	hasteplayer3textview.setTypeface(typeFace);
 				  			  	  	String hasteplayer3String = Integer.toString(hasteSpell[thirdsubscript]);
-				  			  	  	hasteplayer3textview.append(hasteplayer3String);
+				  			  	  	hasteplayer3textview.setText(hasteplayer3String);
 				  			  	  	hasteplayer3textview.setVisibility(View.VISIBLE);		  	  		
 			    		  	  	}
-			  		  	  	
+			    		  	  	/*
 			    		  	  	else if (numberOfPlayers == 4) {
 			  		  	  		
 				  			  	  	TextView player3textview = (TextView) findViewById(R.id.player3);
 				  			  	  	player3textview.setTypeface(typeFace);
-				  			  	  	player3textview.append(ArrayOfPlayers.player[thirdsubscript]);
+				  			  	  	player3textview.setText(ArrayOfPlayers.player[thirdsubscript]);
 				  			  	  	player3textview.setVisibility(View.VISIBLE);		  	  	
 				  			  	  	
 				  			  	  	TextView hitpoints3textview = (TextView) findViewById(R.id.hitpointsplayer3);
 				  			  	  	hitpoints3textview.setTypeface(typeFace);
 				  			  	  	String hitpoints3String = Integer.toString(ArrayOfHitPoints.hitpoints[thirdsubscript]);
-				  			  	  	hitpoints3textview.append(hitpoints3String);
+				  			  	  	hitpoints3textview.setText(hitpoints3String);
 				  			  	  	hitpoints3textview.setVisibility(View.VISIBLE);
 				  			  	  	
 				  			  	  	TextView blessplayer3textview = (TextView) findViewById(R.id.blessplayer3);
 				  			  	  	blessplayer3textview.setTypeface(typeFace);
 				  			  	  	String blessplayer3String = Integer.toString(blessSpell[thirdsubscript]);
-				  			  	  	blessplayer3textview.append(blessplayer3String);
+				  			  	  	blessplayer3textview.setText(blessplayer3String);
 				  			  	  	blessplayer3textview.setVisibility(View.VISIBLE);
 				  			  	  	
 				  			  	  	TextView cureplayer3textview = (TextView) findViewById(R.id.cureplayer3);
 				  			  	  	cureplayer3textview.setTypeface(typeFace);
 				  			  	  	String cureplayer3String = Integer.toString(cureSpell[thirdsubscript]);
-				  			  	  	cureplayer3textview.append(cureplayer3String);
+				  			  	  	cureplayer3textview.setText(cureplayer3String);
 				  			  	  	cureplayer3textview.setVisibility(View.VISIBLE);
 				  			  	  	
 				  			  	  	TextView dodgeplayer3textview = (TextView) findViewById(R.id.dodgeplayer3);
 				  			  	  	dodgeplayer3textview.setTypeface(typeFace);
 				  			  	  	String dodgeplayer3String = Integer.toString(dodgeBlowSpell[thirdsubscript]);
-				  			  	  	dodgeplayer3textview.append(dodgeplayer3String);
+				  			  	  	dodgeplayer3textview.setText(dodgeplayer3String);
 				  			  	  	dodgeplayer3textview.setVisibility(View.VISIBLE);
 				  			  	  	
 				  			  	  	TextView mightyblowplayer3textview = (TextView) findViewById(R.id.mightyblowplayer3);
 				  			  	  	mightyblowplayer3textview.setTypeface(typeFace);
 				  			  	  	String mightyblowplayer3String = Integer.toString(mightyBlowSpell[thirdsubscript]);
-				  			  	  	mightyblowplayer3textview.append(mightyblowplayer3String);
+				  			  	  	mightyblowplayer3textview.setText(mightyblowplayer3String);
 				  			  	  	mightyblowplayer3textview.setVisibility(View.VISIBLE);
 				  			  	  	
 				  			  	  	TextView hasteplayer3textview = (TextView) findViewById(R.id.hasteplayer3);
 				  			  	  	hasteplayer3textview.setTypeface(typeFace);
 				  			  	  	String hasteplayer3String = Integer.toString(hasteSpell[thirdsubscript]);
-				  			  	  	hasteplayer3textview.append(hasteplayer3String);
+				  			  	  	hasteplayer3textview.setText(hasteplayer3String);
 				  			  	  	hasteplayer3textview.setVisibility(View.VISIBLE);
 				  			  	  	
 				  			  	  	
 				  			  	  	TextView player4textview = (TextView) findViewById(R.id.player4);
 				  			  	  	player4textview.setTypeface(typeFace);
-				  			  	  	player4textview.append(ArrayOfPlayers.player[fourthsubscript]);
+				  			  	  	player4textview.setText(ArrayOfPlayers.player[fourthsubscript]);
 				  			  	  	player4textview.setVisibility(View.VISIBLE);		  	  	
 				  			  	  	
 				  			  	  	TextView hitpoints4textview = (TextView) findViewById(R.id.hitpointsplayer4);
 				  			  	  	hitpoints4textview.setTypeface(typeFace);
 				  			  	  	String hitpoints4String = Integer.toString(ArrayOfHitPoints.hitpoints[fourthsubscript]);
-				  			  	  	hitpoints4textview.append(hitpoints4String);
+				  			  	  	hitpoints4textview.setText(hitpoints4String);
 				  			  	  	hitpoints4textview.setVisibility(View.VISIBLE);
 				  			  	  	
 				  			  	  	TextView blessplayer4textview = (TextView) findViewById(R.id.blessplayer4);
 				  			  	  	blessplayer4textview.setTypeface(typeFace);
 				  			  	  	String blessplayer4String = Integer.toString(blessSpell[fourthsubscript]);
-				  			  	  	blessplayer4textview.append(blessplayer4String);
+				  			  	  	blessplayer4textview.setText(blessplayer4String);
 				  			  	  	blessplayer4textview.setVisibility(View.VISIBLE);
 				  			  	  	
 				  			  	  	TextView cureplayer4textview = (TextView) findViewById(R.id.cureplayer4);
 				  			  	  	cureplayer4textview.setTypeface(typeFace);
 				  			  	  	String cureplayer4String = Integer.toString(cureSpell[fourthsubscript]);
-				  			  	  	cureplayer4textview.append(cureplayer4String);
+				  			  	  	cureplayer4textview.setText(cureplayer4String);
 				  			  	  	cureplayer4textview.setVisibility(View.VISIBLE);
 				  			  	  	
 				  			  	  	TextView dodgeplayer4textview = (TextView) findViewById(R.id.dodgeplayer4);
 				  			  	  	dodgeplayer4textview.setTypeface(typeFace);
 				  			  	  	String dodgeplayer4String = Integer.toString(dodgeBlowSpell[fourthsubscript]);
-				  			  	  	dodgeplayer4textview.append(dodgeplayer4String);
+				  			  	  	dodgeplayer4textview.setText(dodgeplayer4String);
 				  			  	  	dodgeplayer4textview.setVisibility(View.VISIBLE);
 				  			  	  	
 				  			  	  	TextView mightyblowplayer4textview = (TextView) findViewById(R.id.mightyblowplayer4);
 				  			  	  	mightyblowplayer4textview.setTypeface(typeFace);
 				  			  	  	String mightyblowplayer4String = Integer.toString(mightyBlowSpell[fourthsubscript]);
-				  			  	  	mightyblowplayer4textview.append(mightyblowplayer4String);
+				  			  	  	mightyblowplayer4textview.setText(mightyblowplayer4String);
 				  			  	  	mightyblowplayer4textview.setVisibility(View.VISIBLE);
 				  			  	  	
 				  			  	  	TextView hasteplayer4textview = (TextView) findViewById(R.id.hasteplayer4);
 				  			  	  	hasteplayer4textview.setTypeface(typeFace);
 				  			  	  	String hasteplayer4String = Integer.toString(hasteSpell[fourthsubscript]);
-				  			  	  	hasteplayer4textview.append(hasteplayer4String);
+				  			  	  	hasteplayer4textview.setText(hasteplayer4String);
 				  			  	  	hasteplayer4textview.setVisibility(View.VISIBLE);
 			    		  	  	}    		  	  	
-	    			  	  		
+	    			  	  		*/
 	    			  	  		
 		    			  	  	final Handler h = new Handler();
 		    		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -2094,6 +2132,15 @@ public class Client2 extends Activity {
   	  	
   	  	
 	}
+	
+	/*
+	public void names() {		
+		
+		Toast.makeText(Client2.this, ArrayOfPlayers.player[5], Toast.LENGTH_LONG).show();
+		Toast.makeText(Client2.this, ArrayOfPlayers.player[0], Toast.LENGTH_LONG).show();
+		Toast.makeText(Client2.this, ArrayOfPlayers.player[1], Toast.LENGTH_LONG).show();
+	}
+	*/
 	
 	
 	/*
@@ -5048,7 +5095,7 @@ public class Client2 extends Activity {
   	  	}, 4000);		 		
 	}
 	
-	public void rollInitiative() {		
+	public void rollInitiative() {
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
@@ -5160,7 +5207,9 @@ public class Client2 extends Activity {
 						  		  			onBackPressedOk = "yes";
 						  		  			
 						  		  			
-						  		  			//preventinitiativediefromleaking = "off";						  		  			
+						  		  			//preventinitiativediefromleaking = "off";
+						  		  			
+						  		  			//names();
 					  	  	  		}
 					  	  	  	}, 750);
 			  	  	  		}
@@ -5171,7 +5220,7 @@ public class Client2 extends Activity {
 		});
 	}
 	
-	public void reRollInitiative() {	
+	public void reRollInitiative() {
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
@@ -5501,7 +5550,7 @@ public class Client2 extends Activity {
 					  	  	hasteplayer3textview.append(hasteplayer3String);
 					  	  	hasteplayer3textview.setVisibility(View.VISIBLE);		  	  		
 				  	  	}
-				  	  	
+				  	  	/*
 				  	  	else if (numberOfPlayers == 4) {
 				  	  		
 					  	  	TextView player3textview = (TextView) findViewById(R.id.player3);
@@ -5587,7 +5636,7 @@ public class Client2 extends Activity {
 					  	  	hasteplayer4textview.append(hasteplayer4String);
 					  	  	hasteplayer4textview.setVisibility(View.VISIBLE);
 				  	  	} 	  	
-			  	  		
+			  	  		*/
 			  	  		
 			  	  		//titlerulestext.bringToFront();
 				  	  	
@@ -5605,6 +5654,8 @@ public class Client2 extends Activity {
 				  	  			summaryTableLayout.setVisibility(View.INVISIBLE);		  	  			
 					  	  		
 				  	  	  		lineInSummaryTableLayout.setVisibility(View.INVISIBLE);
+				  	  	  		
+				  	  	  	//summaryTableLayout.removeAllViews();
 				  	  			
 				  	  			TextView titletext = (TextView) findViewById(R.id.textviewtitlektogtext);
 				  	  			
@@ -5759,9 +5810,15 @@ public class Client2 extends Activity {
 			  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 			  			centerscrolltext.setTypeface(typeFace);
 			  			
+			  			
+			  			computerCardStartFadeInFadeOut();
+			  			
+			  			
+			  			/*
 			  			centerscrolltext.setVisibility(View.VISIBLE);													
 				  		centerscrolltext.startAnimation(animAlphaText);
 						centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + " is choosing player to attack...");									
+						*/
 						
 						String str = "> " + ArrayOfPlayers.player[0] + " is choosing player to attack...";
 						sendToHost(str);
@@ -6029,9 +6086,15 @@ public class Client2 extends Activity {
 			  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 			  			centerscrolltext.setTypeface(typeFace);
 			  			
+			  			
+			  			computerCardStartFadeInFadeOut();
+			  			
+			  			
+			  			/*
 			  			centerscrolltext.setVisibility(View.VISIBLE);													
 				  		centerscrolltext.startAnimation(animAlphaText);
 						centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[1] + " is choosing player to attack...");									
+						*/
 						
 						String str = "> " + ArrayOfPlayers.player[1] + " is choosing player to attack...";
 						sendToHost(str);
@@ -6312,6 +6375,9 @@ public class Client2 extends Activity {
     			
     			
     			computerCardStartFadeInFadeOut();
+    			
+    			
+    			//Toast.makeText(Client2.this, "reveal0onright", Toast.LENGTH_LONG).show();
 			}
 		});
 	}
@@ -6343,6 +6409,9 @@ public class Client2 extends Activity {
     			
     			
     			computerCardStartFadeInFadeOut();
+    			
+    			
+    			//Toast.makeText(Client2.this, "reveal1onright", Toast.LENGTH_LONG).show();
 			}
 		});
 	}
@@ -6414,6 +6483,10 @@ public class Client2 extends Activity {
 				
 				Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 				
+				TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);		
+				playerNameTextView.setTypeface(typeFace);		
+				playerNameTextView.setText(ArrayOfPlayers.player[5]);
+				
 				//NEED THIS??
 				TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
 				playerHitPointsTextView.setTypeface(typeFace);
@@ -6459,6 +6532,22 @@ public class Client2 extends Activity {
 						
 						ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
 						computerAvatar.setVisibility(View.VISIBLE);						
+						
+						
+						
+						
+						if (id == 0) {
+	  	  	  				
+		  	  	  			
+	  	  	  			}
+	  	  	  			else if (id == 1) {
+	  	  	  				
+		  	  	  			
+	  	  	  			}
+						
+						
+						
+						
 						
 						
 						TextView computerNameTextView = (TextView)findViewById(R.id.textviewnameright);
@@ -13300,6 +13389,15 @@ else if (read.contains("chooseOpponent")) {
 												
 						oneAttackingFirst=part2;											
 					}
+					
+					
+					/*
+					else if (read.contains("getNames")) {
+						
+						names();										
+					}
+					*/
+					
 										
 					else {
 						updateConversationHandler.post(new updateUIThread(read));

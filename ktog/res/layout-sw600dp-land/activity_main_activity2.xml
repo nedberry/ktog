@@ -123,9 +123,12 @@
         android:layout_marginTop="20dp"
         android:gravity="top"  	   
 		android:scrollbars="none"
-		android:layout_weight="1">
+		>
 	  	<!--
-		SCROLLVIEW IS WHAT WILL ENABLE SCROLLBARS FOR THE TABLE LAYOUT.    	
+	  		1-15 android:scrollbars="none"
+	  		1-15 android:layout_weight="1"
+	  	
+			SCROLLVIEW IS WHAT WILL ENABLE SCROLLBARS FOR THE TABLE LAYOUT.    	
 		-->    
 	    
 		<TableLayout
@@ -141,8 +144,12 @@
 	   	    android:paddingLeft="64dp"   	    	
 		   	android:stretchColumns="*" >
 	   	    <!--
-		    	android:fadeScrollbars="false"   	    
-		   		android:scrollbars="vertical"
+	   	    
+	   	    1-15 android:layout_width="wrap_content"
+   	    	1-12 WAS android:paddingBottom="66dp"
+   	    	
+	    	android:fadeScrollbars="false"   	    
+	   		android:scrollbars="vertical"
 		    -->
 		    
 		   	<TableRow
@@ -153,9 +160,13 @@
 	            android:layout_height="wrap_content"
 	            android:layout_span="7"
 	            android:layout_gravity="center_horizontal"           
-	            android:textSize="24sp" />	        
+	            android:textSize="24sp" />      
 	    	</TableRow>    	
-		   	<!-- 
+		   	<!--
+		   	
+		   	1-15 android:layout_width="wrap_content"
+		   	1-13 android:textSize="24sp"
+		   	
 		   	NEED android:stretchColumns (ABOVE) TO CENTER TEXT HERE.
 		   	  	
 	    	android:layout_weight="7"
@@ -332,59 +343,52 @@
 	            android:id="@+id/player3"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
-	            android:layout_weight="1"
-	            android:textSize="9sp" />
+	            android:layout_weight="1" />
 	        
 	        <TextView
 	            android:id="@+id/hitpointsplayer3"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:layout_gravity="center_horizontal"
-	            android:layout_weight="1"
-	            android:textSize="9sp" />   	
+	            android:layout_weight="1" />   	
 	    	
 		    <TextView
 	            android:id="@+id/blessplayer3"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:layout_gravity="center_horizontal"
-	            android:layout_weight="1"
-	            android:textSize="9sp" />   	
+	            android:layout_weight="1" />   	
 	    	
 			<TextView
 	            android:id="@+id/cureplayer3"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:layout_gravity="center_horizontal"
-	            android:layout_weight="1"
-	            android:textSize="9sp" />
+	            android:layout_weight="1" />
 			
 			<TextView
 	            android:id="@+id/dodgeplayer3"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:layout_gravity="center_horizontal"
-	            android:layout_weight="1"
-	            android:textSize="9sp" />	        
+	            android:layout_weight="1" />	        
 	    	
 			<TextView
 	            android:id="@+id/mightyblowplayer3"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:layout_gravity="center_horizontal"
-	            android:layout_weight="1"
-	            android:textSize="9sp" />
+	            android:layout_weight="1" />
 			
 			<TextView
 	            android:id="@+id/hasteplayer3"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:layout_gravity="center_horizontal"
-	            android:layout_weight="1"
-	            android:textSize="9sp" />
+	            android:layout_weight="1" />
 	        	        
 	    	</TableRow>
-	    	
+	    	<!--
 	        <TableRow
 	       	>
 	        <TextView
@@ -443,7 +447,7 @@
 	            android:textSize="9sp" />
 	        	        
 	    	</TableRow>	        
-			    
+			--> 
 		</TableLayout>
 	</ScrollView>		
      

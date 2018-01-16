@@ -624,10 +624,10 @@ public class Host extends Activity {
 	              		*/
 	              		
 	              		final Handler h = new Handler();
-	  		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  		  	  	  	h.postDelayed(new Runnable() {
 	  		  	  	  			
 	  		  	  	  		@Override
-	  			  	  	  	public void run() {  		  	  	  			
+	  			  	  	  	public void run() {//HAVE TO USE .setText INSTEAD OF .append (INITIATIVE)
 	  		  	  	  			
 	    		  	  	  		final TextView titletext = (TextView) findViewById(R.id.textviewtitlektogtext);    			  	  		    						
 	    							
@@ -636,6 +636,11 @@ public class Host extends Activity {
 	    		  	  	  		//final TextView titlerulestext = (TextView) findViewById(R.id.textviewtitlerulestext);	    							
 	    			  	  		//titlerulestext.setVisibility(View.VISIBLE);
 			    		  	  	final TableLayout summaryTableLayout = (TableLayout) findViewById(R.id.summaryTable);
+			    		  	  	
+			    		  	  	//summaryTableLayout.removeAllViews();
+			    		  	  	
+			    		  	  	//summaryTableLayout.setIsRecyclable(false);
+			    		  	  
 			    				summaryTableLayout.setVisibility(View.VISIBLE);
 			    				//summaryTableLayout.setMovementMethod(new ScrollingMovementMethod());
 			    				
@@ -772,132 +777,132 @@ public class Host extends Activity {
 			  		  	  		
 				  			  	  	TextView player3textview = (TextView) findViewById(R.id.player3);
 				  			  	  	player3textview.setTypeface(typeFace);
-				  			  	  	player3textview.append(ArrayOfPlayers.player[thirdsubscript]);
+				  			  	  	player3textview.setText(ArrayOfPlayers.player[thirdsubscript]);
 				  			  	  	player3textview.setVisibility(View.VISIBLE);		  	  	
 				  			  	  	
 				  			  	  	TextView hitpoints3textview = (TextView) findViewById(R.id.hitpointsplayer3);
 				  			  	  	hitpoints3textview.setTypeface(typeFace);
 				  			  	  	String hitpoints3String = Integer.toString(ArrayOfHitPoints.hitpoints[thirdsubscript]);
-				  			  	  	hitpoints3textview.append(hitpoints3String);
+				  			  	  	hitpoints3textview.setText(hitpoints3String);
 				  			  	  	hitpoints3textview.setVisibility(View.VISIBLE);
 				  			  	  	
 				  			  	  	TextView blessplayer3textview = (TextView) findViewById(R.id.blessplayer3);
 				  			  	  	blessplayer3textview.setTypeface(typeFace);
 				  			  	  	String blessplayer3String = Integer.toString(blessSpell[thirdsubscript]);
-				  			  	  	blessplayer3textview.append(blessplayer3String);
+				  			  	  	blessplayer3textview.setText(blessplayer3String);
 				  			  	  	blessplayer3textview.setVisibility(View.VISIBLE);
 				  			  	  	
 				  			  	  	TextView cureplayer3textview = (TextView) findViewById(R.id.cureplayer3);
 				  			  	  	cureplayer3textview.setTypeface(typeFace);
 				  			  	  	String cureplayer3String = Integer.toString(cureSpell[thirdsubscript]);
-				  			  	  	cureplayer3textview.append(cureplayer3String);
+				  			  	  	cureplayer3textview.setText(cureplayer3String);
 				  			  	  	cureplayer3textview.setVisibility(View.VISIBLE);
 				  			  	  	
 				  			  	  	TextView dodgeplayer3textview = (TextView) findViewById(R.id.dodgeplayer3);
 				  			  	  	dodgeplayer3textview.setTypeface(typeFace);
 				  			  	  	String dodgeplayer3String = Integer.toString(dodgeBlowSpell[thirdsubscript]);
-				  			  	  	dodgeplayer3textview.append(dodgeplayer3String);
+				  			  	  	dodgeplayer3textview.setText(dodgeplayer3String);
 				  			  	  	dodgeplayer3textview.setVisibility(View.VISIBLE);
 				  			  	  	
 				  			  	  	TextView mightyblowplayer3textview = (TextView) findViewById(R.id.mightyblowplayer3);
 				  			  	  	mightyblowplayer3textview.setTypeface(typeFace);
 				  			  	  	String mightyblowplayer3String = Integer.toString(mightyBlowSpell[thirdsubscript]);
-				  			  	  	mightyblowplayer3textview.append(mightyblowplayer3String);
+				  			  	  	mightyblowplayer3textview.setText(mightyblowplayer3String);
 				  			  	  	mightyblowplayer3textview.setVisibility(View.VISIBLE);
 				  			  	  	
 				  			  	  	TextView hasteplayer3textview = (TextView) findViewById(R.id.hasteplayer3);
 				  			  	  	hasteplayer3textview.setTypeface(typeFace);
 				  			  	  	String hasteplayer3String = Integer.toString(hasteSpell[thirdsubscript]);
-				  			  	  	hasteplayer3textview.append(hasteplayer3String);
+				  			  	  	hasteplayer3textview.setText(hasteplayer3String);
 				  			  	  	hasteplayer3textview.setVisibility(View.VISIBLE);		  	  		
 			    		  	  	}
-			  		  	  	
+			    		  	  	/*
 			    		  	  	else if (numberOfPlayers == 4) {
 			  		  	  		
 				  			  	  	TextView player3textview = (TextView) findViewById(R.id.player3);
 				  			  	  	player3textview.setTypeface(typeFace);
-				  			  	  	player3textview.append(ArrayOfPlayers.player[thirdsubscript]);
+				  			  	  	player3textview.setText(ArrayOfPlayers.player[thirdsubscript]);
 				  			  	  	player3textview.setVisibility(View.VISIBLE);		  	  	
 				  			  	  	
 				  			  	  	TextView hitpoints3textview = (TextView) findViewById(R.id.hitpointsplayer3);
 				  			  	  	hitpoints3textview.setTypeface(typeFace);
 				  			  	  	String hitpoints3String = Integer.toString(ArrayOfHitPoints.hitpoints[thirdsubscript]);
-				  			  	  	hitpoints3textview.append(hitpoints3String);
+				  			  	  	hitpoints3textview.setText(hitpoints3String);
 				  			  	  	hitpoints3textview.setVisibility(View.VISIBLE);
 				  			  	  	
 				  			  	  	TextView blessplayer3textview = (TextView) findViewById(R.id.blessplayer3);
 				  			  	  	blessplayer3textview.setTypeface(typeFace);
 				  			  	  	String blessplayer3String = Integer.toString(blessSpell[thirdsubscript]);
-				  			  	  	blessplayer3textview.append(blessplayer3String);
+				  			  	  	blessplayer3textview.setText(blessplayer3String);
 				  			  	  	blessplayer3textview.setVisibility(View.VISIBLE);
 				  			  	  	
 				  			  	  	TextView cureplayer3textview = (TextView) findViewById(R.id.cureplayer3);
 				  			  	  	cureplayer3textview.setTypeface(typeFace);
 				  			  	  	String cureplayer3String = Integer.toString(cureSpell[thirdsubscript]);
-				  			  	  	cureplayer3textview.append(cureplayer3String);
+				  			  	  	cureplayer3textview.setText(cureplayer3String);
 				  			  	  	cureplayer3textview.setVisibility(View.VISIBLE);
 				  			  	  	
 				  			  	  	TextView dodgeplayer3textview = (TextView) findViewById(R.id.dodgeplayer3);
 				  			  	  	dodgeplayer3textview.setTypeface(typeFace);
 				  			  	  	String dodgeplayer3String = Integer.toString(dodgeBlowSpell[thirdsubscript]);
-				  			  	  	dodgeplayer3textview.append(dodgeplayer3String);
+				  			  	  	dodgeplayer3textview.setText(dodgeplayer3String);
 				  			  	  	dodgeplayer3textview.setVisibility(View.VISIBLE);
 				  			  	  	
 				  			  	  	TextView mightyblowplayer3textview = (TextView) findViewById(R.id.mightyblowplayer3);
 				  			  	  	mightyblowplayer3textview.setTypeface(typeFace);
 				  			  	  	String mightyblowplayer3String = Integer.toString(mightyBlowSpell[thirdsubscript]);
-				  			  	  	mightyblowplayer3textview.append(mightyblowplayer3String);
+				  			  	  	mightyblowplayer3textview.setText(mightyblowplayer3String);
 				  			  	  	mightyblowplayer3textview.setVisibility(View.VISIBLE);
 				  			  	  	
 				  			  	  	TextView hasteplayer3textview = (TextView) findViewById(R.id.hasteplayer3);
 				  			  	  	hasteplayer3textview.setTypeface(typeFace);
 				  			  	  	String hasteplayer3String = Integer.toString(hasteSpell[thirdsubscript]);
-				  			  	  	hasteplayer3textview.append(hasteplayer3String);
+				  			  	  	hasteplayer3textview.setText(hasteplayer3String);
 				  			  	  	hasteplayer3textview.setVisibility(View.VISIBLE);
 				  			  	  	
 				  			  	  	
 				  			  	  	TextView player4textview = (TextView) findViewById(R.id.player4);
 				  			  	  	player4textview.setTypeface(typeFace);
-				  			  	  	player4textview.append(ArrayOfPlayers.player[fourthsubscript]);
+				  			  	  	player4textview.setText(ArrayOfPlayers.player[fourthsubscript]);
 				  			  	  	player4textview.setVisibility(View.VISIBLE);		  	  	
 				  			  	  	
 				  			  	  	TextView hitpoints4textview = (TextView) findViewById(R.id.hitpointsplayer4);
 				  			  	  	hitpoints4textview.setTypeface(typeFace);
 				  			  	  	String hitpoints4String = Integer.toString(ArrayOfHitPoints.hitpoints[fourthsubscript]);
-				  			  	  	hitpoints4textview.append(hitpoints4String);
+				  			  	  	hitpoints4textview.setText(hitpoints4String);
 				  			  	  	hitpoints4textview.setVisibility(View.VISIBLE);
 				  			  	  	
 				  			  	  	TextView blessplayer4textview = (TextView) findViewById(R.id.blessplayer4);
 				  			  	  	blessplayer4textview.setTypeface(typeFace);
 				  			  	  	String blessplayer4String = Integer.toString(blessSpell[fourthsubscript]);
-				  			  	  	blessplayer4textview.append(blessplayer4String);
+				  			  	  	blessplayer4textview.setText(blessplayer4String);
 				  			  	  	blessplayer4textview.setVisibility(View.VISIBLE);
 				  			  	  	
 				  			  	  	TextView cureplayer4textview = (TextView) findViewById(R.id.cureplayer4);
 				  			  	  	cureplayer4textview.setTypeface(typeFace);
 				  			  	  	String cureplayer4String = Integer.toString(cureSpell[fourthsubscript]);
-				  			  	  	cureplayer4textview.append(cureplayer4String);
+				  			  	  	cureplayer4textview.setText(cureplayer4String);
 				  			  	  	cureplayer4textview.setVisibility(View.VISIBLE);
 				  			  	  	
 				  			  	  	TextView dodgeplayer4textview = (TextView) findViewById(R.id.dodgeplayer4);
 				  			  	  	dodgeplayer4textview.setTypeface(typeFace);
 				  			  	  	String dodgeplayer4String = Integer.toString(dodgeBlowSpell[fourthsubscript]);
-				  			  	  	dodgeplayer4textview.append(dodgeplayer4String);
+				  			  	  	dodgeplayer4textview.setText(dodgeplayer4String);
 				  			  	  	dodgeplayer4textview.setVisibility(View.VISIBLE);
 				  			  	  	
 				  			  	  	TextView mightyblowplayer4textview = (TextView) findViewById(R.id.mightyblowplayer4);
 				  			  	  	mightyblowplayer4textview.setTypeface(typeFace);
 				  			  	  	String mightyblowplayer4String = Integer.toString(mightyBlowSpell[fourthsubscript]);
-				  			  	  	mightyblowplayer4textview.append(mightyblowplayer4String);
+				  			  	  	mightyblowplayer4textview.setText(mightyblowplayer4String);
 				  			  	  	mightyblowplayer4textview.setVisibility(View.VISIBLE);
 				  			  	  	
 				  			  	  	TextView hasteplayer4textview = (TextView) findViewById(R.id.hasteplayer4);
 				  			  	  	hasteplayer4textview.setTypeface(typeFace);
 				  			  	  	String hasteplayer4String = Integer.toString(hasteSpell[fourthsubscript]);
-				  			  	  	hasteplayer4textview.append(hasteplayer4String);
+				  			  	  	hasteplayer4textview.setText(hasteplayer4String);
 				  			  	  	hasteplayer4textview.setVisibility(View.VISIBLE);
 			    		  	  	}
-	    			  	  		
+	    			  	  		*/
 	    			  	  		
 		    			  	  	final Handler h = new Handler();
 		    		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -1030,6 +1035,27 @@ public class Host extends Activity {
   		  	  			String str = "rollInitiative";
   		  	  			sendToAll(str);
   		  	  			
+  		  	  			/*
+  		  	  			if (numberOfPlayers == 3) {numberOfPlayers IS NOT DEFINED TILL AFTER THIS
+  		  	  				
+	  		  	  			String str2 = "PlayerName5 :" + ArrayOfPlayers.player[5];
+							sendToAllClients(str2);
+	
+							String str3 = "PLayerName0 :" + ArrayOfPlayers.player[0];
+							sendToAllClients(str3);
+							
+							String str4 = "PlAyerName1 :" + ArrayOfPlayers.player[1];
+							sendToAllClients(str4);
+  		  	  			}
+  		  	  			*/
+	  		  	  		String str2 = "PlayerName5 :" + ArrayOfPlayers.player[5];
+						sendToAllClients(str2);
+	
+						String str3 = "PLayerName0 :" + ArrayOfPlayers.player[0];
+						sendToAllClients(str3);
+						
+						String str4 = "PlAyerName1 :" + ArrayOfPlayers.player[1];
+						sendToAllClients(str4);
         	  	  	}
         	  	}, 713); // SHOULD BE AT LEAST 675?       	      	        				
 			}
@@ -11419,7 +11445,7 @@ public class Host extends Activity {
   	    			}
   	    			
   	    			final Handler h = new Handler();
-		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+		  	  	  	h.postDelayed(new Runnable() {
 		  	  	  			
 		  	  	  		@Override
 			  	  	  	public void run() {
@@ -11427,7 +11453,7 @@ public class Host extends Activity {
 			  	  	  		finishInitiative();
 		  	  	  			
 		  	  	  			String str = "finishInitiative";
-		  	  	  			sendToClient0(str);
+		  	  	  			sendToAllClients(str);
 		  	  	  			
 		  	  	  			//gameEngine();
 			  	  	  	}
@@ -13017,7 +13043,7 @@ public class Host extends Activity {
 			  	  	  		finishInitiative();
 		  	  	  			
 		  	  	  			String str = "finishInitiative";
-		  	  	  			sendToClient0(str);
+		  	  	  			sendToAllClients(str);
 		  	  	  			
 		  	  	  			//gameEngine();
 			  	  	  	}
@@ -13100,7 +13126,7 @@ public class Host extends Activity {
 	  	  		
 	  	  		
   	  	final Handler h = new Handler();
-  		h.postDelayed(new Runnable() {		  	  	  			
+  		h.postDelayed(new Runnable() {
   	  			
   	  		@Override
   	  	  	public void run() {
@@ -13252,7 +13278,6 @@ public class Host extends Activity {
 		  	  	hasteplayer2textview.append(hasteplayer2String);
 		  	  	hasteplayer2textview.setVisibility(View.VISIBLE);
 		  	  	
-		  	  	
 		  	  	if (numberOfPlayers == 3) {
 		  	  		
 			  	  	TextView player3textview = (TextView) findViewById(R.id.player3);
@@ -13296,7 +13321,7 @@ public class Host extends Activity {
 			  	  	hasteplayer3textview.append(hasteplayer3String);
 			  	  	hasteplayer3textview.setVisibility(View.VISIBLE);		  	  		
 		  	  	}
-		  	  	
+		  	  	/*
 		  	  	else if (numberOfPlayers == 4) {
 		  	  		
 			  	  	TextView player3textview = (TextView) findViewById(R.id.player3);
@@ -13382,7 +13407,7 @@ public class Host extends Activity {
 			  	  	hasteplayer4textview.append(hasteplayer4String);
 			  	  	hasteplayer4textview.setVisibility(View.VISIBLE);
 		  	  	}
-	  	  		
+	  	  		*/
 	  	  		
 	  	  		//titlerulestext.bringToFront();
 		  	  	
@@ -13401,6 +13426,8 @@ public class Host extends Activity {
 		  	  			summaryTableLayout.setVisibility(View.INVISIBLE);		  	  			
 			  	  		
 		  	  	  		lineInSummaryTableLayout.setVisibility(View.INVISIBLE);
+		  	  	  		
+		  	  	  	//summaryTableLayout.removeAllViews();
 		  	  			
 		  	  			TextView titletext = (TextView) findViewById(R.id.textviewtitlektogtext);
 		  	  			
@@ -13551,6 +13578,10 @@ public class Host extends Activity {
 		}		
 		
 		else if (numberOfPlayers == 3) {
+			/*
+			String str = "getNames";
+			sendToAllClients(str);
+			*/
 			
 			String str2 = "gameEngineMultiPlayer";
 			sendToAllClients(str2);
@@ -13574,12 +13605,16 @@ public class Host extends Activity {
 			
 			ArrayOfTurn.turn[0] = 0;
 			
-			
+			/*
 			if ((initiativeFinal[0] > initiativeFinal[5] && initiativeFinal[0] > initiativeFinal[1]) ||	(initiativeFinal[1] > initiativeFinal[5] && initiativeFinal[1] > initiativeFinal[0])) {
 				
 				unfoldLeftScrollReverse();
 			}
-			else if (initiativeFinal[0] > initiativeFinal[5] && initiativeFinal[0] > initiativeFinal[1]) {
+			*/
+			if (initiativeFinal[0] > initiativeFinal[5] && initiativeFinal[0] > initiativeFinal[1]) {
+				
+				unfoldLeftScrollReverse();
+				
 				
 				String str7 = "closeRightScroll";
 				sendToClient1(str7);
@@ -13596,6 +13631,9 @@ public class Host extends Activity {
 	  	  	  	}, 1000);
 			}
 			else if (initiativeFinal[1] > initiativeFinal[5] && initiativeFinal[1] > initiativeFinal[0]) {
+				
+				unfoldLeftScrollReverse();
+				
 				
 				String str9 = "closeRightScroll";
 				sendToClient0(str9);
@@ -13856,7 +13894,7 @@ public class Host extends Activity {
 		    			
 		    			
 		    			String str = "Trn3V35";
-		    			sendToClient0(str);
+		    			sendToAllClients(str);
 		    			
 						
 						ArrayOfTurn.turn[0] = ArrayOfTurn.turn[0] + 1;	
@@ -13876,7 +13914,7 @@ public class Host extends Activity {
 				*/
 			}
 			
-			else if (initiativeFinal[0] > initiativeFinal[5] && initiativeFinal[0] > initiativeFinal[1] && has5TakenTurn.equals("yes")) { //TOOK OUT: && Has0TakenTurn.equals("no")	
+			else if (initiativeFinal[0] > initiativeFinal[5] && initiativeFinal[0] > initiativeFinal[1]) { //1-11TOOK OUT:  && has5TakenTurn.equals("yes") , ?TOOK OUT: && Has0TakenTurn.equals("no")	
 				
 				has5TakenTurn = "no";
 				Has0TakenTurn = "no";
@@ -13933,7 +13971,7 @@ public class Host extends Activity {
 				    			
 				    			
 				    			String str = "0attackingFirst :" + "yes";
-				    			sendToClient0(str);
+				    			sendToAllClients(str);
 				    			
 				    			
 				    			String str2 = "chooseOpponent";
@@ -13960,7 +13998,7 @@ public class Host extends Activity {
 				*/
 			}
 			
-			else if (initiativeFinal[1] > initiativeFinal[5] && initiativeFinal[1] > initiativeFinal[0] && has5TakenTurn.equals("yes")) { //TOOK OUT: && Has0TakenTurn.equals("yes")			
+			else if (initiativeFinal[1] > initiativeFinal[5] && initiativeFinal[1] > initiativeFinal[0]) {//1-11TOOK OUT: && has5TakenTurn.equals("yes") , ?TOOK OUT: && Has0TakenTurn.equals("yes")			
 				
 				has5TakenTurn = "no";
 				Has0TakenTurn = "no";
@@ -14017,11 +14055,11 @@ public class Host extends Activity {
 				    			
 				    			
 				    			String str = "1AttackingFirst :" + "yes";
-				    			sendToClient0(str);
+				    			sendToAllClients(str);
 				    			
 				    			
 				    			String str2 = "chooseOpponent";
-				    			sendToClient0(str2);
+				    			sendToClient1(str2);
 				    			
 								
 								ArrayOfTurn.turn[0] = ArrayOfTurn.turn[0] + 1;	
@@ -23866,7 +23904,7 @@ public class Host extends Activity {
 							sendToClient0(str);
 							
 							String str2 = "PLayerName0 :" + part2;
-							sendToAllClients(str2);
+							sendToClient0(str2);
 						}
 						else if (id == 1) {
 							ArrayOfPlayers.player[1]=part2;
@@ -23876,7 +23914,7 @@ public class Host extends Activity {
 							sendToClient1(str);
 							
 							String str2 = "PlAyerName1 :" + part2;
-							sendToAllClients(str2);
+							sendToClient1(str2);
 						}
 						else if (id == 2) {
 							ArrayOfPlayers.player[2]=part2;
@@ -23886,7 +23924,7 @@ public class Host extends Activity {
 							sendToClient2(str);
 							
 							String str2 = "PlaYerName2 :" + part2;
-							sendToAllClients(str2);
+							sendToClient2(str2);
 						}
 						else if (id == 3) {
 							ArrayOfPlayers.player[3]=part2;
@@ -23896,7 +23934,7 @@ public class Host extends Activity {
 							sendToClient3(str);
 							
 							String str2 = "PlayErName3 :" + part2;
-							sendToAllClients(str2);
+							sendToClient3(str2);
 						}
 						/*
 						else if (id == 4) {
