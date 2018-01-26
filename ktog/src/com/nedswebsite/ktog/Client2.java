@@ -5908,7 +5908,10 @@ public class Client2 extends Activity {
 			  		                        			
 			  		                        			playersFighting = "zeroVsFive";//SAME AS WHEN 5 IS ATTACKING 0.
 				  		                        		
-				  		                        		
+			  		                        			
+			  		                        			reveal5onleftclientattacking();
+			  		                        			
+				  		                        		/*
 				  		                        		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 				  		      						
 					  		      						TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);		
@@ -5934,6 +5937,7 @@ public class Client2 extends Activity {
 							  		      				ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
 							  		      				img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
 							  		      				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+							  		      				*/
 			  		                        		}
 			  		                        		
 			  		                        		else {                    		
@@ -5977,7 +5981,7 @@ public class Client2 extends Activity {
 			  		                        	
 			  		                        	else if (item == 1) {
 			  		                        		
-			  		                        		if (zeroAttackingFirst.equals("yes")) {			  		                        			
+			  		                        		if (zeroAttackingFirst.equals("yes")) {
 			  		                        			
 			  		                        			String str = "0FIrstChooses1";
 				  		                        		sendToHost(str);
@@ -5986,6 +5990,9 @@ public class Client2 extends Activity {
 				  		                        		playersFighting = "zeroVsOne";
 				  		                        		
 				  		                        		
+				  		                        		reveal1onleftclientattacking();
+				  		                        		
+				  		                        		/*
 				  		                        		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 				  		      						
 					  		      						TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);		
@@ -6011,6 +6018,7 @@ public class Client2 extends Activity {
 							  		      				ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
 							  		      				img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
 							  		      				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+							  		      				*/
 			  		                        		}
 			  		                        		
 			  		                        		else {
@@ -6185,6 +6193,9 @@ public class Client2 extends Activity {
 				  		                        		playersFighting = "oneVsFive";
 				  		                        		
 				  		                        		
+				  		                        		reveal5onleftclientattacking();
+				  		                        		
+				  		                        		/*
 				  		                        		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 				  		      						
 					  		      						TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);		
@@ -6209,7 +6220,8 @@ public class Client2 extends Activity {
 							  		      				// Use a blank drawable to hide the imageview animation:
 							  		      				ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
 							  		      				img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
-							  		      				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);			  		                        			
+							  		      				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+							  		      				*/
 			  		                        		}
 			  		                        		
 			  		                        		else {
@@ -6262,6 +6274,9 @@ public class Client2 extends Activity {
 				  		                        		playersFighting = "oneVsZero";
 				  		                        		
 				  		                        		
+				  		                        		reveal0onleftclientattacking();
+				  		                        		
+				  		                        		/*
 				  		                        		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 				  		      						
 					  		      						TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);		
@@ -6286,7 +6301,8 @@ public class Client2 extends Activity {
 							  		      				// Use a blank drawable to hide the imageview animation:
 							  		      				ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
 							  		      				img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
-							  		      				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);			  		                        			
+							  		      				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+							  		      				*/
 			  		                        		}
 			  		                        		
 			  		                        		else {
@@ -6445,6 +6461,112 @@ public class Client2 extends Activity {
 	}
 	
 	
+	public void reveal5onleftclientattacking() {
+		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				
+				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+				
+				TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);		
+				playerNameTextView.setTypeface(typeFace);		
+				playerNameTextView.setText(ArrayOfPlayers.player[5]);							
+						
+				final TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+				playerHitPointsTextView.setTypeface(typeFace);
+				playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[5]));
+				
+				ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
+				computerAvatar.setVisibility(View.VISIBLE);
+    			
+    			
+    			scrollAnimationLeftUpNoRight();
+    			
+    			
+        		ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+				img1.setBackgroundResource(R.drawable.twentytwentyblank);
+				img1.setImageResource(R.drawable.twentytwentyblank);
+
+				// Use a blank drawable to hide the imageview animation:
+				ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
+				img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+			}
+		});
+	}
+	
+	public void reveal1onleftclientattacking() {
+		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				
+				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+				
+				TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);		
+				playerNameTextView.setTypeface(typeFace);		
+				playerNameTextView.setText(ArrayOfPlayers.player[1]);							
+						
+				final TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+				playerHitPointsTextView.setTypeface(typeFace);
+				playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
+				
+				ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
+				computerAvatar.setVisibility(View.VISIBLE);
+    			
+    			
+    			scrollAnimationLeftUpNoRight();
+    			
+    			
+        		ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+				img1.setBackgroundResource(R.drawable.twentytwentyblank);
+				img1.setImageResource(R.drawable.twentytwentyblank);
+
+				// Use a blank drawable to hide the imageview animation:
+				ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
+				img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+			}
+		});
+	}
+	
+	public void reveal0onleftclientattacking() {
+		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				
+				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+				
+				TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);		
+				playerNameTextView.setTypeface(typeFace);		
+				playerNameTextView.setText(ArrayOfPlayers.player[0]);							
+						
+				final TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+				playerHitPointsTextView.setTypeface(typeFace);
+				playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+				
+				ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
+				computerAvatar.setVisibility(View.VISIBLE);
+    			
+    			
+    			scrollAnimationLeftUpNoRight();
+    			
+    			
+        		ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+				img1.setBackgroundResource(R.drawable.twentytwentyblank);
+				img1.setImageResource(R.drawable.twentytwentyblank);
+
+				// Use a blank drawable to hide the imageview animation:
+				ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
+				img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+			}
+		});
+	}
+	
+	
 	public void turn3V35() {
 		
 		runOnUiThread(new Runnable() {
@@ -6536,6 +6658,8 @@ public class Client2 extends Activity {
 						
 						
 						
+						
+						//WHY IS THIS HERE?:
 						if (id == 0) {
 	  	  	  				
 		  	  	  			
@@ -6563,6 +6687,9 @@ public class Client2 extends Activity {
 						
 						
 						unfoldScrolls();
+						
+						
+						playerCardStartFadeInFadeOut();
 	  	  	  		}
 	  	  	  	}, 1000);				
 			}
@@ -6615,6 +6742,9 @@ public class Client2 extends Activity {
 						
 						
 						unfoldScrolls();
+						
+						
+						playerCardStartFadeInFadeOut();
 	  	  	  		}
 	  	  	  	}, 1000);				
 			}
@@ -12082,19 +12212,19 @@ public class Client2 extends Activity {
 	
 	
 	
-	/*
+	
 	public void test() {
 		
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {			
 				
-				Toast.makeText(Client2.this, "5 = " + playerDeadYet[5] + "  0 = " + playerDeadYet[0], Toast.LENGTH_LONG).show();
+				Toast.makeText(Client2.this, "WORKING!!!!!!!!!!!!", Toast.LENGTH_LONG).show();
 			}
 		});
 		
 	}
-	*/
+	
 	
 	//=============================================================================================
 	//SEPERATOR
@@ -12333,11 +12463,11 @@ public class Client2 extends Activity {
 						
 						gameEngineMultiPlayer();																		
 					}
-else if (read.contains("gameEngine3V350")) {
+					else if (read.contains("gameEngine3V350")) {
 						
 						gameEngine3V350();
 					}
-else if (read.contains("gAmeEngine3V351")) {
+					else if (read.contains("gAmeEngine3V351")) {
 	
 						gameEngine3V351();
 					}
@@ -12356,6 +12486,15 @@ else if (read.contains("gAmeEngine3V351")) {
 					else if (read.contains("Trn3V35")) {
 						
 						turn3V35();																		
+					}
+					else if (read.contains("PlyrsFighting")) {
+						
+						String[] parts = read.split(":");
+						String part1 = parts[0];  
+						//String part2 = parts[1].trim();//IF THERE WAS A SPACE
+						String part2 = parts[1];				
+												
+						playersFighting = part2;																		
 					}
 					
 					else if (read.contains("issecondroundofhasteused")) {
@@ -12405,7 +12544,7 @@ else if (read.contains("gAmeEngine3V351")) {
 						runActionsOnUi();																	
 					}
 					
-else if (read.contains("chooseOpponent")) {
+					else if (read.contains("chooseOpponent")) {
 						
 						chooseOpponent();																	
 					}
@@ -13365,6 +13504,24 @@ else if (read.contains("chooseOpponent")) {
 					else if (read.contains("reVeal5onleft")) {
 						
 						reveal5onleft();															
+					}
+					else if (read.contains("ClientAttackingReveal5OnLeft")) {//revEal5onleftClientAttacking
+						
+						reveal5onleftclientattacking();
+						
+						test();
+					}
+					else if (read.contains("clntattackingreveal1onleft")) {//reveAl1onleftClientAttacking
+	
+						reveal1onleftclientattacking();
+						
+						test();
+					}
+					else if (read.contains("CntAttingrevL0onlft")) {//reveaL0onleftClientAttacking
+	
+						reveal0onleftclientattacking();
+						
+						test();
 					}
 					else if (read.contains("closeRightScroll")) {
 						
