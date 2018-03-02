@@ -1,12 +1,20 @@
 package com.nedswebsite.ktog;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OptionalDataException;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.StreamCorruptedException;
@@ -27,17 +35,24 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.text.InputFilter;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Base64;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,7 +81,8 @@ public class Client2 extends Activity {
 	Handler updateConversationHandler;
 	
 	private Socket socket;
-
+	Socket socket0;
+	
 	private final int SERVERPORT = 2000;// WAS 5000
 	String hostIP;//WAS: private static final String SERVER_IP = "192.168.1.208";
 	
@@ -76,7 +92,7 @@ public class Client2 extends Activity {
 	
 	int playerNumberAttacked;
 	
-	int playerNumberAttacking;
+	int playerNumberAttacking;//NEED THIS OR 'if (id == 0)'
 	
 	String playersFighting;
 	
@@ -137,6 +153,9 @@ public class Client2 extends Activity {
 	int finalAttackDamage;
 	
 	
+	
+	
+	//String image = "noImage";
 	
 	
 	String zeroAttackingFirst = "no";
@@ -201,6 +220,18 @@ public class Client2 extends Activity {
 	String isTwentySidedReadyToBeRolled = "no";
 	String isInitiativeOver = "yes";
 	String istitlestatsopen = "no";
+	
+	
+	
+	String whatAvatar;
+	Bitmap bmp;
+	byte[] imgbyte;
+	OutputStream output;
+	Bitmap bm;
+	String encImage;
+	File imagefile;
+	
+	
 	
 	
 	@Override
@@ -345,31 +376,154 @@ public class Client2 extends Activity {
 		
 		//NEW WAY: TRYING TO SET DRAWABLE PROGRAMMATICALLY:
 		//FOR CLIENT AVATAR:
-		ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+		//ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
 		//clientAvatar.setVisibility(View.INVISIBLE);
 		
-		ImageView customImage = (ImageView) findViewById(R.id.imageviewavatarright);
+		//ImageView customImage = (ImageView) findViewById(R.id.imageviewavatarright);
 		//customImage.getLayoutParams().height = 100;
 		//customImage.getLayoutParams().width = 100;
 		if (getIntent().getExtras() != null) {			
-				
+			
+			ImageView customImage = (ImageView) findViewById(R.id.imageviewavatarright);
+			
 			Intent intent2 = getIntent(); 
 			String image_path= intent2.getStringExtra("imageUri"); 
 			Uri fileUri = Uri.parse(image_path);
 			customImage.setImageURI(fileUri);
-		}		
+			
+			//image = image_path;
+			//String str = "customImage :" + image_path;
+			//sendToHost(str);
+			
+			
+
+			
+			
+			
+			
+			
+			
+			//BitmapDrawable drawable = (BitmapDrawable) customImage.getDrawable();
+			//bmp = drawable.getBitmap();
+			
+			
+			//imgbyte = getBytesFromBitmap(bmp);
+			
+			
+			
+			
+			/*
+			File myFile = new File(fileUri.getPath());
+			//myFile.getAbsolutePath();
+			FileInputStream fis = null;
+			try {
+				 fis = new FileInputStream (myFile);				 
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			Bitmap bm = BitmapFactory.decodeStream(fis);
+			imgbyte = getBytesFromBitmap(bm);
+			*/
+			/*
+			//String filepath = "/sdcard/twentysidedbutton.png";
+			String filepath = "/storage/extSdCard/twentysidedbutton.png";
+		    File imagefile = new File(filepath);
+		    FileInputStream fis = null;
+		         try {
+		             fis = new FileInputStream(imagefile);
+		         } catch (FileNotFoundException e) {
+		             // TODO Auto-generated catch block
+		             e.printStackTrace();
+		         }
+		         //BitmapDrawable drawable = (BitmapDrawable) customImage.getDrawable();
+					//bmp = drawable.getBitmap();
+		     Bitmap bm = BitmapFactory.decodeStream(fis);
+		     imgbyte = getBytesFromBitmap(bm);
+		     //profile.setImageBitmap(bm);
+			*/
+			
+			//ByteArrayOutputStream baos = new ByteArrayOutputStream();
+	        
+	        //bm.compress(Bitmap.CompressFormat.JPEG,100,baos);
+	        
+	        //byte[] b = baos.toByteArray();
+	        //encImage = Base64.encodeToString(b, Base64.DEFAULT);
+		     
+			
+			
+			
+			imagefile = new File(getPath(fileUri));
+			
+			
+			//imagefile = new File(fileUri.getPath());
+			//imagefile = new File("/storage/extSdCard/twentysidedbutton.png");
+	        
+			FileInputStream fis = null;
+	        try{
+	            fis = new FileInputStream(imagefile);
+	        }catch(FileNotFoundException e){
+	            e.printStackTrace();
+	        }
+	        bm = BitmapFactory.decodeStream(fis);
+	        
+	        
+	        
+	        
+	        
+	        
+	        
+	        
+	        
+			
+			whatAvatar = "custom";
+		}
 		
-		
-		if (ArrayOfAvatars.avatar[0].equals("computer")){
+		else if (ArrayOfAvatars.avatar[0].equals("computer")){
+			ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
 			clientAvatar.setBackgroundResource(R.drawable.computer);
+			
+			whatAvatar = "computer";
 		}
 		else if (ArrayOfAvatars.avatar[0].equals("crossedswords")){
+			ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
 			clientAvatar.setBackgroundResource(R.drawable.crossedswords2);
+			
+			whatAvatar = "crossedswords";
 		}
 		else if (ArrayOfAvatars.avatar[0].equals("stonedead")){
+			ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
 			clientAvatar.setBackgroundResource(R.drawable.stonedead2);
+			
+			whatAvatar = "stonedead";
 		}
-		
+		/*
+		if (id == 0) {
+			
+			if (ArrayOfAvatars.avatar[0].equals("computer")){
+				clientAvatar.setBackgroundResource(R.drawable.computer);
+			}
+			else if (ArrayOfAvatars.avatar[0].equals("crossedswords")){
+				clientAvatar.setBackgroundResource(R.drawable.crossedswords2);
+			}
+			else if (ArrayOfAvatars.avatar[0].equals("stonedead")){
+				clientAvatar.setBackgroundResource(R.drawable.stonedead2);
+			}	
+		}
+		else if (id == 1) {
+			
+			if (ArrayOfAvatars.avatar[1].equals("computer")){
+				clientAvatar.setBackgroundResource(R.drawable.computer);
+			}
+			else if (ArrayOfAvatars.avatar[1].equals("crossedswords")){
+				clientAvatar.setBackgroundResource(R.drawable.crossedswords2);
+			}
+			else if (ArrayOfAvatars.avatar[1].equals("stonedead")){
+				clientAvatar.setBackgroundResource(R.drawable.stonedead2);
+			}
+		}
+		*/
 		
 		
 		ImageView blessLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftbless);
@@ -566,13 +720,20 @@ public class Client2 extends Activity {
 						  	  	  		
 								  	  	  		//Toast.makeText(Client2.this, "THIS IS THE HOSTIP" + hostIP, Toast.LENGTH_LONG).show();
 							  	  	  			
-								  	  			
+						  	  	  				
 						  	  	  				PrintWriter out = new PrintWriter(new BufferedWriter(
 							  	  					new OutputStreamWriter(socket.getOutputStream())),
 							  	  					true);
 						  	  	  				
+						  	  	  				out.println("whatAvatar :" + whatAvatar);
+						  	  	  				
 								  	  			String str2 = ArrayOfPlayers.player[0];
 								  	  			out.println("PlayerName :" + str2);
+								  	  			
+								  	  			/*
+								  	  			String str3 = image;
+								  	  			out.println("cstmImage :" + str3);
+								  	  			*/
 								  	  			
 								  	  			
 									  	  		final Handler h6 = new Handler();
@@ -608,6 +769,99 @@ public class Client2 extends Activity {
 											  	  		} catch (Exception e) {
 											  	  			e.printStackTrace();
 											  	  		}
+									  	  	  			
+									  	  	  			if (whatAvatar.equals("custom")) {
+									  	  	  				
+											  	  	  		final Handler h6 = new Handler();
+												  	  	  	h6.postDelayed(new Runnable() {
+												  	  	  			
+												  	  	  		@Override
+												  	  	  		public void run() {
+													  	  	  			
+													  	  	  		//try {           
+													  	                /*
+														  	  	  		PrintWriter out = new PrintWriter(new BufferedWriter(
+														  	  					new OutputStreamWriter(socket.getOutputStream())),
+														  	  					true);
+														  	  			//out.println("&*," + encImage);
+														  	  	  		out.println(encImage);
+													  	                 */
+												  	  	  			
+													  	  	  			
+												  	  	  				sendImage();
+													  	  	  			//new Thread(new sendBullShit()).start();
+													  	  	  			/*
+														  	  	  		InetAddress serverAddr = InetAddress.getByName(hostIP);// WAS: SERVER_IP
+	
+																		//socket0 = new Socket(serverAddr, SERVERPORT);	
+														  	  	  			
+														  	  	  		
+														  	  	  			
+													  	  	  			socket0 = new Socket(serverAddr, 2100);
+													  	  	  			//PrintWriter out0 = new PrintWriter(socket.getOutputStream(), true);
+														  	  	  	     
+													  	  	  			BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket0.getOutputStream()));
+													  	  	  			bufferedWriter.write(encImage);
+													  	  	  			bufferedWriter.flush();
+													  	  	  			bufferedWriter.close();
+														  	  	  	    */
+														  	  	  	     
+														  	  	  	     
+														  	  	  	     
+														  	  	  	   	
+																	   	  	
+														               
+													  	  	  			/*
+														  	  	  		OutputStream out = new BufferedOutputStream(socket.getOutputStream());
+														  	             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out, "UTF-8"));
+														  	             writer.write(encImage);
+														  	             Log.d("Vicky", "Data to php = " + encImage);
+														  	             writer.flush();
+														  	             writer.close();
+														  	             out.close();
+														  	           //socket.connect();
+															            */    
+														  	  	  		
+														  	  	  		
+														  	  	  		
+														  	  	  			/*
+														  	  	  		output = socket.getOutputStream();
+													                    
+													                    output.write(imgbyte);
+													                    output.flush();	
+														  	  	  			*/
+													                    
+														  	  	  			/*
+														                    final Handler h6 = new Handler();
+																  	  	  	h6.postDelayed(new Runnable() {
+																  	  	  			
+																  	  	  		@Override
+																  	  	  		public void run() {
+																	  	  	  			
+																  	  	  			try {
+																						//output.close();
+																  	  	  				output.write(imgbyte);
+																  	  	  				output.flush();
+																					} catch (IOException e) {
+																						// TODO Auto-generated catch block
+																						e.printStackTrace();
+																					}
+																  	  	  		}
+																  	  	  	}, 5000);	
+														  	  	  			*/
+													  	  	  			
+													  	  	  			
+													  	           // } catch (UnknownHostException e) {
+													  	            //    e.printStackTrace();
+													  	           // } catch (IOException e) {
+													  	           //     e.printStackTrace();
+													  	           // } catch (Exception e) {
+													  	            //    e.printStackTrace();
+													  	            //}
+												  	  	  		}
+												  	  	  	}, 6000);
+											  	  	  	}
+									  	  	  			
 									  	  	  		}
 									  	  	  	}, 1000);
 									  	  	  	
@@ -1066,7 +1320,16 @@ public class Client2 extends Activity {
 		  	  			PrintWriter out = new PrintWriter(new BufferedWriter(
 		  	  					new OutputStreamWriter(socket.getOutputStream())),
 		  	  					true);
-		  	  			out.println(ArrayOfPlayers.player[0] + ": " + str);
+		  	  			
+			  	  		if (id == 0) {
+	  	  	  				
+			  	  			out.println(ArrayOfPlayers.player[0] + ": " + str);
+	  	  	  			}
+	  	  	  			else if (id == 1) {
+	  	  	  				
+	  	  	  				out.println(ArrayOfPlayers.player[1] + ": " + str);
+	  	  	  			}
+		  	  			
 		  	  			
 		  	  			/*
 			  	  		runOnUiThread(new Runnable() {
@@ -2141,6 +2404,12 @@ public class Client2 extends Activity {
 		Toast.makeText(Client2.this, ArrayOfPlayers.player[1], Toast.LENGTH_LONG).show();
 	}
 	*/
+	
+	public byte[] getBytesFromBitmap(Bitmap bitmap) {
+	    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+	    bitmap.compress(CompressFormat.JPEG, 70, stream);
+	    return stream.toByteArray();
+	}
 	
 	
 	/*
@@ -5820,8 +6089,16 @@ public class Client2 extends Activity {
 						centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + " is choosing player to attack...");									
 						*/
 						
-						String str = "> " + ArrayOfPlayers.player[0] + " is choosing player to attack...";
-						sendToHost(str);
+						if (id == 0) {
+	  	  	  				
+							String str = "> " + ArrayOfPlayers.player[0] + " is choosing player to attack...";
+							sendToHost(str);
+	  	  	  			}
+	  	  	  			else if (id == 1) {
+	  	  	  				
+	  	  	  				String str = "> " + ArrayOfPlayers.player[1] + " is choosing player to attack...";
+	  	  	  				sendToHost(str);
+	  	  	  			}
 		  	  	    					
 						
 						final Handler h = new Handler();
@@ -6653,24 +6930,7 @@ public class Client2 extends Activity {
 						playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[5]));
 						
 						ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
-						computerAvatar.setVisibility(View.VISIBLE);						
-						
-						
-						
-						
-						
-						//WHY IS THIS HERE?:
-						if (id == 0) {
-	  	  	  				
-		  	  	  			
-	  	  	  			}
-	  	  	  			else if (id == 1) {
-	  	  	  				
-		  	  	  			
-	  	  	  			}
-						
-						
-						
+						computerAvatar.setVisibility(View.VISIBLE);
 						
 						
 						
@@ -6963,7 +7223,15 @@ public class Client2 extends Activity {
 					
 				alert.setCancelable(false);
 				
-		    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use Dodge?");
+				if (id == 0) {
+					
+					alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use Dodge?");
+  	  			}
+  	  			else if (id == 1) {
+  	  				
+  	  				alert.setTitle(ArrayOfPlayers.player[1] + ", do you want to use Dodge?");
+  	  			}
+		    	
 		    	/*
 		    	alert.setMessage("something");
 		    	*/	  	    	
@@ -7063,7 +7331,16 @@ public class Client2 extends Activity {
 				
 				final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
 				computerHitPointsTextView.setTypeface(typeFace);
-				computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+				
+				if (id == 0) {
+	  	  				
+					computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+  	  			}
+  	  			else if (id == 1) {
+  	  				
+  	  				computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
+  	  			}
+				
 				//playerHitPointsTextView.bringToFront();
 				Animation animPulsingAnimation = AnimationUtils.loadAnimation(Client2.this, R.anim.pulsinganimation);
 				computerHitPointsTextView.startAnimation(animPulsingAnimation);
@@ -7656,6 +7933,16 @@ public class Client2 extends Activity {
 	
 	public void runActionsOnUi() {
 		
+		if (id == 0) {
+  				
+			playerNumberAttacking = 0;
+		}
+		else if (id == 1) {
+			
+			playerNumberAttacking = 1;
+		}
+		
+		
 		//isInvokingService = "false";
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
@@ -7953,6 +8240,16 @@ public class Client2 extends Activity {
 	
 	public void disarmedAction() {
 		
+		if (id == 0) {
+				
+			playerNumberAttacking = 0;
+		}
+		else if (id == 1) {
+			
+			playerNumberAttacking = 1;
+		}
+		
+		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
 		//isInvokingService = "false";
@@ -7970,7 +8267,15 @@ public class Client2 extends Activity {
 				
 				centerscrolltext.setVisibility(View.VISIBLE);													
 		  		centerscrolltext.startAnimation(animAlphaText);
-				centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you are disarmed. What do you want to do? ");
+		  		
+		  		if (id == 0) {
+	  	  				
+		  			centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you are disarmed. What do you want to do? ");
+  	  			}
+  	  			else if (id == 1) {
+  	  				
+  	  				centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[1] + ", you are disarmed. What do you want to do? ");
+  	  			}
   	  	    					
 				
 				final Handler h = new Handler();
@@ -8089,14 +8394,14 @@ public class Client2 extends Activity {
 	  		                        	
 	  		                        	else if (item == 1) {	  		                        														
 											
-											if (hasteSpell[0] < 1) {
+											if (hasteSpell[playerNumberAttacking] < 1) {
 												
 												dialog.dismiss();
 												
 												
 												AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this);
 											      
-												alert.setTitle(ArrayOfPlayers.player[0] + ", you have already used your Haste spells.");
+												alert.setTitle(ArrayOfPlayers.player[playerNumberAttacking] + ", you have already used your Haste spells.");
 									  	    	/*
 									  	    	alert.setMessage("something");
 									  	    	*/	    	
@@ -8123,7 +8428,7 @@ public class Client2 extends Activity {
 												*/
 											}												
 											
-											else if ((hasteSpell[0] > 0) && !(disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0])) {
+											else if ((hasteSpell[playerNumberAttacking] > 0) && !(disarmedTurnStart[playerNumberAttacking] + 2 == ArrayOfTurn.turn[0])) {
 												
 												haste();
 												
@@ -8168,7 +8473,7 @@ public class Client2 extends Activity {
 	  		                        	
 	  		                        	else if (item == 2) {	  										
 	  		                        		
-											if (cureSpell[0] > 0) {
+											if (cureSpell[playerNumberAttacking] > 0) {
 												
 												cure();
 							  	  	  			
@@ -8199,14 +8504,14 @@ public class Client2 extends Activity {
 									  	  	  	*/													
 											}
 											
-											else if (cureSpell[0] < 1) {
+											else if (cureSpell[playerNumberAttacking] < 1) {
 												
 												dialog.dismiss();
 												
 												
 												AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this);
 											      
-												alert.setTitle(ArrayOfPlayers.player[0] + ", you have already used your Cure spell.");
+												alert.setTitle(ArrayOfPlayers.player[playerNumberAttacking] + ", you have already used your Cure spell.");
 									  	    	/*
 									  	    	alert.setMessage("something");
 									  	    	*/	    	
@@ -8262,7 +8567,7 @@ public class Client2 extends Activity {
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);  	  	    	
 	  			
-	  			String str = "> " + ArrayOfPlayers.player[0] + " attacks...";
+	  			String str = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " attacks...";
 				sendToHost(str);
 	  			
 				
@@ -8332,9 +8637,9 @@ public class Client2 extends Activity {
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);
 	  			
-	  			if (hasteSpell[0] > 0) {			
+	  			if (hasteSpell[playerNumberAttacking] > 0) {
 	  				
-	  				String str = "> " + ArrayOfPlayers.player[0] + " casts haste...";
+	  				String str = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " casts haste...";
 					sendToHost(str);
 	  				
   					//hasteGraphic();  					
@@ -8349,7 +8654,7 @@ public class Client2 extends Activity {
   		  	  	  		@Override
   			  	  	  	public void run() {
   		  	  	  			
-  		  	  	  			hasteSpell[0] = hasteSpell[0] - 1;
+  		  	  	  			hasteSpell[playerNumberAttacking] = hasteSpell[playerNumberAttacking] - 1;
   		  	  	  			
   		  	  	  			String str3 = "usedHaste";
   		  	  	  			sendToHost(str3);
@@ -8367,7 +8672,7 @@ public class Client2 extends Activity {
   		  	  	  			sendToHost(str5);
   		  	  	  			
   		  	  	  			
-  		  	  	  			if (canHasDisarmed[0].equals("no")) {	  		  	  	  				
+  		  	  	  			if (canHasDisarmed[playerNumberAttacking].equals("no")) {	  		  	  	  				
   		  	  	  				
   		  	  	  				// CHOOSE PLAYER
   		  	  	  				
@@ -8413,9 +8718,9 @@ public class Client2 extends Activity {
 					  	  	  	}, 2000);						  	  	  	
   		  	  	  			}
   		  	  	  			
-  		  	  	  			else if (canHasDisarmed[0].equals("yes")) {
+  		  	  	  			else if (canHasDisarmed[playerNumberAttacking].equals("yes")) {
 		  		  	  	  		
-		  		  	  	  		canHasDisarmed[0] = "no";
+		  		  	  	  		canHasDisarmed[playerNumberAttacking] = "no";
 		  		  	  	  		
 		  		  	  	  		String str6 = "canHasDisarmed :" + "no";
 		  		  	  	  		sendToHost(str6);
@@ -8433,7 +8738,7 @@ public class Client2 extends Activity {
 						  		centerscrolltext.startAnimation(animAlphaText);
 								centerscrolltext.append("\n" + "> You are no longer disarmed.");
 								*/
-								String str7 = "> " +  ArrayOfPlayers.player[0] + " is no longer disarmed.";
+								String str7 = "> " +  ArrayOfPlayers.player[playerNumberAttacking] + " is no longer disarmed.";
 								sendToHost(str7);
 								
 								
@@ -8459,7 +8764,7 @@ public class Client2 extends Activity {
   	  	  			
 	  				AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this);
 				      
-					alert.setTitle(ArrayOfPlayers.player[0] + ", you have already used your Haste spells.");
+					alert.setTitle(ArrayOfPlayers.player[playerNumberAttacking] + ", you have already used your Haste spells.");
 		  	    	/*
 		  	    	alert.setMessage("something");
 		  	    	*/	    	
@@ -8486,7 +8791,7 @@ public class Client2 extends Activity {
 		
 		runOnUiThread(new Runnable() {
   	  	    @Override
-  	  	    public void run() {    	
+  	  	    public void run() {
   	  	    	
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
@@ -8495,13 +8800,13 @@ public class Client2 extends Activity {
 	  			centerscrolltext.setTypeface(typeFace);
   	  	    	
 		
-				if (cureSpell[0] > 0) {					
+				if (cureSpell[playerNumberAttacking] > 0) {
 					
-					String str = "> " + ArrayOfPlayers.player[0] + " casts cure...";
+					String str = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " casts cure...";
 					sendToHost(str);
 					
 					
-					cureSpell[0] = cureSpell[0] - 1;
+					cureSpell[playerNumberAttacking] = cureSpell[playerNumberAttacking] - 1;
 					
 					String str2 = "usedCure";
 					sendToHost(str2);
@@ -8583,7 +8888,7 @@ public class Client2 extends Activity {
 					
 					AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this);
 				      
-					alert.setTitle(ArrayOfPlayers.player[0] + ", you have already used your Cure spell.");
+					alert.setTitle(ArrayOfPlayers.player[playerNumberAttacking] + ", you have already used your Cure spell.");
 		  	    	/*
 		  	    	alert.setMessage("something");
 		  	    	*/	    	
@@ -8623,17 +8928,17 @@ public class Client2 extends Activity {
 	  			centerscrolltext.setTypeface(typeFace);
 	  			
 	  			
-	  			String str = "> " + ArrayOfPlayers.player[0] + " attempts to disarm...";
+	  			String str = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " attempts to disarm...";
 				sendToHost(str);
 				
 					
-				if (blessSpell[0] > 0) {		
+				if (blessSpell[playerNumberAttacking] > 0) {
 						
 					AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this);
 		  			
 					alert.setCancelable(false);
 					
-		  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use your bless spell?");
+		  	    	alert.setTitle(ArrayOfPlayers.player[playerNumberAttacking] + ", do you want to use your bless spell?");
 		  	    	/*
 		  	    	alert.setMessage("something");
 		  	    	*/	  	    	
@@ -8643,7 +8948,7 @@ public class Client2 extends Activity {
 		  	    			
 		  	    			//hideNavigation();
 		  		    		
-		  		    		blessSpell[0] = blessSpell[0] - 1;
+		  		    		blessSpell[playerNumberAttacking] = blessSpell[playerNumberAttacking] - 1;
 		  		    		
 		  		    		String str2 = "usedBless";
 		  		    		sendToHost(str2);
@@ -8711,7 +9016,7 @@ public class Client2 extends Activity {
 		  		centerscrolltext.startAnimation(animAlphaText);
 		  		centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + " uses a bless...");
 	  			*/
-		  		String str = "> " + ArrayOfPlayers.player[0] + " uses a bless...";
+		  		String str = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " uses a bless...";
 		  		sendToHost(str);
 		  		
 		  		
@@ -8862,15 +9167,15 @@ public class Client2 extends Activity {
 	  			centerscrolltext.setTypeface(typeFace);
   	  	    	
 		
-				if (blessSpell[0] > 0) {				
+				if (blessSpell[playerNumberAttacking] > 0) {				
 					
-					String str = "> " + ArrayOfPlayers.player[0] + " casts bless...";
+					String str = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " casts bless...";
 					sendToHost(str);
 					
 					
 					isblessrolled = "yes";
 					
-					blessSpell[0] = blessSpell[0] - 1;
+					blessSpell[playerNumberAttacking] = blessSpell[playerNumberAttacking] - 1;
 					
 					String str2 = "usedBless";
 					sendToHost(str2);
@@ -8945,7 +9250,7 @@ public class Client2 extends Activity {
 					
 					AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this);
 				      
-					alert.setTitle(ArrayOfPlayers.player[0] + ", you have already used your Bless spell.");
+					alert.setTitle(ArrayOfPlayers.player[playerNumberAttacking] + ", you have already used your Bless spell.");
 		  	    	/*
 		  	    	alert.setMessage("something");
 		  	    	*/	    	
@@ -9033,13 +9338,13 @@ public class Client2 extends Activity {
 				  	  	  		@Override
 					  	  	  	public void run() {
 				  	  	  			
-				  	  	  			if (mightyBlowSpell[0] > 0 && ishasteused.equals("no") && isblessrolled.equals("no")) {
+				  	  	  			if (mightyBlowSpell[playerNumberAttacking] > 0 && ishasteused.equals("no") && isblessrolled.equals("no")) {
 								
 										AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this);
 							  			
 										alert.setCancelable(false);
 										
-							  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use Mighty Blow?");
+							  	    	alert.setTitle(ArrayOfPlayers.player[playerNumberAttacking] + ", do you want to use Mighty Blow?");
 							  	    	/*
 							  	    	alert.setMessage("something");
 							  	    	*/	  	    	
@@ -9049,7 +9354,7 @@ public class Client2 extends Activity {
 							  		    		
 							  		    		//hideNavigation();
 							  		    		
-							  		    		mightyBlowSpell[0] = mightyBlowSpell[0] - 1;
+							  		    		mightyBlowSpell[playerNumberAttacking] = mightyBlowSpell[playerNumberAttacking] - 1;
 						  		    		
 							  		    		String str5 = "usedMightyBlow";
 						  		    			sendToHost(str5);
@@ -9091,7 +9396,7 @@ public class Client2 extends Activity {
 		  	  	  	}
 	  	  	  	}, 6000);		  	  	  	  	  			  	  	  			
   	  	    }
-		});	
+		});
 	}
 	
 	public void criticalHit2() {//IF CHOOSE NO DODGE BLOW
@@ -9109,13 +9414,13 @@ public class Client2 extends Activity {
 	  			centerscrolltext.setTypeface(typeFace);  	  				
   	  			
 	  	  	  			
-  	  			if (mightyBlowSpell[0] > 0 && ishasteused.equals("no") && isblessrolled.equals("no")) {
+  	  			if (mightyBlowSpell[playerNumberAttacking] > 0 && ishasteused.equals("no") && isblessrolled.equals("no")) {
 			
 					AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this);
 		  			
 					alert.setCancelable(false);
 					
-		  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use Mighty Blow?");
+		  	    	alert.setTitle(ArrayOfPlayers.player[playerNumberAttacking] + ", do you want to use Mighty Blow?");
 		  	    	/*
 		  	    	alert.setMessage("something");
 		  	    	*/	  	    	
@@ -9125,7 +9430,7 @@ public class Client2 extends Activity {
 		  		    		
 		  		    		//hideNavigation();
 		  		    		
-		  		    		mightyBlowSpell[0] = mightyBlowSpell[0] - 1;
+		  		    		mightyBlowSpell[playerNumberAttacking] = mightyBlowSpell[playerNumberAttacking] - 1;
 	  		    		
 		  		    		String str = "usedMightyBlow";
 	  		    			sendToHost(str);
@@ -9214,7 +9519,7 @@ public class Client2 extends Activity {
 				  		centerscrolltext.startAnimation(animAlphaText);
 				  		centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you roll twice for critical hit damage.");
 				  		*/
-				  		String str3 = "> " + ArrayOfPlayers.player[0] + " rolls twice for critical hit damage...";
+				  		String str3 = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " rolls twice for critical hit damage...";
 				  		sendToHost(str3);
 	  	  	  			
 				  		
@@ -9301,7 +9606,7 @@ public class Client2 extends Activity {
 				  		centerscrolltext.startAnimation(animAlphaText);
 				  		centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you roll twice for critical hit damage.");
 				  		*/
-				  		String str = "> " + ArrayOfPlayers.player[0] + " rolls twice for critical hit damage...";
+				  		String str = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " rolls twice for critical hit damage...";
 				  		sendToHost(str);
 	  	  	  			
 				  		 
@@ -9400,19 +9705,19 @@ public class Client2 extends Activity {
 				  		centerscrolltext.startAnimation(animAlphaText);
 						centerscrolltext.append("\n" + "> You roll " + cureResult + ".");				
 						*/
-						String str = "> " + ArrayOfPlayers.player[0] + " rolls " + cureResult + ".";
+						String str = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " rolls " + cureResult + ".";
 						sendToHost(str);
 						
 						
-						ArrayOfHitPoints.hitpoints[0] = (ArrayOfHitPoints.hitpoints[0] + cureResult);
+						ArrayOfHitPoints.hitpoints[playerNumberAttacking] = (ArrayOfHitPoints.hitpoints[playerNumberAttacking] + cureResult);
 						
-						String str2 = "Cure.hitpoints :" + ArrayOfHitPoints.hitpoints[0];
+						String str2 = "Cure.hitpoints :" + ArrayOfHitPoints.hitpoints[playerNumberAttacking];
 						sendToHost(str2);
 						
 						
 						final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
 						computerHitPointsTextView.setTypeface(typeFace);
-						computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+						computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[playerNumberAttacking]));
 		    			//playerHitPointsTextView.bringToFront();
 		    			Animation animPulsingAnimation = AnimationUtils.loadAnimation(Client2.this, R.anim.pulsinganimation);
 		    			computerHitPointsTextView.startAnimation(animPulsingAnimation);		    					    			
@@ -9459,7 +9764,7 @@ public class Client2 extends Activity {
 	  			centerscrolltext.setTypeface(typeFace);
 	  			
 	  			
-	  			if (canHasDisarmed[0].equals("no")) {
+	  			if (canHasDisarmed[playerNumberAttacking].equals("no")) {
 	  				
 	  				final Handler h1 = new Handler();
 		  	  	  	h1.postDelayed(new Runnable() {		  	  	  			
@@ -9474,7 +9779,7 @@ public class Client2 extends Activity {
 						  		centerscrolltext.startAnimation(animAlphaText);			  		
 								centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0] + ".");
 								*/
-								String str = "> " + ArrayOfPlayers.player[0] + " rolls " + ArrayOfAttackResult.attackResult[0] + ".";
+								String str = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " rolls " + ArrayOfAttackResult.attackResult[0] + ".";
 								sendToHost(str);
 			  	  	  		}
 			  	  	  		
@@ -9485,7 +9790,7 @@ public class Client2 extends Activity {
 						  		centerscrolltext.startAnimation(animAlphaText);			  		
 								centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0] + ", +2 for opponent being disarmed = " + (ArrayOfAttackResult.attackResult[0] + 2) + ".");
 								*/
-								String str2 = "> " + ArrayOfPlayers.player[0] + " rolls " + ArrayOfAttackResult.attackResult[0] + ", +2 for opponent being disarmed = " + (ArrayOfAttackResult.attackResult[0] + 2) + ".";
+								String str2 = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " rolls " + ArrayOfAttackResult.attackResult[0] + ", +2 for opponent being disarmed = " + (ArrayOfAttackResult.attackResult[0] + 2) + ".";
 								sendToHost(str2);
 			  	  	  		}												
 							
@@ -9510,7 +9815,7 @@ public class Client2 extends Activity {
 									  		centerscrolltext.startAnimation(animAlphaText);			  		
 											centerscrolltext.append("\n" + "> Your attack hits.");
 											*/
-											String str3 = "> " + ArrayOfPlayers.player[0] + "'s" + " attack hits.";
+											String str3 = "> " + ArrayOfPlayers.player[playerNumberAttacking] + "'s" + " attack hits.";
 											sendToHost(str3);
 											
 											
@@ -9525,7 +9830,7 @@ public class Client2 extends Activity {
 									  		centerscrolltext.startAnimation(animAlphaText);
 											centerscrolltext.append("\n" + "> Your attack misses.");
 											*/
-											String str4 = "> " + ArrayOfPlayers.player[0] + "'s" + " attack misses.";
+											String str4 = "> " + ArrayOfPlayers.player[playerNumberAttacking] + "'s" + " attack misses.";
 											sendToHost(str4);
 											
 											
@@ -9560,7 +9865,7 @@ public class Client2 extends Activity {
 									  		centerscrolltext.startAnimation(animAlphaText);			  		
 											centerscrolltext.append("\n" + "> Your attack hits.");
 											*/
-											String str6 = "> " + ArrayOfPlayers.player[0] + "'s" + " attack hits.";
+											String str6 = "> " + ArrayOfPlayers.player[playerNumberAttacking] + "'s" + " attack hits.";
 											sendToHost(str6);
 											
 											
@@ -9575,7 +9880,7 @@ public class Client2 extends Activity {
 									  		centerscrolltext.startAnimation(animAlphaText);
 											centerscrolltext.append("\n" + "> Your attack misses.");
 											*/
-											String str7 = "> " + ArrayOfPlayers.player[0] + "'s" + " attack misses.";
+											String str7 = "> " + ArrayOfPlayers.player[playerNumberAttacking] + "'s" + " attack misses.";
 											sendToHost(str7);
 											
 											
@@ -9605,7 +9910,7 @@ public class Client2 extends Activity {
 		  	  	  	}, 2000);	  				
 	  			}
 	  			
-	  			else if (canHasDisarmed[0].equals("yes")) {
+	  			else if (canHasDisarmed[playerNumberAttacking].equals("yes")) {
 	  				
 	  				final Handler h4 = new Handler();
 		  	  	  	h4.postDelayed(new Runnable() {		  	  	  			
@@ -9620,7 +9925,7 @@ public class Client2 extends Activity {
 						  		centerscrolltext.startAnimation(animAlphaText);			  		
 								centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0] + ", -1 for being disarmed = " + (ArrayOfAttackResult.attackResult[0] - 1) + ".");
 								*/
-								String str9 = "> " + ArrayOfPlayers.player[0] + " rolls " + ArrayOfAttackResult.attackResult[0] + ", -1 for being disarmed = " + (ArrayOfAttackResult.attackResult[0] - 1) + ".";
+								String str9 = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " rolls " + ArrayOfAttackResult.attackResult[0] + ", -1 for being disarmed = " + (ArrayOfAttackResult.attackResult[0] - 1) + ".";
 								sendToHost(str9);
 			  	  	  		}
 			  	  	  		
@@ -9631,7 +9936,7 @@ public class Client2 extends Activity {
 						  		centerscrolltext.startAnimation(animAlphaText);			  		
 								centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0] + ", +1 for being disarmed and opponent being disarmed = " + (ArrayOfAttackResult.attackResult[0] + 1) + ".");
 								*/
-								String str10 = "> " + ArrayOfPlayers.player[0] + " rolls " + ArrayOfAttackResult.attackResult[0] + ", +1 for being disarmed and opponent being disarmed = " + (ArrayOfAttackResult.attackResult[0] + 1) + ".";
+								String str10 = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " rolls " + ArrayOfAttackResult.attackResult[0] + ", +1 for being disarmed and opponent being disarmed = " + (ArrayOfAttackResult.attackResult[0] + 1) + ".";
 								sendToHost(str10);
 			  	  	  		}						
 							
@@ -9655,7 +9960,7 @@ public class Client2 extends Activity {
 									  		centerscrolltext.startAnimation(animAlphaText);			  		
 											centerscrolltext.append("\n" + "> Your punch hits.");
 											*/
-											String str11 = "> " + ArrayOfPlayers.player[0] + "'s" + " punch hits.";
+											String str11 = "> " + ArrayOfPlayers.player[playerNumberAttacking] + "'s" + " punch hits.";
 											sendToHost(str11);
 											
 											
@@ -9670,7 +9975,7 @@ public class Client2 extends Activity {
 									  		centerscrolltext.startAnimation(animAlphaText);
 											centerscrolltext.append("\n" + "> Your punch misses.");
 											*/
-											String str12 = "> " + ArrayOfPlayers.player[0] + "'s" + " punch misses.";
+											String str12 = "> " + ArrayOfPlayers.player[playerNumberAttacking] + "'s" + " punch misses.";
 											sendToHost(str12);
 											
 											
@@ -9715,7 +10020,7 @@ public class Client2 extends Activity {
 									  		centerscrolltext.startAnimation(animAlphaText);			  		
 											centerscrolltext.append("\n" + "> Your punch hits.");
 											*/
-											String str14 = "> " + ArrayOfPlayers.player[0] + "'s" + " punch hits.";
+											String str14 = "> " + ArrayOfPlayers.player[playerNumberAttacking] + "'s" + " punch hits.";
 											sendToHost(str14);
 											
 											
@@ -9730,7 +10035,7 @@ public class Client2 extends Activity {
 									  		centerscrolltext.startAnimation(animAlphaText);
 											centerscrolltext.append("\n" + "> Your punch misses.");
 											*/
-											String str15 = "> " + ArrayOfPlayers.player[0] + "'s" + " punch misses.";
+											String str15 = "> " + ArrayOfPlayers.player[playerNumberAttacking] + "'s" + " punch misses.";
 											sendToHost(str15);
 											
 											
@@ -9814,13 +10119,13 @@ public class Client2 extends Activity {
 		  	  	  		@Override
 			  	  	  	public void run() {
 		  	  	  			
-			  	  	  		if (mightyBlowSpell[0] > 0 && ishasteused.equals("no") && isblessrolled.equals("no") && issecondroundofhasteused.equals("no")) {								
+			  	  	  		if (mightyBlowSpell[playerNumberAttacking] > 0 && ishasteused.equals("no") && isblessrolled.equals("no") && issecondroundofhasteused.equals("no")) {							
 								
 								AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this);
 					  			
 								alert.setCancelable(false);
 								
-					  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use Mighty Blow?");
+					  	    	alert.setTitle(ArrayOfPlayers.player[playerNumberAttacking] + ", do you want to use Mighty Blow?");
 					  	    	/*
 					  	    	alert.setMessage("something");
 					  	    	*/	  	    	
@@ -9830,7 +10135,7 @@ public class Client2 extends Activity {
 					  		    		
 					  		    		//hideNavigation();
 					  		    		
-					  		    		mightyBlowSpell[0] = mightyBlowSpell[0] - 1;
+					  		    		mightyBlowSpell[playerNumberAttacking] = mightyBlowSpell[playerNumberAttacking] - 1;
 					  		    		
 					  		    		String str3 = "usedMightyBlow";
 					  		    		sendToHost(str3);
@@ -9888,13 +10193,13 @@ public class Client2 extends Activity {
 	  			centerscrolltext.setTypeface(typeFace);
 	  			
 	  			
-	  			if (mightyBlowSpell[0] > 0 && ishasteused.equals("no") && isblessrolled.equals("no") && issecondroundofhasteused.equals("no")) {								
+	  			if (mightyBlowSpell[playerNumberAttacking] > 0 && ishasteused.equals("no") && isblessrolled.equals("no") && issecondroundofhasteused.equals("no")) {								
 					
 					AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this);
 		  			
 					alert.setCancelable(false);
 					
-		  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use Mighty Blow?");
+		  	    	alert.setTitle(ArrayOfPlayers.player[playerNumberAttacking] + ", do you want to use Mighty Blow?");
 		  	    	/*
 		  	    	alert.setMessage("something");
 		  	    	*/	  	    	
@@ -9904,7 +10209,7 @@ public class Client2 extends Activity {
 		  		    		
 		  		    		//hideNavigation();
 		  		    		
-		  		    		mightyBlowSpell[0] = mightyBlowSpell[0] - 1;
+		  		    		mightyBlowSpell[playerNumberAttacking] = mightyBlowSpell[playerNumberAttacking] - 1;
 		  		    		
 		  		    		String str3 = "usedMightyBlow";
 		  		    		sendToHost(str3);
@@ -10077,7 +10382,7 @@ public class Client2 extends Activity {
 		  		centerscrolltext.startAnimation(animAlphaText);
 				centerscrolltext.append("\n" + "> Roll for damage...");
 				*/
-				String str = "> " + ArrayOfPlayers.player[0] + " rolls for damage...";
+				String str = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " rolls for damage...";
 				sendToHost(str);
 				
 				
@@ -10180,7 +10485,7 @@ public class Client2 extends Activity {
 	  			  		centerscrolltext.startAnimation(animAlphaText);
 	  					centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you must roll to see if you hit yourself...");
 	  					*/
-	  					String str = "> " + ArrayOfPlayers.player[0] + " must roll to see if it hit itself...";
+	  					String str = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " must roll to see if it hit itself...";
 	  					sendToHost(str);
 	  					
 	  					
@@ -10284,7 +10589,7 @@ public class Client2 extends Activity {
 				  		centerscrolltext.startAnimation(animAlphaText);
 				  		centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0]	+ ", +2 for the Bless Spell = "	+ (ArrayOfAttackResult.attackResult[0] + 2) + ".");
 						*/
-				  		String str = "> " + ArrayOfPlayers.player[0] + " rolls "	+ ArrayOfAttackResult.attackResult[0]	+ ", +2 for the Bless Spell = "	+ (ArrayOfAttackResult.attackResult[0] + 2) + ".";
+				  		String str = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " rolls "	+ ArrayOfAttackResult.attackResult[0]	+ ", +2 for the Bless Spell = "	+ (ArrayOfAttackResult.attackResult[0] + 2) + ".";
 				  		sendToHost(str);
 				  		
 				  		
@@ -10345,7 +10650,7 @@ public class Client2 extends Activity {
 									  		centerscrolltext.startAnimation(animAlphaText);
 									  		centerscrolltext.append("\n" + "> Your attempt to disarm misses.");
 									  		*/
-									  		String str5 = "> " + ArrayOfPlayers.player[0] + "'s" + " attempt to disarm misses.";
+									  		String str5 = "> " + ArrayOfPlayers.player[playerNumberAttacking] + "'s" + " attempt to disarm misses.";
 									  		sendToHost(str5);
 									  		
 									  		
@@ -10400,7 +10705,7 @@ public class Client2 extends Activity {
 				  		centerscrolltext.startAnimation(animAlphaText);
 				  		centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0] + ".");
 						*/
-				  		String str = "> " + ArrayOfPlayers.player[0] + " rolls "	+ ArrayOfAttackResult.attackResult[0] + ".";
+				  		String str = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " rolls "	+ ArrayOfAttackResult.attackResult[0] + ".";
 				  		sendToHost(str);
 						
 				  		
@@ -10463,7 +10768,7 @@ public class Client2 extends Activity {
 									  		centerscrolltext.startAnimation(animAlphaText);
 									  		centerscrolltext.append("\n" + "> Your attempt to disarm misses.");
 									  		*/
-									  		String str5 = "> " + ArrayOfPlayers.player[0] + "'s" + " attempt to disarm misses.";
+									  		String str5 = "> " + ArrayOfPlayers.player[playerNumberAttacking] + "'s" + " attempt to disarm misses.";
 									  		sendToHost(str5);
 									  		
 									  		
@@ -10488,7 +10793,7 @@ public class Client2 extends Activity {
 							  		centerscrolltext.startAnimation(animAlphaText);
 							  		centerscrolltext.append("\n" + "> You have rolled a critical miss...");
 									*/
-							  		String str7 = "> " + ArrayOfPlayers.player[0] + " rolls "	+ "a critical miss...";
+							  		String str7 = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " rolls "	+ "a critical miss...";
 							  		sendToHost(str7);
 							  		
 							  		
@@ -10546,7 +10851,7 @@ public class Client2 extends Activity {
 					  		centerscrolltext.startAnimation(animAlphaText);
 					  		centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0]	+ ", +2 for Bless Spell = " + (ArrayOfAttackResult.attackResult[0] + 2) + ".");
 					  		*/
-					  		String str = "> " + ArrayOfPlayers.player[0] + " rolls "	+ ArrayOfAttackResult.attackResult[0] + ", +2 for Bless Spell = " + (ArrayOfAttackResult.attackResult[0] + 2) + ".";
+					  		String str = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " rolls "	+ ArrayOfAttackResult.attackResult[0] + ", +2 for Bless Spell = " + (ArrayOfAttackResult.attackResult[0] + 2) + ".";
 					  		sendToHost(str);
 						}
 						
@@ -10557,8 +10862,8 @@ public class Client2 extends Activity {
 					  		centerscrolltext.startAnimation(animAlphaText);
 					  		centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0] + ", +4 for Bless Spell and opponent being disarmed = " + (ArrayOfAttackResult.attackResult[0] + 4) + ".");
 					  		*/
-					  		String str2 = "> " + ArrayOfPlayers.player[0] + " rolls "	+ ArrayOfAttackResult.attackResult[0] + ", +4 for Bless Spell and opponent being disarmed = " + (ArrayOfAttackResult.attackResult[0] + 4) + ".";
-					  		sendToHost(str2);					  		
+					  		String str2 = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " rolls "	+ ArrayOfAttackResult.attackResult[0] + ", +4 for Bless Spell and opponent being disarmed = " + (ArrayOfAttackResult.attackResult[0] + 4) + ".";
+					  		sendToHost(str2);
 						}												
 						
 						final Handler h2 = new Handler();
@@ -10582,7 +10887,7 @@ public class Client2 extends Activity {
 								  		centerscrolltext.startAnimation(animAlphaText);			  		
 										centerscrolltext.append("\n" + "> Your attack hits.");
 										*/
-										String str3 = "> " + ArrayOfPlayers.player[0] + "'s"	+ " attack hits.";
+										String str3 = "> " + ArrayOfPlayers.player[playerNumberAttacking] + "'s"	+ " attack hits.";
 										sendToHost(str3);
 										
 										
@@ -10604,7 +10909,7 @@ public class Client2 extends Activity {
 								  		centerscrolltext.startAnimation(animAlphaText);
 										centerscrolltext.append("\n" + "> Your attack misses.");
 										*/
-										String str4 = "> " + ArrayOfPlayers.player[0] + "'s"	+ " attack misses.";
+										String str4 = "> " + ArrayOfPlayers.player[playerNumberAttacking] + "'s"	+ " attack misses.";
 										sendToHost(str4);
 										
 										
@@ -10632,7 +10937,7 @@ public class Client2 extends Activity {
 								  		centerscrolltext.startAnimation(animAlphaText);			  		
 										centerscrolltext.append("\n" + "> Your attack hits.");
 										*/
-										String str6 = "> " + ArrayOfPlayers.player[0] + "'s"	+ " attack hits.";
+										String str6 = "> " + ArrayOfPlayers.player[playerNumberAttacking] + "'s"	+ " attack hits.";
 										sendToHost(str6);										
 										
 										
@@ -10655,7 +10960,7 @@ public class Client2 extends Activity {
 								  		centerscrolltext.startAnimation(animAlphaText);
 										centerscrolltext.append("\n" + "> Your attack misses.");
 										*/
-										String str7 = "> " + ArrayOfPlayers.player[0] + "'s"	+ " attack misses.";
+										String str7 = "> " + ArrayOfPlayers.player[playerNumberAttacking] + "'s"	+ " attack misses.";
 										sendToHost(str7);
 										
 										
@@ -10714,7 +11019,7 @@ public class Client2 extends Activity {
 				  		centerscrolltext.startAnimation(animAlphaText);
 				  		centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0] + ".");
 				  		*/
-				  		String str = "> " + ArrayOfPlayers.player[0] + " rolls " + ArrayOfAttackResult.attackResult[0] + ".";
+				  		String str = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " rolls " + ArrayOfAttackResult.attackResult[0] + ".";
 				  		sendToHost(str);				  		
 				  		
 						
@@ -10731,7 +11036,7 @@ public class Client2 extends Activity {
 							  		centerscrolltext.startAnimation(animAlphaText);
 							  		centerscrolltext.append("\n" + "> You hit yourself.");
 							  		*/
-							  		String str2 = "> " + ArrayOfPlayers.player[0] + " hits itself.";
+							  		String str2 = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " hits itself.";
 							  		sendToHost(str2);
 							  		
 							  		
@@ -10746,7 +11051,7 @@ public class Client2 extends Activity {
 									  		centerscrolltext.startAnimation(animAlphaText);
 											centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", roll for damage...");						  	  	  			
 						  	  	  			*/
-											String str3 = "> " + ArrayOfPlayers.player[0] + " rolls for damage...";
+											String str3 = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " rolls for damage...";
 											sendToHost(str3);
 											
 											
@@ -10762,7 +11067,7 @@ public class Client2 extends Activity {
 							  		centerscrolltext.startAnimation(animAlphaText);
 							  		centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you did not hit yourself, now you must roll to see if you lose your weapon...");
 									*/
-							  		String str4 = "> " + ArrayOfPlayers.player[0] + " did not hit itself, but must roll to see if it loses it's weapon...";
+							  		String str4 = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " did not hit itself, but must roll to see if it loses it's weapon...";
 							  		sendToHost(str4);
 							  		
 							  		
@@ -10945,19 +11250,19 @@ public class Client2 extends Activity {
 				  		centerscrolltext.startAnimation(animAlphaText);
 				  		centerscrolltext.append("\n" + "> You roll " + ArrayOfAttackResult.attackResult[0] + ".");
 						*/
-				  		String str = "> " + ArrayOfPlayers.player[0] + " rolls " + ArrayOfAttackResult.attackResult[0] + ".";
+				  		String str = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " rolls " + ArrayOfAttackResult.attackResult[0] + ".";
 				  		sendToHost(str);
 				  		
 				  		
 						if (ArrayOfAttackResult.attackResult[0] >= 17) {
 							
-							canHasDisarmed[0] = "yes";							
+							canHasDisarmed[playerNumberAttacking] = "yes";							
 							
 							String str2 = "canHasDisarmed :" + "yes";
 	  		  	  	  		sendToHost(str2);				
 							
 							
-							didHumanCriticalMiss[0] = "yes";
+							didHumanCriticalMiss[playerNumberAttacking] = "yes";
 							
 							String str3 = "didHumanCriticalMiss :" + "yes";
 							sendToHost(str3);
@@ -10983,7 +11288,7 @@ public class Client2 extends Activity {
 							  		centerscrolltext.startAnimation(animAlphaText);
 							  		centerscrolltext.append("\n" + "> You are disarmed.");
 							  		*/
-							  		String str4 = "> " + ArrayOfPlayers.player[0] + " is disarmed.";
+							  		String str4 = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " is disarmed.";
 							  		sendToHost(str4);
 							  		
 							  		
@@ -11014,7 +11319,7 @@ public class Client2 extends Activity {
 							  		centerscrolltext.startAnimation(animAlphaText);
 							  		centerscrolltext.append("\n" + "> You hold on to your weapon.");
 							  		*/
-							  		String str6 = "> " + ArrayOfPlayers.player[0] + " holds on to it's weapon.";
+							  		String str6 = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " holds on to it's weapon.";
 							  		sendToHost(str6);
 							  		
 							  		
@@ -11067,7 +11372,7 @@ public class Client2 extends Activity {
 	  	  	  		@Override
 		  	  	  	public void run() {
 	  	  	  			
-		  	  	  		if (canHasDisarmed[0].equals("no")) {							
+		  	  	  		if (canHasDisarmed[playerNumberAttacking].equals("no")) {
 							
 		  	  	  			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Client2.this);
 		  	  	  			//SharedPreferences.Editor editor = preferences.edit();
@@ -11078,7 +11383,7 @@ public class Client2 extends Activity {
 					  		centerscrolltext.startAnimation(animAlphaText);
 							centerscrolltext.append("\n" + "> You roll " + attackDamage + ".");
 							*/
-							String str = "> " + ArrayOfPlayers.player[0] + " rolls " + attackDamage + ".";
+							String str = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " rolls " + attackDamage + ".";
 							sendToHost(str);							
 							
 							
@@ -11105,7 +11410,7 @@ public class Client2 extends Activity {
 							damageResultsHandler();
 						}
 							
-		  	  	  		else if (canHasDisarmed[0].equals("yes")) {							
+		  	  	  		else if (canHasDisarmed[playerNumberAttacking].equals("yes")) {
 							
 		  	  	  			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Client2.this);
 		  	  	  			//SharedPreferences.Editor editor = preferences.edit();
@@ -11123,7 +11428,7 @@ public class Client2 extends Activity {
 					  		centerscrolltext.startAnimation(animAlphaText);
 							centerscrolltext.append("\n" + "> You roll " + attackDamage + ", -2 damage for punch = " + attackDamageDisarmed + " damage.");
 							*/
-							String str = "> " + ArrayOfPlayers.player[0] + " rolls " + attackDamage + ", -2 damage for punch = " + attackDamageDisarmed + " damage.";
+							String str = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " rolls " + attackDamage + ", -2 damage for punch = " + attackDamageDisarmed + " damage.";
 							sendToHost(str);
 							
 							
@@ -11239,7 +11544,7 @@ public class Client2 extends Activity {
 	  	  	  		@Override
 		  	  	  	public void run() {
 	  	  	  			
-		  	  	  		if (canHasDisarmed[0].equals("no")) {
+		  	  	  		if (canHasDisarmed[playerNumberAttacking].equals("no")) {
 		  	  	  			
 		  	  	  			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Client2.this);
 		  	  	  			//SharedPreferences.Editor editor = preferences.edit();
@@ -11250,7 +11555,7 @@ public class Client2 extends Activity {
 					  		centerscrolltext.startAnimation(animAlphaText);
 							centerscrolltext.append("\n" + "> You roll " + attackDamage	+ ".");
 							*/
-							String str = "> " + ArrayOfPlayers.player[0] + " rolls " + attackDamage + ".";
+							String str = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " rolls " + attackDamage + ".";
 							sendToHost(str);
 							
 							
@@ -11297,7 +11602,7 @@ public class Client2 extends Activity {
 				  	  	  	}, 2000);						
 		  	  	  		}
 						
-		  	  	  		else if (canHasDisarmed[0].equals("yes")) {							
+		  	  	  		else if (canHasDisarmed[playerNumberAttacking].equals("yes")) {
 							
 							SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Client2.this);
 							//SharedPreferences.Editor editor = preferences.edit();
@@ -11315,7 +11620,7 @@ public class Client2 extends Activity {
 					  		centerscrolltext.startAnimation(animAlphaText);
 							centerscrolltext.append("\n" + "> You roll " + attackDamage + ", -2 damage for punch = " + attackDamageDisarmed + " damage.");
 							*/
-							String str3 = "> " + ArrayOfPlayers.player[0] + " rolls " + attackDamage + ", -2 damage for punch = " + attackDamageDisarmed + " damage.";
+							String str3 = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " rolls " + attackDamage + ", -2 damage for punch = " + attackDamageDisarmed + " damage.";
 							sendToHost(str3);
 							
 							
@@ -11465,7 +11770,7 @@ public class Client2 extends Activity {
 				  		centerscrolltext.startAnimation(animAlphaText);
 						centerscrolltext.append("\n" + "> You roll " + attackDamage + ".");
 						*/
-						String str = "> " + ArrayOfPlayers.player[0] + " rolls " + attackDamage + ".";
+						String str = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " rolls " + attackDamage + ".";
 						sendToHost(str);
 						
 						
@@ -11523,7 +11828,7 @@ public class Client2 extends Activity {
 			  	  	  			//playerHitPointsTextView.clearAnimation();			  	  	  			
 			  	  	  			
 			  	  	  			
-								if (ArrayOfHitPoints.hitpoints[0] <= 0) {
+								if (ArrayOfHitPoints.hitpoints[playerNumberAttacking] <= 0) {
 									
 									//String str2 = ArrayOfPlayers.player[0] + "has been slain!";
 									//sendToHost(str2);
@@ -11576,7 +11881,7 @@ public class Client2 extends Activity {
 		  		centerscrolltext.startAnimation(animAlphaText);
 				centerscrolltext.append("\n" + "> You roll " + ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ".");  			
 	  			*/
-				String str = "> " + ArrayOfPlayers.player[0] + " rolls " + ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ".";
+				String str = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " rolls " + ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ".";
 				sendToHost(str);
 				
 	  			
@@ -11604,7 +11909,7 @@ public class Client2 extends Activity {
 						  		centerscrolltext.startAnimation(animAlphaText);
 								centerscrolltext.append("\n" + "> Make your second roll...");
 								*/
-								String str2 = "> " + ArrayOfPlayers.player[0] + " makes second roll...";
+								String str2 = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " makes second roll...";
 								sendToHost(str2);
 								
 								
@@ -11656,7 +11961,7 @@ public class Client2 extends Activity {
 		  		centerscrolltext.startAnimation(animAlphaText);
 				centerscrolltext.append("\n" + "> You roll " + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] + ".");
 	  			*/
-				String str = "> " + ArrayOfPlayers.player[0] + " rolls " + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] + ".";
+				String str = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " rolls " + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] + ".";
 				sendToHost(str);
 				
 	  			
@@ -11666,14 +11971,14 @@ public class Client2 extends Activity {
 	  	  	  		@Override
 		  	  	  	public void run() {
 	  	  	  			
-		  	  	  		if (canHasDisarmed[0].equals("no")) {							
+		  	  	  		if (canHasDisarmed[playerNumberAttacking].equals("no")) {							
 							
 		  	  	  			/*
 							centerscrolltext.setVisibility(View.VISIBLE);
 					  		centerscrolltext.startAnimation(animAlphaText);
 							centerscrolltext.append("\n" + "> You roll a total " + (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) + ".");
 							*/
-							String str2 = "> " + ArrayOfPlayers.player[0] + " rolls a total " + (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) + ".";
+							String str2 = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " rolls a total " + (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) + ".";
 							sendToHost(str2);
 							
 							
@@ -11699,14 +12004,14 @@ public class Client2 extends Activity {
 							criticalHitDamageResultsHandler();
 						}
 							
-		  	  	  		else if (canHasDisarmed[0].equals("yes")) {							
+		  	  	  		else if (canHasDisarmed[playerNumberAttacking].equals("yes")) {							
 							
 		  	  	  			/*
 							centerscrolltext.setVisibility(View.VISIBLE);
 					  		centerscrolltext.startAnimation(animAlphaText);
 							centerscrolltext.append("\n" + "> You roll a total " + (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) + ", -2 damage for punch = " + ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) + ".");
 							*/
-							String str4 = "> " + ArrayOfPlayers.player[0] + " rolls a total " + (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) + ", -2 damage for punch = " + ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) + ".";
+							String str4 = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " rolls a total " + (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) + ", -2 damage for punch = " + ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) + ".";
 							sendToHost(str4);
 							
 							
@@ -11819,7 +12124,7 @@ public class Client2 extends Activity {
 				  		centerscrolltext.startAnimation(animAlphaText);
 						centerscrolltext.append("\n" + "> You roll " + ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ".");
 	  	  	  			*/
-						String str = "> " + ArrayOfPlayers.player[0] + " rolls " + ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ".";
+						String str = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " rolls " + ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ".";
 						sendToHost(str);
 						
 						
@@ -11847,7 +12152,7 @@ public class Client2 extends Activity {
 								  		centerscrolltext.startAnimation(animAlphaText);
 										centerscrolltext.append("\n" + "> Make your second roll...");
 										*/
-										String str2 = "> " + ArrayOfPlayers.player[0] + " makes second roll...";
+										String str2 = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " makes second roll...";
 										sendToHost(str2);
 										
 										
@@ -11908,7 +12213,7 @@ public class Client2 extends Activity {
 				  		centerscrolltext.startAnimation(animAlphaText);
 						centerscrolltext.append("\n" + "> You roll " + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] + ".");
 	  	  	  			*/
-						String str = "> " + ArrayOfPlayers.player[0] + " rolls " + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] + ".";
+						String str = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " rolls " + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0] + ".";
 						sendToHost(str);
 						
 						
@@ -11918,14 +12223,14 @@ public class Client2 extends Activity {
 			  	  	  		@Override
 				  	  	  	public void run() {
 			  	  	  			
-				  	  	  		if (canHasDisarmed[0].equals("no")) {							
+				  	  	  		if (canHasDisarmed[playerNumberAttacking].equals("no")) {							
 									
 				  	  	  			/*
 									centerscrolltext.setVisibility(View.VISIBLE);
 							  		centerscrolltext.startAnimation(animAlphaText);
 									centerscrolltext.append("\n" + "> You roll a total " + (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) + ".");
 									*/
-									String str2 = "> " + ArrayOfPlayers.player[0] + " rolls a total " + (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) + ".";
+									String str2 = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " rolls a total " + (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) + ".";
 									sendToHost(str2);
 									
 									
@@ -11969,14 +12274,14 @@ public class Client2 extends Activity {
 						  	  	  	}, 2000);						
 								}
 									
-								if (canHasDisarmed[0].equals("yes")) {								
+								if (canHasDisarmed[playerNumberAttacking].equals("yes")) {								
 									
 									/*
 									centerscrolltext.setVisibility(View.VISIBLE);
 							  		centerscrolltext.startAnimation(animAlphaText);
 									centerscrolltext.append("\n" + "> You roll a total " + (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) + ", -2 damage for punch = " + ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) + " damage.");
 									*/
-									String str5 = "> " + ArrayOfPlayers.player[0] + " rolls a total " + (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) + ", -2 damage for punch = " + ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) + " damage.";
+									String str5 = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " rolls a total " + (ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) + ", -2 damage for punch = " + ((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) + " damage.";
 									sendToHost(str5);
 									
 									
@@ -12211,6 +12516,38 @@ public class Client2 extends Activity {
 	
 	
 	
+	/*
+	public void setAvatarForOtherClients() {
+		
+		if (id == 1) {
+			
+			ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+			
+			if (ArrayOfAvatars.avatar[0].equals("computer")){
+				
+				ArrayOfAvatars.avatar[1] = "computer";
+				clientAvatar.setBackgroundResource(R.drawable.computer);
+			}
+			else if (ArrayOfAvatars.avatar[0].equals("crossedswords")){
+				
+				ArrayOfAvatars.avatar[1] = "crossedswords";
+				clientAvatar.setBackgroundResource(R.drawable.crossedswords2);
+			}
+			else if (ArrayOfAvatars.avatar[0].equals("stonedead")){
+				
+				ArrayOfAvatars.avatar[1] = "stonedead";
+				clientAvatar.setBackgroundResource(R.drawable.stonedead2);
+			}
+		}
+	}
+	*/
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	public void test() {
@@ -12223,6 +12560,55 @@ public class Client2 extends Activity {
 			}
 		});
 		
+	}
+	
+	public String getPath(Uri uri) 
+    {
+        String[] projection = { MediaStore.Images.Media.DATA };
+        Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
+        if (cursor == null) return null;
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        String s=cursor.getString(column_index);
+        cursor.close();
+        return s;
+    }
+	
+	public void sendImage(){
+		
+		Thread thread = new Thread(new Runnable(){
+		    @Override
+		    public void run() {
+		        try {
+		        	
+		    		InetAddress address = InetAddress.getByName(hostIP);
+			        socket0 = new Socket(address, 3000);
+		    		
+		    		DataOutputStream out = new DataOutputStream(
+	                        socket0.getOutputStream());
+	                //out.writeChar('I');
+	                DataInputStream dis = new DataInputStream(new FileInputStream(imagefile));
+	                ByteArrayOutputStream ao = new ByteArrayOutputStream();
+	                int read = 0;
+	                byte[] buf = new byte[1024];
+	                while ((read = dis.read(buf)) > -1) {
+	                    ao.write(buf, 0, read);
+	                }
+
+	                out.writeLong(ao.size());
+	                out.write(ao.toByteArray());
+	                out.flush();
+	                out.close();
+	                dis.close();
+		        	
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		        }
+		    }
+		});
+
+		thread.start();
+	    	
 	}
 	
 	
@@ -12250,6 +12636,49 @@ public class Client2 extends Activity {
 		
 		print(read);
 	}
+	
+	
+	
+	
+	
+	
+	
+	class sendBullShit implements Runnable {
+
+		@Override
+		public void run() {
+			
+  			try {
+  				InetAddress serverAddr = InetAddress.getByName(hostIP);// WAS: SERVER_IP
+  				  		  	  			
+  	  			socket0 = new Socket(serverAddr, 2100);
+  	  			
+  	  	  	    
+  	  			BufferedWriter bufferedWriter;
+  				
+  				bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket0.getOutputStream()));
+  				
+				bufferedWriter.write(encImage);
+				bufferedWriter.flush();
+	  			bufferedWriter.close();
+	  			
+  	  			/*
+  	  			PrintWriter out = new PrintWriter(new BufferedWriter(
+	  					new OutputStreamWriter(socket0.getOutputStream())),
+	  					true);
+  	  			
+  	  			out.println("Blahblah");
+  	  			*/
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	
+	
+	
 	
 	
 	
@@ -12302,7 +12731,10 @@ public class Client2 extends Activity {
 						//String part2 = parts[1].trim();//IF THERE WAS A SPACE
 						String part2 = parts[1];
 												
-						id=Integer.parseInt(part2);											
+						id=Integer.parseInt(part2);
+						
+						
+						//setAvatarForOtherClients();
 					}
 					else if (read.contains("playerDeadYet5")) {
 						

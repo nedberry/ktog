@@ -1,9 +1,19 @@
 package com.nedswebsite.ktog;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.ByteArrayOutputStream;
+import java.io.DataInput;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
@@ -18,6 +28,10 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import com.nedswebsite.ktog.Client2.sendBullShit;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -25,6 +39,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.AnimationDrawable;
@@ -37,6 +54,7 @@ import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.text.InputFilter;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Base64;
 import android.view.ContextThemeWrapper;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -147,11 +165,15 @@ public class Host extends Activity {
 	int idCounter = 0;
 	
 	ServerSocket serverSocket;
+	ServerSocket serverSocketB;
+	ServerSocket server0;
+	Socket clientSocket0;;
 	//ServerSocket[] serverSocket = new ServerSocket[1];
 	
 	Handler updateConversationHandler;
 
 	Thread serverThread;
+	Thread serverThread0;
 
 	TextView text;
 
@@ -263,6 +285,16 @@ public class Host extends Activity {
 	String istitlestatsopen = "no";
 	
 	
+	String getAvatar = "no";
+	Bitmap bitmap0;
+	byte[] message;
+	String avatar0string;
+	Bitmap bmp0;
+	byte[] bitmapdata;
+	byte[] buffer;
+	
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);		
@@ -280,6 +312,9 @@ public class Host extends Activity {
 
 		this.serverThread = new Thread(new ServerThread());
 		this.serverThread.start();
+		
+		//serverThread0 = new Thread(new ServerThread());
+		//serverThread0.start();
 		
 		
 		// USED THE FOLLOWING TO REMOVE TITLE BAR:
@@ -358,7 +393,7 @@ public class Host extends Activity {
 		}		
 		
 		
-		if (ArrayOfAvatars.avatar[0].equals("computer")){
+		else if (ArrayOfAvatars.avatar[0].equals("computer")){
 			crossedswords2.setVisibility(View.INVISIBLE);
 			stonedead2.setVisibility(View.INVISIBLE);
 			customImage.setVisibility(View.INVISIBLE);
@@ -952,6 +987,25 @@ public class Host extends Activity {
         	  			
         	  		@Override
         	  	  	public void run() {
+        	  			
+        	  			
+        	  			
+        	  			
+        	  			
+        	  			
+        	  			
+        	  			test();
+        	  			//try {
+						//	clientSocket0.close();
+						//} catch (IOException e) {
+							// TODO Auto-generated catch block
+						//	e.printStackTrace();
+						//}
+        	  			
+        	  			
+        	  			
+        	  			
+        	  			
         	  			
         	  			TextView titlelobbytext = (TextView) findViewById(R.id.textviewtitlelobbytext);
         	  			titlelobbytext.setVisibility(View.INVISIBLE); 
@@ -2166,6 +2220,80 @@ public class Host extends Activity {
 	}
 	
 	
+public void test() {
+	
+	runOnUiThread(new Runnable() {
+		@Override
+		public void run() {
+			
+			
+			//ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarright);
+			//myImage.setImageBitmap(bmp0);
+			/*
+			Bitmap bitmap = BitmapFactory.decodeByteArray(buffer, 0, buffer.length);
+			ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarright);
+			myImage.setImageBitmap(bitmap);
+			*/
+			
+			File imgFile = new  File("/storage/sdcard0/avatar0.png");
+
+			if(imgFile.exists()){
+
+			    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+
+			    ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarright);
+
+			    myImage.setImageBitmap(myBitmap);
+			}
+			
+			
+			unfoldRightScroll();
+			/*
+			ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+	    	clientAvatar.setImageBitmap(BitmapFactory.decodeFile("/sdcard/Download/Avatar0.jpeg"));
+			clientAvatar.setVisibility(View.VISIBLE);	
+			*/
+			/*
+			File imgFile = new  File("/sdcard/Download/Avatar0.jpeg");
+			
+			Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+
+		    ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarright);
+
+		    myImage.setImageBitmap(myBitmap);
+			*/
+			
+		}
+	});	
+}
+	/*
+public void decodeImage0() {
+	
+	byte[] b = Base64.decode(avatar0string,Base64.DEFAULT);
+    bmp0 = BitmapFactory.decodeByteArray(b,0,b.length);
+    
+    
+    
+    FileOutputStream out = null;
+    try {
+    	out = new FileOutputStream("/storage/sdcard0/avatar0.png");
+		bmp0.compress(Bitmap.CompressFormat.PNG, 100, out); // bmp is your Bitmap instance
+        // PNG is a lossless format, the compression factor (100) is ignored
+    } catch (Exception e) {
+        e.printStackTrace();
+    } finally {
+        try {
+            if (out != null) {
+                out.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+*/	
+	
+	
 	/*
 	 * 
 	 * 
@@ -2211,6 +2339,24 @@ public class Host extends Activity {
 			try {
 				
 				serverSocket.close();
+				
+				stopService(svc);
+				
+				android.os.Process.killProcess(android.os.Process.myPid());
+			    
+			    super.onDestroy();				
+				
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		if (server0 != null) {
+			try {
+				
+				server0.close();
 				
 				stopService(svc);
 				
@@ -13532,8 +13678,21 @@ public class Host extends Activity {
 			//computerHitPointsTextView.setVisibility(View.INVISIBLE);
 			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
 
-			ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
-			clientAvatar.setVisibility(View.VISIBLE);
+			//ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+			//clientAvatar.setVisibility(View.VISIBLE);
+			
+			runOnUiThread(new Runnable() {
+	  	  	    @Override
+	  	  	    public void run() {
+	  	  	    	
+	  	  	    	//ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+	  	  	    	//clientAvatar.setImageBitmap(bitmap0);
+	  	  	    	
+	  	  	    
+	  	  	    	ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+	  	  	    	clientAvatar.setImageBitmap(BitmapFactory.decodeFile("/sdcard/Download/Avatar0.png"));//WAS: .jpeg
+	  	  	    }
+			});
 			
 			
 			unfoldRightScroll();
@@ -18633,22 +18792,33 @@ public class Host extends Activity {
 				
 				gameEngine3V35Part2For0Part1();
 			}
-			else if (initiativeFinal[0] > initiativeFinal[1] && Has0TakenTurn.equals("yes")) {
+			else if (initiativeFinal[0] > initiativeFinal[1] && Has0TakenTurn.equals("yes") && hAs1TakenTurn.equals("no")) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
 				
 				gameEngine3V35Part2For1Part1();
 			}
+			else if (initiativeFinal[0] > initiativeFinal[1] && Has0TakenTurn.equals("yes") && hAs1TakenTurn.equals("yes")) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
+				
+				turn();
+			}
+			
 			else if (initiativeFinal[1] > initiativeFinal[0] && hAs1TakenTurn.equals("no")) {
 				
 				gameEngine3V35Part2For1Part1();
 			}
-			else if (initiativeFinal[1] > initiativeFinal[0] && hAs1TakenTurn.equals("yes")) {
+			else if (initiativeFinal[1] > initiativeFinal[0] && hAs1TakenTurn.equals("yes") && Has0TakenTurn.equals("no")) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
 				
 				gameEngine3V35Part2For0Part1();
 			}
+			else if (initiativeFinal[1] > initiativeFinal[0] && hAs1TakenTurn.equals("yes") && Has0TakenTurn.equals("yes")) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
+				
+				turn();
+			}
+			/*
 			else {
 				
 				turn();
 			}
+			*/
 		}
 	
 		else if (initiativeFinal[5] > initiativeFinal[0] && initiativeFinal[5] > initiativeFinal[1] && ishasteused0.equals("yes") && ishasteused1.equals("no")) {
@@ -18719,22 +18889,33 @@ public class Host extends Activity {
 				
 				gameEngine3V3XPart2For5Part1();
 			}
-			else if (initiativeFinal[5] > initiativeFinal[1] && has5TakenTurn.equals("yes")) {
+			else if (initiativeFinal[5] > initiativeFinal[1] && has5TakenTurn.equals("yes") && hAs1TakenTurn.equals("no")) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
 				
 				gameEngine3V35Part2For1Part1();
+			}
+			else if (initiativeFinal[5] > initiativeFinal[1] && has5TakenTurn.equals("yes") && hAs1TakenTurn.equals("yes")) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
+				
+				turn();
 			}
 			else if (initiativeFinal[1] > initiativeFinal[5] && hAs1TakenTurn.equals("no")) {
 				
 				gameEngine3V35Part2For1Part1();
 			}
-			else if (initiativeFinal[1] > initiativeFinal[5] && hAs1TakenTurn.equals("yes")) {
+			else if (initiativeFinal[1] > initiativeFinal[5] && hAs1TakenTurn.equals("yes") && has5TakenTurn.equals("no")) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
 				
 				gameEngine3V3XPart2For5Part1();
 			}
+			else if (initiativeFinal[1] > initiativeFinal[5] && hAs1TakenTurn.equals("yes") && has5TakenTurn.equals("yes")) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
+				
+				turn();
+			}
+			
+			/*
 			else {
 				
 				turn();
 			}
+			*/
 		}
 		
 		else if (initiativeFinal[0] > initiativeFinal[5] && initiativeFinal[0] > initiativeFinal[1] && ishasteused1.equals("yes")) {
@@ -18775,22 +18956,34 @@ public class Host extends Activity {
 				
 				gameEngine3V3XPart2For5Part1();
 			}
-			else if (initiativeFinal[5] > initiativeFinal[0] && has5TakenTurn.equals("yes")) {
+			else if (initiativeFinal[5] > initiativeFinal[0] && has5TakenTurn.equals("yes") && Has0TakenTurn.equals("no")) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
 				
 				gameEngine3V35Part2For0Part1();
 			}
+			else if (initiativeFinal[5] > initiativeFinal[0] && has5TakenTurn.equals("yes") && Has0TakenTurn.equals("yes")) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
+				
+				turn();
+			}
+			
 			else if (initiativeFinal[0] > initiativeFinal[5] && Has0TakenTurn.equals("no")) {
 				
 				gameEngine3V35Part2For0Part1();
 			}
-			else if (initiativeFinal[0] > initiativeFinal[5] && Has0TakenTurn.equals("yes")) {
+			else if (initiativeFinal[0] > initiativeFinal[5] && Has0TakenTurn.equals("yes") && has5TakenTurn.equals("no")) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
 				
 				gameEngine3V3XPart2For5Part1();
 			}
+			else if (initiativeFinal[0] > initiativeFinal[5] && Has0TakenTurn.equals("yes") && has5TakenTurn.equals("yes")) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
+				
+				turn();
+			}
+			
+			/*
 			else {
 				
 				turn();
 			}
+			*/
 		}
 		
 		else if (initiativeFinal[1] > initiativeFinal[5] && initiativeFinal[1] > initiativeFinal[0] && ishasteused0.equals("yes")) {
@@ -19713,7 +19906,7 @@ public class Host extends Activity {
 														}
 								  	  	  			}
 								  	  	  			
-								  	  	  			if (numberOfPlayers == 3) {
+								  	  	  			else if (numberOfPlayers == 3) {
 								  	  	  				
 								  	  	  				threePlayerRedirectWithHasteForClient();
 								  	  	  			}
@@ -24031,6 +24224,75 @@ public class Host extends Activity {
 		});		
 	}
 	
+	/*
+	public void timerForGetAvatar() {//DELETE IF NOT USED!!!!!!!!!!!!!
+
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+
+				final Handler h6 = new Handler();
+				h6.postDelayed(new Runnable() {
+
+					@Override
+					public void run() {
+
+						getAvatar = "yes";
+					}
+				}, 3000);
+
+			}
+		});
+
+	}
+	*/
+	public void socketworking() {//DELETE IF NOT USED!!!!!!!!!!!!!
+
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+
+				Toast.makeText(Host.this, "SOCKET WORKING!!!", Toast.LENGTH_SHORT).show();	
+
+			}
+		});
+
+	}
+	
+	public void ReceiveImage(){
+		try {
+			server0 = new ServerSocket(); // <-- create an unbound socket first
+			server0.setReuseAddress(true);
+			server0.bind(new InetSocketAddress(3000)); // <-- now bind it
+			
+			clientSocket0 = server0.accept();
+			
+			DataInputStream dis = new DataInputStream(clientSocket0.getInputStream());
+	        long length = dis.readLong();
+	        File to = new File("/storage/sdcard0/avatar0.png");
+	        DataOutputStream dos = new DataOutputStream(
+	                new FileOutputStream(to));
+	        buffer = new byte[1024];
+	        int len;
+	        //System.out.println(length);
+	        while ((len = dis.read(buffer)) > -1) {
+	            dos.write(buffer, 0, len);
+	        }
+	        
+	        
+	       // Bitmap bitmap = BitmapFactory.decodeFile("/storage/sdcard0/avatar0.png");
+	        //ByteArrayOutputStream blob = new ByteArrayOutputStream();
+	       // bitmap.compress(CompressFormat.PNG, 0 /* Ignored for PNGs */, blob);
+	       // bitmapdata = blob.toByteArray();
+	        
+	        
+	        
+	        dis.close();
+	        dos.close();
+			} catch (Exception e) {
+		       
+		    }
+	}
 	
 	//=============================================================================================
 	//SEPERATOR
@@ -24092,13 +24354,161 @@ public class Host extends Activity {
 		      }
 		}
 	}
+	
+	
+	
+	class ServerThread0 implements Runnable {
+		
+		BufferedReader in = null;;
+		PrintWriter out0 = null;
+		
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			
+			// public void listenSocket(){
+			try {
+				
+				//server0 = new ServerSocket(2100);
+				//server0.setReuseAddress(true);
+				//clientSocket0 = server0.accept();
+				
+				server0 = new ServerSocket(); // <-- create an unbound socket first
+				server0.setReuseAddress(true);
+				server0.bind(new InetSocketAddress(2100)); // <-- now bind it
+				
+				clientSocket0 = server0.accept();
+				
+			} catch (IOException e) {
+				//System.out.println("Could not listen on port 4321");
+				System.exit(-1);
+			}
 
+			// listenSocketSocketserver.acceptSocket
+			//try {
+			//	clientSocket0 = server0.accept();// WAS client
+			//} catch (IOException e) {
+				// System.out.println("Accept failed: 4321");
+			//	System.exit(-1);
+			//}
+
+			// listenSocketBufferedReaderclientPrintWriter
+			try {
+				in = new BufferedReader(new InputStreamReader(
+						clientSocket0.getInputStream()));
+				//in.mark(((ObjectInput) in).available());
+				//in.reset(); 
+				//out = new PrintWriter(clientSocket0.getOutputStream(), true);
+				//out0 = new PrintWriter(new BufferedWriter(new OutputStreamWriter(clientSocket0.getOutputStream())), true);
+			} catch (IOException e) {
+				// System.out.println("Read failed");
+				System.exit(-1);
+			}
+
+			// listenSocket
+			while (true) {
+				try {
+					String line = in.readLine();
+					
+					if (line == null) {
+						clientSocket0.close();
+	                    return;
+	                }
+					/*
+					else if (line.contains("Blahblah")) {
+						
+						socketworking();
+					}
+					*/
+					else {						
+					
+					StringBuilder sb = new StringBuilder();
+					String base64line = null;
+		             while ((base64line = in.readLine()) != null) {
+		                 sb.append(base64line);
+		             }
+		             //in.close();
+		             final String avatar0string = sb.toString();
+					
+					
+					
+					/*
+					runOnUiThread(new Runnable() {
+						@Override
+						public void run() {
+							
+							final Handler h = new Handler();
+			    	  		h.postDelayed(new Runnable() {		  	  	  			
+			    	  	  			
+				      	  		@Override
+				      	  	  	public void run() {  	  			
+				    	  	  		*/	
+				      	  			//decodeImage0(); 
+				      	  			
+				      	  		byte[] b = Base64.decode(avatar0string,Base64.DEFAULT);
+				      	  		/*
+				      	  		if (b == null) {
+				      	  			clientSocket0.close();
+				      	  			return;
+				      	  		}
+				      	  		*/
+				      	  		bmp0 = BitmapFactory.decodeByteArray(b,0,b.length);
+				      	  		/*
+				      	  		if (bmp0 == null) {
+				      	  			clientSocket0.close();
+				      	  			return;
+				      	  		}
+				      	      	*/
+				      	      
+				      	      FileOutputStream out = null;
+				      	      try {
+				      	      	out = new FileOutputStream("/storage/sdcard0/avatar0.png");
+				      	  		bmp0.compress(Bitmap.CompressFormat.PNG, 100, out); // bmp is your Bitmap instance
+				      	          // PNG is a lossless format, the compression factor (100) is ignored
+				      	      } catch (Exception e) {
+				      	          e.printStackTrace();
+				      	      } finally {
+				      	          try {
+				      	              if (out != null) {
+				      	                  out.close();
+				      	              }
+				      	          } catch (IOException e) {
+				      	              e.printStackTrace();
+				      	          }
+				      	      }
+				      	      /*
+				    	  	  	}
+			    	  		}, 5000);
+						}
+					});
+					*/
+					// Send data back to client
+					//out.println(line);
+					}
+				} catch (IOException e) {
+					// System.out.println("Read failed");
+					System.exit(-1);
+				}
+				
+			}
+			
+		}
+		
+	}
+	
+	
+	
+	
 	
 	class ClientWorker implements Runnable, CharSequence {
 
 		private Socket clientSocket;
-
+		
+		//private DataInputStream dIn;
+		
 		private BufferedReader input;
+		
+		
 		
 		public int id;
 
@@ -24117,12 +24527,20 @@ public class Host extends Activity {
 			*/			
 		}
 
+		//@SuppressWarnings("null")
 		public void run() {
 			
-			String line;
+			//String line;
 	        BufferedReader in = null;
 	        PrintWriter out = null;
 	        try{	        	
+	        	
+	        	//InputStream datain = this.clientSocket.getInputStream();
+                //this.datainput = new DataInputStream(datain);
+	        	//DataInputStream dIn = new DataInputStream(clientSocket.getInputStream());
+	        	//InputStream is = clientSocket.getInputStream();
+	        	
+	        	
 	        	
 	        	this.input = new BufferedReader(new InputStreamReader(this.clientSocket.getInputStream()));
 	        	//input = new BufferedReader(new InputStreamReader(this.clientSocket.getInputStream()));
@@ -24130,22 +24548,69 @@ public class Host extends Activity {
 	        	out = new PrintWriter(new BufferedWriter(
 	  					new OutputStreamWriter(clientSocket.getOutputStream())),
 	  					true);
+	        	
+	        	
+	        	
+	        	
 	        } catch (IOException e) {
 	          System.out.println("in or out failed");
 	          System.exit(-1);
 	        }
 	        
+	        
+	        
+	        
+	        //Pattern p = Pattern.compile("[^-A-Za-z0-9+/=]|=[^=]|={3,}$");//REGULAR EXPRESSION TO DETECT BASE64
+	        
+	        
+	        
 
 			while (true) { //WAS:(!Thread.currentThread().isInterrupted())
 
 				try {
-
-					String read = input.readLine();					
+					
+					String read = input.readLine();//THIS ONLY READS TEXT
+					
+					
+					
+					/*
+					Matcher m = p.matcher(read);//TO DETECT BASE64
+					while (m.find()) {
+		                if (m.group().length() != 0) {
+		                    System.out.println( m.group().trim());
+		                }
+					}
+					*/
+					
+					
+					
 					
 					if ((read == null) || read.equalsIgnoreCase("QUIT")) {
 						clientSocket.close();
 	                    return;
 	                }
+					
+else if (read.contains("whatAvatar")) {//MAY WANT MORE COMPLICATED TERM SO IT DOESN'T GET REPEATED IN CHAT
+						
+						String[] parts = read.split(":");
+						String part1 = parts[0];  
+						//String part2 = parts[1].trim();//IF THERE WAS A SPACE
+						String part2 = parts[1];
+						
+						
+						if (id == 0) {
+							
+							ArrayOfAvatars.avatar[0] = part2;
+						}						
+						if (id == 1) {
+							
+							ArrayOfAvatars.avatar[1] = part2;
+						}
+						if (id == 2) {
+							
+							ArrayOfAvatars.avatar[2] = part2;
+						}
+}
 					
 					else if (read.contains("PlayerName")) {//MAY WANT MORE COMPLICATED TERM SO IT DOESN'T GET REPEATED IN CHAT
 						
@@ -24180,6 +24645,23 @@ public class Host extends Activity {
 							
 							String str2 = "PLayerName0 :" + part2;
 							sendToClient0(str2);
+							
+							//timerForGetAvatar();//DELETE IF NOT USED!!!!!!!!!!!!!
+							//getAvatar = "yes";//DELETE IF NOT USED!!!!!!!!!!!!!
+							
+							if (ArrayOfAvatars.avatar[0].equals("custom")) {
+								
+								ReceiveImage();
+							}
+							
+							
+							//new Thread(new ServerThread0()).start();
+							
+							//serverThread0 = new Thread(new ServerThread());
+							//serverThread0.start();
+							
+								    
+								    
 						}
 						else if (id == 1) {
 							ArrayOfPlayers.player[1]=part2;
@@ -24222,6 +24704,168 @@ public class Host extends Activity {
 						*/												
 					}
 					
+
+					
+					
+					
+					
+					
+					
+					/*
+					else if (read.contains("^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{4}|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)$")) {
+						
+					}
+					*/
+					
+					
+					
+					//else if (id == 0 && getAvatar.equals("yes")) {
+						/*
+						String[] parts = read.split(",");
+						String part1 = parts[0];  
+						//String part2 = parts[1].trim();//IF THERE WAS A SPACE
+						String part2 = parts[1];
+						
+						avatar0string=part2;
+						*/
+						
+						/*
+						 while(read != null) {
+							 avatar0string = read;
+						 }
+						*/ 
+						//avatar0string = read;
+						
+						
+						//getAvatar = "no";
+						
+						/*
+						while (true) {
+						    
+							try {
+						    	
+						    	
+						    	int bytesRead;
+		                        int current = 0;
+		                        int filesize=65383; 
+		                        byte [] mybytearray2  = new byte [filesize];
+		                        InputStream is = clientSocket.getInputStream();
+		                        FileOutputStream fos = new FileOutputStream("/storage/sdcard0/avatar0.png"); // destination path and name of file
+		                        //FileOutputStream fos = new FileOutputStream("/storage/sdcard0/Pictures/Screenshots/");
+		                        BufferedOutputStream bos = new BufferedOutputStream(fos);
+		                        bytesRead = is.read(mybytearray2,0,mybytearray2.length);
+		                        current = bytesRead;
+
+
+		                        do {
+		                           bytesRead =
+		                              is.read(mybytearray2, current, (mybytearray2.length-current));
+		                           if(bytesRead >= 0) current += bytesRead;
+		                        } while(bytesRead > -1);
+
+		                        bos.write(mybytearray2, 0 , current);
+		                        bos.flush();
+		                        long end = System.currentTimeMillis();
+		                        //System.out.println(end-start);
+		                        bos.close();
+						    	
+		                        getAvatar = "no";
+		                        
+		                        //is.close();
+						    	break;
+						    	
+						    	
+		                        final Handler h6 = new Handler();
+					  	  	  	h6.postDelayed(new Runnable() {
+					  	  	  			
+					  	  	  		@Override
+					  	  	  		public void run() {
+						  	  	  			
+					  	  	  			try {
+					  	  	  				is.close();
+										} catch (IOException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										}
+					  	  	  		}
+					  	  	  	}, 5000);
+						    	
+						    	
+						    	
+						    	
+						       // updateConversationHandler.post(new update0DataUIThread(data));//updateConversationHandler.post(new updateUIThread(read));
+						        
+						        
+						    } catch (IOException e) {
+						        // TODO Auto-generated catch block
+						        e.printStackTrace();
+						    }
+						}
+						*/
+					//}
+					
+					
+					/*
+					else if (id == 1) {
+						
+					}
+					*/
+					
+					
+					
+					
+/*					
+else if (read.contains("&*")) {//WHAT HOST (OR OTHER CLIENT??) SHOULD ROLL DODGE FOR
+						
+						if (id == 0) {
+							
+							String[] parts = read.split(",");
+							String part1 = parts[0];  
+							//String part2 = parts[1].trim();//IF THERE WAS A SPACE
+							String part2 = parts[1];
+							
+							avatar0string=part2;
+							
+							
+							runOnUiThread(new Runnable() {
+								@Override
+								public void run() {
+									
+									final Handler h = new Handler();
+					    	  		h.postDelayed(new Runnable() {		  	  	  			
+					    	  	  			
+						      	  		@Override
+						      	  	  	public void run() {  	  			
+						    	  	  			
+						      	  			decodeImage0();  	  			
+						    	  	  	}
+					    	  		}, 2000);
+								}
+							});
+						}												
+					}
+	*/			
+/*					
+else if (read.contains("cstmImage")) {//MAY WANT MORE COMPLICATED TERM SO IT DOESN'T GET REPEATED IN CHAT
+						
+						String[] parts = read.split(":");
+						String part1 = parts[0];  
+						//String part2 = parts[1].trim();//IF THERE WAS A SPACE
+						String part2 = parts[1];
+						
+						
+												
+						
+						if (id == 0) {
+							
+							Uri fileUri = Uri.parse(part2);
+							customImage.setImageURI(fileUri);
+						}
+						else if (id == 1) {
+							
+						}
+					}
+					*/
 					else if (read.contains("InitiativeRolled")) {
 						
 						String[] parts = read.split(":");
@@ -26046,6 +26690,14 @@ public class Host extends Activity {
 						}
 					}
 					
+					
+					
+					
+					
+					
+					
+					
+					
 					else {
 						
 						updateConversationHandler.post(new updateUIThread(read));
@@ -26131,7 +26783,7 @@ public class Host extends Activity {
 	
 	public void sendToClient1(Object read){
 		//for(ClientWorker client : clientWorkers)                    	
-		ClientWorker client = clientWorkers.get(1);
+		ClientWorker client = clientWorkers.get(1);//ARRAY ERROR HERE
 		client.print(read);
 	}
 	
@@ -26183,6 +26835,22 @@ public class Host extends Activity {
   	  		});			
 		}
 	}
+	
+	/*
+	class update0DataUIThread implements Runnable {
+        private byte[] byteArray;//private String msg;
 
+        public update0DataUIThread(byte[] array){    //public updateUIThread(String str) {
+            this.byteArray=array;   //this.msg = str;
+        }
+
+        @Override
+        public void run() { 
+            bitmap0 = BitmapFactory.decodeByteArray(byteArray , 0, byteArray .length);
+            //customImage.setImageBitmap(bitmap);//text.setText(text.getText().toString()+"Client Says: "+ msg + "\n");
+            
+        }
+    }
+    */
 
 }
