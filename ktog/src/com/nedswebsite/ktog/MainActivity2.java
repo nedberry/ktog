@@ -284,6 +284,12 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		computerHitPointsTextView.startAnimation(animPulsingAnimation);
 		
 		
+		
+		
+		ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+		clientAvatar.setBackgroundResource(R.drawable.computer);
+		
+		
 		ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
 		ImageView crossedswords2 = (ImageView) findViewById(R.id.imageviewavatarleft2);
 		ImageView stonedead2 = (ImageView) findViewById(R.id.imageviewavatarleft3);
@@ -18544,7 +18550,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 													disarmedAction();
 												}												
 												
-												else if ((hasteSpell[0] > 0) && !(disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0])) {
+												else if ((hasteSpell[0] > 0)) {// WAS: && !(disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0])
 													
 													centerscrolltext.setVisibility(View.VISIBLE);													
 											  		centerscrolltext.startAnimation(animAlphaText);

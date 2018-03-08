@@ -568,10 +568,14 @@
             
             android:scaleType="fitXY"
             
-            android:background="@drawable/computer" />        
+             />        
     </RelativeLayout>
     
-    
+   <!--
+   
+   android:background="@drawable/computer"
+   
+	--> 
     
 
     <RelativeLayout

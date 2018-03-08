@@ -392,6 +392,7 @@ public class Host extends Activity {
 			customImage.setImageURI(fileUri);
 		}		
 		
+		//WHY DID I CREATE IMAGEVIEW FOR EACH??????? JUST HAVE 1 IMAGEVIEW & TAKE OUT: android:background="@drawable/computer" (FOR EX.)
 		
 		else if (ArrayOfAvatars.avatar[0].equals("computer")){
 			crossedswords2.setVisibility(View.INVISIBLE);
@@ -994,7 +995,8 @@ public class Host extends Activity {
         	  			
         	  			
         	  			
-        	  			test();
+        	  			//test();
+        	  			
         	  			//try {
 						//	clientSocket0.close();
 						//} catch (IOException e) {
@@ -2219,7 +2221,7 @@ public class Host extends Activity {
 		
 	}
 	
-	
+/*	
 public void test() {
 	
 	runOnUiThread(new Runnable() {
@@ -2229,11 +2231,11 @@ public void test() {
 			
 			//ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarright);
 			//myImage.setImageBitmap(bmp0);
-			/*
-			Bitmap bitmap = BitmapFactory.decodeByteArray(buffer, 0, buffer.length);
-			ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarright);
-			myImage.setImageBitmap(bitmap);
-			*/
+			
+			//Bitmap bitmap = BitmapFactory.decodeByteArray(buffer, 0, buffer.length);
+			//ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarright);
+			//myImage.setImageBitmap(bitmap);
+			
 			
 			File imgFile = new  File("/storage/sdcard0/avatar0.png");
 
@@ -2248,24 +2250,21 @@ public void test() {
 			
 			
 			unfoldRightScroll();
-			/*
-			ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
-	    	clientAvatar.setImageBitmap(BitmapFactory.decodeFile("/sdcard/Download/Avatar0.jpeg"));
-			clientAvatar.setVisibility(View.VISIBLE);	
-			*/
-			/*
-			File imgFile = new  File("/sdcard/Download/Avatar0.jpeg");
 			
-			Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-
-		    ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarright);
-
-		    myImage.setImageBitmap(myBitmap);
-			*/
+			//ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+	    	//clientAvatar.setImageBitmap(BitmapFactory.decodeFile("/sdcard/Download/Avatar0.jpeg"));
+			//clientAvatar.setVisibility(View.VISIBLE);	
 			
+			
+			//File imgFile = new  File("/sdcard/Download/Avatar0.jpeg");			
+			//Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+		    //ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarright);
+		    //myImage.setImageBitmap(myBitmap);
 		}
 	});	
 }
+*/
+	
 	/*
 public void decodeImage0() {
 	
@@ -13689,8 +13688,37 @@ public void decodeImage0() {
 	  	  	    	//clientAvatar.setImageBitmap(bitmap0);
 	  	  	    	
 	  	  	    
-	  	  	    	ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
-	  	  	    	clientAvatar.setImageBitmap(BitmapFactory.decodeFile("/sdcard/Download/Avatar0.png"));//WAS: .jpeg
+	  	  	    	//ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+	  	  	    	//clientAvatar.setImageBitmap(BitmapFactory.decodeFile("/sdcard/Download/Avatar0.png"));//WAS: .jpeg
+	  	  	    	
+		  	  	    if (ArrayOfAvatars.avatar[0].equals("custom")){
+		  	  	    	
+			  	  	    File imgFile = new  File("/storage/sdcard0/avatar0.png");
+	
+						if(imgFile.exists()){
+	
+						    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+	
+						    ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarright);
+	
+						    myImage.setImageBitmap(myBitmap);
+						}
+		  			}
+		  	  	    else if (ArrayOfAvatars.avatar[0].equals("computer")){
+		  	  	    	
+		  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+		  				clientAvatar.setBackgroundResource(R.drawable.computer);
+		  			}
+		  			else if (ArrayOfAvatars.avatar[0].equals("crossedswords")){
+		  				
+		  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+		  				clientAvatar.setBackgroundResource(R.drawable.crossedswords2);
+		  			}
+		  			else if (ArrayOfAvatars.avatar[0].equals("stonedead")){
+		  				
+		  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+		  				clientAvatar.setBackgroundResource(R.drawable.stonedead2);
+		  			}
 	  	  	    }
 			});
 			
@@ -24246,6 +24274,7 @@ public void decodeImage0() {
 
 	}
 	*/
+	/*
 	public void socketworking() {//DELETE IF NOT USED!!!!!!!!!!!!!
 
 		runOnUiThread(new Runnable() {
@@ -24258,7 +24287,7 @@ public void decodeImage0() {
 		});
 
 	}
-	
+	*/
 	public void ReceiveImage(){
 		try {
 			server0 = new ServerSocket(); // <-- create an unbound socket first
@@ -24356,7 +24385,7 @@ public void decodeImage0() {
 	}
 	
 	
-	
+	/*
 	class ServerThread0 implements Runnable {
 		
 		BufferedReader in = null;;
@@ -24414,12 +24443,12 @@ public void decodeImage0() {
 						clientSocket0.close();
 	                    return;
 	                }
-					/*
-					else if (line.contains("Blahblah")) {
+					
+					//else if (line.contains("Blahblah")) {
 						
-						socketworking();
-					}
-					*/
+					//	socketworking();
+					//}
+					
 					else {						
 					
 					StringBuilder sb = new StringBuilder();
@@ -24432,33 +24461,33 @@ public void decodeImage0() {
 					
 					
 					
-					/*
-					runOnUiThread(new Runnable() {
-						@Override
-						public void run() {
+					
+					//runOnUiThread(new Runnable() {
+						//@Override
+						//public void run() {
 							
-							final Handler h = new Handler();
-			    	  		h.postDelayed(new Runnable() {		  	  	  			
+							//final Handler h = new Handler();
+			    	  		//h.postDelayed(new Runnable() {		  	  	  			
 			    	  	  			
-				      	  		@Override
-				      	  	  	public void run() {  	  			
-				    	  	  		*/	
+				      	  		//@Override
+				      	  	  	//public void run() {  	  			
+				    	  	  			
 				      	  			//decodeImage0(); 
 				      	  			
 				      	  		byte[] b = Base64.decode(avatar0string,Base64.DEFAULT);
-				      	  		/*
-				      	  		if (b == null) {
-				      	  			clientSocket0.close();
-				      	  			return;
+				      	  		
+				      	  		//if (b == null) {
+				      	  			//clientSocket0.close();
+				      	  			//return;
 				      	  		}
-				      	  		*/
+				      	  		
 				      	  		bmp0 = BitmapFactory.decodeByteArray(b,0,b.length);
-				      	  		/*
-				      	  		if (bmp0 == null) {
-				      	  			clientSocket0.close();
-				      	  			return;
-				      	  		}
-				      	      	*/
+				      	  		
+				      	  		//if (bmp0 == null) {
+				      	  			//clientSocket0.close();
+				      	  			//return;
+				      	  		//}
+				      	      	
 				      	      
 				      	      FileOutputStream out = null;
 				      	      try {
@@ -24476,12 +24505,12 @@ public void decodeImage0() {
 				      	              e.printStackTrace();
 				      	          }
 				      	      }
-				      	      /*
-				    	  	  	}
-			    	  		}, 5000);
-						}
-					});
-					*/
+				      	      
+				    	  	  	//}
+			    	  		//}, 5000);
+						//}
+					//});
+					
 					// Send data back to client
 					//out.println(line);
 					}
@@ -24495,7 +24524,7 @@ public void decodeImage0() {
 		}
 		
 	}
-	
+	*/
 	
 	
 	
@@ -24652,6 +24681,17 @@ else if (read.contains("whatAvatar")) {//MAY WANT MORE COMPLICATED TERM SO IT DO
 							if (ArrayOfAvatars.avatar[0].equals("custom")) {
 								
 								ReceiveImage();
+								
+								//SOCKET FOR IMAGE TRANSFER IS DETECTED & COUNTED AS ADDITIONAL CLIENT, SO:
+								if (clientWorkers.size() == 2) {
+									
+									clientWorkers.remove(2);
+								}
+								else if (clientWorkers.size() == 3) {//THIS WOULD NEED SOMETHING MORE?
+									
+									clientWorkers.remove(3);
+								}
+								
 							}
 							
 							
@@ -26782,15 +26822,29 @@ else if (read.contains("cstmImage")) {//MAY WANT MORE COMPLICATED TERM SO IT DOE
 	}
 	
 	public void sendToClient1(Object read){
-		//for(ClientWorker client : clientWorkers)                    	
-		ClientWorker client = clientWorkers.get(1);//ARRAY ERROR HERE
-		client.print(read);
+		
+		try {
+			
+			//for(ClientWorker client : clientWorkers)                    	
+			ClientWorker client = clientWorkers.get(1);//ARRAY ERROR HERE
+			client.print(read);
+		}
+		catch (Exception e) {
+			
+		}
 	}
 	
 	public void sendToClient2(Object read){
-		//for(ClientWorker client : clientWorkers)                    	
-		ClientWorker client = clientWorkers.get(2);
-		client.print(read);
+		
+		try {
+			
+			//for(ClientWorker client : clientWorkers)                    	
+			ClientWorker client = clientWorkers.get(2);
+			client.print(read);
+		}
+		catch (Exception e) {
+			
+		}
 	}
 	
 	public void sendToClient3(Object read){
