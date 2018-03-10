@@ -1,5 +1,6 @@
 package com.nedswebsite.ktog;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -10,6 +11,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -48,6 +50,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.text.InputFilter;
@@ -227,9 +230,10 @@ public class Client2 extends Activity {
 	Bitmap bmp;
 	byte[] imgbyte;
 	OutputStream output;
-	Bitmap bm;
+	//Bitmap bm;
 	String encImage;
 	File imagefile;
+	String image_path;
 	
 	
 	
@@ -238,6 +242,13 @@ public class Client2 extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);		
 		
+		/*
+		if (android.os.Build.VERSION.SDK_INT > 9) {
+	        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+	                .permitAll().build();
+	        StrictMode.setThreadPolicy(policy);
+	    }
+		*/
 		
 		MediaPlayerWrapper.play(Client2.this, R.raw.buttonsound6);
 		
@@ -387,7 +398,7 @@ public class Client2 extends Activity {
 			ImageView customImage = (ImageView) findViewById(R.id.imageviewavatarright);
 			
 			Intent intent2 = getIntent(); 
-			String image_path= intent2.getStringExtra("imageUri"); 
+			image_path = intent2.getStringExtra("imageUri"); 
 			Uri fileUri = Uri.parse(image_path);
 			customImage.setImageURI(fileUri);
 			
@@ -459,7 +470,8 @@ public class Client2 extends Activity {
 			
 			//imagefile = new File(fileUri.getPath());
 			//imagefile = new File("/storage/extSdCard/twentysidedbutton.png");
-	        
+			
+	        /*OLD WAY (WORKS):
 			FileInputStream fis = null;
 	        try{
 	            fis = new FileInputStream(imagefile);
@@ -467,15 +479,7 @@ public class Client2 extends Activity {
 	            e.printStackTrace();
 	        }
 	        bm = BitmapFactory.decodeStream(fis);
-	        
-	        
-	        
-	        
-	        
-	        
-	        
-	        
-	        
+			*/
 			
 			whatAvatar = "custom";
 		}
@@ -699,11 +703,11 @@ public class Client2 extends Activity {
 		  	  	  		computerHitPointsTextView.clearAnimation();
 		  	  	  		
 		  				
-		  				final Handler h4 = new Handler();
-			  	  	  	h4.postDelayed(new Runnable() {
+		  				//final Handler h4 = new Handler();
+			  	  	  	//h4.postDelayed(new Runnable() {
 			  	  	  		
-			  	  	  		@Override
-			  	  	  		public void run() {				  				
+			  	  	  		//@Override
+			  	  	  		//public void run() {				  				
 			  	  	  			
 			  	  	  			// Sets sixSidedBlank visible & enabled.
 			  	  	  			//sixSidedRollFromLeft();  	  	  			
@@ -777,6 +781,15 @@ public class Client2 extends Activity {
 												  	  	  			
 												  	  	  		@Override
 												  	  	  		public void run() {
+												  	  	  			
+												  	  	  		if (id == 0) {
+											  	  	  				
+												  	  	  			sendImage0();
+											  	  	  			}
+											  	  	  			else if (id == 1) {
+											  	  	  				
+											  	  	  				sendImage1();
+											  	  	  			}
 													  	  	  			
 													  	  	  		//try {           
 													  	                /*
@@ -788,7 +801,7 @@ public class Client2 extends Activity {
 													  	                 */
 												  	  	  			
 													  	  	  			
-												  	  	  				sendImage();
+												  	  	  				
 													  	  	  			//new Thread(new sendBullShit()).start();
 													  	  	  			/*
 														  	  	  		InetAddress serverAddr = InetAddress.getByName(hostIP);// WAS: SERVER_IP
@@ -913,8 +926,8 @@ public class Client2 extends Activity {
 						  		  			 */
 					  	  	  		}
 					  	  	  	}, 500);
-			  	  	  		}
-			  	  	  	}, 2000);
+			  	  	  		//}
+			  	  	  	//}, 2000);
 		  	  	  	}
 	  	  	  	}, 3000);//FINAGLING TO GET RIGHT (MAINLY 1ST TIME) - should be at least 4700?	  	  		  			
   	  		}
@@ -2546,6 +2559,24 @@ public class Client2 extends Activity {
 			    super.onDestroy();
 				
 				//stopService(svc);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		if (socket0 != null) {
+			try {
+				
+				socket0.close();
+				
+				stopService(svc);
+				
+				android.os.Process.killProcess(android.os.Process.myPid());
+			    
+			    super.onDestroy();				
+				
+				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -12574,7 +12605,7 @@ public class Client2 extends Activity {
         return s;
     }
 	
-	public void sendImage(){
+	public void sendImage0(){
 		
 		Thread thread = new Thread(new Runnable(){
 		    @Override
@@ -12583,6 +12614,51 @@ public class Client2 extends Activity {
 		        	
 		    		InetAddress address = InetAddress.getByName(hostIP);
 			        socket0 = new Socket(address, 3000);
+		    		
+		    		
+			        //File file = new File(image_path);
+			        try (InputStream is = new BufferedInputStream(new FileInputStream(imagefile));
+			                DataOutputStream dos = new DataOutputStream(socket0.getOutputStream());) {
+			            dos.writeLong(imagefile.length()); // <-- remember to read a long on server.
+			            int val;
+			            while ((val = is.read()) != -1) {
+			                dos.write(val);
+			            }
+			            dos.flush();
+			            dos.close();
+			            is.close();
+			        }
+			        
+			        
+			        
+			        
+			        
+			        
+			        
+			        
+			        
+			        
+			        
+		        	
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		        }
+		    }
+		});
+
+		thread.start();
+	    	
+	}
+	
+	public void sendImage1(){
+		
+		Thread thread = new Thread(new Runnable(){
+		    @Override
+		    public void run() {
+		        try {
+		        	
+		    		InetAddress address = InetAddress.getByName(hostIP);
+			        socket0 = new Socket(address, 3001);
 		    		
 		    		DataOutputStream out = new DataOutputStream(
 	                        socket0.getOutputStream());

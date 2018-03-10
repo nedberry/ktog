@@ -18,6 +18,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.io.OptionalDataException;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.StreamCorruptedException;
@@ -165,9 +166,9 @@ public class Host extends Activity {
 	int idCounter = 0;
 	
 	ServerSocket serverSocket;
-	ServerSocket serverSocketB;
+	//ServerSocket serverSocketB;
 	ServerSocket server0;
-	Socket clientSocket0;;
+	Socket clientSocket0;
 	//ServerSocket[] serverSocket = new ServerSocket[1];
 	
 	Handler updateConversationHandler;
@@ -2356,6 +2357,24 @@ public void decodeImage0() {
 			try {
 				
 				server0.close();
+				
+				stopService(svc);
+				
+				android.os.Process.killProcess(android.os.Process.myPid());
+			    
+			    super.onDestroy();				
+				
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		if (clientSocket0 != null) {
+			try {
+				
+				clientSocket0.close();
 				
 				stopService(svc);
 				
@@ -13693,7 +13712,7 @@ public void decodeImage0() {
 	  	  	    	
 		  	  	    if (ArrayOfAvatars.avatar[0].equals("custom")){
 		  	  	    	
-			  	  	    File imgFile = new  File("/storage/sdcard0/avatar0.png");
+			  	  	    File imgFile = new  File("/storage/sdcard0/avatar0");//WAS .png
 	
 						if(imgFile.exists()){
 	
@@ -24288,8 +24307,27 @@ public void decodeImage0() {
 
 	}
 	*/
-	public void ReceiveImage(){
+	public void ReceiveImage0(){
 		try {
+			
+			ServerSocket clientSocket0 = new ServerSocket(3000);
+			File file = new File("/storage/sdcard0/avatar0");
+			try (Socket s = clientSocket0.accept();
+			        DataInputStream dis = new DataInputStream(
+			                s.getInputStream());
+			        OutputStream fos = new BufferedOutputStream(
+			                new FileOutputStream(file));) {
+			    long arrlen = dis.readLong();
+			    for (long i = 0; i < arrlen; i++) {
+			        fos.write(dis.read());
+			    }
+			    fos.flush();
+			    dis.close();
+			    fos.close();
+			    clientSocket0.close();
+			}
+			
+			/*OLD WAY (WORKS)
 			server0 = new ServerSocket(); // <-- create an unbound socket first
 			server0.setReuseAddress(true);
 			server0.bind(new InetSocketAddress(3000)); // <-- now bind it
@@ -24298,7 +24336,7 @@ public void decodeImage0() {
 			
 			DataInputStream dis = new DataInputStream(clientSocket0.getInputStream());
 	        long length = dis.readLong();
-	        File to = new File("/storage/sdcard0/avatar0.png");
+	        File to = new File("/storage/sdcard0/avatar0");//WAS .png
 	        DataOutputStream dos = new DataOutputStream(
 	                new FileOutputStream(to));
 	        buffer = new byte[1024];
@@ -24308,16 +24346,58 @@ public void decodeImage0() {
 	            dos.write(buffer, 0, len);
 	        }
 	        
-	        
-	       // Bitmap bitmap = BitmapFactory.decodeFile("/storage/sdcard0/avatar0.png");
-	        //ByteArrayOutputStream blob = new ByteArrayOutputStream();
-	       // bitmap.compress(CompressFormat.PNG, 0 /* Ignored for PNGs */, blob);
-	       // bitmapdata = blob.toByteArray();
-	        
-	        
+	        dis.close();
+	        dos.close();
+			*/
+			
+			} catch (Exception e) {
+		       
+		    }
+	}
+	
+	public void ReceiveImage1(){
+		try {
+			
+			ServerSocket clientSocket0 = new ServerSocket(3001);
+			File file = new File("/storage/sdcard0/avatar1");
+			try (Socket s = clientSocket0.accept();
+			        DataInputStream dis = new DataInputStream(
+			                s.getInputStream());
+			        OutputStream fos = new BufferedOutputStream(
+			                new FileOutputStream(file));) {
+			    long arrlen = dis.readLong();
+			    for (long i = 0; i < arrlen; i++) {
+			        fos.write(dis.read());
+			    }
+			    fos.flush();
+			    dis.close();
+			    fos.close();
+			    clientSocket0.close();
+			}
+			
+			/*OLD WAY (WORKS)
+			server0 = new ServerSocket(); // <-- create an unbound socket first
+			server0.setReuseAddress(true);
+			server0.bind(new InetSocketAddress(3001)); // <-- now bind it
+			
+			clientSocket0 = server0.accept();
+			
+			DataInputStream dis = new DataInputStream(clientSocket0.getInputStream());
+	        long length = dis.readLong();
+	        File to = new File("/storage/sdcard0/avatar1");//WAS .png
+	        DataOutputStream dos = new DataOutputStream(
+	                new FileOutputStream(to));
+	        buffer = new byte[1024];
+	        int len;
+	        //System.out.println(length);
+	        while ((len = dis.read(buffer)) > -1) {
+	            dos.write(buffer, 0, len);
+	        }
 	        
 	        dis.close();
 	        dos.close();
+	        */
+	        
 			} catch (Exception e) {
 		       
 		    }
@@ -24680,7 +24760,7 @@ else if (read.contains("whatAvatar")) {//MAY WANT MORE COMPLICATED TERM SO IT DO
 							
 							if (ArrayOfAvatars.avatar[0].equals("custom")) {
 								
-								ReceiveImage();
+								ReceiveImage0();
 								
 								//SOCKET FOR IMAGE TRANSFER IS DETECTED & COUNTED AS ADDITIONAL CLIENT, SO:
 								if (clientWorkers.size() == 2) {
@@ -24712,6 +24792,23 @@ else if (read.contains("whatAvatar")) {//MAY WANT MORE COMPLICATED TERM SO IT DO
 							
 							String str2 = "PlAyerName1 :" + part2;
 							sendToClient1(str2);
+							
+							
+							if (ArrayOfAvatars.avatar[1].equals("custom")) {
+								
+								ReceiveImage1();
+								
+								//SOCKET FOR IMAGE TRANSFER IS DETECTED & COUNTED AS ADDITIONAL CLIENT, SO:
+								if (clientWorkers.size() == 3) {
+									
+									clientWorkers.remove(3);
+								}
+								else if (clientWorkers.size() == 4) {//THIS WOULD NEED SOMETHING MORE?
+									
+									clientWorkers.remove(4);
+								}
+								
+							}
 						}
 						else if (id == 2) {
 							ArrayOfPlayers.player[2]=part2;
