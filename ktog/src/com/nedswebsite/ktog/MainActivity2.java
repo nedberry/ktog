@@ -18562,19 +18562,20 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 										  	  	  		@Override
 											  	  	  	public void run() {
 										  	  	  			
-										  	  	  			//haste();
+										  	  	  			haste();
 										  	  	  			
-										  	  	  			disarmedAction();
+										  	  	  			//disarmedAction();
 											  	  	  	}
 										  	  	  	}, 1000);												
 												}
-												
+												/*
 												else {
 													
 													//disarmedAction();
 													
 													haste();
-												}										
+												}
+												*/									
 		  									}
 		  		                        	
 		  		                        	else if (item == 2) {

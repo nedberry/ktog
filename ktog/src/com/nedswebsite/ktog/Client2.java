@@ -872,7 +872,7 @@ public class Client2 extends Activity {
 													  	            //    e.printStackTrace();
 													  	            //}
 												  	  	  		}
-												  	  	  	}, 6000);
+												  	  	  	}, 1000);
 											  	  	  	}
 									  	  	  			
 									  	  	  		}
@@ -925,11 +925,11 @@ public class Client2 extends Activity {
 						  		  			//preventinitiativediefromleaking = "off";
 						  		  			 */
 					  	  	  		}
-					  	  	  	}, 500);
+					  	  	  	}, 1000);
 			  	  	  		//}
 			  	  	  	//}, 2000);
 		  	  	  	}
-	  	  	  	}, 3000);//FINAGLING TO GET RIGHT (MAINLY 1ST TIME) - should be at least 4700?	  	  		  			
+	  	  	  	}, 1000);//FINAGLING TO GET RIGHT (MAINLY 1ST TIME) - should be at least 4700?	  	  		  			
   	  		}
   	  	}, 2000);
   	  	
@@ -5626,6 +5626,13 @@ public class Client2 extends Activity {
 				
 				//test();
 				
+				
+				
+				
+				
+				
+				
+				
 				myInitiativeTransition();
 				
 				
@@ -6962,7 +6969,6 @@ public class Client2 extends Activity {
 						
 						ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
 						computerAvatar.setVisibility(View.VISIBLE);
-						
 						
 						
 						TextView computerNameTextView = (TextView)findViewById(R.id.textviewnameright);

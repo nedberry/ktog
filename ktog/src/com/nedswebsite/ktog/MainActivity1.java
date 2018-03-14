@@ -286,28 +286,28 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	    			public void onClick(DialogInterface dialog, int item) { 
 	    								
 	    				if (item == 0) {
-	    					ArrayOfAvatars.avatar[0] = "computer";
+	    					ArrayOfAvatars.avatar[5] = "computer";
 	    					
 	    					goToHostOrJoin();
 		    	        	
 		    	        	dialog.dismiss();
 	    				}
 	    				else if (item == 1) {
-	    					ArrayOfAvatars.avatar[0] = "crossedswords";
+	    					ArrayOfAvatars.avatar[5] = "crossedswords";
 	    					
 	    					goToHostOrJoin();
 		    	        	
 		    	        	dialog.dismiss();
 	    				}
 	    				else if (item == 2) {
-	    					ArrayOfAvatars.avatar[0] = "stonedead";
+	    					ArrayOfAvatars.avatar[5] = "stonedead";
 	    					
 	    					goToHostOrJoin();
 		    	        	
 		    	        	dialog.dismiss();
 	    				}
 	    				else if (item == 3) {
-	    					ArrayOfAvatars.avatar[0] = "custom";	    					
+	    					ArrayOfAvatars.avatar[5] = "custom";	    					
 	    					
 	    					openGallery();
 	    					
@@ -1065,28 +1065,28 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
     	    			public void onClick(DialogInterface dialog, int item) { 
     	    								
     	    				if (item == 0) {
-    	    					ArrayOfAvatars.avatar[0] = "computer";
+    	    					ArrayOfAvatars.avatar[5] = "computer";
     	    					
     	    					goToHostOrJoin();
     		    	        	
     		    	        	dialog.dismiss();
     	    				}
     	    				else if (item == 1) {
-    	    					ArrayOfAvatars.avatar[0] = "crossedswords";
+    	    					ArrayOfAvatars.avatar[5] = "crossedswords";
     	    					
     	    					goToHostOrJoin();
     		    	        	
     		    	        	dialog.dismiss();
     	    				}
     	    				else if (item == 2) {
-    	    					ArrayOfAvatars.avatar[0] = "stonedead";
+    	    					ArrayOfAvatars.avatar[5] = "stonedead";
     	    					
     	    					goToHostOrJoin();
     		    	        	
     		    	        	dialog.dismiss();
     	    				}
     	    				else if (item == 3) {
-    	    					ArrayOfAvatars.avatar[0] = "custom";	    					
+    	    					ArrayOfAvatars.avatar[5] = "custom";	    					
     	    					
     	    					openGallery();
     	    					
@@ -1315,28 +1315,28 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
     	    			public void onClick(DialogInterface dialog, int item) { 
     	    								
     	    				if (item == 0) {
-    	    					ArrayOfAvatars.avatar[0] = "computer";
+    	    					ArrayOfAvatars.avatar[5] = "computer";
     	    					
     	    					goToHostOrJoin();
     		    	        	
     		    	        	dialog.dismiss();
     	    				}
     	    				else if (item == 1) {
-    	    					ArrayOfAvatars.avatar[0] = "crossedswords";
+    	    					ArrayOfAvatars.avatar[5] = "crossedswords";
     	    					
     	    					goToHostOrJoin();
     		    	        	
     		    	        	dialog.dismiss();
     	    				}
     	    				else if (item == 2) {
-    	    					ArrayOfAvatars.avatar[0] = "stonedead";
+    	    					ArrayOfAvatars.avatar[5] = "stonedead";
     	    					
     	    					goToHostOrJoin();
     		    	        	
     		    	        	dialog.dismiss();
     	    				}
     	    				else if (item == 3) {
-    	    					ArrayOfAvatars.avatar[0] = "custom";	    					
+    	    					ArrayOfAvatars.avatar[5] = "custom";	    					
     	    					
     	    					openGallery();
     	    					

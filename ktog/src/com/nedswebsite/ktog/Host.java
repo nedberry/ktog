@@ -395,22 +395,22 @@ public class Host extends Activity {
 		
 		//WHY DID I CREATE IMAGEVIEW FOR EACH??????? JUST HAVE 1 IMAGEVIEW & TAKE OUT: android:background="@drawable/computer" (FOR EX.)
 		
-		else if (ArrayOfAvatars.avatar[0].equals("computer")){
+		else if (ArrayOfAvatars.avatar[5].equals("computer")){
 			crossedswords2.setVisibility(View.INVISIBLE);
 			stonedead2.setVisibility(View.INVISIBLE);
 			customImage.setVisibility(View.INVISIBLE);
 		}
-		else if (ArrayOfAvatars.avatar[0].equals("crossedswords")){
+		else if (ArrayOfAvatars.avatar[5].equals("crossedswords")){
 			computerAvatar.setVisibility(View.INVISIBLE);
 			stonedead2.setVisibility(View.INVISIBLE);
 			customImage.setVisibility(View.INVISIBLE);
 		}
-		else if (ArrayOfAvatars.avatar[0].equals("stonedead")){
+		else if (ArrayOfAvatars.avatar[5].equals("stonedead")){
 			crossedswords2.setVisibility(View.INVISIBLE);
 			computerAvatar.setVisibility(View.INVISIBLE);
 			customImage.setVisibility(View.INVISIBLE);
 		}
-		else if (ArrayOfAvatars.avatar[0].equals("custom")){
+		else if (ArrayOfAvatars.avatar[5].equals("custom")){
 			crossedswords2.setVisibility(View.INVISIBLE);
 			stonedead2.setVisibility(View.INVISIBLE);
 			computerAvatar.setVisibility(View.INVISIBLE);
@@ -561,19 +561,18 @@ public class Host extends Activity {
 			  	  	  			centerscrolltext.append("\n" + "> Waiting for opponents...");
 			  		  			
 			  	  	  			
-				  		  		final Handler h5 = new Handler();
-					  	  	  	h5.postDelayed(new Runnable() {
+				  		  		//final Handler h5 = new Handler();
+					  	  	  	//h5.postDelayed(new Runnable() {
 					  	  	  			
-					  	  	  			// Does this thread help:?
-						  	  	  		@Override
-						  	  	  		public void run()
-						  	  	  		{  	  			
+						  	  	  		//@Override
+						  	  	  		//public void run()
+						  	  	  		//{  	  			
 						  	  	  			//startService(svc);
 						  	  	  			
-						  	  	  			/*
-						  	  	  			ServerThread  NewServerThread= new ServerThread();
-						  	  	  			NewServerThread.run();						  	  	  			
-						  	  	  			*/
+						  	  	  			
+						  	  	  			//ServerThread  NewServerThread= new ServerThread();
+						  	  	  			//NewServerThread.run();						  	  	  			
+						  	  	  			
 						  	  	  			
 						  	  	  			
 						  	  	  			/*
@@ -597,12 +596,12 @@ public class Host extends Activity {
 						  		  			
 						  		  			//preventinitiativediefromleaking = "off";
 						  		  			*/
-					  	  	  		}
-					  	  	  	}, 500);
+					  	  	  		//}
+					  	  	  	//}, 500);
 			  	  	  		}
 			  	  	  	}, 1000);
 		  	  	  	}
-	  	  	  	}, 3000);//FINAGLING TO GET RIGHT (MAINLY 1ST TIME) - should be at least 4800?	  	  		  			
+	  	  	  	}, 1000);//FINAGLING TO GET RIGHT (MAINLY 1ST TIME) - should be at least 4800?	  	WHY???????  		  			
   	  		}
   	  	}, 2000);
   	  	
@@ -13613,23 +13612,110 @@ public void decodeImage0() {
 		  	  			startGameNow ="yes";
 		  	  			
 		  	  			
-		  	  			/*
-		  	  			// Calls method from another class:
-			  	  		Engine  engine = new Engine();
-			  	  		Engine.gameEngine();
-			  	  		*/
-			  	  		
-		  	  					  	  			
-		  	  			//gameEngine(null, gameOn, gameOn);
-		  	  			gameEngine();
 		  	  			
 		  	  			
 		  	  			
-		  	  			//preventinitiativediefromleaking.equals("on");
+		  	  			if (numberOfPlayers == 2) {
+		  	  			
+				  	  		if (ArrayOfAvatars.avatar[5].equals("computer")){
+				  				//SEND TO 0
+				  			}
+				  			else if (ArrayOfAvatars.avatar[5].equals("crossedswords")){
+				  				
+				  			}
+				  			else if (ArrayOfAvatars.avatar[5].equals("stonedead")){
+				  				
+				  			}
+				  			else if (ArrayOfAvatars.avatar[5].equals("custom")){
+				  				
+				  			}
+			  	  			
+			  	  			
+			  	  			/*
+			  	  			// Calls method from another class:
+				  	  		Engine  engine = new Engine();
+				  	  		Engine.gameEngine();
+				  	  		*/
+				  	  		
+			  	  					  	  			
+			  	  			//gameEngine(null, gameOn, gameOn);
+			  	  			gameEngine();
+			  	  			
+			  	  			
+			  	  			
+			  	  			//preventinitiativediefromleaking.equals("on");
+			  	  			
+			  	  			
+			  	  			//Thread myThread = new Thread(myRunnable);
+			  	  			//myThread.start();
+			  	  			
+		  	  			}
+		  	  			
+		  	  			else if (numberOfPlayers == 3) {
+			  	  			
+				  	  		if (ArrayOfAvatars.avatar[5].equals("computer")){
+				  				//SEND TO 0
+				  	  			//SEND TO 1
+				  			}
+				  			if (ArrayOfAvatars.avatar[5].equals("crossedswords")){
+				  				
+				  			}
+				  			if (ArrayOfAvatars.avatar[5].equals("stonedead")){
+				  				
+				  			}
+				  			if (ArrayOfAvatars.avatar[5].equals("custom")){
+				  				
+				  			}
+				  	  		
+					  	  	if (ArrayOfAvatars.avatar[0].equals("computer")){
+				  				//SEND TO 1
+				  			}
+				  			if (ArrayOfAvatars.avatar[0].equals("crossedswords")){
+				  				
+				  			}
+				  			if (ArrayOfAvatars.avatar[0].equals("stonedead")){
+				  				
+				  			}
+				  			if (ArrayOfAvatars.avatar[0].equals("custom")){
+				  				
+				  			}
+				  			
+				  			if (ArrayOfAvatars.avatar[1].equals("computer")){
+				  				//SEND TO 0
+				  			}
+				  			if (ArrayOfAvatars.avatar[1].equals("crossedswords")){
+				  				
+				  			}
+				  			if (ArrayOfAvatars.avatar[1].equals("stonedead")){
+				  				
+				  			}
+				  			if (ArrayOfAvatars.avatar[1].equals("custom")){
+				  				
+				  			}
+			  	  			
+			  	  			
+			  	  			/*
+			  	  			// Calls method from another class:
+				  	  		Engine  engine = new Engine();
+				  	  		Engine.gameEngine();
+				  	  		*/
+				  	  		
+			  	  					  	  			
+			  	  			//gameEngine(null, gameOn, gameOn);
+			  	  			gameEngine();
+			  	  			
+			  	  			
+			  	  			
+			  	  			//preventinitiativediefromleaking.equals("on");
+			  	  			
+			  	  			
+			  	  			//Thread myThread = new Thread(myRunnable);
+			  	  			//myThread.start();
+			  	  		}
 		  	  			
 		  	  			
-		  	  			//Thread myThread = new Thread(myRunnable);
-		  	  			//myThread.start();
+		  	  			
+		  	  			
 			  	  		
 		  	  		}
 		  	  	}, 10325); // FINAGELED!	  	  			
@@ -18517,7 +18603,7 @@ public void decodeImage0() {
 												*/
 											}					
 											
-											else if ((hasteSpell[5] > 0) && !(disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0])) {
+											else if ((hasteSpell[5] > 0) ) {//WAS: && !(disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0])
 												
 												haste();
 												
@@ -18548,7 +18634,7 @@ public void decodeImage0() {
 									  	  	  	}, 1000);
 									  	  	  	*/											
 											}
-											
+											/*
 											else {
 												
 												disarmedAction();												
@@ -18556,7 +18642,8 @@ public void decodeImage0() {
 												//haste();
 												
 												dialog.dismiss();
-											}										
+											}
+											*/									
 	  									}
 	  		                        	
 	  		                        	else if (item == 2) {
@@ -24762,7 +24849,9 @@ else if (read.contains("whatAvatar")) {//MAY WANT MORE COMPLICATED TERM SO IT DO
 								
 								ReceiveImage0();
 								
+								//THIS DOESN'T WORK: (THE AVATAR SOCKET SEEMS TO ADD AN ADDITIONAL SOCKET(CLIENT). THE TRY/CATCH AT BOTTOM PREVENTS CRASH.)
 								//SOCKET FOR IMAGE TRANSFER IS DETECTED & COUNTED AS ADDITIONAL CLIENT, SO:
+								/*
 								if (clientWorkers.size() == 2) {
 									
 									clientWorkers.remove(2);
@@ -24771,7 +24860,7 @@ else if (read.contains("whatAvatar")) {//MAY WANT MORE COMPLICATED TERM SO IT DO
 									
 									clientWorkers.remove(3);
 								}
-								
+								*/
 							}
 							
 							
@@ -26919,7 +27008,7 @@ else if (read.contains("cstmImage")) {//MAY WANT MORE COMPLICATED TERM SO IT DOE
 	}
 	
 	public void sendToClient1(Object read){
-		
+		//THE AVATAR SOCKET SEEMS TO ADD AN ADDITIONAL SOCKET(CLIENT). THE CATCH PREVENTS CRASH.
 		try {
 			
 			//for(ClientWorker client : clientWorkers)                    	
@@ -26932,7 +27021,7 @@ else if (read.contains("cstmImage")) {//MAY WANT MORE COMPLICATED TERM SO IT DOE
 	}
 	
 	public void sendToClient2(Object read){
-		
+		//THE AVATAR SOCKET SEEMS TO ADD AN ADDITIONAL SOCKET(CLIENT). THE CATCH PREVENTS CRASH.
 		try {
 			
 			//for(ClientWorker client : clientWorkers)                    	
