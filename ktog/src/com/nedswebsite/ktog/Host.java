@@ -1,5 +1,6 @@
 package com.nedswebsite.ktog;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -8,6 +9,7 @@ import java.io.DataInput;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -23,6 +25,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.StreamCorruptedException;
 import java.lang.ClassNotFoundException;
+import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -40,6 +43,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
@@ -53,6 +57,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.text.InputFilter;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Base64;
@@ -135,6 +140,7 @@ public class Host extends Activity {
 	boolean client2RolledDouble = false;
 	boolean client3RolledDouble = false;
 	
+	boolean preventDoubleStuff = true;
 	
 	int host;
 	int client0;
@@ -166,6 +172,10 @@ public class Host extends Activity {
 	int idCounter = 0;
 	
 	ServerSocket serverSocket;
+	Socket socket0;
+	Socket socket1;
+	Socket socket2;
+	Socket socket3;
 	//ServerSocket serverSocketB;
 	ServerSocket server0;
 	Socket clientSocket0;
@@ -217,10 +227,10 @@ public class Host extends Activity {
 	
 	
 	// FOR ORDERING PURPOSES IN TITLE:
-	int firstsubscript;
-	int secondsubscript;
-	int thirdsubscript;
-	int fourthsubscript;
+	int firstsubscript = 0;//JUST TO INITIALIZE
+	int secondsubscript = 0;
+	int thirdsubscript = 0;
+	int fourthsubscript = 0;
 	
 	
 	//IS THIS WORKING NOW (W NEW onbackpressed CODE)????????????
@@ -293,6 +303,11 @@ public class Host extends Activity {
 	Bitmap bmp0;
 	byte[] bitmapdata;
 	byte[] buffer;
+	File imagefile;
+	
+	
+	boolean fortwoplayer = false;
+	boolean forthreeplayer = false;
 	
 	
 	
@@ -391,6 +406,13 @@ public class Host extends Activity {
 			String image_path= intent.getStringExtra("imageUri"); 
 			Uri fileUri = Uri.parse(image_path);
 			customImage.setImageURI(fileUri);
+			
+			imagefile = new File(getPath(fileUri));
+			
+			//WAS GETTING OUTLINE AROUND AVATAR SO:
+			crossedswords2.setVisibility(View.INVISIBLE);
+			stonedead2.setVisibility(View.INVISIBLE);
+			computerAvatar.setVisibility(View.INVISIBLE);
 		}		
 		
 		//WHY DID I CREATE IMAGEVIEW FOR EACH??????? JUST HAVE 1 IMAGEVIEW & TAKE OUT: android:background="@drawable/computer" (FOR EX.)
@@ -2320,15 +2342,12 @@ public void decodeImage0() {
 	@Override
 	protected void onDestroy() {
 		
-		String rollOff = "no";
-		String rollOff305 = "no";
-		String rollOff301 ="no";
-		String rollOff315 ="no";
-		
 		ArrayOfPlayers.player = new String[6];
 		ArrayOfInitiative.initiative = new int[6];
 		
 		initiativeRolled = new String[] {"no", "no", "no", "no", "no", "no"};
+		
+		float[] initiativeFinal = new float[6];
 		
 		//super.onDestroy();
 		
@@ -2388,21 +2407,82 @@ public void decodeImage0() {
 			}
 		}
 		
+		if (socket0 != null) {
+			try {
+				
+				socket0.close();
+				
+				stopService(svc);
+				
+				android.os.Process.killProcess(android.os.Process.myPid());
+			    
+			    super.onDestroy();				
+				
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		if (socket1 != null) {
+			try {
+				
+				socket1.close();
+				
+				stopService(svc);
+				
+				android.os.Process.killProcess(android.os.Process.myPid());
+			    
+			    super.onDestroy();				
+				
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		if (socket2 != null) {
+			try {
+				
+				socket2.close();
+				
+				stopService(svc);
+				
+				android.os.Process.killProcess(android.os.Process.myPid());
+			    
+			    super.onDestroy();				
+				
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		if (socket3 != null) {
+			try {
+				
+				socket3.close();
+				
+				stopService(svc);
+				
+				android.os.Process.killProcess(android.os.Process.myPid());
+			    
+			    super.onDestroy();				
+				
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 		super.onDestroy();
 	}
 		
 	public void onBackPressed() {
-		
-		String rollOff = "no";
-		String rollOff305 = "no";
-		String rollOff301 ="no";
-		String rollOff315 ="no";
-		
-		ArrayOfPlayers.player = new String[6];
-		ArrayOfInitiative.initiative = new int[6];
-		
-		initiativeRolled = new String[] {"no", "no", "no", "no", "no", "no"};
-		
 		
 		AlertDialog.Builder alert = new AlertDialog.Builder(Host.this);
 		
@@ -2415,6 +2495,85 @@ public void decodeImage0() {
 			public void onClick(DialogInterface dialog, int whichButton) {
 
 				dialog.dismiss();
+				
+				//------------------------------------------------------------NEW
+				
+				String rollOff = "no";
+				String rollOff305 = "no";
+				String rollOff301 = "no";
+				String rollOff315 = "no";
+				String rollOff425 = "no";
+				String rollOff420 = "no";
+				String rollOff421 = "no";
+				String rollOff4150 = "no";
+				String rollOff4215 = "no";
+				String rollOff4250 = "no";
+				String rollOff4201 = "no";
+				String rollOff40125 = "no";
+				String rollOff530 = "no";
+				String rollOff531 = "no";
+				String rollOff532 = "no";
+				String rollOff535 = "no";
+				String rollOff5301 = "no";
+				String rollOff5302 = "no";
+				String rollOff5305 = "no";
+				String rollOff5312 = "no";
+				String rollOff5315 = "no";
+				String rollOff5325 = "no";
+				String rollOff53012 = "no";
+				String rollOff53015 = "no";
+				String rollOff53125 = "no";
+				String rollOff53025 = "no";
+				String rollOff530125 = "no";
+				
+				boolean hostRolledDouble = false;
+				boolean client0RolledDouble = false;
+				boolean client1RolledDouble = false;
+				boolean client2RolledDouble = false;
+				boolean client3RolledDouble = false;
+				
+				String doublesModifierOfInitiativeHost = "";
+				String doublesModifierOfInitiativeClient0 = "";
+				String doublesModifierOfInitiativeClient1 = "";
+				String doublesModifierOfInitiativeClient2 = "";
+				String doublesModifierOfInitiativeClient3 = "";
+				
+				//------------------------------------------------------------WAS AT TOP
+				
+				//String rollOff = "no";
+				//String rollOff305 = "no";
+				//String rollOff301 ="no";
+				//String rollOff315 ="no";
+				
+				ArrayOfPlayers.player = new String[6];
+				ArrayOfInitiative.initiative = new int[6];
+				
+				initiativeRolled = new String[] {"no", "no", "no", "no", "no", "no"};
+				
+				//---------------------------------------------------------------FROM MAIN2
+				
+				//NOT SURE ARRAYS ARE GETTING WIPED COMPLETELY W THE INTENT CODE BELOW, SO ADDED THIS:
+    			ArrayOfPlayers.player = new String[6];
+    			ArrayOfAvatars.avatar = new String[6];
+    			ArrayOfHitPoints.hitpoints = new int[6];
+    			ArrayOfInitiative.initiative = new int[6];
+    			//ArrayOfCureResult.cureResult = new int[6];
+    			ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo = new int[1];
+    			ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne = new int[1];
+    			ArrayOfAttackResult.attackResult = new int[1];
+    			ArrayOfAttackDamage.attackDamage = new int[1];
+    				    			
+    			
+    			blessSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
+    			cureSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
+    			dodgeBlowSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
+    			mightyBlowSpell = new int[] {1, 1, 1, 1, 1, 1, 1};
+    			hasteSpell = new int[] {2, 2, 2, 2, 2, 2, 2};
+    			
+    			playerDeadYet = new String[] {"yes", "yes", "yes", "yes", "yes", "yes"};	    			
+    			canHasDisarmed = new String[] {"no", "no", "no", "no", "no", "no"};
+				
+				//------------------------------------------------------------------FROM MAIN2 BUT WAS HERE ALREADY
 				
 				stopService(svc);
 
@@ -5264,6 +5423,8 @@ public void decodeImage0() {
 	//Determines when all players have rolled for initiative then calls for method to determine doubles:
 	public void checkInitiativeResults() {
 		
+		clientWorkerSizetest();
+		
 		if (initiativeRolled[5].equals("yes")) {
 			
 			if (clientWorkers.size() == 1) {
@@ -5278,6 +5439,7 @@ public void decodeImage0() {
 					determineDoubles();
 				}
 			}
+			/*
 			else if (clientWorkers.size() == 3) {
 				if (initiativeRolled[0].equals("yes") && initiativeRolled[1].equals("yes") && initiativeRolled[2].equals("yes")) {
 
@@ -5289,9 +5451,7 @@ public void decodeImage0() {
 
 					determineDoubles();
 				}
-				
 			}
-			/*
 			else if (clientWorkers.size() == 5) {
 				if (initiativeRolled[0].equals("yes") && initiativeRolled[1].equals("yes") && initiativeRolled[2].equals("yes") && initiativeRolled[3].equals("yes") && initiativeRolled[4].equals("yes")) {
 
@@ -5351,6 +5511,7 @@ public void decodeImage0() {
 		      	  	});
 				}
 			}
+			/*
 			else if (clientWorkers.size() == 3) {
 				if (initiativeRolled[5].equals("no") || initiativeRolled[0].equals("no") || initiativeRolled[1].equals("no") || initiativeRolled[2].equals("no")) {
 
@@ -5400,7 +5561,6 @@ public void decodeImage0() {
 				}
 				
 			}
-			/*
 			else if (clientWorkers.size() == 5) {
 				if (initiativeRolled[5].equals("no") || initiativeRolled[0].equals("no") || initiativeRolled[1].equals("no") || initiativeRolled[2].equals("no") || initiativeRolled[3].equals("no") || initiativeRolled[4].equals("no")) {
 
@@ -5480,8 +5640,8 @@ public void decodeImage0() {
   	  	});*/		
 		
 		
-		// NEED THIS ANYMORE????
-		if ((initiativeRolled[5].equals("yes")) && (initiativeRolled[0].equals("yes"))) {
+		
+		if ((initiativeRolled[5].equals("yes")) && (initiativeRolled[0].equals("yes")) && (initiativeRolled[1].equals("no"))) {
 			
 			numberOfPlayers = 2;
 			
@@ -5498,6 +5658,7 @@ public void decodeImage0() {
 			String str2 = "numberOfPlayers :" + 3;
 			sendToClient1(str2);
 		}
+		/*
 		if ((initiativeRolled[5].equals("yes")) && (initiativeRolled[0].equals("yes")) && (initiativeRolled[1].equals("yes")) && (initiativeRolled[2].equals("yes"))) {
 			
 			numberOfPlayers = 4;
@@ -5527,7 +5688,7 @@ public void decodeImage0() {
 			String str4 = "numberOfPlayers :" + 5;
 			sendToClient3(str4);
 		}
-		/*
+		
 		if ((initiativeRolled[5].equals("yes")) && (initiativeRolled[0].equals("yes")) && (initiativeRolled[1].equals("yes")) && (initiativeRolled[2].equals("yes")) && (initiativeRolled[3].equals("yes")) && (initiativeRolled[4].equals("yes"))) {
 			numberOfPlayers = 6;
 		}		
@@ -11213,16 +11374,39 @@ public void decodeImage0() {
 		}		
 		
 		
-		displayInitiatives();		
+		//displayInitiatives();
+		
+		doubleStuffPrevention();
 	}
 	
+	
+	public void doubleStuffPrevention() {	//TO PREVENT DUPLICATION OF "Initiative Results:" IN CENTERSCROLL, 
+											//& SKILLS INFO IN TITLE TEXT (FOR HOST & CLIENTS).
+		
+		if (preventDoubleStuff) {
+			
+			//finishInitiative();
+			
+			displayInitiatives();
+		}
+	}
+	
+	
 	public void displayInitiatives() {
+		
+		preventDoubleStuff = false;
+		
 		
 		//FOR TESTING:
 		runOnUiThread(new Runnable() {
   	  	    @Override
   	  	    public void run() {
   	  	    	
+				
+			numberofplayerstest();
+				
+			
+				
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 	  			
@@ -11320,6 +11504,10 @@ public void decodeImage0() {
 			  	  	  	public void run() {
 		  	  	  			
 		  	  	  			finishInitiative();
+		  	  	  			
+		  	  	  			fortwoplayer = true;
+		  	  	  			
+		  	  	  			//doubleStuffPrevention();
 		  	  	  			
 		  	  	  			String str = "finishInitiative";
 		  	  	  			sendToClient0(str);
@@ -11614,7 +11802,11 @@ public void decodeImage0() {
 			  	  	  	public void run() {
 		  	  	  			
 			  	  	  		finishInitiative();
+			  	  	  		
+		  	  	  			forthreeplayer = true;
 		  	  	  			
+		  	  	  			//doubleStuffPrevention();
+			  	  	  		
 		  	  	  			String str = "finishInitiative";
 		  	  	  			sendToAllClients(str);
 		  	  	  			
@@ -11622,6 +11814,7 @@ public void decodeImage0() {
 			  	  	  	}
 		  	  	  	}, 3000);
   	    		}
+  	    		/*
   	    		else if (numberOfPlayers == 4) {
   	    			
   	    			centerscrolltext.append("\n" + "\n" + "Initiative Results:");
@@ -13215,12 +13408,13 @@ public void decodeImage0() {
   	    		else if (numberOfPlayers == 5) {
   	    			
   	    			//JUST 4 PLAYERS??????
-  	    		}  	    							
+  	    		}
+  	    		*/ 	    							
   	  	    }
   	  	});			
 	}
 	
-	public void finishInitiative() {		
+	public void finishInitiative() {
 		
 		final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 		//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
@@ -13579,8 +13773,8 @@ public void decodeImage0() {
 				chatBlankButton.bringToFront();
 	  	  		
   	  			  	  			
-	  	  		final Handler h3 = new Handler();
-		  	  	h3.postDelayed(new Runnable() {
+	  	  		final Handler h2 = new Handler();
+		  	  	h2.postDelayed(new Runnable() {
 	
 		  	  		@Override
 		  	  		public void run()
@@ -13615,40 +13809,40 @@ public void decodeImage0() {
 		  	  			
 		  	  			
 		  	  			
-		  	  			if (numberOfPlayers == 2) {
 		  	  			
+			  	  		if (numberOfPlayers == 2) {
+			  	  			
 				  	  		if (ArrayOfAvatars.avatar[5].equals("computer")){
 				  				//SEND TO 0
+				  	  			
+					  	  		String str = "hostComputer";
+								sendToClient0(str);
 				  			}
 				  			else if (ArrayOfAvatars.avatar[5].equals("crossedswords")){
 				  				
+				  				String str = "hostCrossedswords";
+								sendToClient0(str);
 				  			}
 				  			else if (ArrayOfAvatars.avatar[5].equals("stonedead")){
 				  				
+				  				String str = "hostStonedead";
+								sendToClient0(str);
 				  			}
 				  			else if (ArrayOfAvatars.avatar[5].equals("custom")){
 				  				
+				  				String str = "hostCustom";
+								sendToClient0(str);
+								
+								final Handler h3 = new Handler();
+					  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
+					  	  	  			
+					  	  	  		@Override
+						  	  	  	public void run() {
+					  	  	  			
+					  	  	  			sendImage5To0();  	  	  			
+						  	  	  	}
+					  	  	  	}, 1000);
 				  			}
-			  	  			
-			  	  			
-			  	  			/*
-			  	  			// Calls method from another class:
-				  	  		Engine  engine = new Engine();
-				  	  		Engine.gameEngine();
-				  	  		*/
-				  	  		
-			  	  					  	  			
-			  	  			//gameEngine(null, gameOn, gameOn);
-			  	  			gameEngine();
-			  	  			
-			  	  			
-			  	  			
-			  	  			//preventinitiativediefromleaking.equals("on");
-			  	  			
-			  	  			
-			  	  			//Thread myThread = new Thread(myRunnable);
-			  	  			//myThread.start();
-			  	  			
 		  	  			}
 		  	  			
 		  	  			else if (numberOfPlayers == 3) {
@@ -13656,62 +13850,137 @@ public void decodeImage0() {
 				  	  		if (ArrayOfAvatars.avatar[5].equals("computer")){
 				  				//SEND TO 0
 				  	  			//SEND TO 1
+				  	  			
+					  	  		String str = "hostComputer";
+								sendToAllClients(str);
 				  			}
 				  			if (ArrayOfAvatars.avatar[5].equals("crossedswords")){
 				  				
+				  				String str = "hostCrossedswords";
+								sendToAllClients(str);
 				  			}
 				  			if (ArrayOfAvatars.avatar[5].equals("stonedead")){
 				  				
+				  				String str = "hostStonedead";
+								sendToAllClients(str);
 				  			}
 				  			if (ArrayOfAvatars.avatar[5].equals("custom")){
 				  				
+				  				String str = "hostCustom";
+								sendToAllClients(str);
+								
+								final Handler h3 = new Handler();
+					  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
+					  	  	  			
+					  	  	  		@Override
+						  	  	  	public void run() {
+					  	  	  			
+					  	  	  			sendImage5To0();
+					  	  	  			
+					  	  	  			sendImage5To1();
+						  	  	  	}
+					  	  	  	}, 1000);
 				  			}
+				  			
 				  	  		
 					  	  	if (ArrayOfAvatars.avatar[0].equals("computer")){
 				  				//SEND TO 1
+					  	  		
+					  	  		String str = "0Computer";
+					  	  		sendToAllClients(str);
 				  			}
 				  			if (ArrayOfAvatars.avatar[0].equals("crossedswords")){
 				  				
+				  				String str = "0crosswords";
+				  				sendToAllClients(str);
 				  			}
 				  			if (ArrayOfAvatars.avatar[0].equals("stonedead")){
 				  				
+				  				String str = "0stonded";
+				  				sendToAllClients(str);
 				  			}
 				  			if (ArrayOfAvatars.avatar[0].equals("custom")){
 				  				
+				  				String str = "0cstom";
+					  	  		sendToClient1(str);
+					  	  		
+						  	  	final Handler h4 = new Handler();
+					  	  	  	h4.postDelayed(new Runnable() {		  	  	  			
+					  	  	  			
+					  	  	  		@Override
+						  	  	  	public void run() {
+					  	  	  			
+					  	  	  			sendImage0To1();	  	  			
+						  	  	  	}
+					  	  	  	}, 1000);
 				  			}
+				  			
 				  			
 				  			if (ArrayOfAvatars.avatar[1].equals("computer")){
 				  				//SEND TO 0
+				  				
+				  				String str = "1cmpter";
+				  				sendToAllClients(str);
 				  			}
 				  			if (ArrayOfAvatars.avatar[1].equals("crossedswords")){
 				  				
+				  				String str = "1Crsswrds";
+				  				sendToAllClients(str);
 				  			}
 				  			if (ArrayOfAvatars.avatar[1].equals("stonedead")){
 				  				
+				  				String str = "1Stned";
+				  				sendToAllClients(str);
 				  			}
 				  			if (ArrayOfAvatars.avatar[1].equals("custom")){
 				  				
+				  				String str = "1Cstm";
+					  	  		sendToClient0(str);
+					  	  		
+						  	  	final Handler h5 = new Handler();
+					  	  	  	h5.postDelayed(new Runnable() {		  	  	  			
+					  	  	  			
+					  	  	  		@Override
+						  	  	  	public void run() {
+					  	  	  			
+					  	  	  			sendImage1To0();	  	  			
+						  	  	  	}
+					  	  	  	}, 1000);
 				  			}
-			  	  			
-			  	  			
-			  	  			/*
-			  	  			// Calls method from another class:
-				  	  		Engine  engine = new Engine();
-				  	  		Engine.gameEngine();
-				  	  		*/
-				  	  		
-			  	  					  	  			
-			  	  			//gameEngine(null, gameOn, gameOn);
-			  	  			gameEngine();
-			  	  			
-			  	  			
-			  	  			
-			  	  			//preventinitiativediefromleaking.equals("on");
-			  	  			
-			  	  			
-			  	  			//Thread myThread = new Thread(myRunnable);
-			  	  			//myThread.start();
 			  	  		}
+			  	  		
+			  	  		
+		  	  			
+		  	  			
+		  	  			
+		  	  			
+		  	  			
+			  	  		final Handler h3 = new Handler();
+				  	  	h3.postDelayed(new Runnable() {
+			
+				  	  		@Override
+				  	  		public void run() {
+				  	  			
+				  	  			/*
+				  	  			// Calls method from another class:
+					  	  		Engine  engine = new Engine();
+					  	  		Engine.gameEngine();
+					  	  		*/
+					  	  		
+				  	  					  	  			
+				  	  			//gameEngine(null, gameOn, gameOn);
+				  	  			gameEngine();
+				  	  			
+				  	  			//avatarTest();
+				  	  			
+				  	  			//preventinitiativediefromleaking.equals("on");
+				  	  			
+				  	  			
+				  	  			//Thread myThread = new Thread(myRunnable);
+				  	  			//myThread.start();
+				  	  		}
+				  	  	}, 2000);
+		  	  			
 		  	  			
 		  	  			
 		  	  			
@@ -13725,6 +13994,234 @@ public void decodeImage0() {
 	  	//Toast.makeText(MainActivity2.this,"isinitiativestarted = " +  isinitiativestarted + " aretheredoubles = " + aretheredoubles, Toast.LENGTH_SHORT).show();  	 	
 	  	  		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public void test() {
+		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {			
+				
+				Toast.makeText(Host.this, "WORKING!!!!!!!!!!!!", Toast.LENGTH_SHORT).show();
+			}
+		});
+	}
+	
+	public void clientWorkerSizetest() {
+		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {			
+				
+				Toast.makeText(Host.this, String.valueOf(clientWorkers.size()), Toast.LENGTH_SHORT).show();
+			}
+		});
+	}
+	
+	public void numberofplayerstest() {
+		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {			
+				
+				Toast.makeText(Host.this, String.valueOf(numberOfPlayers), Toast.LENGTH_SHORT).show();
+			}
+		});
+	}
+	
+	public void avatarTest() {//DELETE IF NOT USED!!!!!!!!!!!!!
+
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+
+				Toast.makeText(Host.this, "5 = " + ArrayOfAvatars.avatar[5], Toast.LENGTH_SHORT).show();	
+				Toast.makeText(Host.this, "0 = " + ArrayOfAvatars.avatar[0], Toast.LENGTH_SHORT).show();
+				Toast.makeText(Host.this, "1 = " + ArrayOfAvatars.avatar[1], Toast.LENGTH_SHORT).show();
+			}
+		});
+	}
+	
+	public void playerAttackingTest() {//DELETE IF NOT USED!!!!!!!!!!!!!
+
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+
+				Toast.makeText(Host.this, String.valueOf(playerNumberAttacked), Toast.LENGTH_SHORT).show();
+			}
+		});
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public String getPath(Uri uri) {
+		
+        String[] projection = { MediaStore.Images.Media.DATA };
+        Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
+        if (cursor == null) return null;
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        String s=cursor.getString(column_index);
+        cursor.close();
+        return s;
+    }
+	
+	public void sendImage5To0() {
+		
+		Thread thread = new Thread(new Runnable(){
+		    @Override
+		    public void run() {
+		        try {
+		        	
+		    		InetAddress address = InetAddress.getByName(ArrayOfIP.hostIP[0]);
+			        socket0 = new Socket(address, 4000);
+		    		
+		    		
+			        //File file = new File(image_path);
+			        try (InputStream is = new BufferedInputStream(new FileInputStream(imagefile));
+			                DataOutputStream dos = new DataOutputStream(socket0.getOutputStream());) {
+			            dos.writeLong(imagefile.length()); // <-- remember to read a long on server.
+			            int val;
+			            while ((val = is.read()) != -1) {
+			                dos.write(val);
+			            }
+			            dos.flush();
+			            dos.close();
+			            is.close();
+			        }
+		        	
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		        }
+		    }
+		});
+
+		thread.start();
+	}
+	
+	public void sendImage5To1() {
+		
+		Thread thread = new Thread(new Runnable(){
+		    @Override
+		    public void run() {
+		        try {
+		        	
+		    		InetAddress address = InetAddress.getByName(ArrayOfIP.hostIP[0]);
+			        socket1 = new Socket(address, 4001);
+		    		
+		    		
+			        //File file = new File(image_path);
+			        try (InputStream is = new BufferedInputStream(new FileInputStream(imagefile));
+			                DataOutputStream dos = new DataOutputStream(socket1.getOutputStream());) {
+			            dos.writeLong(imagefile.length()); // <-- remember to read a long on server.
+			            int val;
+			            while ((val = is.read()) != -1) {
+			                dos.write(val);
+			            }
+			            dos.flush();
+			            dos.close();
+			            is.close();
+			        }
+		        	
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		        }
+		    }
+		});
+
+		thread.start();
+	}
+
+	public void sendImage0To1() {
+	
+		Thread thread = new Thread(new Runnable(){
+		    @Override
+		    public void run() {
+		        try {
+		        	
+		    		InetAddress address = InetAddress.getByName(ArrayOfIP.hostIP[0]);
+			        socket2 = new Socket(address, 4002);
+		    		
+		    		
+			        //File file = new File(image_path);
+			        try (InputStream is = new BufferedInputStream(new FileInputStream("/storage/sdcard0/avatar0"));
+			                DataOutputStream dos = new DataOutputStream(socket2.getOutputStream());) {
+			            dos.writeLong("/storage/sdcard0/avatar0".length()); // <-- remember to read a long on server.
+			            int val;
+			            while ((val = is.read()) != -1) {
+			                dos.write(val);
+			            }
+			            dos.flush();
+			            dos.close();
+			            is.close();
+			        }
+		        	
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		        }
+		    }
+		});
+	
+		thread.start();
+	}
+
+	public void sendImage1To0() {
+	
+		Thread thread = new Thread(new Runnable(){
+		    @Override
+		    public void run() {
+		        try {
+		        	
+		    		InetAddress address = InetAddress.getByName(ArrayOfIP.hostIP[0]);
+			        socket3 = new Socket(address, 4003);
+		    		
+		    		
+			        //File file = new File(image_path);
+			        try (InputStream is = new BufferedInputStream(new FileInputStream("/storage/sdcard0/avatar1"));
+			                DataOutputStream dos = new DataOutputStream(socket3.getOutputStream());) {
+			            dos.writeLong("/storage/sdcard0/avatar1".length()); // <-- remember to read a long on server.
+			            int val;
+			            while ((val = is.read()) != -1) {
+			                dos.write(val);
+			            }
+			            dos.flush();
+			            dos.close();
+			            is.close();
+			        }
+		        	
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		        }
+		    }
+		});
+	
+		thread.start();
+	}
+	
+	
+	
+	
+	
 	
 	public void myInitiativeTransition() {
 		
@@ -13861,6 +14358,7 @@ public void decodeImage0() {
 			
 			ArrayOfTurn.turn[0] = 0;			
 			
+			
 			playerNumberAttacked = 0;
 			
 			playersFighting = "fiveVsZero";
@@ -13870,6 +14368,9 @@ public void decodeImage0() {
 		}		
 		
 		else if (numberOfPlayers == 3) {
+			
+			avatarTest();
+			
 			/*
 			String str = "getNames";
 			sendToAllClients(str);
@@ -13919,8 +14420,75 @@ public void decodeImage0() {
 		    			
 	  	  	  			String str8 = "reveal0onright";
 	  	  	  			sendToClient1(str8);
+	  	  	  			
+	  	  	  			
+	  	  	  			
+	  	  	  			
+	  	  	  			
+	  	  	  			
+	  	  	  			
+	  	  	  			
+		  	  	  		runOnUiThread(new Runnable() {
+		  		  	  	    @Override
+		  		  	  	    public void run() {
+		  		  	  	    	
+		  		  	  	    	//ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+		  		  	  	    	//clientAvatar.setImageBitmap(bitmap0);
+		  		  	  	    	
+		  		  	  	    
+		  		  	  	    	//ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+		  		  	  	    	//clientAvatar.setImageBitmap(BitmapFactory.decodeFile("/sdcard/Download/Avatar0.png"));//WAS: .jpeg
+		  		  	  	    	
+		  			  	  	    if (ArrayOfAvatars.avatar[0].equals("custom")){
+		  			  	  	    	
+		  				  	  	    File imgFile = new  File("/storage/sdcard0/avatar0");//WAS .png
+		  		
+		  							if(imgFile.exists()){
+		  		
+		  							    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+		  		
+		  							    ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarright);
+		  		
+		  							    myImage.setImageBitmap(myBitmap);
+		  							}
+		  			  			}
+		  			  	  	    else if (ArrayOfAvatars.avatar[0].equals("computer")){
+		  			  	  	    	
+		  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+		  			  				clientAvatar.setBackgroundResource(R.drawable.computer);
+		  			  			}
+		  			  			else if (ArrayOfAvatars.avatar[0].equals("crossedswords")){
+		  			  				
+		  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+		  			  				clientAvatar.setBackgroundResource(R.drawable.crossedswords2);
+		  			  			}
+		  			  			else if (ArrayOfAvatars.avatar[0].equals("stonedead")){
+		  			  				
+		  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+		  			  				clientAvatar.setBackgroundResource(R.drawable.stonedead2);
+		  			  			}
+		  		  	  	    }
+		  				});
+	  	  	  			
+	  	  	  			
+		  	  	  		//unfoldRightScroll();
+		  	  	  		
+	  	  	  			scrollAnimationLeftDown();
+	  	  	  			
+	  	  	  			
+	  	  	  			
+	  	  	  			
+	  	  	  			
+	  	  	  			
+	  	  	  			
+	  	  	  			
+	  	  	  			
+	  	  	  			
+	  	  	  			
+	  	  	  			
+	  	  	  			
 	  	  	  		}
-	  	  	  	}, 1000);
+	  	  	  	}, 2000);
 			}
 			else if (initiativeFinal[1] > initiativeFinal[5] && initiativeFinal[1] > initiativeFinal[0]) {
 				
@@ -13938,8 +14506,79 @@ public void decodeImage0() {
 		    			
 	  	  	  			String str10 = "rEveal1onright";
 	  	  	  			sendToClient0(str10);
+	  	  	  			
+	  	  	  			
+	  	  	  			
+	  	  	  			
+	  	  	  			
+	  	  	  			
+	  	  	  			
+	  	  	  			
+	  	  	  			
+		  	  	  		runOnUiThread(new Runnable() {
+		  		  	  	    @Override
+		  		  	  	    public void run() {
+		  		  	  	    	
+		  		  	  	    	//ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+		  		  	  	    	//clientAvatar.setImageBitmap(bitmap0);
+		  		  	  	    	
+		  		  	  	    
+		  		  	  	    	//ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+		  		  	  	    	//clientAvatar.setImageBitmap(BitmapFactory.decodeFile("/sdcard/Download/Avatar0.png"));//WAS: .jpeg
+		  		  	  	    	
+		  			  	  	    if (ArrayOfAvatars.avatar[1].equals("custom")){
+		  			  	  	    	
+		  				  	  	    File imgFile = new  File("/storage/sdcard0/avatar1");//WAS .png
+		  		
+		  							if(imgFile.exists()){
+		  		
+		  							    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+		  		
+		  							    ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarright);
+		  		
+		  							    myImage.setImageBitmap(myBitmap);
+		  							}
+		  			  			}
+		  			  	  	    else if (ArrayOfAvatars.avatar[1].equals("computer")){
+		  			  	  	    	
+		  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+		  			  				clientAvatar.setBackgroundResource(R.drawable.computer);
+		  			  			}
+		  			  			else if (ArrayOfAvatars.avatar[1].equals("crossedswords")){
+		  			  				
+		  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+		  			  				clientAvatar.setBackgroundResource(R.drawable.crossedswords2);
+		  			  			}
+		  			  			else if (ArrayOfAvatars.avatar[1].equals("stonedead")){
+		  			  				
+		  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+		  			  				clientAvatar.setBackgroundResource(R.drawable.stonedead2);
+		  			  			}
+		  		  	  	    }
+		  				});
+	  	  	  			
+	  	  	  			
+		  	  	  		//unfoldRightScroll();
+		  	  	  		
+		  	  	  		scrollAnimationLeftDown();
+	  	  	  			
+	  	  	  			
+	  	  	  			
+	  	  	  			
+	  	  	  			
+	  	  	  			
+	  	  	  			
+	  	  	  			
+	  	  	  			
+	  	  	  			
 	  	  	  		}
-	  	  	  	}, 1000);
+	  	  	  	}, 2000);
+			}
+			
+			else {
+				
+				String str11 = "closeRightScroll";
+				sendToClient0(str11);
 			}
 			
 		    
@@ -14159,40 +14798,69 @@ public void decodeImage0() {
 		  	  	    @Override
 		  	  	    public void run() {
 				
-						// Use a blank drawable to hide the imageview animation:
-						// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
-						ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
-						img1.setBackgroundResource(R.drawable.twentytwentyblank);
-						img1.setImageResource(R.drawable.twentytwentyblank);
-		
-						// Use a blank drawable to hide the imageview animation:
-						ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
-						img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
-						img2.setImageResource(R.drawable.sixsixrightleftrotateblank);						
-						
-		    			
-		    			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-		    			
-		    			//NEED THIS??
-		    			TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
-		    			playerHitPointsTextView.setTypeface(typeFace);
-		    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[5]));
-		    			//Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);
-		    			//playerHitPointsTextView.startAnimation(animPulsingAnimation);
-						
-		    			
-		    			computerCardStopFadeInFadeOut();
-		    			playerCardStartFadeInFadeOut();		    			
+			  	  	    ArrayOfTurn.turn[0] = ArrayOfTurn.turn[0] + 1;
 		    			
 		    			
-		    			String str = "Trn3V35";
-		    			sendToAllClients(str);
-		    			
-						
-						ArrayOfTurn.turn[0] = ArrayOfTurn.turn[0] + 1;	
-						
-						
-						chooseOpponent();			  	  	  		
+		    			if (ArrayOfTurn.turn[0] > 1) {
+		    				
+		    				displayTurn();
+			  	  	    	
+			  	  	    	//int turnVariable = ArrayOfTurn.turn[0];
+			  	  	    	
+				  	  	    String str = "Turn :" + ArrayOfTurn.turn[0];
+				  	  	    sendToAllClients(str);
+			  	  	    	
+				  	  	    String str2 = "displayTrn";
+				  	  	    sendToAllClients(str2);
+		    				
+		    				gameEngine3V3XPart2For5Part1();
+		    			}
+		  	  	    	
+		    			else {
+		    				
+		    				// Use a blank drawable to hide the imageview animation:
+							// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+							ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+							img1.setBackgroundResource(R.drawable.twentytwentyblank);
+							img1.setImageResource(R.drawable.twentytwentyblank);
+			
+							// Use a blank drawable to hide the imageview animation:
+							ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
+							img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+							img2.setImageResource(R.drawable.sixsixrightleftrotateblank);						
+							
+			    			
+			    			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+			    			
+			    			//NEED THIS??
+			    			TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+			    			playerHitPointsTextView.setTypeface(typeFace);
+			    			playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[5]));
+			    			//Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);
+			    			//playerHitPointsTextView.startAnimation(animPulsingAnimation);
+			    			
+			    			
+			    			computerCardStopFadeInFadeOut();
+			    			playerCardStartFadeInFadeOut();		    			
+			    			
+			    			
+			    			String str2 = "Trn3V35";
+			    			sendToAllClients(str2);
+							
+							
+							displayTurn();
+			  	  	    	
+			  	  	    	//int turnVariable = ArrayOfTurn.turn[0];
+			  	  	    	
+				  	  	    String str3 = "Turn :" + ArrayOfTurn.turn[0];
+				  	  	    sendToAllClients(str3);
+			  	  	    	
+				  	  	    String str4 = "displayTrn";
+				  	  	    sendToAllClients(str4);
+							
+							
+							chooseOpponent();
+		    			}			  	  	  		
 		  	  	    }
 		  		});
 				
@@ -14215,67 +14883,124 @@ public void decodeImage0() {
 				runOnUiThread(new Runnable() {
 		  	  	    @Override
 		  	  	    public void run() {
-				
-						// Use a blank drawable to hide the imageview animation:
-						// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
-						ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
-						img1.setBackgroundResource(R.drawable.twentytwentyblank);
-						img1.setImageResource(R.drawable.twentytwentyblank);
-		
-						// Use a blank drawable to hide the imageview animation:
-						ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
-						img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
-						img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
-						
-						
-						//unfoldLeftScrollReverse(); DO THIS BEFORE
-						
-						
-						final Handler h = new Handler();
-			  	  	  	h.postDelayed(new Runnable() {
-			  	  	  			
-			  	  	  		@Override
-				  	  	  	public void run() {				    							    			
-				    			
-	                  			final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+		  	  	    	
+		  	  	    	ArrayOfTurn.turn[0] = ArrayOfTurn.turn[0] + 1;
+		  	  	    	
+		  	  	    	
+			  	  	    if (ArrayOfTurn.turn[0] > 1) {
+		    				
+				  	  	    displayTurn();
+			  	  	    	
+			  	  	    	//int turnVariable = ArrayOfTurn.turn[0];
+			  	  	    	
+				  	  	    String str = "Turn :" + ArrayOfTurn.turn[0];
+				  	  	    sendToAllClients(str);
+			  	  	    	
+				  	  	    String str2 = "displayTrn";
+				  	  	    sendToAllClients(str2);
+			  	  	    	
+			  	  	    	gameEngine3V35Part2For0Part1();
+		    			}
+		  	  	    	
+		    			else {
+		    				
+		    				// Use a blank drawable to hide the imageview animation:
+							// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+							ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+							img1.setBackgroundResource(R.drawable.twentytwentyblank);
+							img1.setImageResource(R.drawable.twentytwentyblank);
+			
+							// Use a blank drawable to hide the imageview animation:
+							ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
+							img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+							img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+							
+							
+							//unfoldLeftScrollReverse(); DO THIS BEFORE
+							
+							
+							final Handler h = new Handler();
+				  	  	  	h.postDelayed(new Runnable() {
+				  	  	  			
+				  	  	  		@Override
+					  	  	  	public void run() {				    							    			
+					    			
+		                  			final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+			                  			
+		                  			TextView computerNameTextView = (TextView)findViewById(R.id.textviewnameright);
+		                  			computerNameTextView.setTypeface(typeFace);
+		                  			computerNameTextView.setText(ArrayOfPlayers.player[0]);
+		                  			//computerNameTextView.setVisibility(View.INVISIBLE);
+
+		                  			//ArrayOfHitPoints.hitpoints[0] = 20;//20
+		                  			final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+		                  			computerHitPointsTextView.setTypeface(typeFace);
+		                  			//computerHitPointsTextView.setVisibility(View.INVISIBLE);
+		                  			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+
+		                  			//ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+		                  			//clientAvatar.setVisibility(View.VISIBLE);           			
 		                  			
-	                  			TextView computerNameTextView = (TextView)findViewById(R.id.textviewnameright);
-	                  			computerNameTextView.setTypeface(typeFace);
-	                  			computerNameTextView.setText(ArrayOfPlayers.player[0]);
-	                  			//computerNameTextView.setVisibility(View.INVISIBLE);
-
-	                  			//ArrayOfHitPoints.hitpoints[0] = 20;//20
-	                  			final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
-	                  			computerHitPointsTextView.setTypeface(typeFace);
-	                  			//computerHitPointsTextView.setVisibility(View.INVISIBLE);
-	                  			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
-
-	                  			ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
-	                  			clientAvatar.setVisibility(View.VISIBLE);           			
-	                  			
-				    			
-				    			scrollAnimationLeftDown();
-				    			
-				    			
-				    			computerCardStartFadeInFadeOut();
-				    			playerCardStopFadeInFadeOut();				    			
-				    			
-				    			
-				    			
-				    			String str = "0attackingFirst :" + "yes";
-				    			sendToAllClients(str);
-				    			
-				    			
-				    			String str2 = "chooseOpponent";
-				    			sendToClient0(str2);
-				    			
-								
-								ArrayOfTurn.turn[0] = ArrayOfTurn.turn[0] + 1;	
-								
-								
-								//gameEngine3V30();
-			  	  	  		}
-			  	  	  	}, 1000);
+		                  			if (ArrayOfAvatars.avatar[0].equals("custom")){
+			  			  	  	    	
+			  				  	  	    File imgFile = new  File("/storage/sdcard0/avatar0");//WAS .png
+			  		
+			  							if(imgFile.exists()){
+			  		
+			  							    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+			  		
+			  							    ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarright);
+			  		
+			  							    myImage.setImageBitmap(myBitmap);
+			  							}
+			  			  			}
+			  			  	  	    else if (ArrayOfAvatars.avatar[0].equals("computer")){
+			  			  	  	    	
+			  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+			  			  				clientAvatar.setBackgroundResource(R.drawable.computer);
+			  			  			}
+			  			  			else if (ArrayOfAvatars.avatar[0].equals("crossedswords")){
+			  			  				
+			  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+			  			  				clientAvatar.setBackgroundResource(R.drawable.crossedswords2);
+			  			  			}
+			  			  			else if (ArrayOfAvatars.avatar[0].equals("stonedead")){
+			  			  				
+			  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+			  			  				clientAvatar.setBackgroundResource(R.drawable.stonedead2);
+			  			  			}
+		                  			
+					    			
+					    			scrollAnimationLeftDown();
+					    			
+					    			
+					    			computerCardStartFadeInFadeOut();
+					    			playerCardStopFadeInFadeOut();
+					    			
+					    			
+					    			String str = "0attackingFirst :" + "yes";
+					    			sendToAllClients(str);
+					    			
+					    			
+					    			displayTurn();
+					  	  	    	
+					  	  	    	//int turnVariable = ArrayOfTurn.turn[0];
+					  	  	    	
+						  	  	    String str2 = "Turn :" + ArrayOfTurn.turn[0];
+						  	  	    sendToAllClients(str2);
+					  	  	    	
+						  	  	    String str3 = "displayTrn";
+						  	  	    sendToAllClients(str3);
+					    			
+					    			
+					    			String str4 = "chooseOpponent";
+					    			sendToClient0(str4);
+									
+									
+									//gameEngine3V30();
+				  	  	  		}
+				  	  	  	}, 1000);
+		    			}
 		  	  	    }
 		  		});
 				
@@ -14299,67 +15024,124 @@ public void decodeImage0() {
 				runOnUiThread(new Runnable() {
 		  	  	    @Override
 		  	  	    public void run() {
-				
-						// Use a blank drawable to hide the imageview animation:
-						// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
-						ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
-						img1.setBackgroundResource(R.drawable.twentytwentyblank);
-						img1.setImageResource(R.drawable.twentytwentyblank);
+		  	  	    	
+		  	  	    	ArrayOfTurn.turn[0] = ArrayOfTurn.turn[0] + 1;
+		  	  	    	
+		  	  	    	
+			  	  	    if (ArrayOfTurn.turn[0] > 1) {
+		    				
+				  	  	    displayTurn();
+			  	  	    	
+			  	  	    	//int turnVariable = ArrayOfTurn.turn[0];
+			  	  	    	
+				  	  	    String str = "Turn :" + ArrayOfTurn.turn[0];
+				  	  	    sendToAllClients(str);
+			  	  	    	
+				  	  	    String str2 = "displayTrn";
+				  	  	    sendToAllClients(str2);
+			  	  	    	
+			  	  	    	gameEngine3V35Part2For0Part1();
+		    			}
+		  	  	    	
+		    			else {
+		    				
+		    				// Use a blank drawable to hide the imageview animation:
+							// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+							ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+							img1.setBackgroundResource(R.drawable.twentytwentyblank);
+							img1.setImageResource(R.drawable.twentytwentyblank);
+			
+							// Use a blank drawable to hide the imageview animation:
+							ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
+							img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+							img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+							
+							
+							//unfoldLeftScrollReverse(); DO THIS BEFORE
+							
+							
+							final Handler h = new Handler();
+				  	  	  	h.postDelayed(new Runnable() {
+				  	  	  			
+				  	  	  		@Override
+					  	  	  	public void run() {
+			    			
+					  	  	  		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+		                  			
+		                  			TextView computerNameTextView = (TextView)findViewById(R.id.textviewnameright);
+		                  			computerNameTextView.setTypeface(typeFace);
+		                  			computerNameTextView.setText(ArrayOfPlayers.player[1]);
+		                  			//computerNameTextView.setVisibility(View.INVISIBLE);
 		
-						// Use a blank drawable to hide the imageview animation:
-						ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
-						img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
-						img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
-						
-						
-						//unfoldLeftScrollReverse(); DO THIS BEFORE
-						
-						
-						final Handler h = new Handler();
-			  	  	  	h.postDelayed(new Runnable() {
-			  	  	  			
-			  	  	  		@Override
-				  	  	  	public void run() {
-		    			
-				  	  	  		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-	                  			
-	                  			TextView computerNameTextView = (TextView)findViewById(R.id.textviewnameright);
-	                  			computerNameTextView.setTypeface(typeFace);
-	                  			computerNameTextView.setText(ArrayOfPlayers.player[1]);
-	                  			//computerNameTextView.setVisibility(View.INVISIBLE);
-	
-	                  			//ArrayOfHitPoints.hitpoints[0] = 20;//20
-	                  			final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
-	                  			computerHitPointsTextView.setTypeface(typeFace);
-	                  			//computerHitPointsTextView.setVisibility(View.INVISIBLE);
-	                  			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
-	
-	                  			ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
-	                  			clientAvatar.setVisibility(View.VISIBLE);
-								
-				    			
-				    			scrollAnimationLeftDown();
-				    			
-				    			
-				    			computerCardStartFadeInFadeOut();
-				    			playerCardStopFadeInFadeOut();				    			
-				    			
-				    			
-				    			
-				    			String str = "1AttackingFirst :" + "yes";
-				    			sendToAllClients(str);
-				    			
-				    			
-				    			String str2 = "chooseOpponent";
-				    			sendToClient1(str2);
-				    			
-								
-								ArrayOfTurn.turn[0] = ArrayOfTurn.turn[0] + 1;	
-								
-								
-								//gameEngine3V31();
-			  	  	  		}
-			  	  	  	}, 1000);
+		                  			//ArrayOfHitPoints.hitpoints[0] = 20;//20
+		                  			final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+		                  			computerHitPointsTextView.setTypeface(typeFace);
+		                  			//computerHitPointsTextView.setVisibility(View.INVISIBLE);
+		                  			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
+		
+		                  			//ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+		                  			//clientAvatar.setVisibility(View.VISIBLE);
+									
+		                  			if (ArrayOfAvatars.avatar[1].equals("custom")){
+			  			  	  	    	
+			  				  	  	    File imgFile = new  File("/storage/sdcard0/avatar1");//WAS .png
+			  		
+			  							if(imgFile.exists()){
+			  		
+			  							    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+			  		
+			  							    ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarright);
+			  		
+			  							    myImage.setImageBitmap(myBitmap);
+			  							}
+			  			  			}
+			  			  	  	    else if (ArrayOfAvatars.avatar[1].equals("computer")){
+			  			  	  	    	
+			  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+			  			  				clientAvatar.setBackgroundResource(R.drawable.computer);
+			  			  			}
+			  			  			else if (ArrayOfAvatars.avatar[1].equals("crossedswords")){
+			  			  				
+			  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+			  			  				clientAvatar.setBackgroundResource(R.drawable.crossedswords2);
+			  			  			}
+			  			  			else if (ArrayOfAvatars.avatar[1].equals("stonedead")){
+			  			  				
+			  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+			  			  				clientAvatar.setBackgroundResource(R.drawable.stonedead2);
+			  			  			}
+		                  			
+		                  			
+					    			scrollAnimationLeftDown();
+					    			
+					    			
+					    			computerCardStartFadeInFadeOut();
+					    			playerCardStopFadeInFadeOut();
+					    			
+					    			
+					    			String str = "1AttackingFirst :" + "yes";
+					    			sendToAllClients(str);
+					    			
+					    			
+					    			displayTurn();
+					  	  	    	
+					  	  	    	//int turnVariable = ArrayOfTurn.turn[0];
+					  	  	    	
+						  	  	    String str2 = "Turn :" + ArrayOfTurn.turn[0];
+						  	  	    sendToAllClients(str2);
+					  	  	    	
+						  	  	    String str3 = "displayTrn";
+						  	  	    sendToAllClients(str3);
+					    			
+					    			
+					    			String str4 = "chooseOpponent";
+					    			sendToClient1(str4);
+									
+									
+									//gameEngine3V31();
+				  	  	  		}
+				  	  	  	}, 1000);
+		    			}
 		  	  	    }
 		  		});
 				
@@ -14532,6 +15314,8 @@ public void decodeImage0() {
 		  										
 		  		                        		playerNumberAttacked = 0;
 		  		                        		
+playerAttackingTest();
+		  		                        		
 		  		                        		
 		  		                        		has5TakenTurn = "yes";
 		  		                        		
@@ -14558,8 +15342,37 @@ public void decodeImage0() {
 			  		                  			//computerHitPointsTextView.setVisibility(View.INVISIBLE);
 			  		                  			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
 	
-			  		                  			ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
-			  		                  			clientAvatar.setVisibility(View.VISIBLE);
+			  		                  			//ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+			  		                  			//clientAvatar.setVisibility(View.VISIBLE);
+			  		                  			
+				  		                  		if (ArrayOfAvatars.avatar[0].equals("custom")){
+						  			  	  	    	
+						  				  	  	    File imgFile = new  File("/storage/sdcard0/avatar0");//WAS .png
+						  		
+						  							if(imgFile.exists()){
+						  		
+						  							    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+						  		
+						  							    ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarright);
+						  		
+						  							    myImage.setImageBitmap(myBitmap);
+						  							}
+						  			  			}
+						  			  	  	    else if (ArrayOfAvatars.avatar[0].equals("computer")){
+						  			  	  	    	
+						  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+						  			  				clientAvatar.setBackgroundResource(R.drawable.computer);
+						  			  			}
+						  			  			else if (ArrayOfAvatars.avatar[0].equals("crossedswords")){
+						  			  				
+						  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+						  			  				clientAvatar.setBackgroundResource(R.drawable.crossedswords2);
+						  			  			}
+						  			  			else if (ArrayOfAvatars.avatar[0].equals("stonedead")){
+						  			  				
+						  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+						  			  				clientAvatar.setBackgroundResource(R.drawable.stonedead2);
+						  			  			}
 			  		                  			
 			  		                  			
 			  		                  			unfoldRightScroll();
@@ -14571,6 +15384,8 @@ public void decodeImage0() {
 		  		                        	else if (item == 1) {
 		  		                        		
 		  		                        		playerNumberAttacked = 1;
+		  		                        		
+playerAttackingTest();
 		  		                        		
 		  		                        		
 		  		                        		has5TakenTurn = "yes";
@@ -14598,8 +15413,37 @@ public void decodeImage0() {
 			  		                  			//computerHitPointsTextView.setVisibility(View.INVISIBLE);
 			  		                  			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
 	
-			  		                  			ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
-			  		                  			clientAvatar.setVisibility(View.VISIBLE);
+			  		                  			//ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+			  		                  			//clientAvatar.setVisibility(View.VISIBLE);
+			  		                  			
+				  		                  		if (ArrayOfAvatars.avatar[1].equals("custom")){
+						  			  	  	    	
+						  				  	  	    File imgFile = new  File("/storage/sdcard0/avatar1");//WAS .png
+						  		
+						  							if(imgFile.exists()){
+						  		
+						  							    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+						  		
+						  							    ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarright);
+						  		
+						  							    myImage.setImageBitmap(myBitmap);
+						  							}
+						  			  			}
+						  			  	  	    else if (ArrayOfAvatars.avatar[1].equals("computer")){
+						  			  	  	    	
+						  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+						  			  				clientAvatar.setBackgroundResource(R.drawable.computer);
+						  			  			}
+						  			  			else if (ArrayOfAvatars.avatar[1].equals("crossedswords")){
+						  			  				
+						  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+						  			  				clientAvatar.setBackgroundResource(R.drawable.crossedswords2);
+						  			  			}
+						  			  			else if (ArrayOfAvatars.avatar[1].equals("stonedead")){
+						  			  				
+						  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+						  			  				clientAvatar.setBackgroundResource(R.drawable.stonedead2);
+						  			  			}
 			  		                  			
 			  		                  			
 			  		                  			unfoldRightScroll();
@@ -15240,7 +16084,7 @@ public void decodeImage0() {
   	  	    	//ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
 	  			//chatBlankButton.bringToFront();
   	  	    	
-  	  	    	
+  	  	    	/*
   	  	    	displayTurn();
   	  	    	
   	  	    	//int turnVariable = ArrayOfTurn.turn[0];
@@ -15249,8 +16093,8 @@ public void decodeImage0() {
 	  	  	    sendToAllClients(str4);
   	  	    	
 	  	  	    String str5 = "displayTrn";
-	  	  	    sendToAllClients(str5);  	  	    	
-  	  	    	
+	  	  	    sendToAllClients(str5);
+  	  	    	*/
 				
 				final Handler h = new Handler();
 	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -15357,7 +16201,7 @@ public void decodeImage0() {
   	  	    	//ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
 	  			//chatBlankButton.bringToFront();
   	  	    	
-  	  	    	
+  	  	    	/*
   	  	    	displayTurn();
   	  	    	
   	  	    	//int turnVariable = ArrayOfTurn.turn[0];
@@ -15366,8 +16210,8 @@ public void decodeImage0() {
 	  	  	    sendToAllClients(str4);
   	  	    	
 	  	  	    String str5 = "displayTrn";
-	  	  	    sendToAllClients(str5);  	  	    	
-  	  	    	
+	  	  	    sendToAllClients(str5);
+  	  	    	*/
 				
 				final Handler h = new Handler();
 	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -15515,9 +16359,38 @@ public void decodeImage0() {
             			//computerHitPointsTextView.setVisibility(View.INVISIBLE);
             			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
 
-            			ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
-            			clientAvatar.setVisibility(View.VISIBLE);
+            			//ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+            			//clientAvatar.setVisibility(View.VISIBLE);
 	  	  	  			
+            			if (ArrayOfAvatars.avatar[0].equals("custom")){
+  			  	  	    	
+  				  	  	    File imgFile = new  File("/storage/sdcard0/avatar0");//WAS .png
+  		
+  							if(imgFile.exists()){
+  		
+  							    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+  		
+  							    ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarright);
+  		
+  							    myImage.setImageBitmap(myBitmap);
+  							}
+  			  			}
+  			  	  	    else if (ArrayOfAvatars.avatar[0].equals("computer")){
+  			  	  	    	
+  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+  			  				clientAvatar.setBackgroundResource(R.drawable.computer);
+  			  			}
+  			  			else if (ArrayOfAvatars.avatar[0].equals("crossedswords")){
+  			  				
+  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+  			  				clientAvatar.setBackgroundResource(R.drawable.crossedswords2);
+  			  			}
+  			  			else if (ArrayOfAvatars.avatar[0].equals("stonedead")){
+  			  				
+  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+  			  				clientAvatar.setBackgroundResource(R.drawable.stonedead2);
+  			  			}
+            			
 	  	  	  			
             			scrollAnimationLeftDown();
 	  	  	  			
@@ -15580,7 +16453,7 @@ public void decodeImage0() {
 		
 		runOnUiThread(new Runnable() {
   	  	    @Override
-  	  	    public void run() {  	  	    				
+  	  	    public void run() { 	    				
 	  			
   	  	    	final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 				
@@ -15592,9 +16465,11 @@ public void decodeImage0() {
 				playerHitPointsTextView.setTypeface(typeFace);
 				playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[5]));
 				
-				ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
-				computerAvatar.setVisibility(View.VISIBLE);
+				//ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
+				//computerAvatar.setVisibility(View.VISIBLE);
     			
+				setPlayerAvatarFor5Left();
+				
     			
     			scrollAnimationLeftUpNoRight();
     			
@@ -15698,7 +16573,7 @@ public void decodeImage0() {
     	
     	runOnUiThread(new Runnable() {
   	  	    @Override
-  	  	    public void run() {  	  	    				
+  	  	    public void run() {  	    				
 	  			
   	  	    	final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 				
@@ -15710,9 +16585,11 @@ public void decodeImage0() {
 				playerHitPointsTextView.setTypeface(typeFace);
 				playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
 				
-				ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
-				computerAvatar.setVisibility(View.VISIBLE);
+				//ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
+				//computerAvatar.setVisibility(View.VISIBLE);
     			
+				setPlayerAvatarFor1Left();
+				
     			
     			scrollAnimationLeftUpNoRight();
     			
@@ -15771,7 +16648,203 @@ public void decodeImage0() {
 		});
 	}
 	
+	public void setPlayerAvatarFor5Left() {
+		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				
+				ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
+				ImageView crossedswords2 = (ImageView) findViewById(R.id.imageviewavatarleft2);
+				ImageView stonedead2 = (ImageView) findViewById(R.id.imageviewavatarleft3);
+				ImageView customImage = (ImageView) findViewById(R.id.imageviewavatarleft4);
+				
+				
+				if (ArrayOfAvatars.avatar[5].equals("custom")){
+					crossedswords2.setVisibility(View.INVISIBLE);
+					stonedead2.setVisibility(View.INVISIBLE);
+					computerAvatar.setVisibility(View.INVISIBLE);
+					
+					
+					File imgFile = new  File("/storage/sdcard0/avatar5");//WAS .png
+
+					if(imgFile.exists()){
+
+					    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+
+					    //ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarleft4);
+
+					    customImage.setImageBitmap(myBitmap);
+					    
+					    customImage.setVisibility(View.VISIBLE);
+					}
+					else {
+						//USE COMPUTER
+						crossedswords2.setVisibility(View.INVISIBLE);
+						stonedead2.setVisibility(View.INVISIBLE);
+						customImage.setVisibility(View.INVISIBLE);
+						
+						computerAvatar.setVisibility(View.VISIBLE);
+					}
+				}
+				else if (ArrayOfAvatars.avatar[5].equals("computer")){
+					crossedswords2.setVisibility(View.INVISIBLE);
+					stonedead2.setVisibility(View.INVISIBLE);
+					customImage.setVisibility(View.INVISIBLE);
+					
+					computerAvatar.setVisibility(View.VISIBLE);
+				}
+				else if (ArrayOfAvatars.avatar[5].equals("crossedswords")){
+					computerAvatar.setVisibility(View.INVISIBLE);
+					stonedead2.setVisibility(View.INVISIBLE);
+					customImage.setVisibility(View.INVISIBLE);
+					
+					crossedswords2.setVisibility(View.VISIBLE);
+				}
+				else if (ArrayOfAvatars.avatar[5].equals("stonedead")){
+					crossedswords2.setVisibility(View.INVISIBLE);
+					computerAvatar.setVisibility(View.INVISIBLE);
+					customImage.setVisibility(View.INVISIBLE);
+					
+					stonedead2.setVisibility(View.VISIBLE);
+				}
+			}
+		});
+	}
 	
+	public void setPlayerAvatarFor1Left() {
+		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				
+				ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
+				ImageView crossedswords2 = (ImageView) findViewById(R.id.imageviewavatarleft2);
+				ImageView stonedead2 = (ImageView) findViewById(R.id.imageviewavatarleft3);
+				ImageView customImage = (ImageView) findViewById(R.id.imageviewavatarleft4);
+				
+				
+				if (ArrayOfAvatars.avatar[1].equals("custom")){
+					crossedswords2.setVisibility(View.INVISIBLE);
+					stonedead2.setVisibility(View.INVISIBLE);
+					computerAvatar.setVisibility(View.INVISIBLE);
+					
+					
+					File imgFile = new  File("/storage/sdcard0/avatar1");//WAS .png
+
+					if(imgFile.exists()){
+
+					    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+
+					    //ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarleft4);
+
+					    customImage.setImageBitmap(myBitmap);
+					    
+					    customImage.setVisibility(View.VISIBLE);
+					}
+					else {
+						//USE COMPUTER
+						crossedswords2.setVisibility(View.INVISIBLE);
+						stonedead2.setVisibility(View.INVISIBLE);
+						customImage.setVisibility(View.INVISIBLE);
+						
+						computerAvatar.setVisibility(View.VISIBLE);
+					}
+				}
+				else if (ArrayOfAvatars.avatar[1].equals("computer")){
+					crossedswords2.setVisibility(View.INVISIBLE);
+					stonedead2.setVisibility(View.INVISIBLE);
+					customImage.setVisibility(View.INVISIBLE);
+					
+					computerAvatar.setVisibility(View.VISIBLE);
+				}
+				else if (ArrayOfAvatars.avatar[1].equals("crossedswords")){
+					computerAvatar.setVisibility(View.INVISIBLE);
+					stonedead2.setVisibility(View.INVISIBLE);
+					customImage.setVisibility(View.INVISIBLE);
+					
+					crossedswords2.setVisibility(View.VISIBLE);
+				}
+				else if (ArrayOfAvatars.avatar[1].equals("stonedead")){
+					crossedswords2.setVisibility(View.INVISIBLE);
+					computerAvatar.setVisibility(View.INVISIBLE);
+					customImage.setVisibility(View.INVISIBLE);
+					
+					stonedead2.setVisibility(View.VISIBLE);
+				}
+			}
+		});
+	}
+	
+	public void setPlayerAvatarFor0Left() {
+		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				
+				avatarTest();
+				
+				ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
+				ImageView crossedswords2 = (ImageView) findViewById(R.id.imageviewavatarleft2);
+				ImageView stonedead2 = (ImageView) findViewById(R.id.imageviewavatarleft3);
+				ImageView customImage = (ImageView) findViewById(R.id.imageviewavatarleft4);
+				
+				
+				if (ArrayOfAvatars.avatar[0].equals("custom")){
+					crossedswords2.setVisibility(View.INVISIBLE);
+					stonedead2.setVisibility(View.INVISIBLE);
+					computerAvatar.setVisibility(View.INVISIBLE);
+					
+					
+					File imgFile = new  File("/storage/sdcard0/avatar0");//WAS .png
+
+					if(imgFile.exists()){
+
+					    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+
+					    //ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarleft4);
+
+					    customImage.setImageBitmap(myBitmap);
+					    
+					    customImage.setVisibility(View.VISIBLE);
+					}
+					else {
+						//USE COMPUTER
+						crossedswords2.setVisibility(View.INVISIBLE);
+						stonedead2.setVisibility(View.INVISIBLE);
+						customImage.setVisibility(View.INVISIBLE);
+						
+						computerAvatar.setVisibility(View.VISIBLE);
+					}
+				}
+				else if (ArrayOfAvatars.avatar[0].equals("computer")){
+					crossedswords2.setVisibility(View.INVISIBLE);
+					stonedead2.setVisibility(View.INVISIBLE);
+					customImage.setVisibility(View.INVISIBLE);
+					
+					computerAvatar.setVisibility(View.VISIBLE);
+				}
+				else if (ArrayOfAvatars.avatar[0].equals("crossedswords")){
+					computerAvatar.setVisibility(View.INVISIBLE);
+					stonedead2.setVisibility(View.INVISIBLE);
+					customImage.setVisibility(View.INVISIBLE);
+					
+					crossedswords2.setVisibility(View.VISIBLE);
+					
+					//crossedswords2.bringToFront();
+					
+					test();
+				}
+				else if (ArrayOfAvatars.avatar[0].equals("stonedead")){
+					crossedswords2.setVisibility(View.INVISIBLE);
+					computerAvatar.setVisibility(View.INVISIBLE);
+					customImage.setVisibility(View.INVISIBLE);
+					
+					stonedead2.setVisibility(View.VISIBLE);
+				}
+			}
+		});
+	}
 	
 	
 	
@@ -15846,9 +16919,38 @@ public void decodeImage0() {
             			//computerHitPointsTextView.setVisibility(View.INVISIBLE);
             			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
 
-            			ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
-            			clientAvatar.setVisibility(View.VISIBLE);
+            			//ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+            			//clientAvatar.setVisibility(View.VISIBLE);
 	  	  	  			
+            			if (ArrayOfAvatars.avatar[1].equals("custom")){
+  			  	  	    	
+  				  	  	    File imgFile = new  File("/storage/sdcard0/avatar1");//WAS .png
+  		
+  							if(imgFile.exists()){
+  		
+  							    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+  		
+  							    ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarright);
+  		
+  							    myImage.setImageBitmap(myBitmap);
+  							}
+  			  			}
+  			  	  	    else if (ArrayOfAvatars.avatar[1].equals("computer")){
+  			  	  	    	
+  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+  			  				clientAvatar.setBackgroundResource(R.drawable.computer);
+  			  			}
+  			  			else if (ArrayOfAvatars.avatar[1].equals("crossedswords")){
+  			  				
+  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+  			  				clientAvatar.setBackgroundResource(R.drawable.crossedswords2);
+  			  			}
+  			  			else if (ArrayOfAvatars.avatar[1].equals("stonedead")){
+  			  				
+  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+  			  				clientAvatar.setBackgroundResource(R.drawable.stonedead2);
+  			  			}
+            			
 	  	  	  			
             			scrollAnimationLeftDown();
 	  	  	  			
@@ -15923,9 +17025,11 @@ public void decodeImage0() {
 				playerHitPointsTextView.setTypeface(typeFace);
 				playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[5]));
 				
-				ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
-				computerAvatar.setVisibility(View.VISIBLE);
+				//ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
+				//computerAvatar.setVisibility(View.VISIBLE);
     			
+				setPlayerAvatarFor5Left();
+				
     			
     			scrollAnimationLeftUpNoRight();
     			
@@ -16041,9 +17145,11 @@ public void decodeImage0() {
 				playerHitPointsTextView.setTypeface(typeFace);
 				playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
 				
-				ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
-				computerAvatar.setVisibility(View.VISIBLE);
+				//ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
+				//computerAvatar.setVisibility(View.VISIBLE);
     			
+				setPlayerAvatarFor0Left();
+				
     			
     			scrollAnimationLeftUpNoRight();
     			
@@ -16126,9 +17232,11 @@ public void decodeImage0() {
 				playerHitPointsTextView.setTypeface(typeFace);
 				playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[5]));
 				
-				ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
-				computerAvatar.setVisibility(View.VISIBLE);
+				//ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
+				//computerAvatar.setVisibility(View.VISIBLE);
     			
+				setPlayerAvatarFor5Left();
+				
     			
     			scrollAnimationLeftUpNoRight();
     			
@@ -16183,7 +17291,7 @@ public void decodeImage0() {
   	  	    	//ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
 	  			//chatBlankButton.bringToFront();
   	  	    	
-  	  	    	
+  	  	    	/*
   	  	    	displayTurn();
   	  	    	
   	  	    	//int turnVariable = ArrayOfTurn.turn[0];
@@ -16192,8 +17300,8 @@ public void decodeImage0() {
 	  	  	    sendToAllClients(str7);
   	  	    	
 	  	  	    String str8 = "displayTrn";
-	  	  	    sendToAllClients(str8);  	  	    	
-  	  	    	
+	  	  	    sendToAllClients(str8);
+  	  	    	*/
 				
 				final Handler h = new Handler();
 	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -16290,9 +17398,11 @@ public void decodeImage0() {
 				playerHitPointsTextView.setTypeface(typeFace);
 				playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
 				
-				ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
-				computerAvatar.setVisibility(View.VISIBLE);
+				//ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
+				//computerAvatar.setVisibility(View.VISIBLE);
     			
+				setPlayerAvatarFor1Left();
+				
     			
     			scrollAnimationLeftUpNoRight();
     			
@@ -16347,7 +17457,7 @@ public void decodeImage0() {
   	  	    	//ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
 	  			//chatBlankButton.bringToFront();
   	  	    	
-  	  	    	
+  	  	    	/*
   	  	    	displayTurn();
   	  	    	
   	  	    	//int turnVariable = ArrayOfTurn.turn[0];
@@ -16356,8 +17466,8 @@ public void decodeImage0() {
 	  	  	    sendToAllClients(str7);
   	  	    	
 	  	  	    String str8 = "displayTrn";
-	  	  	    sendToAllClients(str8);  	  	    	
-  	  	    	
+	  	  	    sendToAllClients(str8);
+  	  	    	*/
 				
 				final Handler h = new Handler();
 	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -16454,9 +17564,11 @@ public void decodeImage0() {
 				playerHitPointsTextView.setTypeface(typeFace);
 				playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[5]));
 				
-				ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
-				computerAvatar.setVisibility(View.VISIBLE);
+				//ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
+				//computerAvatar.setVisibility(View.VISIBLE);
     			
+				setPlayerAvatarFor5Left();
+				
     			
     			scrollAnimationLeftUpNoRight();
     			
@@ -16511,7 +17623,7 @@ public void decodeImage0() {
 	  	    	//ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
 	  			//chatBlankButton.bringToFront();
 		  	    	
-		  	    	
+		  	    /*	
 	  	    	displayTurn();
 		  	    	
 	  	    	//int turnVariable = ArrayOfTurn.turn[0];
@@ -16520,8 +17632,8 @@ public void decodeImage0() {
 	  	  	    sendToAllClients(str7);
 		  	    	
 	  	  	    String str8 = "displayTrn";
-	  	  	    sendToAllClients(str8);  	  	    	
-		  	    	
+	  	  	    sendToAllClients(str8);
+		  	    */
 				
 				final Handler h = new Handler();
 	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -16619,9 +17731,11 @@ public void decodeImage0() {
 				playerHitPointsTextView.setTypeface(typeFace);
 				playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
 				
-				ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
-				computerAvatar.setVisibility(View.VISIBLE);
+				//ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
+				//computerAvatar.setVisibility(View.VISIBLE);
     			
+				setPlayerAvatarFor0Left();
+				
     			
     			scrollAnimationLeftUpNoRight();
     			
@@ -16676,7 +17790,7 @@ public void decodeImage0() {
 		    	//ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
 				//chatBlankButton.bringToFront();
 		  	    	
-		  	    	
+		  	    /*	
 		    	displayTurn();
 		  	    	
 		    	//int turnVariable = ArrayOfTurn.turn[0];
@@ -16685,8 +17799,8 @@ public void decodeImage0() {
 		  	    sendToAllClients(str7);
 		  	    	
 		  	    String str8 = "displayTrn";
-		  	    sendToAllClients(str8);  	  	    	
-		  	    	
+		  	    sendToAllClients(str8);
+		  	    */	
 				
 				final Handler h = new Handler();
 		  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -16833,8 +17947,10 @@ public void decodeImage0() {
 						playerHitPointsTextView.setTypeface(typeFace);
 						playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[5]));
 						
-						ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
-						computerAvatar.setVisibility(View.VISIBLE);
+						//ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
+						//computerAvatar.setVisibility(View.VISIBLE);
+						
+						setPlayerAvatarFor5Left();
 						
 						
 						unfoldLeftScroll();
@@ -16919,9 +18035,38 @@ public void decodeImage0() {
 				//computerHitPointsTextView.setVisibility(View.INVISIBLE);
 				computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
 	
-				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
-				clientAvatar.setVisibility(View.VISIBLE);
-		  			
+				//ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+				//clientAvatar.setVisibility(View.VISIBLE);
+		  		
+				if (ArrayOfAvatars.avatar[0].equals("custom")){
+		  	  	    	
+			  	  	    File imgFile = new  File("/storage/sdcard0/avatar0");//WAS .png
+	
+						if(imgFile.exists()){
+	
+						    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+	
+						    ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarright);
+	
+						    myImage.setImageBitmap(myBitmap);
+						}
+		  			}
+		  	  	    else if (ArrayOfAvatars.avatar[0].equals("computer")){
+		  	  	    	
+		  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+		  				clientAvatar.setBackgroundResource(R.drawable.computer);
+		  			}
+		  			else if (ArrayOfAvatars.avatar[0].equals("crossedswords")){
+		  				
+		  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+		  				clientAvatar.setBackgroundResource(R.drawable.crossedswords2);
+		  			}
+		  			else if (ArrayOfAvatars.avatar[0].equals("stonedead")){
+		  				
+		  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+		  				clientAvatar.setBackgroundResource(R.drawable.stonedead2);
+		  			}
+				
 		  			
 				scrollAnimationLeftDown();
 				
@@ -17039,9 +18184,38 @@ public void decodeImage0() {
 				//computerHitPointsTextView.setVisibility(View.INVISIBLE);
 				computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
 	
-				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
-				clientAvatar.setVisibility(View.VISIBLE);
-		  			
+				//ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+				//clientAvatar.setVisibility(View.VISIBLE);
+		  		
+				if (ArrayOfAvatars.avatar[1].equals("custom")){
+		  	  	    	
+			  	  	    File imgFile = new  File("/storage/sdcard0/avatar1");//WAS .png
+	
+						if(imgFile.exists()){
+	
+						    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+	
+						    ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarright);
+	
+						    myImage.setImageBitmap(myBitmap);
+						}
+		  			}
+		  	  	    else if (ArrayOfAvatars.avatar[1].equals("computer")){
+		  	  	    	
+		  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+		  				clientAvatar.setBackgroundResource(R.drawable.computer);
+		  			}
+		  			else if (ArrayOfAvatars.avatar[1].equals("crossedswords")){
+		  				
+		  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+		  				clientAvatar.setBackgroundResource(R.drawable.crossedswords2);
+		  			}
+		  			else if (ArrayOfAvatars.avatar[1].equals("stonedead")){
+		  				
+		  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+		  				clientAvatar.setBackgroundResource(R.drawable.stonedead2);
+		  			}
+				
 		  			
 				scrollAnimationLeftDown();
 				
@@ -22672,6 +23846,11 @@ public void decodeImage0() {
 							playerNumberAttackedHitPointsTextView.startAnimation(animPulsingAnimation);
 							
 							
+							
+							playerAttackingTest();
+							
+							
+							
 							damageResultsHandler();
 						}
 							
@@ -24785,6 +25964,7 @@ public void decodeImage0() {
 						clientSocket.close();
 	                    return;
 	                }
+
 					
 else if (read.contains("whatAvatar")) {//MAY WANT MORE COMPLICATED TERM SO IT DOESN'T GET REPEATED IN CHAT
 						
@@ -24807,6 +25987,8 @@ else if (read.contains("whatAvatar")) {//MAY WANT MORE COMPLICATED TERM SO IT DO
 							ArrayOfAvatars.avatar[2] = part2;
 						}
 }
+					
+					
 					
 					else if (read.contains("PlayerName")) {//MAY WANT MORE COMPLICATED TERM SO IT DOESN'T GET REPEATED IN CHAT
 						
@@ -24929,10 +26111,26 @@ else if (read.contains("whatAvatar")) {//MAY WANT MORE COMPLICATED TERM SO IT DO
 						}
 						*/												
 					}
-					
 
 					
-					
+else if (read.contains("localIPAddress")) {//MAY WANT MORE COMPLICATED TERM SO IT DOESN'T GET REPEATED IN CHAT
+						
+						String[] parts = read.split(":");
+						String part1 = parts[0];  
+						//String part2 = parts[1].trim();//IF THERE WAS A SPACE
+						String part2 = parts[1];
+						
+						
+						if (id == 0) {
+							
+							ArrayOfIP.hostIP[0] = part2;
+						}
+						
+						else if (id == 1) {
+							
+							ArrayOfIP.hostIP[1] = part2;
+						}
+					}
 					
 					
 					
@@ -25486,7 +26684,7 @@ else if (read.contains("cstmImage")) {//MAY WANT MORE COMPLICATED TERM SO IT DOE
 						
 						else if (numberOfPlayers == 3) {
 							
-							if (playersFighting.equals("fiveVsZero") || playersFighting.equals("zeroVsFive") || playersFighting.equals("zeroVsOne")) {
+							if (playersFighting.equals("fiveVsZero")) {
 								
 								runOnUiThread(new Runnable() {
 						  	  	    @Override
@@ -25560,7 +26758,7 @@ else if (read.contains("cstmImage")) {//MAY WANT MORE COMPLICATED TERM SO IT DOE
 						String str = "1ArrayOfHitPoints.hitpoints[1] :" + ArrayOfHitPoints.hitpoints[1];
 						sendToAllClients(str);
 						
-						
+						/*NEVER HAPPEN FOR 2-PLAYER:
 						if (numberOfPlayers == 2) {
 							
 							runOnUiThread(new Runnable() {
@@ -25590,10 +26788,10 @@ else if (read.contains("cstmImage")) {//MAY WANT MORE COMPLICATED TERM SO IT DOE
 					  	  	    }
 							});
 						}
-						
-						else if (numberOfPlayers == 3) {
+						*/
+						if (numberOfPlayers == 3) {
 							
-							if (playersFighting.equals("fiveVsOne") || playersFighting.equals("oneVsFive") || playersFighting.equals("oneVsZero")) {
+							if (playersFighting.equals("fiveVsOne")) {
 								
 								runOnUiThread(new Runnable() {
 						  	  	    @Override
@@ -25604,7 +26802,7 @@ else if (read.contains("cstmImage")) {//MAY WANT MORE COMPLICATED TERM SO IT DOE
 						    			
 							  	  	    final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
 							  	  	    computerHitPointsTextView.setTypeface(typeFace);								
-							  	  	    computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+							  	  	    computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
 						    			
 						    			Animation animPulsingAnimation = AnimationUtils.loadAnimation(Host.this, R.anim.pulsinganimation);
 						    			computerHitPointsTextView.startAnimation(animPulsingAnimation);					    			
@@ -25634,7 +26832,7 @@ else if (read.contains("cstmImage")) {//MAY WANT MORE COMPLICATED TERM SO IT DOE
 						    			
 							  	  	    final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
 							  	  	    computerHitPointsTextView.setTypeface(typeFace);								
-							  	  	    computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+							  	  	    computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
 						    			
 						    			Animation animPulsingAnimation = AnimationUtils.loadAnimation(Host.this, R.anim.pulsinganimation);
 						    			computerHitPointsTextView.startAnimation(animPulsingAnimation);					    			

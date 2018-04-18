@@ -72,6 +72,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	
 	String hostIP;
 	
+	Uri imageUri;
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -369,20 +371,21 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		
-		switch(requestCode){	
+		switch(requestCode) {	
 		
 		case PICK_IMAGE://FOR IMAGE GALLERY
 			if (resultCode == RESULT_OK && requestCode == PICK_IMAGE && multiplayer.equals("no")) {
-				Uri imageUri = data.getData();
+				imageUri = data.getData();
 				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
 			    intent.putExtra("imageUri", imageUri.toString());
 				//intent.putExtra("imageUri", imageUri);
 			    startActivity(intent);						    			       	
 			}			
 			else if (resultCode == RESULT_OK && requestCode == PICK_IMAGE && multiplayer.equals("yes")) {
-				Uri imageUri = data.getData();
+				imageUri = data.getData();
 				
-				
+				goToHostOrJoin();
+				/*
 				final Intent svc=new Intent(this, Badonk2SoundService.class);
 				
 				final String[] items = new String[] {"Host", "Join", "Cancel"};
@@ -434,145 +437,175 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 				Intent intent = new Intent(MainActivity1.this, Host.class);
 			    intent.putExtra("imageUri", imageUri.toString());
 				//intent.putExtra("imageUri", imageUri);
-			    startActivity(intent);						    			       	
+			    startActivity(intent);
+			    */				    			       	
 			}
 		break;
 			
 		case CONTACT_PICKER_RESULT:// FOR CONTACT PICKER
 			
 			if (resultCode == RESULT_OK) {
+				
 	            switch (requestCode) {
-	            case CONTACT_PICKER_RESULT:
-	                // handle contact results
-	            	
-	            	Cursor cursor = null;
-	            	String email = "";
-	            	
-	            	Uri result = data.getData();
-	            	
-	            	String id = result.getLastPathSegment();
-	            	
-	            	
-	            	// query for everything phone
-	            	cursor = getContentResolver().query(
-	            	        Email.CONTENT_URI, null,
-	            	        Email.CONTACT_ID + "=?",
-	            	        new String[]{id}, null);
-	            	
-	            	if (cursor.moveToFirst()) {
-	            	    int emailIdx = cursor.getColumnIndex(Email.DATA);
-	            	    email = cursor.getString(emailIdx);
-	            	    //Log.v(DEBUG_TAG, "Got email: " + email);
-	            	    
-	            	    
-	            	    
-	            	    
-	            	    //E-MAIL METHODS:	            	    
-	            	    
-	            	    /*
-	            	    // URL METHOD:
-	            	    //URL sourceUrl = new URL("http://10.0.2.2:2291/acd.asmx/Get_Teams?_userid=" + _userid + "&_sporttype=" + _sporttype);
-            	        //URL sourceUrl = new URL("http://www.ktog.multiplayer.com/?userid=" + hostIP);
-	            	    String url = "http://www.ktog.multiplayer.com/?verification=" + hostIP + "&username=larry";
-
-	            	    SpannableStringBuilder builder = new SpannableStringBuilder();
-	            	    //builder.append("hi friends please visit my website for");
-	            	    int start = builder.length();
-	            	    builder.append(url);
-	            	    int end = builder.length();
-
-	            	    builder.setSpan(new URLSpan(url), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-	            	    
-	            	    Intent i = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-	            	            "mailto",email, null));
-	            	    //Intent i = new Intent(Intent.ACTION_SEND);  
-	            	    //i.setType("message/rfc822") ;
-	            	    //i.putExtra(Intent.EXTRA_EMAIL, new String[]{""});  
-	            	    i.putExtra(Intent.EXTRA_SUBJECT,"KtOG Invitation");  
-	            	    i.putExtra(Intent.EXTRA_TEXT, builder);  
-	            	    //startActivity(Intent.createChooser(i, "Select application"));     	    
-	            	    startActivity(i);
-	            	    */
-	            	    
-	            	    
-	            	    //OTHER METHOD:
-	            	    
-            	        Intent gmailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-	            	            "mailto",email, null));
-            	        //gmailIntent.setClassName("com.google.android.gm", "com.google.android.gm.ComposeActivityGmail");
-            	        gmailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "KtOG Invitation");
-            	        //gmailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Please click link to play:");
-            	        //gmailIntent.putExtra(Intent.EXTRA_TEXT, Html.fromHtml("<a href=\"" + "http://www.ktog.multiplayer.com/launch?hostip=" + hostIP + "\">Link</a>"));
-            	        //gmailIntent.putExtra(android.content.Intent.EXTRA_TEXT, Html.fromHtml("<a href=\"" + "http://www.ktog.multiplayer.com/launch?hostip=" + hostIP + "\">Link</a>"));         	                 	        
-            	        //gmailIntent.putExtra(android.content.Intent.EXTRA_HTML_TEXT, Html.fromHtml("<a href=\"" + "http://www.ktog.multiplayer.com/launch?hostip=" + hostIP + "\">Link</a>"));
-            	                    	                   	        
-            	        gmailIntent.putExtra(
-            	        		Intent.EXTRA_TEXT,
-            	        		Html.fromHtml(new StringBuilder()
-            	        		    //.append("<p><b>http://www.ktog.multiplayer.com/launch?hostip=</b></p>")
-            	        			
-            	        			//METHOD 1:
-            	        			//.append("<a>http://www.ktog.multiplayer.com/launch?hostip=</a>")
-            	        		
-            	        			//METHOD 2:
-            	        			//.append("<a>http://www.ktog.multiplayer.com/?verification=" + hostIP + "&username=larry</a>")
-            	        			.append("<a>http://www.ktog.multiplayer.com/?ip=" + hostIP + "</a>")
-            	        			
-            	        			//.append(hostIP)
-            	        		    .toString())            	        		    
-            	        		);
-            	        
-            	        startActivity(gmailIntent);        	    
-	            	    
-            	        //Toast.makeText(MainActivity1.this, hostIP, Toast.LENGTH_LONG).show();
-            	        
-	            	}	            	
-	            //break;
-	            	
-	            	cursor.close();
-	            	
-	            	AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity1.this);
-		  			
-					alert.setCancelable(false);
-					
-		  	    	alert.setTitle("Do you want to send another invite?");
-		  	    	/*
-		  	    	alert.setMessage("something");
-		  	    	*/	  	    	
-		  	    	
-		  	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-		  		    	public void onClick(DialogInterface dialog, int whichButton) {
-		  		    		
-		  		    		ArrayOfInvites.invites[0] = ArrayOfInvites.invites[0] + 1;
-		  		    		
-		  		    		doLaunchContactPicker(customImageView);												  		    		
-		  		    	}
-		  	    	});
-		  	    	
-		  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
-		          	  public void onClick(DialogInterface dialog, int whichButton) {
-		          		  
-		          		  	//hideNavigation();
-		          		  	
-		          		  	
-		    				Intent intent = new Intent(MainActivity1.this, Host.class);
-		    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-		    				startActivity(intent);
-		    	        								          		  	
-		          		  	
-		          		  	dialog.dismiss();
-		          	  }
-		          	});	  	    	
-		  	    	
-		  	    	alert.show();	            
-	            }
-
-	        } else {
-	            // gracefully handle failure
-	            //Log.w(DEBUG_TAG, "Warning: activity result not ok");
-	        }
-		// NEED THIS??:
-		break;
+	            
+		            case CONTACT_PICKER_RESULT:
+		                // handle contact results
+		            	
+		            	Cursor cursor = null;
+		            	String email = "";
+		            	
+		            	Uri result = data.getData();
+		            	
+		            	String id = result.getLastPathSegment();
+		            	
+		            	
+		            	// query for everything phone
+		            	cursor = getContentResolver().query(
+		            	        Email.CONTENT_URI, null,
+		            	        Email.CONTACT_ID + "=?",
+		            	        new String[]{id}, null);
+		            	
+		            	if (cursor.moveToFirst()) {
+		            	    int emailIdx = cursor.getColumnIndex(Email.DATA);
+		            	    email = cursor.getString(emailIdx);
+		            	    //Log.v(DEBUG_TAG, "Got email: " + email);
+		            	    
+		            	    
+		            	    
+		            	    
+		            	    //E-MAIL METHODS:	            	    
+		            	    
+		            	    /*
+		            	    // URL METHOD:
+		            	    //URL sourceUrl = new URL("http://10.0.2.2:2291/acd.asmx/Get_Teams?_userid=" + _userid + "&_sporttype=" + _sporttype);
+	            	        //URL sourceUrl = new URL("http://www.ktog.multiplayer.com/?userid=" + hostIP);
+		            	    String url = "http://www.ktog.multiplayer.com/?verification=" + hostIP + "&username=larry";
+	
+		            	    SpannableStringBuilder builder = new SpannableStringBuilder();
+		            	    //builder.append("hi friends please visit my website for");
+		            	    int start = builder.length();
+		            	    builder.append(url);
+		            	    int end = builder.length();
+	
+		            	    builder.setSpan(new URLSpan(url), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+		            	    
+		            	    Intent i = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+		            	            "mailto",email, null));
+		            	    //Intent i = new Intent(Intent.ACTION_SEND);  
+		            	    //i.setType("message/rfc822") ;
+		            	    //i.putExtra(Intent.EXTRA_EMAIL, new String[]{""});  
+		            	    i.putExtra(Intent.EXTRA_SUBJECT,"KtOG Invitation");  
+		            	    i.putExtra(Intent.EXTRA_TEXT, builder);  
+		            	    //startActivity(Intent.createChooser(i, "Select application"));     	    
+		            	    startActivity(i);
+		            	    */
+		            	    
+		            	    
+		            	    //OTHER METHOD:
+		            	    
+	            	        Intent gmailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+		            	            "mailto",email, null));
+	            	        //gmailIntent.setClassName("com.google.android.gm", "com.google.android.gm.ComposeActivityGmail");
+	            	        gmailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "KtOG Invitation");
+	            	        //gmailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Please click link to play:");
+	            	        //gmailIntent.putExtra(Intent.EXTRA_TEXT, Html.fromHtml("<a href=\"" + "http://www.ktog.multiplayer.com/launch?hostip=" + hostIP + "\">Link</a>"));
+	            	        //gmailIntent.putExtra(android.content.Intent.EXTRA_TEXT, Html.fromHtml("<a href=\"" + "http://www.ktog.multiplayer.com/launch?hostip=" + hostIP + "\">Link</a>"));         	                 	        
+	            	        //gmailIntent.putExtra(android.content.Intent.EXTRA_HTML_TEXT, Html.fromHtml("<a href=\"" + "http://www.ktog.multiplayer.com/launch?hostip=" + hostIP + "\">Link</a>"));
+	            	                    	                   	        
+	            	        gmailIntent.putExtra(
+	            	        		Intent.EXTRA_TEXT,
+	            	        		Html.fromHtml(new StringBuilder()
+	            	        		    //.append("<p><b>http://www.ktog.multiplayer.com/launch?hostip=</b></p>")
+	            	        			
+	            	        			//METHOD 1:
+	            	        			//.append("<a>http://www.ktog.multiplayer.com/launch?hostip=</a>")
+	            	        		
+	            	        			//METHOD 2:
+	            	        			//.append("<a>http://www.ktog.multiplayer.com/?verification=" + hostIP + "&username=larry</a>")
+	            	        			.append("<a>http://www.ktog.multiplayer.com/?ip=" + hostIP + "</a>")
+	            	        			
+	            	        			//.append(hostIP)
+	            	        		    .toString())            	        		    
+	            	        		);
+	            	        
+	            	        startActivity(gmailIntent);        	    
+		            	    
+	            	        //Toast.makeText(MainActivity1.this, hostIP, Toast.LENGTH_LONG).show();
+	            	        
+		            	}	            	
+		            //break;
+		            	
+		            	cursor.close();
+		            	
+		            	AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity1.this);
+			  			
+						alert.setCancelable(false);
+						
+			  	    	alert.setTitle("Do you want to send another invite?");
+			  	    	/*
+			  	    	alert.setMessage("something");
+			  	    	*/	  	    	
+			  	    	
+			  	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+			  		    	public void onClick(DialogInterface dialog, int whichButton) {
+			  		    		
+			  		    		ArrayOfInvites.invites[0] = ArrayOfInvites.invites[0] + 1;
+			  		    		
+			  		    		doLaunchContactPicker(customImageView);												  		    		
+			  		    	}
+			  	    	});
+			  	    	
+			  	    	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+			          	  public void onClick(DialogInterface dialog, int whichButton) {
+			          		  
+			          		  
+			          		  	//hideNavigation();
+			          		  
+			          		  
+			          		  
+			          		  
+			          		  
+			          		  
+			          		  
+			          		  if (ArrayOfAvatars.avatar[5].equals("custom")) {
+			          			  
+			          			  
+								Intent intent = new Intent(MainActivity1.this, Host.class);
+								intent.putExtra("imageUri", imageUri.toString());
+								//intent.putExtra("imageUri", imageUri);
+								startActivity(intent);
+								
+								dialog.dismiss();
+			          		  }
+			          		  
+			          		  else {
+			          			  
+			          			Intent intent = new Intent(MainActivity1.this, Host.class);
+			    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+			    				startActivity(intent);
+			    	        								          		  	
+			          		  	
+			          		  	dialog.dismiss();
+			          		  }
+			          		  
+			          		  
+			          		  
+			          		  
+			          		  	
+			          		  	
+			    				
+			          	  }
+			          	});	  	    	
+			  	    	
+			  	    	alert.show();	            
+		            }
+	
+		        } else {
+		            // gracefully handle failure
+		            //Log.w(DEBUG_TAG, "Warning: activity result not ok");
+		        }
+			// NEED THIS??:
+			break;
 		
 		}
 	}

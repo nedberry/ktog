@@ -10,6 +10,7 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -22,9 +23,11 @@ import java.io.PrintWriter;
 import java.io.StreamCorruptedException;
 import java.lang.ClassNotFoundException;
 import java.net.InetAddress;
+import java.net.NetworkInterface;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Set;
 
@@ -47,13 +50,17 @@ import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.text.InputFilter;
+import android.text.format.Formatter;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Base64;
 import android.view.ContextThemeWrapper;
@@ -88,6 +95,7 @@ public class Client2 extends Activity {
 	
 	private final int SERVERPORT = 2000;// WAS 5000
 	String hostIP;//WAS: private static final String SERVER_IP = "192.168.1.208";
+	String iPClient;
 	
 	
 	public int id;
@@ -111,10 +119,9 @@ public class Client2 extends Activity {
 	//int gameOn = 1;	
 	//int turn;
 	
-	int max = 0;
-	//int numberOfPlayers = 2;
+	int max = 0;	
 	
-	int numberOfPlayers = 1; // NEED THIS???????????
+	int numberOfPlayers; // NEED THIS???????????
 	
 	//static int playerNumberAttacked;
 	
@@ -147,10 +154,10 @@ public class Client2 extends Activity {
 	
 	
 	// FOR ORDERING PURPOSES IN TITLE:
-	int firstsubscript;
-	int secondsubscript;
-	int thirdsubscript;
-	int fourthsubscript;
+	int firstsubscript = 0;//JUST TO INITIALIZE
+	int secondsubscript = 0;
+	int thirdsubscript = 0;
+	int fourthsubscript = 0;
 	
 	
 	int finalAttackDamage;
@@ -729,10 +736,23 @@ public class Client2 extends Activity {
 							  	  					new OutputStreamWriter(socket.getOutputStream())),
 							  	  					true);
 						  	  	  				
+						  	  	  				
+						  	  	  				
+						  	  	  				
+						  	  	  				
+						  	  	  				
 						  	  	  				out.println("whatAvatar :" + whatAvatar);
+						  	  	  				
+						  	  	  				
+						  	  	  				
 						  	  	  				
 								  	  			String str2 = ArrayOfPlayers.player[0];
 								  	  			out.println("PlayerName :" + str2);
+								  	  			
+								  	  			
+								  	  			
+								  	  			
+								  	  			
 								  	  			
 								  	  			/*
 								  	  			String str3 = image;
@@ -5630,6 +5650,12 @@ public class Client2 extends Activity {
 				
 				
 				
+				getLocalIpAddress();
+				
+				String str = "localIPAddress :" + iPClient;
+          		sendToHost(str);
+				
+				
 				
 				
 				
@@ -5983,6 +6009,7 @@ public class Client2 extends Activity {
 				  	  			
 				  	  			startGameNow ="yes";
 				  	  			
+				  	  			avatarTest();
 				  	  			
 				  	  			/*
 				  	  			// Calls method from another class:
@@ -6012,6 +6039,120 @@ public class Client2 extends Activity {
 			}
   		});
 	}
+	
+	
+	public void avatarTest() {//DELETE IF NOT USED!!!!!!!!!!!!!
+
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+
+				Toast.makeText(Client2.this, "5 = " + ArrayOfAvatars.avatar[5], Toast.LENGTH_SHORT).show();	
+				Toast.makeText(Client2.this, "0 = " + ArrayOfAvatars.avatar[0], Toast.LENGTH_SHORT).show();
+				Toast.makeText(Client2.this, "1 = " + ArrayOfAvatars.avatar[1], Toast.LENGTH_SHORT).show();
+				
+				Toast.makeText(Client2.this, "ID =  " + id, Toast.LENGTH_SHORT).show();
+			}
+		});
+
+	}
+	
+	
+	public void getLocalIpAddress(){
+		/*   
+		try {
+		       for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces();  
+		       en.hasMoreElements();) {
+		       NetworkInterface intf = en.nextElement();
+		           for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();) {
+		           InetAddress inetAddress = enumIpAddr.nextElement();
+		                if (!inetAddress.isLoopbackAddress()) {		                	
+		                	
+		                	
+		                	String hostIPFull = inetAddress.getHostAddress();//WAS String
+		                	//Toast.makeText(MainActivity1.this, hostIP, Toast.LENGTH_LONG).show();
+		                	
+		                	
+		                	
+		                	hostIP = hostIPFull.split("%")[0];
+		                	Toast.makeText(MainActivity1.this, hostIP, Toast.LENGTH_LONG).show();
+		                	//return hostIP;
+                            
+                            
+		                	
+		                	return inetAddress.getHostAddress().toString();
+		                }
+		           }
+		       }
+		       } catch (Exception ex) {
+		          //Log.e("IP Address", ex.toString());
+		      }
+		      return null;
+		      */
+		boolean WIFI = false;
+
+		boolean MOBILE = false;
+
+		ConnectivityManager CM = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+		NetworkInfo[] networkInfo = CM.getAllNetworkInfo();
+
+		for (NetworkInfo netInfo : networkInfo) {
+
+			if (netInfo.getTypeName().equalsIgnoreCase("WIFI"))
+
+				if (netInfo.isConnected())
+
+					WIFI = true;
+
+			if (netInfo.getTypeName().equalsIgnoreCase("MOBILE"))
+
+				if (netInfo.isConnected())
+
+					MOBILE = true;
+		}
+
+		if (WIFI == true) {
+			iPClient = GetDeviceipWiFiData();
+		}
+
+		if (MOBILE == true) {
+
+			iPClient = GetDeviceipMobileData();
+		}
+	}
+	
+	public String GetDeviceipMobileData(){
+		try {
+			for (Enumeration<NetworkInterface> en = NetworkInterface
+					.getNetworkInterfaces(); en.hasMoreElements();) {
+				NetworkInterface networkinterface = en.nextElement();
+				for (Enumeration<InetAddress> enumIpAddr = networkinterface
+						.getInetAddresses(); enumIpAddr.hasMoreElements();) {
+					InetAddress inetAddress = enumIpAddr.nextElement();
+					if (!inetAddress.isLoopbackAddress()) {
+						return inetAddress.getHostAddress().toString();
+					}
+				}
+			}
+		} catch (Exception ex) {
+			// Log.e("Current IP", ex.toString());
+		}
+		return null;
+	}
+
+	public String GetDeviceipWiFiData() {//NEEDS:<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+		WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
+
+		@SuppressWarnings("deprecation")
+		// THERE ARE 3 DIFFERENT FORMATTER CLASSES
+		String ip = Formatter.formatIpAddress(wm.getConnectionInfo()
+				.getIpAddress());
+
+		return ip;
+	}
+	
 	
 	public void forChat() {
 		
@@ -6081,14 +6222,250 @@ public class Client2 extends Activity {
 				playerHitPointsTextView.setTypeface(typeFace);
 				playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[5]));
 				
-				ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
-				computerAvatar.setVisibility(View.VISIBLE);
+				//ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
+				//computerAvatar.setVisibility(View.VISIBLE);
+				
+				set2PlayerAvatar();//SETS AVATAR FOR [5]
 				
 				
 				scrollAnimationLeftUpNoRight();			
 			}
 		});
 	}
+	
+	
+	public void set2PlayerAvatar() {//SETS AVATAR FOR [5]
+		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				
+				ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
+				ImageView crossedswords2 = (ImageView) findViewById(R.id.imageviewavatarleft2);
+				ImageView stonedead2 = (ImageView) findViewById(R.id.imageviewavatarleft3);
+				ImageView customImage = (ImageView) findViewById(R.id.imageviewavatarleft4);
+				
+				
+				if (ArrayOfAvatars.avatar[5].equals("custom")){
+					crossedswords2.setVisibility(View.INVISIBLE);
+					stonedead2.setVisibility(View.INVISIBLE);
+					computerAvatar.setVisibility(View.INVISIBLE);
+					
+					
+					File imgFile = new  File("/storage/sdcard0/avatar5");//WAS .png
+
+					if(imgFile.exists()){
+
+					    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+
+					    //ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarleft4);
+
+					    customImage.setImageBitmap(myBitmap);//WAS myImage
+					    
+					    customImage.setVisibility(View.VISIBLE);//WAS myImage
+					}
+					else {
+						//USE COMPUTER
+						crossedswords2.setVisibility(View.INVISIBLE);
+						stonedead2.setVisibility(View.INVISIBLE);
+						customImage.setVisibility(View.INVISIBLE);
+						
+						computerAvatar.setVisibility(View.VISIBLE);
+					}
+				}
+				else if (ArrayOfAvatars.avatar[5].equals("computer")){
+					crossedswords2.setVisibility(View.INVISIBLE);
+					stonedead2.setVisibility(View.INVISIBLE);
+					customImage.setVisibility(View.INVISIBLE);
+					
+					computerAvatar.setVisibility(View.VISIBLE);
+				}
+				else if (ArrayOfAvatars.avatar[5].equals("crossedswords")){
+					computerAvatar.setVisibility(View.INVISIBLE);
+					stonedead2.setVisibility(View.INVISIBLE);
+					customImage.setVisibility(View.INVISIBLE);
+					
+					crossedswords2.setVisibility(View.VISIBLE);
+				}
+				else if (ArrayOfAvatars.avatar[5].equals("stonedead")){
+					crossedswords2.setVisibility(View.INVISIBLE);
+					computerAvatar.setVisibility(View.INVISIBLE);
+					customImage.setVisibility(View.INVISIBLE);
+					
+					stonedead2.setVisibility(View.VISIBLE);
+				}
+				
+				/*CAN'T USE FOLLOWING BECAUSE UNLIKE imageviewavatarright, I HAVE 4 DIFFERENT VIEWS ON LEFT
+				if (ArrayOfAvatars.avatar[5].equals("custom")){
+	  	  	    	
+		  	  	    File imgFile = new  File("/storage/sdcard0/avatar0");//WAS .png
+
+					if(imgFile.exists()){
+
+					    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+
+					    ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarright);
+
+					    myImage.setImageBitmap(myBitmap);
+					}
+	  			}
+	  	  	    else if (ArrayOfAvatars.avatar[5].equals("computer")){
+	  	  	    	
+	  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+	  				clientAvatar.setBackgroundResource(R.drawable.computer);
+	  			}
+	  			else if (ArrayOfAvatars.avatar[5].equals("crossedswords")){
+	  				
+	  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+	  				clientAvatar.setBackgroundResource(R.drawable.crossedswords2);
+	  			}
+	  			else if (ArrayOfAvatars.avatar[5].equals("stonedead")){
+	  				
+	  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+	  				clientAvatar.setBackgroundResource(R.drawable.stonedead2);
+	  			}
+	  			*/
+			}
+		});
+	}
+	
+	public void setPlayerAvatarFor1Left() {
+		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				
+				ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
+				ImageView crossedswords2 = (ImageView) findViewById(R.id.imageviewavatarleft2);
+				ImageView stonedead2 = (ImageView) findViewById(R.id.imageviewavatarleft3);
+				ImageView customImage = (ImageView) findViewById(R.id.imageviewavatarleft4);
+				
+				
+				if (ArrayOfAvatars.avatar[1].equals("custom")){
+					crossedswords2.setVisibility(View.INVISIBLE);
+					stonedead2.setVisibility(View.INVISIBLE);
+					computerAvatar.setVisibility(View.INVISIBLE);
+					
+					
+					File imgFile = new  File("/storage/sdcard0/avatar1");//WAS .png
+
+					if(imgFile.exists()){
+
+					    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+
+					    //ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarleft4);
+
+					    customImage.setImageBitmap(myBitmap);
+					    
+					    customImage.setVisibility(View.VISIBLE);
+					}
+					else {
+						//USE COMPUTER
+						crossedswords2.setVisibility(View.INVISIBLE);
+						stonedead2.setVisibility(View.INVISIBLE);
+						customImage.setVisibility(View.INVISIBLE);
+						
+						computerAvatar.setVisibility(View.VISIBLE);
+					}
+				}
+				else if (ArrayOfAvatars.avatar[1].equals("computer")){
+					crossedswords2.setVisibility(View.INVISIBLE);
+					stonedead2.setVisibility(View.INVISIBLE);
+					customImage.setVisibility(View.INVISIBLE);
+					
+					computerAvatar.setVisibility(View.VISIBLE);
+				}
+				else if (ArrayOfAvatars.avatar[1].equals("crossedswords")){
+					computerAvatar.setVisibility(View.INVISIBLE);
+					stonedead2.setVisibility(View.INVISIBLE);
+					customImage.setVisibility(View.INVISIBLE);
+					
+					crossedswords2.setVisibility(View.VISIBLE);
+				}
+				else if (ArrayOfAvatars.avatar[1].equals("stonedead")){
+					crossedswords2.setVisibility(View.INVISIBLE);
+					computerAvatar.setVisibility(View.INVISIBLE);
+					customImage.setVisibility(View.INVISIBLE);
+					
+					stonedead2.setVisibility(View.VISIBLE);
+				}
+			}
+		});
+	}
+	
+	public void setPlayerAvatarFor0Left() {
+		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				
+				avatarTest();
+				
+				ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
+				ImageView crossedswords2 = (ImageView) findViewById(R.id.imageviewavatarleft2);
+				ImageView stonedead2 = (ImageView) findViewById(R.id.imageviewavatarleft3);
+				ImageView customImage = (ImageView) findViewById(R.id.imageviewavatarleft4);
+				
+				
+				if (ArrayOfAvatars.avatar[0].equals("custom")){
+					crossedswords2.setVisibility(View.INVISIBLE);
+					stonedead2.setVisibility(View.INVISIBLE);
+					computerAvatar.setVisibility(View.INVISIBLE);
+					
+					
+					File imgFile = new  File("/storage/sdcard0/avatar0");//WAS .png
+
+					if(imgFile.exists()){
+
+					    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+
+					    //ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarleft4);
+
+					    customImage.setImageBitmap(myBitmap);
+					    
+					    customImage.setVisibility(View.VISIBLE);
+					}
+					else {
+						//USE COMPUTER
+						crossedswords2.setVisibility(View.INVISIBLE);
+						stonedead2.setVisibility(View.INVISIBLE);
+						customImage.setVisibility(View.INVISIBLE);
+						
+						computerAvatar.setVisibility(View.VISIBLE);
+					}
+				}
+				else if (ArrayOfAvatars.avatar[0].equals("computer")){
+					crossedswords2.setVisibility(View.INVISIBLE);
+					stonedead2.setVisibility(View.INVISIBLE);
+					customImage.setVisibility(View.INVISIBLE);
+					
+					computerAvatar.setVisibility(View.VISIBLE);
+				}
+				else if (ArrayOfAvatars.avatar[0].equals("crossedswords")){
+					computerAvatar.setVisibility(View.INVISIBLE);
+					stonedead2.setVisibility(View.INVISIBLE);
+					customImage.setVisibility(View.INVISIBLE);
+					
+					
+					crossedswords2.setVisibility(View.VISIBLE);
+					
+					//crossedswords2.bringToFront();
+					
+					test();
+				}
+				else if (ArrayOfAvatars.avatar[0].equals("stonedead")){
+					crossedswords2.setVisibility(View.INVISIBLE);
+					computerAvatar.setVisibility(View.INVISIBLE);
+					customImage.setVisibility(View.INVISIBLE);
+					
+					stonedead2.setVisibility(View.VISIBLE);
+				}
+				
+				//test();
+			}
+		});
+	}
+	
 	
 	public void gameEngineMultiPlayer() {
 		
@@ -6127,16 +6504,11 @@ public class Client2 extends Activity {
 						centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + " is choosing player to attack...");									
 						*/
 						
-						if (id == 0) {
+						
 	  	  	  				
-							String str = "> " + ArrayOfPlayers.player[0] + " is choosing player to attack...";
-							sendToHost(str);
-	  	  	  			}
-	  	  	  			else if (id == 1) {
-	  	  	  				
-	  	  	  				String str = "> " + ArrayOfPlayers.player[1] + " is choosing player to attack...";
-	  	  	  				sendToHost(str);
-	  	  	  			}
+						String str = "> " + ArrayOfPlayers.player[0] + " is choosing player to attack...";
+						sendToHost(str);
+	  	  	  			
 		  	  	    					
 						
 						final Handler h = new Handler();
@@ -6217,6 +6589,10 @@ public class Client2 extends Activity {
 			  		                        		
 			  		                        		if (zeroAttackingFirst.equals("yes")) {			  		                        			
 			  		                        			
+			  		                        			playerNumberAttacked = 5;
+			  		                        			
+playerAttackingTest();
+			  		                        			
 			  		                        			String str = "0FirstChooses5";
 				  		                        		sendToHost(str);          			
 			  		                        			
@@ -6257,6 +6633,10 @@ public class Client2 extends Activity {
 			  		                        		
 			  		                        		else {                    		
 			  		                        			
+			  		                        			playerNumberAttacked = 5;
+			  		                        			
+playerAttackingTest();
+			  		                        			
 				  		                        		String str = "0chooses5";
 				  		                        		sendToHost(str);
 				  		                        		
@@ -6274,9 +6654,11 @@ public class Client2 extends Activity {
 					  		      						playerHitPointsTextView.setTypeface(typeFace);
 					  		      						playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[5]));
 					  		      						
-					  		      						ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
-					  		      						computerAvatar.setVisibility(View.VISIBLE);
+					  		      						//ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
+					  		      						//computerAvatar.setVisibility(View.VISIBLE);
 					  		                  			
+					  		      						set2PlayerAvatar();//SETS AVATAR FOR [5]
+					  		      						
 					  		                  			
 					  		                  			scrollAnimationLeftUpNoRight();
 					  		                  			
@@ -6297,6 +6679,10 @@ public class Client2 extends Activity {
 			  		                        	else if (item == 1) {
 			  		                        		
 			  		                        		if (zeroAttackingFirst.equals("yes")) {
+			  		                        			
+			  		                        			playerNumberAttacked = 1;
+			  		                        			
+playerAttackingTest();
 			  		                        			
 			  		                        			String str = "0FIrstChooses1";
 				  		                        		sendToHost(str);
@@ -6338,6 +6724,10 @@ public class Client2 extends Activity {
 			  		                        		
 			  		                        		else {
 			  		                        			
+			  		                        			playerNumberAttacked = 1;
+			  		                        			
+playerAttackingTest();
+			  		                        			
 			  		                        			String str = "0chooses1";
 				  		                        		sendToHost(str);
 				  		                        		
@@ -6355,9 +6745,11 @@ public class Client2 extends Activity {
 					  		      						playerHitPointsTextView.setTypeface(typeFace);
 					  		      						playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
 					  		      						
-					  		      						ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
-					  		      						computerAvatar.setVisibility(View.VISIBLE);
+					  		      						//ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
+					  		      						//computerAvatar.setVisibility(View.VISIBLE);
 					  		                  			
+					  		      					setPlayerAvatarFor1Left();
+					  		      						
 					  		                  			
 					  		                  			scrollAnimationLeftUpNoRight();
 					  		                  			
@@ -6501,6 +6893,10 @@ public class Client2 extends Activity {
 			  		                        		
 			  		                        		if (oneAttackingFirst.equals("yes")) {
 			  		                        			
+			  		                        			playerNumberAttacked = 5;
+			  		                        			
+playerAttackingTest();
+			  		                        			
 			  		                        			String str = "1FirstChooses5";
 				  		                        		sendToHost(str);
 				  		                        		
@@ -6541,6 +6937,10 @@ public class Client2 extends Activity {
 			  		                        		
 			  		                        		else {
 			  		                        			
+			  		                        			playerNumberAttacked = 5;
+			  		                        			
+playerAttackingTest();
+			  		                        			
 			  		                        			String str = "1chooses5";
 				  		                        		sendToHost(str);
 				  		                        		
@@ -6558,9 +6958,11 @@ public class Client2 extends Activity {
 					  		      						playerHitPointsTextView.setTypeface(typeFace);
 					  		      						playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[5]));
 					  		      						
-					  		      						ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
-					  		      						computerAvatar.setVisibility(View.VISIBLE);
+					  		      						//ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
+					  		      						//computerAvatar.setVisibility(View.VISIBLE);
 					  		                  			
+					  		      						set2PlayerAvatar();//SETS AVATAR FOR [5]
+					  		      						
 					  		                  			
 					  		                  			scrollAnimationLeftUpNoRight();
 					  		                  			
@@ -6581,6 +6983,10 @@ public class Client2 extends Activity {
 			  		                        	else if (item == 1) {			  		                        		
 													
 			  		                        		if (oneAttackingFirst.equals("yes")) {
+			  		                        			
+			  		                        			playerNumberAttacked = 0;
+			  		                        			
+playerAttackingTest();
 			  		                        			
 			  		                        			String str = "1FIrstChooses0";
 				  		                        		sendToHost(str);
@@ -6622,6 +7028,10 @@ public class Client2 extends Activity {
 			  		                        		
 			  		                        		else {
 			  		                        			
+			  		                        			playerNumberAttacked = 0;
+			  		                        			
+playerAttackingTest();
+			  		                        			
 			  		                        			String str = "1chooses0";
 				  		                        		sendToHost(str);
 				  		                        		
@@ -6639,9 +7049,11 @@ public class Client2 extends Activity {
 					  		      						playerHitPointsTextView.setTypeface(typeFace);
 					  		      						playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
 					  		      						
-					  		      						ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
-					  		      						computerAvatar.setVisibility(View.VISIBLE);
+					  		      						//ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
+					  		      						//computerAvatar.setVisibility(View.VISIBLE);
 					  		                  			
+					  		      						setPlayerAvatarFor0Left();
+					  		      						
 					  		                  			
 					  		                  			scrollAnimationLeftUpNoRight();
 					  		                  			
@@ -6698,8 +7110,37 @@ public class Client2 extends Activity {
     			//computerHitPointsTextView.setVisibility(View.INVISIBLE);
     			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
 
-    			ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
-    			clientAvatar.setVisibility(View.VISIBLE);
+    			//ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+    			//clientAvatar.setVisibility(View.VISIBLE);
+    			
+    			if (ArrayOfAvatars.avatar[0].equals("custom")){
+		  	  	    	
+			  	  	    File imgFile = new  File("/storage/sdcard0/avatar0");//WAS .png
+	
+						if(imgFile.exists()){
+	
+						    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+	
+						    ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarright);
+	
+						    myImage.setImageBitmap(myBitmap);
+						}
+	  			}
+	  	  	    else if (ArrayOfAvatars.avatar[0].equals("computer")){
+	  	  	    	
+	  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+	  				clientAvatar.setBackgroundResource(R.drawable.computer);
+	  			}
+	  			else if (ArrayOfAvatars.avatar[0].equals("crossedswords")){
+	  				
+	  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+	  				clientAvatar.setBackgroundResource(R.drawable.crossedswords2);
+	  			}
+	  			else if (ArrayOfAvatars.avatar[0].equals("stonedead")){
+	  				
+	  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+	  				clientAvatar.setBackgroundResource(R.drawable.stonedead2);
+	  			}
 	  	  			
 	  	  			
     			scrollAnimationLeftDown();
@@ -6732,8 +7173,37 @@ public class Client2 extends Activity {
     			//computerHitPointsTextView.setVisibility(View.INVISIBLE);
     			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
 
-    			ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
-    			clientAvatar.setVisibility(View.VISIBLE);
+    			//ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+    			//clientAvatar.setVisibility(View.VISIBLE);
+    			
+    			if (ArrayOfAvatars.avatar[1].equals("custom")){
+		  	  	    	
+			  	  	    File imgFile = new  File("/storage/sdcard0/avatar1");//WAS .png
+	
+						if(imgFile.exists()){
+	
+						    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+	
+						    ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarright);
+	
+						    myImage.setImageBitmap(myBitmap);
+						}
+	  			}
+	  	  	    else if (ArrayOfAvatars.avatar[1].equals("computer")){
+	  	  	    	
+	  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+	  				clientAvatar.setBackgroundResource(R.drawable.computer);
+	  			}
+	  			else if (ArrayOfAvatars.avatar[1].equals("crossedswords")){
+	  				
+	  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+	  				clientAvatar.setBackgroundResource(R.drawable.crossedswords2);
+	  			}
+	  			else if (ArrayOfAvatars.avatar[1].equals("stonedead")){
+	  				
+	  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+	  				clientAvatar.setBackgroundResource(R.drawable.stonedead2);
+	  			}
 	  	  			
 	  	  			
     			scrollAnimationLeftDown();
@@ -6763,8 +7233,10 @@ public class Client2 extends Activity {
 				playerHitPointsTextView.setTypeface(typeFace);
 				playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[5]));
 				
-				ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
-				computerAvatar.setVisibility(View.VISIBLE);
+				//ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
+				//computerAvatar.setVisibility(View.VISIBLE);
+				
+				set2PlayerAvatar();//SETS AVATAR FOR [5]
 				
 				
 				unfoldLeftScroll();
@@ -6792,8 +7264,10 @@ public class Client2 extends Activity {
 				playerHitPointsTextView.setTypeface(typeFace);
 				playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[5]));
 				
-				ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
-				computerAvatar.setVisibility(View.VISIBLE);
+				//ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
+				//computerAvatar.setVisibility(View.VISIBLE);
+				
+				set2PlayerAvatar();//SETS AVATAR FOR [5]
     			
     			
     			scrollAnimationLeftUpNoRight();
@@ -6827,8 +7301,10 @@ public class Client2 extends Activity {
 				playerHitPointsTextView.setTypeface(typeFace);
 				playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
 				
-				ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
-				computerAvatar.setVisibility(View.VISIBLE);
+				//ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
+				//computerAvatar.setVisibility(View.VISIBLE);
+				
+				setPlayerAvatarFor1Left();
     			
     			
     			scrollAnimationLeftUpNoRight();
@@ -6862,8 +7338,10 @@ public class Client2 extends Activity {
 				playerHitPointsTextView.setTypeface(typeFace);
 				playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
 				
-				ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
-				computerAvatar.setVisibility(View.VISIBLE);
+				//ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
+				//computerAvatar.setVisibility(View.VISIBLE);
+				
+				setPlayerAvatarFor0Left();
     			
     			
     			scrollAnimationLeftUpNoRight();
@@ -6932,6 +7410,9 @@ public class Client2 extends Activity {
 				//playerHitPointsTextView.startAnimation(animPulsingAnimation);
 				
 				
+				set2PlayerAvatar(); //SETS AVATAR FOR [5]
+				
+				
 				scrollAnimationLeftUpNoRight();
 			}
 		});		
@@ -6967,8 +7448,10 @@ public class Client2 extends Activity {
 						playerHitPointsTextView.setTypeface(typeFace);
 						playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[5]));
 						
-						ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
-						computerAvatar.setVisibility(View.VISIBLE);
+						//ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
+						//computerAvatar.setVisibility(View.VISIBLE);
+						
+						set2PlayerAvatar();//SETS AVATAR FOR [5]
 						
 						
 						TextView computerNameTextView = (TextView)findViewById(R.id.textviewnameright);
@@ -6979,8 +7462,37 @@ public class Client2 extends Activity {
 						computerHitPointsTextView.setTypeface(typeFace);
 						computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
 						
-						ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
-						clientAvatar.setVisibility(View.VISIBLE);
+						//ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+						//clientAvatar.setVisibility(View.VISIBLE);
+						
+						if (ArrayOfAvatars.avatar[0].equals("custom")){
+			  	  	    	
+				  	  	    File imgFile = new  File("/storage/sdcard0/avatar0");//WAS .png
+		
+							if(imgFile.exists()){
+		
+							    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+		
+							    ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarright);
+		
+							    myImage.setImageBitmap(myBitmap);
+							}
+			  			}
+			  	  	    else if (ArrayOfAvatars.avatar[0].equals("computer")){
+			  	  	    	
+			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+			  				clientAvatar.setBackgroundResource(R.drawable.computer);
+			  			}
+			  			else if (ArrayOfAvatars.avatar[0].equals("crossedswords")){
+			  				
+			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+			  				clientAvatar.setBackgroundResource(R.drawable.crossedswords2);
+			  			}
+			  			else if (ArrayOfAvatars.avatar[0].equals("stonedead")){
+			  				
+			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+			  				clientAvatar.setBackgroundResource(R.drawable.stonedead2);
+			  			}
 						
 						
 						unfoldScrolls();
@@ -7022,8 +7534,10 @@ public class Client2 extends Activity {
 						playerHitPointsTextView.setTypeface(typeFace);
 						playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[5]));
 						
-						ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
-						computerAvatar.setVisibility(View.VISIBLE);
+						//ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
+						//computerAvatar.setVisibility(View.VISIBLE);
+						
+						set2PlayerAvatar();//SETS AVATAR FOR [5]
 						
 						
 						TextView computerNameTextView = (TextView)findViewById(R.id.textviewnameright);
@@ -7034,8 +7548,37 @@ public class Client2 extends Activity {
 						computerHitPointsTextView.setTypeface(typeFace);
 						computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
 						
-						ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
-						clientAvatar.setVisibility(View.VISIBLE);
+						//ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+						//clientAvatar.setVisibility(View.VISIBLE);
+						
+						if (ArrayOfAvatars.avatar[1].equals("custom")){
+			  	  	    	
+				  	  	    File imgFile = new  File("/storage/sdcard0/avatar1");//WAS .png
+		
+							if(imgFile.exists()){
+		
+							    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+		
+							    ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarright);
+		
+							    myImage.setImageBitmap(myBitmap);
+							}
+			  			}
+			  	  	    else if (ArrayOfAvatars.avatar[1].equals("computer")){
+			  	  	    	
+			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+			  				clientAvatar.setBackgroundResource(R.drawable.computer);
+			  			}
+			  			else if (ArrayOfAvatars.avatar[1].equals("crossedswords")){
+			  				
+			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+			  				clientAvatar.setBackgroundResource(R.drawable.crossedswords2);
+			  			}
+			  			else if (ArrayOfAvatars.avatar[1].equals("stonedead")){
+			  				
+			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+			  				clientAvatar.setBackgroundResource(R.drawable.stonedead2);
+			  			}
 						
 						
 						unfoldScrolls();
@@ -7358,7 +7901,7 @@ public class Client2 extends Activity {
   		});
 	}
 	
-	public void changeClientHitPoints() {
+	public void changeClient0HitPoints() {
 		
 		runOnUiThread(new Runnable() {
   	  	    @Override
@@ -7366,35 +7909,109 @@ public class Client2 extends Activity {
 		
 				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 				
-				final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
-				computerHitPointsTextView.setTypeface(typeFace);
-				
-				if (id == 0) {
-	  	  				
+								
+				if (playersFighting.equals("fiveVsZero")) {
+					
+					final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+					computerHitPointsTextView.setTypeface(typeFace);
 					computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
-  	  			}
-  	  			else if (id == 1) {
-  	  				
-  	  				computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
-  	  			}
-				
-				//playerHitPointsTextView.bringToFront();
-				Animation animPulsingAnimation = AnimationUtils.loadAnimation(Client2.this, R.anim.pulsinganimation);
-				computerHitPointsTextView.startAnimation(animPulsingAnimation);
-				
-				
-				final Handler h = new Handler();
+					
+					//playerHitPointsTextView.bringToFront();
+					Animation animPulsingAnimation = AnimationUtils.loadAnimation(Client2.this, R.anim.pulsinganimation);
+					computerHitPointsTextView.startAnimation(animPulsingAnimation);
+					
+					
+					final Handler h = new Handler();
 			  		h.postDelayed(new Runnable() {		  	  	  			
 			  	  			
-		  	  		@Override
-		  	  	  	public void run() {  	  		
+			  	  		@Override
+			  	  	  	public void run() {  	  		
+				  	  			
+			  	  			computerHitPointsTextView.clearAnimation();		
+				  	  	}
+			  	  	}, 2000);
+				}
+				
+				else if (playersFighting.equals("oneVsZero")) {
+					
+					final TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+					playerHitPointsTextView.setTypeface(typeFace);
+					playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+					
+					//playerHitPointsTextView.bringToFront();
+					Animation animPulsingAnimation = AnimationUtils.loadAnimation(Client2.this, R.anim.pulsinganimation);
+					playerHitPointsTextView.startAnimation(animPulsingAnimation);
+					
+					
+					final Handler h = new Handler();
+			  		h.postDelayed(new Runnable() {		  	  	  			
 			  	  			
-		  	  			computerHitPointsTextView.clearAnimation();		
-			  	  	}
-		  	  	}, 2000);
+			  	  		@Override
+			  	  	  	public void run() {  	  		
+				  	  			
+			  	  			playerHitPointsTextView.clearAnimation();		
+				  	  	}
+			  	  	}, 2000);
+				}
   	  	    }
   		});
 	}
+
+	public void changeClient1HitPoints() {
+	
+		runOnUiThread(new Runnable() {
+	  	    @Override
+	  	    public void run() {
+	
+				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+				
+				
+				if (playersFighting.equals("fiveVsOne")) {
+					
+					final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+					computerHitPointsTextView.setTypeface(typeFace);
+					computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
+					
+					//playerHitPointsTextView.bringToFront();
+					Animation animPulsingAnimation = AnimationUtils.loadAnimation(Client2.this, R.anim.pulsinganimation);
+					computerHitPointsTextView.startAnimation(animPulsingAnimation);
+					
+					final Handler h = new Handler();
+			  		h.postDelayed(new Runnable() {		  	  	  			
+			  	  			
+			  	  		@Override
+			  	  	  	public void run() {  	  		
+				  	  			
+			  	  			computerHitPointsTextView.clearAnimation();		
+				  	  	}
+			  	  	}, 2000);
+				}
+				
+				else if (playersFighting.equals("zeroVsOne")) {
+					
+					final TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+					playerHitPointsTextView.setTypeface(typeFace);
+					playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
+					
+					//playerHitPointsTextView.bringToFront();
+					Animation animPulsingAnimation = AnimationUtils.loadAnimation(Client2.this, R.anim.pulsinganimation);
+					playerHitPointsTextView.startAnimation(animPulsingAnimation);
+					
+					final Handler h = new Handler();
+			  		h.postDelayed(new Runnable() {		  	  	  			
+			  	  			
+			  	  		@Override
+			  	  	  	public void run() {  	  		
+				  	  			
+			  	  			playerHitPointsTextView.clearAnimation();		
+				  	  	}
+			  	  	}, 2000);
+				}
+	  	    }
+		});
+	}
+
+
 	
 	public void victoryDefeatAnimation() {		
 		
@@ -8842,6 +9459,8 @@ public class Client2 extends Activity {
 					String str = "> " + ArrayOfPlayers.player[playerNumberAttacking] + " casts cure...";
 					sendToHost(str);
 					
+					//DON'T NEED THIS BECAUSE PICK OPPONENT BEFORE PICKING CURE:
+					//playersFighting = "cure";
 					
 					cureSpell[playerNumberAttacking] = cureSpell[playerNumberAttacking] - 1;
 					
@@ -12544,7 +13163,31 @@ public class Client2 extends Activity {
 			String str = "5ArrayOfHitPoints.hitpoints[5] :" + finalAttackDamage;
 			sendToHost(str);
 		}
+		
+		
+		
+		
+		
+		playerAttackingTest();
 	}
+	
+	
+	
+	
+	
+	public void playerAttackingTest() {//DELETE IF NOT USED!!!!!!!!!!!!!
+
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+
+				Toast.makeText(Client2.this, String.valueOf(playerNumberAttacked), Toast.LENGTH_SHORT).show();
+			}
+		});
+	}
+	
+	
+	
 	
 	
 	
@@ -12587,6 +13230,7 @@ public class Client2 extends Activity {
 	
 	
 	
+	
 	public void test() {
 		
 		runOnUiThread(new Runnable() {
@@ -12598,6 +13242,14 @@ public class Client2 extends Activity {
 		});
 		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	public String getPath(Uri uri) 
     {
@@ -12634,17 +13286,6 @@ public class Client2 extends Activity {
 			            dos.close();
 			            is.close();
 			        }
-			        
-			        
-			        
-			        
-			        
-			        
-			        
-			        
-			        
-			        
-			        
 		        	
 		        } catch (Exception e) {
 		            e.printStackTrace();
@@ -12653,7 +13294,6 @@ public class Client2 extends Activity {
 		});
 
 		thread.start();
-	    	
 	}
 	
 	public void sendImage1(){
@@ -12663,6 +13303,24 @@ public class Client2 extends Activity {
 		    public void run() {
 		        try {
 		        	
+		        	InetAddress address = InetAddress.getByName(hostIP);
+			        socket0 = new Socket(address, 3001);
+		    		
+		    		
+			        //File file = new File(image_path);
+			        try (InputStream is = new BufferedInputStream(new FileInputStream(imagefile));
+			                DataOutputStream dos = new DataOutputStream(socket0.getOutputStream());) {
+			            dos.writeLong(imagefile.length()); // <-- remember to read a long on server.
+			            int val;
+			            while ((val = is.read()) != -1) {
+			                dos.write(val);
+			            }
+			            dos.flush();
+			            dos.close();
+			            is.close();
+			        }
+		        	
+		        	/*
 		    		InetAddress address = InetAddress.getByName(hostIP);
 			        socket0 = new Socket(address, 3001);
 		    		
@@ -12682,7 +13340,7 @@ public class Client2 extends Activity {
 	                out.flush();
 	                out.close();
 	                dis.close();
-		        	
+		        	*/
 		        } catch (Exception e) {
 		            e.printStackTrace();
 		        }
@@ -12690,7 +13348,107 @@ public class Client2 extends Activity {
 		});
 
 		thread.start();
-	    	
+	}
+	
+	
+	public void ReceiveImage50(){
+		try {
+			
+			ServerSocket clientSocket5 = new ServerSocket(4000);
+			File file = new File("/storage/sdcard0/avatar5");
+			try (Socket s = clientSocket5.accept();
+			        DataInputStream dis = new DataInputStream(
+			                s.getInputStream());
+			        OutputStream fos = new BufferedOutputStream(
+			                new FileOutputStream(file));) {
+			    long arrlen = dis.readLong();
+			    for (long i = 0; i < arrlen; i++) {
+			        fos.write(dis.read());
+			    }
+			    fos.flush();
+			    dis.close();
+			    fos.close();
+			    clientSocket5.close();
+			}
+			
+			} catch (Exception e) {
+		       
+		    }
+	}
+	
+	public void ReceiveImage51(){
+		try {
+			
+			ServerSocket clientSocket5 = new ServerSocket(4001);
+			File file = new File("/storage/sdcard0/avatar5");
+			try (Socket s = clientSocket5.accept();
+			        DataInputStream dis = new DataInputStream(
+			                s.getInputStream());
+			        OutputStream fos = new BufferedOutputStream(
+			                new FileOutputStream(file));) {
+			    long arrlen = dis.readLong();
+			    for (long i = 0; i < arrlen; i++) {
+			        fos.write(dis.read());
+			    }
+			    fos.flush();
+			    dis.close();
+			    fos.close();
+			    clientSocket5.close();
+			}
+			
+			} catch (Exception e) {
+		       
+		    }
+	}
+	
+	public void ReceiveImage0(){
+		try {
+			
+			ServerSocket clientSocket0 = new ServerSocket(4002);
+			File file = new File("/storage/sdcard0/avatar0");
+			try (Socket s = clientSocket0.accept();
+			        DataInputStream dis = new DataInputStream(
+			                s.getInputStream());
+			        OutputStream fos = new BufferedOutputStream(
+			                new FileOutputStream(file));) {
+			    long arrlen = dis.readLong();
+			    for (long i = 0; i < arrlen; i++) {
+			        fos.write(dis.read());
+			    }
+			    fos.flush();
+			    dis.close();
+			    fos.close();
+			    clientSocket0.close();
+			}
+			
+			} catch (Exception e) {
+		       
+		    }
+	}
+	
+	public void ReceiveImage1(){
+		try {
+			
+			ServerSocket clientSocket1 = new ServerSocket(4003);
+			File file = new File("/storage/sdcard0/avatar1");
+			try (Socket s = clientSocket1.accept();
+			        DataInputStream dis = new DataInputStream(
+			                s.getInputStream());
+			        OutputStream fos = new BufferedOutputStream(
+			                new FileOutputStream(file));) {
+			    long arrlen = dis.readLong();
+			    for (long i = 0; i < arrlen; i++) {
+			        fos.write(dis.read());
+			    }
+			    fos.flush();
+			    dis.close();
+			    fos.close();
+			    clientSocket1.close();
+			}
+			
+			} catch (Exception e) {
+		       
+		    }
 	}
 	
 	
@@ -12818,6 +13576,74 @@ public class Client2 extends Activity {
 						
 						//setAvatarForOtherClients();
 					}
+					
+					
+					else if (read.contains("hostComputer")) {
+						
+						ArrayOfAvatars.avatar[5] = "computer";
+					}
+					else if (read.contains("hostCrossedswords")) {
+	
+						ArrayOfAvatars.avatar[5] = "crossedswords";
+					}
+					else if (read.contains("hostStonedead")) {
+						
+						ArrayOfAvatars.avatar[5] = "stonedead";
+					}
+					else if (read.contains("hostCustom")) {
+						
+						ArrayOfAvatars.avatar[5] = "custom";
+						
+						
+						if (id == 0) {
+							
+							ReceiveImage50();
+						}
+						else if (id == 1) {
+							
+							ReceiveImage51();
+						}
+					}
+					else if (read.contains("0Computer")) {
+						
+						ArrayOfAvatars.avatar[0] = "computer";
+					}
+					else if (read.contains("0crosswords")) {
+						
+						ArrayOfAvatars.avatar[0] = "crossedswords";
+					}
+					else if (read.contains("0stonded")) {
+						
+						ArrayOfAvatars.avatar[0] = "stonedead";
+					}
+					else if (read.contains("0cstom")) {
+						
+						ArrayOfAvatars.avatar[0] = "custom";
+						
+						
+						ReceiveImage0();
+					}
+					else if (read.contains("1cmpter")) {
+						
+						ArrayOfAvatars.avatar[1] = "computer";
+					}
+					else if (read.contains("1Crsswrds")) {
+						
+						ArrayOfAvatars.avatar[1] = "crossedswords";
+					}
+					else if (read.contains("1Stned")) {
+						
+						ArrayOfAvatars.avatar[1] = "stonedead";
+					}
+					else if (read.contains("1Cstm")) {
+						
+						ArrayOfAvatars.avatar[1] = "custom";
+						
+						
+						ReceiveImage1();
+					}
+					
+					
 					else if (read.contains("playerDeadYet5")) {
 						
 						String[] parts = read.split(":");
@@ -13096,7 +13922,7 @@ public class Client2 extends Activity {
 												
 						ArrayOfHitPoints.hitpoints[0]=Integer.parseInt(part2);
 						
-						changeClientHitPoints();
+						changeClient0HitPoints();
 					}
 					else if (read.contains("1ArrayOfHitPoints.hitpoints[1]")) {
 						
@@ -13107,7 +13933,7 @@ public class Client2 extends Activity {
 												
 						ArrayOfHitPoints.hitpoints[1]=Integer.parseInt(part2);
 						
-						changeClientHitPoints();
+						changeClient1HitPoints();
 					}
 					else if (read.contains("2ArrayOfHitPoints.hitpoints[2]")) {
 						
@@ -13118,7 +13944,7 @@ public class Client2 extends Activity {
 												
 						ArrayOfHitPoints.hitpoints[2]=Integer.parseInt(part2);
 						
-						changeClientHitPoints();
+						//changeClientHitPoints();
 					}
 					else if (read.contains("3ArrayOfHitPoints.hitpoints[3]")) {
 						
@@ -13129,7 +13955,7 @@ public class Client2 extends Activity {
 												
 						ArrayOfHitPoints.hitpoints[3]=Integer.parseInt(part2);
 						
-						changeClientHitPoints();
+						//changeClientHitPoints();
 					}
 					
 					else if (read.contains("rollDge")) {					
@@ -14023,19 +14849,19 @@ public class Client2 extends Activity {
 						
 						reveal5onleftclientattacking();
 						
-						test();
+						//test();
 					}
 					else if (read.contains("clntattackingreveal1onleft")) {//reveAl1onleftClientAttacking
 	
 						reveal1onleftclientattacking();
 						
-						test();
+						//test();
 					}
 					else if (read.contains("CntAttingrevL0onlft")) {//reveaL0onleftClientAttacking
 	
 						reveal0onleftclientattacking();
 						
-						test();
+						//test();
 					}
 					else if (read.contains("closeRightScroll")) {
 						

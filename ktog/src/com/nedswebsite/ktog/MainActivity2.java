@@ -79,7 +79,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 	int max = 0;
 	//int numberOfPlayers = 2;
 	
-	static int numberOfPlayers = 1; // NEED THIS???????????
+	int numberOfPlayers = 1; // NEED THIS???????????
 	
 	//static int playerNumberAttacked;
 	
@@ -93,8 +93,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 	//int computerAttackResultAgainstDisarmed;
 	
 	int computerAttackDamageDisarmed;
-	public static int[] attackDamageOneDisarmed = new int[1];
-	public static int[] attackDamageTwoDisarmed = new int[1];
+	public int[] attackDamageOneDisarmed = new int[1];
+	public int[] attackDamageTwoDisarmed = new int[1];
 	
 	
 	//int turnhumandisarmedcomputer; ========= disarmedTurnStart[1] = turn;
@@ -102,17 +102,17 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 	//int turncomputerdisarmedhuman; ========= disarmedTurnStart[0] = turn;
 	//int turnhumancritmiss;========disarmedTurnStart[1] = turn;	
 	
-	public static int[] disarmedTurnStart = new int[6];
+	public int[] disarmedTurnStart = new int[6];
 	String didHumanCriticalMiss = "no";
 	String didComputerCriticalMiss = "no";
 	
 	
 	// SOME OF THESE MAY NEED TO BE AN ARRAY-CLASS:
-	public static int[] blessSpell = new int[] {1, 1, 1, 1, 1, 1, 1};// {1, 1, 1, 1, 1, 1, 1};
-	public static int[] cureSpell = new int[] {1, 1, 1, 1, 1, 1, 1};// {1, 1, 1, 1, 1, 1, 1};
-	public static int[] dodgeBlowSpell = new int[] {1, 1, 1, 1, 1, 1, 1};// {1, 1, 1, 1, 1, 1, 1};
-	public static int[] mightyBlowSpell = new int[] {1, 1, 1, 1, 1, 1, 1};// {1, 1, 1, 1, 1, 1, 1};
-	public static int[] hasteSpell = new int[] {2, 2, 2, 2, 2, 2, 2};//	{2, 2, 2, 2, 2, 2, 2};
+	public int[] blessSpell = new int[] {1, 1, 1, 1, 1, 1, 1};// {1, 1, 1, 1, 1, 1, 1};
+	public int[] cureSpell = new int[] {1, 1, 1, 1, 1, 1, 1};// {1, 1, 1, 1, 1, 1, 1};
+	public int[] dodgeBlowSpell = new int[] {1, 1, 1, 1, 1, 1, 1};// {1, 1, 1, 1, 1, 1, 1};
+	public int[] mightyBlowSpell = new int[] {1, 1, 1, 1, 1, 1, 1};// {1, 1, 1, 1, 1, 1, 1};
+	public int[] hasteSpell = new int[] {2, 2, 2, 2, 2, 2, 2};//	{2, 2, 2, 2, 2, 2, 2};
 	
 	
 	// FOR ORDERING PURPOSES IN TITLE:
@@ -129,7 +129,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 	String isInvokingService = "true";	
 	
 	String isinitiativestarted = "no";	
-	static String isinitiativestartedinterrupted = "no";
+	String isinitiativestartedinterrupted = "no";
 	String issixsidedrolledforinitiative = "no";
 	String aretheredoubles = "yes";	
 	
@@ -166,9 +166,9 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 	
 	
 	// SOME OF THESE MAY NEED TO BE AN ARRAY-CLASS:
-	public static String[] playerDeadYet = new String[] {"yes", "yes", "yes", "yes", "yes", "yes"}; // NEED 6?????????	
+	public String[] playerDeadYet = new String[] {"yes", "yes", "yes", "yes", "yes", "yes"}; // NEED 6?????????	
 	//String playerDeadYet[] = {"yes", "yes", "yes", "yes", "yes", "yes"};
-	public static String[] canHasDisarmed = new String[] {"no", "no", "no", "no", "no", "no"}; // NEED 6?????????		
+	public String[] canHasDisarmed = new String[] {"no", "no", "no", "no", "no", "no"}; // NEED 6?????????		
 	
 	//FOR onResume
 	String isSixSidedReadyToBeRolled = "no";
@@ -4724,7 +4724,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		waitToSetInterruptVariable();
 	}
 	
-	public static String waitToSetInterruptVariable() {
+	public String waitToSetInterruptVariable() {
 		
 		final Handler h1 = new Handler();
 	  	  	h1.postDelayed(new Runnable() {
