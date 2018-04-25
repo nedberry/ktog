@@ -5423,7 +5423,7 @@ public void decodeImage0() {
 	//Determines when all players have rolled for initiative then calls for method to determine doubles:
 	public void checkInitiativeResults() {
 		
-		clientWorkerSizetest();
+		//clientWorkerSizetest();
 		
 		if (initiativeRolled[5].equals("yes")) {
 			
@@ -11403,7 +11403,7 @@ public void decodeImage0() {
   	  	    public void run() {
   	  	    	
 				
-			numberofplayerstest();
+			//numberofplayerstest();
 				
 			
 				
@@ -14006,7 +14006,7 @@ public void decodeImage0() {
 	
 	
 	
-	
+	/*
 	public void test() {
 		
 		runOnUiThread(new Runnable() {
@@ -14063,7 +14063,79 @@ public void decodeImage0() {
 			}
 		});
 	}
+	*/
 	
+	public void testisthisworking() {
+		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {			
+				
+				Toast.makeText(Host.this, "WORKING", Toast.LENGTH_SHORT).show();
+			}
+		});
+	}
+	
+	public void test1() {
+		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {			
+				
+				Toast.makeText(Host.this, "Test 1", Toast.LENGTH_SHORT).show();
+			}
+		});
+	}
+	public void test2() {
+		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {			
+				
+				Toast.makeText(Host.this, "Test 2", Toast.LENGTH_SHORT).show();
+			}
+		});
+	}
+	public void test3() {
+		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {			
+				
+				Toast.makeText(Host.this, "Test 3", Toast.LENGTH_SHORT).show();
+			}
+		});
+	}
+	public void test4() {
+		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {			
+				
+				Toast.makeText(Host.this, "Test 4", Toast.LENGTH_SHORT).show();
+			}
+		});
+	}
+	public void test5() {
+		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {			
+				
+				Toast.makeText(Host.this, "Test 5", Toast.LENGTH_SHORT).show();
+			}
+		});
+	}
+	public void test6() {
+		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {			
+				
+				Toast.makeText(Host.this, "Test 6", Toast.LENGTH_SHORT).show();
+			}
+		});
+	}
 	
 	
 	
@@ -14369,7 +14441,7 @@ public void decodeImage0() {
 		
 		else if (numberOfPlayers == 3) {
 			
-			avatarTest();
+			//avatarTest();
 			
 			/*
 			String str = "getNames";
@@ -14801,7 +14873,7 @@ public void decodeImage0() {
 			  	  	    ArrayOfTurn.turn[0] = ArrayOfTurn.turn[0] + 1;
 		    			
 		    			
-		    			if (ArrayOfTurn.turn[0] > 1) {
+		    			if (ArrayOfTurn.turn[0] > 1 && playerDeadYet[5].equals("no")) {
 		    				
 		    				displayTurn();
 			  	  	    	
@@ -14814,6 +14886,30 @@ public void decodeImage0() {
 				  	  	    sendToAllClients(str2);
 		    				
 		    				gameEngine3V3XPart2For5Part1();
+		    			}
+		    			
+		    			else if (ArrayOfTurn.turn[0] > 1 && playerDeadYet[5].equals("yes")) {
+		    				
+		    				displayTurn();
+			  	  	    	
+			  	  	    	//int turnVariable = ArrayOfTurn.turn[0];
+			  	  	    	
+				  	  	    String str = "Turn :" + ArrayOfTurn.turn[0];
+				  	  	    sendToAllClients(str);
+			  	  	    	
+				  	  	    String str2 = "displayTrn";
+				  	  	    sendToAllClients(str2);
+		    				
+		    				//gameEngine3V3XPart2For5Part1();
+				  	  	    
+					  	  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {
+								
+								gameEngine3V35Part2For0Part1();
+				  	  		}
+					  	  	else {
+								
+					  	  		gameEngine3V35Part2For1Part1();
+				  	  		}
 		    			}
 		  	  	    	
 		    			else {
@@ -14887,7 +14983,7 @@ public void decodeImage0() {
 		  	  	    	ArrayOfTurn.turn[0] = ArrayOfTurn.turn[0] + 1;
 		  	  	    	
 		  	  	    	
-			  	  	    if (ArrayOfTurn.turn[0] > 1) {
+			  	  	    if (ArrayOfTurn.turn[0] > 1 && playerDeadYet[0].equals("no")) {
 		    				
 				  	  	    displayTurn();
 			  	  	    	
@@ -14900,6 +14996,30 @@ public void decodeImage0() {
 				  	  	    sendToAllClients(str2);
 			  	  	    	
 			  	  	    	gameEngine3V35Part2For0Part1();
+		    			}
+			  	  	    
+			  	  	    else if (ArrayOfTurn.turn[0] > 1 && playerDeadYet[0].equals("yes")) {
+		    				
+				  	  	    displayTurn();
+			  	  	    	
+			  	  	    	//int turnVariable = ArrayOfTurn.turn[0];
+			  	  	    	
+				  	  	    String str = "Turn :" + ArrayOfTurn.turn[0];
+				  	  	    sendToAllClients(str);
+			  	  	    	
+				  	  	    String str2 = "displayTrn";
+				  	  	    sendToAllClients(str2);
+			  	  	    	
+			  	  	    	//gameEngine3V35Part2For0Part1();
+				  	  	    
+					  	  	if (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1]) {
+								
+					  	  		gameEngine3V3XPart2For5Part1();
+				  	  		}
+					  	  	else {
+								
+					  	  		gameEngine3V35Part2For1Part1();
+				  	  		}
 		    			}
 		  	  	    	
 		    			else {
@@ -15028,7 +15148,7 @@ public void decodeImage0() {
 		  	  	    	ArrayOfTurn.turn[0] = ArrayOfTurn.turn[0] + 1;
 		  	  	    	
 		  	  	    	
-			  	  	    if (ArrayOfTurn.turn[0] > 1) {
+			  	  	    if (ArrayOfTurn.turn[0] > 1 && playerDeadYet[1].equals("no")) {
 		    				
 				  	  	    displayTurn();
 			  	  	    	
@@ -15040,7 +15160,33 @@ public void decodeImage0() {
 				  	  	    String str2 = "displayTrn";
 				  	  	    sendToAllClients(str2);
 			  	  	    	
-			  	  	    	gameEngine3V35Part2For0Part1();
+			  	  	    	//gameEngine3V35Part2For0Part1();
+				  	  	    gameEngine3V35Part2For1Part1();
+		    			}
+			  	  	    
+			  	  	    else if (ArrayOfTurn.turn[0] > 1 && playerDeadYet[1].equals("yes")) {
+		    				
+				  	  	    displayTurn();
+			  	  	    	
+			  	  	    	//int turnVariable = ArrayOfTurn.turn[0];
+			  	  	    	
+				  	  	    String str = "Turn :" + ArrayOfTurn.turn[0];
+				  	  	    sendToAllClients(str);
+			  	  	    	
+				  	  	    String str2 = "displayTrn";
+				  	  	    sendToAllClients(str2);
+			  	  	    	
+			  	  	    	//gameEngine3V35Part2For0Part1();
+				  	  	    //gameEngine3V35Part2For1Part1();
+				  	  	    
+					  	  	if (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) {
+								
+					  	  		gameEngine3V3XPart2For5Part1();
+				  	  		}
+					  	  	else {
+								
+					  	  		gameEngine3V35Part2For0Part1();
+				  	  		}
 		    			}
 		  	  	    	
 		    			else {
@@ -15156,7 +15302,7 @@ public void decodeImage0() {
 				*/
 			}			
 		}		
-		
+		/*
 		else if (numberOfPlayers == 4) {
 			
 			if (initiativeFinal[5] > initiativeFinal[0] && initiativeFinal[5] > initiativeFinal[1] && initiativeFinal[5] > initiativeFinal[2]) {
@@ -15206,7 +15352,8 @@ public void decodeImage0() {
 				
 				
 			}			
-		}		
+		}
+		*/	
 	}
 	
 	
@@ -15310,11 +15457,11 @@ public void decodeImage0() {
 		  		                        @Override
 		  		                        public void onClick(final DialogInterface dialog, int item) {
 		  		                        	
-		  		                        	if (item == 0) {										
+		  		                        	if (item == 0 && playerDeadYet[0].equals("no")) {										
 		  										
 		  		                        		playerNumberAttacked = 0;
 		  		                        		
-playerAttackingTest();
+//playerAttackingTest();
 		  		                        		
 		  		                        		
 		  		                        		has5TakenTurn = "yes";
@@ -15381,11 +15528,16 @@ playerAttackingTest();
 												dialog.dismiss();
 		  									}
 		  		                        	
-		  		                        	else if (item == 1) {
+		  		                        	else if (item == 0 && playerDeadYet[0].equals("yes")) {
+		  		                        		
+		  		                        		chooseOpponent();
+		  		                        	}
+		  		                        	
+		  		                        	else if (item == 1 && playerDeadYet[1].equals("no")) {
 		  		                        		
 		  		                        		playerNumberAttacked = 1;
 		  		                        		
-playerAttackingTest();
+//playerAttackingTest();
 		  		                        		
 		  		                        		
 		  		                        		has5TakenTurn = "yes";
@@ -15450,7 +15602,12 @@ playerAttackingTest();
 												
 												
 												dialog.dismiss();																						
-		  									}		  		                        		  		                            
+		  									}
+		  		                        	
+		  		                        	else if (item == 1 && playerDeadYet[1].equals("yes")) {
+		  		                        		
+		  		                        		chooseOpponent();
+		  		                        	}
 		  		                        }
 		  		                    });	            
 		  		            
@@ -16291,122 +16448,132 @@ playerAttackingTest();
 	//REDIRECT HERE FOR 0 NEXT
 	public void gameEngine3V35Part2For0Part1() {//FOR 0 ATTACKING PT 1
 		
-		//Toast.makeText(MainActivity2.this, "COMPUTER TURN START", Toast.LENGTH_SHORT).show();	
-		
-		//Toast.makeText(MainActivity2.this, "Turn = " + ArrayOfTurn.turn[0], Toast.LENGTH_SHORT).show();	
-		
-		
-		// THIS THREAD IS BEING USED TO TEST ACCESS TO CENTERSCROLLTEXT
-		runOnUiThread(new Runnable() {
-  	  	    @Override
-  	  	    public void run() {
-  	  	    	
-  	  	    	// Use a blank drawable to hide the imageview animation:
-				// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
-				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
-				img1.setBackgroundResource(R.drawable.twentytwentyblank);
-				img1.setImageResource(R.drawable.twentytwentyblank);
+		if (playerDeadYet[0].equals("no")) {
+			
+			//Toast.makeText(MainActivity2.this, "COMPUTER TURN START", Toast.LENGTH_SHORT).show();	
+			
+			//Toast.makeText(MainActivity2.this, "Turn = " + ArrayOfTurn.turn[0], Toast.LENGTH_SHORT).show();	
+			
+			
+			// THIS THREAD IS BEING USED TO TEST ACCESS TO CENTERSCROLLTEXT
+			runOnUiThread(new Runnable() {
+	  	  	    @Override
+	  	  	    public void run() {
+	  	  	    	
+	  	  	    	// Use a blank drawable to hide the imageview animation:
+					// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+					ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+					img1.setBackgroundResource(R.drawable.twentytwentyblank);
+					img1.setImageResource(R.drawable.twentytwentyblank);
 
-				// Use a blank drawable to hide the imageview animation:
-				ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
-				img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
-				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
-  	  	    	
-  	  	    	
-	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
-	  			// Re-enables ability to use srollbar:
-	  			centerscrolltext.bringToFront();
-	  			
-	  			ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
-  	  	    	titleBlankButton.bringToFront();
-  	  	    	
-  	  	    	
-  	  	    	ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
-	  	    	chatBlankButton.bringToFront();
-	  			
-	  			
-	  			// NEED THIS?:
-  	  	    	//ishasteused0.equals("no");// so computer doesn't use a haste during a haste. NEEDS '=' BTW
-  	  	    	ishasteused0 = "no";
-  	  	    	
-	  			
-	  			playerCardStopFadeInFadeOut();
-	  				  			
-	  		  	
-	  			foldScrolls();
-	  		  	
-	  			String str6 = "foldScrolls";
-	  			sendToAllClients(str6);
-	  			
-	  			
-	  			
-	  			final Handler h = new Handler();
-	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-	  	  	  			
-	  	  	  		@Override
-		  	  	  	public void run() {
-						
-	  	  	  			final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-            			
-            			TextView computerNameTextView = (TextView)findViewById(R.id.textviewnameright);
-            			computerNameTextView.setTypeface(typeFace);
-            			computerNameTextView.setText(ArrayOfPlayers.player[0]);
-            			//computerNameTextView.setVisibility(View.INVISIBLE);
+					// Use a blank drawable to hide the imageview animation:
+					ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
+					img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+					img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+	  	  	    	
+	  	  	    	
+		  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+		  			// Re-enables ability to use srollbar:
+		  			centerscrolltext.bringToFront();
+		  			
+		  			ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+	  	  	    	titleBlankButton.bringToFront();
+	  	  	    	
+	  	  	    	
+	  	  	    	ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+		  	    	chatBlankButton.bringToFront();
+		  			
+		  			
+		  			// NEED THIS?:
+	  	  	    	//ishasteused0.equals("no");// so computer doesn't use a haste during a haste. NEEDS '=' BTW
+	  	  	    	ishasteused0 = "no";
+	  	  	    	
+		  			
+		  			playerCardStopFadeInFadeOut();
+		  				  			
+		  		  	
+		  			foldScrolls();
+		  		  	
+		  			String str6 = "foldScrolls";
+		  			sendToAllClients(str6);
+		  			
+		  			
+		  			
+		  			final Handler h = new Handler();
+		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+		  	  	  			
+		  	  	  		@Override
+			  	  	  	public void run() {
+							
+		  	  	  			final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	            			
+	            			TextView computerNameTextView = (TextView)findViewById(R.id.textviewnameright);
+	            			computerNameTextView.setTypeface(typeFace);
+	            			computerNameTextView.setText(ArrayOfPlayers.player[0]);
+	            			//computerNameTextView.setVisibility(View.INVISIBLE);
 
-            			//ArrayOfHitPoints.hitpoints[0] = 20;//20
-            			final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
-            			computerHitPointsTextView.setTypeface(typeFace);
-            			//computerHitPointsTextView.setVisibility(View.INVISIBLE);
-            			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+	            			//ArrayOfHitPoints.hitpoints[0] = 20;//20
+	            			final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+	            			computerHitPointsTextView.setTypeface(typeFace);
+	            			//computerHitPointsTextView.setVisibility(View.INVISIBLE);
+	            			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
 
-            			//ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
-            			//clientAvatar.setVisibility(View.VISIBLE);
-	  	  	  			
-            			if (ArrayOfAvatars.avatar[0].equals("custom")){
-  			  	  	    	
-  				  	  	    File imgFile = new  File("/storage/sdcard0/avatar0");//WAS .png
-  		
-  							if(imgFile.exists()){
-  		
-  							    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-  		
-  							    ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarright);
-  		
-  							    myImage.setImageBitmap(myBitmap);
-  							}
-  			  			}
-  			  	  	    else if (ArrayOfAvatars.avatar[0].equals("computer")){
-  			  	  	    	
-  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
-  			  				clientAvatar.setBackgroundResource(R.drawable.computer);
-  			  			}
-  			  			else if (ArrayOfAvatars.avatar[0].equals("crossedswords")){
-  			  				
-  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
-  			  				clientAvatar.setBackgroundResource(R.drawable.crossedswords2);
-  			  			}
-  			  			else if (ArrayOfAvatars.avatar[0].equals("stonedead")){
-  			  				
-  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
-  			  				clientAvatar.setBackgroundResource(R.drawable.stonedead2);
-  			  			}
-            			
-	  	  	  			
-            			scrollAnimationLeftDown();
-	  	  	  			
-	  	  	  			String str7 = "reveal0onright";
-	  	  	  			sendToAllClients(str7);
-	  	  	  			
-	  	  	  			
-	  	  	  			computerCardStartFadeInFadeOut();
-	  	  	  			
-	  	  	  			
-	  	  	  			String str8 = "chooseOpponent";
-	  	  	  			sendToClient0(str8);
-	  	  	  		}
-	  	  	  	}, 1000);		
-  	  	    }
-		});
+	            			//ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+	            			//clientAvatar.setVisibility(View.VISIBLE);
+		  	  	  			
+	            			if (ArrayOfAvatars.avatar[0].equals("custom")){
+	  			  	  	    	
+	  				  	  	    File imgFile = new  File("/storage/sdcard0/avatar0");//WAS .png
+	  		
+	  							if(imgFile.exists()){
+	  		
+	  							    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+	  		
+	  							    ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarright);
+	  		
+	  							    myImage.setImageBitmap(myBitmap);
+	  							}
+	  			  			}
+	  			  	  	    else if (ArrayOfAvatars.avatar[0].equals("computer")){
+	  			  	  	    	
+	  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+	  			  				clientAvatar.setBackgroundResource(R.drawable.computer);
+	  			  			}
+	  			  			else if (ArrayOfAvatars.avatar[0].equals("crossedswords")){
+	  			  				
+	  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+	  			  				clientAvatar.setBackgroundResource(R.drawable.crossedswords2);
+	  			  			}
+	  			  			else if (ArrayOfAvatars.avatar[0].equals("stonedead")){
+	  			  				
+	  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+	  			  				clientAvatar.setBackgroundResource(R.drawable.stonedead2);
+	  			  			}
+	            			
+		  	  	  			
+	            			scrollAnimationLeftDown();
+		  	  	  			
+		  	  	  			String str7 = "reveal0onright";
+		  	  	  			sendToAllClients(str7);
+		  	  	  			
+		  	  	  			
+		  	  	  			computerCardStartFadeInFadeOut();
+		  	  	  			
+		  	  	  			
+		  	  	  			String str8 = "chooseOpponent";
+		  	  	  			sendToClient0(str8);
+		  	  	  		}
+		  	  	  	}, 1000);		
+	  	  	    }
+			});
+		}
+		
+		else if (playerDeadYet[0].equals("yes")) {
+			
+			Has0TakenTurn = "yes";
+		
+			turn();
+		}
 	}
 	
 	public void gameEngine3V35Part2For05Part2() {//FOR 0 ATTACKING 5 PT 2
@@ -16782,7 +16949,7 @@ playerAttackingTest();
 			@Override
 			public void run() {
 				
-				avatarTest();
+				//avatarTest();
 				
 				ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
 				ImageView crossedswords2 = (ImageView) findViewById(R.id.imageviewavatarleft2);
@@ -16833,7 +17000,7 @@ playerAttackingTest();
 					
 					//crossedswords2.bringToFront();
 					
-					test();
+					//test();
 				}
 				else if (ArrayOfAvatars.avatar[0].equals("stonedead")){
 					crossedswords2.setVisibility(View.INVISIBLE);
@@ -16851,122 +17018,132 @@ playerAttackingTest();
 	//REDIRECT HERE FOR 1 NEXT
 	public void gameEngine3V35Part2For1Part1() {//FOR 1 ATTACKING PT 1
 		
-		//Toast.makeText(MainActivity2.this, "COMPUTER TURN START", Toast.LENGTH_SHORT).show();	
-		
-		//Toast.makeText(MainActivity2.this, "Turn = " + ArrayOfTurn.turn[0], Toast.LENGTH_SHORT).show();	
-		
-		
-		// THIS THREAD IS BEING USED TO TEST ACCESS TO CENTERSCROLLTEXT
-		runOnUiThread(new Runnable() {
-  	  	    @Override
-  	  	    public void run() {
-  	  	    	
-  	  	    	// Use a blank drawable to hide the imageview animation:
-				// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
-				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
-				img1.setBackgroundResource(R.drawable.twentytwentyblank);
-				img1.setImageResource(R.drawable.twentytwentyblank);
+		if (playerDeadYet[1].equals("no")) {
+			
+			//Toast.makeText(MainActivity2.this, "COMPUTER TURN START", Toast.LENGTH_SHORT).show();	
+			
+			//Toast.makeText(MainActivity2.this, "Turn = " + ArrayOfTurn.turn[0], Toast.LENGTH_SHORT).show();	
+			
+			
+			// THIS THREAD IS BEING USED TO TEST ACCESS TO CENTERSCROLLTEXT
+			runOnUiThread(new Runnable() {
+	  	  	    @Override
+	  	  	    public void run() {
+	  	  	    	
+	  	  	    	// Use a blank drawable to hide the imageview animation:
+					// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+					ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+					img1.setBackgroundResource(R.drawable.twentytwentyblank);
+					img1.setImageResource(R.drawable.twentytwentyblank);
 
-				// Use a blank drawable to hide the imageview animation:
-				ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
-				img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
-				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
-  	  	    	
-  	  	    	
-	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
-	  			// Re-enables ability to use srollbar:
-	  			centerscrolltext.bringToFront();
-	  			
-	  			ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
-  	  	    	titleBlankButton.bringToFront();
-  	  	    	
-  	  	    	
-  	  	    	ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
-	  	    	chatBlankButton.bringToFront();
-	  			
-	  			
-	  			// NEED THIS?:
-  	  	    	//ishasteused0.equals("no");// so computer doesn't use a haste during a haste. NEEDS '=' BTW
-  	  	    	ishasteused1 = "no";
-  	  	    	
-	  			
-	  			playerCardStopFadeInFadeOut();
-	  				  			
-	  		  	
-	  			foldScrolls();
-	  		  	
-	  			String str6 = "foldScrolls";
-	  			sendToAllClients(str6);
-	  			
-	  			
-	  			
-	  			final Handler h = new Handler();
-	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-	  	  	  			
-	  	  	  		@Override
-		  	  	  	public void run() {
-						
-	  	  	  			final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-            			
-            			TextView computerNameTextView = (TextView)findViewById(R.id.textviewnameright);
-            			computerNameTextView.setTypeface(typeFace);
-            			computerNameTextView.setText(ArrayOfPlayers.player[1]);
-            			//computerNameTextView.setVisibility(View.INVISIBLE);
+					// Use a blank drawable to hide the imageview animation:
+					ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
+					img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+					img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+	  	  	    	
+	  	  	    	
+		  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+		  			// Re-enables ability to use srollbar:
+		  			centerscrolltext.bringToFront();
+		  			
+		  			ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+	  	  	    	titleBlankButton.bringToFront();
+	  	  	    	
+	  	  	    	
+	  	  	    	ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+		  	    	chatBlankButton.bringToFront();
+		  			
+		  			
+		  			// NEED THIS?:
+	  	  	    	//ishasteused0.equals("no");// so computer doesn't use a haste during a haste. NEEDS '=' BTW
+	  	  	    	ishasteused1 = "no";
+	  	  	    	
+		  			
+		  			playerCardStopFadeInFadeOut();
+		  				  			
+		  		  	
+		  			foldScrolls();
+		  		  	
+		  			String str6 = "foldScrolls";
+		  			sendToAllClients(str6);
+		  			
+		  			
+		  			
+		  			final Handler h = new Handler();
+		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+		  	  	  			
+		  	  	  		@Override
+			  	  	  	public void run() {
+							
+		  	  	  			final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	            			
+	            			TextView computerNameTextView = (TextView)findViewById(R.id.textviewnameright);
+	            			computerNameTextView.setTypeface(typeFace);
+	            			computerNameTextView.setText(ArrayOfPlayers.player[1]);
+	            			//computerNameTextView.setVisibility(View.INVISIBLE);
 
-            			//ArrayOfHitPoints.hitpoints[0] = 20;//20
-            			final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
-            			computerHitPointsTextView.setTypeface(typeFace);
-            			//computerHitPointsTextView.setVisibility(View.INVISIBLE);
-            			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
+	            			//ArrayOfHitPoints.hitpoints[0] = 20;//20
+	            			final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+	            			computerHitPointsTextView.setTypeface(typeFace);
+	            			//computerHitPointsTextView.setVisibility(View.INVISIBLE);
+	            			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
 
-            			//ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
-            			//clientAvatar.setVisibility(View.VISIBLE);
-	  	  	  			
-            			if (ArrayOfAvatars.avatar[1].equals("custom")){
-  			  	  	    	
-  				  	  	    File imgFile = new  File("/storage/sdcard0/avatar1");//WAS .png
-  		
-  							if(imgFile.exists()){
-  		
-  							    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-  		
-  							    ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarright);
-  		
-  							    myImage.setImageBitmap(myBitmap);
-  							}
-  			  			}
-  			  	  	    else if (ArrayOfAvatars.avatar[1].equals("computer")){
-  			  	  	    	
-  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
-  			  				clientAvatar.setBackgroundResource(R.drawable.computer);
-  			  			}
-  			  			else if (ArrayOfAvatars.avatar[1].equals("crossedswords")){
-  			  				
-  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
-  			  				clientAvatar.setBackgroundResource(R.drawable.crossedswords2);
-  			  			}
-  			  			else if (ArrayOfAvatars.avatar[1].equals("stonedead")){
-  			  				
-  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
-  			  				clientAvatar.setBackgroundResource(R.drawable.stonedead2);
-  			  			}
-            			
-	  	  	  			
-            			scrollAnimationLeftDown();
-	  	  	  			
-	  	  	  			String str7 = "rEveal1onright";
-	  	  	  			sendToAllClients(str7);
-	  	  	  			
-	  	  	  			
-	  	  	  			computerCardStartFadeInFadeOut();
-	  	  	  			
-	  	  	  			
-	  	  	  			String str8 = "chooseOpponent";
-	  	  	  			sendToClient1(str8);
-	  	  	  		}
-	  	  	  	}, 1000);		
-  	  	    }
-		});
+	            			//ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+	            			//clientAvatar.setVisibility(View.VISIBLE);
+		  	  	  			
+	            			if (ArrayOfAvatars.avatar[1].equals("custom")){
+	  			  	  	    	
+	  				  	  	    File imgFile = new  File("/storage/sdcard0/avatar1");//WAS .png
+	  		
+	  							if(imgFile.exists()){
+	  		
+	  							    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+	  		
+	  							    ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarright);
+	  		
+	  							    myImage.setImageBitmap(myBitmap);
+	  							}
+	  			  			}
+	  			  	  	    else if (ArrayOfAvatars.avatar[1].equals("computer")){
+	  			  	  	    	
+	  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+	  			  				clientAvatar.setBackgroundResource(R.drawable.computer);
+	  			  			}
+	  			  			else if (ArrayOfAvatars.avatar[1].equals("crossedswords")){
+	  			  				
+	  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+	  			  				clientAvatar.setBackgroundResource(R.drawable.crossedswords2);
+	  			  			}
+	  			  			else if (ArrayOfAvatars.avatar[1].equals("stonedead")){
+	  			  				
+	  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+	  			  				clientAvatar.setBackgroundResource(R.drawable.stonedead2);
+	  			  			}
+	            			
+		  	  	  			
+	            			scrollAnimationLeftDown();
+		  	  	  			
+		  	  	  			String str7 = "rEveal1onright";
+		  	  	  			sendToAllClients(str7);
+		  	  	  			
+		  	  	  			
+		  	  	  			computerCardStartFadeInFadeOut();
+		  	  	  			
+		  	  	  			
+		  	  	  			String str8 = "chooseOpponent";
+		  	  	  			sendToClient1(str8);
+		  	  	  		}
+		  	  	  	}, 1000);		
+	  	  	    }
+			});
+		}
+		
+		else if (playerDeadYet[1].equals("yes")) {
+			
+			hAs1TakenTurn = "yes";
+		
+			turn();
+		}
 	}
 	
 	public void gameEngine3V35Part2For15Part2() {//FOR 1 ATTACKING 5 PT 2		
@@ -17882,92 +18059,102 @@ playerAttackingTest();
 	//REDIRECT HERE FOR 5 NEXT
 	public void gameEngine3V3XPart2For5Part1() {//FOR 5 ATTACKING PT 1
 		
-		//Toast.makeText(MainActivity2.this, "COMPUTER TURN START", Toast.LENGTH_SHORT).show();	
-		
-		//Toast.makeText(MainActivity2.this, "Turn = " + ArrayOfTurn.turn[0], Toast.LENGTH_SHORT).show();	
-		
-		
-		// THIS THREAD IS BEING USED TO TEST ACCESS TO CENTERSCROLLTEXT
-		runOnUiThread(new Runnable() {
-  	  	    @Override
-  	  	    public void run() {
-  	  	    	
-  	  	    	// Use a blank drawable to hide the imageview animation:
-				// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
-				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
-				img1.setBackgroundResource(R.drawable.twentytwentyblank);
-				img1.setImageResource(R.drawable.twentytwentyblank);
+		if (playerDeadYet[5].equals("no")) {
+			
+			//Toast.makeText(MainActivity2.this, "COMPUTER TURN START", Toast.LENGTH_SHORT).show();	
+			
+			//Toast.makeText(MainActivity2.this, "Turn = " + ArrayOfTurn.turn[0], Toast.LENGTH_SHORT).show();	
+			
+			
+			// THIS THREAD IS BEING USED TO TEST ACCESS TO CENTERSCROLLTEXT
+			runOnUiThread(new Runnable() {
+	  	  	    @Override
+	  	  	    public void run() {
+	  	  	    	
+	  	  	    	// Use a blank drawable to hide the imageview animation:
+					// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+					ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+					img1.setBackgroundResource(R.drawable.twentytwentyblank);
+					img1.setImageResource(R.drawable.twentytwentyblank);
 
-				// Use a blank drawable to hide the imageview animation:
-				ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
-				img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
-				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
-  	  	    	
-  	  	    	
-	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
-	  			// Re-enables ability to use srollbar:
-	  			centerscrolltext.bringToFront();
-	  			
-	  			ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
-  	  	    	titleBlankButton.bringToFront();
-  	  	    	
-  	  	    	
-  	  	    	ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
-	  	    	chatBlankButton.bringToFront();
-	  			
-	  			
-	  			// NEED THIS?:
-  	  	    	//ishasteused0.equals("no");// so computer doesn't use a haste during a haste. NEEDS '=' BTW
-  	  	    	ishasteused = "no";
-  	  	    	
-	  			
-	  			computerCardStopFadeInFadeOut();
-	  		  	
-	  			
-	  			foldScrolls();
-	  		  	
-	  			String str6 = "foldScrolls";
-	  			sendToAllClients(str6);
-	  			
-	  			
-	  			
-	  			final Handler h = new Handler();
-	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-	  	  	  			
-	  	  	  		@Override
-		  	  	  	public void run() {
-						
-	  	  	  			final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-            			
-				  	  	TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);		
-						playerNameTextView.setTypeface(typeFace);		
-						playerNameTextView.setText(ArrayOfPlayers.player[5]);							
-								
-						final TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
-						playerHitPointsTextView.setTypeface(typeFace);
-						playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[5]));
-						
-						//ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
-						//computerAvatar.setVisibility(View.VISIBLE);
-						
-						setPlayerAvatarFor5Left();
-						
-						
-						unfoldLeftScroll();
-            			
-	  	  	  			
-	  	  	  			String str7 = "reVeal5onleft";
-	  	  	  			sendToAllClients(str7);
-	  	  	  			
-	  	  	  			
-	  	  	  			playerCardStartFadeInFadeOut();	  	  	  			
-	  	  	  			
-	  	  	  			
-	  	  	  			chooseOpponent();
-	  	  	  		}
-	  	  	  	}, 1000);		
-  	  	    }
-		});
+					// Use a blank drawable to hide the imageview animation:
+					ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
+					img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+					img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+	  	  	    	
+	  	  	    	
+		  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+		  			// Re-enables ability to use srollbar:
+		  			centerscrolltext.bringToFront();
+		  			
+		  			ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+	  	  	    	titleBlankButton.bringToFront();
+	  	  	    	
+	  	  	    	
+	  	  	    	ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+		  	    	chatBlankButton.bringToFront();
+		  			
+		  			
+		  			// NEED THIS?:
+	  	  	    	//ishasteused0.equals("no");// so computer doesn't use a haste during a haste. NEEDS '=' BTW
+	  	  	    	ishasteused = "no";
+	  	  	    	
+		  			
+		  			computerCardStopFadeInFadeOut();
+		  		  	
+		  			
+		  			foldScrolls();
+		  		  	
+		  			String str6 = "foldScrolls";
+		  			sendToAllClients(str6);
+		  			
+		  			
+		  			
+		  			final Handler h = new Handler();
+		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+		  	  	  			
+		  	  	  		@Override
+			  	  	  	public void run() {
+							
+		  	  	  			final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	            			
+					  	  	TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);		
+							playerNameTextView.setTypeface(typeFace);		
+							playerNameTextView.setText(ArrayOfPlayers.player[5]);							
+									
+							final TextView playerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsleft);
+							playerHitPointsTextView.setTypeface(typeFace);
+							playerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[5]));
+							
+							//ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
+							//computerAvatar.setVisibility(View.VISIBLE);
+							
+							setPlayerAvatarFor5Left();
+							
+							
+							unfoldLeftScroll();
+	            			
+		  	  	  			
+		  	  	  			String str7 = "reVeal5onleft";
+		  	  	  			sendToAllClients(str7);
+		  	  	  			
+		  	  	  			
+		  	  	  			playerCardStartFadeInFadeOut();	  	  	  			
+		  	  	  			
+		  	  	  			
+		  	  	  			chooseOpponent();
+		  	  	  		}
+		  	  	  	}, 1000);		
+	  	  	    }
+			});
+		}
+		
+		else if (playerDeadYet[5].equals("yes")) {
+			
+			has5TakenTurn = "yes";
+		
+			turn();
+		}
 	}
 	
 	public void gameEngine3V3XPart2For50Part2() {//FOR 5 ATTACKING 0 PT 2
@@ -19134,6 +19321,11 @@ playerAttackingTest();
 				  	  	  	}
 			  	  	  	}, 2000);					
 					}
+					
+					else {
+						
+						threePlayerRedirectWithHasteForClient();
+					}
 	  	    	}
   	  	    }
 		});
@@ -19942,13 +20134,13 @@ playerAttackingTest();
 			}
 		}
 		
-		else if (numberOfPlayers == 3) {
+		else if (numberOfPlayers == 3) {//SAME AS ABOVE BECAUSE 3-PLAYER USES "ishasteused"
 			
 			threePlayerRedirect();						
 		}
 	}	
 	
-	public void criticalMissLoseWeaponCriticalMissDamageCompleted() {
+	public void criticalMissLoseWeaponCriticalMissDamageCompleted() {//SAME AS BELOW
 		
 		if (numberOfPlayers == 2) {
   			
@@ -19984,7 +20176,7 @@ playerAttackingTest();
 		}
 	}	
 	
-	public void attackDamageCriticalHitDamageCriticalHitMightyBlowDamageCompleted() {
+	public void attackDamageCriticalHitDamageCriticalHitMightyBlowDamageCompleted() {//SAME AS ABOVE
 		
 		if (numberOfPlayers == 2) {
 			
@@ -20094,30 +20286,30 @@ playerAttackingTest();
 	
 	public void threePlayerRedirectWithHasteForClient() {
 		
-		if (initiativeFinal[5] > initiativeFinal[0] && initiativeFinal[5] > initiativeFinal[1] && ishasteused0.equals("no") && ishasteused1.equals("no")) {
+		if ((initiativeFinal[5] > initiativeFinal[0]) && (initiativeFinal[5] > initiativeFinal[1]) && (ishasteused0.equals("no")) && (ishasteused1.equals("no"))) {
 			
-			if (initiativeFinal[0] > initiativeFinal[1] && Has0TakenTurn.equals("no")) {
+			if ((initiativeFinal[0] > initiativeFinal[1]) && (Has0TakenTurn.equals("no"))) {
 				
 				gameEngine3V35Part2For0Part1();
 			}
-			else if (initiativeFinal[0] > initiativeFinal[1] && Has0TakenTurn.equals("yes") && hAs1TakenTurn.equals("no")) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
+			else if ((initiativeFinal[0] > initiativeFinal[1]) && (Has0TakenTurn.equals("yes")) && (hAs1TakenTurn.equals("no"))) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
 				
 				gameEngine3V35Part2For1Part1();
 			}
-			else if (initiativeFinal[0] > initiativeFinal[1] && Has0TakenTurn.equals("yes") && hAs1TakenTurn.equals("yes")) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
+			else if ((initiativeFinal[0] > initiativeFinal[1]) && (Has0TakenTurn.equals("yes")) && (hAs1TakenTurn.equals("yes"))) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
 				
 				turn();
 			}
 			
-			else if (initiativeFinal[1] > initiativeFinal[0] && hAs1TakenTurn.equals("no")) {
+			else if ((initiativeFinal[1] > initiativeFinal[0]) && (hAs1TakenTurn.equals("no"))) {
 				
 				gameEngine3V35Part2For1Part1();
 			}
-			else if (initiativeFinal[1] > initiativeFinal[0] && hAs1TakenTurn.equals("yes") && Has0TakenTurn.equals("no")) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
+			else if ((initiativeFinal[1] > initiativeFinal[0]) && (hAs1TakenTurn.equals("yes")) && (Has0TakenTurn.equals("no"))) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
 				
 				gameEngine3V35Part2For0Part1();
 			}
-			else if (initiativeFinal[1] > initiativeFinal[0] && hAs1TakenTurn.equals("yes") && Has0TakenTurn.equals("yes")) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
+			else if ((initiativeFinal[1] > initiativeFinal[0]) && (hAs1TakenTurn.equals("yes")) && (Has0TakenTurn.equals("yes"))) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
 				
 				turn();
 			}
@@ -20129,24 +20321,24 @@ playerAttackingTest();
 			*/
 		}
 	
-		else if (initiativeFinal[5] > initiativeFinal[0] && initiativeFinal[5] > initiativeFinal[1] && ishasteused0.equals("yes") && ishasteused1.equals("no")) {
+		else if ((initiativeFinal[5] > initiativeFinal[0]) && (initiativeFinal[5] > initiativeFinal[1]) && (ishasteused0.equals("yes")) && (ishasteused1.equals("no"))) {
 		
-			if (initiativeFinal[0] > initiativeFinal[1] && Has0TakenTurn.equals("no")) {
+			if ((initiativeFinal[0] > initiativeFinal[1]) && Has0TakenTurn.equals("no")) {
 				
 				//gameEngine3V35Part2For0Part1();
 				
 				String str = "hastePartTwo";
   	  			sendToClient0(str);
 			}
-			else if (initiativeFinal[0] > initiativeFinal[1] && Has0TakenTurn.equals("yes")) {
+			else if ((initiativeFinal[0] > initiativeFinal[1]) && Has0TakenTurn.equals("yes")) {
 				
 				gameEngine3V35Part2For1Part1();
 			}
-			else if (initiativeFinal[1] > initiativeFinal[0] && hAs1TakenTurn.equals("no")) {
+			else if ((initiativeFinal[1] > initiativeFinal[0]) && hAs1TakenTurn.equals("no")) {
 				
 				gameEngine3V35Part2For1Part1();
 			}
-			else if (initiativeFinal[1] > initiativeFinal[0] && hAs1TakenTurn.equals("yes")) {
+			else if ((initiativeFinal[1] > initiativeFinal[0]) && hAs1TakenTurn.equals("yes")) {
 				
 				//gameEngine3V35Part2For0Part1();
 				
@@ -20159,27 +20351,27 @@ playerAttackingTest();
 			}
 		}
 	
-		else if (initiativeFinal[5] > initiativeFinal[0] && initiativeFinal[5] > initiativeFinal[1] && ishasteused0.equals("no") && ishasteused1.equals("yes")) {
+		else if ((initiativeFinal[5] > initiativeFinal[0]) && (initiativeFinal[5] > initiativeFinal[1]) && (ishasteused0.equals("no")) && (ishasteused1.equals("yes"))) {
 			
-			if (initiativeFinal[0] > initiativeFinal[1] && Has0TakenTurn.equals("no")) {
+			if ((initiativeFinal[0] > initiativeFinal[1]) && Has0TakenTurn.equals("no")) {
 				
 				gameEngine3V35Part2For0Part1();
 			}
-			else if (initiativeFinal[0] > initiativeFinal[1] && Has0TakenTurn.equals("yes")) {
+			else if ((initiativeFinal[0] > initiativeFinal[1]) && Has0TakenTurn.equals("yes")) {
 				
 				//gameEngine3V35Part2For1Part1();
 				
 				String str = "hastePartTwo";
   	  			sendToClient1(str);
 			}
-			else if (initiativeFinal[1] > initiativeFinal[0] && hAs1TakenTurn.equals("no")) {
+			else if ((initiativeFinal[1] > initiativeFinal[0]) && hAs1TakenTurn.equals("no")) {
 				
 				//gameEngine3V35Part2For1Part1();
 				
 				String str = "hastePartTwo";
   	  			sendToClient1(str);
 			}
-			else if (initiativeFinal[1] > initiativeFinal[0] && hAs1TakenTurn.equals("yes")) {
+			else if ((initiativeFinal[1] > initiativeFinal[0]) && hAs1TakenTurn.equals("yes")) {
 				
 				gameEngine3V35Part2For0Part1();
 			}
@@ -20191,29 +20383,29 @@ playerAttackingTest();
 		
 		
 		
-		else if (initiativeFinal[0] > initiativeFinal[5] && initiativeFinal[0] > initiativeFinal[1] && ishasteused1.equals("no")) {
+		else if ((initiativeFinal[0] > initiativeFinal[5]) && (initiativeFinal[0] > initiativeFinal[1]) && (ishasteused1.equals("no"))) {
 			
-			if (initiativeFinal[5] > initiativeFinal[1] && has5TakenTurn.equals("no")) {
+			if ((initiativeFinal[5] > initiativeFinal[1]) && has5TakenTurn.equals("no")) {
 				
 				gameEngine3V3XPart2For5Part1();
 			}
-			else if (initiativeFinal[5] > initiativeFinal[1] && has5TakenTurn.equals("yes") && hAs1TakenTurn.equals("no")) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
+			else if ((initiativeFinal[5] > initiativeFinal[1]) && (has5TakenTurn.equals("yes")) && (hAs1TakenTurn.equals("no"))) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
 				
 				gameEngine3V35Part2For1Part1();
 			}
-			else if (initiativeFinal[5] > initiativeFinal[1] && has5TakenTurn.equals("yes") && hAs1TakenTurn.equals("yes")) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
+			else if ((initiativeFinal[5] > initiativeFinal[1]) && (has5TakenTurn.equals("yes")) && (hAs1TakenTurn.equals("yes"))) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
 				
 				turn();
 			}
-			else if (initiativeFinal[1] > initiativeFinal[5] && hAs1TakenTurn.equals("no")) {
+			else if ((initiativeFinal[1] > initiativeFinal[5]) && hAs1TakenTurn.equals("no")) {
 				
 				gameEngine3V35Part2For1Part1();
 			}
-			else if (initiativeFinal[1] > initiativeFinal[5] && hAs1TakenTurn.equals("yes") && has5TakenTurn.equals("no")) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
+			else if ((initiativeFinal[1] > initiativeFinal[5]) && (hAs1TakenTurn.equals("yes")) && (has5TakenTurn.equals("no"))) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
 				
 				gameEngine3V3XPart2For5Part1();
 			}
-			else if (initiativeFinal[1] > initiativeFinal[5] && hAs1TakenTurn.equals("yes") && has5TakenTurn.equals("yes")) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
+			else if ((initiativeFinal[1] > initiativeFinal[5]) && (hAs1TakenTurn.equals("yes")) && (has5TakenTurn.equals("yes"))) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
 				
 				turn();
 			}
@@ -20226,27 +20418,27 @@ playerAttackingTest();
 			*/
 		}
 		
-		else if (initiativeFinal[0] > initiativeFinal[5] && initiativeFinal[0] > initiativeFinal[1] && ishasteused1.equals("yes")) {
+		else if ((initiativeFinal[0] > initiativeFinal[5]) && (initiativeFinal[0] > initiativeFinal[1]) && (ishasteused1.equals("yes"))) {
 			
-			if (initiativeFinal[5] > initiativeFinal[1] && has5TakenTurn.equals("no")) {
+			if ((initiativeFinal[5] > initiativeFinal[1]) && has5TakenTurn.equals("no")) {
 				
 				gameEngine3V3XPart2For5Part1();
 			}
-			else if (initiativeFinal[5] > initiativeFinal[1] && has5TakenTurn.equals("yes")) {
+			else if ((initiativeFinal[5] > initiativeFinal[1]) && has5TakenTurn.equals("yes")) {
 				
 				//gameEngine3V35Part2For1Part1();
 				
 				String str = "hastePartTwo";
   	  			sendToClient1(str);
 			}
-			else if (initiativeFinal[1] > initiativeFinal[5] && hAs1TakenTurn.equals("no")) {
+			else if ((initiativeFinal[1] > initiativeFinal[5]) && hAs1TakenTurn.equals("no")) {
 				
 				//gameEngine3V35Part2For1Part1();
 				
 				String str = "hastePartTwo";
   	  			sendToClient1(str);
 			}
-			else if (initiativeFinal[1] > initiativeFinal[5] && hAs1TakenTurn.equals("yes")) {
+			else if ((initiativeFinal[1] > initiativeFinal[5]) && hAs1TakenTurn.equals("yes")) {
 				
 				gameEngine3V3XPart2For5Part1();
 			}
@@ -20258,30 +20450,30 @@ playerAttackingTest();
 		
 		
 		
-		else if (initiativeFinal[1] > initiativeFinal[5] && initiativeFinal[1] > initiativeFinal[0] && ishasteused0.equals("no")) {
+		else if ((initiativeFinal[1] > initiativeFinal[5]) && (initiativeFinal[1] > initiativeFinal[0]) && (ishasteused0.equals("no"))) {
 			
-			if (initiativeFinal[5] > initiativeFinal[0] && has5TakenTurn.equals("no")) {
+			if ((initiativeFinal[5] > initiativeFinal[0]) && has5TakenTurn.equals("no")) {
 				
 				gameEngine3V3XPart2For5Part1();
 			}
-			else if (initiativeFinal[5] > initiativeFinal[0] && has5TakenTurn.equals("yes") && Has0TakenTurn.equals("no")) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
+			else if ((initiativeFinal[5] > initiativeFinal[0]) && (has5TakenTurn.equals("yes")) && (Has0TakenTurn.equals("no"))) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
 				
 				gameEngine3V35Part2For0Part1();
 			}
-			else if (initiativeFinal[5] > initiativeFinal[0] && has5TakenTurn.equals("yes") && Has0TakenTurn.equals("yes")) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
+			else if ((initiativeFinal[5] > initiativeFinal[0]) && (has5TakenTurn.equals("yes")) && (Has0TakenTurn.equals("yes"))) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
 				
 				turn();
 			}
 			
-			else if (initiativeFinal[0] > initiativeFinal[5] && Has0TakenTurn.equals("no")) {
+			else if ((initiativeFinal[0] > initiativeFinal[5]) && Has0TakenTurn.equals("no")) {
 				
 				gameEngine3V35Part2For0Part1();
 			}
-			else if (initiativeFinal[0] > initiativeFinal[5] && Has0TakenTurn.equals("yes") && has5TakenTurn.equals("no")) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
+			else if ((initiativeFinal[0] > initiativeFinal[5]) && (Has0TakenTurn.equals("yes")) && (has5TakenTurn.equals("no"))) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
 				
 				gameEngine3V3XPart2For5Part1();
 			}
-			else if (initiativeFinal[0] > initiativeFinal[5] && Has0TakenTurn.equals("yes") && has5TakenTurn.equals("yes")) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
+			else if ((initiativeFinal[0] > initiativeFinal[5]) && (Has0TakenTurn.equals("yes")) && (has5TakenTurn.equals("yes"))) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
 				
 				turn();
 			}
@@ -20294,27 +20486,27 @@ playerAttackingTest();
 			*/
 		}
 		
-		else if (initiativeFinal[1] > initiativeFinal[5] && initiativeFinal[1] > initiativeFinal[0] && ishasteused0.equals("yes")) {
+		else if ((initiativeFinal[1] > initiativeFinal[5]) && (initiativeFinal[1] > initiativeFinal[0]) && (ishasteused0.equals("yes"))) {
 			
-			if (initiativeFinal[5] > initiativeFinal[0] && has5TakenTurn.equals("no")) {
+			if ((initiativeFinal[5] > initiativeFinal[0]) && has5TakenTurn.equals("no")) {
 				
 				gameEngine3V3XPart2For5Part1();
 			}
-			else if (initiativeFinal[5] > initiativeFinal[0] && has5TakenTurn.equals("yes")) {
+			else if ((initiativeFinal[5] > initiativeFinal[0]) && has5TakenTurn.equals("yes")) {
 				
 				//gameEngine3V35Part2For0Part1();
 				
 				String str = "hastePartTwo";
   	  			sendToClient0(str);
 			}
-			else if (initiativeFinal[0] > initiativeFinal[5] && Has0TakenTurn.equals("no")) {
+			else if ((initiativeFinal[0] > initiativeFinal[5]) && Has0TakenTurn.equals("no")) {
 				
 				//gameEngine3V35Part2For0Part1();
 				
 				String str = "hastePartTwo";
   	  			sendToClient0(str);
 			}
-			else if (initiativeFinal[0] > initiativeFinal[5] && Has0TakenTurn.equals("yes")) {
+			else if ((initiativeFinal[0] > initiativeFinal[5]) && Has0TakenTurn.equals("yes")) {
 				
 				gameEngine3V3XPart2For5Part1();
 			}
@@ -23847,7 +24039,7 @@ playerAttackingTest();
 							
 							
 							
-							playerAttackingTest();
+							//playerAttackingTest();
 							
 							
 							
@@ -23953,7 +24145,8 @@ playerAttackingTest();
 	  	  	  			playerNumberAttackedHitPointsTextView.clearAnimation();	  	  	  			
 	  	  	  			
 	  	  	  			
-						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] <= 0) {
+						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] <= 0) 
+						{
 							
 							centerscrolltext.setVisibility(View.VISIBLE);
 					  		centerscrolltext.startAnimation(animAlphaText);
@@ -25176,66 +25369,101 @@ playerAttackingTest();
 				}
 				
 				
-				skillsCheck();
-				
-				String str2 = "skillsCheck";
-				sendToAllClients(str2);
-				
-				
-				// Use a blank drawable to hide the imageview animation:
-		    	// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
-		    	ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
-		    	img.setBackgroundResource(R.drawable.twentytwentyblank);
-		    	img.setImageResource(R.drawable.twentytwentyblank);
-				
-		    	
-				dodgeGraphic();
-				
-				String str3 = "dodgeGraphic";
-				sendToAllClients(str3);
-				
-				
 				final Handler h = new Handler();
 		  	  	h.postDelayed(new Runnable() {		  	  	  			
 			  	  			
 		  	  		@Override
-		  	  	  	public void run() {  	  		
-			  	  			
-		  	  	  		//final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
-		  	  			//dodgeGraphic.setVisibility(View.INVISIBLE);
+		  	  	  	public void run() {
 		  	  			
-		  	  			stopGraphics();
-		  	  			
-		  	  			String str4 = "stopGraphics";
-		  	  			sendToAllClients(str4);
-		  	  			
-			  	  		
-		  	  			if (numberOfPlayers == 2) {
-		  	  			
-			  	  	  		if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) && ishasteused.equals("no")) {				
-								
-			  	  	  			gameEngine1V1502();    							
-							}		
-			  	  	  		else if ((ArrayOfInitiative.initiative[5] < ArrayOfInitiative.initiative[0]) && ishasteused.equals("no")) {		
-				    			
-				    			turn();   							
-							}										
-			  	  	  		else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) && ishasteused.equals("yes")) {				
-								
-				    			hastePartTwo();    							
-							}		
-			  	  	  		else if ((ArrayOfInitiative.initiative[5] < ArrayOfInitiative.initiative[0]) && ishasteused.equals("yes")) {		
-				    			
-								hastePartTwo();   							
-							}
-		  	  			}
-		  	  			
-		  	  			else if (numberOfPlayers == 3) {
-		  	  				
-		  	  				threePlayerRedirectWithHasteForClient();
-		  	  			}
-		  	  	  	}
-		  	  	}, 6000);
+			  	  		skillsCheck();
+						
+						String str2 = "skillsCheck";
+						sendToAllClients(str2);
+						
+						
+						// Use a blank drawable to hide the imageview animation:
+				    	// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+				    	ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
+				    	img.setBackgroundResource(R.drawable.twentytwentyblank);
+				    	img.setImageResource(R.drawable.twentytwentyblank);
+						
+				    	
+						dodgeGraphic();
+						
+						String str3 = "dodgeGraphic";
+						sendToAllClients(str3);
+						
+						
+						final Handler h2 = new Handler();
+				  	  	h2.postDelayed(new Runnable() {		  	  	  			
+					  	  			
+				  	  		@Override
+				  	  	  	public void run() {  	  		
+					  	  			
+				  	  	  		//final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
+				  	  			//dodgeGraphic.setVisibility(View.INVISIBLE);
+				  	  			
+				  	  			stopGraphics();
+				  	  			
+				  	  			String str4 = "stopGraphics";
+				  	  			sendToAllClients(str4);
+				  	  			
+					  	  		
+				  	  			if (numberOfPlayers == 2) {
+				  	  			
+					  	  	  		if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) && ishasteused.equals("no")) {				
+										
+					  	  	  			gameEngine1V1502();    							
+									}		
+					  	  	  		else if ((ArrayOfInitiative.initiative[5] < ArrayOfInitiative.initiative[0]) && ishasteused.equals("no")) {		
+						    			
+						    			turn();   							
+									}										
+					  	  	  		else if ((ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) && ishasteused.equals("yes")) {				
+										
+						    			hastePartTwo();    							
+									}		
+					  	  	  		else if ((ArrayOfInitiative.initiative[5] < ArrayOfInitiative.initiative[0]) && ishasteused.equals("yes")) {		
+						    			
+										hastePartTwo();   							
+									}
+				  	  			}
+				  	  			
+				  	  			else if (numberOfPlayers == 3) {
+				  	  				
+				  	  				if (playersFighting.equals("zeroVsFive")) {
+			  	  	  					
+			  	  	  					Has0TakenTurn = "yes";
+			  	  	  				}
+			  	  	  				else if (playersFighting.equals("oneVsFive")) {
+			  	  	  					
+			  	  	  					hAs1TakenTurn = "yes";
+			  	  	  				}
+				  	  				
+				  	  				
+				  	  	  			else if (playersFighting.equals("fiveVsZero")) {
+			  	  	  					
+				  	  	  				has5TakenTurn = "yes";
+			  	  	  				}
+				  	  	  			else if (playersFighting.equals("fiveVsOne")) {
+		  	  	  					
+				  	  	  				has5TakenTurn = "yes";
+				  	  	  			}
+					  	  	  		else if (playersFighting.equals("zeroVsOne")) {
+			  	  	  					
+					  	  	  			Has0TakenTurn = "yes";
+			  	  	  				}
+						  	  	  	else if (playersFighting.equals("oneVsZero")) {
+			  	  	  					
+						  	  	  		hAs1TakenTurn = "yes";
+			  	  	  				}
+				  	  				
+				  	  				threePlayerRedirectWithHasteForClient();
+				  	  			}
+				  	  	  	}
+				  	  	}, 6000);
+		  	  		}
+		  	  	}, 1000);
   	  	    }
 		});		
 	}
@@ -25387,6 +25615,15 @@ playerAttackingTest();
 	  					  	  	  			
 	  					  	  	  			else if (numberOfPlayers == 3) {
 	  					  	  	  				
+	  					  	  	  				if (playersFighting.equals("zeroVsFive")) {
+	  					  	  	  					
+	  					  	  	  					Has0TakenTurn = "yes";
+	  					  	  	  				}
+	  					  	  	  				else if (playersFighting.equals("oneVsFive")) {
+	  					  	  	  					
+	  					  	  	  					hAs1TakenTurn = "yes";
+	  					  	  	  				}
+	  					  	  	  				
 	  					  	  	  				threePlayerRedirectWithHasteForClient();
 	  					  	  	  			}
 	  						  	  	  	}
@@ -25532,7 +25769,7 @@ playerAttackingTest();
 	  		  			}
 	  		  			*/
 		  	  	  	}
-	  	  	  	}, 2000);	  	  	  		  			
+	  	  	  	}, 5000);	  	  	  		  			
   	  	    }
 		});		
 	}
@@ -26926,6 +27163,24 @@ else if (read.contains("cstmImage")) {//MAY WANT MORE COMPLICATED TERM SO IT DOE
 										
 										String str2 = "playerDeadYet" + deadGuy + " :" + "yes";
 										sendToAllClients(str2);
+										
+										
+										if (playersFighting.equals("zeroVsFive")) {
+											
+											Has0TakenTurn = "yes";
+										}
+										else if (playersFighting.equals("zeroVsOne")) {
+											
+											Has0TakenTurn = "yes";
+										}
+										else if (playersFighting.equals("oneVsFive")) {
+											
+											hAs1TakenTurn = "yes";
+										}
+										else if (playersFighting.equals("oneVsZero")) {
+											
+											hAs1TakenTurn = "yes";
+										}
 										
 							    		
 										final Handler h2 = new Handler();

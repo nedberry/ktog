@@ -2835,7 +2835,7 @@ public class Client2 extends Activity {
   		});	
 	}
 	
-	public void foldScrolls() {		
+	public void foldScrolls() {
 		
 		// USING "runOnUiThread(new Runnable() {}" TO SEE IF IT WORKS BETTER THAN NOT USING IT.
 		runOnUiThread(new Runnable() {
@@ -6009,7 +6009,7 @@ public class Client2 extends Activity {
 				  	  			
 				  	  			startGameNow ="yes";
 				  	  			
-				  	  			avatarTest();
+				  	  			//avatarTest();
 				  	  			
 				  	  			/*
 				  	  			// Calls method from another class:
@@ -6040,7 +6040,7 @@ public class Client2 extends Activity {
   		});
 	}
 	
-	
+	/*
 	public void avatarTest() {//DELETE IF NOT USED!!!!!!!!!!!!!
 
 		runOnUiThread(new Runnable() {
@@ -6056,7 +6056,7 @@ public class Client2 extends Activity {
 		});
 
 	}
-	
+	*/
 	
 	public void getLocalIpAddress(){
 		/*   
@@ -6399,7 +6399,7 @@ public class Client2 extends Activity {
 			@Override
 			public void run() {
 				
-				avatarTest();
+				//avatarTest();
 				
 				ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
 				ImageView crossedswords2 = (ImageView) findViewById(R.id.imageviewavatarleft2);
@@ -6451,7 +6451,7 @@ public class Client2 extends Activity {
 					
 					//crossedswords2.bringToFront();
 					
-					test();
+					//test();
 				}
 				else if (ArrayOfAvatars.avatar[0].equals("stonedead")){
 					crossedswords2.setVisibility(View.INVISIBLE);
@@ -6585,13 +6585,13 @@ public class Client2 extends Activity {
 			  		                        @Override
 			  		                        public void onClick(final DialogInterface dialog, int item) {				  		                        	
 			  		                        	
-			  		                        	if (item == 0) {
+			  		                        	if (item == 0 && playerDeadYet[5].equals("no")) {
 			  		                        		
 			  		                        		if (zeroAttackingFirst.equals("yes")) {			  		                        			
 			  		                        			
 			  		                        			playerNumberAttacked = 5;
 			  		                        			
-playerAttackingTest();
+//playerAttackingTest();
 			  		                        			
 			  		                        			String str = "0FirstChooses5";
 				  		                        		sendToHost(str);          			
@@ -6635,7 +6635,7 @@ playerAttackingTest();
 			  		                        			
 			  		                        			playerNumberAttacked = 5;
 			  		                        			
-playerAttackingTest();
+//playerAttackingTest();
 			  		                        			
 				  		                        		String str = "0chooses5";
 				  		                        		sendToHost(str);
@@ -6676,13 +6676,18 @@ playerAttackingTest();
 													dialog.dismiss();
 			  									}
 			  		                        	
-			  		                        	else if (item == 1) {
+			  		                        	else if (item == 0 && playerDeadYet[5].equals("yes")) {
+			  		                        		
+			  		                        		chooseOpponent();
+			  		                        	}
+			  		                        	
+			  		                        	else if (item == 1 && playerDeadYet[1].equals("no")) {
 			  		                        		
 			  		                        		if (zeroAttackingFirst.equals("yes")) {
 			  		                        			
 			  		                        			playerNumberAttacked = 1;
 			  		                        			
-playerAttackingTest();
+//playerAttackingTest();
 			  		                        			
 			  		                        			String str = "0FIrstChooses1";
 				  		                        		sendToHost(str);
@@ -6726,7 +6731,7 @@ playerAttackingTest();
 			  		                        			
 			  		                        			playerNumberAttacked = 1;
 			  		                        			
-playerAttackingTest();
+//playerAttackingTest();
 			  		                        			
 			  		                        			String str = "0chooses1";
 				  		                        		sendToHost(str);
@@ -6766,6 +6771,11 @@ playerAttackingTest();
 													
 													dialog.dismiss();
 			  									}
+			  		                        	
+			  		                        	else if (item == 1 && playerDeadYet[1].equals("yes")) {
+			  		                        		
+			  		                        		chooseOpponent();
+			  		                        	}
 			  		                        			  		                        	
 			  		                        }
 			  		                    });	            
@@ -6889,13 +6899,13 @@ playerAttackingTest();
 			  		                        @Override
 			  		                        public void onClick(final DialogInterface dialog, int item) {				  		                        	
 			  		                        	
-			  		                        	if (item == 0) {
+			  		                        	if (item == 0 && playerDeadYet[5].equals("no")) {
 			  		                        		
 			  		                        		if (oneAttackingFirst.equals("yes")) {
 			  		                        			
 			  		                        			playerNumberAttacked = 5;
 			  		                        			
-playerAttackingTest();
+//playerAttackingTest();
 			  		                        			
 			  		                        			String str = "1FirstChooses5";
 				  		                        		sendToHost(str);
@@ -6939,7 +6949,7 @@ playerAttackingTest();
 			  		                        			
 			  		                        			playerNumberAttacked = 5;
 			  		                        			
-playerAttackingTest();
+//playerAttackingTest();
 			  		                        			
 			  		                        			String str = "1chooses5";
 				  		                        		sendToHost(str);
@@ -6980,13 +6990,18 @@ playerAttackingTest();
 													dialog.dismiss();
 			  									}
 			  		                        	
-			  		                        	else if (item == 1) {			  		                        		
+			  		                        	else if (item == 0 && playerDeadYet[5].equals("yes")) {
+			  		                        		
+			  		                        		chooseOpponent();
+			  		                        	}
+			  		                        	
+			  		                        	else if (item == 1 && playerDeadYet[0].equals("no")) {			  		                        		
 													
 			  		                        		if (oneAttackingFirst.equals("yes")) {
 			  		                        			
 			  		                        			playerNumberAttacked = 0;
 			  		                        			
-playerAttackingTest();
+//playerAttackingTest();
 			  		                        			
 			  		                        			String str = "1FIrstChooses0";
 				  		                        		sendToHost(str);
@@ -7030,7 +7045,7 @@ playerAttackingTest();
 			  		                        			
 			  		                        			playerNumberAttacked = 0;
 			  		                        			
-playerAttackingTest();
+//playerAttackingTest();
 			  		                        			
 			  		                        			String str = "1chooses0";
 				  		                        		sendToHost(str);
@@ -7070,7 +7085,11 @@ playerAttackingTest();
 													
 													dialog.dismiss();																						
 			  									}
-			  		                        			  		                        	
+			  		                        	
+			  		                        	else if (item == 1 && playerDeadYet[0].equals("yes")) {
+			  		                        		
+			  		                        		chooseOpponent();
+			  		                        	}	  		                        	
 			  		                        }
 			  		                    });	            
 			  		            
@@ -7739,16 +7758,22 @@ playerAttackingTest();
 	
 	public void hideImageView() {
 		
-		// Use a blank drawable to hide the imageview animation:
-		// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
-		ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
-		img1.setBackgroundResource(R.drawable.twentytwentyblank);
-		img1.setImageResource(R.drawable.twentytwentyblank);
-
-		// Use a blank drawable to hide the imageview animation:
-		ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
-		img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
-		img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {  	  	    	
+  	  	    	
+  	  	    	// Use a blank drawable to hide the imageview animation:
+	  	  		// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+	  	  		ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+	  	  		img1.setBackgroundResource(R.drawable.twentytwentyblank);
+	  	  		img1.setImageResource(R.drawable.twentytwentyblank);
+	
+	  	  		// Use a blank drawable to hide the imageview animation:
+	  	  		ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
+	  	  		img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+	  	  		img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+  	  	    }
+		});
 	}	
 	
 	public void displayTurn() {
@@ -12165,7 +12190,7 @@ playerAttackingTest();
 		  	  	  			sendToHost(str2);							
 						}				  	  	  			
 		  	  	  	}
-	  	  	  	}, 2000);
+	  	  	  	}, 4000);
   	  	    }
 		});
 	}
@@ -13168,13 +13193,13 @@ playerAttackingTest();
 		
 		
 		
-		playerAttackingTest();
+		//playerAttackingTest();
 	}
 	
 	
 	
 	
-	
+	/*
 	public void playerAttackingTest() {//DELETE IF NOT USED!!!!!!!!!!!!!
 
 		runOnUiThread(new Runnable() {
@@ -13185,7 +13210,7 @@ playerAttackingTest();
 			}
 		});
 	}
-	
+	*/
 	
 	
 	
@@ -13230,7 +13255,7 @@ playerAttackingTest();
 	
 	
 	
-	
+	/*
 	public void test() {
 		
 		runOnUiThread(new Runnable() {
@@ -13242,7 +13267,7 @@ playerAttackingTest();
 		});
 		
 	}
-	
+	*/
 	
 	
 	
@@ -14830,6 +14855,8 @@ playerAttackingTest();
 					}
 					
 					else if (read.contains("foldScrolls")) {
+						
+						hideImageView();
 						
 						foldScrolls();															
 					}
