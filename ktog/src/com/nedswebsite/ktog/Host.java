@@ -14065,6 +14065,7 @@ public void decodeImage0() {
 	}
 	*/
 	
+	/*
 	public void testisthisworking() {
 		
 		runOnUiThread(new Runnable() {
@@ -14136,7 +14137,7 @@ public void decodeImage0() {
 			}
 		});
 	}
-	
+	*/
 	
 	
 	
@@ -14291,8 +14292,24 @@ public void decodeImage0() {
 	}
 	
 	
-	
-	
+	public void forScrollTitleChat() {
+
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+
+				final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+				// Re-enables ability to use srollbar:
+				centerscrolltext.bringToFront();
+
+				ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+				titleBlankButton.bringToFront();
+
+				ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+				chatBlankButton.bringToFront();
+			}
+		});
+	}
 	
 	
 	public void myInitiativeTransition() {
@@ -15115,6 +15132,11 @@ public void decodeImage0() {
 					    			
 					    			String str4 = "chooseOpponent";
 					    			sendToClient0(str4);
+					    			
+					    			String str5 = "forScrollTitleChat";
+				  	  	  			sendToClient1(str5);
+				  	  	  			
+				  	  	  			forScrollTitleChat();
 									
 									
 									//gameEngine3V30();
@@ -15282,6 +15304,11 @@ public void decodeImage0() {
 					    			
 					    			String str4 = "chooseOpponent";
 					    			sendToClient1(str4);
+					    			
+					    			String str5 = "forScrollTitleChat";
+				  	  	  			sendToClient0(str5);
+				  	  	  			
+				  	  	  			forScrollTitleChat();
 									
 									
 									//gameEngine3V31();
@@ -16562,6 +16589,11 @@ public void decodeImage0() {
 		  	  	  			
 		  	  	  			String str8 = "chooseOpponent";
 		  	  	  			sendToClient0(str8);
+		  	  	  			
+		  	  	  			String str9 = "forScrollTitleChat";
+		  	  	  			sendToClient1(str9);
+		  	  	  			
+		  	  	  			forScrollTitleChat();
 		  	  	  		}
 		  	  	  	}, 1000);		
 	  	  	    }
@@ -16580,8 +16612,12 @@ public void decodeImage0() {
 		
 		playersFighting = "zeroVsFive";
 		
-		String str = "issecondroundofhasteused :" + "no";
-		sendToClient0(str);
+		String str = "PlyrsFighting :" + "zeroVsFive";
+		sendToClient1(str);
+		
+		
+		String str2 = "issecondroundofhasteused :" + "no";
+		sendToClient0(str2);
 		
     	
     	if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0]) {
@@ -16589,14 +16625,14 @@ public void decodeImage0() {
     		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
 	  		disarmedtextright.setVisibility(View.INVISIBLE);
 	  		
-	  		String str2 = "clientNotDisarmed";
-	  		sendToAllClients(str2);
+	  		String str3 = "clientNotDisarmed";
+	  		sendToAllClients(str3);
     		
 			
 			canHasDisarmed[0] = "no";
 			
-			String str3 = "CanHasDisarmed0 :" + "no";
-			sendToAllClients(str3);
+			String str4 = "CanHasDisarmed0 :" + "no";
+			sendToAllClients(str4);
 		}
     	
     	//THIS WAS "else if" (WANT THIS AND THE IF ABOVE TO BOTH BE EVALUATED):
@@ -16604,14 +16640,14 @@ public void decodeImage0() {
     		
     		canHasDisarmed[5] = "no";
     		
-    		String str4 = "canHaSDisarmed5 :" + "no";
-    		sendToAllClients(str4);
+    		String str5 = "canHaSDisarmed5 :" + "no";
+    		sendToAllClients(str5);
     		
 				
 			didHumanCriticalMiss[5] = "no";
 			
-			String str5 = "didHuManCriticalMiss5 :" + "no";
-			sendToAllClients(str5);
+			String str6 = "didHuManCriticalMiss5 :" + "no";
+			sendToAllClients(str6);
 			
 			TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
 	  		disarmedtextleft.setVisibility(View.INVISIBLE);
@@ -16640,8 +16676,8 @@ public void decodeImage0() {
     			
     			scrollAnimationLeftUpNoRight();
     			
-    			String str6 = "ClientAttackingReveal5OnLeft";
-    			sendToClient1(str6);
+    			String str7 = "ClientAttackingReveal5OnLeft";
+    			sendToClient1(str7);
   	  	    	
   	  	    	
 	  			//String str6 = "turn1V105";//USED JUST TO CLEAR DICE..DO THIS IN CHOOSEOPPONENT FOR CLIENT.
@@ -16660,20 +16696,20 @@ public void decodeImage0() {
 		  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
 				  	  	  	disarmedtextright.bringToFront();
 				  	  	  	
-				  	  	  	String str7 = "clientDisarmed";
-				  	  	  	sendToAllClients(str7);
+				  	  	  	String str8 = "clientDisarmed";
+				  	  	  	sendToAllClients(str8);
 			  				
 			  				
 			  				if ((didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0])) {
 			  	  				
-			  					String str8 = "disarmedAction";
-					  	  	  	sendToClient0(str8);			  	  												
+			  					String str9 = "disarmedAction";
+					  	  	  	sendToClient0(str9);			  	  												
 			  	  			}
 			  	  			
 			  	  			else if ((didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 1 == ArrayOfTurn.turn[0])) { //HUMAN MUST HAVE DISARMED HUMAN
 			  	  												
-			  	  				String str9 = "disarmedAction";
-			  	  				sendToClient0(str9);										  	  			
+			  	  				String str10 = "disarmedAction";
+			  	  				sendToClient0(str10);										  	  			
 			  	  			}
 			  			}
 			  			
@@ -16682,12 +16718,12 @@ public void decodeImage0() {
 			  				TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
 		  	  	  			disarmedtextright.setVisibility(View.INVISIBLE);
 		  	  	  			
-		  	  	  			String str10 = "clientNotDisarmed";
-		  	  	  			sendToAllClients(str10);
+		  	  	  			String str11 = "clientNotDisarmed";
+		  	  	  			sendToAllClients(str11);
 			  				
 		  	  	  			
-		  	  	  			String str11 = "runActionsOnUi";
-		  	  	  			sendToClient0(str11);
+		  	  	  			String str12 = "runActionsOnUi";
+		  	  	  			sendToClient0(str12);
 			  			}	  	  	  			
 	  	  	  		}
 	  	  	  	}, 2000);
@@ -16700,8 +16736,12 @@ public void decodeImage0() {
 		
 		playersFighting = "zeroVsOne";
 		
-		String str = "issecondroundofhasteused :" + "no";
-		sendToClient0(str);
+		String str = "PlyrsFighting :" + "zeroVsOne";
+		sendToClient1(str);
+		
+		
+		String str2 = "issecondroundofhasteused :" + "no";
+		sendToClient0(str2);
 		
     	
     	if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0]) {
@@ -16709,14 +16749,14 @@ public void decodeImage0() {
     		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
 	  		disarmedtextright.setVisibility(View.INVISIBLE);
 	  		
-	  		String str2 = "clientNotDisarmed";
-	  		sendToAllClients(str2);
+	  		String str3 = "clientNotDisarmed";
+	  		sendToAllClients(str3);
     		
 			
 			canHasDisarmed[0] = "no";
 			
-			String str3 = "CanHasDisarmed0 :" + "no";
-			sendToAllClients(str3);
+			String str4 = "CanHasDisarmed0 :" + "no";
+			sendToAllClients(str4);
 		}
     	
     	//THIS WAS "else if" (WANT THIS AND THE IF ABOVE TO BOTH BE EVALUATED):
@@ -16724,14 +16764,14 @@ public void decodeImage0() {
     		
     		canHasDisarmed[1] = "no";
     		
-    		String str4 = "cAnHasDisarmed1 :" + "no";
-    		sendToAllClients(str4);
+    		String str5 = "cAnHasDisarmed1 :" + "no";
+    		sendToAllClients(str5);
     		
 				
 			didHumanCriticalMiss[1] = "no";
 			
-			String str5 = "dIdHumanCriticalMiss1 :" + "no";
-			sendToAllClients(str5);
+			String str6 = "dIdHumanCriticalMiss1 :" + "no";
+			sendToAllClients(str6);
 			
 			TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
 	  		disarmedtextleft.setVisibility(View.INVISIBLE);
@@ -16760,8 +16800,8 @@ public void decodeImage0() {
     			
     			scrollAnimationLeftUpNoRight();
     			
-    			String str6 = "clntattackingreveal1onleft";
-    			sendToClient1(str6);
+    			String str7 = "clntattackingreveal1onleft";
+    			sendToClient1(str7);
   	  	    	
   	  	    	
 	  			//String str6 = "turn1V105";//USED JUST TO CLEAR DICE..DO THIS IN CHOOSEOPPONENT FOR CLIENT.
@@ -16780,20 +16820,20 @@ public void decodeImage0() {
 		  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
 				  	  	  	disarmedtextright.bringToFront();
 				  	  	  	
-				  	  	  	String str7 = "clientDisarmed";
-				  	  	  	sendToAllClients(str7);
+				  	  	  	String str8 = "clientDisarmed";
+				  	  	  	sendToAllClients(str8);
 			  				
 			  				
 			  				if ((didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0])) {
 			  	  				
-			  					String str8 = "disarmedAction";
-					  	  	  	sendToClient0(str8);			  	  												
+			  					String str9 = "disarmedAction";
+					  	  	  	sendToClient0(str9);			  	  												
 			  	  			}
 			  	  			
 			  	  			else if ((didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 1 == ArrayOfTurn.turn[0])) { //HUMAN MUST HAVE DISARMED HUMAN
 			  	  												
-			  	  				String str9 = "disarmedAction";
-			  	  				sendToClient0(str9);										  	  			
+			  	  				String str10 = "disarmedAction";
+			  	  				sendToClient0(str10);										  	  			
 			  	  			}
 			  			}
 			  			
@@ -16802,12 +16842,12 @@ public void decodeImage0() {
 			  				TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
 		  	  	  			disarmedtextright.setVisibility(View.INVISIBLE);
 		  	  	  			
-		  	  	  			String str10 = "clientNotDisarmed";
-		  	  	  			sendToAllClients(str10);
+		  	  	  			String str11 = "clientNotDisarmed";
+		  	  	  			sendToAllClients(str11);
 			  				
 		  	  	  			
-		  	  	  			String str11 = "runActionsOnUi";
-		  	  	  			sendToClient0(str11);
+		  	  	  			String str12 = "runActionsOnUi";
+		  	  	  			sendToClient0(str12);
 			  			}	  	  	  			
 	  	  	  		}
 	  	  	  	}, 2000);  	  	    	
@@ -17132,6 +17172,11 @@ public void decodeImage0() {
 		  	  	  			
 		  	  	  			String str8 = "chooseOpponent";
 		  	  	  			sendToClient1(str8);
+		  	  	  			
+		  	  	  			String str9 = "forScrollTitleChat";
+		  	  	  			sendToClient0(str9);
+		  	  	  			
+		  	  	  			forScrollTitleChat();
 		  	  	  		}
 		  	  	  	}, 1000);		
 	  	  	    }
@@ -17150,8 +17195,12 @@ public void decodeImage0() {
 		
 		playersFighting = "oneVsFive";
 		
-		String str = "issecondroundofhasteused :" + "no";
-		sendToClient1(str);
+		String str = "PlyrsFighting :" + "oneVsFive";
+		sendToClient0(str);
+		
+		
+		String str2 = "issecondroundofhasteused :" + "no";
+		sendToClient1(str2);
 		
     	
     	if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0]) {
@@ -17159,14 +17208,14 @@ public void decodeImage0() {
     		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
 	  		disarmedtextright.setVisibility(View.INVISIBLE);
 	  		
-	  		String str2 = "clientNotDisarmed";
-	  		sendToAllClients(str2);
+	  		String str3 = "clientNotDisarmed";
+	  		sendToAllClients(str3);
     		
 			
 			canHasDisarmed[1] = "no";
 			
-			String str3 = "cAnHasDisarmed1 :" + "no";
-			sendToAllClients(str3);
+			String str4 = "cAnHasDisarmed1 :" + "no";
+			sendToAllClients(str4);
 		}
     	
     	//THIS WAS "else if" (WANT THIS AND THE IF ABOVE TO BOTH BE EVALUATED):
@@ -17174,14 +17223,14 @@ public void decodeImage0() {
     		
     		canHasDisarmed[5] = "no";
     		
-    		String str4 = "canHaSDisarmed5 :" + "no";
-    		sendToAllClients(str4);
+    		String str5 = "canHaSDisarmed5 :" + "no";
+    		sendToAllClients(str5);
     		
 				
 			didHumanCriticalMiss[5] = "no";
 			
-			String str5 = "didHuManCriticalMiss5 :" + "no";
-			sendToAllClients(str5);
+			String str6 = "didHuManCriticalMiss5 :" + "no";
+			sendToAllClients(str6);
 			
 			TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
 	  		disarmedtextleft.setVisibility(View.INVISIBLE);
@@ -17210,8 +17259,8 @@ public void decodeImage0() {
     			
     			scrollAnimationLeftUpNoRight();
     			
-    			String str6 = "ClientAttackingReveal5OnLeft";
-    			sendToClient0(str6);
+    			String str7 = "ClientAttackingReveal5OnLeft";
+    			sendToClient0(str7);
   	  	    	
   	  	    	
 	  			//String str6 = "turn1V105";//USED JUST TO CLEAR DICE..DO THIS IN CHOOSEOPPONENT FOR CLIENT.
@@ -17230,20 +17279,20 @@ public void decodeImage0() {
 		  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
 				  	  	  	disarmedtextright.bringToFront();
 				  	  	  	
-				  	  	  	String str7 = "clientDisarmed";
-				  	  	  	sendToAllClients(str7);
+				  	  	  	String str8 = "clientDisarmed";
+				  	  	  	sendToAllClients(str8);
 			  				
 			  				
 			  				if ((didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0])) {
 			  	  				
-			  					String str8 = "disarmedAction";
-					  	  	  	sendToClient1(str8);			  	  												
+			  					String str9 = "disarmedAction";
+					  	  	  	sendToClient1(str9);			  	  												
 			  	  			}
 			  	  			
 			  	  			else if ((didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 1 == ArrayOfTurn.turn[0])) { //HUMAN MUST HAVE DISARMED HUMAN
 			  	  												
-			  	  				String str9 = "disarmedAction";
-			  	  				sendToClient1(str9);										  	  			
+			  	  				String str10 = "disarmedAction";
+			  	  				sendToClient1(str10);										  	  			
 			  	  			}
 			  			}
 			  			
@@ -17252,12 +17301,12 @@ public void decodeImage0() {
 			  				TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
 		  	  	  			disarmedtextright.setVisibility(View.INVISIBLE);
 		  	  	  			
-		  	  	  			String str10 = "clientNotDisarmed";
-		  	  	  			sendToAllClients(str10);
+		  	  	  			String str11 = "clientNotDisarmed";
+		  	  	  			sendToAllClients(str11);
 			  				
 		  	  	  			
-		  	  	  			String str11 = "runActionsOnUi";
-		  	  	  			sendToClient1(str11);
+		  	  	  			String str12 = "runActionsOnUi";
+		  	  	  			sendToClient1(str12);
 			  			}	  	  	  			
 	  	  	  		}
 	  	  	  	}, 2000);
@@ -17270,8 +17319,12 @@ public void decodeImage0() {
 		
 		playersFighting = "oneVsZero";
 		
-		String str = "issecondroundofhasteused :" + "no";
-		sendToClient1(str);
+		String str = "PlyrsFighting :" + "oneVsZero";
+		sendToClient0(str);
+		
+		
+		String str2 = "issecondroundofhasteused :" + "no";
+		sendToClient1(str2);
 		
     	
     	if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0]) {
@@ -17279,14 +17332,14 @@ public void decodeImage0() {
     		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
 	  		disarmedtextright.setVisibility(View.INVISIBLE);
 	  		
-	  		String str2 = "clientNotDisarmed";
-	  		sendToAllClients(str2);
+	  		String str3 = "clientNotDisarmed";
+	  		sendToAllClients(str3);
     		
 			
 			canHasDisarmed[1] = "no";
 			
-			String str3 = "cAnHasDisarmed1 :" + "no";
-			sendToAllClients(str3);
+			String str4 = "cAnHasDisarmed1 :" + "no";
+			sendToAllClients(str4);
 		}
     	
     	//THIS WAS "else if" (WANT THIS AND THE IF ABOVE TO BOTH BE EVALUATED):
@@ -17294,14 +17347,14 @@ public void decodeImage0() {
     		
     		canHasDisarmed[0] = "no";
     		
-    		String str4 = "CanHasDisarmed0 :" + "no";
-    		sendToAllClients(str4);
+    		String str5 = "CanHasDisarmed0 :" + "no";
+    		sendToAllClients(str5);
     		
 				
 			didHumanCriticalMiss[0] = "no";
 			
-			String str5 = "DidHumanCriticalMiss0 :" + "no";
-			sendToAllClients(str5);
+			String str6 = "DidHumanCriticalMiss0 :" + "no";
+			sendToAllClients(str6);
 			
 			TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
 	  		disarmedtextleft.setVisibility(View.INVISIBLE);
@@ -17330,8 +17383,8 @@ public void decodeImage0() {
     			
     			scrollAnimationLeftUpNoRight();
     			
-    			String str6 = "CntAttingrevL0onlft";
-    			sendToClient0(str6);
+    			String str7 = "CntAttingrevL0onlft";
+    			sendToClient0(str7);
   	  	    	
   	  	    	
 	  			//String str6 = "turn1V105";//USED JUST TO CLEAR DICE..DO THIS IN CHOOSEOPPONENT FOR CLIENT.
@@ -17350,20 +17403,20 @@ public void decodeImage0() {
 		  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
 				  	  	  	disarmedtextright.bringToFront();
 				  	  	  	
-				  	  	  	String str7 = "clientDisarmed";
-				  	  	  	sendToAllClients(str7);
+				  	  	  	String str8 = "clientDisarmed";
+				  	  	  	sendToAllClients(str8);
 			  				
 			  				
 			  				if ((didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0])) {
 			  	  				
-			  					String str8 = "disarmedAction";
-					  	  	  	sendToClient1(str8);			  	  												
+			  					String str9 = "disarmedAction";
+					  	  	  	sendToClient1(str9);			  	  												
 			  	  			}
 			  	  			
 			  	  			else if ((didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 1 == ArrayOfTurn.turn[0])) { //HUMAN MUST HAVE DISARMED HUMAN
 			  	  												
-			  	  				String str9 = "disarmedAction";
-			  	  				sendToClient1(str9);										  	  			
+			  	  				String str10 = "disarmedAction";
+			  	  				sendToClient1(str10);										  	  			
 			  	  			}
 			  			}
 			  			
@@ -17372,12 +17425,12 @@ public void decodeImage0() {
 			  				TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
 		  	  	  			disarmedtextright.setVisibility(View.INVISIBLE);
 		  	  	  			
-		  	  	  			String str10 = "clientNotDisarmed";
-		  	  	  			sendToAllClients(str10);
+		  	  	  			String str11 = "clientNotDisarmed";
+		  	  	  			sendToAllClients(str11);
 			  				
 		  	  	  			
-		  	  	  			String str11 = "runActionsOnUi";
-		  	  	  			sendToClient1(str11);
+		  	  	  			String str12 = "runActionsOnUi";
+		  	  	  			sendToClient1(str12);
 			  			}	  	  	  			
 	  	  	  		}
 	  	  	  	}, 2000);  	  	    	
@@ -19084,8 +19137,21 @@ public void decodeImage0() {
   	  	    	
   	  	    	else if (numberOfPlayers == 3) {
 	  	    		
+  	  	    		/*
+  	  	    		victoryDefeatAnimation();
+  	  	    	
+	  	    		String str = "victoryDefeatAnimation";
+	  	    		sendToAllClients(str);
+  	  	    		*/
+	  	    		
 					if (playerDeadYet[5].equals("no") && playerDeadYet[0].equals("yes") && playerDeadYet[1].equals("yes")) {
 					/*&& playerDeadYet[2] == "yes" && playerDeadYet[3] == "yes"	&& playerDeadYet[4] == "yes" && playerDeadYet[5] == "yes"*/
+						
+						victoryDefeatAnimation();
+		  	  	    	
+		  	    		String str = "victoryDefeatAnimation";
+		  	    		sendToAllClients(str);
+						
 						
 						gameOn = 0;
 						
@@ -19166,6 +19232,12 @@ public void decodeImage0() {
 							/*&& playerDeadYet[2] == "yes" && playerDeadYet[3] == "yes"
 							&& playerDeadYet[4] == "yes" && playerDeadYet[5] == "yes"*/) {
 						
+						victoryDefeatAnimation();
+		  	  	    	
+		  	    		String str = "victoryDefeatAnimation";
+		  	    		sendToAllClients(str);
+						
+						
 						gameOn = 0;
 						
 						
@@ -19245,6 +19317,12 @@ public void decodeImage0() {
 					else if (playerDeadYet[1].equals("no") && playerDeadYet[5].equals("yes") && playerDeadYet[0].equals("yes")
 							/*&& playerDeadYet[2] == "yes" && playerDeadYet[3] == "yes"
 							&& playerDeadYet[4] == "yes" && playerDeadYet[5] == "yes"*/) {
+						
+						victoryDefeatAnimation();
+		  	  	    	
+		  	    		String str = "victoryDefeatAnimation";
+		  	    		sendToAllClients(str);
+						
 						
 						gameOn = 0;
 						
@@ -20211,7 +20289,7 @@ public void decodeImage0() {
 	}
 	
 	
-	public void threePlayerRedirect() {
+	public void threePlayerRedirect() {//DELETE THIS???????------JUST USE: threePlayerRedirectWithHasteForClient()??????
 		
 		if (initiativeFinal[5] > initiativeFinal[0] && initiativeFinal[5] > initiativeFinal[1]) {
 			
@@ -20833,7 +20911,8 @@ public void decodeImage0() {
 					  	  	  			
 					  	  	  			else if (numberOfPlayers == 3) {
 					  	  	  				
-					  	  	  				threePlayerRedirect();
+					  	  	  				//threePlayerRedirect();
+					  	  	  				threePlayerRedirectWithHasteForClient();
 					  	  	  			}
 						  	  	  	}
 					  	  	  	}, 2000);							  	  	  																						
@@ -25483,13 +25562,14 @@ public void decodeImage0() {
 	  			final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);
   	  	    	
-	  			
+	  			/*NEED THIS?:
 		  		// Use a blank drawable to hide the imageview animation:
 		  		// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
 		  		ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 		  		img.setBackgroundResource(R.drawable.twentytwentyblank);
 		  		img.setImageResource(R.drawable.twentytwentyblank);
-				
+				*/
+	  			
 	  			//criticalHitGraphic();
 			  	  	  	
 				  	  	  		

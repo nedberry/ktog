@@ -6040,23 +6040,7 @@ public class Client2 extends Activity {
   		});
 	}
 	
-	/*
-	public void avatarTest() {//DELETE IF NOT USED!!!!!!!!!!!!!
-
-		runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
-
-				Toast.makeText(Client2.this, "5 = " + ArrayOfAvatars.avatar[5], Toast.LENGTH_SHORT).show();	
-				Toast.makeText(Client2.this, "0 = " + ArrayOfAvatars.avatar[0], Toast.LENGTH_SHORT).show();
-				Toast.makeText(Client2.this, "1 = " + ArrayOfAvatars.avatar[1], Toast.LENGTH_SHORT).show();
-				
-				Toast.makeText(Client2.this, "ID =  " + id, Toast.LENGTH_SHORT).show();
-			}
-		});
-
-	}
-	*/
+	
 	
 	public void getLocalIpAddress(){
 		/*   
@@ -6166,6 +6150,26 @@ public class Client2 extends Activity {
   		});		
 	}
 	
+	public void forScrollTitleChat() {
+
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+
+				final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+				// Re-enables ability to use srollbar:
+				centerscrolltext.bringToFront();
+
+				ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+				titleBlankButton.bringToFront();
+
+				ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+				chatBlankButton.bringToFront();
+			}
+		});
+	}
+	
+	
 	public void myInitiativeTransition() {
 		
 		runOnUiThread(new Runnable() {
@@ -6183,6 +6187,63 @@ public class Client2 extends Activity {
 				frameAnimation.start();
 			}
   		});
+	}
+	
+	
+	
+	/*
+	public void avatarTest() {//DELETE IF NOT USED!!!!!!!!!!!!!
+
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+
+				Toast.makeText(Client2.this, "5 = " + ArrayOfAvatars.avatar[5], Toast.LENGTH_SHORT).show();	
+				Toast.makeText(Client2.this, "0 = " + ArrayOfAvatars.avatar[0], Toast.LENGTH_SHORT).show();
+				Toast.makeText(Client2.this, "1 = " + ArrayOfAvatars.avatar[1], Toast.LENGTH_SHORT).show();
+				
+				Toast.makeText(Client2.this, "ID =  " + id, Toast.LENGTH_SHORT).show();
+			}
+		});
+
+	}
+	*/
+	
+	public void hpTest5() {//DELETE IF NOT USED!!!!!!!!!!!!!
+
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+
+				Toast.makeText(Client2.this, "HOST", Toast.LENGTH_SHORT).show();
+				
+				Toast.makeText(Client2.this, "players fighting = " + playersFighting, Toast.LENGTH_SHORT).show();
+			}
+		});
+	}
+	public void hpTest0() {//DELETE IF NOT USED!!!!!!!!!!!!!
+
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+					
+				Toast.makeText(Client2.this, "AAAA", Toast.LENGTH_SHORT).show();
+				
+				Toast.makeText(Client2.this, "players fighting = " + playersFighting, Toast.LENGTH_SHORT).show();
+			}
+		});
+	}
+	public void hpTest1() {//DELETE IF NOT USED!!!!!!!!!!!!!
+
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				
+				Toast.makeText(Client2.this, "BBBB", Toast.LENGTH_SHORT).show();
+				
+				Toast.makeText(Client2.this, "players fighting = " + playersFighting, Toast.LENGTH_SHORT).show();
+			}
+		});
 	}
 	
 	
@@ -7899,6 +7960,8 @@ public class Client2 extends Activity {
 	
 	public void changeHostHitPoints() {
 		
+		hpTest5();
+		
 		runOnUiThread(new Runnable() {
   	  	    @Override
   	  	    public void run() {
@@ -7927,6 +7990,8 @@ public class Client2 extends Activity {
 	}
 	
 	public void changeClient0HitPoints() {
+		
+		hpTest0();
 		
 		runOnUiThread(new Runnable() {
   	  	    @Override
@@ -7983,7 +8048,9 @@ public class Client2 extends Activity {
 	}
 
 	public void changeClient1HitPoints() {
-	
+		
+		hpTest1();
+		
 		runOnUiThread(new Runnable() {
 	  	    @Override
 	  	    public void run() {
@@ -10661,13 +10728,14 @@ public class Client2 extends Activity {
 											
 											
 											final Handler h6 = new Handler();
-								  	  	  	h6.postDelayed(new Runnable() {		  	  	  			
+								  	  	  	h6.postDelayed(new Runnable() {	  	  	  			
 								  	  	  			
 								  	  	  		@Override
-									  	  	  	public void run() {  	  		
+									  	  	  	public void run() {  		
 							  	  	  				
 									  	  	  		//String str13 = "attackDamageCriticalHitDamageCriticalHitMightyBlowDamageCompleted";THIS WAS DIRECTING TO A SECOND ATTACK(LIKE FOR HASTE)
-								  	  	  			String str13 = "hasteCureDisarmWithBlessDisarmNoBlessBlessCompleted";
+								  	  	  			//String str13 = "hasteCureDisarmWithBlessDisarmNoBlessBlessCompleted";BROKEN FOR CLIENT DISARMED--(NBA) A DISARMED & CAN PUNCH FOREVER. THINK OTHER IS FIXED NOW?
+								  	  	  			String str13 = "attackDamageCriticalHitDamageCriticalHitMightyBlowDamageCompleted";
 								  	  	  			sendToHost(str13);
 									  	  	  	}
 								  	  	  	}, 2000);
@@ -13912,6 +13980,11 @@ public class Client2 extends Activity {
 					else if (read.contains("chooseOpponent")) {
 						
 						chooseOpponent();																	
+					}
+					
+					else if (read.contains("forScrollTitleChat")) {
+						
+						forScrollTitleChat();																	
 					}
 					
 					else if (read.contains("criticalHit2")) {
