@@ -6208,7 +6208,7 @@ public class Client2 extends Activity {
 
 	}
 	*/
-	
+	/*
 	public void hpTest5() {//DELETE IF NOT USED!!!!!!!!!!!!!
 
 		runOnUiThread(new Runnable() {
@@ -6245,6 +6245,28 @@ public class Client2 extends Activity {
 			}
 		});
 	}
+	*/
+	
+	public void playersFightingTest() {//DELETE IF NOT USED!!!!!!!!!!!!!
+
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				
+				Toast.makeText(Client2.this, playersFighting, Toast.LENGTH_SHORT).show();
+				Toast.makeText(Client2.this, playersFighting, Toast.LENGTH_SHORT).show();
+				Toast.makeText(Client2.this, playersFighting, Toast.LENGTH_SHORT).show();
+			}
+		});
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	/*
@@ -7960,7 +7982,7 @@ public class Client2 extends Activity {
 	
 	public void changeHostHitPoints() {
 		
-		hpTest5();
+		//hpTest5();
 		
 		runOnUiThread(new Runnable() {
   	  	    @Override
@@ -7991,7 +8013,7 @@ public class Client2 extends Activity {
 	
 	public void changeClient0HitPoints() {
 		
-		hpTest0();
+		//hpTest0();
 		
 		runOnUiThread(new Runnable() {
   	  	    @Override
@@ -8049,7 +8071,7 @@ public class Client2 extends Activity {
 
 	public void changeClient1HitPoints() {
 		
-		hpTest1();
+		//hpTest1();
 		
 		runOnUiThread(new Runnable() {
 	  	    @Override
@@ -8379,221 +8401,224 @@ public class Client2 extends Activity {
 	}
 	
 	
-	public void skillsCheck() {
+	public void skillsCheckBoth() {
+		
+		//playersFightingTest();
 		
 		runOnUiThread(new Runnable() {
   	  	    @Override
   	  	    public void run() {
-		
+  	  	    	
+  	  	    	ImageView blessLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftbless);
+  	  	    	ImageView cureLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftcure);
+  	  	    	ImageView dodgeLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftdodge);
+  	  	    	ImageView mbLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftmb);
+  	  	    	ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
+  	  	    	ImageView hasteLeft2 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste2);
+  	  	    	
+  	  	    	ImageView blessRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightbless);
+  	  	    	ImageView cureRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightcure);
+  	  	    	ImageView dodgeRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightdodge);
+  	  	    	ImageView mbRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightmb);
+  	  	    	ImageView hasteRight1 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste1);
+  	  	    	ImageView hasteRight2 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste2);
+  	  	    	
+  	  	    	
+  	  	    	blessLeft.setVisibility(View.INVISIBLE);
+  	  	    	blessLeft.bringToFront();
+  	  	    	cureLeft.setVisibility(View.INVISIBLE);
+  	  	    	cureLeft.bringToFront();
+  	  	    	dodgeLeft.setVisibility(View.INVISIBLE);
+  	  	    	dodgeLeft.bringToFront();
+  	  	    	mbLeft.setVisibility(View.INVISIBLE);
+  	  	    	mbLeft.bringToFront();
+  	  	    	hasteLeft1.setVisibility(View.INVISIBLE);
+  	  	    	hasteLeft1.bringToFront();
+  	  	    	hasteLeft2.setVisibility(View.INVISIBLE);
+  	  	    	hasteLeft2.bringToFront();
+  	  	    	blessRight.setVisibility(View.INVISIBLE);
+  	  	    	blessRight.bringToFront();
+  	  	    	cureRight.setVisibility(View.INVISIBLE);
+  	  	    	cureRight.bringToFront();
+  	  	    	dodgeRight.setVisibility(View.INVISIBLE);
+  	  	    	dodgeRight.bringToFront();
+  	  	    	mbRight.setVisibility(View.INVISIBLE);
+  	  	    	mbRight.bringToFront();
+  	  	    	hasteRight1.setVisibility(View.INVISIBLE);
+  	  	    	hasteRight1.bringToFront();
+  	  	    	hasteRight2.setVisibility(View.INVISIBLE);
+  	  	    	hasteRight2.bringToFront();
+  	  	    	
+  	  	    	
 				//if (numberOfPlayers == 2) {
   	  	    	//}
   	  	    	
   	  	    	if (playersFighting.equals("fiveVsZero") || playersFighting.equals("zeroVsFive")) {
   	  	    		
-	  	  	    	if (blessSpell[5] < 1) {
+	  	  	    	if (blessSpell[5] < 1) {						
 						
-						ImageView blessLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftbless);
 						blessLeft.setVisibility(View.VISIBLE);				
 					}				
-					if (cureSpell[5] < 1) {
+					if (cureSpell[5] < 1) {						
 						
-						ImageView cureLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftcure);
 						cureLeft.setVisibility(View.VISIBLE);				
 					}			
-					if (dodgeBlowSpell[5] < 1) {
+					if (dodgeBlowSpell[5] < 1) {						
 						
-						ImageView dodgeLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftdodge);
 						dodgeLeft.setVisibility(View.VISIBLE);				
 					}			
 					if (mightyBlowSpell[5] < 1) {
 						
-						ImageView mbLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftmb);
+						
 						mbLeft.setVisibility(View.VISIBLE);				
 					}			
-					if (hasteSpell[5] < 2) {
+					if (hasteSpell[5] < 2) {						
 						
-						ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
 						hasteLeft1.setVisibility(View.VISIBLE);				
 					}			
-					if (hasteSpell[5] < 1) {
+					if (hasteSpell[5] < 1) {						
 						
-						ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
-						hasteLeft1.setVisibility(View.VISIBLE);
-						ImageView hasteLeft2 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste2);
+						hasteLeft1.setVisibility(View.VISIBLE);						
 						hasteLeft2.setVisibility(View.VISIBLE);				
 					}
 					
 					
-					if (blessSpell[0] < 1) {
+					if (blessSpell[0] < 1) {						
 						
-						ImageView blessRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightbless);
 						blessRight.setVisibility(View.VISIBLE);				
 					}				
-					if (cureSpell[0] < 1) {
+					if (cureSpell[0] < 1) {						
 						
-						ImageView cureRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightcure);
 						cureRight.setVisibility(View.VISIBLE);				
 					}			
-					if (dodgeBlowSpell[0] < 1) {
+					if (dodgeBlowSpell[0] < 1) {						
 						
-						ImageView dodgeRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightdodge);
 						dodgeRight.setVisibility(View.VISIBLE);				
 					}			
-					if (mightyBlowSpell[0] < 1) {
+					if (mightyBlowSpell[0] < 1) {						
 						
-						ImageView mbRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightmb);
 						mbRight.setVisibility(View.VISIBLE);				
 					}			
-					if (hasteSpell[0] < 2) {
+					if (hasteSpell[0] < 2) {						
 						
-						ImageView hasteRight1 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste1);
 						hasteRight1.setVisibility(View.VISIBLE);				
 					}			
-					if (hasteSpell[0] < 1) {
+					if (hasteSpell[0] < 1) {						
 						
-						ImageView hasteRight1 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste1);
-						hasteRight1.setVisibility(View.VISIBLE);
-						ImageView hasteRight2 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste2);
+						hasteRight1.setVisibility(View.VISIBLE);						
 						hasteRight2.setVisibility(View.VISIBLE);				
 					}
   	  	    	}
   	  	    	
   	  	    	if (playersFighting.equals("fiveVsOne") || playersFighting.equals("oneVsFive")) {
   	    		
-	  	  	    	if (blessSpell[5] < 1) {
+	  	  	    	if (blessSpell[5] < 1) {						
 						
-						ImageView blessLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftbless);
 						blessLeft.setVisibility(View.VISIBLE);				
 					}				
-					if (cureSpell[5] < 1) {
+					if (cureSpell[5] < 1) {						
 						
-						ImageView cureLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftcure);
 						cureLeft.setVisibility(View.VISIBLE);				
 					}			
-					if (dodgeBlowSpell[5] < 1) {
+					if (dodgeBlowSpell[5] < 1) {						
 						
-						ImageView dodgeLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftdodge);
 						dodgeLeft.setVisibility(View.VISIBLE);				
 					}			
-					if (mightyBlowSpell[5] < 1) {
+					if (mightyBlowSpell[5] < 1) {						
 						
-						ImageView mbLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftmb);
 						mbLeft.setVisibility(View.VISIBLE);				
 					}			
-					if (hasteSpell[5] < 2) {
+					if (hasteSpell[5] < 2) {						
 						
-						ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
 						hasteLeft1.setVisibility(View.VISIBLE);				
 					}			
-					if (hasteSpell[5] < 1) {
+					if (hasteSpell[5] < 1) {						
 						
-						ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
-						hasteLeft1.setVisibility(View.VISIBLE);
-						ImageView hasteLeft2 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste2);
+						hasteLeft1.setVisibility(View.VISIBLE);						
 						hasteLeft2.setVisibility(View.VISIBLE);				
 					}
 					
 					
-					if (blessSpell[1] < 1) {
+					if (blessSpell[1] < 1) {						
 						
-						ImageView blessRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightbless);
 						blessRight.setVisibility(View.VISIBLE);				
 					}				
-					if (cureSpell[1] < 1) {
+					if (cureSpell[1] < 1) {						
 						
-						ImageView cureRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightcure);
 						cureRight.setVisibility(View.VISIBLE);				
 					}			
-					if (dodgeBlowSpell[1] < 1) {
+					if (dodgeBlowSpell[1] < 1) {						
 						
-						ImageView dodgeRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightdodge);
 						dodgeRight.setVisibility(View.VISIBLE);				
 					}			
-					if (mightyBlowSpell[1] < 1) {
+					if (mightyBlowSpell[1] < 1) {						
 						
-						ImageView mbRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightmb);
 						mbRight.setVisibility(View.VISIBLE);				
 					}			
-					if (hasteSpell[1] < 2) {
+					if (hasteSpell[1] < 2) {						
 						
-						ImageView hasteRight1 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste1);
 						hasteRight1.setVisibility(View.VISIBLE);				
 					}			
-					if (hasteSpell[1] < 1) {
+					if (hasteSpell[1] < 1) {						
 						
-						ImageView hasteRight1 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste1);
-						hasteRight1.setVisibility(View.VISIBLE);
-						ImageView hasteRight2 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste2);
+						hasteRight1.setVisibility(View.VISIBLE);						
 						hasteRight2.setVisibility(View.VISIBLE);				
 					}
 	  	    	}
   	  	    	
   	  	    	if (playersFighting.equals("zeroVsOne")) {
 	  	    		
-	  	  	    	if (blessSpell[1] < 1) {
+	  	  	    	if (blessSpell[1] < 1) {						
 						
-						ImageView blessLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftbless);
 						blessLeft.setVisibility(View.VISIBLE);				
 					}				
 					if (cureSpell[1] < 1) {
 						
-						ImageView cureLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftcure);
+						
 						cureLeft.setVisibility(View.VISIBLE);				
 					}			
 					if (dodgeBlowSpell[1] < 1) {
 						
-						ImageView dodgeLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftdodge);
 						dodgeLeft.setVisibility(View.VISIBLE);				
 					}			
 					if (mightyBlowSpell[1] < 1) {
 						
-						ImageView mbLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftmb);
 						mbLeft.setVisibility(View.VISIBLE);				
 					}			
 					if (hasteSpell[1] < 2) {
 						
-						ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
 						hasteLeft1.setVisibility(View.VISIBLE);				
 					}			
 					if (hasteSpell[1] < 1) {
 						
-						ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
 						hasteLeft1.setVisibility(View.VISIBLE);
-						ImageView hasteLeft2 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste2);
 						hasteLeft2.setVisibility(View.VISIBLE);				
 					}
 					
 					
 					if (blessSpell[0] < 1) {
 						
-						ImageView blessRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightbless);
 						blessRight.setVisibility(View.VISIBLE);				
 					}				
 					if (cureSpell[0] < 1) {
 						
-						ImageView cureRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightcure);
 						cureRight.setVisibility(View.VISIBLE);				
 					}			
 					if (dodgeBlowSpell[0] < 1) {
 						
-						ImageView dodgeRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightdodge);
 						dodgeRight.setVisibility(View.VISIBLE);				
 					}			
 					if (mightyBlowSpell[0] < 1) {
 						
-						ImageView mbRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightmb);
 						mbRight.setVisibility(View.VISIBLE);				
 					}			
 					if (hasteSpell[0] < 2) {
 						
-						ImageView hasteRight1 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste1);
 						hasteRight1.setVisibility(View.VISIBLE);				
 					}			
 					if (hasteSpell[0] < 1) {
 						
-						ImageView hasteRight1 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste1);
 						hasteRight1.setVisibility(View.VISIBLE);
-						ImageView hasteRight2 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste2);
 						hasteRight2.setVisibility(View.VISIBLE);				
 					}
 	  	    	}
@@ -8602,71 +8627,343 @@ public class Client2 extends Activity {
   	    		
 	  	  	    	if (blessSpell[0] < 1) {
 						
-						ImageView blessLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftbless);
 						blessLeft.setVisibility(View.VISIBLE);				
 					}				
 					if (cureSpell[0] < 1) {
 						
-						ImageView cureLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftcure);
 						cureLeft.setVisibility(View.VISIBLE);				
 					}			
 					if (dodgeBlowSpell[0] < 1) {
 						
-						ImageView dodgeLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftdodge);
 						dodgeLeft.setVisibility(View.VISIBLE);				
 					}			
 					if (mightyBlowSpell[0] < 1) {
 						
-						ImageView mbLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftmb);
 						mbLeft.setVisibility(View.VISIBLE);				
 					}			
 					if (hasteSpell[0] < 2) {
 						
-						ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
 						hasteLeft1.setVisibility(View.VISIBLE);				
 					}			
 					if (hasteSpell[0] < 1) {
 						
-						ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
 						hasteLeft1.setVisibility(View.VISIBLE);
-						ImageView hasteLeft2 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste2);
 						hasteLeft2.setVisibility(View.VISIBLE);				
 					}
 					
 					
 					if (blessSpell[1] < 1) {
 						
-						ImageView blessRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightbless);
 						blessRight.setVisibility(View.VISIBLE);				
 					}				
 					if (cureSpell[1] < 1) {
 						
-						ImageView cureRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightcure);
 						cureRight.setVisibility(View.VISIBLE);				
 					}			
 					if (dodgeBlowSpell[1] < 1) {
 						
-						ImageView dodgeRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightdodge);
 						dodgeRight.setVisibility(View.VISIBLE);				
 					}			
 					if (mightyBlowSpell[1] < 1) {
 						
-						ImageView mbRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightmb);
 						mbRight.setVisibility(View.VISIBLE);				
 					}			
 					if (hasteSpell[1] < 2) {
 						
-						ImageView hasteRight1 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste1);
 						hasteRight1.setVisibility(View.VISIBLE);				
 					}			
 					if (hasteSpell[1] < 1) {
 						
-						ImageView hasteRight1 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste1);
 						hasteRight1.setVisibility(View.VISIBLE);
-						ImageView hasteRight2 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste2);
 						hasteRight2.setVisibility(View.VISIBLE);				
 					}
 	  	    	}
+  	  	    }
+		});	
+	}
+	
+	public void skillsCheckLeft5() {
+		
+		//playersFightingTest();
+		
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {
+  	  	    	
+  	  	    	ImageView blessLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftbless);
+  	  	    	ImageView cureLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftcure);
+  	  	    	ImageView dodgeLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftdodge);
+  	  	    	ImageView mbLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftmb);
+  	  	    	ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
+  	  	    	ImageView hasteLeft2 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste2);
+  	  	    	
+  	  	    	blessLeft.setVisibility(View.INVISIBLE);
+  	  	    	blessLeft.bringToFront();
+  	  	    	cureLeft.setVisibility(View.INVISIBLE);
+  	  	    	cureLeft.bringToFront();
+  	  	    	dodgeLeft.setVisibility(View.INVISIBLE);
+  	  	    	dodgeLeft.bringToFront();
+  	  	    	mbLeft.setVisibility(View.INVISIBLE);
+  	  	    	mbLeft.bringToFront();
+  	  	    	hasteLeft1.setVisibility(View.INVISIBLE);
+  	  	    	hasteLeft1.bringToFront();
+  	  	    	hasteLeft2.setVisibility(View.INVISIBLE);
+  	  	    	hasteLeft2.bringToFront();
+  	  	    		
+  	  	    	if (blessSpell[5] < 1) {						
+					
+					blessLeft.setVisibility(View.VISIBLE);				
+				}				
+				if (cureSpell[5] < 1) {						
+					
+					cureLeft.setVisibility(View.VISIBLE);				
+				}			
+				if (dodgeBlowSpell[5] < 1) {						
+					
+					dodgeLeft.setVisibility(View.VISIBLE);				
+				}			
+				if (mightyBlowSpell[5] < 1) {
+					
+					
+					mbLeft.setVisibility(View.VISIBLE);				
+				}			
+				if (hasteSpell[5] < 2) {						
+					
+					hasteLeft1.setVisibility(View.VISIBLE);				
+				}			
+				if (hasteSpell[5] < 1) {						
+					
+					hasteLeft1.setVisibility(View.VISIBLE);						
+					hasteLeft2.setVisibility(View.VISIBLE);				
+				}
+  	  	    }
+		});	
+	}
+	
+	public void skillsCheckLeft0() {
+		
+		//playersFightingTest();
+		
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {
+  	  	    	
+  	  	    	ImageView blessLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftbless);
+  	  	    	ImageView cureLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftcure);
+  	  	    	ImageView dodgeLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftdodge);
+  	  	    	ImageView mbLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftmb);
+  	  	    	ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
+  	  	    	ImageView hasteLeft2 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste2);
+  	  	    	
+  	  	    	blessLeft.setVisibility(View.INVISIBLE);
+  	  	    	blessLeft.bringToFront();
+  	  	    	cureLeft.setVisibility(View.INVISIBLE);
+  	  	    	cureLeft.bringToFront();
+  	  	    	dodgeLeft.setVisibility(View.INVISIBLE);
+  	  	    	dodgeLeft.bringToFront();
+  	  	    	mbLeft.setVisibility(View.INVISIBLE);
+  	  	    	mbLeft.bringToFront();
+  	  	    	hasteLeft1.setVisibility(View.INVISIBLE);
+  	  	    	hasteLeft1.bringToFront();
+  	  	    	hasteLeft2.setVisibility(View.INVISIBLE);
+  	  	    	hasteLeft2.bringToFront();
+  	    		
+  	  	    	if (blessSpell[0] < 1) {
+					
+					blessLeft.setVisibility(View.VISIBLE);				
+				}				
+				if (cureSpell[0] < 1) {
+					
+					cureLeft.setVisibility(View.VISIBLE);				
+				}			
+				if (dodgeBlowSpell[0] < 1) {
+					
+					dodgeLeft.setVisibility(View.VISIBLE);				
+				}			
+				if (mightyBlowSpell[0] < 1) {
+					
+					mbLeft.setVisibility(View.VISIBLE);				
+				}			
+				if (hasteSpell[0] < 2) {
+					
+					hasteLeft1.setVisibility(View.VISIBLE);				
+				}			
+				if (hasteSpell[0] < 1) {
+					
+					hasteLeft1.setVisibility(View.VISIBLE);
+					hasteLeft2.setVisibility(View.VISIBLE);				
+				}
+  	  	    }
+		});	
+	}
+	
+	public void skillsCheckLeft1() {
+		
+		//playersFightingTest();
+		
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {
+  	  	    	
+  	  	    	ImageView blessLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftbless);
+  	  	    	ImageView cureLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftcure);
+  	  	    	ImageView dodgeLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftdodge);
+  	  	    	ImageView mbLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftmb);
+  	  	    	ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
+  	  	    	ImageView hasteLeft2 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste2);
+  	  	    	
+  	  	    	blessLeft.setVisibility(View.INVISIBLE);
+  	  	    	blessLeft.bringToFront();
+  	  	    	cureLeft.setVisibility(View.INVISIBLE);
+  	  	    	cureLeft.bringToFront();
+  	  	    	dodgeLeft.setVisibility(View.INVISIBLE);
+  	  	    	dodgeLeft.bringToFront();
+  	  	    	mbLeft.setVisibility(View.INVISIBLE);
+  	  	    	mbLeft.bringToFront();
+  	  	    	hasteLeft1.setVisibility(View.INVISIBLE);
+  	  	    	hasteLeft1.bringToFront();
+  	  	    	hasteLeft2.setVisibility(View.INVISIBLE);
+  	  	    	hasteLeft2.bringToFront();
+	  	    		
+  	  	    	if (blessSpell[1] < 1) {						
+					
+					blessLeft.setVisibility(View.VISIBLE);				
+				}				
+				if (cureSpell[1] < 1) {
+					
+					cureLeft.setVisibility(View.VISIBLE);				
+				}			
+				if (dodgeBlowSpell[1] < 1) {
+					
+					dodgeLeft.setVisibility(View.VISIBLE);				
+				}			
+				if (mightyBlowSpell[1] < 1) {
+					
+					mbLeft.setVisibility(View.VISIBLE);				
+				}			
+				if (hasteSpell[1] < 2) {
+					
+					hasteLeft1.setVisibility(View.VISIBLE);				
+				}			
+				if (hasteSpell[1] < 1) {
+					
+					hasteLeft1.setVisibility(View.VISIBLE);
+					hasteLeft2.setVisibility(View.VISIBLE);				
+				}
+  	  	    }
+		});	
+	}
+	
+	public void skillsCheckRight0() {
+		
+		//playersFightingTest();
+		
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {  	  	    	
+  	  	    	
+  	  	    	ImageView blessRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightbless);
+  	  	    	ImageView cureRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightcure);
+  	  	    	ImageView dodgeRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightdodge);
+  	  	    	ImageView mbRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightmb);
+  	  	    	ImageView hasteRight1 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste1);
+  	  	    	ImageView hasteRight2 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste2);
+  	  	    	
+  	  	    	blessRight.setVisibility(View.INVISIBLE);
+  	  	    	blessRight.bringToFront();
+  	  	    	cureRight.setVisibility(View.INVISIBLE);
+  	  	    	cureRight.bringToFront();
+  	  	    	dodgeRight.setVisibility(View.INVISIBLE);
+  	  	    	dodgeRight.bringToFront();
+  	  	    	mbRight.setVisibility(View.INVISIBLE);
+  	  	    	mbRight.bringToFront();
+  	  	    	hasteRight1.setVisibility(View.INVISIBLE);
+  	  	    	hasteRight1.bringToFront();
+  	  	    	hasteRight2.setVisibility(View.INVISIBLE);
+  	  	    	hasteRight2.bringToFront();
+					
+				if (blessSpell[0] < 1) {						
+					
+					blessRight.setVisibility(View.VISIBLE);				
+				}				
+				if (cureSpell[0] < 1) {						
+					
+					cureRight.setVisibility(View.VISIBLE);				
+				}			
+				if (dodgeBlowSpell[0] < 1) {						
+					
+					dodgeRight.setVisibility(View.VISIBLE);				
+				}			
+				if (mightyBlowSpell[0] < 1) {						
+					
+					mbRight.setVisibility(View.VISIBLE);				
+				}			
+				if (hasteSpell[0] < 2) {						
+					
+					hasteRight1.setVisibility(View.VISIBLE);				
+				}			
+				if (hasteSpell[0] < 1) {						
+					
+					hasteRight1.setVisibility(View.VISIBLE);						
+					hasteRight2.setVisibility(View.VISIBLE);				
+				}
+  	  	    }
+		});	
+	}
+	
+	public void skillsCheckRight1() {
+		
+		//playersFightingTest();
+		
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {  	  	    	
+  	  	    	
+  	  	    	ImageView blessRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightbless);
+  	  	    	ImageView cureRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightcure);
+  	  	    	ImageView dodgeRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightdodge);
+  	  	    	ImageView mbRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightmb);
+  	  	    	ImageView hasteRight1 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste1);
+  	  	    	ImageView hasteRight2 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste2); 
+  	  	    	
+  	  	    	blessRight.setVisibility(View.INVISIBLE);
+  	  	    	blessRight.bringToFront();
+  	  	    	cureRight.setVisibility(View.INVISIBLE);
+  	  	    	cureRight.bringToFront();
+  	  	    	dodgeRight.setVisibility(View.INVISIBLE);
+  	  	    	dodgeRight.bringToFront();
+  	  	    	mbRight.setVisibility(View.INVISIBLE);
+  	  	    	mbRight.bringToFront();
+  	  	    	hasteRight1.setVisibility(View.INVISIBLE);
+  	  	    	hasteRight1.bringToFront();
+  	  	    	hasteRight2.setVisibility(View.INVISIBLE);
+  	  	    	hasteRight2.bringToFront();
+					
+				if (blessSpell[1] < 1) {						
+					
+					blessRight.setVisibility(View.VISIBLE);				
+				}				
+				if (cureSpell[1] < 1) {						
+					
+					cureRight.setVisibility(View.VISIBLE);				
+				}			
+				if (dodgeBlowSpell[1] < 1) {						
+					
+					dodgeRight.setVisibility(View.VISIBLE);				
+				}			
+				if (mightyBlowSpell[1] < 1) {						
+					
+					mbRight.setVisibility(View.VISIBLE);				
+				}			
+				if (hasteSpell[1] < 2) {						
+					
+					hasteRight1.setVisibility(View.VISIBLE);				
+				}			
+				if (hasteSpell[1] < 1) {						
+					
+					hasteRight1.setVisibility(View.VISIBLE);						
+					hasteRight2.setVisibility(View.VISIBLE);				
+				}
   	  	    }
 		});	
 	}
@@ -9408,7 +9705,7 @@ public class Client2 extends Activity {
   		  	  	  			
   		  	  	  			//skillsCheck();
   		  	  	  			
-  		  	  	  			String str4 = "skillsCheck";
+  		  	  	  			String str4 = "skillsCheckBoth";
   		  	  	  			sendToHost(str4);
   		  	  	  			
   		  	  	  			
@@ -9562,7 +9859,7 @@ public class Client2 extends Activity {
 					
 					//skillsCheck();
 					
-					String str3 = "skillsCheck";
+					String str3 = "skillsCheckBoth";
 					sendToHost(str3);
 					
 					
@@ -9704,7 +10001,7 @@ public class Client2 extends Activity {
 							
 		  		    		//skillsCheck();
 		  		    		
-		  		    		String str3 = "skillsCheck";
+		  		    		String str3 = "skillsCheckBoth";
 		  		    		sendToHost(str3);
 		  		    		
 		  		    		
@@ -9931,7 +10228,7 @@ public class Client2 extends Activity {
 					
 					//skillsCheck();
 					
-					String str3 = "skillsCheck";
+					String str3 = "skillsCheckBoth";
 					sendToHost(str3);
 					
 					
@@ -10110,7 +10407,7 @@ public class Client2 extends Activity {
 												
 							  		    		//skillsCheck();
 							  		    		
-							  		    		String str6 = "skillsCheck";
+							  		    		String str6 = "skillsCheckBoth";
 							  		    		sendToHost(str6);
 												
 							  		    		
@@ -10186,7 +10483,7 @@ public class Client2 extends Activity {
 							
 		  		    		//skillsCheck();
 		  		    		
-		  		    		String str2 = "skillsCheck";
+		  		    		String str2 = "skillsCheckBoth";
 		  		    		sendToHost(str2);
 							
 		  		    		
@@ -10479,7 +10776,8 @@ public class Client2 extends Activity {
 			  	  	  			
 			  	  	  			computerHitPointsTextView.clearAnimation();
 			  	  	  			
-				  	  	  		String str3 = "hasteCureDisarmWithBlessDisarmNoBlessBlessCompleted";
+			  	  	  			//String str3 = "hasteCureDisarmWithBlessDisarmNoBlessBlessCompleted";
+			  	  	  			String str3 = "attackDamageCriticalHitDamageCriticalHitMightyBlowDamageCompleted";
 			  	  	  			sendToHost(str3);
 			  	  	  		}
 			  	  	  	}, 2000);
@@ -10892,7 +11190,7 @@ public class Client2 extends Activity {
 										
 					  		    		//skillsCheck();
 					  		    		
-					  		    		String str4 = "skillsCheck";
+					  		    		String str4 = "skillsCheckBoth";
 					  		    		sendToHost(str4);
 										
 										
@@ -10966,7 +11264,7 @@ public class Client2 extends Activity {
 							
 		  		    		//skillsCheck();
 		  		    		
-		  		    		String str4 = "skillsCheck";
+		  		    		String str4 = "skillsCheckBoth";
 		  		    		sendToHost(str4);
 							
 							
@@ -14085,26 +14383,92 @@ public class Client2 extends Activity {
 						
 						dodgeBlowSpell[5] = dodgeBlowSpell[5] - 1;						
 					}
-					else if (read.contains("usedBless")) {
+					
+					
+					
+					else if (read.contains("usedBless0")) {
+						
+						blessSpell[0] = blessSpell[0] - 1;
+					}
+					else if (read.contains("usedBless1")) {
+						
+						blessSpell[1] = blessSpell[1] - 1;
+					}
+					else if (read.contains("usedBless5")) {
 						
 						blessSpell[5] = blessSpell[5] - 1;
 					}
-					else if (read.contains("usedHaste")) {
+					
+					
+					else if (read.contains("usedHaste0")) {
+						
+						hasteSpell[0] = hasteSpell[0] - 1;																
+					}
+					else if (read.contains("usedHaste1")) {
+						
+						hasteSpell[1] = hasteSpell[1] - 1;																
+					}
+					else if (read.contains("usedHaste5")) {
 						
 						hasteSpell[5] = hasteSpell[5] - 1;																
 					}
-					else if (read.contains("usedCure")) {
+					
+					
+					else if (read.contains("usedCure0")) {
+						
+						cureSpell[0] = cureSpell[0] - 1;
+					}
+					else if (read.contains("usedCure1")) {
+						
+						cureSpell[1] = cureSpell[1] - 1;
+					}
+					else if (read.contains("usedCure5")) {
 						
 						cureSpell[5] = cureSpell[5] - 1;
 					}
-					else if (read.contains("usedMightyBlow")) {
+					
+					
+					else if (read.contains("usedMightyBlow0")) {
+						
+						mightyBlowSpell[0] = mightyBlowSpell[0] - 1;
+					}
+					else if (read.contains("usedMightyBlow1")) {
+						
+						mightyBlowSpell[1] = mightyBlowSpell[1] - 1;
+					}
+					else if (read.contains("usedMightyBlow5")) {
 						
 						mightyBlowSpell[5] = mightyBlowSpell[5] - 1;
 					}
-					else if (read.contains("skillsCheck")) {
+					
+					
+					
+					else if (read.contains("skillsCheckBoth")) {
 						
-						skillsCheck();																	
+						skillsCheckBoth();																	
 					}
+					else if (read.contains("skillsCheckLeft5")) {
+						
+						skillsCheckLeft5();																	
+					}
+					else if (read.contains("skillsCheckLeft0")) {
+						
+						skillsCheckLeft0();																	
+					}
+					else if (read.contains("skillsCheckLeft1")) {
+						
+						skillsCheckLeft1();																	
+					}
+					else if (read.contains("skillsCheckRight0")) {
+						
+						skillsCheckRight0();																	
+					}
+					else if (read.contains("skillsCheckRight1")) {
+						
+						skillsCheckRight1();														
+					}
+					
+					
 					
 					else if (read.contains("disarmedTurnStart")) {
 						
@@ -14217,7 +14581,7 @@ public class Client2 extends Activity {
 						String[] parts = read.split(":");
 						String part1 = parts[0];  
 						//String part2 = parts[1].trim();//IF THERE WAS A SPACE
-						String part2 = parts[1];				
+						String part2 = parts[1];//GETTING ARRAYOUTOFBOUNDSEXCEPTION		
 												
 						canHasDisarmed[1]=part2;
 						

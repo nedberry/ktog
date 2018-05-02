@@ -82,6 +82,9 @@ import android.widget.Toast;
 public class Host extends Activity {
 	
 	
+	int test;
+	
+	
 	
 	String has5TakenTurn = "no";
 	String Has0TakenTurn = "no";
@@ -253,8 +256,7 @@ public class Host extends Activity {
 	String isattackrolled = "no";
 	String isdisarmwithblessrolled = "no";
 	String isdisarmnoblessrolled = "no";	
-	String isblessrolled = "no";	
-	String ishasteused = "no";
+	String isblessrolled = "no";
 	String issecondroundofhasteused = "no";
 	String iscurerolled = "no";
 	String isattackdamagerolled = "no";
@@ -270,6 +272,9 @@ public class Host extends Activity {
 	
 	//String iscomputerhasteused = "no";
 	//String iscomputerblessrolled = "no";
+	
+	String ishasteused = "no";
+	
 	String ishasteused0 = "no";
 	String ishasteused1 = "no";
 	String ishasteused2 = "no";
@@ -14138,10 +14143,30 @@ public void decodeImage0() {
 		});
 	}
 	*/
-	
-	
-	
-	
+	/*
+	public void playersFightingTest() {//DELETE IF NOT USED!!!!!!!!!!!!!
+
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				
+				Toast.makeText(Host.this, has5TakenTurn + " " + playersFighting, Toast.LENGTH_SHORT).show();
+				Toast.makeText(Host.this, Has0TakenTurn + " " + playersFighting, Toast.LENGTH_SHORT).show();
+				Toast.makeText(Host.this, hAs1TakenTurn + " " + playersFighting, Toast.LENGTH_SHORT).show();
+			}
+		});
+	}
+	*/
+	public void turnTest() {
+		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {			
+				
+				Toast.makeText(Host.this, "Test = " + test, Toast.LENGTH_SHORT).show();
+			}
+		});
+	}
 	
 	
 	
@@ -14877,6 +14902,8 @@ public void decodeImage0() {
 		
 		else if (numberOfPlayers == 3) {
 			
+			//skillsCheck();
+			
 			if (initiativeFinal[5] > initiativeFinal[0] && initiativeFinal[5] > initiativeFinal[1]) { //TOOK OUT: && has5TakenTurn.equals("no")
 				
 				has5TakenTurn = "no";
@@ -15500,6 +15527,12 @@ public void decodeImage0() {
 		  		                        		sendToAllClients(str);
 		  		                        		
 		  		                        		
+		  		                        		skillsCheckRight0();
+		  		  		  		    		
+		  		  		  		    			String str2 = "skillsCheckRight0";
+		  		  		  		    			sendToAllClients(str2);
+		  		                        		
+		  		                        		
 		  		                        		playersFighting = "fiveVsZero";
 		  		                        		
 		  		                        		
@@ -15574,6 +15607,12 @@ public void decodeImage0() {
 												
 												String str = "gAmeEngine3V351";
 		  		                        		sendToAllClients(str);
+		  		                        		
+		  		                        		
+		  		                        		skillsCheckRight1();
+			  		  		  		    		
+		  		  		  		    			String str2 = "skillsCheckRight1";
+		  		  		  		    			sendToAllClients(str2);
 		  		                        		
 		  		                        		
 		  		                        		playersFighting = "fiveVsOne";
@@ -16475,6 +16514,8 @@ public void decodeImage0() {
 	//REDIRECT HERE FOR 0 NEXT
 	public void gameEngine3V35Part2For0Part1() {//FOR 0 ATTACKING PT 1
 		
+		//skillsCheck();
+		
 		if (playerDeadYet[0].equals("no")) {
 			
 			//Toast.makeText(MainActivity2.this, "COMPUTER TURN START", Toast.LENGTH_SHORT).show();	
@@ -16584,6 +16625,12 @@ public void decodeImage0() {
 		  	  	  			sendToAllClients(str7);
 		  	  	  			
 		  	  	  			
+			  	  	  		skillsCheckRight0();
+		  		    		
+		  		    		String str10 = "skillsCheckRight0";
+							sendToAllClients(str10);
+		  	  	  			
+		  	  	  			
 		  	  	  			computerCardStartFadeInFadeOut();
 		  	  	  			
 		  	  	  			
@@ -16615,6 +16662,10 @@ public void decodeImage0() {
 		String str = "PlyrsFighting :" + "zeroVsFive";
 		sendToClient1(str);
 		
+		skillsCheckLeft5();
+		
+		String str13 = "skillsCheckLeft5";
+		sendToAllClients(str13);
 		
 		String str2 = "issecondroundofhasteused :" + "no";
 		sendToClient0(str2);
@@ -16727,7 +16778,6 @@ public void decodeImage0() {
 			  			}	  	  	  			
 	  	  	  		}
 	  	  	  	}, 2000);
-  	  	    	
   	  	    }
 		});
 	}
@@ -16739,6 +16789,10 @@ public void decodeImage0() {
 		String str = "PlyrsFighting :" + "zeroVsOne";
 		sendToClient1(str);
 		
+		skillsCheckLeft1();
+		
+		String str13 = "skillsCheckLeft1";
+		sendToAllClients(str13);
 		
 		String str2 = "issecondroundofhasteused :" + "no";
 		sendToClient0(str2);
@@ -17058,6 +17112,8 @@ public void decodeImage0() {
 	//REDIRECT HERE FOR 1 NEXT
 	public void gameEngine3V35Part2For1Part1() {//FOR 1 ATTACKING PT 1
 		
+		//skillsCheck();
+		
 		if (playerDeadYet[1].equals("no")) {
 			
 			//Toast.makeText(MainActivity2.this, "COMPUTER TURN START", Toast.LENGTH_SHORT).show();	
@@ -17167,6 +17223,12 @@ public void decodeImage0() {
 		  	  	  			sendToAllClients(str7);
 		  	  	  			
 		  	  	  			
+			  	  	  		skillsCheckRight1();
+		  		    		
+		  		    		String str10 = "skillsCheckRight1";
+							sendToAllClients(str10);
+		  	  	  			
+		  	  	  			
 		  	  	  			computerCardStartFadeInFadeOut();
 		  	  	  			
 		  	  	  			
@@ -17198,6 +17260,10 @@ public void decodeImage0() {
 		String str = "PlyrsFighting :" + "oneVsFive";
 		sendToClient0(str);
 		
+		skillsCheckLeft5();
+		
+		String str13 = "skillsCheckLeft5";
+		sendToAllClients(str13);
 		
 		String str2 = "issecondroundofhasteused :" + "no";
 		sendToClient1(str2);
@@ -17322,6 +17388,10 @@ public void decodeImage0() {
 		String str = "PlyrsFighting :" + "oneVsZero";
 		sendToClient0(str);
 		
+		skillsCheckLeft0();
+		
+		String str13 = "skillsCheckLeft0";
+		sendToAllClients(str13);
 		
 		String str2 = "issecondroundofhasteused :" + "no";
 		sendToClient1(str2);
@@ -17488,6 +17558,10 @@ public void decodeImage0() {
 		String str2 = "PlyrsFighting :" + "zeroVsFive";
 		sendToClient1(str2);
 		
+		skillsCheckLeft5();
+		
+		String str13 = "skillsCheckLeft5";
+		sendToAllClients(str13);
 	
 		String str3 = "issecondroundofhasteused :" + "no";
 		sendToClient0(str3);
@@ -17654,6 +17728,10 @@ public void decodeImage0() {
 		String str2 = "PlyrsFighting :" + "zeroVsOne";
 		sendToClient1(str2);
 		
+		skillsCheckLeft1();
+		
+		String str13 = "skillsCheckLeft1";
+		sendToAllClients(str13);
 		
 		String str3 = "issecondroundofhasteused :" + "no";
 		sendToClient0(str3);		
@@ -17820,6 +17898,10 @@ public void decodeImage0() {
 		String str2 = "PlyrsFighting :" + "oneVsFive";
 		sendToClient0(str2);
 		
+		skillsCheckLeft5();
+		
+		String str13 = "skillsCheckLeft5";
+		sendToAllClients(str13);
 	
 		String str3 = "issecondroundofhasteused :" + "no";
 		sendToClient1(str3);
@@ -17987,6 +18069,10 @@ public void decodeImage0() {
 		String str2 = "PlyrsFighting :" + "oneVsZero";
 		sendToClient0(str2);
 		
+		skillsCheckLeft0();
+		
+		String str13 = "skillsCheckLeft0";
+		sendToAllClients(str13);
 	
 		String str3 = "issecondroundofhasteused :" + "no";
 		sendToClient1(str3);
@@ -18112,6 +18198,8 @@ public void decodeImage0() {
 	//REDIRECT HERE FOR 5 NEXT
 	public void gameEngine3V3XPart2For5Part1() {//FOR 5 ATTACKING PT 1
 		
+		//skillsCheck();
+		
 		if (playerDeadYet[5].equals("no")) {
 			
 			//Toast.makeText(MainActivity2.this, "COMPUTER TURN START", Toast.LENGTH_SHORT).show();	
@@ -18190,6 +18278,12 @@ public void decodeImage0() {
 		  	  	  			
 		  	  	  			String str7 = "reVeal5onleft";
 		  	  	  			sendToAllClients(str7);
+		  	  	  			
+		  	  	  			
+			  	  	  		skillsCheckLeft5();
+		  		    		
+		  		    		String str8 = "skillsCheckLeft5";
+							sendToAllClients(str8);
 		  	  	  			
 		  	  	  			
 		  	  	  			playerCardStartFadeInFadeOut();	  	  	  			
@@ -18546,297 +18640,577 @@ public void decodeImage0() {
 		});		
 	}	
 	
-	public void skillsCheck() {
+	
+	
+	
+	public void skillsCheckBoth() {
+		
+		//playersFightingTest();
 		
 		runOnUiThread(new Runnable() {
   	  	    @Override
   	  	    public void run() {
-		
+  	  	    	
+  	  	    	ImageView blessLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftbless);
+  	  	    	ImageView cureLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftcure);
+  	  	    	ImageView dodgeLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftdodge);
+  	  	    	ImageView mbLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftmb);
+  	  	    	ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
+  	  	    	ImageView hasteLeft2 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste2);
+  	  	    	
+  	  	    	ImageView blessRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightbless);
+  	  	    	ImageView cureRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightcure);
+  	  	    	ImageView dodgeRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightdodge);
+  	  	    	ImageView mbRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightmb);
+  	  	    	ImageView hasteRight1 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste1);
+  	  	    	ImageView hasteRight2 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste2);
+  	  	    	
+  	  	    	
+  	  	    	blessLeft.setVisibility(View.INVISIBLE);
+  	  	    	blessLeft.bringToFront();
+  	  	    	cureLeft.setVisibility(View.INVISIBLE);
+  	  	    	cureLeft.bringToFront();
+  	  	    	dodgeLeft.setVisibility(View.INVISIBLE);
+  	  	    	dodgeLeft.bringToFront();
+  	  	    	mbLeft.setVisibility(View.INVISIBLE);
+  	  	    	mbLeft.bringToFront();
+  	  	    	hasteLeft1.setVisibility(View.INVISIBLE);
+  	  	    	hasteLeft1.bringToFront();
+  	  	    	hasteLeft2.setVisibility(View.INVISIBLE);
+  	  	    	hasteLeft2.bringToFront();
+  	  	    	blessRight.setVisibility(View.INVISIBLE);
+  	  	    	blessRight.bringToFront();
+  	  	    	cureRight.setVisibility(View.INVISIBLE);
+  	  	    	cureRight.bringToFront();
+  	  	    	dodgeRight.setVisibility(View.INVISIBLE);
+  	  	    	dodgeRight.bringToFront();
+  	  	    	mbRight.setVisibility(View.INVISIBLE);
+  	  	    	mbRight.bringToFront();
+  	  	    	hasteRight1.setVisibility(View.INVISIBLE);
+  	  	    	hasteRight1.bringToFront();
+  	  	    	hasteRight2.setVisibility(View.INVISIBLE);
+  	  	    	hasteRight2.bringToFront();
+  	  	    	
+  	  	    	
 				//if (numberOfPlayers == 2) {
   	  	    	//}
   	  	    	
   	  	    	if (playersFighting.equals("fiveVsZero") || playersFighting.equals("zeroVsFive")) {
   	  	    		
-	  	  	    	if (blessSpell[5] < 1) {
+	  	  	    	if (blessSpell[5] < 1) {						
 						
-						ImageView blessLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftbless);
 						blessLeft.setVisibility(View.VISIBLE);				
 					}				
-					if (cureSpell[5] < 1) {
+					if (cureSpell[5] < 1) {						
 						
-						ImageView cureLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftcure);
 						cureLeft.setVisibility(View.VISIBLE);				
 					}			
-					if (dodgeBlowSpell[5] < 1) {
+					if (dodgeBlowSpell[5] < 1) {						
 						
-						ImageView dodgeLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftdodge);
 						dodgeLeft.setVisibility(View.VISIBLE);				
 					}			
 					if (mightyBlowSpell[5] < 1) {
 						
-						ImageView mbLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftmb);
+						
 						mbLeft.setVisibility(View.VISIBLE);				
 					}			
-					if (hasteSpell[5] < 2) {
+					if (hasteSpell[5] < 2) {						
 						
-						ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
 						hasteLeft1.setVisibility(View.VISIBLE);				
 					}			
-					if (hasteSpell[5] < 1) {
+					if (hasteSpell[5] < 1) {						
 						
-						ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
-						hasteLeft1.setVisibility(View.VISIBLE);
-						ImageView hasteLeft2 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste2);
+						hasteLeft1.setVisibility(View.VISIBLE);						
 						hasteLeft2.setVisibility(View.VISIBLE);				
 					}
 					
 					
-					if (blessSpell[0] < 1) {
+					if (blessSpell[0] < 1) {						
 						
-						ImageView blessRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightbless);
 						blessRight.setVisibility(View.VISIBLE);				
 					}				
-					if (cureSpell[0] < 1) {
+					if (cureSpell[0] < 1) {						
 						
-						ImageView cureRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightcure);
 						cureRight.setVisibility(View.VISIBLE);				
 					}			
-					if (dodgeBlowSpell[0] < 1) {
+					if (dodgeBlowSpell[0] < 1) {						
 						
-						ImageView dodgeRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightdodge);
 						dodgeRight.setVisibility(View.VISIBLE);				
 					}			
-					if (mightyBlowSpell[0] < 1) {
+					if (mightyBlowSpell[0] < 1) {						
 						
-						ImageView mbRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightmb);
 						mbRight.setVisibility(View.VISIBLE);				
 					}			
-					if (hasteSpell[0] < 2) {
+					if (hasteSpell[0] < 2) {						
 						
-						ImageView hasteRight1 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste1);
 						hasteRight1.setVisibility(View.VISIBLE);				
 					}			
-					if (hasteSpell[0] < 1) {
+					if (hasteSpell[0] < 1) {						
 						
-						ImageView hasteRight1 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste1);
-						hasteRight1.setVisibility(View.VISIBLE);
-						ImageView hasteRight2 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste2);
+						hasteRight1.setVisibility(View.VISIBLE);						
 						hasteRight2.setVisibility(View.VISIBLE);				
 					}
   	  	    	}
   	  	    	
   	  	    	if (playersFighting.equals("fiveVsOne") || playersFighting.equals("oneVsFive")) {
-	  	    		
-	  	  	    	if (blessSpell[5] < 1) {
+  	    		
+	  	  	    	if (blessSpell[5] < 1) {						
 						
-						ImageView blessLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftbless);
 						blessLeft.setVisibility(View.VISIBLE);				
 					}				
-					if (cureSpell[5] < 1) {
+					if (cureSpell[5] < 1) {						
 						
-						ImageView cureLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftcure);
 						cureLeft.setVisibility(View.VISIBLE);				
 					}			
-					if (dodgeBlowSpell[5] < 1) {
+					if (dodgeBlowSpell[5] < 1) {						
 						
-						ImageView dodgeLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftdodge);
 						dodgeLeft.setVisibility(View.VISIBLE);				
 					}			
-					if (mightyBlowSpell[5] < 1) {
+					if (mightyBlowSpell[5] < 1) {						
 						
-						ImageView mbLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftmb);
 						mbLeft.setVisibility(View.VISIBLE);				
 					}			
-					if (hasteSpell[5] < 2) {
+					if (hasteSpell[5] < 2) {						
 						
-						ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
 						hasteLeft1.setVisibility(View.VISIBLE);				
 					}			
-					if (hasteSpell[5] < 1) {
+					if (hasteSpell[5] < 1) {						
 						
-						ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
-						hasteLeft1.setVisibility(View.VISIBLE);
-						ImageView hasteLeft2 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste2);
+						hasteLeft1.setVisibility(View.VISIBLE);						
 						hasteLeft2.setVisibility(View.VISIBLE);				
 					}
 					
 					
-					if (blessSpell[1] < 1) {
+					if (blessSpell[1] < 1) {						
 						
-						ImageView blessRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightbless);
 						blessRight.setVisibility(View.VISIBLE);				
 					}				
-					if (cureSpell[1] < 1) {
+					if (cureSpell[1] < 1) {						
 						
-						ImageView cureRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightcure);
 						cureRight.setVisibility(View.VISIBLE);				
 					}			
-					if (dodgeBlowSpell[1] < 1) {
+					if (dodgeBlowSpell[1] < 1) {						
 						
-						ImageView dodgeRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightdodge);
 						dodgeRight.setVisibility(View.VISIBLE);				
 					}			
-					if (mightyBlowSpell[1] < 1) {
+					if (mightyBlowSpell[1] < 1) {						
 						
-						ImageView mbRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightmb);
 						mbRight.setVisibility(View.VISIBLE);				
 					}			
-					if (hasteSpell[1] < 2) {
+					if (hasteSpell[1] < 2) {						
 						
-						ImageView hasteRight1 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste1);
 						hasteRight1.setVisibility(View.VISIBLE);				
 					}			
-					if (hasteSpell[1] < 1) {
+					if (hasteSpell[1] < 1) {						
 						
-						ImageView hasteRight1 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste1);
-						hasteRight1.setVisibility(View.VISIBLE);
-						ImageView hasteRight2 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste2);
+						hasteRight1.setVisibility(View.VISIBLE);						
 						hasteRight2.setVisibility(View.VISIBLE);				
 					}
 	  	    	}
-				
+  	  	    	
   	  	    	if (playersFighting.equals("zeroVsOne")) {
-  	  	    		
-	  	  	    	if (blessSpell[1] < 1) {
+	  	    		
+	  	  	    	if (blessSpell[1] < 1) {						
 						
-						ImageView blessLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftbless);
 						blessLeft.setVisibility(View.VISIBLE);				
 					}				
 					if (cureSpell[1] < 1) {
 						
-						ImageView cureLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftcure);
+						
 						cureLeft.setVisibility(View.VISIBLE);				
 					}			
 					if (dodgeBlowSpell[1] < 1) {
 						
-						ImageView dodgeLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftdodge);
 						dodgeLeft.setVisibility(View.VISIBLE);				
 					}			
 					if (mightyBlowSpell[1] < 1) {
 						
-						ImageView mbLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftmb);
 						mbLeft.setVisibility(View.VISIBLE);				
 					}			
 					if (hasteSpell[1] < 2) {
 						
-						ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
 						hasteLeft1.setVisibility(View.VISIBLE);				
 					}			
 					if (hasteSpell[1] < 1) {
 						
-						ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
 						hasteLeft1.setVisibility(View.VISIBLE);
-						ImageView hasteLeft2 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste2);
 						hasteLeft2.setVisibility(View.VISIBLE);				
 					}
 					
 					
 					if (blessSpell[0] < 1) {
 						
-						ImageView blessRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightbless);
 						blessRight.setVisibility(View.VISIBLE);				
 					}				
 					if (cureSpell[0] < 1) {
 						
-						ImageView cureRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightcure);
 						cureRight.setVisibility(View.VISIBLE);				
 					}			
 					if (dodgeBlowSpell[0] < 1) {
 						
-						ImageView dodgeRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightdodge);
 						dodgeRight.setVisibility(View.VISIBLE);				
 					}			
 					if (mightyBlowSpell[0] < 1) {
 						
-						ImageView mbRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightmb);
 						mbRight.setVisibility(View.VISIBLE);				
 					}			
 					if (hasteSpell[0] < 2) {
 						
-						ImageView hasteRight1 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste1);
 						hasteRight1.setVisibility(View.VISIBLE);				
 					}			
 					if (hasteSpell[0] < 1) {
 						
-						ImageView hasteRight1 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste1);
 						hasteRight1.setVisibility(View.VISIBLE);
-						ImageView hasteRight2 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste2);
 						hasteRight2.setVisibility(View.VISIBLE);				
 					}
-  	  	    	}
-  	  	    	
-  	  	    	if (playersFighting.equals("oneVsZero")) {
-	  	    		
+	  	    	}
+	  	    	
+	  	    	if (playersFighting.equals("oneVsZero")) {
+  	    		
 	  	  	    	if (blessSpell[0] < 1) {
 						
-						ImageView blessLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftbless);
 						blessLeft.setVisibility(View.VISIBLE);				
 					}				
 					if (cureSpell[0] < 1) {
 						
-						ImageView cureLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftcure);
 						cureLeft.setVisibility(View.VISIBLE);				
 					}			
 					if (dodgeBlowSpell[0] < 1) {
 						
-						ImageView dodgeLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftdodge);
 						dodgeLeft.setVisibility(View.VISIBLE);				
 					}			
 					if (mightyBlowSpell[0] < 1) {
 						
-						ImageView mbLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftmb);
 						mbLeft.setVisibility(View.VISIBLE);				
 					}			
 					if (hasteSpell[0] < 2) {
 						
-						ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
 						hasteLeft1.setVisibility(View.VISIBLE);				
 					}			
 					if (hasteSpell[0] < 1) {
 						
-						ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
 						hasteLeft1.setVisibility(View.VISIBLE);
-						ImageView hasteLeft2 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste2);
 						hasteLeft2.setVisibility(View.VISIBLE);				
 					}
 					
 					
 					if (blessSpell[1] < 1) {
 						
-						ImageView blessRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightbless);
 						blessRight.setVisibility(View.VISIBLE);				
 					}				
 					if (cureSpell[1] < 1) {
 						
-						ImageView cureRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightcure);
 						cureRight.setVisibility(View.VISIBLE);				
 					}			
 					if (dodgeBlowSpell[1] < 1) {
 						
-						ImageView dodgeRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightdodge);
 						dodgeRight.setVisibility(View.VISIBLE);				
 					}			
 					if (mightyBlowSpell[1] < 1) {
 						
-						ImageView mbRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightmb);
 						mbRight.setVisibility(View.VISIBLE);				
 					}			
 					if (hasteSpell[1] < 2) {
 						
-						ImageView hasteRight1 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste1);
 						hasteRight1.setVisibility(View.VISIBLE);				
 					}			
 					if (hasteSpell[1] < 1) {
 						
-						ImageView hasteRight1 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste1);
 						hasteRight1.setVisibility(View.VISIBLE);
-						ImageView hasteRight2 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste2);
 						hasteRight2.setVisibility(View.VISIBLE);				
 					}
 	  	    	}
   	  	    }
-  	  	});
-	}	
+		});	
+	}
+	
+	public void skillsCheckLeft5() {
+		
+		//playersFightingTest();
+		
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {
+  	  	    	
+  	  	    	ImageView blessLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftbless);
+  	  	    	ImageView cureLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftcure);
+  	  	    	ImageView dodgeLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftdodge);
+  	  	    	ImageView mbLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftmb);
+  	  	    	ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
+  	  	    	ImageView hasteLeft2 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste2);
+  	  	    	
+  	  	    	blessLeft.setVisibility(View.INVISIBLE);
+  	  	    	blessLeft.bringToFront();
+  	  	    	cureLeft.setVisibility(View.INVISIBLE);
+  	  	    	cureLeft.bringToFront();
+  	  	    	dodgeLeft.setVisibility(View.INVISIBLE);
+  	  	    	dodgeLeft.bringToFront();
+  	  	    	mbLeft.setVisibility(View.INVISIBLE);
+  	  	    	mbLeft.bringToFront();
+  	  	    	hasteLeft1.setVisibility(View.INVISIBLE);
+  	  	    	hasteLeft1.bringToFront();
+  	  	    	hasteLeft2.setVisibility(View.INVISIBLE);
+  	  	    	hasteLeft2.bringToFront();
+  	  	    		
+  	  	    	if (blessSpell[5] < 1) {						
+					
+					blessLeft.setVisibility(View.VISIBLE);				
+				}				
+				if (cureSpell[5] < 1) {						
+					
+					cureLeft.setVisibility(View.VISIBLE);				
+				}			
+				if (dodgeBlowSpell[5] < 1) {						
+					
+					dodgeLeft.setVisibility(View.VISIBLE);				
+				}			
+				if (mightyBlowSpell[5] < 1) {
+					
+					
+					mbLeft.setVisibility(View.VISIBLE);				
+				}			
+				if (hasteSpell[5] < 2) {						
+					
+					hasteLeft1.setVisibility(View.VISIBLE);				
+				}			
+				if (hasteSpell[5] < 1) {						
+					
+					hasteLeft1.setVisibility(View.VISIBLE);						
+					hasteLeft2.setVisibility(View.VISIBLE);				
+				}
+  	  	    }
+		});	
+	}
+	
+	public void skillsCheckLeft0() {
+		
+		//playersFightingTest();
+		
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {
+  	  	    	
+  	  	    	ImageView blessLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftbless);
+  	  	    	ImageView cureLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftcure);
+  	  	    	ImageView dodgeLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftdodge);
+  	  	    	ImageView mbLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftmb);
+  	  	    	ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
+  	  	    	ImageView hasteLeft2 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste2);
+  	  	    	
+  	  	    	blessLeft.setVisibility(View.INVISIBLE);
+  	  	    	blessLeft.bringToFront();
+  	  	    	cureLeft.setVisibility(View.INVISIBLE);
+  	  	    	cureLeft.bringToFront();
+  	  	    	dodgeLeft.setVisibility(View.INVISIBLE);
+  	  	    	dodgeLeft.bringToFront();
+  	  	    	mbLeft.setVisibility(View.INVISIBLE);
+  	  	    	mbLeft.bringToFront();
+  	  	    	hasteLeft1.setVisibility(View.INVISIBLE);
+  	  	    	hasteLeft1.bringToFront();
+  	  	    	hasteLeft2.setVisibility(View.INVISIBLE);
+  	  	    	hasteLeft2.bringToFront();
+  	    		
+  	  	    	if (blessSpell[0] < 1) {
+					
+					blessLeft.setVisibility(View.VISIBLE);				
+				}				
+				if (cureSpell[0] < 1) {
+					
+					cureLeft.setVisibility(View.VISIBLE);				
+				}			
+				if (dodgeBlowSpell[0] < 1) {
+					
+					dodgeLeft.setVisibility(View.VISIBLE);				
+				}			
+				if (mightyBlowSpell[0] < 1) {
+					
+					mbLeft.setVisibility(View.VISIBLE);				
+				}			
+				if (hasteSpell[0] < 2) {
+					
+					hasteLeft1.setVisibility(View.VISIBLE);				
+				}			
+				if (hasteSpell[0] < 1) {
+					
+					hasteLeft1.setVisibility(View.VISIBLE);
+					hasteLeft2.setVisibility(View.VISIBLE);				
+				}
+  	  	    }
+		});	
+	}
+	
+	public void skillsCheckLeft1() {
+		
+		//playersFightingTest();
+		
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {
+  	  	    	
+  	  	    	ImageView blessLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftbless);
+  	  	    	ImageView cureLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftcure);
+  	  	    	ImageView dodgeLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftdodge);
+  	  	    	ImageView mbLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftmb);
+  	  	    	ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
+  	  	    	ImageView hasteLeft2 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste2);
+  	  	    	
+  	  	    	blessLeft.setVisibility(View.INVISIBLE);
+  	  	    	blessLeft.bringToFront();
+  	  	    	cureLeft.setVisibility(View.INVISIBLE);
+  	  	    	cureLeft.bringToFront();
+  	  	    	dodgeLeft.setVisibility(View.INVISIBLE);
+  	  	    	dodgeLeft.bringToFront();
+  	  	    	mbLeft.setVisibility(View.INVISIBLE);
+  	  	    	mbLeft.bringToFront();
+  	  	    	hasteLeft1.setVisibility(View.INVISIBLE);
+  	  	    	hasteLeft1.bringToFront();
+  	  	    	hasteLeft2.setVisibility(View.INVISIBLE);
+  	  	    	hasteLeft2.bringToFront();
+	  	    		
+  	  	    	if (blessSpell[1] < 1) {						
+					
+					blessLeft.setVisibility(View.VISIBLE);				
+				}				
+				if (cureSpell[1] < 1) {
+					
+					cureLeft.setVisibility(View.VISIBLE);				
+				}			
+				if (dodgeBlowSpell[1] < 1) {
+					
+					dodgeLeft.setVisibility(View.VISIBLE);				
+				}			
+				if (mightyBlowSpell[1] < 1) {
+					
+					mbLeft.setVisibility(View.VISIBLE);				
+				}			
+				if (hasteSpell[1] < 2) {
+					
+					hasteLeft1.setVisibility(View.VISIBLE);				
+				}			
+				if (hasteSpell[1] < 1) {
+					
+					hasteLeft1.setVisibility(View.VISIBLE);
+					hasteLeft2.setVisibility(View.VISIBLE);				
+				}
+  	  	    }
+		});	
+	}
+	
+	public void skillsCheckRight0() {
+		
+		//playersFightingTest();
+		
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {  	  	    	
+  	  	    	
+  	  	    	ImageView blessRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightbless);
+  	  	    	ImageView cureRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightcure);
+  	  	    	ImageView dodgeRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightdodge);
+  	  	    	ImageView mbRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightmb);
+  	  	    	ImageView hasteRight1 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste1);
+  	  	    	ImageView hasteRight2 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste2);
+  	  	    	
+  	  	    	blessRight.setVisibility(View.INVISIBLE);
+  	  	    	blessRight.bringToFront();
+  	  	    	cureRight.setVisibility(View.INVISIBLE);
+  	  	    	cureRight.bringToFront();
+  	  	    	dodgeRight.setVisibility(View.INVISIBLE);
+  	  	    	dodgeRight.bringToFront();
+  	  	    	mbRight.setVisibility(View.INVISIBLE);
+  	  	    	mbRight.bringToFront();
+  	  	    	hasteRight1.setVisibility(View.INVISIBLE);
+  	  	    	hasteRight1.bringToFront();
+  	  	    	hasteRight2.setVisibility(View.INVISIBLE);
+  	  	    	hasteRight2.bringToFront();
+					
+				if (blessSpell[0] < 1) {						
+					
+					blessRight.setVisibility(View.VISIBLE);				
+				}				
+				if (cureSpell[0] < 1) {						
+					
+					cureRight.setVisibility(View.VISIBLE);				
+				}			
+				if (dodgeBlowSpell[0] < 1) {						
+					
+					dodgeRight.setVisibility(View.VISIBLE);				
+				}			
+				if (mightyBlowSpell[0] < 1) {						
+					
+					mbRight.setVisibility(View.VISIBLE);				
+				}			
+				if (hasteSpell[0] < 2) {						
+					
+					hasteRight1.setVisibility(View.VISIBLE);				
+				}			
+				if (hasteSpell[0] < 1) {						
+					
+					hasteRight1.setVisibility(View.VISIBLE);						
+					hasteRight2.setVisibility(View.VISIBLE);				
+				}
+  	  	    }
+		});	
+	}
+	
+	public void skillsCheckRight1() {
+		
+		//playersFightingTest();
+		
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {  	  	    	
+  	  	    	
+  	  	    	ImageView blessRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightbless);
+  	  	    	ImageView cureRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightcure);
+  	  	    	ImageView dodgeRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightdodge);
+  	  	    	ImageView mbRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightmb);
+  	  	    	ImageView hasteRight1 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste1);
+  	  	    	ImageView hasteRight2 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste2); 
+  	  	    	
+  	  	    	blessRight.setVisibility(View.INVISIBLE);
+  	  	    	blessRight.bringToFront();
+  	  	    	cureRight.setVisibility(View.INVISIBLE);
+  	  	    	cureRight.bringToFront();
+  	  	    	dodgeRight.setVisibility(View.INVISIBLE);
+  	  	    	dodgeRight.bringToFront();
+  	  	    	mbRight.setVisibility(View.INVISIBLE);
+  	  	    	mbRight.bringToFront();
+  	  	    	hasteRight1.setVisibility(View.INVISIBLE);
+  	  	    	hasteRight1.bringToFront();
+  	  	    	hasteRight2.setVisibility(View.INVISIBLE);
+  	  	    	hasteRight2.bringToFront();
+					
+				if (blessSpell[1] < 1) {						
+					
+					blessRight.setVisibility(View.VISIBLE);				
+				}				
+				if (cureSpell[1] < 1) {						
+					
+					cureRight.setVisibility(View.VISIBLE);				
+				}			
+				if (dodgeBlowSpell[1] < 1) {						
+					
+					dodgeRight.setVisibility(View.VISIBLE);				
+				}			
+				if (mightyBlowSpell[1] < 1) {						
+					
+					mbRight.setVisibility(View.VISIBLE);				
+				}			
+				if (hasteSpell[1] < 2) {						
+					
+					hasteRight1.setVisibility(View.VISIBLE);				
+				}			
+				if (hasteSpell[1] < 1) {						
+					
+					hasteRight1.setVisibility(View.VISIBLE);						
+					hasteRight2.setVisibility(View.VISIBLE);				
+				}
+  	  	    }
+		});	
+	}
+	
+
 	
 	public void endGame() {
 		
@@ -20194,7 +20568,7 @@ public void decodeImage0() {
 		
 		else if (numberOfPlayers == 3) {
 				
-				threePlayerRedirect();						
+			threePlayerRedirectWithHasteForClient();
 		}
 	}	
 	
@@ -20364,96 +20738,146 @@ public void decodeImage0() {
 	
 	public void threePlayerRedirectWithHasteForClient() {
 		
-		if ((initiativeFinal[5] > initiativeFinal[0]) && (initiativeFinal[5] > initiativeFinal[1]) && (ishasteused0.equals("no")) && (ishasteused1.equals("no"))) {
+		if ((initiativeFinal[5] > initiativeFinal[0]) && (initiativeFinal[5] > initiativeFinal[1]) && (ishasteused.equals("yes"))) {
 			
-			if ((initiativeFinal[0] > initiativeFinal[1]) && (Has0TakenTurn.equals("no"))) {
+			test=1;
+			turnTest();
+			
+			hastePartTwo();
+		}
+	
+		else if ((initiativeFinal[5] > initiativeFinal[0]) && (initiativeFinal[5] > initiativeFinal[1]) && (ishasteused0.equals("yes"))) {
+		
+			if ((initiativeFinal[0] > initiativeFinal[1]) && Has0TakenTurn.equals("no")) {
+
+				test=2;
+				turnTest();
 				
-				gameEngine3V35Part2For0Part1();
+				String str = "hastePartTwo";
+  	  			sendToClient0(str);
+  	  			
+  	  			Has0TakenTurn = "yes";
 			}
-			else if ((initiativeFinal[0] > initiativeFinal[1]) && (Has0TakenTurn.equals("yes")) && (hAs1TakenTurn.equals("no"))) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
+			else if ((initiativeFinal[0] > initiativeFinal[1]) && Has0TakenTurn.equals("yes") && hAs1TakenTurn.equals("no")) {
+
+				test=3;
+				turnTest();
 				
 				gameEngine3V35Part2For1Part1();
 			}
-			else if ((initiativeFinal[0] > initiativeFinal[1]) && (Has0TakenTurn.equals("yes")) && (hAs1TakenTurn.equals("yes"))) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
+			else if ((initiativeFinal[1] > initiativeFinal[0]) && hAs1TakenTurn.equals("no")) {
+
+				test=4;
+				turnTest();
+				
+				gameEngine3V35Part2For1Part1();
+			}
+			else if ((initiativeFinal[1] > initiativeFinal[0]) && hAs1TakenTurn.equals("yes") && Has0TakenTurn.equals("no")) {
+
+				test=5;
+				turnTest();
+				
+				String str = "hastePartTwo";
+  	  			sendToClient0(str);
+  	  			
+  	  			Has0TakenTurn = "yes";
+			}
+			else {
+
+				test=6;
+				turnTest();
+				
+				turn();
+			}
+		}
+	
+		else if ((initiativeFinal[5] > initiativeFinal[0]) && (initiativeFinal[5] > initiativeFinal[1]) && (ishasteused1.equals("yes"))) {
+			
+			if ((initiativeFinal[0] > initiativeFinal[1]) && Has0TakenTurn.equals("no")) {
+
+				test=7;
+				turnTest();
+				
+				gameEngine3V35Part2For0Part1();
+			}
+			else if ((initiativeFinal[0] > initiativeFinal[1]) && Has0TakenTurn.equals("yes") && hAs1TakenTurn.equals("no")) {
+
+				test=8;
+				turnTest();
+				
+				String str = "hastePartTwo";
+  	  			sendToClient1(str);
+  	  			
+  	  			hAs1TakenTurn = "yes";
+			}
+			else if ((initiativeFinal[1] > initiativeFinal[0]) && hAs1TakenTurn.equals("no")) {
+
+				test=9;
+				turnTest();
+				
+				String str = "hastePartTwo";
+  	  			sendToClient1(str);
+  	  			
+  	  			hAs1TakenTurn = "yes";
+			}
+			else if ((initiativeFinal[1] > initiativeFinal[0]) && hAs1TakenTurn.equals("yes") && Has0TakenTurn.equals("no")) {
+
+				test=10;
+				turnTest();
+				
+				gameEngine3V35Part2For0Part1();
+			}
+			else {
+
+				test=11;
+				turnTest();
+				
+				turn();
+			}
+		}
+		
+		else if ((initiativeFinal[5] > initiativeFinal[0]) && (initiativeFinal[5] > initiativeFinal[1]) && (ishasteused.equals("no")) && (ishasteused0.equals("no")) && (ishasteused1.equals("no"))) {		
+			
+			if ((initiativeFinal[0] > initiativeFinal[1]) && (Has0TakenTurn.equals("no"))) {
+
+				test=12;
+				turnTest();
+				
+				gameEngine3V35Part2For0Part1();
+			}
+			else if ((initiativeFinal[0] > initiativeFinal[1]) && (Has0TakenTurn.equals("yes")) && (hAs1TakenTurn.equals("no"))) {
+
+				test=13;
+				turnTest();
+				
+				gameEngine3V35Part2For1Part1();
+			}
+			else if ((initiativeFinal[0] > initiativeFinal[1]) && (Has0TakenTurn.equals("yes")) && (hAs1TakenTurn.equals("yes"))) {
+
+				test=14;
+				turnTest();
 				
 				turn();
 			}
 			
 			else if ((initiativeFinal[1] > initiativeFinal[0]) && (hAs1TakenTurn.equals("no"))) {
+
+				test=15;
+				turnTest();
 				
 				gameEngine3V35Part2For1Part1();
 			}
-			else if ((initiativeFinal[1] > initiativeFinal[0]) && (hAs1TakenTurn.equals("yes")) && (Has0TakenTurn.equals("no"))) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
+			else if ((initiativeFinal[1] > initiativeFinal[0]) && (hAs1TakenTurn.equals("yes")) && (Has0TakenTurn.equals("no"))) {
+
+				test=16;
+				turnTest();
 				
 				gameEngine3V35Part2For0Part1();
 			}
-			else if ((initiativeFinal[1] > initiativeFinal[0]) && (hAs1TakenTurn.equals("yes")) && (Has0TakenTurn.equals("yes"))) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
-				
-				turn();
-			}
-			/*
-			else {
-				
-				turn();
-			}
-			*/
-		}
-	
-		else if ((initiativeFinal[5] > initiativeFinal[0]) && (initiativeFinal[5] > initiativeFinal[1]) && (ishasteused0.equals("yes")) && (ishasteused1.equals("no"))) {
-		
-			if ((initiativeFinal[0] > initiativeFinal[1]) && Has0TakenTurn.equals("no")) {
-				
-				//gameEngine3V35Part2For0Part1();
-				
-				String str = "hastePartTwo";
-  	  			sendToClient0(str);
-			}
-			else if ((initiativeFinal[0] > initiativeFinal[1]) && Has0TakenTurn.equals("yes")) {
-				
-				gameEngine3V35Part2For1Part1();
-			}
-			else if ((initiativeFinal[1] > initiativeFinal[0]) && hAs1TakenTurn.equals("no")) {
-				
-				gameEngine3V35Part2For1Part1();
-			}
-			else if ((initiativeFinal[1] > initiativeFinal[0]) && hAs1TakenTurn.equals("yes")) {
-				
-				//gameEngine3V35Part2For0Part1();
-				
-				String str = "hastePartTwo";
-  	  			sendToClient0(str);
-			}
-			else {
-				
-				turn();
-			}
-		}
-	
-		else if ((initiativeFinal[5] > initiativeFinal[0]) && (initiativeFinal[5] > initiativeFinal[1]) && (ishasteused0.equals("no")) && (ishasteused1.equals("yes"))) {
-			
-			if ((initiativeFinal[0] > initiativeFinal[1]) && Has0TakenTurn.equals("no")) {
-				
-				gameEngine3V35Part2For0Part1();
-			}
-			else if ((initiativeFinal[0] > initiativeFinal[1]) && Has0TakenTurn.equals("yes")) {
-				
-				//gameEngine3V35Part2For1Part1();
-				
-				String str = "hastePartTwo";
-  	  			sendToClient1(str);
-			}
-			else if ((initiativeFinal[1] > initiativeFinal[0]) && hAs1TakenTurn.equals("no")) {
-				
-				//gameEngine3V35Part2For1Part1();
-				
-				String str = "hastePartTwo";
-  	  			sendToClient1(str);
-			}
-			else if ((initiativeFinal[1] > initiativeFinal[0]) && hAs1TakenTurn.equals("yes")) {
-				
-				gameEngine3V35Part2For0Part1();
-			}
-			else {
+			else if ((initiativeFinal[1] > initiativeFinal[0]) && (hAs1TakenTurn.equals("yes")) && (Has0TakenTurn.equals("yes"))) {
+
+				test=17;
+				turnTest();
 				
 				turn();
 			}
@@ -20461,66 +20885,140 @@ public void decodeImage0() {
 		
 		
 		
-		else if ((initiativeFinal[0] > initiativeFinal[5]) && (initiativeFinal[0] > initiativeFinal[1]) && (ishasteused1.equals("no"))) {
+		else if ((initiativeFinal[0] > initiativeFinal[5]) && (initiativeFinal[0] > initiativeFinal[1]) && (ishasteused0.equals("yes"))) {
+
+			test=18;
+			turnTest();
 			
-			if ((initiativeFinal[5] > initiativeFinal[1]) && has5TakenTurn.equals("no")) {
-				
-				gameEngine3V3XPart2For5Part1();
-			}
-			else if ((initiativeFinal[5] > initiativeFinal[1]) && (has5TakenTurn.equals("yes")) && (hAs1TakenTurn.equals("no"))) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
-				
-				gameEngine3V35Part2For1Part1();
-			}
-			else if ((initiativeFinal[5] > initiativeFinal[1]) && (has5TakenTurn.equals("yes")) && (hAs1TakenTurn.equals("yes"))) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
-				
-				turn();
-			}
-			else if ((initiativeFinal[1] > initiativeFinal[5]) && hAs1TakenTurn.equals("no")) {
-				
-				gameEngine3V35Part2For1Part1();
-			}
-			else if ((initiativeFinal[1] > initiativeFinal[5]) && (hAs1TakenTurn.equals("yes")) && (has5TakenTurn.equals("no"))) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
-				
-				gameEngine3V3XPart2For5Part1();
-			}
-			else if ((initiativeFinal[1] > initiativeFinal[5]) && (hAs1TakenTurn.equals("yes")) && (has5TakenTurn.equals("yes"))) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
-				
-				turn();
-			}
-			
-			/*
-			else {
-				
-				turn();
-			}
-			*/
+			String str = "hastePartTwo";
+  			sendToClient0(str);
 		}
 		
 		else if ((initiativeFinal[0] > initiativeFinal[5]) && (initiativeFinal[0] > initiativeFinal[1]) && (ishasteused1.equals("yes"))) {
 			
 			if ((initiativeFinal[5] > initiativeFinal[1]) && has5TakenTurn.equals("no")) {
+
+				test=19;
+				turnTest();
 				
 				gameEngine3V3XPart2For5Part1();
 			}
-			else if ((initiativeFinal[5] > initiativeFinal[1]) && has5TakenTurn.equals("yes")) {
-				
-				//gameEngine3V35Part2For1Part1();
+			else if ((initiativeFinal[5] > initiativeFinal[1]) && has5TakenTurn.equals("yes") && hAs1TakenTurn.equals("no")) {				
+
+				test=20;
+				turnTest();
 				
 				String str = "hastePartTwo";
   	  			sendToClient1(str);
+  	  			
+  	  			hAs1TakenTurn = "yes";
 			}
 			else if ((initiativeFinal[1] > initiativeFinal[5]) && hAs1TakenTurn.equals("no")) {
-				
-				//gameEngine3V35Part2For1Part1();
+
+				test=21;
+				turnTest();
 				
 				String str = "hastePartTwo";
   	  			sendToClient1(str);
+  	  			
+  	  			hAs1TakenTurn = "yes";
 			}
-			else if ((initiativeFinal[1] > initiativeFinal[5]) && hAs1TakenTurn.equals("yes")) {
+			else if ((initiativeFinal[1] > initiativeFinal[5]) && hAs1TakenTurn.equals("yes") && has5TakenTurn.equals("no")) {
+
+				test=22;
+				turnTest();
 				
 				gameEngine3V3XPart2For5Part1();
 			}
 			else {
+
+				test=23;
+				turnTest();
+				
+				turn();
+			}
+		}
+		
+		else if ((initiativeFinal[0] > initiativeFinal[5]) && (initiativeFinal[0] > initiativeFinal[1]) && (ishasteused.equals("yes"))) {
+			
+			if ((initiativeFinal[5] > initiativeFinal[1]) && has5TakenTurn.equals("no")) {
+
+				test=24;
+				turnTest();
+				
+				hastePartTwo();
+			}
+			else if ((initiativeFinal[5] > initiativeFinal[1]) && has5TakenTurn.equals("yes") && hAs1TakenTurn.equals("no")) {
+
+				test=25;
+				turnTest();
+				
+				gameEngine3V35Part2For1Part1();
+			}
+			else if ((initiativeFinal[1] > initiativeFinal[5]) && hAs1TakenTurn.equals("no")) {
+
+				test=26;
+				turnTest();
+				
+				gameEngine3V35Part2For1Part1();
+			}
+			else if ((initiativeFinal[1] > initiativeFinal[5]) && hAs1TakenTurn.equals("yes") && has5TakenTurn.equals("no")) {
+
+				test=27;
+				turnTest();
+				
+				hastePartTwo();
+			}
+			else {
+
+				test=28;
+				turnTest();
+				
+				turn();
+			}
+		}
+		
+		else if ((initiativeFinal[0] > initiativeFinal[5]) && (initiativeFinal[0] > initiativeFinal[1]) && (ishasteused0.equals("no")) && (ishasteused.equals("no")) && (ishasteused1.equals("no"))) {
+			
+			if ((initiativeFinal[5] > initiativeFinal[1]) && has5TakenTurn.equals("no")) {
+
+				test=29;
+				turnTest();
+				
+				gameEngine3V3XPart2For5Part1();
+			}
+			else if ((initiativeFinal[5] > initiativeFinal[1]) && (has5TakenTurn.equals("yes")) && (hAs1TakenTurn.equals("no"))) {
+
+				test=30;
+				turnTest();
+				
+				gameEngine3V35Part2For1Part1();
+			}
+			else if ((initiativeFinal[5] > initiativeFinal[1]) && (has5TakenTurn.equals("yes")) && (hAs1TakenTurn.equals("yes"))) {
+
+				test=31;
+				turnTest();
+				
+				turn();
+			}
+			else if ((initiativeFinal[1] > initiativeFinal[5]) && hAs1TakenTurn.equals("no")) {
+
+				test=32;
+				turnTest();
+				
+				gameEngine3V35Part2For1Part1();
+			}
+			else if ((initiativeFinal[1] > initiativeFinal[5]) && (hAs1TakenTurn.equals("yes")) && (has5TakenTurn.equals("no"))) {
+
+				test=33;
+				turnTest();
+				
+				gameEngine3V3XPart2For5Part1();
+			}
+			else if ((initiativeFinal[1] > initiativeFinal[5]) && (hAs1TakenTurn.equals("yes")) && (has5TakenTurn.equals("yes"))) {
+
+				test=34;
+				turnTest();
 				
 				turn();
 			}
@@ -20528,67 +21026,141 @@ public void decodeImage0() {
 		
 		
 		
-		else if ((initiativeFinal[1] > initiativeFinal[5]) && (initiativeFinal[1] > initiativeFinal[0]) && (ishasteused0.equals("no"))) {
+		else if ((initiativeFinal[1] > initiativeFinal[5]) && (initiativeFinal[1] > initiativeFinal[0]) && (ishasteused1.equals("yes"))) {
+
+			test=35;
+			turnTest();
 			
-			if ((initiativeFinal[5] > initiativeFinal[0]) && has5TakenTurn.equals("no")) {
-				
-				gameEngine3V3XPart2For5Part1();
-			}
-			else if ((initiativeFinal[5] > initiativeFinal[0]) && (has5TakenTurn.equals("yes")) && (Has0TakenTurn.equals("no"))) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
-				
-				gameEngine3V35Part2For0Part1();
-			}
-			else if ((initiativeFinal[5] > initiativeFinal[0]) && (has5TakenTurn.equals("yes")) && (Has0TakenTurn.equals("yes"))) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
-				
-				turn();
-			}
-			
-			else if ((initiativeFinal[0] > initiativeFinal[5]) && Has0TakenTurn.equals("no")) {
-				
-				gameEngine3V35Part2For0Part1();
-			}
-			else if ((initiativeFinal[0] > initiativeFinal[5]) && (Has0TakenTurn.equals("yes")) && (has5TakenTurn.equals("no"))) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
-				
-				gameEngine3V3XPart2For5Part1();
-			}
-			else if ((initiativeFinal[0] > initiativeFinal[5]) && (Has0TakenTurn.equals("yes")) && (has5TakenTurn.equals("yes"))) {//NEEDED CODE FOR WHEN ALL 3 HAVE TAKEN TURN -- ELSE REPLACED
-				
-				turn();
-			}
-			
-			/*
-			else {
-				
-				turn();
-			}
-			*/
+			String str = "hastePartTwo";
+  			sendToClient1(str);
 		}
 		
 		else if ((initiativeFinal[1] > initiativeFinal[5]) && (initiativeFinal[1] > initiativeFinal[0]) && (ishasteused0.equals("yes"))) {
 			
 			if ((initiativeFinal[5] > initiativeFinal[0]) && has5TakenTurn.equals("no")) {
+
+				test=36;
+				turnTest();
 				
 				gameEngine3V3XPart2For5Part1();
 			}
-			else if ((initiativeFinal[5] > initiativeFinal[0]) && has5TakenTurn.equals("yes")) {
-				
-				//gameEngine3V35Part2For0Part1();
+			else if ((initiativeFinal[5] > initiativeFinal[0]) && has5TakenTurn.equals("yes") && Has0TakenTurn.equals("no")) {
+
+				test=37;
+				turnTest();
 				
 				String str = "hastePartTwo";
   	  			sendToClient0(str);
+  	  			
+  	  			Has0TakenTurn = "yes";
 			}
 			else if ((initiativeFinal[0] > initiativeFinal[5]) && Has0TakenTurn.equals("no")) {
-				
-				//gameEngine3V35Part2For0Part1();
+
+				test=38;
+				turnTest();
 				
 				String str = "hastePartTwo";
   	  			sendToClient0(str);
+  	  			
+  	  			Has0TakenTurn = "yes";
 			}
-			else if ((initiativeFinal[0] > initiativeFinal[5]) && Has0TakenTurn.equals("yes")) {
+			else if ((initiativeFinal[0] > initiativeFinal[5]) && Has0TakenTurn.equals("yes") && has5TakenTurn.equals("no")) {
+
+				test=39;
+				turnTest();
 				
 				gameEngine3V3XPart2For5Part1();
 			}
 			else {
+
+				test=40;
+				turnTest();
+				
+				turn();
+			}
+		}
+		
+		else if ((initiativeFinal[1] > initiativeFinal[5]) && (initiativeFinal[1] > initiativeFinal[0]) && (ishasteused.equals("yes"))) {
+			
+			if ((initiativeFinal[5] > initiativeFinal[0]) && has5TakenTurn.equals("no")) {
+
+				test=41;
+				turnTest();
+				
+				hastePartTwo();
+			}
+			else if ((initiativeFinal[5] > initiativeFinal[0]) && has5TakenTurn.equals("yes") && Has0TakenTurn.equals("no")) {
+
+				test=42;
+				turnTest();
+				
+				gameEngine3V35Part2For0Part1();
+			}
+			else if ((initiativeFinal[0] > initiativeFinal[5]) && Has0TakenTurn.equals("no")) {
+
+				test=43;
+				turnTest();
+				
+				gameEngine3V35Part2For0Part1();
+			}
+			else if ((initiativeFinal[0] > initiativeFinal[5]) && Has0TakenTurn.equals("yes") && has5TakenTurn.equals("no")) {
+
+				test=44;
+				turnTest();
+				
+				hastePartTwo();
+			}
+			else {
+
+				test=45;
+				turnTest();
+				
+				turn();
+			}
+		}
+		
+		else if ((initiativeFinal[1] > initiativeFinal[5]) && (initiativeFinal[1] > initiativeFinal[0]) && (ishasteused1.equals("no")) && (ishasteused.equals("no")) && (ishasteused0.equals("no"))) {
+			
+			if ((initiativeFinal[5] > initiativeFinal[0]) && has5TakenTurn.equals("no")) {
+
+				test=46;
+				turnTest();
+				
+				gameEngine3V3XPart2For5Part1();
+			}
+			else if ((initiativeFinal[5] > initiativeFinal[0]) && (has5TakenTurn.equals("yes")) && (Has0TakenTurn.equals("no"))) {
+
+				test=47;
+				turnTest();
+				
+				gameEngine3V35Part2For0Part1();
+			}
+			else if ((initiativeFinal[5] > initiativeFinal[0]) && (has5TakenTurn.equals("yes")) && (Has0TakenTurn.equals("yes"))) {
+
+				test=48;
+				turnTest();
+				
+				turn();
+			}
+			
+			else if ((initiativeFinal[0] > initiativeFinal[5]) && Has0TakenTurn.equals("no")) {
+
+				test=49;
+				turnTest();
+				
+				gameEngine3V35Part2For0Part1();
+			}
+			else if ((initiativeFinal[0] > initiativeFinal[5]) && (Has0TakenTurn.equals("yes")) && (has5TakenTurn.equals("no"))) {
+
+				test=50;
+				turnTest();
+				
+				gameEngine3V3XPart2For5Part1();
+			}
+			else if ((initiativeFinal[0] > initiativeFinal[5]) && (Has0TakenTurn.equals("yes")) && (has5TakenTurn.equals("yes"))) {
+
+				test=51;
+				turnTest();
 				
 				turn();
 			}
@@ -20720,13 +21292,13 @@ public void decodeImage0() {
 		  		    		
 		  		    		blessSpell[5] = blessSpell[5] - 1;
 		  		    		
-		  		    		String str2 = "usedBless";
+		  		    		String str2 = "usedBless5";
 							sendToAllClients(str2);
 		  		    		
 							
-		  		    		skillsCheck();
+		  		    		skillsCheckBoth();
 		  		    		
-		  		    		String str3 = "skillsCheck";
+		  		    		String str3 = "skillsCheckBoth";
 							sendToAllClients(str3);
 		  		    		
 		  		    		
@@ -20811,13 +21383,13 @@ public void decodeImage0() {
   		  	  	  			
   		  	  	  			hasteSpell[5] = hasteSpell[5] - 1;
   		  	  	  			
-  		  	  	  			String str3 = "usedHaste";
+  		  	  	  			String str3 = "usedHaste5";
   		  	  	  			sendToAllClients(str3);
   		  	  	  			
   		  	  	  			
-  		  	  	  			skillsCheck();
+  		  	  	  			skillsCheckBoth();
   		  	  	  			
-  		  	  	  			String str4 = "skillsCheck";
+  		  	  	  			String str4 = "skillsCheckBoth";
   		  	  	  			sendToAllClients(str4);
   		  	  	  			
   		  	  	  			
@@ -20978,13 +21550,13 @@ public void decodeImage0() {
 					
 					cureSpell[5] = cureSpell[5] - 1;
 					
-					String str2 = "usedCure";
+					String str2 = "usedCure5";
 					sendToAllClients(str2);
 					
 					
-					skillsCheck();
+					skillsCheckBoth();
 					
-					String str3 = "skillsCheck";
+					String str3 = "skillsCheckBoth";
 					sendToAllClients(str3);
 					
 					
@@ -21113,13 +21685,13 @@ public void decodeImage0() {
 					
 					blessSpell[5] = blessSpell[5] - 1;
 					
-					String str2 = "usedBless";
+					String str2 = "usedBless5";
 					sendToAllClients(str2);
 					
 					
-					skillsCheck();
+					skillsCheckBoth();
 					
-					String str3 = "skillsCheck";
+					String str3 = "skillsCheckBoth";
 					sendToAllClients(str3);
 					
 					
@@ -21862,7 +22434,8 @@ public void decodeImage0() {
 			  	  	  			
 			  	  	  			else if (numberOfPlayers == 3) {
 			  	  	  				
-			  	  	  				threePlayerRedirect();
+			  	  	  				//threePlayerRedirect();
+			  	  	  				threePlayerRedirectWithHasteForClient();
 			  	  	  			}
 			  	  	  		}
 			  	  	  	}, 2000);
@@ -22811,13 +23384,13 @@ public void decodeImage0() {
 							  		    		
 							  		    		mightyBlowSpell[5] = mightyBlowSpell[5] - 1;
 							  		    		
-							  		    		String str4 = "usedMightyBlow";
+							  		    		String str4 = "usedMightyBlow5";
 												sendToAllClients(str4);
 							  		    		
 												
-							  		    		skillsCheck();
+							  		    		skillsCheckBoth();
 							  		    		
-							  		    		String str5 = "skillsCheck";
+							  		    		String str5 = "skillsCheckBoth";
 												sendToAllClients(str5);
 												
 							  		    		
@@ -22901,13 +23474,13 @@ public void decodeImage0() {
 				  		    		
 				  		    		mightyBlowSpell[5] = mightyBlowSpell[5] - 1;
 				  		    		
-				  		    		String str2 = "usedMightyBlow";
+				  		    		String str2 = "usedMightyBlow5";
 									sendToAllClients(str2);
 				  		    		
 									
-				  		    		skillsCheck();
+				  		    		skillsCheckBoth();
 				  		    		
-				  		    		String str3 = "skillsCheck";
+				  		    		String str3 = "skillsCheckBoth";
 									sendToAllClients(str3);
 									
 				  		    		
@@ -23025,13 +23598,13 @@ public void decodeImage0() {
 					  		    		
 					  		    		mightyBlowSpell[5] = mightyBlowSpell[5] - 1;
 					  		    		
-					  		    		String str2 = "usedMightyBlow";
+					  		    		String str2 = "usedMightyBlow5";
 										sendToAllClients(str2);
 					  		    		
 										
-					  		    		skillsCheck();
+					  		    		skillsCheckBoth();
 					  		    		
-					  		    		String str3 = "skillsCheck";
+					  		    		String str3 = "skillsCheckBoth";
 										sendToAllClients(str3);
 										
 										
@@ -23113,13 +23686,13 @@ public void decodeImage0() {
 				  		    		
 				  		    		mightyBlowSpell[5] = mightyBlowSpell[5] - 1;
 				  		    		
-				  		    		String str2 = "usedMightyBlow";
+				  		    		String str2 = "usedMightyBlow5";
 									sendToAllClients(str2);
 				  		    		
 									
-				  		    		skillsCheck();
+				  		    		skillsCheckBoth();
 				  		    		
-				  		    		String str3 = "skillsCheck";
+				  		    		String str3 = "skillsCheckBoth";
 									sendToAllClients(str3);
 				  		    		
 									
@@ -25454,9 +26027,9 @@ public void decodeImage0() {
 		  	  		@Override
 		  	  	  	public void run() {
 		  	  			
-			  	  		skillsCheck();
+			  	  		skillsCheckBoth();
 						
-						String str2 = "skillsCheck";
+						String str2 = "skillsCheckBoth";
 						sendToAllClients(str2);
 						
 						
@@ -25512,32 +26085,90 @@ public void decodeImage0() {
 				  	  				
 				  	  				if (playersFighting.equals("zeroVsFive")) {
 			  	  	  					
-			  	  	  					Has0TakenTurn = "yes";
-			  	  	  				}
-			  	  	  				else if (playersFighting.equals("oneVsFive")) {
+				  	  					if (ishasteused0.equals("yes")) {
+				  	  						
+				  	  						threePlayerRedirectWithHasteForClient();
+				  	  					}
+				  	  					else {
+				  	  						
+				  	  						Has0TakenTurn = "yes";
 			  	  	  					
-			  	  	  					hAs1TakenTurn = "yes";
+				  	  						threePlayerRedirectWithHasteForClient();
+				  	  					}
 			  	  	  				}
 				  	  				
+			  	  	  				else if (playersFighting.equals("oneVsFive")) {
+			  	  	  					
+			  	  	  					if (ishasteused1.equals("yes")) {
+			  	  	  						
+			  	  	  						threePlayerRedirectWithHasteForClient();
+			  	  	  					}
+			  	  	  					else {
+			  	  	  						
+			  	  	  						hAs1TakenTurn = "yes";
+			  	  	  					
+			  	  	  						threePlayerRedirectWithHasteForClient();
+			  	  	  					}
+			  	  	  				}
 				  	  				
 				  	  	  			else if (playersFighting.equals("fiveVsZero")) {
 			  	  	  					
-				  	  	  				has5TakenTurn = "yes";
+				  	  	  				if (ishasteused.equals("yes")) {
+				  	  	  					
+				  	  	  					hastePartTwo();
+				  	  	  					
+				  	  	  					//threePlayerRedirectWithHasteForClient();
+				  	  	  				}
+				  	  	  				else {
+				  	  	  					
+				  	  	  					has5TakenTurn = "yes";
+				  	  	  				
+				  	  	  					threePlayerRedirectWithHasteForClient();
+				  	  	  				}
 			  	  	  				}
 				  	  	  			else if (playersFighting.equals("fiveVsOne")) {
-		  	  	  					
-				  	  	  				has5TakenTurn = "yes";
+				  	  	  				
+				  	  	  				if (ishasteused.equals("yes")) {
+				  	  	  					
+				  	  	  					hastePartTwo();
+				  	  	  					
+				  	  	  					//threePlayerRedirectWithHasteForClient();
+				  	  	  				}
+				  	  	  				else {
+				  	  	  					
+				  	  	  					has5TakenTurn = "yes";
+				  	  	  				
+				  	  	  					threePlayerRedirectWithHasteForClient();
+				  	  	  				}
 				  	  	  			}
 					  	  	  		else if (playersFighting.equals("zeroVsOne")) {
 			  	  	  					
-					  	  	  			Has0TakenTurn = "yes";
+					  	  	  			if (ishasteused0.equals("yes")) {
+					  	  	  				
+					  	  	  				threePlayerRedirectWithHasteForClient();
+					  	  	  			}
+					  	  	  			else {
+					  	  	  				
+					  	  	  				Has0TakenTurn = "yes";
+					  	  	  			
+					  	  	  				threePlayerRedirectWithHasteForClient();
+					  	  	  			}
 			  	  	  				}
 						  	  	  	else if (playersFighting.equals("oneVsZero")) {
 			  	  	  					
-						  	  	  		hAs1TakenTurn = "yes";
+						  	  	  		if (ishasteused1.equals("yes")) {
+						  	  	  			
+						  	  	  			threePlayerRedirectWithHasteForClient();
+						  	  	  		}
+						  	  	  		else {
+						  	  	  			
+						  	  	  			hAs1TakenTurn = "yes";
+						  	  	  		
+						  	  	  			threePlayerRedirectWithHasteForClient();
+						  	  	  		}
 			  	  	  				}
 				  	  				
-				  	  				threePlayerRedirectWithHasteForClient();
+				  	  				//threePlayerRedirectWithHasteForClient();
 				  	  			}
 				  	  	  	}
 				  	  	}, 6000);
@@ -25631,9 +26262,9 @@ public void decodeImage0() {
   			  		    			sendToAllClients(str2);
 									
 									
-	  			  		    		skillsCheck();
+	  			  		    		skillsCheckBoth();
 	  			  		    		
-	  			  		    		String str3 = "skillsCheck";
+	  			  		    		String str3 = "skillsCheckBoth";
 	  			  		    		sendToAllClients(str3);
 	  			  		    		
 	  			  		    	
@@ -27738,7 +28369,13 @@ else if (read.contains("cstmImage")) {//MAY WANT MORE COMPLICATED TERM SO IT DOE
 							
 							ishasteused0 = "yes";
 							
-							skillsCheck();
+							String str = "usedHaste0";
+							sendToClient1(str);
+							
+							skillsCheckBoth();
+							
+							//String str2 = "skillsCheck";
+							//sendToClient1(str2);
 						}
 						else if (id == 1) {
 							
@@ -27746,32 +28383,14 @@ else if (read.contains("cstmImage")) {//MAY WANT MORE COMPLICATED TERM SO IT DOE
 							
 							ishasteused1 = "yes";
 							
-							skillsCheck();
-						}
-						else if (id == 2) {
+							String str = "usedHaste1";
+							sendToClient0(str);
 							
-							hasteSpell[2] = hasteSpell[2] - 1;
+							skillsCheckBoth();
 							
-							ishasteused2 = "yes";
-							
-							skillsCheck();
-						}
-						else if (id == 3) {
-							
-							hasteSpell[3] = hasteSpell[3] - 1;
-							
-							ishasteused3 = "yes";
-							
-							skillsCheck();
-						}
-						else if (id == 4) {
-							
-							hasteSpell[4] = hasteSpell[4] - 1;
-							
-							ishasteused4 = "yes";
-							
-							skillsCheck();
-						}						
+							//String str2 = "skillsCheck";
+							//sendToClient0(str2);
+						}				
 					}
 					
 					else if (read.contains("usedCure")) {
@@ -27780,31 +28399,25 @@ else if (read.contains("cstmImage")) {//MAY WANT MORE COMPLICATED TERM SO IT DOE
 							
 							cureSpell[0] = cureSpell[0] - 1;
 							
-							skillsCheck();
+							String str = "usedCure0";
+							sendToClient1(str);
+							
+							skillsCheckBoth();
+							
+							//String str2 = "skillsCheck";
+							//sendToClient1(str2);
 						}
 						else if (id == 1) {
 							
 							cureSpell[1] = cureSpell[1] - 1;
 							
-							skillsCheck();
-						}
-						else if (id == 2) {
+							String str = "usedCure1";
+							sendToClient0(str);
 							
-							cureSpell[2] = cureSpell[2] - 1;
+							skillsCheckBoth();
 							
-							skillsCheck();
-						}
-						else if (id == 3) {
-							
-							cureSpell[3] = cureSpell[3] - 1;
-							
-							skillsCheck();
-						}
-						else if (id == 4) {
-							
-							cureSpell[4] = cureSpell[4] - 1;
-							
-							skillsCheck();
+							//String str2 = "skillsCheck";
+							//sendToClient0(str2);
 						}						
 					}
 					
@@ -27814,32 +28427,26 @@ else if (read.contains("cstmImage")) {//MAY WANT MORE COMPLICATED TERM SO IT DOE
 							
 							blessSpell[0] = blessSpell[0] - 1;
 							
-							skillsCheck();
+							String str = "usedBless0";
+							sendToClient1(str);
+							
+							skillsCheckBoth();
+							
+							//String str2 = "skillsCheck";
+							//sendToClient1(str2);
 						}
 						else if (id == 1) {
 							
 							blessSpell[1] = blessSpell[1] - 1;
 							
-							skillsCheck();
+							String str = "usedBless1";
+							sendToClient0(str);
+							
+							skillsCheckBoth();
+							
+							//String str2 = "skillsCheck";
+							//sendToClient0(str2);
 						}
-						else if (id == 2) {
-							
-							blessSpell[2] = blessSpell[2] - 1;
-							
-							skillsCheck();
-						}
-						else if (id == 3) {
-							
-							blessSpell[3] = blessSpell[3] - 1;
-							
-							skillsCheck();
-						}
-						else if (id == 4) {
-							
-							blessSpell[4] = blessSpell[4] - 1;
-							
-							skillsCheck();
-						}						
 					}
 					
 					else if (read.contains("usedMightyBlow")) {
@@ -27848,38 +28455,32 @@ else if (read.contains("cstmImage")) {//MAY WANT MORE COMPLICATED TERM SO IT DOE
 							
 							mightyBlowSpell[0] = mightyBlowSpell[0] - 1;
 							
-							skillsCheck();
+							String str = "usedMightyBlow0";
+							sendToClient1(str);
+							
+							skillsCheckBoth();
+							
+							//String str2 = "skillsCheck";
+							//sendToClient1(str2);
 						}
 						else if (id == 1) {
 							
 							mightyBlowSpell[1] = mightyBlowSpell[1] - 1;
 							
-							skillsCheck();
+							String str = "usedMightyBlow1";
+							sendToClient0(str);
+							
+							skillsCheckBoth();
+							
+							//String str2 = "skillsCheck";
+							//sendToClient0(str2);
 						}
-						else if (id == 2) {
-							
-							mightyBlowSpell[2] = mightyBlowSpell[2] - 1;
-							
-							skillsCheck();
-						}
-						else if (id == 3) {
-							
-							mightyBlowSpell[3] = mightyBlowSpell[3] - 1;
-							
-							skillsCheck();
-						}
-						else if (id == 4) {
-							
-							mightyBlowSpell[4] = mightyBlowSpell[4] - 1;
-							
-							skillsCheck();
-						}						
 					}
 					
 					
-					else if (read.contains("skillsCheck")) {
+					else if (read.contains("skillsCheckBoth")) {
 						
-						String str = "skillsCheck";
+						String str = "skillsCheckBoth";
 						sendToAllClients(str);
 					}										
 					
@@ -27952,15 +28553,29 @@ else if (read.contains("cstmImage")) {//MAY WANT MORE COMPLICATED TERM SO IT DOE
 						
 						if (id == 0) {
 							
-							Has0TakenTurn = "yes";
-							
-							attackDamageCriticalHitDamageCriticalHitMightyBlowDamageCompleted();
+							if (ishasteused0.equals("yes")) {
+								
+								attackDamageCriticalHitDamageCriticalHitMightyBlowDamageCompleted();
+							}
+							else {
+								
+								Has0TakenTurn = "yes";
+								
+								attackDamageCriticalHitDamageCriticalHitMightyBlowDamageCompleted();
+							}
 						}
 						else if (id == 1) {
 							
-							hAs1TakenTurn = "yes";
-							
-							attackDamageCriticalHitDamageCriticalHitMightyBlowDamageCompleted();
+							if (ishasteused1.equals("yes")) {
+								
+								attackDamageCriticalHitDamageCriticalHitMightyBlowDamageCompleted();
+							}
+							else {
+								
+								hAs1TakenTurn = "yes";
+								
+								attackDamageCriticalHitDamageCriticalHitMightyBlowDamageCompleted();
+							}
 						}
 					}
 					
