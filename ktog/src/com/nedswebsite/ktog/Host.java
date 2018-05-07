@@ -145,6 +145,7 @@ public class Host extends Activity {
 	
 	boolean preventDoubleStuff = true;
 	
+	
 	int host;
 	int client0;
 	int client1;
@@ -416,31 +417,46 @@ public class Host extends Activity {
 			
 			//WAS GETTING OUTLINE AROUND AVATAR SO:
 			crossedswords2.setVisibility(View.INVISIBLE);
+			crossedswords2.setImageDrawable(null);
 			stonedead2.setVisibility(View.INVISIBLE);
+			stonedead2.setImageDrawable(null);
 			computerAvatar.setVisibility(View.INVISIBLE);
+			computerAvatar.setImageDrawable(null);
 		}		
 		
 		//WHY DID I CREATE IMAGEVIEW FOR EACH??????? JUST HAVE 1 IMAGEVIEW & TAKE OUT: android:background="@drawable/computer" (FOR EX.)
 		
 		else if (ArrayOfAvatars.avatar[5].equals("computer")){
 			crossedswords2.setVisibility(View.INVISIBLE);
+			crossedswords2.setImageDrawable(null);
 			stonedead2.setVisibility(View.INVISIBLE);
+			stonedead2.setImageDrawable(null);
 			customImage.setVisibility(View.INVISIBLE);
+			customImage.setImageDrawable(null);
 		}
 		else if (ArrayOfAvatars.avatar[5].equals("crossedswords")){
 			computerAvatar.setVisibility(View.INVISIBLE);
+			computerAvatar.setImageDrawable(null);
 			stonedead2.setVisibility(View.INVISIBLE);
+			stonedead2.setImageDrawable(null);
 			customImage.setVisibility(View.INVISIBLE);
+			customImage.setImageDrawable(null);
 		}
 		else if (ArrayOfAvatars.avatar[5].equals("stonedead")){
 			crossedswords2.setVisibility(View.INVISIBLE);
+			crossedswords2.setImageDrawable(null);
 			computerAvatar.setVisibility(View.INVISIBLE);
+			computerAvatar.setImageDrawable(null);
 			customImage.setVisibility(View.INVISIBLE);
+			customImage.setImageDrawable(null);
 		}
 		else if (ArrayOfAvatars.avatar[5].equals("custom")){
 			crossedswords2.setVisibility(View.INVISIBLE);
+			crossedswords2.setImageDrawable(null);
 			stonedead2.setVisibility(View.INVISIBLE);
+			stonedead2.setImageDrawable(null);
 			computerAvatar.setVisibility(View.INVISIBLE);
+			computerAvatar.setImageDrawable(null);
 		}
 		
 		/*FOR COMP/1 PLAYER AVATAR:
@@ -451,29 +467,41 @@ public class Host extends Activity {
 		
 		ImageView blessLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftbless);
 		blessLeft.setVisibility(View.INVISIBLE);
+		blessLeft.setImageDrawable(null);
 		ImageView cureLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftcure);
 		cureLeft.setVisibility(View.INVISIBLE);
+		cureLeft.setImageDrawable(null);
 		ImageView dodgeLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftdodge);
 		dodgeLeft.setVisibility(View.INVISIBLE);
+		dodgeLeft.setImageDrawable(null);
 		ImageView mbLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftmb);
 		mbLeft.setVisibility(View.INVISIBLE);
+		mbLeft.setImageDrawable(null);
 		ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
 		hasteLeft1.setVisibility(View.INVISIBLE);
+		hasteLeft1.setImageDrawable(null);
 		ImageView hasteLeft2 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste2);
 		hasteLeft2.setVisibility(View.INVISIBLE);
+		hasteLeft2.setImageDrawable(null);
 		
 		ImageView blessRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightbless);
 		blessRight.setVisibility(View.INVISIBLE);
+		blessRight.setImageDrawable(null);
 		ImageView cureRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightcure);
 		cureRight.setVisibility(View.INVISIBLE);
+		cureRight.setImageDrawable(null);
 		ImageView dodgeRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightdodge);
 		dodgeRight.setVisibility(View.INVISIBLE);
+		dodgeRight.setImageDrawable(null);
 		ImageView mbRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightmb);
 		mbRight.setVisibility(View.INVISIBLE);
+		mbRight.setImageDrawable(null);
 		ImageView hasteRight1 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste1);
 		hasteRight1.setVisibility(View.INVISIBLE);
+		hasteRight1.setImageDrawable(null);
 		ImageView hasteRight2 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste2);
 		hasteRight2.setVisibility(View.INVISIBLE);
+		hasteRight2.setImageDrawable(null);
 		
 		
 		
@@ -482,13 +510,16 @@ public class Host extends Activity {
 		
 		final ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
 		titleBlankButton.setVisibility(View.INVISIBLE);
+		titleBlankButton.setImageDrawable(null);
 		
 		// Here to prevent premature rolling (use ".setEnabled(false);" in "resultsInitiative()"):
 		final ImageView sixSidedBlank = (ImageView) findViewById(R.id.sixsidedanimation);
-		sixSidedBlank.setVisibility(View.INVISIBLE);		
+		sixSidedBlank.setVisibility(View.INVISIBLE);
+		sixSidedBlank.setImageDrawable(null);
 		
 		final ImageView twentySidedBlank = (ImageView) findViewById(R.id.twentysidedanimation);
-		twentySidedBlank.setVisibility(View.INVISIBLE);		
+		twentySidedBlank.setVisibility(View.INVISIBLE);
+		twentySidedBlank.setImageDrawable(null);
 		
 		
 		
@@ -2785,6 +2816,11 @@ public void decodeImage0() {
 				// Start the animation.
 				frameAnimation.stop();
 				frameAnimation.start();
+				
+				
+				img.setImageDrawable(null);
+				
+				System.gc();
 	  	    }
   		});	
 	}
@@ -2806,6 +2842,11 @@ public void decodeImage0() {
 				// Start the animation.
 				frameAnimation.stop();
 				frameAnimation.start();
+				
+				
+				img.setImageDrawable(null);
+				
+				System.gc();
 	  	    }
   		});	
 	}
@@ -2826,6 +2867,11 @@ public void decodeImage0() {
 				// Start the animation.
 				frameAnimation.stop();
 				frameAnimation.start();
+				
+				
+				img.setImageDrawable(null);
+				
+				System.gc();
 	  	    }
   		});		
 	}
@@ -2886,6 +2932,11 @@ public void decodeImage0() {
 	  				
 	  			//titletext.setVisibility(View.VISIBLE);				  		
 	  			//titletext.append("KtOG");
+		  	  	
+		  	  	
+		  	  	img.setImageDrawable(null);
+		  	  	
+		  	  	System.gc();
 	  	    }
   		});	
 	}
@@ -2903,12 +2954,17 @@ public void decodeImage0() {
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();				
 		  	  	
 		  	  	frameAnimation.stop();
-		  	  	frameAnimation.start();			
+		  	  	frameAnimation.start();
+		  	  	
+		  	  	
+		  	  	img.setImageDrawable(null);
+		  	  	
+		  	  	System.gc();
 			}
   		});
 	}
 	
-	public void foldScrolls() {		
+	public void foldScrolls() {
 		
 		// USING "runOnUiThread(new Runnable() {}" TO SEE IF IT WORKS BETTER THAN NOT USING IT.
 		runOnUiThread(new Runnable() {
@@ -2925,12 +2981,17 @@ public void decodeImage0() {
 							
 				// Start the animation.
 				frameAnimation.stop();
-				frameAnimation.start();				
+				frameAnimation.start();
+				
+				
+				img.setImageDrawable(null);
+				
+				System.gc();
 	  	    }
   		});	
 	}
 	
-	public void scrollAnimationLeftDown() {		
+	public void scrollAnimationLeftDown() {
 		
 		// USING "runOnUiThread(new Runnable() {}" TO SEE IF IT WORKS BETTER THAN NOT USING IT.
 		runOnUiThread(new Runnable() {
@@ -2947,12 +3008,17 @@ public void decodeImage0() {
 							
 				// Start the animation.
 				frameAnimation.stop();
-				frameAnimation.start();				
+				frameAnimation.start();
+				
+				
+				img.setImageDrawable(null);
+				
+				System.gc();
 	  	    }
   		});	
 	}
 	
-	public void scrollAnimationLeftUpNoRight() {		
+	public void scrollAnimationLeftUpNoRight() {
 		
 		// USING "runOnUiThread(new Runnable() {}" TO SEE IF IT WORKS BETTER THAN NOT USING IT.
 		runOnUiThread(new Runnable() {
@@ -2968,6 +3034,11 @@ public void decodeImage0() {
 				// Start the animation.
 				frameAnimation.stop();
 				frameAnimation.start();
+				
+				
+				img.setImageDrawable(null);
+				
+				System.gc();
 	  	    }
   		});	
 	}
@@ -3022,6 +3093,9 @@ public void decodeImage0() {
 			  	  	  	
 				  	  	hasteGraphic.clearAnimation();
 				  	  	hasteGraphic.startAnimation(a);
+				  	  	
+				  	  	
+				  	  	System.gc();
 		  	  		}	  	  		
 		  	  	}, 3000);
 			}
@@ -3066,6 +3140,9 @@ public void decodeImage0() {
 			  	  	  	
 				  	  	cureGraphic.clearAnimation();
 				  	  	cureGraphic.startAnimation(a);
+				  	  	
+				  	  	
+				  	  	System.gc();
 		  	  		}	  	  		
 		  	  	}, 3000);
 			}
@@ -3110,6 +3187,9 @@ public void decodeImage0() {
 		  	  	  		
 			  	  	  	blessGraphic.clearAnimation();
 		  	  	  		blessGraphic.startAnimation(a);
+		  	  	  		
+		  	  	  		
+		  	  	  		System.gc();
 		  	  		}	  	  		
 		  	  	}, 3000);
 			}
@@ -3154,6 +3234,9 @@ public void decodeImage0() {
 			  	  	  	
 				  	  	dodgeGraphic.clearAnimation();
 				  	  	dodgeGraphic.startAnimation(a);
+				  	  	
+				  	  	
+				  	  	System.gc();
 		  	  		}	  	  		
 		  	  	}, 3000);
 			}
@@ -3165,7 +3248,16 @@ public void decodeImage0() {
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-		
+				
+				// Use a blank drawable to hide the imageview animation:
+				// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+				final ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+				img1.setBackgroundResource(R.drawable.twentytwentyblank);
+				img1.setImageResource(R.drawable.twentytwentyblank);
+				
+				img1.setImageDrawable(null);
+				
+				
 				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
 				
 				Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobig);					  	  	  	
@@ -3198,6 +3290,9 @@ public void decodeImage0() {
 			  	  	  	
 				  	  	mightyBlowGraphic.clearAnimation();
 				  	  	mightyBlowGraphic.startAnimation(a);
+				  	  	
+				  	  	
+				  	  	System.gc();
 		  	  		}	  	  		
 		  	  	}, 3000);
 			}
@@ -3212,9 +3307,11 @@ public void decodeImage0() {
 				
 				// Use a blank drawable to hide the imageview animation:
 				// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
-				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+				final ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img1.setBackgroundResource(R.drawable.twentytwentyblank);
 				img1.setImageResource(R.drawable.twentytwentyblank);
+				
+				img1.setImageDrawable(null);
 				
 		
 				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
@@ -3227,7 +3324,7 @@ public void decodeImage0() {
 			  	criticalHitGraphic.bringToFront();
 		  	  	
 		  	  	criticalHitGraphic.setTypeface(typeFace);
-		  	  	criticalHitGraphic.setText("Critical     Hit");  	  	
+		  	  	criticalHitGraphic.setText(" Critical Hit");//WAS:"Critical     Hit"
 		  	  	
 		  	  	criticalHitGraphic.clearAnimation();
 		  	  	criticalHitGraphic.startAnimation(a);
@@ -3245,10 +3342,15 @@ public void decodeImage0() {
 			  	  	  	
 				  	  	final TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
 				  	  	criticalHitGraphic.setTypeface(typeFace);
-				  	  	criticalHitGraphic.setText("Critical     Hit");
+				  	  	criticalHitGraphic.setText(" Critical Hit");//WAS:"Critical     Hit"
 			  	  	  	
 				  	  	criticalHitGraphic.clearAnimation();
 				  	  	criticalHitGraphic.startAnimation(a);
+				  	  	
+				  	  	
+				  	  	img1.setImageDrawable(null);
+				  	  	
+				  	  	System.gc();
 		  	  		}	  	  		
 		  	  	}, 3000);
 			}
@@ -3266,6 +3368,8 @@ public void decodeImage0() {
 				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img1.setBackgroundResource(R.drawable.twentytwentyblank);
 				img1.setImageResource(R.drawable.twentytwentyblank);
+				
+				img1.setImageDrawable(null);
 				
 		
 				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
@@ -3300,6 +3404,9 @@ public void decodeImage0() {
 			  	  	  	
 				  	  	criticalMissGraphic.clearAnimation();
 				  	  	criticalMissGraphic.startAnimation(a);
+				  	  	
+				  	  	
+				  	  	System.gc();
 		  	  		}	  	  		
 		  	  	}, 3000);
 			}
@@ -3366,6 +3473,12 @@ public void decodeImage0() {
 		final ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
 		
 		img.clearAnimation();
+		
+		
+		img.setImageDrawable(null);
+
+
+		System.gc();
 	}
 	
 	public void sixSidedRollFromLeft() {	  	
@@ -3895,6 +4008,12 @@ public void decodeImage0() {
 		final ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
 		
 		img.clearAnimation();
+		
+		
+		img.setImageDrawable(null);
+		
+		
+		System.gc();
 	}
 	
 	public void twentySidedRollFromLeft() {	  	
@@ -13435,7 +13554,9 @@ public void decodeImage0() {
   		// Use a blank drawable to hide the imageview animation:
   		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
   		img.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
-		img.setImageResource(R.drawable.sixsixrightleftrotateblank);		
+		img.setImageResource(R.drawable.sixsixrightleftrotateblank);
+		
+		img.setImageDrawable(null);
   		
 		
 		// Re-enables ability to use srollbar:
@@ -13789,7 +13910,7 @@ public void decodeImage0() {
 			  	  		
 		  	  	  		lineInSummaryTableLayout.setVisibility(View.INVISIBLE);
 		  	  	  		
-		  	  	  	//summaryTableLayout.removeAllViews();
+		  	  	  		//summaryTableLayout.removeAllViews();
 		  	  			
 		  	  			TextView titletext = (TextView) findViewById(R.id.textviewtitlektogtext);
 		  	  			
@@ -14813,11 +14934,15 @@ public void decodeImage0() {
 						ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 						img1.setBackgroundResource(R.drawable.twentytwentyblank);
 						img1.setImageResource(R.drawable.twentytwentyblank);
-		
+						
+						img1.setImageDrawable(null);
+						
 						// Use a blank drawable to hide the imageview animation:
 						ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
 						img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
 						img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+						
+						img2.setImageDrawable(null);
 						
 						
 						computerCardStopFadeInFadeOut();
@@ -14857,6 +14982,8 @@ public void decodeImage0() {
 						img1.setBackgroundResource(R.drawable.twentytwentyblank);
 						img1.setImageResource(R.drawable.twentytwentyblank);
 						
+						img1.setImageDrawable(null);
+						
 						/*
 						//TEST:
 						img1.bringToFront();
@@ -14866,6 +14993,8 @@ public void decodeImage0() {
 						ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
 						img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
 						img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+						
+						img2.setImageDrawable(null);
 						
 						
 						playerCardStopFadeInFadeOut();
@@ -14963,11 +15092,15 @@ public void decodeImage0() {
 							ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 							img1.setBackgroundResource(R.drawable.twentytwentyblank);
 							img1.setImageResource(R.drawable.twentytwentyblank);
-			
+							
+							img1.setImageDrawable(null);
+							
 							// Use a blank drawable to hide the imageview animation:
 							ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
 							img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
 							img2.setImageResource(R.drawable.sixsixrightleftrotateblank);						
+							
+							img2.setImageDrawable(null);
 							
 			    			
 			    			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
@@ -15073,11 +15206,15 @@ public void decodeImage0() {
 							ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 							img1.setBackgroundResource(R.drawable.twentytwentyblank);
 							img1.setImageResource(R.drawable.twentytwentyblank);
-			
+							
+							img1.setImageDrawable(null);
+							
 							// Use a blank drawable to hide the imageview animation:
 							ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
 							img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
 							img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+							
+							img2.setImageDrawable(null);
 							
 							
 							//unfoldLeftScrollReverse(); DO THIS BEFORE
@@ -15245,11 +15382,15 @@ public void decodeImage0() {
 							ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 							img1.setBackgroundResource(R.drawable.twentytwentyblank);
 							img1.setImageResource(R.drawable.twentytwentyblank);
-			
+							
+							img1.setImageDrawable(null);
+							
 							// Use a blank drawable to hide the imageview animation:
 							ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
 							img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
 							img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+							
+							img2.setImageDrawable(null);
 							
 							
 							//unfoldLeftScrollReverse(); DO THIS BEFORE
@@ -15816,10 +15957,14 @@ public void decodeImage0() {
 				  			}
 						}
 			  	  		
-			  	  		else {							
+			  	  		else {					
 			  	  			
 				  	  		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
 					  		disarmedtextleft.setVisibility(View.INVISIBLE);
+					  		
+					  		String str9 = "hostSideNotDisarmed";
+			  		  		sendToClient0(str9);
+					  		
 			  	  			
 							if (isInvokingService.equals("true")){
 								//NEED THIS?
@@ -15889,12 +16034,16 @@ public void decodeImage0() {
 				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img1.setBackgroundResource(R.drawable.twentytwentyblank);
 				img1.setImageResource(R.drawable.twentytwentyblank);
-
+				
+				img1.setImageDrawable(null);
+				
 				// Use a blank drawable to hide the imageview animation:
 				ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
 				img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
 				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
   	  	    	
+				img2.setImageDrawable(null);
+				
   	  	    	
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			// Re-enables ability to use srollbar:
@@ -16184,12 +16333,16 @@ public void decodeImage0() {
 				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img1.setBackgroundResource(R.drawable.twentytwentyblank);
 				img1.setImageResource(R.drawable.twentytwentyblank);
-
+				
+				img1.setImageDrawable(null);
+				
 				// Use a blank drawable to hide the imageview animation:
 				ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
 				img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
 				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);				
   	  	    	
+				img2.setImageDrawable(null);
+				
   	  	    	
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			// Re-enables ability to use srollbar:
@@ -16298,7 +16451,13 @@ public void decodeImage0() {
 			
 			String str3 = "DidHumanCriticalMiss0 :" + "no";
 			sendToAllClients(str3);
-		}		
+		}
+		
+		else if (canHasDisarmed[0].equals("yes")) {
+			
+			TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+	  		disarmedtextright.setVisibility(View.VISIBLE);
+		}
 		
 		runOnUiThread(new Runnable() {
   	  	    @Override
@@ -16376,6 +16535,11 @@ public void decodeImage0() {
 			  	  			
 				  	  		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
 					  		disarmedtextleft.setVisibility(View.INVISIBLE);
+					  		disarmedtextleft.bringToFront();
+					  		
+					  		String str9 = "hostSideNotDisarmed";
+			  		  		sendToAllClients(str9);
+					  		
 			  	  			
 							if (isInvokingService.equals("true")){
 								//NEED THIS?
@@ -16415,7 +16579,13 @@ public void decodeImage0() {
 			
 			String str3 = "dIdHumanCriticalMiss1 :" + "no";
 			sendToAllClients(str3);
-		}		
+		}
+		
+		else if (canHasDisarmed[1].equals("yes")) {
+			
+			TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+	  		disarmedtextright.setVisibility(View.VISIBLE);
+		}
 		
 		runOnUiThread(new Runnable() {
   	  	    @Override
@@ -16450,7 +16620,7 @@ public void decodeImage0() {
 				  	  	  	disarmedtextleft.bringToFront();
 				  	  	  	
 				  	  	  	String str6 = "hostSideDisarmed";
-				  	  	  	sendToAllClients(str6);				  	  	
+				  	  	  	sendToAllClients(str6);
 			  	  			
 							
 			  	  			if ((didHumanCriticalMiss[5].equals("yes") && disarmedTurnStart[5] == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[5].equals("yes") && disarmedTurnStart[5] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[5].equals("yes") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0])) {			  	  				
@@ -16489,10 +16659,15 @@ public void decodeImage0() {
 				  			}
 						}
 			  	  		
-			  	  		else {							
+			  	  		else {					
 			  	  			
 				  	  		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
 					  		disarmedtextleft.setVisibility(View.INVISIBLE);
+					  		disarmedtextleft.bringToFront();
+					  		
+					  		String str9 = "hostSideNotDisarmed";
+				  	  	  	sendToAllClients(str9);
+					  		
 			  	  			
 							if (isInvokingService.equals("true")){
 								//NEED THIS?
@@ -16533,12 +16708,16 @@ public void decodeImage0() {
 					ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 					img1.setBackgroundResource(R.drawable.twentytwentyblank);
 					img1.setImageResource(R.drawable.twentytwentyblank);
-
+					
+					img1.setImageDrawable(null);
+					
 					// Use a blank drawable to hide the imageview animation:
 					ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
 					img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
 					img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
 	  	  	    	
+					img2.setImageDrawable(null);
+					
 	  	  	    	
 		  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 		  			// Re-enables ability to use srollbar:
@@ -16565,6 +16744,8 @@ public void decodeImage0() {
 		  			String str6 = "foldScrolls";
 		  			sendToAllClients(str6);
 		  			
+		  			
+		  			clearDisarmGraphicAndSkills();
 		  			
 		  			
 		  			final Handler h = new Handler();
@@ -16629,6 +16810,17 @@ public void decodeImage0() {
 		  		    		
 		  		    		String str10 = "skillsCheckRight0";
 							sendToAllClients(str10);
+							
+							
+							if (canHasDisarmed[0].equals("yes")) {
+			    				
+			    	    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+			    		  		disarmedtextright.setVisibility(View.VISIBLE);
+			    		  		disarmedtextright.bringToFront();
+					  	  	  	
+			    		  		String str11 = "clientDisarmed";
+					  	  	  	sendToAllClients(str11);
+							}
 		  	  	  			
 		  	  	  			
 		  	  	  			computerCardStartFadeInFadeOut();
@@ -16662,47 +16854,11 @@ public void decodeImage0() {
 		String str = "PlyrsFighting :" + "zeroVsFive";
 		sendToClient1(str);
 		
-		skillsCheckLeft5();
-		
-		String str13 = "skillsCheckLeft5";
-		sendToAllClients(str13);
-		
 		String str2 = "issecondroundofhasteused :" + "no";
 		sendToClient0(str2);
 		
-    	
-    	if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0]) {
-			
-    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
-	  		disarmedtextright.setVisibility(View.INVISIBLE);
-	  		
-	  		String str3 = "clientNotDisarmed";
-	  		sendToAllClients(str3);
-    		
-			
-			canHasDisarmed[0] = "no";
-			
-			String str4 = "CanHasDisarmed0 :" + "no";
-			sendToAllClients(str4);
-		}
-    	
-    	//THIS WAS "else if" (WANT THIS AND THE IF ABOVE TO BOTH BE EVALUATED):
-    	if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("yes") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0]) {
-    		
-    		canHasDisarmed[5] = "no";
-    		
-    		String str5 = "canHaSDisarmed5 :" + "no";
-    		sendToAllClients(str5);
-    		
-				
-			didHumanCriticalMiss[5] = "no";
-			
-			String str6 = "didHuManCriticalMiss5 :" + "no";
-			sendToAllClients(str6);
-			
-			TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
-	  		disarmedtextleft.setVisibility(View.INVISIBLE);
-    	}
+		
+		clearDisarmGraphicAndSkills();
     	
 		
 		runOnUiThread(new Runnable() {
@@ -16729,6 +16885,56 @@ public void decodeImage0() {
     			
     			String str7 = "ClientAttackingReveal5OnLeft";
     			sendToClient1(str7);
+    			
+    			
+    			if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0]) {
+    				
+    	    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+    		  		disarmedtextright.setVisibility(View.INVISIBLE);
+    		  		
+    		  		String str3 = "clientNotDisarmed";
+    		  		sendToAllClients(str3);
+    	    		
+    				
+    				canHasDisarmed[0] = "no";
+    				
+    				String str4 = "CanHasDisarmed0 :" + "no";
+    				sendToAllClients(str4);
+    			}
+    	    	
+    	    	//THIS WAS "else if" (WANT THIS AND THE IF ABOVE TO BOTH BE EVALUATED):
+    	    	if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("yes") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0]) {
+    	    		
+    	    		canHasDisarmed[5] = "no";
+    	    		
+    	    		String str5 = "canHaSDisarmed5 :" + "no";
+    	    		sendToAllClients(str5);
+    	    		
+    					
+    				didHumanCriticalMiss[5] = "no";
+    				
+    				String str6 = "didHuManCriticalMiss5 :" + "no";
+    				sendToAllClients(str6);
+    				
+    				TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+    		  		disarmedtextleft.setVisibility(View.INVISIBLE);
+    	    	}
+    	    	
+    	    	if (canHasDisarmed[5].equals("yes")) {
+    	    		
+    	    		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+		  	  		disarmedtextleft.setVisibility(View.VISIBLE);				  	  	
+		  	  		disarmedtextleft.bringToFront();
+		  	  		
+		  	  		String str14 = "hostSideDisarmed";
+		  	  		sendToAllClients(str14);
+    	    	}
+    			
+    			
+    			skillsCheckLeft5();
+    			
+    			String str13 = "skillsCheckLeft5";
+    			sendToAllClients(str13);
   	  	    	
   	  	    	
 	  			//String str6 = "turn1V105";//USED JUST TO CLEAR DICE..DO THIS IN CHOOSEOPPONENT FOR CLIENT.
@@ -16789,47 +16995,11 @@ public void decodeImage0() {
 		String str = "PlyrsFighting :" + "zeroVsOne";
 		sendToClient1(str);
 		
-		skillsCheckLeft1();
-		
-		String str13 = "skillsCheckLeft1";
-		sendToAllClients(str13);
-		
 		String str2 = "issecondroundofhasteused :" + "no";
 		sendToClient0(str2);
 		
-    	
-    	if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0]) {
-			
-    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
-	  		disarmedtextright.setVisibility(View.INVISIBLE);
-	  		
-	  		String str3 = "clientNotDisarmed";
-	  		sendToAllClients(str3);
-    		
-			
-			canHasDisarmed[0] = "no";
-			
-			String str4 = "CanHasDisarmed0 :" + "no";
-			sendToAllClients(str4);
-		}
-    	
-    	//THIS WAS "else if" (WANT THIS AND THE IF ABOVE TO BOTH BE EVALUATED):
-    	if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0]) {
-    		
-    		canHasDisarmed[1] = "no";
-    		
-    		String str5 = "cAnHasDisarmed1 :" + "no";
-    		sendToAllClients(str5);
-    		
-				
-			didHumanCriticalMiss[1] = "no";
-			
-			String str6 = "dIdHumanCriticalMiss1 :" + "no";
-			sendToAllClients(str6);
-			
-			TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
-	  		disarmedtextleft.setVisibility(View.INVISIBLE);
-    	}
+		
+		clearDisarmGraphicAndSkills();
 		
     	
     	runOnUiThread(new Runnable() {
@@ -16851,12 +17021,52 @@ public void decodeImage0() {
     			
 				setPlayerAvatarFor1Left();
 				
-    			
-    			scrollAnimationLeftUpNoRight();
+				
+				scrollAnimationLeftUpNoRight();
     			
     			String str7 = "clntattackingreveal1onleft";
     			sendToClient1(str7);
+    			
+    			
+    			if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0]) {
+    				
+    	    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+    		  		disarmedtextright.setVisibility(View.INVISIBLE);
+    		  		
+    		  		String str3 = "clientNotDisarmed";
+    		  		sendToAllClients(str3);
+    	    		
+    				
+    				canHasDisarmed[0] = "no";
+    				
+    				String str4 = "CanHasDisarmed0 :" + "no";
+    				sendToAllClients(str4);
+    			}
+    	    	
+    	    	//THIS WAS "else if" (WANT THIS AND THE IF ABOVE TO BOTH BE EVALUATED):
+    	    	if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0]) {
+    	    		
+    	    		canHasDisarmed[1] = "no";
+    	    		
+    	    		String str5 = "cAnHasDisarmed1 :" + "no";
+    	    		sendToAllClients(str5);
+    	    		
+    					
+    				didHumanCriticalMiss[1] = "no";
+    				
+    				String str6 = "dIdHumanCriticalMiss1 :" + "no";
+    				sendToAllClients(str6);
+    				
+    				TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+    		  		disarmedtextleft.setVisibility(View.INVISIBLE);
+    	    	}
   	  	    	
+    	    	
+    	    	skillsCheckLeft1();
+				
+				String str13 = "skillsCheckLeft1";
+				sendToAllClients(str13);
+    	    	
   	  	    	
 	  			//String str6 = "turn1V105";//USED JUST TO CLEAR DICE..DO THIS IN CHOOSEOPPONENT FOR CLIENT.
 	  			//sendToAllClients(str6);	  			
@@ -16923,8 +17133,11 @@ public void decodeImage0() {
 				
 				if (ArrayOfAvatars.avatar[5].equals("custom")){
 					crossedswords2.setVisibility(View.INVISIBLE);
+					crossedswords2.setImageDrawable(null);
 					stonedead2.setVisibility(View.INVISIBLE);
+					stonedead2.setImageDrawable(null);
 					computerAvatar.setVisibility(View.INVISIBLE);
+					computerAvatar.setImageDrawable(null);
 					
 					
 					File imgFile = new  File("/storage/sdcard0/avatar5");//WAS .png
@@ -16942,30 +17155,42 @@ public void decodeImage0() {
 					else {
 						//USE COMPUTER
 						crossedswords2.setVisibility(View.INVISIBLE);
+						crossedswords2.setImageDrawable(null);
 						stonedead2.setVisibility(View.INVISIBLE);
+						stonedead2.setImageDrawable(null);
 						customImage.setVisibility(View.INVISIBLE);
+						customImage.setImageDrawable(null);
 						
 						computerAvatar.setVisibility(View.VISIBLE);
 					}
 				}
 				else if (ArrayOfAvatars.avatar[5].equals("computer")){
 					crossedswords2.setVisibility(View.INVISIBLE);
+					crossedswords2.setImageDrawable(null);
 					stonedead2.setVisibility(View.INVISIBLE);
+					stonedead2.setImageDrawable(null);
 					customImage.setVisibility(View.INVISIBLE);
+					customImage.setImageDrawable(null);
 					
 					computerAvatar.setVisibility(View.VISIBLE);
 				}
 				else if (ArrayOfAvatars.avatar[5].equals("crossedswords")){
 					computerAvatar.setVisibility(View.INVISIBLE);
+					computerAvatar.setImageDrawable(null);
 					stonedead2.setVisibility(View.INVISIBLE);
+					stonedead2.setImageDrawable(null);
 					customImage.setVisibility(View.INVISIBLE);
+					customImage.setImageDrawable(null);
 					
 					crossedswords2.setVisibility(View.VISIBLE);
 				}
 				else if (ArrayOfAvatars.avatar[5].equals("stonedead")){
 					crossedswords2.setVisibility(View.INVISIBLE);
+					crossedswords2.setImageDrawable(null);
 					computerAvatar.setVisibility(View.INVISIBLE);
+					computerAvatar.setImageDrawable(null);
 					customImage.setVisibility(View.INVISIBLE);
+					customImage.setImageDrawable(null);
 					
 					stonedead2.setVisibility(View.VISIBLE);
 				}
@@ -16987,8 +17212,11 @@ public void decodeImage0() {
 				
 				if (ArrayOfAvatars.avatar[1].equals("custom")){
 					crossedswords2.setVisibility(View.INVISIBLE);
+					crossedswords2.setImageDrawable(null);
 					stonedead2.setVisibility(View.INVISIBLE);
+					stonedead2.setImageDrawable(null);
 					computerAvatar.setVisibility(View.INVISIBLE);
+					computerAvatar.setImageDrawable(null);
 					
 					
 					File imgFile = new  File("/storage/sdcard0/avatar1");//WAS .png
@@ -17006,30 +17234,42 @@ public void decodeImage0() {
 					else {
 						//USE COMPUTER
 						crossedswords2.setVisibility(View.INVISIBLE);
+						crossedswords2.setImageDrawable(null);
 						stonedead2.setVisibility(View.INVISIBLE);
+						stonedead2.setImageDrawable(null);
 						customImage.setVisibility(View.INVISIBLE);
+						customImage.setImageDrawable(null);
 						
 						computerAvatar.setVisibility(View.VISIBLE);
 					}
 				}
 				else if (ArrayOfAvatars.avatar[1].equals("computer")){
 					crossedswords2.setVisibility(View.INVISIBLE);
+					crossedswords2.setImageDrawable(null);
 					stonedead2.setVisibility(View.INVISIBLE);
+					stonedead2.setImageDrawable(null);
 					customImage.setVisibility(View.INVISIBLE);
+					customImage.setImageDrawable(null);
 					
 					computerAvatar.setVisibility(View.VISIBLE);
 				}
 				else if (ArrayOfAvatars.avatar[1].equals("crossedswords")){
 					computerAvatar.setVisibility(View.INVISIBLE);
+					computerAvatar.setImageDrawable(null);
 					stonedead2.setVisibility(View.INVISIBLE);
+					stonedead2.setImageDrawable(null);
 					customImage.setVisibility(View.INVISIBLE);
+					customImage.setImageDrawable(null);
 					
 					crossedswords2.setVisibility(View.VISIBLE);
 				}
 				else if (ArrayOfAvatars.avatar[1].equals("stonedead")){
 					crossedswords2.setVisibility(View.INVISIBLE);
+					crossedswords2.setImageDrawable(null);
 					computerAvatar.setVisibility(View.INVISIBLE);
+					computerAvatar.setImageDrawable(null);
 					customImage.setVisibility(View.INVISIBLE);
+					customImage.setImageDrawable(null);
 					
 					stonedead2.setVisibility(View.VISIBLE);
 				}
@@ -17053,8 +17293,11 @@ public void decodeImage0() {
 				
 				if (ArrayOfAvatars.avatar[0].equals("custom")){
 					crossedswords2.setVisibility(View.INVISIBLE);
+					crossedswords2.setImageDrawable(null);
 					stonedead2.setVisibility(View.INVISIBLE);
+					stonedead2.setImageDrawable(null);
 					computerAvatar.setVisibility(View.INVISIBLE);
+					computerAvatar.setImageDrawable(null);
 					
 					
 					File imgFile = new  File("/storage/sdcard0/avatar0");//WAS .png
@@ -17072,23 +17315,32 @@ public void decodeImage0() {
 					else {
 						//USE COMPUTER
 						crossedswords2.setVisibility(View.INVISIBLE);
+						crossedswords2.setImageDrawable(null);
 						stonedead2.setVisibility(View.INVISIBLE);
+						stonedead2.setImageDrawable(null);
 						customImage.setVisibility(View.INVISIBLE);
+						customImage.setImageDrawable(null);
 						
 						computerAvatar.setVisibility(View.VISIBLE);
 					}
 				}
 				else if (ArrayOfAvatars.avatar[0].equals("computer")){
 					crossedswords2.setVisibility(View.INVISIBLE);
+					crossedswords2.setImageDrawable(null);
 					stonedead2.setVisibility(View.INVISIBLE);
+					stonedead2.setImageDrawable(null);
 					customImage.setVisibility(View.INVISIBLE);
+					customImage.setImageDrawable(null);
 					
 					computerAvatar.setVisibility(View.VISIBLE);
 				}
 				else if (ArrayOfAvatars.avatar[0].equals("crossedswords")){
 					computerAvatar.setVisibility(View.INVISIBLE);
+					computerAvatar.setImageDrawable(null);
 					stonedead2.setVisibility(View.INVISIBLE);
+					stonedead2.setImageDrawable(null);
 					customImage.setVisibility(View.INVISIBLE);
+					customImage.setImageDrawable(null);
 					
 					crossedswords2.setVisibility(View.VISIBLE);
 					
@@ -17098,8 +17350,11 @@ public void decodeImage0() {
 				}
 				else if (ArrayOfAvatars.avatar[0].equals("stonedead")){
 					crossedswords2.setVisibility(View.INVISIBLE);
+					crossedswords2.setImageDrawable(null);
 					computerAvatar.setVisibility(View.INVISIBLE);
+					computerAvatar.setImageDrawable(null);
 					customImage.setVisibility(View.INVISIBLE);
+					customImage.setImageDrawable(null);
 					
 					stonedead2.setVisibility(View.VISIBLE);
 				}
@@ -17131,12 +17386,16 @@ public void decodeImage0() {
 					ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 					img1.setBackgroundResource(R.drawable.twentytwentyblank);
 					img1.setImageResource(R.drawable.twentytwentyblank);
-
+					
+					img1.setImageDrawable(null);
+					
 					// Use a blank drawable to hide the imageview animation:
 					ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
 					img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
 					img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
 	  	  	    	
+					img2.setImageDrawable(null);
+					
 	  	  	    	
 		  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 		  			// Re-enables ability to use srollbar:
@@ -17163,6 +17422,8 @@ public void decodeImage0() {
 		  			String str6 = "foldScrolls";
 		  			sendToAllClients(str6);
 		  			
+		  			
+		  			clearDisarmGraphicAndSkills();
 		  			
 		  			
 		  			final Handler h = new Handler();
@@ -17228,6 +17489,17 @@ public void decodeImage0() {
 		  		    		String str10 = "skillsCheckRight1";
 							sendToAllClients(str10);
 		  	  	  			
+							
+							if (canHasDisarmed[1].equals("yes")) {
+			    				
+			    	    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+			    		  		disarmedtextright.setVisibility(View.VISIBLE);
+			    		  		disarmedtextright.bringToFront();
+					  	  	  	
+			    		  		String str11 = "clientDisarmed";
+					  	  	  	sendToAllClients(str11);
+							}
+							
 		  	  	  			
 		  	  	  			computerCardStartFadeInFadeOut();
 		  	  	  			
@@ -17260,47 +17532,11 @@ public void decodeImage0() {
 		String str = "PlyrsFighting :" + "oneVsFive";
 		sendToClient0(str);
 		
-		skillsCheckLeft5();
-		
-		String str13 = "skillsCheckLeft5";
-		sendToAllClients(str13);
-		
 		String str2 = "issecondroundofhasteused :" + "no";
 		sendToClient1(str2);
 		
-    	
-    	if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0]) {
-			
-    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
-	  		disarmedtextright.setVisibility(View.INVISIBLE);
-	  		
-	  		String str3 = "clientNotDisarmed";
-	  		sendToAllClients(str3);
-    		
-			
-			canHasDisarmed[1] = "no";
-			
-			String str4 = "cAnHasDisarmed1 :" + "no";
-			sendToAllClients(str4);
-		}
-    	
-    	//THIS WAS "else if" (WANT THIS AND THE IF ABOVE TO BOTH BE EVALUATED):
-    	if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("yes") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0]) {
-    		
-    		canHasDisarmed[5] = "no";
-    		
-    		String str5 = "canHaSDisarmed5 :" + "no";
-    		sendToAllClients(str5);
-    		
-				
-			didHumanCriticalMiss[5] = "no";
-			
-			String str6 = "didHuManCriticalMiss5 :" + "no";
-			sendToAllClients(str6);
-			
-			TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
-	  		disarmedtextleft.setVisibility(View.INVISIBLE);
-    	}
+		
+		clearDisarmGraphicAndSkills();
     	
 		
 		runOnUiThread(new Runnable() {
@@ -17327,7 +17563,57 @@ public void decodeImage0() {
     			
     			String str7 = "ClientAttackingReveal5OnLeft";
     			sendToClient0(str7);
+    			
+    			
+    			if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0]) {
+    				
+    	    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+    		  		disarmedtextright.setVisibility(View.INVISIBLE);
+    		  		
+    		  		String str3 = "clientNotDisarmed";
+    		  		sendToAllClients(str3);
+    	    		
+    				
+    				canHasDisarmed[1] = "no";
+    				
+    				String str4 = "cAnHasDisarmed1 :" + "no";
+    				sendToAllClients(str4);
+    			}
+    	    	
+    	    	//THIS WAS "else if" (WANT THIS AND THE IF ABOVE TO BOTH BE EVALUATED):
+    	    	if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("yes") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0]) {
+    	    		
+    	    		canHasDisarmed[5] = "no";
+    	    		
+    	    		String str5 = "canHaSDisarmed5 :" + "no";
+    	    		sendToAllClients(str5);
+    	    		
+    					
+    				didHumanCriticalMiss[5] = "no";
+    				
+    				String str6 = "didHuManCriticalMiss5 :" + "no";
+    				sendToAllClients(str6);
+    				
+    				TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+    		  		disarmedtextleft.setVisibility(View.INVISIBLE);
+    	    	}
   	  	    	
+    	    	if (canHasDisarmed[5].equals("yes")) {
+    	    		
+    	    		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+		  	  		disarmedtextleft.setVisibility(View.VISIBLE);				  	  	
+		  	  		disarmedtextleft.bringToFront();
+		  	  		
+		  	  		String str14 = "hostSideDisarmed";
+		  	  		sendToAllClients(str14);
+    	    	}
+    			
+    	    	
+    			skillsCheckLeft5();
+    			
+    			String str13 = "skillsCheckLeft5";
+    			sendToAllClients(str13);
+    			
   	  	    	
 	  			//String str6 = "turn1V105";//USED JUST TO CLEAR DICE..DO THIS IN CHOOSEOPPONENT FOR CLIENT.
 	  			//sendToAllClients(str6);	  			
@@ -17388,47 +17674,11 @@ public void decodeImage0() {
 		String str = "PlyrsFighting :" + "oneVsZero";
 		sendToClient0(str);
 		
-		skillsCheckLeft0();
-		
-		String str13 = "skillsCheckLeft0";
-		sendToAllClients(str13);
-		
 		String str2 = "issecondroundofhasteused :" + "no";
 		sendToClient1(str2);
 		
-    	
-    	if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0]) {
-			
-    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
-	  		disarmedtextright.setVisibility(View.INVISIBLE);
-	  		
-	  		String str3 = "clientNotDisarmed";
-	  		sendToAllClients(str3);
-    		
-			
-			canHasDisarmed[1] = "no";
-			
-			String str4 = "cAnHasDisarmed1 :" + "no";
-			sendToAllClients(str4);
-		}
-    	
-    	//THIS WAS "else if" (WANT THIS AND THE IF ABOVE TO BOTH BE EVALUATED):
-    	if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0]) {
-    		
-    		canHasDisarmed[0] = "no";
-    		
-    		String str5 = "CanHasDisarmed0 :" + "no";
-    		sendToAllClients(str5);
-    		
-				
-			didHumanCriticalMiss[0] = "no";
-			
-			String str6 = "DidHumanCriticalMiss0 :" + "no";
-			sendToAllClients(str6);
-			
-			TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
-	  		disarmedtextleft.setVisibility(View.INVISIBLE);
-    	}
+		
+		clearDisarmGraphicAndSkills();
 		
     	
     	runOnUiThread(new Runnable() {
@@ -17455,7 +17705,47 @@ public void decodeImage0() {
     			
     			String str7 = "CntAttingrevL0onlft";
     			sendToClient0(str7);
+    			
+    			
+    			if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0]) {
+    				
+    	    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+    		  		disarmedtextright.setVisibility(View.INVISIBLE);
+    		  		
+    		  		String str3 = "clientNotDisarmed";
+    		  		sendToAllClients(str3);
+    	    		
+    				
+    				canHasDisarmed[1] = "no";
+    				
+    				String str4 = "cAnHasDisarmed1 :" + "no";
+    				sendToAllClients(str4);
+    			}
+    	    	
+    	    	//THIS WAS "else if" (WANT THIS AND THE IF ABOVE TO BOTH BE EVALUATED):
+    	    	if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0]) {
+    	    		
+    	    		canHasDisarmed[0] = "no";
+    	    		
+    	    		String str5 = "CanHasDisarmed0 :" + "no";
+    	    		sendToAllClients(str5);
+    	    		
+    					
+    				didHumanCriticalMiss[0] = "no";
+    				
+    				String str6 = "DidHumanCriticalMiss0 :" + "no";
+    				sendToAllClients(str6);
+    				
+    				TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+    		  		disarmedtextleft.setVisibility(View.INVISIBLE);
+    	    	}
   	  	    	
+    			
+    			skillsCheckLeft0();
+    			
+    			String str13 = "skillsCheckLeft0";
+    			sendToAllClients(str13);
+    			
   	  	    	
 	  			//String str6 = "turn1V105";//USED JUST TO CLEAR DICE..DO THIS IN CHOOSEOPPONENT FOR CLIENT.
 	  			//sendToAllClients(str6);	  			
@@ -17522,6 +17812,9 @@ public void decodeImage0() {
 			@Override
 			public void run() {
 				
+				clearDisarmGraphicAndSkills();
+				
+				
 				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 				
 				TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);		
@@ -17544,75 +17837,84 @@ public void decodeImage0() {
         		ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img1.setBackgroundResource(R.drawable.twentytwentyblank);
 				img1.setImageResource(R.drawable.twentytwentyblank);
-
+				
+				img1.setImageDrawable(null);
+				
 				// Use a blank drawable to hide the imageview animation:
 				ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
 				img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
-				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
-			}
-		});
+				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);			
+				
+				img2.setImageDrawable(null);
+				
 		
-		
-		playersFighting = "zeroVsFive";
-		
-		String str2 = "PlyrsFighting :" + "zeroVsFive";
-		sendToClient1(str2);
-		
-		skillsCheckLeft5();
-		
-		String str13 = "skillsCheckLeft5";
-		sendToAllClients(str13);
-	
-		String str3 = "issecondroundofhasteused :" + "no";
-		sendToClient0(str3);
-		
-		
-		if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("yes") && disarmedTurnStart[5] + 3 == ArrayOfTurn.turn[0]) {//CHANGED FROM 3 TO 2, SHOULD BE 3?
+				playersFighting = "zeroVsFive";
+				
+				String str2 = "PlyrsFighting :" + "zeroVsFive";
+				sendToClient1(str2);
+				
+				skillsCheckLeft5();
+				
+				String str17 = "skillsCheckLeft5";
+				sendToAllClients(str17);
 			
-			canHasDisarmed[5] = "no";
-			
-			String str4 = "canHaSDisarmed5 :" + "no";
-			sendToAllClients(str4);
-			
-			
-			TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
-	  		disarmedtextleft.setVisibility(View.INVISIBLE);
-	  		
-	  		String str5 = "hostSideNotDisarmed";
-	  		sendToAllClients(str5);
-			
-	  		
-			didHumanCriticalMiss[5] = "no";
-			
-			String str6 = "didHuManCriticalMiss5 :" + "no";
-			sendToAllClients(str6);
-		}		
-		
-		runOnUiThread(new Runnable() {
-  	  	    @Override
-  	  	    public void run() { 	  	    	
-  	  	    	
-  	  	    	//ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
-	  			//chatBlankButton.bringToFront();
-  	  	    	
-  	  	    	/*
-  	  	    	displayTurn();
-  	  	    	
-  	  	    	//int turnVariable = ArrayOfTurn.turn[0];
-  	  	    	
-	  	  	    String str7 = "Turn :" + ArrayOfTurn.turn[0];
-	  	  	    sendToAllClients(str7);
-  	  	    	
-	  	  	    String str8 = "displayTrn";
-	  	  	    sendToAllClients(str8);
-  	  	    	*/
+				String str3 = "issecondroundofhasteused :" + "no";
+				sendToClient0(str3);
+				
+				
+				if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("yes") && disarmedTurnStart[5] + 3 == ArrayOfTurn.turn[0]) {//CHANGED FROM 3 TO 2, SHOULD BE 3?
+					
+					canHasDisarmed[5] = "no";
+					
+					String str4 = "canHaSDisarmed5 :" + "no";
+					sendToAllClients(str4);
+					
+					
+					TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+			  		disarmedtextleft.setVisibility(View.INVISIBLE);
+			  		
+			  		String str5 = "hostSideNotDisarmed";
+			  		sendToAllClients(str5);
+					
+			  		
+					didHumanCriticalMiss[5] = "no";
+					
+					String str6 = "didHuManCriticalMiss5 :" + "no";
+					sendToAllClients(str6);
+				}
+				
+				if (canHasDisarmed[5].equals("yes")) {
+		    		
+		    		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+		  	  		disarmedtextleft.setVisibility(View.VISIBLE);				  	  	
+		  	  		disarmedtextleft.bringToFront();
+		  	  		
+		  	  		String str18 = "hostSideDisarmed";
+			  		sendToAllClients(str18);
+		    	}
+				 	  	    	
+		  	  	    	
+		    	//ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+				//chatBlankButton.bringToFront();
+		    	
+		    	/*
+		    	displayTurn();
+		    	
+		    	//int turnVariable = ArrayOfTurn.turn[0];
+		    	
+		  	    String str7 = "Turn :" + ArrayOfTurn.turn[0];
+		  	    sendToAllClients(str7);
+		    	
+		  	    String str8 = "displayTrn";
+		  	    sendToAllClients(str8);
+		    	*/
 				
 				final Handler h = new Handler();
-	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
-	  	  	  			
-	  	  	  		@Override
+		  	  	h.postDelayed(new Runnable() {		  	  	  			
+		  	  			
+		  	  		@Override
 		  	  	  	public void run() {	  	  	  			
-	  	  	  			
+		  	  			
 			  	  		if (canHasDisarmed[0].equals("yes")) {
 							
 				  	  		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
@@ -17677,9 +17979,9 @@ public void decodeImage0() {
 							}
 			  	  		}
 		  	  	  	}
-	  	  	  	}, 1000);				
-  	  	    }
-		});
+		  	  	}, 1000);
+			}
+		}); 
 	}
 	
 	public void gameEngine3V30Part1For01() {
@@ -17691,6 +17993,9 @@ public void decodeImage0() {
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
+				
+				clearDisarmGraphicAndSkills();
+				
 				
 				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 				
@@ -17714,11 +18019,15 @@ public void decodeImage0() {
         		ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img1.setBackgroundResource(R.drawable.twentytwentyblank);
 				img1.setImageResource(R.drawable.twentytwentyblank);
-
+				
+				img1.setImageDrawable(null);
+				
 				// Use a blank drawable to hide the imageview animation:
 				ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
 				img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
 				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+				
+				img2.setImageDrawable(null);
 			}
 		});
 		
@@ -17862,6 +18171,9 @@ public void decodeImage0() {
 			@Override
 			public void run() {
 				
+				clearDisarmGraphicAndSkills();
+				
+				
 				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 				
 				TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);		
@@ -17884,53 +18196,62 @@ public void decodeImage0() {
         		ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img1.setBackgroundResource(R.drawable.twentytwentyblank);
 				img1.setImageResource(R.drawable.twentytwentyblank);
-
+				
+				img1.setImageDrawable(null);
+				
 				// Use a blank drawable to hide the imageview animation:
 				ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
 				img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
 				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
-			}
-		});
+				
+				img2.setImageDrawable(null);
 		
 		
-		playersFighting = "oneVsFive";
-		
-		String str2 = "PlyrsFighting :" + "oneVsFive";
-		sendToClient0(str2);
-		
-		skillsCheckLeft5();
-		
-		String str13 = "skillsCheckLeft5";
-		sendToAllClients(str13);
-	
-		String str3 = "issecondroundofhasteused :" + "no";
-		sendToClient1(str3);
-		
-		
-		if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("yes") && disarmedTurnStart[5] + 3 == ArrayOfTurn.turn[0]) {//CHANGED FROM 3 TO 2, SHOULD BE 3?
+				playersFighting = "oneVsFive";
+				
+				String str2 = "PlyrsFighting :" + "oneVsFive";
+				sendToClient0(str2);
+				
+				skillsCheckLeft5();
+				
+				String str17 = "skillsCheckLeft5";
+				sendToAllClients(str17);
 			
-			canHasDisarmed[5] = "no";
-			
-			String str4 = "canHaSDisarmed5 :" + "no";
-			sendToAllClients(str4);
-			
-			
-			TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
-	  		disarmedtextleft.setVisibility(View.INVISIBLE);
-	  		
-	  		String str5 = "hostSideNotDisarmed";
-	  		sendToAllClients(str5);
-			
-	  		
-			didHumanCriticalMiss[5] = "no";
-			
-			String str6 = "didHuManCriticalMiss5 :" + "no";
-			sendToAllClients(str6);
-		}		
+				String str3 = "issecondroundofhasteused :" + "no";
+				sendToClient1(str3);
+				
+				
+				if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("yes") && disarmedTurnStart[5] + 3 == ArrayOfTurn.turn[0]) {//CHANGED FROM 3 TO 2, SHOULD BE 3?
+					
+					canHasDisarmed[5] = "no";
+					
+					String str4 = "canHaSDisarmed5 :" + "no";
+					sendToAllClients(str4);
+					
+					
+					TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+			  		disarmedtextleft.setVisibility(View.INVISIBLE);
+			  		
+			  		String str5 = "hostSideNotDisarmed";
+			  		sendToAllClients(str5);
+					
+			  		
+					didHumanCriticalMiss[5] = "no";
+					
+					String str6 = "didHuManCriticalMiss5 :" + "no";
+					sendToAllClients(str6);
+				}
+				
+				if (canHasDisarmed[5].equals("yes")) {
+		    		
+		    		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+		  	  		disarmedtextleft.setVisibility(View.VISIBLE);				  	  	
+		  	  		disarmedtextleft.bringToFront();
+		  	  		
+		  	  		String str18 = "hostSideDisarmed";
+			  		sendToAllClients(str18);
+		    	}
 		
-		runOnUiThread(new Runnable() {
-	  	    @Override
-	  	    public void run() {
 	  	    	
 	  	    	//ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
 	  			//chatBlankButton.bringToFront();
@@ -18018,8 +18339,8 @@ public void decodeImage0() {
 							}
 			  	  		}
 		  	  	  	}
-	  	  	  	}, 1000);				
-	  	    }
+	  	  	  	}, 1000);
+			}
 		});
 	}
 	
@@ -18032,6 +18353,9 @@ public void decodeImage0() {
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
+				
+				clearDisarmGraphicAndSkills();
+				
 				
 				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 				
@@ -18055,11 +18379,15 @@ public void decodeImage0() {
         		ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img1.setBackgroundResource(R.drawable.twentytwentyblank);
 				img1.setImageResource(R.drawable.twentytwentyblank);
-
+				
+				img1.setImageDrawable(null);
+				
 				// Use a blank drawable to hide the imageview animation:
 				ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
 				img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
 				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+				
+				img2.setImageDrawable(null);
 			}
 		});
 		
@@ -18217,12 +18545,16 @@ public void decodeImage0() {
 					ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 					img1.setBackgroundResource(R.drawable.twentytwentyblank);
 					img1.setImageResource(R.drawable.twentytwentyblank);
-
+					
+					img1.setImageDrawable(null);
+					
 					// Use a blank drawable to hide the imageview animation:
 					ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
 					img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
 					img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
 	  	  	    	
+					img2.setImageDrawable(null);
+					
 	  	  	    	
 		  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 		  			// Re-enables ability to use srollbar:
@@ -18249,6 +18581,8 @@ public void decodeImage0() {
 		  			String str6 = "foldScrolls";
 		  			sendToAllClients(str6);
 		  			
+		  			
+		  			clearDisarmGraphicAndSkills();		  			
 		  			
 		  			
 		  			final Handler h = new Handler();
@@ -18284,6 +18618,17 @@ public void decodeImage0() {
 		  		    		
 		  		    		String str8 = "skillsCheckLeft5";
 							sendToAllClients(str8);
+							
+							
+							if (canHasDisarmed[5].equals("yes")) {
+			    				
+								TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+		    		  			disarmedtextleft.setVisibility(View.VISIBLE);
+		    		  			disarmedtextleft.bringToFront();
+					  	  	  	
+					  	  	  	String str9 = "hostSideDisarmed";
+					  	  	  	sendToAllClients(str9);
+							}
 		  	  	  			
 		  	  	  			
 		  	  	  			playerCardStartFadeInFadeOut();	  	  	  			
@@ -18304,6 +18649,17 @@ public void decodeImage0() {
 		}
 	}
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*
 	public void gameEngine3V3XPart2For50Part2() {//FOR 5 ATTACKING 0 PT 2
 		
 		playersFighting = "fiveVsZero";
@@ -18601,7 +18957,7 @@ public void decodeImage0() {
   	  	    }
 		});
 	}
-	
+	*/
 	
 	
 	
@@ -18668,28 +19024,40 @@ public void decodeImage0() {
   	  	    	
   	  	    	blessLeft.setVisibility(View.INVISIBLE);
   	  	    	blessLeft.bringToFront();
+  	  	    	blessLeft.setImageDrawable(null);
   	  	    	cureLeft.setVisibility(View.INVISIBLE);
   	  	    	cureLeft.bringToFront();
+  	  	    	cureLeft.setImageDrawable(null);
   	  	    	dodgeLeft.setVisibility(View.INVISIBLE);
   	  	    	dodgeLeft.bringToFront();
+  	  	    	dodgeLeft.setImageDrawable(null);
   	  	    	mbLeft.setVisibility(View.INVISIBLE);
   	  	    	mbLeft.bringToFront();
+  	  	    	mbLeft.setImageDrawable(null);
   	  	    	hasteLeft1.setVisibility(View.INVISIBLE);
   	  	    	hasteLeft1.bringToFront();
+  	  	    	hasteLeft1.setImageDrawable(null);
   	  	    	hasteLeft2.setVisibility(View.INVISIBLE);
   	  	    	hasteLeft2.bringToFront();
+  	  	    	hasteLeft2.setImageDrawable(null);
   	  	    	blessRight.setVisibility(View.INVISIBLE);
   	  	    	blessRight.bringToFront();
+  	  	    	blessRight.setImageDrawable(null);
   	  	    	cureRight.setVisibility(View.INVISIBLE);
   	  	    	cureRight.bringToFront();
+  	  	    	cureRight.setImageDrawable(null);
   	  	    	dodgeRight.setVisibility(View.INVISIBLE);
   	  	    	dodgeRight.bringToFront();
+  	  	    	dodgeRight.setImageDrawable(null);
   	  	    	mbRight.setVisibility(View.INVISIBLE);
   	  	    	mbRight.bringToFront();
+  	  	    	mbRight.setImageDrawable(null);
   	  	    	hasteRight1.setVisibility(View.INVISIBLE);
   	  	    	hasteRight1.bringToFront();
+  	  	    	hasteRight1.setImageDrawable(null);
   	  	    	hasteRight2.setVisibility(View.INVISIBLE);
   	  	    	hasteRight2.bringToFront();
+  	  	    	hasteRight2.setImageDrawable(null);
   	  	    	
   	  	    	
 				//if (numberOfPlayers == 2) {
@@ -18941,16 +19309,22 @@ public void decodeImage0() {
   	  	    	
   	  	    	blessLeft.setVisibility(View.INVISIBLE);
   	  	    	blessLeft.bringToFront();
+  	  	    	blessLeft.setImageDrawable(null);
   	  	    	cureLeft.setVisibility(View.INVISIBLE);
   	  	    	cureLeft.bringToFront();
+  	  	    	cureLeft.setImageDrawable(null);
   	  	    	dodgeLeft.setVisibility(View.INVISIBLE);
   	  	    	dodgeLeft.bringToFront();
+  	  	    	dodgeLeft.setImageDrawable(null);
   	  	    	mbLeft.setVisibility(View.INVISIBLE);
   	  	    	mbLeft.bringToFront();
+  	  	    	mbLeft.setImageDrawable(null);
   	  	    	hasteLeft1.setVisibility(View.INVISIBLE);
   	  	    	hasteLeft1.bringToFront();
+  	  	    	hasteLeft1.setImageDrawable(null);
   	  	    	hasteLeft2.setVisibility(View.INVISIBLE);
   	  	    	hasteLeft2.bringToFront();
+  	  	    	hasteLeft2.setImageDrawable(null);
   	  	    		
   	  	    	if (blessSpell[5] < 1) {						
 					
@@ -18999,16 +19373,22 @@ public void decodeImage0() {
   	  	    	
   	  	    	blessLeft.setVisibility(View.INVISIBLE);
   	  	    	blessLeft.bringToFront();
+  	  	    	blessLeft.setImageDrawable(null);
   	  	    	cureLeft.setVisibility(View.INVISIBLE);
   	  	    	cureLeft.bringToFront();
+  	  	    	cureLeft.setImageDrawable(null);
   	  	    	dodgeLeft.setVisibility(View.INVISIBLE);
   	  	    	dodgeLeft.bringToFront();
+  	  	    	dodgeLeft.setImageDrawable(null);
   	  	    	mbLeft.setVisibility(View.INVISIBLE);
   	  	    	mbLeft.bringToFront();
+  	  	    	mbLeft.setImageDrawable(null);
   	  	    	hasteLeft1.setVisibility(View.INVISIBLE);
   	  	    	hasteLeft1.bringToFront();
+  	  	    	hasteLeft1.setImageDrawable(null);
   	  	    	hasteLeft2.setVisibility(View.INVISIBLE);
   	  	    	hasteLeft2.bringToFront();
+  	  	    	hasteLeft2.setImageDrawable(null);
   	    		
   	  	    	if (blessSpell[0] < 1) {
 					
@@ -19056,16 +19436,22 @@ public void decodeImage0() {
   	  	    	
   	  	    	blessLeft.setVisibility(View.INVISIBLE);
   	  	    	blessLeft.bringToFront();
+  	  	    	blessLeft.setImageDrawable(null);
   	  	    	cureLeft.setVisibility(View.INVISIBLE);
   	  	    	cureLeft.bringToFront();
+  	  	    	cureLeft.setImageDrawable(null);
   	  	    	dodgeLeft.setVisibility(View.INVISIBLE);
   	  	    	dodgeLeft.bringToFront();
+  	  	    	dodgeLeft.setImageDrawable(null);
   	  	    	mbLeft.setVisibility(View.INVISIBLE);
   	  	    	mbLeft.bringToFront();
+  	  	    	mbLeft.setImageDrawable(null);
   	  	    	hasteLeft1.setVisibility(View.INVISIBLE);
   	  	    	hasteLeft1.bringToFront();
+  	  	    	hasteLeft1.setImageDrawable(null);
   	  	    	hasteLeft2.setVisibility(View.INVISIBLE);
   	  	    	hasteLeft2.bringToFront();
+  	  	    	hasteLeft2.setImageDrawable(null);
 	  	    		
   	  	    	if (blessSpell[1] < 1) {						
 					
@@ -19113,16 +19499,22 @@ public void decodeImage0() {
   	  	    	
   	  	    	blessRight.setVisibility(View.INVISIBLE);
   	  	    	blessRight.bringToFront();
+  	  	    	blessRight.setImageDrawable(null);
   	  	    	cureRight.setVisibility(View.INVISIBLE);
   	  	    	cureRight.bringToFront();
+  	  	    	cureRight.setImageDrawable(null);
   	  	    	dodgeRight.setVisibility(View.INVISIBLE);
   	  	    	dodgeRight.bringToFront();
+  	  	    	dodgeRight.setImageDrawable(null);
   	  	    	mbRight.setVisibility(View.INVISIBLE);
   	  	    	mbRight.bringToFront();
+  	  	    	mbRight.setImageDrawable(null);
   	  	    	hasteRight1.setVisibility(View.INVISIBLE);
   	  	    	hasteRight1.bringToFront();
+  	  	    	hasteRight1.setImageDrawable(null);
   	  	    	hasteRight2.setVisibility(View.INVISIBLE);
   	  	    	hasteRight2.bringToFront();
+  	  	    	hasteRight2.setImageDrawable(null);
 					
 				if (blessSpell[0] < 1) {						
 					
@@ -19170,16 +19562,22 @@ public void decodeImage0() {
   	  	    	
   	  	    	blessRight.setVisibility(View.INVISIBLE);
   	  	    	blessRight.bringToFront();
+  	  	    	blessRight.setImageDrawable(null);
   	  	    	cureRight.setVisibility(View.INVISIBLE);
   	  	    	cureRight.bringToFront();
+  	  	    	cureRight.setImageDrawable(null);
   	  	    	dodgeRight.setVisibility(View.INVISIBLE);
   	  	    	dodgeRight.bringToFront();
+  	  	    	dodgeRight.setImageDrawable(null);
   	  	    	mbRight.setVisibility(View.INVISIBLE);
   	  	    	mbRight.bringToFront();
+  	  	    	mbRight.setImageDrawable(null);
   	  	    	hasteRight1.setVisibility(View.INVISIBLE);
   	  	    	hasteRight1.bringToFront();
+  	  	    	hasteRight1.setImageDrawable(null);
   	  	    	hasteRight2.setVisibility(View.INVISIBLE);
   	  	    	hasteRight2.bringToFront();
+  	  	    	hasteRight2.setImageDrawable(null);
 					
 				if (blessSpell[1] < 1) {						
 					
@@ -20588,7 +20986,7 @@ public void decodeImage0() {
 		
 		else if (numberOfPlayers == 3) {//SAME AS ABOVE BECAUSE 3-PLAYER USES "ishasteused"
 			
-			threePlayerRedirect();						
+			threePlayerRedirectWithHasteForClient();						
 		}
 	}	
 	
@@ -22059,7 +22457,14 @@ public void decodeImage0() {
 								  	  	  			
 								  	  	  			else if (numberOfPlayers == 3) {
 								  	  	  				
-								  	  	  				threePlayerRedirectWithHasteForClient();
+								  	  	  				if (ishasteused.equals("yes")) {
+								  	  	  					
+								  	  	  					hastePartTwo();
+								  	  	  				}
+								  	  	  				else {
+								  	  	  					
+								  	  	  					threePlayerRedirectWithHasteForClient();
+								  	  	  				}								  	  	  				
 								  	  	  			}
 									  	  	  	}
 								  	  	  	}, 2000);
@@ -22499,6 +22904,31 @@ public void decodeImage0() {
 										
 										String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
 										sendToClient0(str2);
+										
+										
+										if (playersFighting.equals("fiveVsZero") || playersFighting.equals("zeroVsFive")) {	  	  	    	
+							  	  	    	
+								  	  	    TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);				  	  	
+									  	  	disarmedtextright.setVisibility(View.VISIBLE);
+									  	  	disarmedtextright.bringToFront();
+							  	  	    }
+							  	  	    /*
+							  	  	    else if (playersFighting.equals("fiveVsOne") || playersFighting.equals("oneVsFive")) {	  	  	    	
+							  	  	    	
+							  	  	    }
+							  	  	    */
+							  	  	    else if (playersFighting.equals("zeroVsOne")) {	  	  	    	
+								  	  	    
+								  	  	    TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);				  	  	
+									  	  	disarmedtextright.setVisibility(View.VISIBLE);
+									  	  	disarmedtextright.bringToFront();
+							  	  	    }
+							  	  	    else if (playersFighting.equals("oneVsZero")) {	  	  	    	
+								  	  	    
+								  	  	    TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+									  	  	disarmedtextleft.setVisibility(View.VISIBLE);				  	  	
+									  	  	disarmedtextleft.bringToFront();
+							  	  	    }
 									}
 									else if (playerNumberAttacked == 1) {
 										
@@ -22507,6 +22937,31 @@ public void decodeImage0() {
 										
 										String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
 										sendToClient1(str2);
+										
+										
+										/*
+							  	  	    if (playersFighting.equals("fiveVsZero") || playersFighting.equals("zeroVsFive")) {	  	  	    	
+							  	  	    	
+							  	  	    }
+							  	  	    */
+							  	  	    if (playersFighting.equals("fiveVsOne") || playersFighting.equals("oneVsFive")) {	  	  	    	
+							  	  	    	
+								  	  	    TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);				  	  	
+									  	  	disarmedtextright.setVisibility(View.VISIBLE);
+									  	  	disarmedtextright.bringToFront();
+							  	  	    }		  	  	    
+							  	  	    else if (playersFighting.equals("zeroVsOne")) {	  	  	    	
+								  	  	    
+								  	  	    TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+									  	  	disarmedtextleft.setVisibility(View.VISIBLE);				  	  	
+									  	  	disarmedtextleft.bringToFront();
+							  	  	    }
+							  	  	    else if (playersFighting.equals("oneVsZero")) {	  	  	    	
+								  	  	    
+								  	  	    TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);				  	  	
+									  	  	disarmedtextright.setVisibility(View.VISIBLE);
+									  	  	disarmedtextright.bringToFront();
+							  	  	    }
 									}
 									else if (playerNumberAttacked == 2) {
 										
@@ -22604,7 +23059,8 @@ public void decodeImage0() {
 								  	  	  			
 								  	  	  			else if (numberOfPlayers == 3) {
 								  	  	  				
-								  	  	  				threePlayerRedirect();
+								  	  	  				//threePlayerRedirect();
+								  	  	  				threePlayerRedirectWithHasteForClient();
 								  	  	  			}
 									  	  	  	}
 								  	  	  	}, 2000);
@@ -22673,6 +23129,31 @@ public void decodeImage0() {
 										
 										String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
 										sendToClient0(str2);
+										
+										
+										if (playersFighting.equals("fiveVsZero") || playersFighting.equals("zeroVsFive")) {	  	  	    	
+							  	  	    	
+								  	  	    TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);				  	  	
+									  	  	disarmedtextright.setVisibility(View.VISIBLE);
+									  	  	disarmedtextright.bringToFront();
+							  	  	    }
+							  	  	    /*
+							  	  	    else if (playersFighting.equals("fiveVsOne") || playersFighting.equals("oneVsFive")) {	  	  	    	
+							  	  	    	
+							  	  	    }
+							  	  	    */
+							  	  	    else if (playersFighting.equals("zeroVsOne")) {	  	  	    	
+								  	  	    
+								  	  	    TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);				  	  	
+									  	  	disarmedtextright.setVisibility(View.VISIBLE);
+									  	  	disarmedtextright.bringToFront();
+							  	  	    }
+							  	  	    else if (playersFighting.equals("oneVsZero")) {	  	  	    	
+								  	  	    
+								  	  	    TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+									  	  	disarmedtextleft.setVisibility(View.VISIBLE);				  	  	
+									  	  	disarmedtextleft.bringToFront();
+							  	  	    }
 									}
 									else if (playerNumberAttacked == 1) {
 										
@@ -22681,6 +23162,31 @@ public void decodeImage0() {
 										
 										String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
 										sendToClient1(str2);
+										
+										
+										/*
+							  	  	    if (playersFighting.equals("fiveVsZero") || playersFighting.equals("zeroVsFive")) {	  	  	    	
+							  	  	    	
+							  	  	    }
+							  	  	    */
+							  	  	    if (playersFighting.equals("fiveVsOne") || playersFighting.equals("oneVsFive")) {	  	  	    	
+							  	  	    	
+								  	  	    TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);				  	  	
+									  	  	disarmedtextright.setVisibility(View.VISIBLE);
+									  	  	disarmedtextright.bringToFront();
+							  	  	    }		  	  	    
+							  	  	    else if (playersFighting.equals("zeroVsOne")) {	  	  	    	
+								  	  	    
+								  	  	    TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+									  	  	disarmedtextleft.setVisibility(View.VISIBLE);				  	  	
+									  	  	disarmedtextleft.bringToFront();
+							  	  	    }
+							  	  	    else if (playersFighting.equals("oneVsZero")) {	  	  	    	
+								  	  	    
+								  	  	    TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);				  	  	
+									  	  	disarmedtextright.setVisibility(View.VISIBLE);
+									  	  	disarmedtextright.bringToFront();
+							  	  	    }
 									}
 									else if (playerNumberAttacked == 2) {
 										
@@ -22778,7 +23284,8 @@ public void decodeImage0() {
 								  	  	  			
 								  	  	  			else if (numberOfPlayers == 3) {
 								  	  	  				
-								  	  	  				threePlayerRedirect();
+								  	  	  				//threePlayerRedirect();
+								  	  	  				threePlayerRedirectWithHasteForClient();
 								  	  	  			}
 									  	  	  	}
 								  	  	  	}, 2000);
@@ -23269,6 +23776,50 @@ public void decodeImage0() {
 		});	
   	}
 	
+	public void clearDisarmGraphicAndSkills() {//DUPLICATE METHOD FROM CLIENT2
+		
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {					  	  	    	
+  	  	    	
+	  	  	    TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);		  	  	
+		  	  	disarmedtextright.setVisibility(View.INVISIBLE);
+		  	  	disarmedtextright.bringToFront();
+		
+		  	  	TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);		  	  	
+		  	  	disarmedtextleft.setVisibility(View.INVISIBLE);
+		  	  	disarmedtextleft.bringToFront();
+		  	  	
+		  	  	
+		  	  	ImageView blessLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftbless);
+	  	    	ImageView cureLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftcure);
+	  	    	ImageView dodgeLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftdodge);
+	  	    	ImageView mbLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftmb);
+	  	    	ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
+	  	    	ImageView hasteLeft2 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste2);
+	  	    	
+	  	    	blessLeft.setVisibility(View.INVISIBLE);
+	  	    	blessLeft.bringToFront();
+	  	    	blessLeft.setImageDrawable(null);
+	  	    	cureLeft.setVisibility(View.INVISIBLE);
+	  	    	cureLeft.bringToFront();
+	  	    	cureLeft.setImageDrawable(null);
+	  	    	dodgeLeft.setVisibility(View.INVISIBLE);
+	  	    	dodgeLeft.bringToFront();
+	  	    	dodgeLeft.setImageDrawable(null);
+	  	    	mbLeft.setVisibility(View.INVISIBLE);
+	  	    	mbLeft.bringToFront();
+	  	    	mbLeft.setImageDrawable(null);
+	  	    	hasteLeft1.setVisibility(View.INVISIBLE);
+	  	    	hasteLeft1.bringToFront();
+	  	    	hasteLeft1.setImageDrawable(null);
+	  	    	hasteLeft2.setVisibility(View.INVISIBLE);
+	  	    	hasteLeft2.bringToFront();
+	  	    	hasteLeft2.setImageDrawable(null);
+  	  	    }
+		});
+	}
+	
 	
 	//=============================================================================================
 	//SEPERATOR
@@ -23295,6 +23846,8 @@ public void decodeImage0() {
 		  		ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 		  		img.setBackgroundResource(R.drawable.twentytwentyblank);
 		  		img.setImageResource(R.drawable.twentytwentyblank);
+		  		
+		  		img.setImageDrawable(null);
 	  			
 		  		
 	  			criticalHitGraphic();
@@ -23799,12 +24352,16 @@ public void decodeImage0() {
 				  	  	  	ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 				  	  	  	img1.setBackgroundResource(R.drawable.twentytwentyblank);
 				  	  	  	img1.setImageResource(R.drawable.twentytwentyblank);
-			
+				  	  	  	
+				  	  	  	img1.setImageDrawable(null);
+				  	  	  	
 				  	  	  	// Use a blank drawable to hide the imageview animation:
 				  	  	  	ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
 				  	  	  	img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
 				  	  	  	img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
 		  	  	  			
+				  	  	  	img2.setImageDrawable(null);
+				  	  	  	
 		  	  	  			
 			  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 					  		centerscrolltext.startAnimation(animAlphaText);
@@ -23850,6 +24407,8 @@ public void decodeImage0() {
 		  		ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 		  		img.setBackgroundResource(R.drawable.twentytwentyblank);
 		  		img.setImageResource(R.drawable.twentytwentyblank);
+		  		
+		  		img.setImageDrawable(null);
 	  			
 		  		
 	  			criticalMissGraphic();
@@ -23895,6 +24454,9 @@ public void decodeImage0() {
 		ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 		img.setBackgroundResource(R.drawable.twentytwentyblank);
 		img.setImageResource(R.drawable.twentytwentyblank);
+		
+		img.setImageDrawable(null);
+		
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
@@ -24195,6 +24757,9 @@ public void decodeImage0() {
 		img.setBackgroundResource(R.drawable.twentytwentyblank);
 		img.setImageResource(R.drawable.twentytwentyblank);
 		
+		img.setImageDrawable(null);
+		
+		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
 		runOnUiThread(new Runnable() {
@@ -24298,6 +24863,9 @@ public void decodeImage0() {
 		img.setBackgroundResource(R.drawable.twentytwentyblank);
 		img.setImageResource(R.drawable.twentytwentyblank);
 		
+		img.setImageDrawable(null);
+		
+		
 		isblessrolled = "no";
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
@@ -24384,6 +24952,9 @@ public void decodeImage0() {
   		ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 		img.setBackgroundResource(R.drawable.twentytwentyblank);
 		img.setImageResource(R.drawable.twentytwentyblank);
+		
+		img.setImageDrawable(null);
+		
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
@@ -24483,6 +25054,8 @@ public void decodeImage0() {
   		ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 		img.setBackgroundResource(R.drawable.twentytwentyblank);
 		img.setImageResource(R.drawable.twentytwentyblank);
+		
+		img.setImageDrawable(null);
 		
 		img.setEnabled(false);
 		
@@ -24889,7 +25462,16 @@ public void decodeImage0() {
 							
 							else if (numberOfPlayers == 3) {
 								
-								threePlayerRedirectWithHasteForClient();
+								//threePlayerRedirectWithHasteForClient();
+								
+								if (ishasteused.equals("yes")) {
+		  	  	  					
+		  	  	  					hastePartTwo();
+		  	  	  				}
+		  	  	  				else {
+		  	  	  					
+		  	  	  					threePlayerRedirectWithHasteForClient();
+		  	  	  				}
 							}
 						}				  	  	  			
 		  	  	  	}
@@ -26038,6 +26620,8 @@ public void decodeImage0() {
 				    	ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				    	img.setBackgroundResource(R.drawable.twentytwentyblank);
 				    	img.setImageResource(R.drawable.twentytwentyblank);
+				    	
+				    	img.setImageDrawable(null);				    	
 						
 				    	
 						dodgeGraphic();
@@ -26273,6 +26857,8 @@ public void decodeImage0() {
 					  		    	ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 					  		    	img.setBackgroundResource(R.drawable.twentytwentyblank);
 					  		    	img.setImageResource(R.drawable.twentytwentyblank);
+					  		    	
+					  		    	img.setImageDrawable(null);
 	  			  		    		
 					  		    	
 	  			  		    		dodgeGraphic();
@@ -26521,7 +27107,7 @@ public void decodeImage0() {
 
 	}
 	*/
-	public void ReceiveImage0(){
+	public void ReceiveImage0() {
 		try {
 			
 			ServerSocket clientSocket0 = new ServerSocket(3000);
@@ -26569,7 +27155,7 @@ public void decodeImage0() {
 		    }
 	}
 	
-	public void ReceiveImage1(){
+	public void ReceiveImage1() {
 		try {
 			
 			ServerSocket clientSocket0 = new ServerSocket(3001);
@@ -26616,6 +27202,7 @@ public void decodeImage0() {
 		       
 		    }
 	}
+	
 	
 	//=============================================================================================
 	//SEPERATOR
@@ -27957,7 +28544,7 @@ else if (read.contains("cstmImage")) {//MAY WANT MORE COMPLICATED TERM SO IT DOE
 						});					
 					}
 					
-					else if (read.contains("canHasDisarmed")) {
+					else if (read.contains("canHasDisarmed")) {//FOR CLIENTS INCOMING
 						
 						String[] parts = read.split(":");
 						String part1 = parts[0];  
@@ -27966,69 +28553,206 @@ else if (read.contains("cstmImage")) {//MAY WANT MORE COMPLICATED TERM SO IT DOE
 						
 						
 						if (part2.equals("no")) {
-							
-							runOnUiThread(new Runnable() {
-					  	  	    @Override
-					  	  	    public void run() {
 					  	  	    	
-					  	  	    	TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
-		  		  	  	  			disarmedtextright.setVisibility(View.INVISIBLE);
-					  	  	    }
-							});
+			  	  	    	//TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+  		  	  	  			//disarmedtextright.setVisibility(View.INVISIBLE);
+							
+							if (id == 0) {
+								
+								canHasDisarmed[0]=part2;
+								
+								String str = "CanHasDisarmed0 :" + part2;
+								sendToAllClients(str);
+								
+								
+								runOnUiThread(new Runnable() {
+						  	  	    @Override
+						  	  	    public void run() {	
+										
+							  	  	    if (playersFighting.equals("fiveVsZero") || playersFighting.equals("zeroVsFive")) {	  	  	    	
+							  	  	    	
+								  	  	    TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);				  	  	
+									  	  	disarmedtextright.setVisibility(View.INVISIBLE);
+									  	  	disarmedtextright.bringToFront();
+							  	  	    }
+							  	  	    /*
+							  	  	    else if (playersFighting.equals("fiveVsOne") || playersFighting.equals("oneVsFive")) {	  	  	    	
+							  	  	    	
+							  	  	    }
+							  	  	    */
+							  	  	    else if (playersFighting.equals("zeroVsOne")) {	  	  	    	
+								  	  	    
+								  	  	    TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);				  	  	
+									  	  	disarmedtextright.setVisibility(View.INVISIBLE);
+									  	  	disarmedtextright.bringToFront();
+							  	  	    }
+							  	  	    else if (playersFighting.equals("oneVsZero")) {	  	  	    	
+								  	  	    
+								  	  	    TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+									  	  	disarmedtextleft.setVisibility(View.INVISIBLE);				  	  	
+									  	  	disarmedtextleft.bringToFront();
+							  	  	    }
+						  	  	    }
+								});
+							}
+							
+							else if (id == 1) {										
+								
+								canHasDisarmed[1]=part2;
+								
+								String str = "cAnHasDisarmed1 :" + part2;
+								sendToAllClients(str);
+								
+								
+								runOnUiThread(new Runnable() {
+						  	  	    @Override
+						  	  	    public void run() {	
+											
+										/*
+							  	  	    if (playersFighting.equals("fiveVsZero") || playersFighting.equals("zeroVsFive")) {	  	  	    	
+							  	  	    	
+							  	  	    }
+							  	  	    */
+							  	  	    if (playersFighting.equals("fiveVsOne") || playersFighting.equals("oneVsFive")) {	  	  	    	
+							  	  	    	
+								  	  	    TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);				  	  	
+									  	  	disarmedtextright.setVisibility(View.INVISIBLE);
+									  	  	disarmedtextright.bringToFront();
+							  	  	    }		  	  	    
+							  	  	    else if (playersFighting.equals("zeroVsOne")) {	  	  	    	
+								  	  	    
+								  	  	    TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+									  	  	disarmedtextleft.setVisibility(View.INVISIBLE);				  	  	
+									  	  	disarmedtextleft.bringToFront();
+							  	  	    }
+							  	  	    else if (playersFighting.equals("oneVsZero")) {	  	  	    	
+								  	  	    
+								  	  	    TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);				  	  	
+									  	  	disarmedtextright.setVisibility(View.INVISIBLE);
+									  	  	disarmedtextright.bringToFront();
+							  	  	    }
+						  	  	    }
+								});
+							}					  	  	    
 						}
 						
 						
-						if (id == 0) {							
+						else if (part2.equals("yes")) {
 							
-							canHasDisarmed[0]=part2;
-							
-							disarmedTurnStart[0] = ArrayOfTurn.turn[0];
-							
-							String str = "CanHasDisarmed0 :" + part2;
-							sendToAllClients(str);
-							
-							String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
-							sendToClient0(str2);
-						}
-						else if (id == 1) {
-							
-							canHasDisarmed[1]=part2;
-							
-							disarmedTurnStart[1] = ArrayOfTurn.turn[0];
-							
-							String str = "cAnHasDisarmed1" + part2;
-							sendToAllClients(str);
-							
-							String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
-							sendToClient1(str2);
-						}
-						else if (id == 2) {
-							
-							canHasDisarmed[2]=part2;
-							
-							disarmedTurnStart[2] = ArrayOfTurn.turn[0];
-							
-							String str = "caNHasDisarmed2" + part2;
-							sendToAllClients(str);
-							
-							String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
-							sendToClient2(str2);
-						}
-						else if (id == 3) {
-							
-							canHasDisarmed[3]=part2;
-							
-							disarmedTurnStart[3] = ArrayOfTurn.turn[0];
-							
-							String str = "canhasDisarmed3" + part2;
-							sendToAllClients(str);
-							
-							String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
-							sendToClient3(str2);
+							if (id == 0) {
+								
+								canHasDisarmed[0]=part2;
+								
+								disarmedTurnStart[0] = ArrayOfTurn.turn[0];
+								
+								String str = "CanHasDisarmed0 :" + part2;
+								sendToAllClients(str);
+								
+								String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
+								sendToClient0(str2);
+								
+								
+								runOnUiThread(new Runnable() {
+						  	  	    @Override
+						  	  	    public void run() {	
+										
+							  	  	    if (playersFighting.equals("fiveVsZero") || playersFighting.equals("zeroVsFive")) {	  	  	    	
+							  	  	    	
+								  	  	    TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);				  	  	
+									  	  	disarmedtextright.setVisibility(View.VISIBLE);
+									  	  	disarmedtextright.bringToFront();
+							  	  	    }
+							  	  	    /*
+							  	  	    else if (playersFighting.equals("fiveVsOne") || playersFighting.equals("oneVsFive")) {	  	  	    	
+							  	  	    	
+							  	  	    }
+							  	  	    */
+							  	  	    else if (playersFighting.equals("zeroVsOne")) {	  	  	    	
+								  	  	    
+								  	  	    TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);				  	  	
+									  	  	disarmedtextright.setVisibility(View.VISIBLE);
+									  	  	disarmedtextright.bringToFront();
+							  	  	    }
+							  	  	    else if (playersFighting.equals("oneVsZero")) {	  	  	    	
+								  	  	    
+								  	  	    TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+									  	  	disarmedtextleft.setVisibility(View.VISIBLE);				  	  	
+									  	  	disarmedtextleft.bringToFront();
+							  	  	    }
+						  	  	    }
+								});
+							}
+							else if (id == 1) {
+								
+								canHasDisarmed[1]=part2;
+								
+								disarmedTurnStart[1] = ArrayOfTurn.turn[0];
+								
+								String str = "cAnHasDisarmed1 :" + part2;
+								sendToAllClients(str);
+								
+								String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
+								sendToClient1(str2);
+								
+								
+								runOnUiThread(new Runnable() {
+						  	  	    @Override
+						  	  	    public void run() {	
+											
+										/*
+							  	  	    if (playersFighting.equals("fiveVsZero") || playersFighting.equals("zeroVsFive")) {	  	  	    	
+							  	  	    	
+							  	  	    }
+							  	  	    */
+							  	  	    if (playersFighting.equals("fiveVsOne") || playersFighting.equals("oneVsFive")) {	  	  	    	
+							  	  	    	
+								  	  	    TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);				  	  	
+									  	  	disarmedtextright.setVisibility(View.VISIBLE);
+									  	  	disarmedtextright.bringToFront();
+							  	  	    }		  	  	    
+							  	  	    else if (playersFighting.equals("zeroVsOne")) {	  	  	    	
+								  	  	    
+								  	  	    TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+									  	  	disarmedtextleft.setVisibility(View.VISIBLE);				  	  	
+									  	  	disarmedtextleft.bringToFront();
+							  	  	    }
+							  	  	    else if (playersFighting.equals("oneVsZero")) {	  	  	    	
+								  	  	    
+								  	  	    TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);				  	  	
+									  	  	disarmedtextright.setVisibility(View.VISIBLE);
+									  	  	disarmedtextright.bringToFront();
+							  	  	    }
+						  	  	    }
+								});
+							}
+							else if (id == 2) {
+								
+								canHasDisarmed[2]=part2;
+								
+								disarmedTurnStart[2] = ArrayOfTurn.turn[0];
+								
+								String str = "caNHasDisarmed2 :" + part2;
+								sendToAllClients(str);
+								
+								String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
+								sendToClient2(str2);
+							}
+							else if (id == 3) {
+								
+								canHasDisarmed[3]=part2;
+								
+								disarmedTurnStart[3] = ArrayOfTurn.turn[0];
+								
+								String str = "canhasDisarmed3 :" + part2;
+								sendToAllClients(str);
+								
+								String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
+								sendToClient3(str2);
+							}
 						}						
 					}
 					
-					else if (read.contains("playerDisarmed")) {
+					else if (read.contains("playerDisarmed")) {//CLIENTS DOING THE DISARMING
 						
 						String[] parts = read.split(":");
 						String part1 = parts[0];  
@@ -28049,6 +28773,37 @@ else if (read.contains("cstmImage")) {//MAY WANT MORE COMPLICATED TERM SO IT DOE
 							
 							String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
 							sendToClient0(str2);
+												  	  	    	
+					  	  	    			
+							runOnUiThread(new Runnable() {
+					  	  	    @Override
+					  	  	    public void run() {	
+									
+						  	  	    if (playersFighting.equals("fiveVsZero") || playersFighting.equals("zeroVsFive")) {	  	  	    	
+						  	  	    	
+							  	  	    TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);				  	  	
+								  	  	disarmedtextright.setVisibility(View.VISIBLE);
+								  	  	disarmedtextright.bringToFront();
+						  	  	    }
+						  	  	    /*
+						  	  	    else if (playersFighting.equals("fiveVsOne") || playersFighting.equals("oneVsFive")) {	  	  	    	
+						  	  	    	
+						  	  	    }
+						  	  	    */
+						  	  	    else if (playersFighting.equals("zeroVsOne")) {	  	  	    	
+							  	  	    
+							  	  	    TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);				  	  	
+								  	  	disarmedtextright.setVisibility(View.VISIBLE);
+								  	  	disarmedtextright.bringToFront();
+						  	  	    }
+						  	  	    else if (playersFighting.equals("oneVsZero")) {	  	  	    	
+							  	  	    
+							  	  	    TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+								  	  	disarmedtextleft.setVisibility(View.VISIBLE);				  	  	
+								  	  	disarmedtextleft.bringToFront();
+						  	  	    }
+					  	  	    }
+							});
 						}
 						else if (playerDisarmed == 1) {
 							
@@ -28057,6 +28812,37 @@ else if (read.contains("cstmImage")) {//MAY WANT MORE COMPLICATED TERM SO IT DOE
 							
 							String str2 = "disarmedTurnStart :" + ArrayOfTurn.turn[0];
 							sendToClient1(str2);
+												
+										
+							runOnUiThread(new Runnable() {
+					  	  	    @Override
+					  	  	    public void run() {	
+										
+									/*
+						  	  	    if (playersFighting.equals("fiveVsZero") || playersFighting.equals("zeroVsFive")) {	  	  	    	
+						  	  	    	
+						  	  	    }
+						  	  	    */
+						  	  	    if (playersFighting.equals("fiveVsOne") || playersFighting.equals("oneVsFive")) {	  	  	    	
+						  	  	    	
+							  	  	    TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);				  	  	
+								  	  	disarmedtextright.setVisibility(View.VISIBLE);
+								  	  	disarmedtextright.bringToFront();
+						  	  	    }		  	  	    
+						  	  	    else if (playersFighting.equals("zeroVsOne")) {	  	  	    	
+							  	  	    
+							  	  	    TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+								  	  	disarmedtextleft.setVisibility(View.VISIBLE);				  	  	
+								  	  	disarmedtextleft.bringToFront();
+						  	  	    }
+						  	  	    else if (playersFighting.equals("oneVsZero")) {	  	  	    	
+							  	  	    
+							  	  	    TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);				  	  	
+								  	  	disarmedtextright.setVisibility(View.VISIBLE);
+								  	  	disarmedtextright.bringToFront();
+						  	  	    }
+					  	  	    }
+							});
 						}
 						else if (playerDisarmed == 2) {
 							
@@ -28080,6 +28866,34 @@ else if (read.contains("cstmImage")) {//MAY WANT MORE COMPLICATED TERM SO IT DOE
 							sendToAllClients(str);
 							
 							//DONT NEED TO SEND disarmedTurnStart TO HOST BECAUSE IT'S DEFINED ABOVE.
+							
+							
+							runOnUiThread(new Runnable() {
+					  	  	    @Override
+					  	  	    public void run() {	
+									
+						  	  	    if (playersFighting.equals("fiveVsZero") || playersFighting.equals("zeroVsFive")) {	  	  	    	
+						  	  	    	
+							  	  	    TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+								  	  	disarmedtextleft.setVisibility(View.VISIBLE);				  	  	
+								  	  	disarmedtextleft.bringToFront();
+						  	  	    }						  	  	    
+						  	  	    else if (playersFighting.equals("fiveVsOne") || playersFighting.equals("oneVsFive")) {	  	  	    	
+						  	  	    	
+							  	  	    TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+								  	  	disarmedtextleft.setVisibility(View.VISIBLE);				  	  	
+								  	  	disarmedtextleft.bringToFront();
+						  	  	    }
+						  	  	    /*
+						  	  	    else if (playersFighting.equals("zeroVsOne")) {						  	  	    
+							  	  	    
+						  	  	    }
+						  	  	    else if (playersFighting.equals("oneVsZero")) {
+							  	  	    
+						  	  	    }
+						  	  	    */
+					  	  	    }
+							});
 						}
 					}
 					

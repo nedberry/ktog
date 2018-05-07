@@ -539,29 +539,41 @@ public class Client2 extends Activity {
 		
 		ImageView blessLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftbless);
 		blessLeft.setVisibility(View.INVISIBLE);
+		blessLeft.setImageDrawable(null);
 		ImageView cureLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftcure);
 		cureLeft.setVisibility(View.INVISIBLE);
+		cureLeft.setImageDrawable(null);
 		ImageView dodgeLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftdodge);
 		dodgeLeft.setVisibility(View.INVISIBLE);
+		dodgeLeft.setImageDrawable(null);
 		ImageView mbLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftmb);
 		mbLeft.setVisibility(View.INVISIBLE);
+		mbLeft.setImageDrawable(null);
 		ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
 		hasteLeft1.setVisibility(View.INVISIBLE);
+		hasteLeft1.setImageDrawable(null);
 		ImageView hasteLeft2 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste2);
 		hasteLeft2.setVisibility(View.INVISIBLE);
+		hasteLeft2.setImageDrawable(null);
 		
 		ImageView blessRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightbless);
 		blessRight.setVisibility(View.INVISIBLE);
+		blessRight.setImageDrawable(null);
 		ImageView cureRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightcure);
 		cureRight.setVisibility(View.INVISIBLE);
+		cureRight.setImageDrawable(null);
 		ImageView dodgeRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightdodge);
 		dodgeRight.setVisibility(View.INVISIBLE);
+		dodgeRight.setImageDrawable(null);
 		ImageView mbRight = (ImageView) findViewById(R.id.imageviewplayerbox4rightmb);
 		mbRight.setVisibility(View.INVISIBLE);
+		mbRight.setImageDrawable(null);
 		ImageView hasteRight1 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste1);
 		hasteRight1.setVisibility(View.INVISIBLE);
+		hasteRight1.setImageDrawable(null);
 		ImageView hasteRight2 = (ImageView) findViewById(R.id.imageviewplayerbox4righthaste2);
 		hasteRight2.setVisibility(View.INVISIBLE);
+		hasteRight2.setImageDrawable(null);
 		
 		
 		
@@ -570,13 +582,16 @@ public class Client2 extends Activity {
 		
 		final ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
 		titleBlankButton.setVisibility(View.INVISIBLE);
+		titleBlankButton.setImageDrawable(null);
 		
 		// Here to prevent premature rolling (use ".setEnabled(false);" in "resultsInitiative()"):
 		final ImageView sixSidedBlank = (ImageView) findViewById(R.id.sixsidedanimation);
-		sixSidedBlank.setVisibility(View.INVISIBLE);		
+		sixSidedBlank.setVisibility(View.INVISIBLE);
+		sixSidedBlank.setImageDrawable(null);
 		
 		final ImageView twentySidedBlank = (ImageView) findViewById(R.id.twentysidedanimation);
 		twentySidedBlank.setVisibility(View.INVISIBLE);
+		twentySidedBlank.setImageDrawable(null);
 		
 		
 		
@@ -2771,6 +2786,9 @@ public class Client2 extends Activity {
 	  				
 	  			//titletext.setVisibility(View.VISIBLE);				  		
 	  			//titletext.append("KtOG");
+		  	  	
+		  	  	
+		  	  	System.gc();
 	  	    }
   		});	
 	}
@@ -2788,7 +2806,10 @@ public class Client2 extends Activity {
 		  	  	final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();				
 		  	  	
 		  	  	frameAnimation.stop();
-		  	  	frameAnimation.start();			
+		  	  	frameAnimation.start();
+		  	  	
+		  	  	
+		  	  	System.gc();
 			}
   		});
 	}
@@ -2811,6 +2832,9 @@ public class Client2 extends Activity {
 				// Start the animation.
 				frameAnimation.stop();
 				frameAnimation.start();
+				
+				
+				System.gc();
 	  	    }
   		});	
 	}
@@ -2831,6 +2855,9 @@ public class Client2 extends Activity {
 				// Start the animation.
 				frameAnimation.stop();
 				frameAnimation.start();
+				
+				
+				System.gc();
 	  	    }
   		});	
 	}
@@ -2857,7 +2884,10 @@ public class Client2 extends Activity {
 							
 				// Start the animation.
 				frameAnimation.stop();
-				frameAnimation.start();				
+				frameAnimation.start();	
+				
+				
+				System.gc();
 	  	    }
   		});	
 	}
@@ -2879,6 +2909,9 @@ public class Client2 extends Activity {
 				// Start the animation.
 				frameAnimation.stop();
 				frameAnimation.start();
+				
+				
+				System.gc();
 	  	    }
   		});	
 	}
@@ -2899,6 +2932,9 @@ public class Client2 extends Activity {
 				// Start the animation.
 				frameAnimation.stop();
 				frameAnimation.start();
+				
+				
+				System.gc();
 	  	    }
   		});	
 	}
@@ -2919,6 +2955,9 @@ public class Client2 extends Activity {
 				// Start the animation.
 				frameAnimation.stop();
 				frameAnimation.start();
+				
+				
+				System.gc();
 	  	    }
   		});	
 	}
@@ -2939,6 +2978,9 @@ public class Client2 extends Activity {
 				// Start the animation.
 				frameAnimation.stop();
 				frameAnimation.start();
+				
+				
+				System.gc();
 	  	    }
   		});	
 	}
@@ -2959,6 +3001,9 @@ public class Client2 extends Activity {
 				// Start the animation.
 				frameAnimation.stop();
 				frameAnimation.start();
+				
+				
+				System.gc();
 	  	    }
   		});	
 	}
@@ -3051,6 +3096,9 @@ public class Client2 extends Activity {
 			  	  	  	
 				  	  	hasteGraphic.clearAnimation();
 				  	  	hasteGraphic.startAnimation(a);
+				  	  	
+				  	  	
+				  	  	System.gc();
 		  	  		}	  	  		
 		  	  	}, 3000);				
 			}
@@ -3095,6 +3143,9 @@ public class Client2 extends Activity {
 			  	  	  	
 				  	  	cureGraphic.clearAnimation();
 				  	  	cureGraphic.startAnimation(a);
+				  	  	
+				  	  	
+				  	  	System.gc();
 		  	  		}	  	  		
 		  	  	}, 3000);				
 			}
@@ -3139,6 +3190,9 @@ public class Client2 extends Activity {
 		  	  	  		
 			  	  	  	blessGraphic.clearAnimation();
 		  	  	  		blessGraphic.startAnimation(a);
+		  	  	  		
+		  	  	  		
+		  	  	  		System.gc();
 		  	  		}	  	  		
 		  	  	}, 3000);				
 			}
@@ -3156,6 +3210,8 @@ public class Client2 extends Activity {
 				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img1.setBackgroundResource(R.drawable.twentytwentyblank);
 				img1.setImageResource(R.drawable.twentytwentyblank);
+				
+				img1.setImageDrawable(null);
 				
 				
 				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
@@ -3190,6 +3246,9 @@ public class Client2 extends Activity {
 			  	  	  	
 				  	  	criticalMissGraphic.clearAnimation();
 				  	  	criticalMissGraphic.startAnimation(a);
+				  	  	
+				  	  	
+				  	  	System.gc();
 		  	  		}	  	  		
 		  	  	}, 3000);				
 			}
@@ -3208,6 +3267,8 @@ public class Client2 extends Activity {
 				img1.setBackgroundResource(R.drawable.twentytwentyblank);
 				img1.setImageResource(R.drawable.twentytwentyblank);
 				
+				img1.setImageDrawable(null);
+				
 				
 				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
 				
@@ -3219,7 +3280,7 @@ public class Client2 extends Activity {
 			  	criticalHitGraphic.bringToFront();
 		  	  	
 		  	  	criticalHitGraphic.setTypeface(typeFace);
-		  	  	criticalHitGraphic.setText("Critical     Hit");  	  	
+		  	  	criticalHitGraphic.setText(" Critical Hit");//WAS:"Critical     Hit"
 		  	  	
 		  	  	criticalHitGraphic.clearAnimation();
 		  	  	criticalHitGraphic.startAnimation(a);
@@ -3237,10 +3298,13 @@ public class Client2 extends Activity {
 			  	  	  	
 				  	  	final TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
 				  	  	criticalHitGraphic.setTypeface(typeFace);
-				  	  	criticalHitGraphic.setText("Critical     Hit");
+				  	  	criticalHitGraphic.setText(" Critical Hit");//WAS:"Critical     Hit"
 			  	  	  	
 				  	  	criticalHitGraphic.clearAnimation();
 				  	  	criticalHitGraphic.startAnimation(a);
+				  	  	
+				  	  	
+				  	  	System.gc();
 		  	  		}	  	  		
 		  	  	}, 3000);				
 			}
@@ -3258,6 +3322,8 @@ public class Client2 extends Activity {
 				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img1.setBackgroundResource(R.drawable.twentytwentyblank);
 				img1.setImageResource(R.drawable.twentytwentyblank);
+				
+				img1.setImageDrawable(null);
 				
 				
 				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
@@ -3292,6 +3358,9 @@ public class Client2 extends Activity {
 			  	  	  	
 				  	  	dodgeGraphic.clearAnimation();
 				  	  	dodgeGraphic.startAnimation(a);
+				  	  	
+				  	  	
+				  	  	System.gc();
 		  	  		}	  	  		
 		  	  	}, 3000);			
 			}
@@ -3308,7 +3377,9 @@ public class Client2 extends Activity {
 				// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
 				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img1.setBackgroundResource(R.drawable.twentytwentyblank);
-				img1.setImageResource(R.drawable.twentytwentyblank);				
+				img1.setImageResource(R.drawable.twentytwentyblank);
+				
+				img1.setImageDrawable(null);
 				
 				
 				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
@@ -3343,6 +3414,9 @@ public class Client2 extends Activity {
 			  	  	  	
 				  	  	mightyBlowGraphic.clearAnimation();
 				  	  	mightyBlowGraphic.startAnimation(a);
+				  	  	
+				  	  	
+				  	  	System.gc();
 		  	  		}	  	  		
 		  	  	}, 3000);				
 			}
@@ -3371,6 +3445,12 @@ public class Client2 extends Activity {
 		final ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
 		
 		img.clearAnimation();
+		
+		
+		img.setImageDrawable(null);
+
+
+		System.gc();
 	}
 	
 	public void sixSidedRollFromLeft() {	  	
@@ -4390,6 +4470,12 @@ public class Client2 extends Activity {
 		final ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
 		
 		img.clearAnimation();
+		
+		
+		img.setImageDrawable(null);
+		
+		
+		System.gc();
 	}
 	
 	public void twentySidedRollFromCenterToLeft1() {
@@ -5632,7 +5718,9 @@ public class Client2 extends Activity {
 		  		// Use a blank drawable to hide the imageview animation:
 		  		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
 		  		img.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
-				img.setImageResource(R.drawable.sixsixrightleftrotateblank);		
+				img.setImageResource(R.drawable.sixsixrightleftrotateblank);
+				
+				img.setImageDrawable(null);
 		  		
 				
 				// Re-enables ability to use srollbar:
@@ -6331,8 +6419,11 @@ public class Client2 extends Activity {
 				
 				if (ArrayOfAvatars.avatar[5].equals("custom")){
 					crossedswords2.setVisibility(View.INVISIBLE);
+					crossedswords2.setImageDrawable(null);
 					stonedead2.setVisibility(View.INVISIBLE);
+					stonedead2.setImageDrawable(null);
 					computerAvatar.setVisibility(View.INVISIBLE);
+					computerAvatar.setImageDrawable(null);
 					
 					
 					File imgFile = new  File("/storage/sdcard0/avatar5");//WAS .png
@@ -6350,30 +6441,42 @@ public class Client2 extends Activity {
 					else {
 						//USE COMPUTER
 						crossedswords2.setVisibility(View.INVISIBLE);
+						crossedswords2.setImageDrawable(null);
 						stonedead2.setVisibility(View.INVISIBLE);
+						stonedead2.setImageDrawable(null);
 						customImage.setVisibility(View.INVISIBLE);
+						customImage.setImageDrawable(null);
 						
 						computerAvatar.setVisibility(View.VISIBLE);
 					}
 				}
 				else if (ArrayOfAvatars.avatar[5].equals("computer")){
 					crossedswords2.setVisibility(View.INVISIBLE);
+					crossedswords2.setImageDrawable(null);
 					stonedead2.setVisibility(View.INVISIBLE);
+					stonedead2.setImageDrawable(null);
 					customImage.setVisibility(View.INVISIBLE);
+					customImage.setImageDrawable(null);
 					
 					computerAvatar.setVisibility(View.VISIBLE);
 				}
 				else if (ArrayOfAvatars.avatar[5].equals("crossedswords")){
 					computerAvatar.setVisibility(View.INVISIBLE);
+					computerAvatar.setImageDrawable(null);
 					stonedead2.setVisibility(View.INVISIBLE);
+					stonedead2.setImageDrawable(null);
 					customImage.setVisibility(View.INVISIBLE);
+					customImage.setImageDrawable(null);
 					
 					crossedswords2.setVisibility(View.VISIBLE);
 				}
 				else if (ArrayOfAvatars.avatar[5].equals("stonedead")){
 					crossedswords2.setVisibility(View.INVISIBLE);
+					crossedswords2.setImageDrawable(null);
 					computerAvatar.setVisibility(View.INVISIBLE);
+					computerAvatar.setImageDrawable(null);
 					customImage.setVisibility(View.INVISIBLE);
+					customImage.setImageDrawable(null);
 					
 					stonedead2.setVisibility(View.VISIBLE);
 				}
@@ -6426,8 +6529,11 @@ public class Client2 extends Activity {
 				
 				if (ArrayOfAvatars.avatar[1].equals("custom")){
 					crossedswords2.setVisibility(View.INVISIBLE);
+					crossedswords2.setImageDrawable(null);
 					stonedead2.setVisibility(View.INVISIBLE);
+					stonedead2.setImageDrawable(null);
 					computerAvatar.setVisibility(View.INVISIBLE);
+					computerAvatar.setImageDrawable(null);
 					
 					
 					File imgFile = new  File("/storage/sdcard0/avatar1");//WAS .png
@@ -6445,30 +6551,42 @@ public class Client2 extends Activity {
 					else {
 						//USE COMPUTER
 						crossedswords2.setVisibility(View.INVISIBLE);
+						crossedswords2.setImageDrawable(null);
 						stonedead2.setVisibility(View.INVISIBLE);
+						stonedead2.setImageDrawable(null);
 						customImage.setVisibility(View.INVISIBLE);
+						customImage.setImageDrawable(null);
 						
 						computerAvatar.setVisibility(View.VISIBLE);
 					}
 				}
 				else if (ArrayOfAvatars.avatar[1].equals("computer")){
 					crossedswords2.setVisibility(View.INVISIBLE);
+					crossedswords2.setImageDrawable(null);
 					stonedead2.setVisibility(View.INVISIBLE);
+					stonedead2.setImageDrawable(null);
 					customImage.setVisibility(View.INVISIBLE);
+					customImage.setImageDrawable(null);
 					
 					computerAvatar.setVisibility(View.VISIBLE);
 				}
 				else if (ArrayOfAvatars.avatar[1].equals("crossedswords")){
 					computerAvatar.setVisibility(View.INVISIBLE);
+					computerAvatar.setImageDrawable(null);
 					stonedead2.setVisibility(View.INVISIBLE);
+					stonedead2.setImageDrawable(null);
 					customImage.setVisibility(View.INVISIBLE);
+					customImage.setImageDrawable(null);
 					
 					crossedswords2.setVisibility(View.VISIBLE);
 				}
 				else if (ArrayOfAvatars.avatar[1].equals("stonedead")){
 					crossedswords2.setVisibility(View.INVISIBLE);
+					crossedswords2.setImageDrawable(null);
 					computerAvatar.setVisibility(View.INVISIBLE);
+					computerAvatar.setImageDrawable(null);
 					customImage.setVisibility(View.INVISIBLE);
+					customImage.setImageDrawable(null);
 					
 					stonedead2.setVisibility(View.VISIBLE);
 				}
@@ -6492,8 +6610,11 @@ public class Client2 extends Activity {
 				
 				if (ArrayOfAvatars.avatar[0].equals("custom")){
 					crossedswords2.setVisibility(View.INVISIBLE);
+					crossedswords2.setImageDrawable(null);
 					stonedead2.setVisibility(View.INVISIBLE);
+					stonedead2.setImageDrawable(null);
 					computerAvatar.setVisibility(View.INVISIBLE);
+					computerAvatar.setImageDrawable(null);
 					
 					
 					File imgFile = new  File("/storage/sdcard0/avatar0");//WAS .png
@@ -6511,23 +6632,32 @@ public class Client2 extends Activity {
 					else {
 						//USE COMPUTER
 						crossedswords2.setVisibility(View.INVISIBLE);
+						crossedswords2.setImageDrawable(null);
 						stonedead2.setVisibility(View.INVISIBLE);
+						stonedead2.setImageDrawable(null);
 						customImage.setVisibility(View.INVISIBLE);
+						customImage.setImageDrawable(null);
 						
 						computerAvatar.setVisibility(View.VISIBLE);
 					}
 				}
 				else if (ArrayOfAvatars.avatar[0].equals("computer")){
 					crossedswords2.setVisibility(View.INVISIBLE);
+					crossedswords2.setImageDrawable(null);
 					stonedead2.setVisibility(View.INVISIBLE);
+					stonedead2.setImageDrawable(null);
 					customImage.setVisibility(View.INVISIBLE);
+					customImage.setImageDrawable(null);
 					
 					computerAvatar.setVisibility(View.VISIBLE);
 				}
 				else if (ArrayOfAvatars.avatar[0].equals("crossedswords")){
 					computerAvatar.setVisibility(View.INVISIBLE);
+					computerAvatar.setImageDrawable(null);
 					stonedead2.setVisibility(View.INVISIBLE);
+					stonedead2.setImageDrawable(null);
 					customImage.setVisibility(View.INVISIBLE);
+					customImage.setImageDrawable(null);
 					
 					
 					crossedswords2.setVisibility(View.VISIBLE);
@@ -6538,8 +6668,11 @@ public class Client2 extends Activity {
 				}
 				else if (ArrayOfAvatars.avatar[0].equals("stonedead")){
 					crossedswords2.setVisibility(View.INVISIBLE);
+					crossedswords2.setImageDrawable(null);
 					computerAvatar.setVisibility(View.INVISIBLE);
+					computerAvatar.setImageDrawable(null);
 					customImage.setVisibility(View.INVISIBLE);
+					customImage.setImageDrawable(null);
 					
 					stonedead2.setVisibility(View.VISIBLE);
 				}
@@ -6749,11 +6882,15 @@ public class Client2 extends Activity {
 						  		                  		ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 							  		      				img1.setBackgroundResource(R.drawable.twentytwentyblank);
 							  		      				img1.setImageResource(R.drawable.twentytwentyblank);
+							  		      				
+							  		      				img1.setImageDrawable(null);
 				
 							  		      				// Use a blank drawable to hide the imageview animation:
 							  		      				ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
 							  		      				img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
 							  		      				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+							  		      				
+							  		      				img2.setImageDrawable(null);
 			  		                        		}			  		                        		
 													
 													dialog.dismiss();
@@ -6845,11 +6982,15 @@ public class Client2 extends Activity {
 						  		                  		ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 							  		      				img1.setBackgroundResource(R.drawable.twentytwentyblank);
 							  		      				img1.setImageResource(R.drawable.twentytwentyblank);
+							  		      				
+							  		      				img1.setImageDrawable(null);
 				
 							  		      				// Use a blank drawable to hide the imageview animation:
 							  		      				ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
 							  		      				img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
 							  		      				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+							  		      				
+							  		      				img2.setImageDrawable(null);
 			  		                        		}
 													
 													dialog.dismiss();
@@ -7063,11 +7204,15 @@ public class Client2 extends Activity {
 						  		                  		ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 							  		      				img1.setBackgroundResource(R.drawable.twentytwentyblank);
 							  		      				img1.setImageResource(R.drawable.twentytwentyblank);
+							  		      				
+							  		      				img1.setImageDrawable(null);
 				
 							  		      				// Use a blank drawable to hide the imageview animation:
 							  		      				ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
 							  		      				img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
 							  		      				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+							  		      				
+							  		      				img2.setImageDrawable(null);
 			  		                        		}
 			  		                        		
 													dialog.dismiss();
@@ -7159,11 +7304,15 @@ public class Client2 extends Activity {
 						  		                  		ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 							  		      				img1.setBackgroundResource(R.drawable.twentytwentyblank);
 							  		      				img1.setImageResource(R.drawable.twentytwentyblank);
+							  		      				
+							  		      				img1.setImageDrawable(null);
 				
 							  		      				// Use a blank drawable to hide the imageview animation:
 							  		      				ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
 							  		      				img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
-							  		      				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);			  		                        			
+							  		      				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+							  		      				
+							  		      				img2.setImageDrawable(null);
 			  		                        		}
 													
 													dialog.dismiss();																						
@@ -7356,6 +7505,9 @@ public class Client2 extends Activity {
 			@Override
 			public void run() {
 				
+				clearDisarmGraphicAndSkills();
+				
+				
 				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 				
 				TextView playerNameTextView = (TextView)findViewById(R.id.textviewnameleft);		
@@ -7370,19 +7522,23 @@ public class Client2 extends Activity {
 				//computerAvatar.setVisibility(View.VISIBLE);
 				
 				set2PlayerAvatar();//SETS AVATAR FOR [5]
-    			
-    			
+
+				
     			scrollAnimationLeftUpNoRight();
     			
     			
         		ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img1.setBackgroundResource(R.drawable.twentytwentyblank);
 				img1.setImageResource(R.drawable.twentytwentyblank);
+				
+				img1.setImageDrawable(null);
 
 				// Use a blank drawable to hide the imageview animation:
 				ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
 				img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
 				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+				
+				img2.setImageDrawable(null);
 			}
 		});
 	}
@@ -7392,6 +7548,9 @@ public class Client2 extends Activity {
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
+				
+				clearDisarmGraphicAndSkills();
+				
 				
 				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 				
@@ -7407,19 +7566,23 @@ public class Client2 extends Activity {
 				//computerAvatar.setVisibility(View.VISIBLE);
 				
 				setPlayerAvatarFor1Left();
-    			
-    			
+				
+				
     			scrollAnimationLeftUpNoRight();
     			
     			
         		ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img1.setBackgroundResource(R.drawable.twentytwentyblank);
 				img1.setImageResource(R.drawable.twentytwentyblank);
+				
+				img1.setImageDrawable(null);
 
 				// Use a blank drawable to hide the imageview animation:
 				ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
 				img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
 				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+				
+				img2.setImageDrawable(null);
 			}
 		});
 	}
@@ -7429,6 +7592,9 @@ public class Client2 extends Activity {
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
+				
+				clearDisarmGraphicAndSkills();
+				
 				
 				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 				
@@ -7452,11 +7618,15 @@ public class Client2 extends Activity {
         		ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img1.setBackgroundResource(R.drawable.twentytwentyblank);
 				img1.setImageResource(R.drawable.twentytwentyblank);
+				
+				img1.setImageDrawable(null);
 
 				// Use a blank drawable to hide the imageview animation:
 				ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
 				img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
 				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+				
+				img2.setImageDrawable(null);
 			}
 		});
 	}
@@ -7475,11 +7645,15 @@ public class Client2 extends Activity {
 				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img1.setBackgroundResource(R.drawable.twentytwentyblank);
 				img1.setImageResource(R.drawable.twentytwentyblank);
+				
+				img1.setImageDrawable(null);
 		
 				// Use a blank drawable to hide the imageview animation:
 				ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
 				img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
 				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+				
+				img2.setImageDrawable(null);
 				
 				
 				final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
@@ -7712,6 +7886,8 @@ public class Client2 extends Activity {
 				img1.setBackgroundResource(R.drawable.twentytwentyblank);
 				img1.setImageResource(R.drawable.twentytwentyblank);
 				
+				img1.setImageDrawable(null);
+				
 				/*
 				//TEST:
 				img1.bringToFront();
@@ -7721,6 +7897,8 @@ public class Client2 extends Activity {
 				ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
 				img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
 				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+				
+				img2.setImageDrawable(null);
 				
 				
 				computerCardStopFadeInFadeOut();
@@ -7759,11 +7937,15 @@ public class Client2 extends Activity {
 				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img1.setBackgroundResource(R.drawable.twentytwentyblank);
 				img1.setImageResource(R.drawable.twentytwentyblank);
+				
+				img1.setImageDrawable(null);
 
 				// Use a blank drawable to hide the imageview animation:
 				ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
 				img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
 				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+				
+				img2.setImageDrawable(null);
 				
 				
 				playerCardStopFadeInFadeOut();
@@ -7803,11 +7985,15 @@ public class Client2 extends Activity {
 				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img1.setBackgroundResource(R.drawable.twentytwentyblank);
 				img1.setImageResource(R.drawable.twentytwentyblank);
+				
+				img1.setImageDrawable(null);
 		
 				// Use a blank drawable to hide the imageview animation:
 				ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
 				img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
 				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+				
+				img2.setImageDrawable(null);
 				
 				
 				final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
@@ -7850,11 +8036,15 @@ public class Client2 extends Activity {
 	  	  		ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 	  	  		img1.setBackgroundResource(R.drawable.twentytwentyblank);
 	  	  		img1.setImageResource(R.drawable.twentytwentyblank);
+	  	  		
+	  	  		img1.setImageDrawable(null);
 	
 	  	  		// Use a blank drawable to hide the imageview animation:
 	  	  		ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
 	  	  		img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
 	  	  		img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+	  	  		
+	  	  		img2.setImageDrawable(null);
   	  	    }
 		});
 	}	
@@ -8022,7 +8212,7 @@ public class Client2 extends Activity {
 				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 				
 								
-				if (playersFighting.equals("fiveVsZero")) {
+				if (playersFighting.equals("fiveVsZero") || playersFighting.equals("zeroVsFive") || playersFighting.equals("zeroVsOne")) {
 					
 					final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
 					computerHitPointsTextView.setTypeface(typeFace);
@@ -8080,7 +8270,7 @@ public class Client2 extends Activity {
 				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 				
 				
-				if (playersFighting.equals("fiveVsOne")) {
+				if (playersFighting.equals("fiveVsOne") || playersFighting.equals("oneVsFive") || playersFighting.equals("oneVsZero")) {
 					
 					final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
 					computerHitPointsTextView.setTypeface(typeFace);
@@ -8426,28 +8616,40 @@ public class Client2 extends Activity {
   	  	    	
   	  	    	blessLeft.setVisibility(View.INVISIBLE);
   	  	    	blessLeft.bringToFront();
+  	  	    	blessLeft.setImageDrawable(null);
   	  	    	cureLeft.setVisibility(View.INVISIBLE);
   	  	    	cureLeft.bringToFront();
+  	  	    	cureLeft.setImageDrawable(null);
   	  	    	dodgeLeft.setVisibility(View.INVISIBLE);
   	  	    	dodgeLeft.bringToFront();
+  	  	    	dodgeLeft.setImageDrawable(null);
   	  	    	mbLeft.setVisibility(View.INVISIBLE);
   	  	    	mbLeft.bringToFront();
+  	  	    	mbLeft.setImageDrawable(null);
   	  	    	hasteLeft1.setVisibility(View.INVISIBLE);
   	  	    	hasteLeft1.bringToFront();
+  	  	    	hasteLeft1.setImageDrawable(null);
   	  	    	hasteLeft2.setVisibility(View.INVISIBLE);
   	  	    	hasteLeft2.bringToFront();
+  	  	    	hasteLeft2.setImageDrawable(null);
   	  	    	blessRight.setVisibility(View.INVISIBLE);
   	  	    	blessRight.bringToFront();
+  	  	    	blessRight.setImageDrawable(null);
   	  	    	cureRight.setVisibility(View.INVISIBLE);
   	  	    	cureRight.bringToFront();
+  	  	    	cureRight.setImageDrawable(null);
   	  	    	dodgeRight.setVisibility(View.INVISIBLE);
   	  	    	dodgeRight.bringToFront();
+  	  	    	dodgeRight.setImageDrawable(null);
   	  	    	mbRight.setVisibility(View.INVISIBLE);
   	  	    	mbRight.bringToFront();
+  	  	    	mbRight.setImageDrawable(null);
   	  	    	hasteRight1.setVisibility(View.INVISIBLE);
   	  	    	hasteRight1.bringToFront();
+  	  	    	hasteRight1.setImageDrawable(null);
   	  	    	hasteRight2.setVisibility(View.INVISIBLE);
   	  	    	hasteRight2.bringToFront();
+  	  	    	hasteRight2.setImageDrawable(null);
   	  	    	
   	  	    	
 				//if (numberOfPlayers == 2) {
@@ -8699,16 +8901,22 @@ public class Client2 extends Activity {
   	  	    	
   	  	    	blessLeft.setVisibility(View.INVISIBLE);
   	  	    	blessLeft.bringToFront();
+  	  	    	blessLeft.setImageDrawable(null);
   	  	    	cureLeft.setVisibility(View.INVISIBLE);
   	  	    	cureLeft.bringToFront();
+  	  	    	cureLeft.setImageDrawable(null);
   	  	    	dodgeLeft.setVisibility(View.INVISIBLE);
   	  	    	dodgeLeft.bringToFront();
+  	  	    	dodgeLeft.setImageDrawable(null);
   	  	    	mbLeft.setVisibility(View.INVISIBLE);
   	  	    	mbLeft.bringToFront();
+  	  	    	mbLeft.setImageDrawable(null);
   	  	    	hasteLeft1.setVisibility(View.INVISIBLE);
   	  	    	hasteLeft1.bringToFront();
+  	  	    	hasteLeft1.setImageDrawable(null);
   	  	    	hasteLeft2.setVisibility(View.INVISIBLE);
   	  	    	hasteLeft2.bringToFront();
+  	  	    	hasteLeft2.setImageDrawable(null);
   	  	    		
   	  	    	if (blessSpell[5] < 1) {						
 					
@@ -8757,16 +8965,22 @@ public class Client2 extends Activity {
   	  	    	
   	  	    	blessLeft.setVisibility(View.INVISIBLE);
   	  	    	blessLeft.bringToFront();
+  	  	    	blessLeft.setImageDrawable(null);
   	  	    	cureLeft.setVisibility(View.INVISIBLE);
   	  	    	cureLeft.bringToFront();
+  	  	    	cureLeft.setImageDrawable(null);
   	  	    	dodgeLeft.setVisibility(View.INVISIBLE);
   	  	    	dodgeLeft.bringToFront();
+  	  	    	dodgeLeft.setImageDrawable(null);
   	  	    	mbLeft.setVisibility(View.INVISIBLE);
   	  	    	mbLeft.bringToFront();
+  	  	    	mbLeft.setImageDrawable(null);
   	  	    	hasteLeft1.setVisibility(View.INVISIBLE);
   	  	    	hasteLeft1.bringToFront();
+  	  	    	hasteLeft1.setImageDrawable(null);
   	  	    	hasteLeft2.setVisibility(View.INVISIBLE);
   	  	    	hasteLeft2.bringToFront();
+  	  	    	hasteLeft2.setImageDrawable(null);
   	    		
   	  	    	if (blessSpell[0] < 1) {
 					
@@ -8814,16 +9028,22 @@ public class Client2 extends Activity {
   	  	    	
   	  	    	blessLeft.setVisibility(View.INVISIBLE);
   	  	    	blessLeft.bringToFront();
+  	  	    	blessLeft.setImageDrawable(null);
   	  	    	cureLeft.setVisibility(View.INVISIBLE);
   	  	    	cureLeft.bringToFront();
+  	  	    	cureLeft.setImageDrawable(null);
   	  	    	dodgeLeft.setVisibility(View.INVISIBLE);
   	  	    	dodgeLeft.bringToFront();
+  	  	    	dodgeLeft.setImageDrawable(null);
   	  	    	mbLeft.setVisibility(View.INVISIBLE);
   	  	    	mbLeft.bringToFront();
+  	  	    	mbLeft.setImageDrawable(null);
   	  	    	hasteLeft1.setVisibility(View.INVISIBLE);
   	  	    	hasteLeft1.bringToFront();
+  	  	    	hasteLeft1.setImageDrawable(null);
   	  	    	hasteLeft2.setVisibility(View.INVISIBLE);
   	  	    	hasteLeft2.bringToFront();
+  	  	    	hasteLeft2.setImageDrawable(null);
 	  	    		
   	  	    	if (blessSpell[1] < 1) {						
 					
@@ -8871,16 +9091,22 @@ public class Client2 extends Activity {
   	  	    	
   	  	    	blessRight.setVisibility(View.INVISIBLE);
   	  	    	blessRight.bringToFront();
+  	  	    	blessRight.setImageDrawable(null);
   	  	    	cureRight.setVisibility(View.INVISIBLE);
   	  	    	cureRight.bringToFront();
+  	  	    	cureRight.setImageDrawable(null);
   	  	    	dodgeRight.setVisibility(View.INVISIBLE);
   	  	    	dodgeRight.bringToFront();
+  	  	    	dodgeRight.setImageDrawable(null);
   	  	    	mbRight.setVisibility(View.INVISIBLE);
   	  	    	mbRight.bringToFront();
+  	  	    	mbRight.setImageDrawable(null);
   	  	    	hasteRight1.setVisibility(View.INVISIBLE);
   	  	    	hasteRight1.bringToFront();
+  	  	    	hasteRight1.setImageDrawable(null);
   	  	    	hasteRight2.setVisibility(View.INVISIBLE);
   	  	    	hasteRight2.bringToFront();
+  	  	    	hasteRight2.setImageDrawable(null);
 					
 				if (blessSpell[0] < 1) {						
 					
@@ -8928,16 +9154,22 @@ public class Client2 extends Activity {
   	  	    	
   	  	    	blessRight.setVisibility(View.INVISIBLE);
   	  	    	blessRight.bringToFront();
+  	  	    	blessRight.setImageDrawable(null);
   	  	    	cureRight.setVisibility(View.INVISIBLE);
   	  	    	cureRight.bringToFront();
+  	  	    	cureRight.setImageDrawable(null);
   	  	    	dodgeRight.setVisibility(View.INVISIBLE);
   	  	    	dodgeRight.bringToFront();
+  	  	    	dodgeRight.setImageDrawable(null);
   	  	    	mbRight.setVisibility(View.INVISIBLE);
   	  	    	mbRight.bringToFront();
+  	  	    	mbRight.setImageDrawable(null);
   	  	    	hasteRight1.setVisibility(View.INVISIBLE);
   	  	    	hasteRight1.bringToFront();
+  	  	    	hasteRight1.setImageDrawable(null);
   	  	    	hasteRight2.setVisibility(View.INVISIBLE);
   	  	    	hasteRight2.bringToFront();
+  	  	    	hasteRight2.setImageDrawable(null);
 					
 				if (blessSpell[1] < 1) {						
 					
@@ -9772,8 +10004,41 @@ public class Client2 extends Activity {
 				  	  	  		//final TextView hasteGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
 				  	  	  		//hasteGraphic.setVisibility(View.INVISIBLE);
 		  		  	  	  		
+		  		  	  	  		
+		  		  	  	  		/*
 		  		  	  	  		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
 		  		  	  	  		disarmedtextright.setVisibility(View.INVISIBLE);
+		  		  	  	  		*/
+		  		  	  	  		
+		  		  	  	  		//disarmedGraphicInvisible();
+		  		  	  	  		
+		  		  	  	  		if (playersFighting.equals("fiveVsZero") || playersFighting.equals("zeroVsFive")) {	  	  	    	
+					  	  	    	
+						  	  	    TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);				  	  	
+							  	  	disarmedtextright.setVisibility(View.INVISIBLE);
+							  	  	disarmedtextright.bringToFront();
+					  	  	    }
+					  	  	    
+					  	  	    else if (playersFighting.equals("fiveVsOne") || playersFighting.equals("oneVsFive")) {	  	  	    	
+					  	  	    	
+						  	  	    TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);				  	  	
+							  	  	disarmedtextright.setVisibility(View.INVISIBLE);
+							  	  	disarmedtextright.bringToFront();
+					  	  	    }
+					  	  	    
+					  	  	    else if (playersFighting.equals("zeroVsOne")) {	  	  	    	
+						  	  	    
+						  	  	    TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);				  	  	
+							  	  	disarmedtextright.setVisibility(View.INVISIBLE);
+							  	  	disarmedtextright.bringToFront();
+					  	  	    }
+					  	  	    else if (playersFighting.equals("oneVsZero")) {	  	  	    	
+						  	  	    
+						  	  	    TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+							  	  	disarmedtextleft.setVisibility(View.INVISIBLE);				  	  	
+							  	  	disarmedtextleft.bringToFront();
+					  	  	    }
+		  		  	  	  		
 		  		  	  	  		
 			  	  	  			
 				  	  	  		/*
@@ -9785,14 +10050,19 @@ public class Client2 extends Activity {
 								sendToHost(str7);
 								
 								
-								TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
-						  		disarmedtextleft.setVisibility(View.INVISIBLE);
-								
 								final Handler h = new Handler();
 					  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 					  	  	  			
 					  	  	  		@Override
 						  	  	  	public void run() {
+					  	  	  			
+						  	  	  		ishasteused = "no";
+						  				
+						  				String str2 = "secondroundofhasteused";
+						  				sendToHost(str2);
+						  				
+						  				issecondroundofhasteused = "yes";
+					  	  	  			
 					  	  	  			
 					  	  	  			String str8 = "hasteCureDisarmWithBlessDisarmNoBlessBlessCompleted";
 					  	  	  			sendToHost(str8);
@@ -10337,6 +10607,7 @@ public class Client2 extends Activity {
 		  		img.setBackgroundResource(R.drawable.twentytwentyblank);
 		  		img.setImageResource(R.drawable.twentytwentyblank);
 	  			
+		  		img.setImageDrawable(null);
 		  		
 	  			//criticalHitGraphic();
 	  			
@@ -10523,6 +10794,9 @@ public class Client2 extends Activity {
 		img.setBackgroundResource(R.drawable.twentytwentyblank);
 		img.setImageResource(R.drawable.twentytwentyblank);
 		
+		img.setImageDrawable(null);
+		
+		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
 		runOnUiThread(new Runnable() {
@@ -10624,6 +10898,9 @@ public class Client2 extends Activity {
   		ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 		img.setBackgroundResource(R.drawable.twentytwentyblank);
 		img.setImageResource(R.drawable.twentytwentyblank);
+		
+		img.setImageDrawable(null);
+		
 		
 		isblessrolled = "no";
 		
@@ -11304,6 +11581,9 @@ public class Client2 extends Activity {
 		img.setBackgroundResource(R.drawable.twentytwentyblank);
 		img.setImageResource(R.drawable.twentytwentyblank);
 		
+		img.setImageDrawable(null);
+		
+		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
 		runOnUiThread(new Runnable() {
@@ -11403,6 +11683,8 @@ public class Client2 extends Activity {
 		img.setImageResource(R.drawable.twentytwentyblank);
 		
 		img.setEnabled(false);
+		
+		img.setImageDrawable(null);
 		
 		
 		isblessrolled = "no";
@@ -11505,6 +11787,8 @@ public class Client2 extends Activity {
 		  		ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 		  		img.setBackgroundResource(R.drawable.twentytwentyblank);
 		  		img.setImageResource(R.drawable.twentytwentyblank);
+		  		
+		  		img.setImageDrawable(null);
 	  			
 		  		
 	  			//criticalMissGraphic();
@@ -11648,6 +11932,12 @@ public class Client2 extends Activity {
 			  	  	  			
 				  	  	  		if (ArrayOfAttackResult.attackResult[0] >= 15) {
 									
+				  	  	  			//canHasDisarmed[playerNumberAttacked] = "yes";
+				  	  	  			
+				  	  	  			String str4 = "playerDisarmed :" + playerNumberAttacked;
+				  	  	  			sendToHost(str4);
+				  	  	  			
+				  	  	  			
 					  	  	  		final Handler h = new Handler();
 						  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 						  	  	  			
@@ -11674,10 +11964,8 @@ public class Client2 extends Activity {
 									  	  	  	}
 								  	  	  	}, 2000);
 							  	  	  	}
-						  	  	  	}, 2000);   	
-									
-						  	  	  	String str4 = "playerDisarmed :" + playerNumberAttacked;
-						  	  	  	sendToHost(str4);
+						  	  	  	}, 2000);
+						  	  	  	
 						  	  	  	
 									//canHasDisarmed[playerNumberAttacked] = "yes";																		
 									
@@ -11764,7 +12052,7 @@ public class Client2 extends Activity {
 			  	  	  			
 				  	  	  		if (ArrayOfAttackResult.attackResult[0] >= 17) {
 									
-					  	  	  		canHasDisarmed[playerNumberAttacked] = "yes";
+					  	  	  		//canHasDisarmed[playerNumberAttacked] = "yes";
 					  	  	  		
 					  	  	  		//disarmedTurnStart[playerNumberAttacked] = ArrayOfTurn.turn[0];
 					  	  	  		
@@ -12136,6 +12424,9 @@ public class Client2 extends Activity {
 		img.setBackgroundResource(R.drawable.twentytwentyblank);
 		img.setImageResource(R.drawable.twentytwentyblank);
 		
+		img.setImageDrawable(null);
+		
+		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
 		runOnUiThread(new Runnable() {
@@ -12319,9 +12610,40 @@ public class Client2 extends Activity {
 							//disarmedTurnStart[0] = ArrayOfTurn.turn[0];
 							
 							
+							/*
 							TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
 		  	  	  			disarmedtextleft.setVisibility(View.VISIBLE);
 				  	  	  	disarmedtextleft.bringToFront();
+				  	  	  	*/
+							
+							//disarmedGraphicVisible();
+							
+							if (playersFighting.equals("fiveVsZero") || playersFighting.equals("zeroVsFive")) {	  	  	    	
+				  	  	    	
+					  	  	    TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);				  	  	
+						  	  	disarmedtextright.setVisibility(View.VISIBLE);
+						  	  	disarmedtextright.bringToFront();
+				  	  	    }
+				  	  	    
+				  	  	    else if (playersFighting.equals("fiveVsOne") || playersFighting.equals("oneVsFive")) {	  	  	    	
+				  	  	    	
+					  	  	    TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);				  	  	
+						  	  	disarmedtextright.setVisibility(View.VISIBLE);
+						  	  	disarmedtextright.bringToFront();
+				  	  	    }
+				  	  	    
+				  	  	    else if (playersFighting.equals("zeroVsOne")) {	  	  	    	
+					  	  	    
+					  	  	    TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);				  	  	
+						  	  	disarmedtextright.setVisibility(View.VISIBLE);
+						  	  	disarmedtextright.bringToFront();
+				  	  	    }
+				  	  	    else if (playersFighting.equals("oneVsZero")) {	  	  	    	
+					  	  	    
+					  	  	    TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+						  	  	disarmedtextleft.setVisibility(View.VISIBLE);				  	  	
+						  	  	disarmedtextleft.bringToFront();
+				  	  	    }
 				  	  	  	
 				  	  	  	
 							final Handler h2 = new Handler();
@@ -12388,6 +12710,178 @@ public class Client2 extends Activity {
   	  	    }
 		});	
   	}
+	
+	public void clearDisarmGraphicAndSkills() {//DUPLICATE METHOD FROM HOST
+		
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {					  	  	    	
+  	  	    	
+	  	  	    TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);		  	  	
+		  	  	disarmedtextright.setVisibility(View.INVISIBLE);
+		  	  	disarmedtextright.bringToFront();
+		
+		  	  	TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);		  	  	
+		  	  	disarmedtextleft.setVisibility(View.INVISIBLE);
+		  	  	disarmedtextleft.bringToFront();
+		  	  	
+		  	  	
+		  	  	ImageView blessLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftbless);
+	  	    	ImageView cureLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftcure);
+	  	    	ImageView dodgeLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftdodge);
+	  	    	ImageView mbLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftmb);
+	  	    	ImageView hasteLeft1 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste1);
+	  	    	ImageView hasteLeft2 = (ImageView) findViewById(R.id.imageviewplayerbox4lefthaste2);
+	  	    	
+	  	    	blessLeft.setVisibility(View.INVISIBLE);
+	  	    	blessLeft.bringToFront();
+	  	    	blessLeft.setImageDrawable(null);
+	  	    	cureLeft.setVisibility(View.INVISIBLE);
+	  	    	cureLeft.bringToFront();
+	  	    	cureLeft.setImageDrawable(null);
+	  	    	dodgeLeft.setVisibility(View.INVISIBLE);
+	  	    	dodgeLeft.bringToFront();
+	  	    	dodgeLeft.setImageDrawable(null);
+	  	    	mbLeft.setVisibility(View.INVISIBLE);
+	  	    	mbLeft.bringToFront();
+	  	    	mbLeft.setImageDrawable(null);
+	  	    	hasteLeft1.setVisibility(View.INVISIBLE);
+	  	    	hasteLeft1.bringToFront();
+	  	    	hasteLeft1.setImageDrawable(null);
+	  	    	hasteLeft2.setVisibility(View.INVISIBLE);
+	  	    	hasteLeft2.bringToFront();
+	  	    	hasteLeft2.setImageDrawable(null);
+  	  	    }
+		});
+	}
+	
+	/*
+	public void disarmedGraphicVisible() {
+		
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {					  	  	    	
+  	  	    	
+				if (playerNumberAttacking == 0) {
+				
+		  	  	    if (playersFighting.equals("fiveVsZero") || playersFighting.equals("zeroVsFive")) {	  	  	    	
+		  	  	    	
+			  	  	    TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);				  	  	
+				  	  	disarmedtextright.setVisibility(View.VISIBLE);
+				  	  	disarmedtextright.bringToFront();
+		  	  	    }
+		  	  	    
+		  	  	    //else if (playersFighting.equals("fiveVsOne") || playersFighting.equals("oneVsFive")) {	  	  	    	
+		  	  	    	
+		  	  	    //}
+		  	  	    
+		  	  	    else if (playersFighting.equals("zeroVsOne")) {	  	  	    	
+			  	  	    
+			  	  	    TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);				  	  	
+				  	  	disarmedtextright.setVisibility(View.VISIBLE);
+				  	  	disarmedtextright.bringToFront();
+		  	  	    }
+		  	  	    else if (playersFighting.equals("oneVsZero")) {	  	  	    	
+			  	  	    
+			  	  	    TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+				  	  	disarmedtextleft.setVisibility(View.VISIBLE);				  	  	
+				  	  	disarmedtextleft.bringToFront();
+		  	  	    }
+				}
+				
+				else if (playerNumberAttacking == 1) {
+					
+					
+		  	  	    //if (playersFighting.equals("fiveVsZero") || playersFighting.equals("zeroVsFive")) {	  	  	    	
+		  	  	    	
+		  	  	    //}
+		  	  	    
+		  	  	    if (playersFighting.equals("fiveVsOne") || playersFighting.equals("oneVsFive")) {	  	  	    	
+		  	  	    	
+			  	  	    TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);				  	  	
+				  	  	disarmedtextright.setVisibility(View.VISIBLE);
+				  	  	disarmedtextright.bringToFront();
+		  	  	    }		  	  	    
+		  	  	    else if (playersFighting.equals("zeroVsOne")) {	  	  	    	
+			  	  	    
+			  	  	    TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+				  	  	disarmedtextleft.setVisibility(View.VISIBLE);				  	  	
+				  	  	disarmedtextleft.bringToFront();
+		  	  	    }
+		  	  	    else if (playersFighting.equals("oneVsZero")) {	  	  	    	
+			  	  	    
+			  	  	    TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);				  	  	
+				  	  	disarmedtextright.setVisibility(View.VISIBLE);
+				  	  	disarmedtextright.bringToFront();
+		  	  	    }
+				}
+  	  	    }
+		});
+	}
+	
+	public void disarmedGraphicInvisible() {
+		
+		runOnUiThread(new Runnable() {
+  	  	    @Override
+  	  	    public void run() {					  	  	    	
+  	  	    	
+				if (playerNumberAttacking == 0) {
+				
+		  	  	    if (playersFighting.equals("fiveVsZero") || playersFighting.equals("zeroVsFive")) {	  	  	    	
+		  	  	    	
+			  	  	    TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);				  	  	
+				  	  	disarmedtextright.setVisibility(View.INVISIBLE);
+				  	  	disarmedtextright.bringToFront();
+		  	  	    }
+		  	  	    
+		  	  	    //else if (playersFighting.equals("fiveVsOne") || playersFighting.equals("oneVsFive")) {	  	  	    	
+		  	  	    	
+		  	  	    //}
+		  	  	    
+		  	  	    else if (playersFighting.equals("zeroVsOne")) {	  	  	    	
+			  	  	    
+			  	  	    TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);				  	  	
+				  	  	disarmedtextright.setVisibility(View.INVISIBLE);
+				  	  	disarmedtextright.bringToFront();
+		  	  	    }
+		  	  	    else if (playersFighting.equals("oneVsZero")) {	  	  	    	
+			  	  	    
+			  	  	    TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+				  	  	disarmedtextleft.setVisibility(View.INVISIBLE);				  	  	
+				  	  	disarmedtextleft.bringToFront();
+		  	  	    }
+				}
+				
+				else if (playerNumberAttacking == 1) {
+					
+					
+		  	  	    //if (playersFighting.equals("fiveVsZero") || playersFighting.equals("zeroVsFive")) {	  	  	    	
+		  	  	    	
+		  	  	    //}
+		  	  	    
+		  	  	    if (playersFighting.equals("fiveVsOne") || playersFighting.equals("oneVsFive")) {	  	  	    	
+		  	  	    	
+			  	  	    TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);				  	  	
+				  	  	disarmedtextright.setVisibility(View.INVISIBLE);
+				  	  	disarmedtextright.bringToFront();
+		  	  	    }		  	  	    
+		  	  	    else if (playersFighting.equals("zeroVsOne")) {	  	  	    	
+			  	  	    
+			  	  	    TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+				  	  	disarmedtextleft.setVisibility(View.INVISIBLE);				  	  	
+				  	  	disarmedtextleft.bringToFront();
+		  	  	    }
+		  	  	    else if (playersFighting.equals("oneVsZero")) {	  	  	    	
+			  	  	    
+			  	  	    TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);				  	  	
+				  	  	disarmedtextright.setVisibility(View.INVISIBLE);
+				  	  	disarmedtextright.bringToFront();
+		  	  	    }
+				}
+  	  	    }
+		});
+	}
+	*/
 	
 	public void damageResults() {
 		
@@ -13493,11 +13987,15 @@ public class Client2 extends Activity {
 				  	  	  	ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 				  	  	  	img1.setBackgroundResource(R.drawable.twentytwentyblank);
 				  	  	  	img1.setImageResource(R.drawable.twentytwentyblank);
+				  	  	  	
+				  	  	  	img1.setImageDrawable(null);
 			
 				  	  	  	// Use a blank drawable to hide the imageview animation:
 				  	  	  	ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
 				  	  	  	img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
 				  	  	  	img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+				  	  	  	
+				  	  	  	img2.setImageDrawable(null);
 		  	  	  			
 		  	  	  			/*
 			  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
@@ -13555,12 +14053,11 @@ public class Client2 extends Activity {
 			sendToHost(str);
 		}
 		
-		
-		
-		
-		
 		//playerAttackingTest();
 	}
+	
+	
+	
 	
 	
 	
@@ -13578,7 +14075,19 @@ public class Client2 extends Activity {
 	}
 	*/
 	
-	
+	/*
+	public void test() {
+		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {			
+				
+				Toast.makeText(Client2.this, "WORKING!!!!!!!!!!!!", Toast.LENGTH_LONG).show();
+			}
+		});
+		
+	}
+	*/
 	
 	
 	
@@ -13613,27 +14122,6 @@ public class Client2 extends Activity {
 	}
 	*/
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	/*
-	public void test() {
-		
-		runOnUiThread(new Runnable() {
-			@Override
-			public void run() {			
-				
-				Toast.makeText(Client2.this, "WORKING!!!!!!!!!!!!", Toast.LENGTH_LONG).show();
-			}
-		});
-		
-	}
-	*/
 	
 	
 	
@@ -14562,17 +15050,97 @@ public class Client2 extends Activity {
 						  	  	    }
 								});
 							}
-							else if (numberOfPlayers == 3) {
+							else if (part2.equals("yes")) {
 								
-								if (part2.equals("no")) {
-									
-									runOnUiThread(new Runnable() {
-							  	  	    @Override
-							  	  	    public void run() {						  	  	    	
+								runOnUiThread(new Runnable() {
+						  	  	    @Override
+						  	  	    public void run() {
+						  	  	    	
+						  	  	    	TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+			  		  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
+						  	  	    	
+			  		  	  	  			/* WAS THIS:
+						  	  	    	TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+						  	  	    	disarmedtextleft.setVisibility(View.INVISIBLE);
+						  	  	    	*/
+						  	  	    }
+								});
+							}
+						}
+						
+						else if (numberOfPlayers == 3) {
+							
+							if (part2.equals("no")) {
+								
+								runOnUiThread(new Runnable() {
+						  	  	    @Override
+						  	  	    public void run() {					  	  	    	
+						  	  	    	
+							  	  	    if (playersFighting.equals("fiveVsZero") || playersFighting.equals("zeroVsFive")) {
 							  	  	    	
+							  	  	    	TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+							  	  	    	disarmedtextright.setVisibility(View.INVISIBLE);
+							  	  	    	disarmedtextright.bringToFront();
+							  	  	    }								  	  	    
+							  	  	    //else if (playersFighting.equals("fiveVsOne") || playersFighting.equals("oneVsFive")) {
+							  	  	    	
+							  	  	    //	TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+							  	  	    //	disarmedtextright.setVisibility(View.INVISIBLE);
+							  	  	    //	disarmedtextright.bringToFront();
+							  	  	    //}								  	  	    
+							  	  	    else if (playersFighting.equals("zeroVsOne")) {
+							  	  	    	
+								  	  	    TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+							  	  	    	disarmedtextright.setVisibility(View.INVISIBLE);
+							  	  	    	disarmedtextright.bringToFront();
 							  	  	    }
-									});
-								}
+							  	  	    else if (playersFighting.equals("oneVsZero")) {
+							  	  	    	
+								  	  	    TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);										  	  	
+									  	  	disarmedtextleft.setVisibility(View.INVISIBLE);
+									  	  	disarmedtextleft.bringToFront();
+							  	  	    }
+							  	  	    
+										
+										//disarmedGraphicInvisible();
+						  	  	    }
+								});
+							}
+							else if (part2.equals("yes")) {
+								
+								runOnUiThread(new Runnable() {
+						  	  	    @Override
+						  	  	    public void run() {
+						  	  	    	
+							  	  	    if (playersFighting.equals("fiveVsZero") || playersFighting.equals("zeroVsFive")) {
+							  	  	    	
+								  	  	    TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+							  	  	    	disarmedtextright.setVisibility(View.VISIBLE);
+							  	  	    	disarmedtextright.bringToFront();
+							  	  	    }								  	  	    
+							  	  	    //else if (playersFighting.equals("fiveVsOne") || playersFighting.equals("oneVsFive")) {
+							  	  	    	
+							  	  	    //	TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+							  	  	    //	disarmedtextright.setVisibility(View.VISIBLE);
+							  	  	    //	disarmedtextright.bringToFront();
+							  	  	    //}								  	  	    
+							  	  	    else if (playersFighting.equals("zeroVsOne")) {
+							  	  	    	
+								  	  	    TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+							  	  	    	disarmedtextright.setVisibility(View.VISIBLE);
+							  	  	    	disarmedtextright.bringToFront();
+							  	  	    }
+							  	  	    else if (playersFighting.equals("oneVsZero")) {
+							  	  	    	
+								  	  	    TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);										  	  	
+									  	  	disarmedtextleft.setVisibility(View.VISIBLE);
+									  	  	disarmedtextleft.bringToFront();
+							  	  	    }
+							  	  	    
+						  	  	    	
+						  	  	    	//disarmedGraphicVisible();							  	  	    	
+						  	  	    }
+								});
 							}
 						}
 					}
@@ -14591,8 +15159,68 @@ public class Client2 extends Activity {
 								
 								runOnUiThread(new Runnable() {
 						  	  	    @Override
-						  	  	    public void run() {						  	  	    	
+						  	  	    public void run() {
 						  	  	    	
+						  	  	    	
+							  	  	    //if (playersFighting.equals("fiveVsZero") || playersFighting.equals("zeroVsFive")) {
+							  	  	    	
+							  	  	    //}							  	  	    
+							  	  	    if (playersFighting.equals("fiveVsOne") || playersFighting.equals("oneVsFive")) {
+							  	  	    	
+							  	  	    	TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);									  	  	
+									  	  	disarmedtextright.setVisibility(View.INVISIBLE);
+									  	  	disarmedtextright.bringToFront();
+							  	  	    }
+							  	  	    else if (playersFighting.equals("zeroVsOne")) {
+							  	  	    	
+								  	  	    TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);								  	  	    
+								  	  	    disarmedtextleft.setVisibility(View.INVISIBLE);
+								  	  	    disarmedtextleft.bringToFront();
+							  	  	    }
+							  	  	    else if (playersFighting.equals("oneVsZero")) {
+							  	  	    	
+								  	  	    TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);									  	  	
+									  	  	disarmedtextright.setVisibility(View.INVISIBLE);
+									  	  	disarmedtextright.bringToFront();
+							  	  	    }
+							  	  	    
+							  	  	    
+							  	  	    //disarmedGraphicInvisible();
+						  	  	    }
+								});
+							}
+							else if (part2.equals("yes")) {
+								
+								runOnUiThread(new Runnable() {
+						  	  	    @Override
+						  	  	    public void run() {
+						  	  	    	
+						  	  	    	
+							  	  	    //if (playersFighting.equals("fiveVsZero") || playersFighting.equals("zeroVsFive")) {
+							  	  	    	
+							  	  	    //}
+							  	  	    
+							  	  	    if (playersFighting.equals("fiveVsOne") || playersFighting.equals("oneVsFive")) {
+							  	  	    	
+								  	  	    TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);									  	  	
+									  	  	disarmedtextright.setVisibility(View.VISIBLE);
+									  	  	disarmedtextright.bringToFront();
+							  	  	    }
+							  	  	    else if (playersFighting.equals("zeroVsOne")) {
+							  	  	    	
+								  	  	    TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);								  	  	    
+								  	  	    disarmedtextleft.setVisibility(View.VISIBLE);
+								  	  	    disarmedtextleft.bringToFront();
+							  	  	    }
+							  	  	    else if (playersFighting.equals("oneVsZero")) {
+							  	  	    	
+								  	  	    TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);									  	  	
+									  	  	disarmedtextright.setVisibility(View.VISIBLE);
+									  	  	disarmedtextright.bringToFront();
+							  	  	    }
+							  	  	    
+						  	  	    	
+						  	  	    	//disarmedGraphicVisible();
 						  	  	    }
 								});
 							}
@@ -14673,12 +15301,66 @@ public class Client2 extends Activity {
 						  	  	    @Override
 						  	  	    public void run() {						  	  	    	
 						  	  	    	
+							  	  	    if (playersFighting.equals("fiveVsZero") || playersFighting.equals("zeroVsFive")) {
+							  	  	    	
+								  	  	    TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);								  	  	    
+								  	  	    disarmedtextleft.setVisibility(View.INVISIBLE);
+								  	  	    disarmedtextleft.bringToFront();
+							  	  	    }
+							  	  	    else if (playersFighting.equals("fiveVsOne") || playersFighting.equals("oneVsFive")) {
+							  	  	    	
+								  	  	    TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);								  	  	    
+								  	  	    disarmedtextleft.setVisibility(View.INVISIBLE);
+								  	  	    disarmedtextleft.bringToFront();
+							  	  	    }
+							  	  	    
+							  	  	    //if (playersFighting.equals("zeroVsOne")) {
+							  	  	    	
+							  	  	    //}
+							  	  	    //if (playersFighting.equals("oneVsZero")) {
+							  	  	    	
+							  	  	    //}
+							  	  	    
+						  	  	    	
+						  	  	    	//disarmedGraphicInvisible();
+						  	  	    }
+								});
+							}
+							else if (part2.equals("yes")) {
+								
+								runOnUiThread(new Runnable() {
+						  	  	    @Override
+						  	  	    public void run() {						  	  	    	
+						  	  	    	
+							  	  	    if (playersFighting.equals("fiveVsZero") || playersFighting.equals("zeroVsFive")) {
+							  	  	    	
+								  	  	    TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);								  	  	    
+								  	  	    disarmedtextleft.setVisibility(View.VISIBLE);
+								  	  	    disarmedtextleft.bringToFront();
+							  	  	    }
+							  	  	    else if (playersFighting.equals("fiveVsOne") || playersFighting.equals("oneVsFive")) {
+							  	  	    	
+								  	  	    TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);								  	  	    
+								  	  	    disarmedtextleft.setVisibility(View.VISIBLE);
+								  	  	    disarmedtextleft.bringToFront();
+							  	  	    }
+							  	  	    
+							  	  	    //if (playersFighting.equals("zeroVsOne")) {
+							  	  	    	
+							  	  	    //}
+							  	  	    //if (playersFighting.equals("oneVsZero")) {
+							  	  	    	
+							  	  	    //}
+							  	  	    
+						  	  	    	
+						  	  	    	//disarmedGraphicVisible();						  	  	    
 						  	  	    }
 								});
 							}
 						}
 					}
 					
+					//FOR TIMES WHEN 'CANHASDISARMEDX' ISN'T USED:
 					else if (read.contains("clientNotDisarmed")) {
 						
 						clientNotDisarmed();																	
@@ -14695,6 +15377,8 @@ public class Client2 extends Activity {
 						
 						hostSideDisarmed();																	
 					}
+					
+					
 					else if (read.contains("runActionsOnUi")) {
 						
 						runActionsOnUi();																	
@@ -15295,7 +15979,9 @@ public class Client2 extends Activity {
 						
 						hideImageView();
 						
-						foldScrolls();															
+						foldScrolls();
+						
+						clearDisarmGraphicAndSkills();
 					}
 					else if (read.contains("reveal0onright")) {
 						

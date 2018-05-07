@@ -831,6 +831,13 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 		
 	    android.os.Process.killProcess(android.os.Process.myPid());
 	    
+	    
+	    //GC doesn't happen immediately and need time to decide which objects are eligible and ready for GC.The solution is to break any references to the listener (the junkowner), in this case from the button, which practically makes the listener as a GCroot with only short path to the junk and make the GC decide faster to reclaim the junk memory.
+	    findViewById(R.id.imagebuttononeplayer).setOnClickListener(null);
+	    findViewById(R.id.imagebuttonmultiplayer).setOnClickListener(null);
+	    findViewById(R.id.imagebuttonabout).setOnClickListener(null);
+	    
+	    
 	    super.onDestroy();
 	}	
 	
