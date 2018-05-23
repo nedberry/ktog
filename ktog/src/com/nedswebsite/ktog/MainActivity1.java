@@ -19,8 +19,10 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.w3c.dom.Text;
 
 import android.support.v7.app.ActionBarActivity;
+import android.telephony.SmsManager;
 import android.text.Html;
 import android.text.InputFilter;
 import android.text.Spannable;
@@ -29,9 +31,12 @@ import android.text.format.Formatter;
 import android.text.style.URLSpan;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.database.Cursor;
@@ -67,12 +72,15 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	String multiplayer = "no";
 	
 	private static final int CONTACT_PICKER_RESULT = 1001;
+	private static final int SENT = 0;
 	
 	InetAddress inetAddress;
 	
 	String hostIP;
 	
 	Uri imageUri;
+	
+	boolean isMessageSent = false;
 	
 	
 	@Override
@@ -367,12 +375,59 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	}
 	
 	
+	/*
+	@Override
+	public void startActivityForResult(Intent intent, int requestCode, Bundle options) {
+		
+		super.startActivityForResult(intent, SENT, options);
+		if (requestCode==SENT && isMessageSent) {
+			
+			if (ArrayOfAvatars.avatar[5].equals("custom")) {
+				  
+				Intent intent2 = new Intent(MainActivity1.this, Host.class);
+				intent2.putExtra("imageUri", imageUri.toString());
+				//intent.putExtra("imageUri", imageUri);
+				startActivity(intent2);
+	  		}
+	  		  
+	        else {
+
+	        	Intent intent3 = new Intent(MainActivity1.this, Host.class);
+	        	//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+	        	startActivity(intent3);
+	        }
+		}
+	}
+	*/
+	
+	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		
-		switch(requestCode) {	
+		switch(requestCode) {
+		/*
+		case SENT:
 		
+			if (resultCode == RESULT_OK) {
+				
+				if (ArrayOfAvatars.avatar[5].equals("custom")) {
+					  
+					Intent intent2 = new Intent(MainActivity1.this, Host.class);
+					intent2.putExtra("imageUri", imageUri.toString());
+					//intent.putExtra("imageUri", imageUri);
+					startActivity(intent2);
+		  		}
+		  		  
+		        else {
+
+		        	Intent intent3 = new Intent(MainActivity1.this, Host.class);
+		        	//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+		        	startActivity(intent3);
+		        }
+			}
+		break;		
+		*/
 		case PICK_IMAGE://FOR IMAGE GALLERY
 			if (resultCode == RESULT_OK && requestCode == PICK_IMAGE && multiplayer.equals("no")) {
 				imageUri = data.getData();
@@ -631,10 +686,12 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 					
 					stopService(svc);					
 					
-					getLocalIpAddress();
+					chooseGmailOrText();					
+					
+					//getLocalIpAddress();
 					
 					// TURNED OFF FOR DISPLAYING PRIVATE IP PURPOSES:
-					doLaunchContactPicker(customImageView);
+					//doLaunchContactPicker(customImageView);
 					
 					
 					/*
@@ -666,6 +723,167 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 		});	    		
     	
         builder.create().show();		
+	}
+	
+	public void chooseGmailOrText() {
+		
+		final Intent svc=new Intent(this, Badonk2SoundService.class);
+		
+		final String[] items = new String[] {"Gmail", "Text", "Cancel"};
+		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.computer, R.drawable.computer};
+		
+		ListAdapter adapter = new ArrayAdapterWithIcon(MainActivity1.this, items, avatars);
+		
+		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
+		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
+		//builder.setIcon(R.drawable.computerhead);
+		builder.setTitle("Invite");
+		
+		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
+			public void onClick(DialogInterface dialog, int item) { 
+								
+				if (item == 0) {    					
+					
+					stopService(svc);					
+					
+					getLocalIpAddress();
+					
+					// TURNED OFF FOR DISPLAYING PRIVATE IP PURPOSES:
+					doLaunchContactPicker(customImageView);
+					
+					
+					/*
+    				Intent intent = new Intent(MainActivity1.this, Host.class);
+    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+    				startActivity(intent);
+    	        	*/
+    				
+    	        	dialog.dismiss();
+				}
+				else if (item == 1) {
+					
+					stopService(svc);	    				
+    				
+					getLocalIpAddress();
+					
+					
+        	        
+					
+        	        String textToShare = "http://www.ktog.multiplayer.com/?ip=" + hostIP;
+        	        Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+        	        
+        	        intent.setType("text/plain");
+        	        intent.putExtra(Intent.EXTRA_SUBJECT, "KtOG Invitation: " + textToShare);
+        	        intent.putExtra(Intent.EXTRA_TEXT,Html.fromHtml(textToShare));
+        	        
+        	        
+        	        
+        	        
+        	        
+        	        intent.putExtra("exit_on_sent", true);
+        	        
+        	        
+        	        isMessageSent = true;
+        	        
+        	        
+        	        startActivity(Intent.createChooser(intent, "Share"));
+        	        
+        	        
+        	        
+        	        
+        	        
+        	        //startActivityForResult(intent, SENT);
+        	        
+        	        
+        	        
+        	        
+        	        
+        	        
+        	        
+        	        
+        	        /*
+        	        try {
+        	        	
+        	        	//isMessageSent = true;
+        	        	
+        	        	startActivity(Intent.createChooser(intent, "Share"));
+        	        	
+        	        	//finish();
+        	        	
+        	        } catch (android.content.ActivityNotFoundException ex) {
+        	        	
+        	        	Toast.makeText(MainActivity1.this, "SMS failed!", Toast.LENGTH_SHORT).show();
+        	        }
+        	        */
+        	        
+        	        
+        	        
+        	        
+        	        
+        	        
+        	        /*
+        	        //boolean isMessageSent= false;
+					String SENT = "SMS_SENT";        	        
+	        	        
+        	        while(!isMessageSent) {
+        	        	
+        	        	//PendingIntent sentPI = PendingIntent.getBroadcast(this, 0, new Intent(SENT), 0);
+        	        	
+	        	        registerReceiver(new BroadcastReceiver() {
+	                        @Override
+	                        public void onReceive(Context arg0, Intent arg1) {
+	                        	
+	                            switch (getResultCode())
+	                            {
+	                                case Activity.RESULT_OK:
+	                                    // set boolean here to true 
+	                                     isMessageSent = true;	                                     
+	                                     
+	                                     if (ArrayOfAvatars.avatar[5].equals("custom")) {
+	                       				  
+	                         				Intent intent2 = new Intent(MainActivity1.this, Host.class);
+	                         				intent2.putExtra("imageUri", imageUri.toString());
+	                         				//intent.putExtra("imageUri", imageUri);
+	                         				startActivity(intent2);
+	                         	  		}
+	                         	  		  
+	                         	        else {
+	
+	                         	        	Intent intent3 = new Intent(MainActivity1.this, Host.class);
+	                         	        	//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+	                         	        	startActivity(intent3);
+	                         	        }
+	                                     
+	                                    break;
+	                                case SmsManager.RESULT_ERROR_GENERIC_FAILURE:
+	                                    // handle your result
+	                                    break;
+	                                case SmsManager.RESULT_ERROR_NO_SERVICE:
+	                                     // handle your result
+	                                    break;
+	                                case SmsManager.RESULT_ERROR_NULL_PDU:
+	                                     // handle your result
+	                                    break;
+	                                default:
+	                                    // handle your result
+	                                    break;
+	                            }
+	                        }
+	                    }, new IntentFilter(SENT));
+					}
+    	        	*/
+    	        	dialog.dismiss();
+				}
+				else if (item == 2) {		
+    	        	
+    	        	dialog.dismiss();
+				}    				    				
+	        	
+	        	//finish();
+	  		}
+		});	    		
+    	
+        builder.create().show();
 	}
 	
 		
@@ -784,6 +1002,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	@Override
     public void onBackPressed() {		
 		
+		//Toast.makeText(MainActivity1.this, "SMS TEST", Toast.LENGTH_SHORT).show();
+		
 		final Intent svc=new Intent(this, Badonk2SoundService.class);
 		stopService(svc);
 		
@@ -827,6 +1047,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	@Override
 	protected void onDestroy() {
 		
+		//Toast.makeText(MainActivity1.this, "SMS TEST", Toast.LENGTH_SHORT).show();
+		
 		ArrayOfInvites.invites = new int[1];
 		
 	    android.os.Process.killProcess(android.os.Process.myPid());
@@ -843,18 +1065,83 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	
 	public void onPause() {
 		
+		//Toast.makeText(MainActivity1.this, "SMS TEST", Toast.LENGTH_SHORT).show();
+		
 		super.onPause();
 		
 		Intent svc=new Intent(this, Badonk2SoundService.class);
-		stopService(svc);		
+		stopService(svc);
+		
+		/*
+		if (!isMessageSent) {
+			
+			super.onPause();
+			
+			Intent svc=new Intent(this, Badonk2SoundService.class);
+			stopService(svc);
+		}
+		
+		else if (isMessageSent) {
+			
+			if (ArrayOfAvatars.avatar[5].equals("custom")) {
+				  
+				Intent intent2 = new Intent(MainActivity1.this, Host.class);
+				intent2.putExtra("imageUri", imageUri.toString());
+				//intent.putExtra("imageUri", imageUri);
+				startActivity(intent2);
+	  		}
+	  		  
+	        else {
+
+	        	Intent intent3 = new Intent(MainActivity1.this, Host.class);
+	        	//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+	        	startActivity(intent3);
+	        }
+			
+			super.onPause();
+			
+			Intent svc=new Intent(this, Badonk2SoundService.class);
+			stopService(svc);
+		}
+		*/		
 	}
 	
 	public void onResume() {
 		
-		super.onResume();
+		if (!isMessageSent) {
 		
-		Intent svc=new Intent(this, Badonk2SoundService.class);
-		startService(svc);		
+			//Toast.makeText(MainActivity1.this, "SMS TEST", Toast.LENGTH_SHORT).show();
+			
+			super.onResume();
+			
+			Intent svc=new Intent(this, Badonk2SoundService.class);
+			startService(svc);
+		}
+		
+		else if (isMessageSent) {
+			
+			if (ArrayOfAvatars.avatar[5].equals("custom")) {
+				  
+				Intent intent2 = new Intent(MainActivity1.this, Host.class);
+				intent2.putExtra("imageUri", imageUri.toString());
+				//intent.putExtra("imageUri", imageUri);
+				startActivity(intent2);
+	  		}
+	  		  
+	        else {
+
+	        	Intent intent3 = new Intent(MainActivity1.this, Host.class);
+	        	//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+	        	startActivity(intent3);
+	        }
+			
+			isMessageSent = false;
+			
+			super.onResume();
+			
+			Intent svc=new Intent(this, Badonk2SoundService.class);
+			startService(svc);
+		}
 	}	
 	
 	

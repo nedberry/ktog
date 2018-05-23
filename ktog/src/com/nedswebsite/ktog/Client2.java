@@ -809,6 +809,23 @@ public class Client2 extends Activity {
 											  	  			e.printStackTrace();
 											  	  		}
 									  	  	  			
+									  	  	  			
+									  	  	  			
+									  	  	  			
+									  	  	  			
+										  	  	  		Thread.setDefaultUncaughtExceptionHandler (new Thread.UncaughtExceptionHandler()
+											  	  	    {
+											  	  	      @Override
+											  	  	      public void uncaughtException (Thread thread, Throwable e)
+											  	  	      {
+											  	  	        handleUncaughtException (thread, e);
+											  	  	      }
+											  	  	    });
+									  	  	  			
+									  	  	  			
+									  	  	  			
+									  	  	  			
+									  	  	  			
 									  	  	  			if (whatAvatar.equals("custom")) {
 									  	  	  				
 											  	  	  		final Handler h6 = new Handler();
@@ -2444,6 +2461,32 @@ public class Client2 extends Activity {
   	  	
 	}
 	
+	
+	
+	
+	
+	public void handleUncaughtException (Thread thread, Throwable e) {
+		/*
+	    e.printStackTrace(); // not all Android versions will print the stack trace automatically
+
+	    Intent intent = new Intent ();
+	    intent.setAction ("com.mydomain.SEND_LOG"); // see step 5.
+	    intent.setFlags (Intent.FLAG_ACTIVITY_NEW_TASK); // required when starting from Application
+	    startActivity (intent);
+	    */
+		
+		
+		String str = "disconnected";
+  		sendToHost(str);
+		
+
+	    System.exit(1); // kill off the crashed app
+	}
+	
+	
+	
+	
+	
 	/*
 	public void names() {		
 		
@@ -2632,7 +2675,12 @@ public class Client2 extends Activity {
 
 		alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int whichButton) {
-
+				
+				
+				String str = "disconnected";
+		  		sendToHost(str);
+				
+				
 				stopService(svc);
 				
 				dialog.dismiss();				
@@ -3437,7 +3485,7 @@ public class Client2 extends Activity {
 	
 	public void sixSidedWobbleStart() {
 		final ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
-		final Animation shake = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.wobblesixsided);
+		final Animation shake = AnimationUtils.loadAnimation(this, R.anim.wobblesixsided);
 		img.setAnimation(shake);
 	}
 	
@@ -3471,10 +3519,12 @@ public class Client2 extends Activity {
 	  	  		Thread thread = new Thread() {
 				    @Override
 				    public void run() {
+				    	
 				    	MediaPlayerWrapper.play(Client2.this, R.raw.dierolling3b);
 				    }
 	  	  		};
 	  	  		thread.start();
+	  	  		thread.interrupt();
 		  	  	//MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
 		  	  	
 		  	  	
@@ -3811,6 +3861,8 @@ public class Client2 extends Activity {
 				img1.setBackgroundResource(R.drawable.twentytwentyblank);
 				img1.setImageResource(R.drawable.twentytwentyblank);
 				
+				img1.setImageDrawable(null);
+				
 				
 				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
 				img.setBackgroundResource(R.anim.computersixsidedrollfromleft1);
@@ -3838,6 +3890,8 @@ public class Client2 extends Activity {
 				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img1.setBackgroundResource(R.drawable.twentytwentyblank);
 				img1.setImageResource(R.drawable.twentytwentyblank);
+				
+				img1.setImageDrawable(null);
 				
 				
 				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
@@ -3867,6 +3921,8 @@ public class Client2 extends Activity {
 				img1.setBackgroundResource(R.drawable.twentytwentyblank);
 				img1.setImageResource(R.drawable.twentytwentyblank);
 				
+				img1.setImageDrawable(null);
+				
 				
 				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
 				img.setBackgroundResource(R.anim.computersixsidedrollfromleft3);
@@ -3894,6 +3950,8 @@ public class Client2 extends Activity {
 				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img1.setBackgroundResource(R.drawable.twentytwentyblank);
 				img1.setImageResource(R.drawable.twentytwentyblank);
+				
+				img1.setImageDrawable(null);
 				
 				
 				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
@@ -3923,6 +3981,8 @@ public class Client2 extends Activity {
 				img1.setBackgroundResource(R.drawable.twentytwentyblank);
 				img1.setImageResource(R.drawable.twentytwentyblank);
 				
+				img1.setImageDrawable(null);
+				
 				
 				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
 				img.setBackgroundResource(R.anim.computersixsidedrollfromleft5);
@@ -3950,6 +4010,8 @@ public class Client2 extends Activity {
 				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img1.setBackgroundResource(R.drawable.twentytwentyblank);
 				img1.setImageResource(R.drawable.twentytwentyblank);
+				
+				img1.setImageDrawable(null);
 				
 				
 				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
@@ -4446,10 +4508,12 @@ public class Client2 extends Activity {
 	  	  		Thread thread = new Thread() {
 				    @Override
 				    public void run() {
+				    	
 				    	MediaPlayerWrapper.play(Client2.this, R.raw.dierolling3b);
 				    }
 	  	  		};
 	  	  		thread.start();
+	  	  		thread.interrupt();
 		  	  	//MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
 		  	  	
 		  	  	
@@ -4462,7 +4526,7 @@ public class Client2 extends Activity {
 	
 	public void twentySidedWobbleStart() {
 		final ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
-		final Animation shake = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.wobbletwentysided);
+		final Animation shake = AnimationUtils.loadAnimation(this, R.anim.wobbletwentysided);
 		img.setAnimation(shake);
 	}
 	
@@ -6808,6 +6872,8 @@ public class Client2 extends Activity {
 			  		                        			playerNumberAttacked = 5;
 			  		                        			
 //playerAttackingTest();
+			  		                        			reveal5onleftclientattacking();
+			  		                        			
 			  		                        			
 			  		                        			String str = "0FirstChooses5";
 				  		                        		sendToHost(str);          			
@@ -6816,7 +6882,7 @@ public class Client2 extends Activity {
 			  		                        			playersFighting = "zeroVsFive";//SAME AS WHEN 5 IS ATTACKING 0.
 				  		                        		
 			  		                        			
-			  		                        			reveal5onleftclientattacking();
+			  		                        			//reveal5onleftclientattacking();
 			  		                        			
 				  		                        		/*
 				  		                        		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
@@ -6908,6 +6974,8 @@ public class Client2 extends Activity {
 			  		                        			playerNumberAttacked = 1;
 			  		                        			
 //playerAttackingTest();
+			  		                        			reveal1onleftclientattacking();
+			  		                        			
 			  		                        			
 			  		                        			String str = "0FIrstChooses1";
 				  		                        		sendToHost(str);
@@ -6916,7 +6984,7 @@ public class Client2 extends Activity {
 				  		                        		playersFighting = "zeroVsOne";
 				  		                        		
 				  		                        		
-				  		                        		reveal1onleftclientattacking();
+				  		                        		//reveal1onleftclientattacking();
 				  		                        		
 				  		                        		/*
 				  		                        		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
@@ -6973,7 +7041,7 @@ public class Client2 extends Activity {
 					  		      						//ImageView computerAvatar = (ImageView) findViewById(R.id.imageviewavatarleft1);
 					  		      						//computerAvatar.setVisibility(View.VISIBLE);
 					  		                  			
-					  		      					setPlayerAvatarFor1Left();
+					  		      						setPlayerAvatarFor1Left();
 					  		      						
 					  		                  			
 					  		                  			scrollAnimationLeftUpNoRight();
@@ -7130,6 +7198,8 @@ public class Client2 extends Activity {
 			  		                        			playerNumberAttacked = 5;
 			  		                        			
 //playerAttackingTest();
+			  		                        			reveal5onleftclientattacking();
+			  		                        			
 			  		                        			
 			  		                        			String str = "1FirstChooses5";
 				  		                        		sendToHost(str);
@@ -7138,7 +7208,7 @@ public class Client2 extends Activity {
 				  		                        		playersFighting = "oneVsFive";
 				  		                        		
 				  		                        		
-				  		                        		reveal5onleftclientattacking();
+				  		                        		//reveal5onleftclientattacking();
 				  		                        		
 				  		                        		/*
 				  		                        		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
@@ -7230,6 +7300,8 @@ public class Client2 extends Activity {
 			  		                        			playerNumberAttacked = 0;
 			  		                        			
 //playerAttackingTest();
+			  		                        			reveal0onleftclientattacking();
+			  		                        			
 			  		                        			
 			  		                        			String str = "1FIrstChooses0";
 				  		                        		sendToHost(str);
@@ -7238,7 +7310,7 @@ public class Client2 extends Activity {
 				  		                        		playersFighting = "oneVsZero";
 				  		                        		
 				  		                        		
-				  		                        		reveal0onleftclientattacking();
+				  		                        		//reveal0onleftclientattacking();
 				  		                        		
 				  		                        		/*
 				  		                        		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
@@ -11937,6 +12009,8 @@ public class Client2 extends Activity {
 				  	  	  			String str4 = "playerDisarmed :" + playerNumberAttacked;
 				  	  	  			sendToHost(str4);
 				  	  	  			
+				  	  	  			whoDisarmedWho();
+				  	  	  			
 				  	  	  			
 					  	  	  		final Handler h = new Handler();
 						  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -12058,7 +12132,9 @@ public class Client2 extends Activity {
 					  	  	  		
 									
 					  	  	  		String str2 = "playerDisarmed :" + playerNumberAttacked;
-					  	  	  		sendToHost(str2);													  	  	  			
+					  	  	  		sendToHost(str2);
+					  	  	  		
+					  	  	  		whoDisarmedWho();
 				  	  	  			
 				  	  	  			
 					  	  	  		final Handler h = new Handler();
@@ -12148,6 +12224,37 @@ public class Client2 extends Activity {
 	  	  	  	}, 2000);	  	  	  	 
   	  	    }
 		});
+	}
+	
+	public void whoDisarmedWho() {
+		
+		if (playerNumberAttacking == 0) {
+			
+			if (playerNumberAttacked == 5) {
+				
+				String str = "ZeroDisarmed5";
+  	  			sendToHost(str);
+			}
+			else if (playerNumberAttacked == 1) {
+				
+				String str = "zroDisarmed1";
+  	  			sendToHost(str);
+			}
+		}
+		
+		else if (playerNumberAttacking == 1) {
+			
+			if (playerNumberAttacked == 5) {
+				
+				String str = "OneDisarmed5";
+  	  			sendToHost(str);
+			}
+			else if (playerNumberAttacked == 0) {
+				
+				String str = "oeDisarmed0";
+  	  			sendToHost(str);
+			}
+		}
 	}
 	
 	public void blessResults() {//WAS int				

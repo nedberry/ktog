@@ -76,6 +76,7 @@ public class Video extends ActionBarActivity
 
 	protected void onDestroy(VideoView vv) {
 	    vv.stopPlayback();
+	    vv.setVideoURI(null);
 	    super.onDestroy();
 	}
 }

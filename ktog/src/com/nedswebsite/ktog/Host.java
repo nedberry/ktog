@@ -145,6 +145,13 @@ public class Host extends Activity {
 	
 	boolean preventDoubleStuff = true;
 	
+	boolean FiveDisarmed0 = false;
+	boolean fveDisarmed1 = false;
+	boolean ZeroDisarmed5 = false;
+	boolean zroDisarmed1 = false;
+	boolean OneDisarmed5 = false;
+	boolean oeDisarmed0 = false;
+	
 	
 	int host;
 	int client0;
@@ -302,13 +309,13 @@ public class Host extends Activity {
 	String istitlestatsopen = "no";
 	
 	
-	String getAvatar = "no";
-	Bitmap bitmap0;
-	byte[] message;
-	String avatar0string;
-	Bitmap bmp0;
-	byte[] bitmapdata;
-	byte[] buffer;
+	//String getAvatar = "no";
+	//Bitmap bitmap0;
+	//byte[] message;
+	//String avatar0string;
+	//Bitmap bmp0;
+	//byte[] bitmapdata;
+	//byte[] buffer;
 	File imagefile;
 	
 	
@@ -579,7 +586,8 @@ public class Host extends Activity {
 	  			centerscrolltext.append("\n" + "> NEW LINE TEST");
 	  			centerscrolltext.append("\n" + "> NEW LINE TEST");
 	  			centerscrolltext.append("\n" + "> NEW LINE TEST");
-	  	  	  	*/		
+	  	  	  	*/
+	  			
   	  	  		final Handler h = new Handler();
 	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 	  	  	  			
@@ -618,42 +626,49 @@ public class Host extends Activity {
 			  	  	  			centerscrolltext.startAnimation(animAlphaText);
 			  	  	  			centerscrolltext.append("\n" + "> Waiting for opponents...");
 			  		  			
+			  	  	  						  	  	  			
 			  	  	  			
+			  	  	  			h3.removeCallbacks(this);
+			  	  	  			h.removeCallbacks(this);
+			  	  	  			h4.removeCallbacks(this);
+			  	  	  			
+				  	  	  		
+				  	  	  		
 				  		  		//final Handler h5 = new Handler();
 					  	  	  	//h5.postDelayed(new Runnable() {
 					  	  	  			
-						  	  	  		//@Override
-						  	  	  		//public void run()
-						  	  	  		//{  	  			
-						  	  	  			//startService(svc);
-						  	  	  			
-						  	  	  			
-						  	  	  			//ServerThread  NewServerThread= new ServerThread();
-						  	  	  			//NewServerThread.run();						  	  	  			
-						  	  	  			
-						  	  	  			
-						  	  	  			
-						  	  	  			/*
-						  	  	  			sixSidedWobbleStart();
-							  	  	  		
-							  	  	  		isSixSidedReadyToBeRolled = "yes";
-							  	  	  		isInitiativeOver = "no";
-							  	  	  		
-						  	  	  			centerscrolltext.setVisibility(View.VISIBLE);
-						  		  	  		centerscrolltext.startAnimation(animAlphaText);
-						  		  			centerscrolltext.append("\n" + "> Please slide the die...");								  		  			
-						  		  			
-						  		  			playerCardStartFadeInFadeOut();
-						  		  			//playerTurnBackgroundStart();			  		  			
-						  		  			
-						  		  			
-						  		  			//issixsidedrolledforinitiative = "yes";
-						  		  			isinitiativestarted = "yes";			  		  			
-						  		  			onBackPressedOk = "yes";
-						  		  			
-						  		  			
-						  		  			//preventinitiativediefromleaking = "off";
-						  		  			*/
+					  	  	  		//@Override
+					  	  	  		//public void run()
+					  	  	  		//{  	  			
+					  	  	  			//startService(svc);
+					  	  	  			
+					  	  	  			
+					  	  	  			//ServerThread  NewServerThread= new ServerThread();
+					  	  	  			//NewServerThread.run();						  	  	  			
+					  	  	  			
+					  	  	  			
+					  	  	  			
+					  	  	  			/*
+					  	  	  			sixSidedWobbleStart();
+						  	  	  		
+						  	  	  		isSixSidedReadyToBeRolled = "yes";
+						  	  	  		isInitiativeOver = "no";
+						  	  	  		
+					  	  	  			centerscrolltext.setVisibility(View.VISIBLE);
+					  		  	  		centerscrolltext.startAnimation(animAlphaText);
+					  		  			centerscrolltext.append("\n" + "> Please slide the die...");								  		  			
+					  		  			
+					  		  			playerCardStartFadeInFadeOut();
+					  		  			//playerTurnBackgroundStart();			  		  			
+					  		  			
+					  		  			
+					  		  			//issixsidedrolledforinitiative = "yes";
+					  		  			isinitiativestarted = "yes";			  		  			
+					  		  			onBackPressedOk = "yes";
+					  		  			
+					  		  			
+					  		  			//preventinitiativediefromleaking = "off";
+					  		  			*/
 					  	  	  		//}
 					  	  	  	//}, 500);
 			  	  	  		}
@@ -665,6 +680,21 @@ public class Host extends Activity {
   	  	
   	  	
   	  	//determineInitiative();
+  	  	
+  	  	
+  	  	
+  	  	
+  	  	Thread.setDefaultUncaughtExceptionHandler (new Thread.UncaughtExceptionHandler() {
+	  
+  	  		@Override
+  	  		public void uncaughtException (Thread thread, Throwable e) {
+    	  
+  	  			handleUncaughtException (thread, e);
+  	  		}
+  	  	});
+  	  	
+  	  	
+  	  	
   	  	
   	  	
   	  	titleBlankButton.setOnClickListener(new View.OnClickListener() {
@@ -998,8 +1028,8 @@ public class Host extends Activity {
 			    		  	  	}
 	    			  	  		*/
 	    			  	  		
-		    			  	  	final Handler h = new Handler();
-		    		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+		    			  	  	final Handler h2 = new Handler();
+		    		  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
 		    		  	  	  			
 		    		  	  	  		@Override
 		    			  	  	  	public void run() {
@@ -1017,6 +1047,10 @@ public class Host extends Activity {
 			    			  	  		titleBlankButton.setEnabled(true);
 			    			  	  		
 			    			  	  		istitlestatsopen = "no";
+			    			  	  		
+			    			  	  		
+			    			  	  		h.removeCallbacks(this);
+			    			  	  		h2.removeCallbacks(this);
 		    			  	  	  	}
 		    		  	  	  	}, 11250);
 	  			  	  	  	}
@@ -1035,7 +1069,9 @@ public class Host extends Activity {
         	  stopService(svc);
         	  
         	  
-        	  startButton.setVisibility(View.INVISIBLE);        	  
+        	  startButton.setVisibility(View.INVISIBLE);
+        	  
+        	  findViewById(R.id.imagebuttonstart).setOnClickListener(null);
         	  
         	  
         	  victoryDefeatAnimationForStartTransition();        	  
@@ -1170,6 +1206,9 @@ public class Host extends Activity {
 						
 						String str4 = "PlAyerName1 :" + ArrayOfPlayers.player[1];
 						sendToAllClients(str4);
+						
+						
+						h.removeCallbacks(this);
         	  	  	}
         	  	}, 713); // SHOULD BE AT LEAST 675?       	      	        				
 			}
@@ -2173,6 +2212,8 @@ public class Host extends Activity {
 		  	  	  		else if (iscriticalmissloseweaponrolled.equals("yes")) {
 							criticalMissLoseWeaponResults();
 						}
+		  	  	  		
+		  	  	  		h.removeCallbacks(this);
 		  	  	  	}
 	  	  	  	}, 50);								
 		    }
@@ -2266,6 +2307,8 @@ public class Host extends Activity {
 		  	  	  		else if (iscriticalmissloseweaponrolled.equals("yes")) {
 							criticalMissLoseWeaponResults();
 						}
+		  	  	  		
+		  	  	  		h.removeCallbacks(this);
 		  	  	  	}
 	  	  	  	}, 50);			
 		    }
@@ -2279,76 +2322,105 @@ public class Host extends Activity {
 		
 	}
 	
-/*	
-public void test() {
 	
-	runOnUiThread(new Runnable() {
-		@Override
-		public void run() {
-			
-			
-			//ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarright);
-			//myImage.setImageBitmap(bmp0);
-			
-			//Bitmap bitmap = BitmapFactory.decodeByteArray(buffer, 0, buffer.length);
-			//ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarright);
-			//myImage.setImageBitmap(bitmap);
-			
-			
-			File imgFile = new  File("/storage/sdcard0/avatar0.png");
+	
+	
+	
+	
+	public void handleUncaughtException (Thread thread, Throwable e) {
+		/*
+	    e.printStackTrace(); // not all Android versions will print the stack trace automatically
 
-			if(imgFile.exists()){
+	    Intent intent = new Intent ();
+	    intent.setAction ("com.mydomain.SEND_LOG"); // see step 5.
+	    intent.setFlags (Intent.FLAG_ACTIVITY_NEW_TASK); // required when starting from Application
+	    startActivity (intent);
+	    */
+		
+			
+		String str = ArrayOfPlayers.player[5] + " has disconnected.";
+  		sendToAllClients(str);
+		
 
-			    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-
-			    ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarright);
-
-			    myImage.setImageBitmap(myBitmap);
+	    System.exit(1); // kill off the crashed app
+	}
+	
+	
+	
+	
+	
+	
+	/*	
+	public void test() {
+	
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				
+				
+				//ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarright);
+				//myImage.setImageBitmap(bmp0);
+				
+				//Bitmap bitmap = BitmapFactory.decodeByteArray(buffer, 0, buffer.length);
+				//ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarright);
+				//myImage.setImageBitmap(bitmap);
+				
+				
+				File imgFile = new  File("/storage/sdcard0/avatar0.png");
+	
+				if(imgFile.exists()){
+	
+				    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+	
+				    ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarright);
+	
+				    myImage.setImageBitmap(myBitmap);
+				}
+				
+				
+				unfoldRightScroll();
+				
+				//ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+		    	//clientAvatar.setImageBitmap(BitmapFactory.decodeFile("/sdcard/Download/Avatar0.jpeg"));
+				//clientAvatar.setVisibility(View.VISIBLE);	
+				
+				
+				//File imgFile = new  File("/sdcard/Download/Avatar0.jpeg");			
+				//Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+			    //ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarright);
+			    //myImage.setImageBitmap(myBitmap);
 			}
-			
-			
-			unfoldRightScroll();
-			
-			//ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
-	    	//clientAvatar.setImageBitmap(BitmapFactory.decodeFile("/sdcard/Download/Avatar0.jpeg"));
-			//clientAvatar.setVisibility(View.VISIBLE);	
-			
-			
-			//File imgFile = new  File("/sdcard/Download/Avatar0.jpeg");			
-			//Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-		    //ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarright);
-		    //myImage.setImageBitmap(myBitmap);
-		}
-	});	
-}
-*/
+		});	
+	}
+	 */
+	
 	
 	/*
-public void decodeImage0() {
+	public void decodeImage0() {
 	
-	byte[] b = Base64.decode(avatar0string,Base64.DEFAULT);
-    bmp0 = BitmapFactory.decodeByteArray(b,0,b.length);
-    
-    
-    
-    FileOutputStream out = null;
-    try {
-    	out = new FileOutputStream("/storage/sdcard0/avatar0.png");
-		bmp0.compress(Bitmap.CompressFormat.PNG, 100, out); // bmp is your Bitmap instance
-        // PNG is a lossless format, the compression factor (100) is ignored
-    } catch (Exception e) {
-        e.printStackTrace();
-    } finally {
-        try {
-            if (out != null) {
-                out.close();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-}
-*/	
+		byte[] b = Base64.decode(avatar0string,Base64.DEFAULT);
+	    bmp0 = BitmapFactory.decodeByteArray(b,0,b.length);
+	    
+	    
+	    
+	    FileOutputStream out = null;
+	    try {
+	    	out = new FileOutputStream("/storage/sdcard0/avatar0.png");
+			bmp0.compress(Bitmap.CompressFormat.PNG, 100, out); // bmp is your Bitmap instance
+	        // PNG is a lossless format, the compression factor (100) is ignored
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (out != null) {
+	                out.close();
+	            }
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	}
+	 */	
 	
 	
 	/*
@@ -2531,6 +2603,20 @@ public void decodeImage0() {
 			public void onClick(DialogInterface dialog, int whichButton) {
 
 				dialog.dismiss();
+				
+				
+				//------------------------------------------------------------NEWER
+				
+				
+				try {
+					
+					String str = ArrayOfPlayers.player[5] + " has disconnected.";
+			  		sendToAllClients(str);
+					
+				} catch (Exception e) {
+	  	  			e.printStackTrace();
+	  	  		}
+				
 				
 				//------------------------------------------------------------NEW
 				
@@ -2754,7 +2840,9 @@ public void decodeImage0() {
 	  	*/
 		ImageView img = (ImageView)findViewById(R.id.playerturnbackgroundanimation);
 		img.clearAnimation();
-		img.setVisibility(View.GONE);		
+		img.setVisibility(View.GONE);
+		
+		img.setImageDrawable(null);
 	}
 	
 	
@@ -2785,6 +2873,8 @@ public void decodeImage0() {
 		ImageView img = (ImageView)findViewById(R.id.computerturnbackgroundanimation);
 		img.clearAnimation();
 		img.setVisibility(View.GONE);
+		
+		img.setImageDrawable(null);
 	}
 	
 	
@@ -2820,7 +2910,7 @@ public void decodeImage0() {
 				
 				img.setImageDrawable(null);
 				
-				System.gc();
+				//System.gc();
 	  	    }
   		});	
 	}
@@ -2846,7 +2936,7 @@ public void decodeImage0() {
 				
 				img.setImageDrawable(null);
 				
-				System.gc();
+				//System.gc();
 	  	    }
   		});	
 	}
@@ -2871,7 +2961,7 @@ public void decodeImage0() {
 				
 				img.setImageDrawable(null);
 				
-				System.gc();
+				//System.gc();
 	  	    }
   		});		
 	}
@@ -2936,7 +3026,7 @@ public void decodeImage0() {
 		  	  	
 		  	  	img.setImageDrawable(null);
 		  	  	
-		  	  	System.gc();
+		  	  	//System.gc();
 	  	    }
   		});	
 	}
@@ -2959,7 +3049,7 @@ public void decodeImage0() {
 		  	  	
 		  	  	img.setImageDrawable(null);
 		  	  	
-		  	  	System.gc();
+		  	  	//System.gc();
 			}
   		});
 	}
@@ -2986,7 +3076,7 @@ public void decodeImage0() {
 				
 				img.setImageDrawable(null);
 				
-				System.gc();
+				//System.gc();
 	  	    }
   		});	
 	}
@@ -3013,7 +3103,7 @@ public void decodeImage0() {
 				
 				img.setImageDrawable(null);
 				
-				System.gc();
+				//System.gc();
 	  	    }
   		});	
 	}
@@ -3038,7 +3128,7 @@ public void decodeImage0() {
 				
 				img.setImageDrawable(null);
 				
-				System.gc();
+				//System.gc();
 	  	    }
   		});	
 	}
@@ -3095,7 +3185,9 @@ public void decodeImage0() {
 				  	  	hasteGraphic.startAnimation(a);
 				  	  	
 				  	  	
-				  	  	System.gc();
+				  	  	h.removeCallbacks(this);
+				  	  	
+				  	  	//System.gc();
 		  	  		}	  	  		
 		  	  	}, 3000);
 			}
@@ -3142,7 +3234,9 @@ public void decodeImage0() {
 				  	  	cureGraphic.startAnimation(a);
 				  	  	
 				  	  	
-				  	  	System.gc();
+				  	  	h.removeCallbacks(this);
+				  	  	
+				  	  	//System.gc();
 		  	  		}	  	  		
 		  	  	}, 3000);
 			}
@@ -3189,7 +3283,9 @@ public void decodeImage0() {
 		  	  	  		blessGraphic.startAnimation(a);
 		  	  	  		
 		  	  	  		
-		  	  	  		System.gc();
+		  	  	  		h.removeCallbacks(this);
+		  	  	  		
+		  	  	  		//System.gc();
 		  	  		}	  	  		
 		  	  	}, 3000);
 			}
@@ -3236,7 +3332,9 @@ public void decodeImage0() {
 				  	  	dodgeGraphic.startAnimation(a);
 				  	  	
 				  	  	
-				  	  	System.gc();
+				  	  	h.removeCallbacks(this);
+				  	  	
+				  	  	//System.gc();
 		  	  		}	  	  		
 		  	  	}, 3000);
 			}
@@ -3292,7 +3390,9 @@ public void decodeImage0() {
 				  	  	mightyBlowGraphic.startAnimation(a);
 				  	  	
 				  	  	
-				  	  	System.gc();
+				  	  	h.removeCallbacks(this);
+				  	  	
+				  	  	//System.gc();
 		  	  		}	  	  		
 		  	  	}, 3000);
 			}
@@ -3345,12 +3445,14 @@ public void decodeImage0() {
 				  	  	criticalHitGraphic.setText(" Critical Hit");//WAS:"Critical     Hit"
 			  	  	  	
 				  	  	criticalHitGraphic.clearAnimation();
-				  	  	criticalHitGraphic.startAnimation(a);
+				  	  	criticalHitGraphic.startAnimation(a);				  	  	
 				  	  	
 				  	  	
 				  	  	img1.setImageDrawable(null);
 				  	  	
-				  	  	System.gc();
+				  	  	h.removeCallbacks(this);
+				  	  	
+				  	  	//System.gc();
 		  	  		}	  	  		
 		  	  	}, 3000);
 			}
@@ -3406,7 +3508,9 @@ public void decodeImage0() {
 				  	  	criticalMissGraphic.startAnimation(a);
 				  	  	
 				  	  	
-				  	  	System.gc();
+				  	  	h.removeCallbacks(this);
+				  	  	
+				  	  	//System.gc();
 		  	  		}	  	  		
 		  	  	}, 3000);
 			}
@@ -3465,7 +3569,7 @@ public void decodeImage0() {
 	
 	public void sixSidedWobbleStart() {
 		final ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
-		final Animation shake = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.wobblesixsided);
+		final Animation shake = AnimationUtils.loadAnimation(this, R.anim.wobblesixsided);
 		img.setAnimation(shake);
 	}
 	
@@ -3478,10 +3582,10 @@ public void decodeImage0() {
 		img.setImageDrawable(null);
 
 
-		System.gc();
+		//System.gc();
 	}
 	
-	public void sixSidedRollFromLeft() {	  	
+	public void sixSidedRollFromLeft() {
 		
 		final ImageView sixSidedBlank = (ImageView) findViewById(R.id.sixsidedanimation);
 		sixSidedBlank.setVisibility(View.VISIBLE);
@@ -3499,16 +3603,20 @@ public void decodeImage0() {
 	  	  		Thread thread = new Thread() {
 				    @Override
 				    public void run() {
+				    	
 				    	MediaPlayerWrapper.play(Host.this, R.raw.dierolling3b);
 				    }
 	  	  		};
 	  	  		thread.start();
+	  	  		thread.interrupt();
 		  	  	//MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
 		  	  	
 		  	  	
 		  	  	// Animation is just 1 slide so user can see title.
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
+		  	  	
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});	
 	}
@@ -3534,7 +3642,9 @@ public void decodeImage0() {
 		  	  		
 			  	  	String str = "1computerSixSidedRollFromLeft1";
 					sendToAllClients(str);		  	  		
-		  	  	}				
+		  	  	}
+		  	  	
+		  	  	img.setImageDrawable(null);
 	  	    }
   		}); 	  	
 	}
@@ -3560,7 +3670,9 @@ public void decodeImage0() {
 		  	  		
 		  	  		String str = "2computerSixSidedRollFromLeft2";
 		  	  		sendToAllClients(str);
-		  	  	}			  	  	
+		  	  	}
+		  	  	
+		  	  	img.setImageDrawable(null);
 	  	    }
   		}); 	  	
 	}
@@ -3587,6 +3699,8 @@ public void decodeImage0() {
 		  	  		String str = "3computerSixSidedRollFromLeft3";
 		  	  		sendToAllClients(str);
 		  	  	}
+		  	  	
+		  	  	img.setImageDrawable(null);
 	  	    }
   		}); 	  	
 	}
@@ -3613,6 +3727,8 @@ public void decodeImage0() {
 		  	  		String str = "4computerSixSidedRollFromLeft4";
 		  	  		sendToAllClients(str);
 		  	  	}
+		  	  	
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});		
 	}
@@ -3639,6 +3755,8 @@ public void decodeImage0() {
 		  	  		String str = "5computerSixSidedRollFromLeft5";
 		  	  		sendToAllClients(str);
 		  	  	}
+		  	  	
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -3665,6 +3783,8 @@ public void decodeImage0() {
 		  	  		String str = "6computerSixSidedRollFromLeft6";
 		  	  		sendToAllClients(str);
 		  	  	}
+		  	  	
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -3692,6 +3812,8 @@ public void decodeImage0() {
 		  	  		String str = "1computerSixSidedRollFromLeft1";
 		  	  		sendToAllClients(str);
 		  	  	}
+		  	  	
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -3718,6 +3840,8 @@ public void decodeImage0() {
 		  	  		String str = "2computerSixSidedRollFromLeft2";
 		  	  		sendToAllClients(str);
 		  	  	}
+		  	  	
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -3744,6 +3868,8 @@ public void decodeImage0() {
 		  	  		String str = "3computerSixSidedRollFromLeft3";
 		  	  		sendToAllClients(str);
 		  	  	}
+		  	  	
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -3770,6 +3896,8 @@ public void decodeImage0() {
 		  	  		String str = "4computerSixSidedRollFromLeft4";
 		  	  		sendToAllClients(str);
 		  	  	}
+		  	  	
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -3796,6 +3924,8 @@ public void decodeImage0() {
 		  	  		String str = "5computerSixSidedRollFromLeft5";
 		  	  		sendToAllClients(str);
 		  	  	}
+		  	  	
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -3822,6 +3952,8 @@ public void decodeImage0() {
 		  	  		String str = "6computerSixSidedRollFromLeft6";
 		  	  		sendToAllClients(str);
 		  	  	}
+		  	  	
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -3839,6 +3971,8 @@ public void decodeImage0() {
 				img1.setBackgroundResource(R.drawable.twentytwentyblank);
 				img1.setImageResource(R.drawable.twentytwentyblank);
 				
+				img1.setImageDrawable(null);
+				
 				
 				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
 				img.setBackgroundResource(R.anim.computersixsidedrollfromleft1);
@@ -3851,6 +3985,8 @@ public void decodeImage0() {
 		  	  	// Animation is just 1 slide so user can see title.
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
+		  	  	
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -3867,6 +4003,8 @@ public void decodeImage0() {
 				img1.setBackgroundResource(R.drawable.twentytwentyblank);
 				img1.setImageResource(R.drawable.twentytwentyblank);
 				
+				img1.setImageDrawable(null);
+				
 				
 				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
 				img.setBackgroundResource(R.anim.computersixsidedrollfromleft2);
@@ -3879,6 +4017,8 @@ public void decodeImage0() {
 		  	  	// Animation is just 1 slide so user can see title.
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
+		  	  	
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -3895,6 +4035,8 @@ public void decodeImage0() {
 				img1.setBackgroundResource(R.drawable.twentytwentyblank);
 				img1.setImageResource(R.drawable.twentytwentyblank);
 				
+				img1.setImageDrawable(null);
+				
 				
 				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
 				img.setBackgroundResource(R.anim.computersixsidedrollfromleft3);
@@ -3907,6 +4049,8 @@ public void decodeImage0() {
 		  	  	// Animation is just 1 slide so user can see title.
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
+		  	  	
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -3923,6 +4067,8 @@ public void decodeImage0() {
 				img1.setBackgroundResource(R.drawable.twentytwentyblank);
 				img1.setImageResource(R.drawable.twentytwentyblank);
 				
+				img1.setImageDrawable(null);
+				
 				
 				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
 				img.setBackgroundResource(R.anim.computersixsidedrollfromleft4);
@@ -3935,6 +4081,8 @@ public void decodeImage0() {
 		  	  	// Animation is just 1 slide so user can see title.
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
+		  	  	
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -3951,6 +4099,8 @@ public void decodeImage0() {
 				img1.setBackgroundResource(R.drawable.twentytwentyblank);
 				img1.setImageResource(R.drawable.twentytwentyblank);
 				
+				img1.setImageDrawable(null);
+				
 				
 				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
 				img.setBackgroundResource(R.anim.computersixsidedrollfromleft5);
@@ -3963,6 +4113,8 @@ public void decodeImage0() {
 		  	  	// Animation is just 1 slide so user can see title.
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
+		  	  	
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -3979,6 +4131,8 @@ public void decodeImage0() {
 				img1.setBackgroundResource(R.drawable.twentytwentyblank);
 				img1.setImageResource(R.drawable.twentytwentyblank);
 				
+				img1.setImageDrawable(null);
+				
 				
 				ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);		
 				img.setBackgroundResource(R.anim.computersixsidedrollfromleft6);
@@ -3991,6 +4145,8 @@ public void decodeImage0() {
 		  	  	// Animation is just 1 slide so user can see title.
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
+		  	  	
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});  	  	
 	}
@@ -4000,7 +4156,7 @@ public void decodeImage0() {
 	
 	public void twentySidedWobbleStart() {
 		final ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);
-		final Animation shake = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.wobbletwentysided);
+		final Animation shake = AnimationUtils.loadAnimation(this, R.anim.wobbletwentysided);
 		img.setAnimation(shake);
 	}
 	
@@ -4013,7 +4169,7 @@ public void decodeImage0() {
 		img.setImageDrawable(null);
 		
 		
-		System.gc();
+		//System.gc();
 	}
 	
 	public void twentySidedRollFromLeft() {	  	
@@ -4034,16 +4190,20 @@ public void decodeImage0() {
 	  	  		Thread thread = new Thread() {
 				    @Override
 				    public void run() {
+				    	
 				    	MediaPlayerWrapper.play(Host.this, R.raw.dierolling3b);
 				    }
 	  	  		};
 	  	  		thread.start();
+	  	  		thread.interrupt();
 		  	  	//MediaPlayerWrapper.play(MainActivity2.this, R.raw.dierolling3b);
 		  	  	
 		  	  	
 		  	  	// Animation is just 1 slide so user can see title.
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
+		  	  	
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});	
 	}
@@ -4067,6 +4227,8 @@ public void decodeImage0() {
 		  	  	
 		  	  	String str = "cmputerTwentySidedRollFromLeft1";
 				sendToAllClients(str);
+				
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -4090,6 +4252,8 @@ public void decodeImage0() {
 		  	  	
 		  	  	String str = "computerTwentySidedRollFromLeft2";
 				sendToAllClients(str);
+				
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -4113,6 +4277,8 @@ public void decodeImage0() {
 		  	  	
 		  	  	String str = "computerTwentySidedRollFromLeft3";
 				sendToAllClients(str);
+				
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -4136,6 +4302,8 @@ public void decodeImage0() {
 		  	  	
 		  	  	String str = "computerTwentySidedRollFromLeft4";
 				sendToAllClients(str);
+				
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -4159,6 +4327,8 @@ public void decodeImage0() {
 		  	  	
 		  	  	String str = "computerTwentySidedRollFromLeft5";
 				sendToAllClients(str);
+				
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -4182,6 +4352,8 @@ public void decodeImage0() {
 		  	  	
 		  	  	String str = "computerTwentySidedRollFromLeft6";
 				sendToAllClients(str);
+				
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -4205,6 +4377,8 @@ public void decodeImage0() {
 		  	  	
 		  	  	String str = "computerTwentySidedRollFromLeft7";
 				sendToAllClients(str);
+				
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -4228,6 +4402,8 @@ public void decodeImage0() {
 		  	  	
 		  	  	String str = "computerTwentySidedRollFromLeft8";
 				sendToAllClients(str);
+				
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -4251,6 +4427,8 @@ public void decodeImage0() {
 		  	  	
 		  	  	String str = "computerTwentySidedRollFromLeft9";
 				sendToAllClients(str);
+				
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -4274,6 +4452,8 @@ public void decodeImage0() {
 		  	  	
 		  	  	String str = "computerTwentySidedRollFromLeft10";
 				sendToAllClients(str);
+				
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -4297,6 +4477,8 @@ public void decodeImage0() {
 		  	  	
 		  	  	String str = "computerTwentySidedRollFromLeft11";
 				sendToAllClients(str);
+				
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -4320,6 +4502,8 @@ public void decodeImage0() {
 		  	  	
 		  	  	String str = "computerTwentySidedRollFromLeft12";
 				sendToAllClients(str);
+				
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -4343,6 +4527,8 @@ public void decodeImage0() {
 		  	  	
 		  	  	String str = "computerTwentySidedRollFromLeft13";
 				sendToAllClients(str);
+				
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -4366,6 +4552,8 @@ public void decodeImage0() {
 		  	  	
 		  	  	String str = "computerTwentySidedRollFromLeft14";
 				sendToAllClients(str);
+				
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -4389,6 +4577,8 @@ public void decodeImage0() {
 		  	  	
 		  	  	String str = "computerTwentySidedRollFromLeft15";
 				sendToAllClients(str);
+				
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -4412,6 +4602,8 @@ public void decodeImage0() {
 		  	  	
 		  	  	String str = "computerTwentySidedRollFromLeft16";
 				sendToAllClients(str);
+				
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -4435,6 +4627,8 @@ public void decodeImage0() {
 		  	  	
 		  	  	String str = "computerTwentySidedRollFromLeft17";
 				sendToAllClients(str);
+				
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -4458,6 +4652,8 @@ public void decodeImage0() {
 		  	  	
 		  	  	String str = "computerTwentySidedRollFromLeft18";
 				sendToAllClients(str);
+				
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -4481,6 +4677,8 @@ public void decodeImage0() {
 		  	  	
 		  	  	String str = "computerTwentySidedRollFromLeft19";
 				sendToAllClients(str);
+				
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -4504,6 +4702,8 @@ public void decodeImage0() {
 		  	  	
 		  	  	String str = "cmputerTwentySidedRollFromLeft20";
 				sendToAllClients(str);
+				
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -4528,6 +4728,8 @@ public void decodeImage0() {
 		  	  	
 		  	  	String str = "cmputerTwentySidedRollFromLeft1";
 				sendToAllClients(str);
+				
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -4551,6 +4753,8 @@ public void decodeImage0() {
 		  	  	
 		  	  	String str = "computerTwentySidedRollFromLeft2";
 				sendToAllClients(str);
+				
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -4574,6 +4778,8 @@ public void decodeImage0() {
 		  	  	
 		  	  	String str = "computerTwentySidedRollFromLeft3";
 				sendToAllClients(str);
+				
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -4597,6 +4803,8 @@ public void decodeImage0() {
 		  	  	
 		  	  	String str = "computerTwentySidedRollFromLeft4";
 				sendToAllClients(str);
+				
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -4620,6 +4828,8 @@ public void decodeImage0() {
 		  	  	
 		  	  	String str = "computerTwentySidedRollFromLeft5";
 				sendToAllClients(str);
+				
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -4643,6 +4853,8 @@ public void decodeImage0() {
 		  	  	
 		  	  	String str = "computerTwentySidedRollFromLeft6";
 				sendToAllClients(str);
+				
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -4666,6 +4878,8 @@ public void decodeImage0() {
 		  	  	
 		  	  	String str = "computerTwentySidedRollFromLeft7";
 				sendToAllClients(str);
+				
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -4689,6 +4903,8 @@ public void decodeImage0() {
 		  	  	
 		  	  	String str = "computerTwentySidedRollFromLeft8";
 				sendToAllClients(str);
+				
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -4712,6 +4928,8 @@ public void decodeImage0() {
 		  	  	
 		  	  	String str = "computerTwentySidedRollFromLeft9";
 				sendToAllClients(str);
+				
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -4735,6 +4953,8 @@ public void decodeImage0() {
 		  	  	
 		  	  	String str = "computerTwentySidedRollFromLeft10";
 				sendToAllClients(str);
+				
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -4758,6 +4978,8 @@ public void decodeImage0() {
 		  	  	
 		  	  	String str = "computerTwentySidedRollFromLeft11";
 				sendToAllClients(str);
+				
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -4781,6 +5003,8 @@ public void decodeImage0() {
 		  	  	
 		  	  	String str = "computerTwentySidedRollFromLeft12";
 				sendToAllClients(str);
+				
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -4804,6 +5028,8 @@ public void decodeImage0() {
 		  	  	
 		  	  	String str = "computerTwentySidedRollFromLeft13";
 				sendToAllClients(str);
+				
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -4827,6 +5053,8 @@ public void decodeImage0() {
 		  	  	
 		  	  	String str = "computerTwentySidedRollFromLeft14";
 				sendToAllClients(str);
+				
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -4850,6 +5078,8 @@ public void decodeImage0() {
 		  	  	
 		  	  	String str = "computerTwentySidedRollFromLeft15";
 				sendToAllClients(str);
+				
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -4873,6 +5103,8 @@ public void decodeImage0() {
 		  	  	
 		  	  	String str = "computerTwentySidedRollFromLeft16";
 				sendToAllClients(str);
+				
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -4896,6 +5128,8 @@ public void decodeImage0() {
 		  	  	
 		  	  	String str = "computerTwentySidedRollFromLeft17";
 				sendToAllClients(str);
+				
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -4919,6 +5153,8 @@ public void decodeImage0() {
 		  	  	
 		  	  	String str = "computerTwentySidedRollFromLeft18";
 				sendToAllClients(str);
+				
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -4942,6 +5178,8 @@ public void decodeImage0() {
 		  	  	
 		  	  	String str = "computerTwentySidedRollFromLeft19";
 				sendToAllClients(str);
+				
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -4965,6 +5203,8 @@ public void decodeImage0() {
 		  	  	
 		  	  	String str = "cmputerTwentySidedRollFromLeft20";
 				sendToAllClients(str);
+				
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -4988,6 +5228,8 @@ public void decodeImage0() {
 		  	  	// Animation is just 1 slide so user can see title.
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
+		  	  	
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -5011,6 +5253,8 @@ public void decodeImage0() {
 		  	  	// Animation is just 1 slide so user can see title.
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
+		  	  	
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -5034,6 +5278,8 @@ public void decodeImage0() {
 		  	  	// Animation is just 1 slide so user can see title.
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
+		  	  	
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -5057,6 +5303,8 @@ public void decodeImage0() {
 		  	  	// Animation is just 1 slide so user can see title.
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
+		  	  	
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -5080,6 +5328,8 @@ public void decodeImage0() {
 		  	  	// Animation is just 1 slide so user can see title.
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
+		  	  	
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -5103,6 +5353,8 @@ public void decodeImage0() {
 		  	  	// Animation is just 1 slide so user can see title.
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
+		  	  	
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -5126,6 +5378,8 @@ public void decodeImage0() {
 		  	  	// Animation is just 1 slide so user can see title.
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
+		  	  	
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -5149,6 +5403,8 @@ public void decodeImage0() {
 		  	  	// Animation is just 1 slide so user can see title.
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
+		  	  	
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -5172,6 +5428,8 @@ public void decodeImage0() {
 		  	  	// Animation is just 1 slide so user can see title.
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
+		  	  	
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -5195,6 +5453,8 @@ public void decodeImage0() {
 		  	  	// Animation is just 1 slide so user can see title.
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
+		  	  	
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -5218,6 +5478,8 @@ public void decodeImage0() {
 		  	  	// Animation is just 1 slide so user can see title.
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
+		  	  	
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -5241,6 +5503,8 @@ public void decodeImage0() {
 		  	  	// Animation is just 1 slide so user can see title.
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
+		  	  	
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -5264,6 +5528,8 @@ public void decodeImage0() {
 		  	  	// Animation is just 1 slide so user can see title.
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
+		  	  	
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -5287,6 +5553,8 @@ public void decodeImage0() {
 		  	  	// Animation is just 1 slide so user can see title.
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
+		  	  	
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -5310,6 +5578,8 @@ public void decodeImage0() {
 		  	  	// Animation is just 1 slide so user can see title.
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
+		  	  	
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -5333,6 +5603,8 @@ public void decodeImage0() {
 		  	  	// Animation is just 1 slide so user can see title.
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
+		  	  	
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -5356,6 +5628,8 @@ public void decodeImage0() {
 		  	  	// Animation is just 1 slide so user can see title.
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
+		  	  	
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -5379,6 +5653,8 @@ public void decodeImage0() {
 		  	  	// Animation is just 1 slide so user can see title.
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
+		  	  	
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -5402,6 +5678,8 @@ public void decodeImage0() {
 		  	  	// Animation is just 1 slide so user can see title.
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
+		  	  	
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -5425,6 +5703,8 @@ public void decodeImage0() {
 		  	  	// Animation is just 1 slide so user can see title.
 		  	  	frameAnimation.stop();
 		  	  	frameAnimation.start();
+		  	  	
+		  	  	img.setImageDrawable(null);
 	  	    }
   		});
 	}
@@ -5463,7 +5743,9 @@ public void decodeImage0() {
 
 	  	  		public void run()
 	  	  		{				  	  	  			
-		  	  		isinitiativestartedinterrupted = "no";		  			
+		  	  		isinitiativestartedinterrupted = "no";
+		  	  		
+		  	  		h1.removeCallbacks(this);
 	  	  		}
 	  	  	}, 12400);
 	  	  	
@@ -5499,7 +5781,7 @@ public void decodeImage0() {
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
 		final Handler h1 = new Handler();
-	  	h1.postDelayed(new Runnable() {	  	  		
+	  	h1.postDelayed(new Runnable() {//TO HERE (REMOVING HANDLERS)
 	  	  		
   	  		@Override
   	  		public void run() {  	  			
@@ -5537,7 +5819,10 @@ public void decodeImage0() {
 			  			checkInitiativeResults();
 			  			
 			  			
-			  			//determineDoubles();			  			
+			  			//determineDoubles();
+			  			
+			  			h1.removeCallbacks(this);
+			  			h2.removeCallbacks(this);
 		  	  		}
 		  	  	}, 2000);//WAS 4000
   	  		}
@@ -10274,21 +10559,21 @@ public void decodeImage0() {
 		rollOff4215 ="yes";
 		
 		runOnUiThread(new Runnable() {
-		  	    @Override
-		  	    public void run() {
-		  	    	
+	  	    @Override
+	  	    public void run() {
+	  	    	
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 	  			
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);		    	  			
-	  			
-		  	    	
-		    		centerscrolltext.setVisibility(View.VISIBLE);
-		  		//centerscrolltext.startAnimation(animAlphaText);
-				centerscrolltext.append("\n" + "Re-roll for inititiative...");						
-		  	    }
-		  	});
+  			
+	  	    	
+	    		centerscrolltext.setVisibility(View.VISIBLE);
+	    		//centerscrolltext.startAnimation(animAlphaText);
+	    		centerscrolltext.append("\n" + "Re-roll for inititiative...");						
+	  	    }
+	  	});
 		
 		String str = "re-roll for inititiative...";
 		sendToClient2(str);						
@@ -10335,9 +10620,9 @@ public void decodeImage0() {
 		rollOff4250 ="yes";
 		
 		runOnUiThread(new Runnable() {
-		  	    @Override
-		  	    public void run() {
-		  	    	
+	  	    @Override
+	  	    public void run() {
+	  	    	
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 	  			
@@ -10345,11 +10630,11 @@ public void decodeImage0() {
 	  			centerscrolltext.setTypeface(typeFace);		    	  			
 	  			
 		  	    	
-		    		centerscrolltext.setVisibility(View.VISIBLE);
+	    		centerscrolltext.setVisibility(View.VISIBLE);
 		  		//centerscrolltext.startAnimation(animAlphaText);
 				centerscrolltext.append("\n" + "Re-roll for inititiative...");						
-		  	    }
-		  	});
+	  	    }
+	  	});
 		
 		String str = "re-roll for inititiative...";
 		sendToClient2(str);						
@@ -10396,21 +10681,21 @@ public void decodeImage0() {
 		rollOff4201 ="yes";
 		
 		runOnUiThread(new Runnable() {
-		  	    @Override
-		  	    public void run() {
-		  	    	
+	  	    @Override
+	  	    public void run() {
+	  	    	
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 	  			
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-	  			centerscrolltext.setTypeface(typeFace);		    	  			
-	  			
-		  	    	
-		    		centerscrolltext.setVisibility(View.VISIBLE);
-		  		//centerscrolltext.startAnimation(animAlphaText);
-				centerscrolltext.append("\n" + "Players are re-rolling...");						
-		  	    }
-		  	});
+	  			centerscrolltext.setTypeface(typeFace);
+  			
+	  	    	
+	    		centerscrolltext.setVisibility(View.VISIBLE);
+	    		//centerscrolltext.startAnimation(animAlphaText);
+	    		centerscrolltext.append("\n" + "Players are re-rolling...");						
+	  	    }
+	  	});
 		
 		String str = "re-roll for inititiative...";
 		sendToClient2(str);						
@@ -10450,21 +10735,21 @@ public void decodeImage0() {
 		rollOff530 ="yes";
 		
 		runOnUiThread(new Runnable() {
-		  	    @Override
-		  	    public void run() {
-		  	    	
+	  	    @Override
+	  	    public void run() {
+	  	    	
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 	  			
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-	  			centerscrolltext.setTypeface(typeFace);		    	  			
-	  			
-		  	    	
-		    		centerscrolltext.setVisibility(View.VISIBLE);
-		  		//centerscrolltext.startAnimation(animAlphaText);
-				centerscrolltext.append("\n" + "Players are re-rolling...");						
-		  	    }
-		  	});
+	  			centerscrolltext.setTypeface(typeFace);
+  			
+	  	    	
+	    		centerscrolltext.setVisibility(View.VISIBLE);
+	    		//centerscrolltext.startAnimation(animAlphaText);
+	    		centerscrolltext.append("\n" + "Players are re-rolling...");						
+	  	    }
+	  	});
 		
 		String str = "re-roll for inititiative...";
 		sendToClient3(str);						
@@ -10506,21 +10791,21 @@ public void decodeImage0() {
 		rollOff531 ="yes";
 		
 		runOnUiThread(new Runnable() {
-		  	    @Override
-		  	    public void run() {
-		  	    	
+	  	    @Override
+	  	    public void run() {
+	  	    	
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 	  			
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-	  			centerscrolltext.setTypeface(typeFace);		    	  			
-	  			
-		  	    	
-		    		centerscrolltext.setVisibility(View.VISIBLE);
-		  		//centerscrolltext.startAnimation(animAlphaText);
-				centerscrolltext.append("\n" + "Players are re-rolling...");						
-		  	    }
-		  	});
+	  			centerscrolltext.setTypeface(typeFace);
+  			
+	  	    	
+	    		centerscrolltext.setVisibility(View.VISIBLE);
+	    		//centerscrolltext.startAnimation(animAlphaText);
+	    		centerscrolltext.append("\n" + "Players are re-rolling...");						
+	  	    }
+	  	});
 		
 		String str = "re-roll for inititiative...";
 		sendToClient3(str);						
@@ -10562,21 +10847,21 @@ public void decodeImage0() {
 		rollOff532 ="yes";
 		
 		runOnUiThread(new Runnable() {
-		  	    @Override
-		  	    public void run() {
-		  	    	
+	  	    @Override
+	  	    public void run() {
+	  	    	
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 	  			
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);		    	  			
-	  			
-		  	    	
-		    		centerscrolltext.setVisibility(View.VISIBLE);
-		  		//centerscrolltext.startAnimation(animAlphaText);
-				centerscrolltext.append("\n" + "Players are re-rolling...");						
-		  	    }
-		  	});
+  			
+	  	    	
+	    		centerscrolltext.setVisibility(View.VISIBLE);
+	    		//centerscrolltext.startAnimation(animAlphaText);
+	    		centerscrolltext.append("\n" + "Players are re-rolling...");						
+	  	    }
+	  	});
 		
 		String str = "re-roll for inititiative...";
 		sendToClient3(str);						
@@ -10618,21 +10903,21 @@ public void decodeImage0() {
 		rollOff535 ="yes";
 		
 		runOnUiThread(new Runnable() {
-		  	    @Override
-		  	    public void run() {
-		  	    	
+	  	    @Override
+	  	    public void run() {
+	  	    	
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 	  			
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-	  			centerscrolltext.setTypeface(typeFace);		    	  			
-	  			
-		  	    	
-		    		centerscrolltext.setVisibility(View.VISIBLE);
-		  		//centerscrolltext.startAnimation(animAlphaText);
-				centerscrolltext.append("\n" + "Re-roll for inititiative...");						
-		  	    }
-		  	});
+	  			centerscrolltext.setTypeface(typeFace);
+  			
+	  	    	
+	    		centerscrolltext.setVisibility(View.VISIBLE);
+	    		//centerscrolltext.startAnimation(animAlphaText);
+	    		centerscrolltext.append("\n" + "Re-roll for inititiative...");						
+	  	    }
+	  	});
 		
 		String str = "re-roll for inititiative...";
 		sendToClient3(str);						
@@ -10684,21 +10969,21 @@ public void decodeImage0() {
 		rollOff5301 ="yes";
 		
 		runOnUiThread(new Runnable() {
-		  	    @Override
-		  	    public void run() {
-		  	    	
+	  	    @Override
+	  	    public void run() {
+	  	    	
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 	  			
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-	  			centerscrolltext.setTypeface(typeFace);		    	  			
-	  			
-		  	    	
-		    		centerscrolltext.setVisibility(View.VISIBLE);
-		  		//centerscrolltext.startAnimation(animAlphaText);
-				centerscrolltext.append("\n" + "Players are re-rolling...");						
-		  	    }
-		  	});
+	  			centerscrolltext.setTypeface(typeFace);
+  			
+	  	    	
+	    		centerscrolltext.setVisibility(View.VISIBLE);
+	    		//centerscrolltext.startAnimation(animAlphaText);
+	    		centerscrolltext.append("\n" + "Players are re-rolling...");						
+	  	    }
+	  	});
 		
 		String str = "re-roll for inititiative...";
 		sendToClient3(str);						
@@ -10740,21 +11025,21 @@ public void decodeImage0() {
 		rollOff5302 ="yes";
 		
 		runOnUiThread(new Runnable() {
-		  	    @Override
-		  	    public void run() {
-		  	    	
+	  	    @Override
+	  	    public void run() {
+	  	    	
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 	  			
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-	  			centerscrolltext.setTypeface(typeFace);		    	  			
-	  			
-		  	    	
-		    		centerscrolltext.setVisibility(View.VISIBLE);
-		  		//centerscrolltext.startAnimation(animAlphaText);
-				centerscrolltext.append("\n" + "Players are re-rolling...");						
-		  	    }
-		  	});
+	  			centerscrolltext.setTypeface(typeFace);
+  			
+	  	    	
+	    		centerscrolltext.setVisibility(View.VISIBLE);
+	    		//centerscrolltext.startAnimation(animAlphaText);
+	    		centerscrolltext.append("\n" + "Players are re-rolling...");						
+	  	    }
+	  	});
 		
 		String str = "re-roll for inititiative...";
 		sendToClient3(str);						
@@ -10796,21 +11081,21 @@ public void decodeImage0() {
 		rollOff5305 ="yes";
 		
 		runOnUiThread(new Runnable() {
-		  	    @Override
-		  	    public void run() {
-		  	    	
+	  	    @Override
+	  	    public void run() {
+	  	    	
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 	  			
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-	  			centerscrolltext.setTypeface(typeFace);		    	  			
-	  			
-		  	    	
-		    		centerscrolltext.setVisibility(View.VISIBLE);
-		  		//centerscrolltext.startAnimation(animAlphaText);
-				centerscrolltext.append("\n" + "Re-roll for inititiative...");						
-		  	    }
-		  	});
+	  			centerscrolltext.setTypeface(typeFace);
+  			
+	  	    	
+	    		centerscrolltext.setVisibility(View.VISIBLE);
+	    		//centerscrolltext.startAnimation(animAlphaText);
+	    		centerscrolltext.append("\n" + "Re-roll for inititiative...");						
+	  	    }
+	  	});
 		
 		String str = "re-roll for inititiative...";
 		sendToClient3(str);						
@@ -10857,21 +11142,21 @@ public void decodeImage0() {
 		rollOff5312 ="yes";
 		
 		runOnUiThread(new Runnable() {
-		  	    @Override
-		  	    public void run() {
-		  	    	
+	  	    @Override
+	  	    public void run() {
+	  	    	
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 	  			
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-	  			centerscrolltext.setTypeface(typeFace);		    	  			
-	  			
-		  	    	
-		    		centerscrolltext.setVisibility(View.VISIBLE);
-		  		//centerscrolltext.startAnimation(animAlphaText);
-				centerscrolltext.append("\n" + "Players are re-rolling...");						
-		  	    }
-		  	});
+	  			centerscrolltext.setTypeface(typeFace);
+  			
+	  	    	
+	    		centerscrolltext.setVisibility(View.VISIBLE);
+	    		//centerscrolltext.startAnimation(animAlphaText);
+	    		centerscrolltext.append("\n" + "Players are re-rolling...");						
+	  	    }
+	  	});
 		
 		String str = "re-roll for inititiative...";
 		sendToClient3(str);						
@@ -10913,21 +11198,21 @@ public void decodeImage0() {
 		rollOff5315 ="yes";
 		
 		runOnUiThread(new Runnable() {
-		  	    @Override
-		  	    public void run() {
-		  	    	
+	  	    @Override
+	  	    public void run() {
+	  	    	
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 	  			
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-	  			centerscrolltext.setTypeface(typeFace);		    	  			
-	  			
-		  	    	
-		    		centerscrolltext.setVisibility(View.VISIBLE);
-		  		//centerscrolltext.startAnimation(animAlphaText);
-				centerscrolltext.append("\n" + "Re-roll for inititiative...");						
-		  	    }
-		  	});
+	  			centerscrolltext.setTypeface(typeFace);
+  			
+	  	    	
+	    		centerscrolltext.setVisibility(View.VISIBLE);
+	    		//centerscrolltext.startAnimation(animAlphaText);
+	    		centerscrolltext.append("\n" + "Re-roll for inititiative...");						
+	  	    }
+	  	});
 		
 		String str = "re-roll for inititiative...";
 		sendToClient3(str);						
@@ -10974,21 +11259,21 @@ public void decodeImage0() {
 		rollOff5325 ="yes";
 		
 		runOnUiThread(new Runnable() {
-		  	    @Override
-		  	    public void run() {
-		  	    	
+	  	    @Override
+	  	    public void run() {
+	  	    	
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 	  			
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-	  			centerscrolltext.setTypeface(typeFace);		    	  			
-	  			
-		  	    	
-		    		centerscrolltext.setVisibility(View.VISIBLE);
-		  		//centerscrolltext.startAnimation(animAlphaText);
-				centerscrolltext.append("\n" + "Re-roll for inititiative...");						
-		  	    }
-		  	});
+	  			centerscrolltext.setTypeface(typeFace);
+  			
+	  	    	
+	    		centerscrolltext.setVisibility(View.VISIBLE);
+	    		//centerscrolltext.startAnimation(animAlphaText);
+	    		centerscrolltext.append("\n" + "Re-roll for inititiative...");						
+	  	    }
+	  	});
 		
 		String str = "re-roll for inititiative...";
 		sendToClient3(str);						
@@ -11037,21 +11322,21 @@ public void decodeImage0() {
 		rollOff40125 ="yes";
 		
 		runOnUiThread(new Runnable() {
-		  	    @Override
-		  	    public void run() {
-		  	    	
+	  	    @Override
+	  	    public void run() {
+	  	    	
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 	  			
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);		    	  			
-	  			
-		  	    	
-		    		centerscrolltext.setVisibility(View.VISIBLE);
-		  		//centerscrolltext.startAnimation(animAlphaText);
-				centerscrolltext.append("\n" + "Re-roll for inititiative...");						
-		  	    }
-		  	});
+  			
+	  	    	
+	    		centerscrolltext.setVisibility(View.VISIBLE);
+	    		//centerscrolltext.startAnimation(animAlphaText);
+	    		centerscrolltext.append("\n" + "Re-roll for inititiative...");						
+	  	    }
+	  	});
 		
 		String str = "re-roll for inititiative...";
 		sendToClient0(str);						
@@ -11098,21 +11383,21 @@ public void decodeImage0() {
 		rollOff53012 ="yes";
 		
 		runOnUiThread(new Runnable() {
-		  	    @Override
-		  	    public void run() {
-		  	    	
+	  	    @Override
+	  	    public void run() {
+	  	    	
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 	  			
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);		    	  			
-	  			
-		  	    	
-		    		centerscrolltext.setVisibility(View.VISIBLE);
-		  		//centerscrolltext.startAnimation(animAlphaText);
-				centerscrolltext.append("\n" + "Players are re-rolling...");						
-		  	    }
-		  	});
+  			
+	  	    	
+	    		centerscrolltext.setVisibility(View.VISIBLE);
+	    		//centerscrolltext.startAnimation(animAlphaText);
+	    		centerscrolltext.append("\n" + "Players are re-rolling...");						
+	  	    }
+	  	});
 		
 		String str = "re-roll for inititiative...";
 		sendToClient3(str);						
@@ -11155,21 +11440,21 @@ public void decodeImage0() {
 		rollOff53015 ="yes";
 		
 		runOnUiThread(new Runnable() {
-		  	    @Override
-		  	    public void run() {
-		  	    	
+	  	    @Override
+	  	    public void run() {
+	  	    	
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 	  			
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);		    	  			
-	  			
-		  	    	
-		    		centerscrolltext.setVisibility(View.VISIBLE);
-		  		//centerscrolltext.startAnimation(animAlphaText);
-				centerscrolltext.append("\n" + "Re-roll for inititiative...");						
-		  	    }
-		  	});
+  			
+	  	    	
+	    		centerscrolltext.setVisibility(View.VISIBLE);
+	    		//centerscrolltext.startAnimation(animAlphaText);
+	    		centerscrolltext.append("\n" + "Re-roll for inititiative...");						
+	  	    }
+	  	});
 		
 		String str = "re-roll for inititiative...";
 		sendToClient3(str);						
@@ -11216,21 +11501,21 @@ public void decodeImage0() {
 		rollOff53125 ="yes";
 		
 		runOnUiThread(new Runnable() {
-		  	    @Override
-		  	    public void run() {
-		  	    	
+	  	    @Override
+	  	    public void run() {
+	  	    	
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 	  			
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);		    	  			
-	  			
-		  	    	
-		    		centerscrolltext.setVisibility(View.VISIBLE);
-		  		//centerscrolltext.startAnimation(animAlphaText);
-				centerscrolltext.append("\n" + "Re-roll for inititiative...");						
-		  	    }
-		  	});
+  			
+	  	    	
+	    		centerscrolltext.setVisibility(View.VISIBLE);
+	    		//centerscrolltext.startAnimation(animAlphaText);
+	    		centerscrolltext.append("\n" + "Re-roll for inititiative...");						
+	  	    }
+	  	});
 		
 		String str = "re-roll for inititiative...";
 		sendToClient3(str);						
@@ -11277,21 +11562,21 @@ public void decodeImage0() {
 		rollOff53025 ="yes";
 		
 		runOnUiThread(new Runnable() {
-		  	    @Override
-		  	    public void run() {
-		  	    	
+	  	    @Override
+	  	    public void run() {
+	  	    	
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 	  			
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);		    	  			
-	  			
-		  	    	
-		    		centerscrolltext.setVisibility(View.VISIBLE);
-		  		//centerscrolltext.startAnimation(animAlphaText);
-				centerscrolltext.append("\n" + "Re-roll for inititiative...");						
-		  	    }
-		  	});
+  			
+	  	    	
+	    		centerscrolltext.setVisibility(View.VISIBLE);
+	    		//centerscrolltext.startAnimation(animAlphaText);
+	    		centerscrolltext.append("\n" + "Re-roll for inititiative...");						
+	  	    }
+	  	});
 		
 		String str = "re-roll for inititiative...";
 		sendToClient3(str);						
@@ -11340,21 +11625,21 @@ public void decodeImage0() {
 		rollOff530125 ="yes";
 		
 		runOnUiThread(new Runnable() {
-		  	    @Override
-		  	    public void run() {
-		  	    	
+	  	    @Override
+	  	    public void run() {
+	  	    	
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 	  			
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);		    	  			
-	  			
-		  	    	
-		    		centerscrolltext.setVisibility(View.VISIBLE);
-		  		//centerscrolltext.startAnimation(animAlphaText);
-				centerscrolltext.append("\n" + "Re-roll for inititiative...");						
-		  	    }
-		  	});
+  			
+	  	    	
+	    		centerscrolltext.setVisibility(View.VISIBLE);
+	    		//centerscrolltext.startAnimation(animAlphaText);
+	    		centerscrolltext.append("\n" + "Re-roll for inititiative...");						
+	  	    }
+	  	});
 		
 		String str = "re-roll for inititiative...";
 		sendToClient3(str);						
@@ -11459,7 +11744,10 @@ public void decodeImage0() {
 				  		  			/* FOR TESTING
 				  		  			 * String str2 = "ONE CLIENT TEST";
 				  		  			 * sendToClient1(str2);						  		  			
-				  		  			 */				  		  			
+				  		  			 */
+				  		  			
+				  		  			h4.removeCallbacks(this);
+				  		  			h5.removeCallbacks(this);
 			  	  	  		}
 			  	  	  	}, 750);
 	  	  	  		}
@@ -11637,6 +11925,8 @@ public void decodeImage0() {
 		  	  	  			sendToClient0(str);
 		  	  	  			
 		  	  	  			//gameEngine();
+		  	  	  			
+		  	  	  			h.removeCallbacks(this);
 			  	  	  	}
 		  	  	  	}, 3000);
   	    		}
@@ -11935,6 +12225,8 @@ public void decodeImage0() {
 		  	  	  			sendToAllClients(str);
 		  	  	  			
 		  	  	  			//gameEngine();
+		  	  	  			
+		  	  	  			h.removeCallbacks(this);
 			  	  	  	}
 		  	  	  	}, 3000);
   	    		}
@@ -14097,6 +14389,12 @@ public void decodeImage0() {
 				  	  			//gameEngine(null, gameOn, gameOn);
 				  	  			gameEngine();
 				  	  			
+				  	  			
+				  	  			h.removeCallbacks(this);
+				  	  			h2.removeCallbacks(this);
+				  	  			h3.removeCallbacks(this);
+				  	  			
+				  	  			
 				  	  			//avatarTest();
 				  	  			
 				  	  			//preventinitiativediefromleaking.equals("on");
@@ -14202,7 +14500,7 @@ public void decodeImage0() {
 			}
 		});
 	}
-	
+	*/
 	public void test1() {
 		
 		runOnUiThread(new Runnable() {
@@ -14263,7 +14561,7 @@ public void decodeImage0() {
 			}
 		});
 	}
-	*/
+	
 	/*
 	public void playersFightingTest() {//DELETE IF NOT USED!!!!!!!!!!!!!
 
@@ -15033,11 +15331,30 @@ public void decodeImage0() {
 			
 			//skillsCheck();
 			
+			
+			has5TakenTurn = "no";
+			Has0TakenTurn = "no";
+			hAs1TakenTurn = "no";
+			
+			if (playerDeadYet[5].equals("yes")) {
+				
+				has5TakenTurn = "yes";
+			}
+			else if (playerDeadYet[0].equals("yes")) {
+				
+				Has0TakenTurn = "yes";
+			}
+			else if (playerDeadYet[1].equals("yes")) {
+				
+				hAs1TakenTurn = "yes";
+			}
+			
+			
 			if (initiativeFinal[5] > initiativeFinal[0] && initiativeFinal[5] > initiativeFinal[1]) { //TOOK OUT: && has5TakenTurn.equals("no")
 				
-				has5TakenTurn = "no";
-				Has0TakenTurn = "no";
-				hAs1TakenTurn = "no";
+				//has5TakenTurn = "no";
+				//Has0TakenTurn = "no";
+				//hAs1TakenTurn = "no";
 				
 				runOnUiThread(new Runnable() {
 		  	  	    @Override
@@ -15149,9 +15466,9 @@ public void decodeImage0() {
 			
 			else if (initiativeFinal[0] > initiativeFinal[5] && initiativeFinal[0] > initiativeFinal[1]) { //1-11TOOK OUT:  && has5TakenTurn.equals("yes") , ?TOOK OUT: && Has0TakenTurn.equals("no")	
 				
-				has5TakenTurn = "no";
-				Has0TakenTurn = "no";
-				hAs1TakenTurn = "no";
+				//has5TakenTurn = "no";
+				//Has0TakenTurn = "no";
+				//hAs1TakenTurn = "no";
 				
 				runOnUiThread(new Runnable() {
 		  	  	    @Override
@@ -15304,6 +15621,9 @@ public void decodeImage0() {
 									
 									
 									//gameEngine3V30();
+				  	  	  			
+				  	  	  			
+				  	  	  			h.removeCallbacks(this);
 				  	  	  		}
 				  	  	  	}, 1000);
 		    			}
@@ -15323,9 +15643,9 @@ public void decodeImage0() {
 			
 			else if (initiativeFinal[1] > initiativeFinal[5] && initiativeFinal[1] > initiativeFinal[0]) {//1-11TOOK OUT: && has5TakenTurn.equals("yes") , ?TOOK OUT: && Has0TakenTurn.equals("yes")			
 				
-				has5TakenTurn = "no";
-				Has0TakenTurn = "no";
-				hAs1TakenTurn = "no";
+				//has5TakenTurn = "no";
+				//Has0TakenTurn = "no";
+				//hAs1TakenTurn = "no";
 				
 				runOnUiThread(new Runnable() {
 		  	  	    @Override
@@ -15480,6 +15800,9 @@ public void decodeImage0() {
 									
 									
 									//gameEngine3V31();
+				  	  	  			
+				  	  	  			
+				  	  	  			h.removeCallbacks(this);
 				  	  	  		}
 				  	  	  	}, 1000);
 		    			}
@@ -15496,7 +15819,7 @@ public void decodeImage0() {
 				}
 				*/
 			}			
-		}		
+		}
 		/*
 		else if (numberOfPlayers == 4) {
 			
@@ -15826,7 +16149,10 @@ public void decodeImage0() {
 	
 		  		            lp.copyFrom(alert.getWindow().getAttributes());
 		  		            lp.width = 1050;	            
-		  		            alert.getWindow().setAttributes(lp);  				
+		  		            alert.getWindow().setAttributes(lp);
+		  		            
+		  		            
+		  		            h.removeCallbacks(this);
 	  	  	  			}	  	  	  			
 		  	  	  	}
 	  	  	  	}, 2000);					
@@ -15973,6 +16299,8 @@ public void decodeImage0() {
 								runActionsOnUi();
 							}
 			  	  		}
+			  	  		
+			  	  		h.removeCallbacks(this);
 		  	  	  	}
 	  	  	  	}, 1000);				
   	  	    }
@@ -16120,7 +16448,9 @@ public void decodeImage0() {
 		  	  	  			
 		  	  	  			String str11 = "runActionsOnUi";
 		  	  	  			sendToClient0(str11);
-			  			}	  	  	  			
+			  			}
+			  			
+			  			h.removeCallbacks(this);
 	  	  	  		}
 	  	  	  	}, 2000);	  			
   	  	    }
@@ -16260,6 +16590,8 @@ public void decodeImage0() {
 				  				sendToClient0(str12);
 							}
 			  	  		}
+			  	  		
+			  	  		h.removeCallbacks(this);
 		  	  	  	}
 	  	  	  	}, 1000);				
   	  	    }
@@ -16412,7 +16744,9 @@ public void decodeImage0() {
 			  				
 		  	  	  			
 		  	  	  			runActionsOnUi();
-			  			}	  	  	  			
+			  			}
+			  			
+			  			h.removeCallbacks(this);
 	  	  	  		}
 	  	  	  	}, 2000);	  			
   	  	    }
@@ -16432,6 +16766,7 @@ public void decodeImage0() {
 		
 		issecondroundofhasteused = "no"; // SO HUMIE CAN USE MB AFTER THE 2RD ROUND OF A HASTE.
 		
+		
 		if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] + 3 == ArrayOfTurn.turn[0]) {//CHANGED FROM 3 TO 2, SHOULD BE 3?
 			
 			canHasDisarmed[0] = "no";
@@ -16443,7 +16778,7 @@ public void decodeImage0() {
 			TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
 	  		disarmedtextright.setVisibility(View.INVISIBLE);
 	  		
-	  		String str2 = "clientNotDisarmed";
+	  		String str2 = "clientNotDisarmed";//NEED THIS? BECAUSE OF 2 UP.
 	  		sendToAllClients(str2);	  		
 			
 			
@@ -16453,10 +16788,154 @@ public void decodeImage0() {
 			sendToAllClients(str3);
 		}
 		
+		
+		if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0]) {
+			
+			canHasDisarmed[1] = "no";
+			
+			String str = "cAnHasDisarmed1 :" + "no";
+			sendToAllClients(str);
+		}
+		
+		if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0] &&
+				(initiativeFinal[0] > initiativeFinal[5]) && (initiativeFinal[5] > initiativeFinal[1]) && FiveDisarmed0) {
+			
+			FiveDisarmed0 = false;
+			
+			canHasDisarmed[0] = "no";
+			
+			String str = "CanHasDisarmed0 :" + "no";
+			sendToAllClients(str);
+			
+			
+			TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+	  		disarmedtextright.setVisibility(View.INVISIBLE);
+	  		
+	  		String str2 = "clientNotDisarmed";
+	  		sendToAllClients(str2);
+		}
+		
+		if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0] && 
+				(initiativeFinal[0] > initiativeFinal[5]) && (initiativeFinal[5] > initiativeFinal[1]) && oeDisarmed0) {			
+			
+			oeDisarmed0 = false;
+			
+			canHasDisarmed[0] = "no";
+			
+			String str = "CanHasDisarmed0 :" + "no";
+			sendToAllClients(str);
+			
+			
+			TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+	  		disarmedtextright.setVisibility(View.INVISIBLE);
+	  		
+	  		String str2 = "clientNotDisarmed";
+	  		sendToAllClients(str2);
+		}
+		
+		if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0]) {
+			
+			canHasDisarmed[0] = "no";
+			
+			String str = "CanHasDisarmed0 :" + "no";
+			sendToAllClients(str);
+			
+			
+			TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+	  		disarmedtextright.setVisibility(View.INVISIBLE);
+	  		
+	  		String str2 = "clientNotDisarmed";
+	  		sendToAllClients(str2);
+		}
+		
+		if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 1 == ArrayOfTurn.turn[0] && 
+				(initiativeFinal[0] > initiativeFinal[1]) && (initiativeFinal[1] > initiativeFinal[5]) && zroDisarmed1) {
+			
+			zroDisarmed1 = false;
+			
+			canHasDisarmed[1] = "no";
+			
+			String str = "cAnHasDisarmed1 :" + "no";
+			sendToAllClients(str);
+		}
+		
+		if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0] && 
+				(initiativeFinal[0] > initiativeFinal[1]) && (initiativeFinal[1] > initiativeFinal[5]) && fveDisarmed1) {
+			
+			fveDisarmed1 = false;
+			
+			canHasDisarmed[1] = "no";
+			
+			String str = "cAnHasDisarmed1 :" + "no";
+			sendToAllClients(str);
+		}
+		
+		if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0] && 
+				(initiativeFinal[1] > initiativeFinal[5]) && (initiativeFinal[5] > initiativeFinal[0]) && fveDisarmed1) {
+			
+			fveDisarmed1 = false;
+			
+			canHasDisarmed[1] = "no";
+			
+			String str = "cAnHasDisarmed1 :" + "no";
+			sendToAllClients(str);
+		}
+		
+		if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0] && 
+				(initiativeFinal[1] > initiativeFinal[5]) && (initiativeFinal[5] > initiativeFinal[0]) && zroDisarmed1) {
+			
+			zroDisarmed1 = false;
+			
+			canHasDisarmed[1] = "no";
+			
+			String str = "cAnHasDisarmed1 :" + "no";
+			sendToAllClients(str);
+		}
+		
+		if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 1 == ArrayOfTurn.turn[0] && 
+				(initiativeFinal[1] > initiativeFinal[0]) && (initiativeFinal[0] > initiativeFinal[5]) && oeDisarmed0) {
+			
+			oeDisarmed0 = false;
+			
+			canHasDisarmed[0] = "no";
+			
+			String str = "CanHasDisarmed0 :" + "no";
+			sendToAllClients(str);
+			
+			
+			TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+	  		disarmedtextright.setVisibility(View.INVISIBLE);
+	  		
+	  		String str2 = "clientNotDisarmed";
+	  		sendToAllClients(str2);
+		}
+		
+		if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0] && 
+				(initiativeFinal[1] > initiativeFinal[0]) && (initiativeFinal[0] > initiativeFinal[5]) && FiveDisarmed0) {
+			
+			FiveDisarmed0 = false;
+			
+			canHasDisarmed[0] = "no";
+			
+			String str = "CanHasDisarmed0 :" + "no";
+			sendToAllClients(str);
+			
+			
+			TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+	  		disarmedtextright.setVisibility(View.INVISIBLE);
+	  		
+	  		String str2 = "clientNotDisarmed";
+	  		sendToAllClients(str2);
+		}
+		
+		
 		else if (canHasDisarmed[0].equals("yes")) {
 			
 			TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
 	  		disarmedtextright.setVisibility(View.VISIBLE);
+	  		
+	  		String str10 = "clientDisarmed";
+			sendToAllClients(str10);
 		}
 		
 		runOnUiThread(new Runnable() {
@@ -16500,8 +16979,8 @@ public void decodeImage0() {
 			  	  				disarmedAction();				  	  			
 			  	  			}
 			  	  			
-			  	  			else if ((didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0])) {
-			  	  						  	  											
+			  	  			else if ((didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0])) {
+			  	  				//ADDED: (didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] == ArrayOfTurn.turn[0]) TO TRY & FIX WHEN ANB AND B DIS N THEN A ATT N HANG PROBLEM.										
 								disarmedAction();
 												  	  			
 			  	  			}			  	  			
@@ -16548,6 +17027,8 @@ public void decodeImage0() {
 								runActionsOnUi();
 							}
 			  	  		}
+			  	  		
+			  	  		h.removeCallbacks(this);
 		  	  	  	}
 	  	  	  	}, 1000);				
   	  	    }
@@ -16581,10 +17062,154 @@ public void decodeImage0() {
 			sendToAllClients(str3);
 		}
 		
+		
+		if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0]) {
+			
+			canHasDisarmed[1] = "no";
+			
+			String str = "cAnHasDisarmed1 :" + "no";
+			sendToAllClients(str);
+
+			
+			TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+	  		disarmedtextright.setVisibility(View.INVISIBLE);
+	  		
+	  		String str2 = "clientNotDisarmed";
+	  		sendToAllClients(str2);
+		}
+		
+		if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0] &&
+				(initiativeFinal[0] > initiativeFinal[5]) && (initiativeFinal[5] > initiativeFinal[1]) && FiveDisarmed0) {			
+			
+			FiveDisarmed0 = false;
+			
+			canHasDisarmed[0] = "no";
+			
+			String str = "CanHasDisarmed0 :" + "no";
+			sendToAllClients(str);
+		}
+		
+		if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0] && 
+				(initiativeFinal[0] > initiativeFinal[5]) && (initiativeFinal[5] > initiativeFinal[1]) && oeDisarmed0) {			
+			
+			oeDisarmed0 = false;
+			
+			canHasDisarmed[0] = "no";
+			
+			String str = "CanHasDisarmed0 :" + "no";
+			sendToAllClients(str);
+		}
+		
+		if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0]) {
+			
+			canHasDisarmed[0] = "no";
+			
+			String str = "CanHasDisarmed0 :" + "no";
+			sendToAllClients(str);
+		}
+		
+		if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 1 == ArrayOfTurn.turn[0] && 
+				(initiativeFinal[0] > initiativeFinal[1]) && (initiativeFinal[1] > initiativeFinal[5]) && zroDisarmed1) {
+			
+			zroDisarmed1 = false;
+			
+			canHasDisarmed[1] = "no";
+			
+			String str = "cAnHasDisarmed1 :" + "no";
+			sendToAllClients(str);
+			
+			
+			TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+	  		disarmedtextright.setVisibility(View.INVISIBLE);
+	  		
+	  		String str2 = "clientNotDisarmed";
+	  		sendToAllClients(str2);
+		}
+		
+		if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0] && 
+				(initiativeFinal[0] > initiativeFinal[1]) && (initiativeFinal[1] > initiativeFinal[5]) && fveDisarmed1) {
+			
+			fveDisarmed1 = false;
+			
+			canHasDisarmed[1] = "no";
+			
+			String str = "cAnHasDisarmed1 :" + "no";
+			sendToAllClients(str);
+
+			
+			TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+	  		disarmedtextright.setVisibility(View.INVISIBLE);
+	  		
+	  		String str2 = "clientNotDisarmed";
+	  		sendToAllClients(str2);
+		}
+		
+		if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0] && 
+				(initiativeFinal[1] > initiativeFinal[5]) && (initiativeFinal[5] > initiativeFinal[0]) && fveDisarmed1) {
+			
+			fveDisarmed1 = false;
+			
+			canHasDisarmed[1] = "no";
+			
+			String str = "cAnHasDisarmed1 :" + "no";
+			sendToAllClients(str);
+
+			
+			TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+	  		disarmedtextright.setVisibility(View.INVISIBLE);
+	  		
+	  		String str2 = "clientNotDisarmed";
+	  		sendToAllClients(str2);
+		}
+		
+		if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0] && 
+				(initiativeFinal[1] > initiativeFinal[5]) && (initiativeFinal[5] > initiativeFinal[0]) && zroDisarmed1) {
+			
+			zroDisarmed1 = false;
+			
+			canHasDisarmed[1] = "no";
+			
+			String str = "cAnHasDisarmed1 :" + "no";
+			sendToAllClients(str);
+
+			
+			TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+	  		disarmedtextright.setVisibility(View.INVISIBLE);
+	  		
+	  		String str2 = "clientNotDisarmed";
+	  		sendToAllClients(str2);
+		}
+		
+		if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 1 == ArrayOfTurn.turn[0] && 
+				(initiativeFinal[1] > initiativeFinal[0]) && (initiativeFinal[0] > initiativeFinal[5]) && oeDisarmed0) {
+			
+			oeDisarmed0 = false;
+			
+			canHasDisarmed[0] = "no";
+			
+			String str = "CanHasDisarmed0 :" + "no";
+			sendToAllClients(str);
+		}
+		
+		if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0] && 
+				(initiativeFinal[1] > initiativeFinal[0]) && (initiativeFinal[0] > initiativeFinal[5]) && FiveDisarmed0) {
+			
+			FiveDisarmed0 = false;
+			
+			canHasDisarmed[0] = "no";
+			
+			String str = "CanHasDisarmed0 :" + "no";
+			sendToAllClients(str);
+		}
+		
+		
 		else if (canHasDisarmed[1].equals("yes")) {
 			
 			TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
 	  		disarmedtextright.setVisibility(View.VISIBLE);
+	  		
+	  		String str10 = "clientDisarmed";
+			sendToAllClients(str10);
 		}
 		
 		runOnUiThread(new Runnable() {
@@ -16612,6 +17237,7 @@ public void decodeImage0() {
 	  	  	  		@Override
 		  	  	  	public void run() {
 	  	  	  			
+	  	  	  			test1();
 	  	  	  			
 			  	  		if (canHasDisarmed[5].equals("yes")) {
 							
@@ -16621,21 +17247,28 @@ public void decodeImage0() {
 				  	  	  	
 				  	  	  	String str6 = "hostSideDisarmed";
 				  	  	  	sendToAllClients(str6);
-			  	  			
+				  	  	  	
+			  	  			test2();
 							
 			  	  			if ((didHumanCriticalMiss[5].equals("yes") && disarmedTurnStart[5] == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[5].equals("yes") && disarmedTurnStart[5] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[5].equals("yes") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0])) {			  	  				
-				  	  										
+				  	  			
+			  	  				test3();
+			  	  				
 			  	  				disarmedAction();				  	  			
 			  	  			}
 			  	  			
-			  	  			else if ((didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0])) {
-			  	  						  	  											
+			  	  			else if ((didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0])) {
+			  	  				//ADDED: (didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] == ArrayOfTurn.turn[0]) TO TRY & FIX WHEN ANB AND B DIS N THEN A ATT N HANG PROBLEM.
+			  	  				test4();
+			  	  				
 								disarmedAction();
 												  	  			
 			  	  			}			  	  			
 				  	    	
 				  			else if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 3 == ArrayOfTurn.turn[0]) {
-				  									
+				  				
+				  				test5();
+				  				
 				  				canHasDisarmed[5] = "no";
 				  				
 				  				String str7 = "canHaSDisarmed5 :" + "no";
@@ -16676,6 +17309,8 @@ public void decodeImage0() {
 								runActionsOnUi();
 							}
 			  	  		}
+			  	  		
+			  	  		h.removeCallbacks(this);
 		  	  	  	}
 	  	  	  	}, 1000);				
   	  	    }
@@ -16833,6 +17468,9 @@ public void decodeImage0() {
 		  	  	  			sendToClient1(str9);
 		  	  	  			
 		  	  	  			forScrollTitleChat();
+		  	  	  			
+		  	  	  			
+		  	  	  			h.removeCallbacks(this);
 		  	  	  		}
 		  	  	  	}, 1000);		
 	  	  	    }
@@ -16886,8 +17524,8 @@ public void decodeImage0() {
     			String str7 = "ClientAttackingReveal5OnLeft";
     			sendToClient1(str7);
     			
-    			
-    			if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0]) {
+    			/*
+    			if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0]) {NEED THIS?
     				
     	    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
     		  		disarmedtextright.setVisibility(View.INVISIBLE);
@@ -16901,7 +17539,7 @@ public void decodeImage0() {
     				String str4 = "CanHasDisarmed0 :" + "no";
     				sendToAllClients(str4);
     			}
-    	    	
+    	    	*/
     	    	//THIS WAS "else if" (WANT THIS AND THE IF ABOVE TO BOTH BE EVALUATED):
     	    	if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("yes") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0]) {
     	    		
@@ -16910,15 +17548,70 @@ public void decodeImage0() {
     	    		String str5 = "canHaSDisarmed5 :" + "no";
     	    		sendToAllClients(str5);
     	    		
+    	    		
+    	    		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+    		  		disarmedtextleft.setVisibility(View.INVISIBLE);
+    	    		
     					
     				didHumanCriticalMiss[5] = "no";
     				
     				String str6 = "didHuManCriticalMiss5 :" + "no";
     				sendToAllClients(str6);
+    	    	}
+    	    	
+    	    	
+    	    	if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0]) {
+    	    		
+    	    		canHasDisarmed[5] = "no";
+    	    		
+    	    		String str5 = "canHaSDisarmed5 :" + "no";
+    	    		sendToAllClients(str5);
     				
+    	    		
     				TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
     		  		disarmedtextleft.setVisibility(View.INVISIBLE);
+    		  		    		  		
+    		  		String str6 = "hostSideNotDisarmed";
+			  		sendToAllClients(str6);
     	    	}
+    	    	
+    	    	if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 1 == ArrayOfTurn.turn[0] && 
+    	    			(initiativeFinal[5] > initiativeFinal[1]) && (initiativeFinal[1] > initiativeFinal[0]) && fveDisarmed1) {
+    	    		
+    	    		fveDisarmed1 = false;
+    	    		
+    	    		canHasDisarmed[1] = "no";
+    				
+    				String str = "cAnHasDisarmed1 :" + "no";
+    				sendToAllClients(str);
+    	    	}
+    	    	
+    	    	if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0]) {
+    	    		
+    	    		canHasDisarmed[1] = "no";
+    				
+    				String str = "cAnHasDisarmed1 :" + "no";
+    				sendToAllClients(str);
+    	    	}
+    	    	
+    	    	if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 1 == ArrayOfTurn.turn[0] && 
+    	    			(initiativeFinal[1] > initiativeFinal[5]) && (initiativeFinal[5] > initiativeFinal[0]) && OneDisarmed5) {
+			
+					OneDisarmed5 = false;
+					
+					canHasDisarmed[5] = "no";
+    	    		
+    	    		String str5 = "canHaSDisarmed5 :" + "no";
+    	    		sendToAllClients(str5);
+    				
+    	    		
+    				TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+    		  		disarmedtextleft.setVisibility(View.INVISIBLE);    		  		
+    		  		
+    		  		String str6 = "hostSideNotDisarmed";
+			  		sendToAllClients(str6);
+				}
+    	    	
     	    	
     	    	if (canHasDisarmed[5].equals("yes")) {
     	    		
@@ -16928,6 +17621,16 @@ public void decodeImage0() {
 		  	  		
 		  	  		String str14 = "hostSideDisarmed";
 		  	  		sendToAllClients(str14);
+    	    	}
+    	    	
+    	    	if (canHasDisarmed[0].equals("yes")) {
+    	    		
+    	    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
+		  	  	  	disarmedtextright.bringToFront();
+		  	  	  	
+		  	  	  	String str15 = "clientDisarmed";
+		  	  	  	sendToClient0(str15);
     	    	}
     			
     			
@@ -16981,7 +17684,9 @@ public void decodeImage0() {
 		  	  	  			
 		  	  	  			String str12 = "runActionsOnUi";
 		  	  	  			sendToClient0(str12);
-			  			}	  	  	  			
+			  			}
+			  			
+			  			h.removeCallbacks(this);
 	  	  	  		}
 	  	  	  	}, 2000);
   	  	    }
@@ -17027,7 +17732,7 @@ public void decodeImage0() {
     			String str7 = "clntattackingreveal1onleft";
     			sendToClient1(str7);
     			
-    			
+    			/*
     			if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0]) {
     				
     	    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
@@ -17042,7 +17747,7 @@ public void decodeImage0() {
     				String str4 = "CanHasDisarmed0 :" + "no";
     				sendToAllClients(str4);
     			}
-    	    	
+    	    	*/
     	    	//THIS WAS "else if" (WANT THIS AND THE IF ABOVE TO BOTH BE EVALUATED):
     	    	if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0]) {
     	    		
@@ -17051,14 +17756,89 @@ public void decodeImage0() {
     	    		String str5 = "cAnHasDisarmed1 :" + "no";
     	    		sendToAllClients(str5);
     	    		
+    	    		
+    	    		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+    		  		disarmedtextleft.setVisibility(View.INVISIBLE);
+    	    		
     					
     				didHumanCriticalMiss[1] = "no";
     				
     				String str6 = "dIdHumanCriticalMiss1 :" + "no";
     				sendToAllClients(str6);
+    	    	}
+    	    	
+    	    	
+    	    	if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0]) {
+    	    		
+    	    		canHasDisarmed[5] = "no";
+    	    		
+    	    		String str5 = "canHaSDisarmed5 :" + "no";
+    	    		sendToAllClients(str5);
+    	    	}
+    	    	
+    	    	if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 1 == ArrayOfTurn.turn[0] && 
+    	    			(initiativeFinal[5] > initiativeFinal[1]) && (initiativeFinal[1] > initiativeFinal[0]) && fveDisarmed1) {
+    	    		
+    	    		fveDisarmed1 = false;
+    	    		
+    	    		canHasDisarmed[1] = "no";
+    				
+    				String str = "cAnHasDisarmed1 :" + "no";
+    				sendToAllClients(str);
+
     				
     				TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
-    		  		disarmedtextleft.setVisibility(View.INVISIBLE);
+			  		disarmedtextleft.setVisibility(View.INVISIBLE);
+			  		
+			  		String str5 = "hostSideNotDisarmed";
+			  		sendToAllClients(str5);
+    	    	}
+    	    	
+    	    	if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0]) {    	    		
+    	    		
+    	    		canHasDisarmed[1] = "no";
+    				
+    				String str = "cAnHasDisarmed1 :" + "no";
+    				sendToAllClients(str);
+
+    				
+    				TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+			  		disarmedtextleft.setVisibility(View.INVISIBLE);
+			  		
+			  		String str5 = "hostSideNotDisarmed";
+			  		sendToAllClients(str5);
+    	    	}
+    	    	
+    	    	if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 1 == ArrayOfTurn.turn[0] && 
+    	    			(initiativeFinal[1] > initiativeFinal[5]) && (initiativeFinal[5] > initiativeFinal[0]) && OneDisarmed5) {
+			
+					OneDisarmed5 = false;
+					
+					canHasDisarmed[5] = "no";
+					
+					String str5 = "canHaSDisarmed5 :" + "no";
+    	    		sendToAllClients(str5);
+				}
+    	    	
+    	    	
+    	    	if (canHasDisarmed[1].equals("yes")) {
+    	    		
+    	    		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+		  	  		disarmedtextleft.setVisibility(View.VISIBLE);				  	  	
+		  	  		disarmedtextleft.bringToFront();
+		  	  		
+		  	  		String str14 = "hostSideDisarmed";
+		  	  		sendToAllClients(str14);
+    	    	}
+    	    	
+    	    	if (canHasDisarmed[0].equals("yes")) {
+    	    		
+    	    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
+		  	  	  	disarmedtextright.bringToFront();
+		  	  	  	
+		  	  	  	String str15 = "clientDisarmed";
+		  	  	  	sendToClient0(str15);
     	    	}
   	  	    	
     	    	
@@ -17112,7 +17892,9 @@ public void decodeImage0() {
 		  	  	  			
 		  	  	  			String str12 = "runActionsOnUi";
 		  	  	  			sendToClient0(str12);
-			  			}	  	  	  			
+			  			}
+			  			
+			  			h.removeCallbacks(this);
 	  	  	  		}
 	  	  	  	}, 2000);  	  	    	
   	  	    }
@@ -17511,6 +18293,9 @@ public void decodeImage0() {
 		  	  	  			sendToClient0(str9);
 		  	  	  			
 		  	  	  			forScrollTitleChat();
+		  	  	  			
+		  	  	  			
+		  	  	  			h.removeCallbacks(this);
 		  	  	  		}
 		  	  	  	}, 1000);		
 	  	  	    }
@@ -17564,7 +18349,7 @@ public void decodeImage0() {
     			String str7 = "ClientAttackingReveal5OnLeft";
     			sendToClient0(str7);
     			
-    			
+    			/*
     			if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0]) {
     				
     	    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
@@ -17579,7 +18364,7 @@ public void decodeImage0() {
     				String str4 = "cAnHasDisarmed1 :" + "no";
     				sendToAllClients(str4);
     			}
-    	    	
+    	    	*/
     	    	//THIS WAS "else if" (WANT THIS AND THE IF ABOVE TO BOTH BE EVALUATED):
     	    	if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("yes") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0]) {
     	    		
@@ -17588,16 +18373,71 @@ public void decodeImage0() {
     	    		String str5 = "canHaSDisarmed5 :" + "no";
     	    		sendToAllClients(str5);
     	    		
-    					
+    				
+    	    		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+    		  		disarmedtextleft.setVisibility(View.INVISIBLE);
+    	    		
+    	    		
     				didHumanCriticalMiss[5] = "no";
     				
     				String str6 = "didHuManCriticalMiss5 :" + "no";
     				sendToAllClients(str6);
-    				
-    				TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
-    		  		disarmedtextleft.setVisibility(View.INVISIBLE);
     	    	}
-  	  	    	
+    	    	
+    	    	
+    	    	if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 1 == ArrayOfTurn.turn[0] && 
+    	    			(initiativeFinal[5] > initiativeFinal[0]) && (initiativeFinal[0] > initiativeFinal[1]) && FiveDisarmed0) {
+    	    		
+    	    		FiveDisarmed0 = false;
+    				
+    				canHasDisarmed[0] = "no";
+    				
+    				String str = "CanHasDisarmed0 :" + "no";
+    				sendToAllClients(str);
+    	    	}
+    	    	
+    	    	if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0]) {
+    	    		
+    	    		canHasDisarmed[0] = "no";
+    				
+    				String str = "CanHasDisarmed0 :" + "no";
+    				sendToAllClients(str);
+    	    	}
+    	    	
+    	    	if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 1 == ArrayOfTurn.turn[0] && 
+    	    			(initiativeFinal[0] > initiativeFinal[5]) && (initiativeFinal[5] > initiativeFinal[1]) && ZeroDisarmed5) {
+    	    		
+    	    		ZeroDisarmed5 = false;
+    	    		
+    	    		canHasDisarmed[5] = "no";
+    	    		
+    	    		String str5 = "canHaSDisarmed5 :" + "no";
+    	    		sendToAllClients(str5);
+    	    		
+    				
+    	    		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+    		  		disarmedtextleft.setVisibility(View.INVISIBLE);
+    		  		
+    		  		String str6 = "hostSideNotDisarmed";
+			  		sendToAllClients(str6);
+				}
+    	    	
+				if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0]) {
+					
+					canHasDisarmed[5] = "no";
+    	    		
+    	    		String str5 = "canHaSDisarmed5 :" + "no";
+    	    		sendToAllClients(str5);
+    	    		
+    				
+    	    		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+    		  		disarmedtextleft.setVisibility(View.INVISIBLE);
+    		  		
+    		  		String str6 = "hostSideNotDisarmed";
+			  		sendToAllClients(str6);
+				}
+    	    	
+    	    	
     	    	if (canHasDisarmed[5].equals("yes")) {
     	    		
     	    		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
@@ -17606,6 +18446,16 @@ public void decodeImage0() {
 		  	  		
 		  	  		String str14 = "hostSideDisarmed";
 		  	  		sendToAllClients(str14);
+    	    	}
+    	    	
+    	    	if (canHasDisarmed[1].equals("yes")) {
+    	    		
+    	    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
+		  	  	  	disarmedtextright.bringToFront();
+		  	  	  	
+		  	  	  	String str15 = "clientDisarmed";
+		  	  	  	sendToClient0(str15);
     	    	}
     			
     	    	
@@ -17659,7 +18509,9 @@ public void decodeImage0() {
 		  	  	  			
 		  	  	  			String str12 = "runActionsOnUi";
 		  	  	  			sendToClient1(str12);
-			  			}	  	  	  			
+			  			}
+			  			
+			  			h.removeCallbacks(this);
 	  	  	  		}
 	  	  	  	}, 2000);
   	  	    	
@@ -17706,7 +18558,7 @@ public void decodeImage0() {
     			String str7 = "CntAttingrevL0onlft";
     			sendToClient0(str7);
     			
-    			
+    			/*
     			if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0]) {
     				
     	    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
@@ -17721,7 +18573,7 @@ public void decodeImage0() {
     				String str4 = "cAnHasDisarmed1 :" + "no";
     				sendToAllClients(str4);
     			}
-    	    	
+    	    	*/
     	    	//THIS WAS "else if" (WANT THIS AND THE IF ABOVE TO BOTH BE EVALUATED):
     	    	if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0]) {
     	    		
@@ -17739,7 +18591,81 @@ public void decodeImage0() {
     				TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
     		  		disarmedtextleft.setVisibility(View.INVISIBLE);
     	    	}
+    	    	
+    	    	
+    	    	if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 1 == ArrayOfTurn.turn[0] && 
+    	    			(initiativeFinal[5] > initiativeFinal[0]) && (initiativeFinal[0] > initiativeFinal[1]) && FiveDisarmed0) {
+    	    		
+    	    		FiveDisarmed0 = false;
+    				
+    				canHasDisarmed[0] = "no";
+    				
+    				String str = "CanHasDisarmed0 :" + "no";
+    				sendToAllClients(str);
+    				
+    				
+    				TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+    		  		disarmedtextleft.setVisibility(View.INVISIBLE);
+    				
+    				String str6 = "hostSideNotDisarmed";
+			  		sendToAllClients(str6);
+    	    	}
+    	    	
+    	    	if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0]) {
+    	    		
+    	    		canHasDisarmed[0] = "no";
+    				
+    				String str = "CanHasDisarmed0 :" + "no";
+    				sendToAllClients(str);
+    				
+    				
+    				TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+    		  		disarmedtextleft.setVisibility(View.INVISIBLE);
+    				
+    				String str6 = "hostSideNotDisarmed";
+			  		sendToAllClients(str6);
+    	    	}
+    	    	
+    	    	if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 1 == ArrayOfTurn.turn[0] && 
+    	    			(initiativeFinal[0] > initiativeFinal[5]) && (initiativeFinal[5] > initiativeFinal[1]) && ZeroDisarmed5) {
+    	    		
+    	    		ZeroDisarmed5 = false;
+    	    		
+    	    		canHasDisarmed[5] = "no";
+    	    		
+    	    		String str5 = "canHaSDisarmed5 :" + "no";
+    	    		sendToAllClients(str5);
+				}
+    	    	
+				if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0]) {
+					
+					canHasDisarmed[5] = "no";
+    	    		
+    	    		String str5 = "canHaSDisarmed5 :" + "no";
+    	    		sendToAllClients(str5);
+				}
+    	    	
+    	    	
+    	    	if (canHasDisarmed[0].equals("yes")) {
+    	    		
+    	    		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+		  	  		disarmedtextleft.setVisibility(View.VISIBLE);				  	  	
+		  	  		disarmedtextleft.bringToFront();
+		  	  		
+		  	  		String str14 = "hostSideDisarmed";
+		  	  		sendToAllClients(str14);
+    	    	}
   	  	    	
+    	    	if (canHasDisarmed[1].equals("yes")) {
+    	    		
+    	    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
+		  	  	  	disarmedtextright.bringToFront();
+		  	  	  	
+		  	  	  	String str15 = "clientDisarmed";
+		  	  	  	sendToClient0(str15);
+    	    	}
+    	    	
     			
     			skillsCheckLeft0();
     			
@@ -17791,7 +18717,9 @@ public void decodeImage0() {
 		  	  	  			
 		  	  	  			String str12 = "runActionsOnUi";
 		  	  	  			sendToClient1(str12);
-			  			}	  	  	  			
+			  			}
+			  			
+			  			h.removeCallbacks(this);
 	  	  	  		}
 	  	  	  	}, 2000);  	  	    	
   	  	    }
@@ -17882,6 +18810,31 @@ public void decodeImage0() {
 					String str6 = "didHuManCriticalMiss5 :" + "no";
 					sendToAllClients(str6);
 				}
+				
+				
+				if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0]) {
+					
+					canHasDisarmed[1] = "no";
+				
+					String str4 = "cAnHasDisarmed1 :" + "no";
+					sendToAllClients(str4);
+				}
+				
+				if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0]) {
+					
+					canHasDisarmed[5] = "no";
+					
+					String str4 = "canHaSDisarmed5 :" + "no";
+					sendToAllClients(str4);
+					
+					
+					TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+			  		disarmedtextleft.setVisibility(View.INVISIBLE);
+			  		
+			  		String str5 = "hostSideNotDisarmed";
+			  		sendToAllClients(str5);
+				}
+				
 				
 				if (canHasDisarmed[5].equals("yes")) {
 		    		
@@ -17978,6 +18931,8 @@ public void decodeImage0() {
 			  	  	  			sendToClient0(str16);
 							}
 			  	  		}
+			  	  		
+			  	  		h.removeCallbacks(this);
 		  	  	  	}
 		  	  	}, 1000);
 			}
@@ -18065,7 +19020,32 @@ public void decodeImage0() {
 			
 			String str6 = "dIdHumanCriticalMiss1 :" + "no";
 			sendToAllClients(str6);
-		}		
+		}
+		
+		
+		if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0]) {
+			
+			canHasDisarmed[1] = "no";
+		
+			String str4 = "cAnHasDisarmed1 :" + "no";
+			sendToAllClients(str4);
+			
+			
+			TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+	  		disarmedtextleft.setVisibility(View.INVISIBLE);			
+			
+	  		String str5 = "hostSideNotDisarmed";
+	  		sendToAllClients(str5);
+		}
+		
+		if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0]) {
+			
+			canHasDisarmed[5] = "no";
+			
+			String str4 = "canHaSDisarmed5 :" + "no";
+			sendToAllClients(str4);
+		}
+		
 		
 		runOnUiThread(new Runnable() {
   	  	    @Override
@@ -18155,6 +19135,8 @@ public void decodeImage0() {
 		  	  	  				sendToClient0(str16);
 							}
 			  	  		}
+			  	  		
+			  	  		h.removeCallbacks(this);
 		  	  	  	}
 	  	  	  	}, 1000);				
   	  	    }
@@ -18241,6 +19223,31 @@ public void decodeImage0() {
 					String str6 = "didHuManCriticalMiss5 :" + "no";
 					sendToAllClients(str6);
 				}
+				
+				
+				if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0]) {
+					
+					canHasDisarmed[0] = "no";
+					
+					String str4 = "CanHasDisarmed0 :" + "no";
+					sendToAllClients(str4);
+				}
+				
+				if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0]) {
+					
+					canHasDisarmed[5] = "no";
+					
+					String str4 = "canHaSDisarmed5 :" + "no";
+					sendToAllClients(str4);
+					
+					
+					TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+			  		disarmedtextleft.setVisibility(View.INVISIBLE);
+			  		
+			  		String str5 = "hostSideNotDisarmed";
+			  		sendToAllClients(str5);
+				}
+				
 				
 				if (canHasDisarmed[5].equals("yes")) {
 		    		
@@ -18338,6 +19345,8 @@ public void decodeImage0() {
 			  	  	  			sendToClient1(str16);
 							}
 			  	  		}
+			  	  		
+			  	  		h.removeCallbacks(this);
 		  	  	  	}
 	  	  	  	}, 1000);
 			}
@@ -18425,7 +19434,32 @@ public void decodeImage0() {
 			
 			String str6 = "DidHumanCriticalMiss0 :" + "no";
 			sendToAllClients(str6);
-		}		
+		}
+		
+		
+		if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0]) {
+			
+			canHasDisarmed[0] = "no";
+			
+			String str4 = "CanHasDisarmed0 :" + "no";
+			sendToAllClients(str4);
+			
+			
+			TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+			disarmedtextleft.setVisibility(View.INVISIBLE);
+			
+			String str5 = "hostSideNotDisarmed";
+			sendToAllClients(str5);
+		}
+		
+		if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0]) {
+			
+			canHasDisarmed[5] = "no";
+			
+			String str4 = "canHaSDisarmed5 :" + "no";
+			sendToAllClients(str4);
+		}
+		
 		
 		runOnUiThread(new Runnable() {
 		    @Override
@@ -18516,6 +19550,8 @@ public void decodeImage0() {
 			  	  	  			sendToClient1(str16);
 							}
 			  	  		}
+			  	  		
+			  	  		h.removeCallbacks(this);
 		  	  	  	}
 		  	  	}, 1000);				
 		    }
@@ -18635,6 +19671,9 @@ public void decodeImage0() {
 		  	  	  			
 		  	  	  			
 		  	  	  			chooseOpponent();
+		  	  	  			
+		  	  	  			
+		  	  	  			h.removeCallbacks(this);
 		  	  	  		}
 		  	  	  	}, 1000);		
 	  	  	    }
@@ -19784,8 +20823,8 @@ public void decodeImage0() {
 			  	  	  			
 			  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.buttonsound6);
 			  	  	  			
-				  	  	  		final Handler h = new Handler();
-					  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+				  	  	  		final Handler h2 = new Handler();
+					  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
 					  	  	  			
 					  	  	  		@Override
 						  	  	  	public void run() {
@@ -19819,6 +20858,9 @@ public void decodeImage0() {
 								  	  	  	}
 							  	  	  	}, 500);
 							  	  	  	*/
+						  	  	  		
+						  	  	  		h.removeCallbacks(this);
+						  	  	  		h2.removeCallbacks(this);
 						  	  	  	}
 					  	  	  	}, 2000);
 				  	  	  	}
@@ -19864,8 +20906,8 @@ public void decodeImage0() {
 			  	  	  			
 			  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.buttonsound6);
 			  	  	  			
-				  	  	  		final Handler h = new Handler();
-					  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+				  	  	  		final Handler h2 = new Handler();
+					  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
 					  	  	  			
 					  	  	  		@Override
 						  	  	  	public void run() {
@@ -19899,6 +20941,9 @@ public void decodeImage0() {
 								  	  	  	}
 							  	  	  	}, 500);
 							  	  	  	*/
+						  	  	  		
+						  	  	  		h.removeCallbacks(this);
+						  	  	  		h2.removeCallbacks(this);
 						  	  	  	}
 					  	  	  	}, 2000);
 				  	  	  	}
@@ -19959,8 +21004,8 @@ public void decodeImage0() {
 			  	  	  			
 			  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.buttonsound6);
 			  	  	  			
-				  	  	  		final Handler h = new Handler();
-					  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+				  	  	  		final Handler h2 = new Handler();
+					  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
 					  	  	  			
 					  	  	  		@Override
 						  	  	  	public void run() {
@@ -19994,6 +21039,9 @@ public void decodeImage0() {
 								  	  	  	}
 							  	  	  	}, 500);
 							  	  	  	*/
+						  	  	  		
+						  	  	  		h.removeCallbacks(this);
+						  	  	  		h2.removeCallbacks(this);
 						  	  	  	}
 					  	  	  	}, 2000);
 				  	  	  	}
@@ -20045,8 +21093,8 @@ public void decodeImage0() {
 			  	  	  			
 			  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.buttonsound6);
 			  	  	  			
-				  	  	  		final Handler h = new Handler();
-					  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+				  	  	  		final Handler h2 = new Handler();
+					  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
 					  	  	  			
 					  	  	  		@Override
 						  	  	  	public void run() {
@@ -20080,6 +21128,9 @@ public void decodeImage0() {
 								  	  	  	}
 							  	  	  	}, 500);
 							  	  	  	*/
+						  	  	  		
+						  	  	  		h.removeCallbacks(this);
+						  	  	  		h2.removeCallbacks(this);
 						  	  	  	}
 					  	  	  	}, 2000);
 				  	  	  	}
@@ -20131,8 +21182,8 @@ public void decodeImage0() {
 			  	  	  			
 			  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.buttonsound6);
 			  	  	  			
-				  	  	  		final Handler h = new Handler();
-					  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+				  	  	  		final Handler h2 = new Handler();
+					  	  	  	h2.postDelayed(new Runnable() {
 					  	  	  			
 					  	  	  		@Override
 						  	  	  	public void run() {
@@ -20166,6 +21217,9 @@ public void decodeImage0() {
 								  	  	  	}
 							  	  	  	}, 500);
 							  	  	  	*/
+						  	  	  		
+						  	  	  		h.removeCallbacks(this);
+						  	  	  		h2.removeCallbacks(this);
 						  	  	  	}
 					  	  	  	}, 2000);
 				  	  	  	}
@@ -20262,6 +21316,8 @@ public void decodeImage0() {
 									istitlestatsopen = "no";
 								}								
 							}
+							
+							h.removeCallbacks(this);
 			  	  	  	}
 		  	  	  	}, 600);					
 				}
@@ -20332,6 +21388,8 @@ public void decodeImage0() {
 									istitlestatsopen = "no";
 								}								
 							}
+							
+							h.removeCallbacks(this);
 			  	  	  	}
 		  	  	  	}, 600);
 				}
@@ -20940,7 +21998,10 @@ public void decodeImage0() {
 
 	  		            lp.copyFrom(alert.getWindow().getAttributes());
 	  		            lp.width = 1050;	            
-	  		            alert.getWindow().setAttributes(lp);	  	  	  					  	  	  			
+	  		            alert.getWindow().setAttributes(lp);
+	  		            
+	  		            
+	  		            h.removeCallbacks(this);
 		  	  	  	}
 	  	  	  	}, 2000);					
   	  	    }
@@ -21061,6 +22122,7 @@ public void decodeImage0() {
 	}
 	
 	
+	/*
 	public void threePlayerRedirect() {//DELETE THIS???????------JUST USE: threePlayerRedirectWithHasteForClient()??????
 		
 		if (initiativeFinal[5] > initiativeFinal[0] && initiativeFinal[5] > initiativeFinal[1]) {
@@ -21132,437 +22194,282 @@ public void decodeImage0() {
 				turn();
 			}
 		}		
-	}
+	}	
+	*/
 	
 	public void threePlayerRedirectWithHasteForClient() {
 		
-		if ((initiativeFinal[5] > initiativeFinal[0]) && (initiativeFinal[5] > initiativeFinal[1]) && (ishasteused.equals("yes"))) {
+		if ((initiativeFinal[5] > initiativeFinal[0]) && (initiativeFinal[5] > initiativeFinal[1])) {
 			
-			test=1;
-			turnTest();
-			
-			hastePartTwo();
-		}
-	
-		else if ((initiativeFinal[5] > initiativeFinal[0]) && (initiativeFinal[5] > initiativeFinal[1]) && (ishasteused0.equals("yes"))) {
-		
-			if ((initiativeFinal[0] > initiativeFinal[1]) && Has0TakenTurn.equals("no")) {
-
-				test=2;
+			if (ishasteused.equals("yes")) {
+				
+				test=1;
 				turnTest();
 				
-				String str = "hastePartTwo";
-  	  			sendToClient0(str);
-  	  			
-  	  			Has0TakenTurn = "yes";
+				hastePartTwo();
 			}
-			else if ((initiativeFinal[0] > initiativeFinal[1]) && Has0TakenTurn.equals("yes") && hAs1TakenTurn.equals("no")) {
-
-				test=3;
-				turnTest();
+			else if (ishasteused0.equals("yes")) {
 				
-				gameEngine3V35Part2For1Part1();
-			}
-			else if ((initiativeFinal[1] > initiativeFinal[0]) && hAs1TakenTurn.equals("no")) {
-
-				test=4;
-				turnTest();
+				if ((initiativeFinal[0] > initiativeFinal[1]) && Has0TakenTurn.equals("no") && hAs1TakenTurn.equals("no")) {
+					
+					test=2;
+					turnTest();
+					
+					String str = "hastePartTwo";
+	  	  			sendToClient0(str);
+	  	  			
+	  	  			Has0TakenTurn = "yes";
+				}
+				if ((initiativeFinal[1] > initiativeFinal[0]) && hAs1TakenTurn.equals("yes") && Has0TakenTurn.equals("no")) {
+					
+					test=3;
+					turnTest();
+					
+					String str = "hastePartTwo";
+	  	  			sendToClient0(str);
+	  	  			
+	  	  			Has0TakenTurn = "yes";
+				}
 				
-				gameEngine3V35Part2For1Part1();
 			}
-			else if ((initiativeFinal[1] > initiativeFinal[0]) && hAs1TakenTurn.equals("yes") && Has0TakenTurn.equals("no")) {
-
-				test=5;
-				turnTest();
+			else if (ishasteused1.equals("yes")) {
 				
-				String str = "hastePartTwo";
-  	  			sendToClient0(str);
-  	  			
-  	  			Has0TakenTurn = "yes";
+				if ((initiativeFinal[0] > initiativeFinal[1]) && Has0TakenTurn.equals("yes") && hAs1TakenTurn.equals("no")) {
+
+					test=4;
+					turnTest();
+					
+					String str = "hastePartTwo";
+	  	  			sendToClient1(str);
+	  	  			
+	  	  			hAs1TakenTurn = "yes";
+				}
+				if ((initiativeFinal[1] > initiativeFinal[0]) && hAs1TakenTurn.equals("no") && Has0TakenTurn.equals("no")) {
+
+					test=5;
+					turnTest();
+					
+					String str = "hastePartTwo";
+	  	  			sendToClient1(str);
+	  	  			
+	  	  			hAs1TakenTurn = "yes";
+				}
 			}
-			else {
+			else if ((initiativeFinal[0] > initiativeFinal[1]) && Has0TakenTurn.equals("no") && hAs1TakenTurn.equals("no")) {
 
 				test=6;
 				turnTest();
 				
-				turn();
-			}
-		}
-	
-		else if ((initiativeFinal[5] > initiativeFinal[0]) && (initiativeFinal[5] > initiativeFinal[1]) && (ishasteused1.equals("yes"))) {
-			
-			if ((initiativeFinal[0] > initiativeFinal[1]) && Has0TakenTurn.equals("no")) {
-
-				test=7;
-				turnTest();
-				
 				gameEngine3V35Part2For0Part1();
 			}
 			else if ((initiativeFinal[0] > initiativeFinal[1]) && Has0TakenTurn.equals("yes") && hAs1TakenTurn.equals("no")) {
 
+				test=7;
+				turnTest();
+				
+				gameEngine3V35Part2For1Part1();
+			}
+			else if ((initiativeFinal[1] > initiativeFinal[0]) && Has0TakenTurn.equals("no") && hAs1TakenTurn.equals("no")) {
+
 				test=8;
 				turnTest();
 				
-				String str = "hastePartTwo";
-  	  			sendToClient1(str);
-  	  			
-  	  			hAs1TakenTurn = "yes";
+				gameEngine3V35Part2For1Part1();
 			}
-			else if ((initiativeFinal[1] > initiativeFinal[0]) && hAs1TakenTurn.equals("no")) {
+			else if ((initiativeFinal[1] > initiativeFinal[0]) && Has0TakenTurn.equals("no") && hAs1TakenTurn.equals("yes")) {
 
 				test=9;
 				turnTest();
 				
-				String str = "hastePartTwo";
-  	  			sendToClient1(str);
-  	  			
-  	  			hAs1TakenTurn = "yes";
-			}
-			else if ((initiativeFinal[1] > initiativeFinal[0]) && hAs1TakenTurn.equals("yes") && Has0TakenTurn.equals("no")) {
+				gameEngine3V35Part2For0Part1();
+			}			
+			else {
 
 				test=10;
 				turnTest();
 				
-				gameEngine3V35Part2For0Part1();
-			}
-			else {
-
-				test=11;
-				turnTest();
-				
 				turn();
 			}
 		}
 		
-		else if ((initiativeFinal[5] > initiativeFinal[0]) && (initiativeFinal[5] > initiativeFinal[1]) && (ishasteused.equals("no")) && (ishasteused0.equals("no")) && (ishasteused1.equals("no"))) {		
+		
+		else if ((initiativeFinal[0] > initiativeFinal[5]) && (initiativeFinal[0] > initiativeFinal[1])) {
 			
-			if ((initiativeFinal[0] > initiativeFinal[1]) && (Has0TakenTurn.equals("no"))) {
-
-				test=12;
+			if (ishasteused0.equals("yes")) {
+				
+				test=11;
 				turnTest();
 				
-				gameEngine3V35Part2For0Part1();
+				String str = "hastePartTwo";
+	  			sendToClient0(str);
 			}
-			else if ((initiativeFinal[0] > initiativeFinal[1]) && (Has0TakenTurn.equals("yes")) && (hAs1TakenTurn.equals("no"))) {
-
-				test=13;
-				turnTest();
+			else if (ishasteused.equals("yes")) {
 				
-				gameEngine3V35Part2For1Part1();
-			}
-			else if ((initiativeFinal[0] > initiativeFinal[1]) && (Has0TakenTurn.equals("yes")) && (hAs1TakenTurn.equals("yes"))) {
+				if ((initiativeFinal[5] > initiativeFinal[1]) && has5TakenTurn.equals("no") && hAs1TakenTurn.equals("no")) {
 
-				test=14;
-				turnTest();
-				
-				turn();
-			}
-			
-			else if ((initiativeFinal[1] > initiativeFinal[0]) && (hAs1TakenTurn.equals("no"))) {
+					test=12;
+					turnTest();
+					
+					hastePartTwo();
+				}
+				if ((initiativeFinal[1] > initiativeFinal[5]) && hAs1TakenTurn.equals("yes") && has5TakenTurn.equals("no")) {
 
-				test=15;
-				turnTest();
-				
-				gameEngine3V35Part2For1Part1();
+					test=13;
+					turnTest();
+					
+					hastePartTwo();
+				}
 			}
-			else if ((initiativeFinal[1] > initiativeFinal[0]) && (hAs1TakenTurn.equals("yes")) && (Has0TakenTurn.equals("no"))) {
+			else if (ishasteused1.equals("yes")) {
+				
+				if ((initiativeFinal[5] > initiativeFinal[1]) && has5TakenTurn.equals("yes") && hAs1TakenTurn.equals("no")) {				
+
+					test=14;
+					turnTest();
+					
+					String str = "hastePartTwo";
+	  	  			sendToClient1(str);
+	  	  			
+	  	  			hAs1TakenTurn = "yes";
+				}
+				if ((initiativeFinal[1] > initiativeFinal[5]) && hAs1TakenTurn.equals("no") && has5TakenTurn.equals("no")) {
+
+					test=15;
+					turnTest();
+					
+					String str = "hastePartTwo";
+	  	  			sendToClient1(str);
+	  	  			
+	  	  			hAs1TakenTurn = "yes";
+				}
+			}
+			else if ((initiativeFinal[5] > initiativeFinal[1]) && (has5TakenTurn.equals("no") && hAs1TakenTurn.equals("no"))) {//ABN CHECK
 
 				test=16;
 				turnTest();
 				
-				gameEngine3V35Part2For0Part1();
+				gameEngine3V3XPart2For5Part1();
 			}
-			else if ((initiativeFinal[1] > initiativeFinal[0]) && (hAs1TakenTurn.equals("yes")) && (Has0TakenTurn.equals("yes"))) {
+			else if ((initiativeFinal[5] > initiativeFinal[1]) && has5TakenTurn.equals("yes") && hAs1TakenTurn.equals("no")) {
 
 				test=17;
 				turnTest();
 				
-				turn();
+				gameEngine3V35Part2For1Part1();
 			}
-		}
-		
-		
-		
-		else if ((initiativeFinal[0] > initiativeFinal[5]) && (initiativeFinal[0] > initiativeFinal[1]) && (ishasteused0.equals("yes"))) {
+			else if ((initiativeFinal[1] > initiativeFinal[5]) && hAs1TakenTurn.equals("no") && has5TakenTurn.equals("no")) {
 
-			test=18;
-			turnTest();
-			
-			String str = "hastePartTwo";
-  			sendToClient0(str);
-		}
-		
-		else if ((initiativeFinal[0] > initiativeFinal[5]) && (initiativeFinal[0] > initiativeFinal[1]) && (ishasteused1.equals("yes"))) {
-			
-			if ((initiativeFinal[5] > initiativeFinal[1]) && has5TakenTurn.equals("no")) {
+				test=18;
+				turnTest();
+				
+				//gameEngine3V3XPart2For5Part1();
+				gameEngine3V35Part2For1Part1();
+			}
+			else if ((initiativeFinal[1] > initiativeFinal[5]) && hAs1TakenTurn.equals("yes") && has5TakenTurn.equals("no")) {
 
 				test=19;
 				turnTest();
 				
 				gameEngine3V3XPart2For5Part1();
 			}
-			else if ((initiativeFinal[5] > initiativeFinal[1]) && has5TakenTurn.equals("yes") && hAs1TakenTurn.equals("no")) {				
+			else {
 
 				test=20;
 				turnTest();
 				
-				String str = "hastePartTwo";
-  	  			sendToClient1(str);
-  	  			
-  	  			hAs1TakenTurn = "yes";
-			}
-			else if ((initiativeFinal[1] > initiativeFinal[5]) && hAs1TakenTurn.equals("no")) {
-
+				turn();
+			}			
+		}
+		
+		
+		else if ((initiativeFinal[1] > initiativeFinal[5]) && (initiativeFinal[1] > initiativeFinal[0])) {
+			
+			if (ishasteused1.equals("yes")) {
+				
 				test=21;
 				turnTest();
 				
 				String str = "hastePartTwo";
-  	  			sendToClient1(str);
-  	  			
-  	  			hAs1TakenTurn = "yes";
+	  			sendToClient1(str);
 			}
-			else if ((initiativeFinal[1] > initiativeFinal[5]) && hAs1TakenTurn.equals("yes") && has5TakenTurn.equals("no")) {
-
-				test=22;
-				turnTest();
+			else if (ishasteused.equals("yes")) {
 				
-				gameEngine3V3XPart2For5Part1();
-			}
-			else {
+				if ((initiativeFinal[5] > initiativeFinal[0]) && has5TakenTurn.equals("no") && Has0TakenTurn.equals("no")) {
 
-				test=23;
-				turnTest();
-				
-				turn();
-			}
-		}
-		
-		else if ((initiativeFinal[0] > initiativeFinal[5]) && (initiativeFinal[0] > initiativeFinal[1]) && (ishasteused.equals("yes"))) {
-			
-			if ((initiativeFinal[5] > initiativeFinal[1]) && has5TakenTurn.equals("no")) {
+					test=22;
+					turnTest();
+					
+					hastePartTwo();
+				}
+				if ((initiativeFinal[0] > initiativeFinal[5]) && Has0TakenTurn.equals("yes") && has5TakenTurn.equals("no")) {
 
-				test=24;
-				turnTest();
-				
-				hastePartTwo();
+					test=23;
+					turnTest();
+					
+					hastePartTwo();
+				}
 			}
-			else if ((initiativeFinal[5] > initiativeFinal[1]) && has5TakenTurn.equals("yes") && hAs1TakenTurn.equals("no")) {
+			else if (ishasteused0.equals("yes")) {
+				
+				if ((initiativeFinal[5] > initiativeFinal[0]) && has5TakenTurn.equals("yes") && Has0TakenTurn.equals("no")) {
 
-				test=25;
-				turnTest();
-				
-				gameEngine3V35Part2For1Part1();
+					test=24;
+					turnTest();
+					
+					String str = "hastePartTwo";
+	  	  			sendToClient0(str);
+	  	  			
+	  	  			Has0TakenTurn = "yes";
+				}
+				if ((initiativeFinal[0] > initiativeFinal[5]) && Has0TakenTurn.equals("no") && has5TakenTurn.equals("no")) {
+
+					test=25;
+					turnTest();
+					
+					String str = "hastePartTwo";
+	  	  			sendToClient0(str);
+	  	  			
+	  	  			Has0TakenTurn = "yes";
+				}
 			}
-			else if ((initiativeFinal[1] > initiativeFinal[5]) && hAs1TakenTurn.equals("no")) {
+			else if ((initiativeFinal[5] > initiativeFinal[0]) && has5TakenTurn.equals("no") && Has0TakenTurn.equals("no")) {
 
 				test=26;
 				turnTest();
 				
-				gameEngine3V35Part2For1Part1();
+				gameEngine3V3XPart2For5Part1();
 			}
-			else if ((initiativeFinal[1] > initiativeFinal[5]) && hAs1TakenTurn.equals("yes") && has5TakenTurn.equals("no")) {
+			else if ((initiativeFinal[5] > initiativeFinal[0]) && has5TakenTurn.equals("yes") && Has0TakenTurn.equals("no")) {
 
 				test=27;
 				turnTest();
 				
-				hastePartTwo();
+				gameEngine3V35Part2For0Part1();
 			}
-			else {
+			else if ((initiativeFinal[0] > initiativeFinal[5]) && Has0TakenTurn.equals("no") && has5TakenTurn.equals("no")) {
 
 				test=28;
 				turnTest();
 				
-				turn();
+				gameEngine3V35Part2For0Part1();
 			}
-		}
-		
-		else if ((initiativeFinal[0] > initiativeFinal[5]) && (initiativeFinal[0] > initiativeFinal[1]) && (ishasteused0.equals("no")) && (ishasteused.equals("no")) && (ishasteused1.equals("no"))) {
-			
-			if ((initiativeFinal[5] > initiativeFinal[1]) && has5TakenTurn.equals("no")) {
+			else if ((initiativeFinal[0] > initiativeFinal[5]) && Has0TakenTurn.equals("yes") && has5TakenTurn.equals("no")) {
 
 				test=29;
 				turnTest();
 				
 				gameEngine3V3XPart2For5Part1();
 			}
-			else if ((initiativeFinal[5] > initiativeFinal[1]) && (has5TakenTurn.equals("yes")) && (hAs1TakenTurn.equals("no"))) {
+			else {
 
 				test=30;
 				turnTest();
 				
-				gameEngine3V35Part2For1Part1();
-			}
-			else if ((initiativeFinal[5] > initiativeFinal[1]) && (has5TakenTurn.equals("yes")) && (hAs1TakenTurn.equals("yes"))) {
-
-				test=31;
-				turnTest();
-				
-				turn();
-			}
-			else if ((initiativeFinal[1] > initiativeFinal[5]) && hAs1TakenTurn.equals("no")) {
-
-				test=32;
-				turnTest();
-				
-				gameEngine3V35Part2For1Part1();
-			}
-			else if ((initiativeFinal[1] > initiativeFinal[5]) && (hAs1TakenTurn.equals("yes")) && (has5TakenTurn.equals("no"))) {
-
-				test=33;
-				turnTest();
-				
-				gameEngine3V3XPart2For5Part1();
-			}
-			else if ((initiativeFinal[1] > initiativeFinal[5]) && (hAs1TakenTurn.equals("yes")) && (has5TakenTurn.equals("yes"))) {
-
-				test=34;
-				turnTest();
-				
 				turn();
 			}
 		}
 		
-		
-		
-		else if ((initiativeFinal[1] > initiativeFinal[5]) && (initiativeFinal[1] > initiativeFinal[0]) && (ishasteused1.equals("yes"))) {
-
-			test=35;
-			turnTest();
-			
-			String str = "hastePartTwo";
-  			sendToClient1(str);
-		}
-		
-		else if ((initiativeFinal[1] > initiativeFinal[5]) && (initiativeFinal[1] > initiativeFinal[0]) && (ishasteused0.equals("yes"))) {
-			
-			if ((initiativeFinal[5] > initiativeFinal[0]) && has5TakenTurn.equals("no")) {
-
-				test=36;
-				turnTest();
-				
-				gameEngine3V3XPart2For5Part1();
-			}
-			else if ((initiativeFinal[5] > initiativeFinal[0]) && has5TakenTurn.equals("yes") && Has0TakenTurn.equals("no")) {
-
-				test=37;
-				turnTest();
-				
-				String str = "hastePartTwo";
-  	  			sendToClient0(str);
-  	  			
-  	  			Has0TakenTurn = "yes";
-			}
-			else if ((initiativeFinal[0] > initiativeFinal[5]) && Has0TakenTurn.equals("no")) {
-
-				test=38;
-				turnTest();
-				
-				String str = "hastePartTwo";
-  	  			sendToClient0(str);
-  	  			
-  	  			Has0TakenTurn = "yes";
-			}
-			else if ((initiativeFinal[0] > initiativeFinal[5]) && Has0TakenTurn.equals("yes") && has5TakenTurn.equals("no")) {
-
-				test=39;
-				turnTest();
-				
-				gameEngine3V3XPart2For5Part1();
-			}
-			else {
-
-				test=40;
-				turnTest();
-				
-				turn();
-			}
-		}
-		
-		else if ((initiativeFinal[1] > initiativeFinal[5]) && (initiativeFinal[1] > initiativeFinal[0]) && (ishasteused.equals("yes"))) {
-			
-			if ((initiativeFinal[5] > initiativeFinal[0]) && has5TakenTurn.equals("no")) {
-
-				test=41;
-				turnTest();
-				
-				hastePartTwo();
-			}
-			else if ((initiativeFinal[5] > initiativeFinal[0]) && has5TakenTurn.equals("yes") && Has0TakenTurn.equals("no")) {
-
-				test=42;
-				turnTest();
-				
-				gameEngine3V35Part2For0Part1();
-			}
-			else if ((initiativeFinal[0] > initiativeFinal[5]) && Has0TakenTurn.equals("no")) {
-
-				test=43;
-				turnTest();
-				
-				gameEngine3V35Part2For0Part1();
-			}
-			else if ((initiativeFinal[0] > initiativeFinal[5]) && Has0TakenTurn.equals("yes") && has5TakenTurn.equals("no")) {
-
-				test=44;
-				turnTest();
-				
-				hastePartTwo();
-			}
-			else {
-
-				test=45;
-				turnTest();
-				
-				turn();
-			}
-		}
-		
-		else if ((initiativeFinal[1] > initiativeFinal[5]) && (initiativeFinal[1] > initiativeFinal[0]) && (ishasteused1.equals("no")) && (ishasteused.equals("no")) && (ishasteused0.equals("no"))) {
-			
-			if ((initiativeFinal[5] > initiativeFinal[0]) && has5TakenTurn.equals("no")) {
-
-				test=46;
-				turnTest();
-				
-				gameEngine3V3XPart2For5Part1();
-			}
-			else if ((initiativeFinal[5] > initiativeFinal[0]) && (has5TakenTurn.equals("yes")) && (Has0TakenTurn.equals("no"))) {
-
-				test=47;
-				turnTest();
-				
-				gameEngine3V35Part2For0Part1();
-			}
-			else if ((initiativeFinal[5] > initiativeFinal[0]) && (has5TakenTurn.equals("yes")) && (Has0TakenTurn.equals("yes"))) {
-
-				test=48;
-				turnTest();
-				
-				turn();
-			}
-			
-			else if ((initiativeFinal[0] > initiativeFinal[5]) && Has0TakenTurn.equals("no")) {
-
-				test=49;
-				turnTest();
-				
-				gameEngine3V35Part2For0Part1();
-			}
-			else if ((initiativeFinal[0] > initiativeFinal[5]) && (Has0TakenTurn.equals("yes")) && (has5TakenTurn.equals("no"))) {
-
-				test=50;
-				turnTest();
-				
-				gameEngine3V3XPart2For5Part1();
-			}
-			else if ((initiativeFinal[0] > initiativeFinal[5]) && (Has0TakenTurn.equals("yes")) && (has5TakenTurn.equals("yes"))) {
-
-				test=51;
-				turnTest();
-				
-				turn();
-			}
-		}
+		turnTest();
 	}
 	
 	
@@ -21612,7 +22519,7 @@ public void decodeImage0() {
 			  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
 			  	  	  			
 			  	  	  		@Override
-				  	  	  	public void run() {				
+				  	  	  	public void run() {
 			  	  	  			
 			  	  	  			twentySidedWobbleStart();
 			  	  	  			
@@ -21637,6 +22544,10 @@ public void decodeImage0() {
 					  			
 					  			ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
 				  	  	    	chatBlankButton.bringToFront();
+				  	  	    	
+				  	  	    	
+				  	  	    	h2.removeCallbacks(this);
+				  	  	    	h3.removeCallbacks(this);
 			  	  	  		}
 			  	  	  	}, 750);					  	  	  		
 	  	  	  		}
@@ -21711,6 +22622,8 @@ public void decodeImage0() {
 					  	  	  	public void run() {
 				  	  	  			
 				  	  	  			disarmWithBless();
+				  	  	  			
+				  	  	  			h.removeCallbacks(this);
 					  	  	  	}
 				  	  	  	}, 1000);		  		    					  		    			  		    		
 		  		    	}
@@ -21756,7 +22669,7 @@ public void decodeImage0() {
 	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
 	  			centerscrolltext.setTypeface(typeFace);
 	  			
-	  			if (hasteSpell[5] > 0) {	  				
+	  			if (hasteSpell[5] > 0) {//UP TO HERE (HANDLERS)
 	  				
 	  				centerscrolltext.setVisibility(View.VISIBLE);													
 			  		centerscrolltext.startAnimation(animAlphaText);
@@ -22890,14 +23803,16 @@ public void decodeImage0() {
 			  	  	  		@Override
 				  	  	  	public void run() {
 			  	  	  			
-				  	  	  		if (ArrayOfAttackResult.attackResult[0] >= 15) {
-									
+				  	  	  		if (ArrayOfAttackResult.attackResult[0] >= 15) {									
+				  	  	  			
 					  	  	  		canHasDisarmed[playerNumberAttacked] = "yes";
 									
 					  	  	  		disarmedTurnStart[playerNumberAttacked] = ArrayOfTurn.turn[0];
 					  	  	  		
 					  	  	  		
 									if (playerNumberAttacked == 0) {
+										
+										FiveDisarmed0 = true;
 										
 										String str = "CanHasDisarmed0 :" + "yes";
 										sendToAllClients(str);
@@ -22931,6 +23846,8 @@ public void decodeImage0() {
 							  	  	    }
 									}
 									else if (playerNumberAttacked == 1) {
+										
+										fveDisarmed1 = true;
 										
 										String str = "cAnHasDisarmed1 :" + "yes";
 										sendToAllClients(str);
@@ -23015,7 +23932,8 @@ public void decodeImage0() {
 								  	  	  			
 								  	  	  			else if (numberOfPlayers == 3) {
 								  	  	  				
-								  	  	  				threePlayerRedirect();
+								  	  	  				//threePlayerRedirect();
+								  	  	  				threePlayerRedirectWithHasteForClient();
 								  	  	  			}
 									  	  	  	}
 								  	  	  	}, 2000);
@@ -23124,6 +24042,8 @@ public void decodeImage0() {
 					  	  	  		
 									if (playerNumberAttacked == 0) {
 										
+										FiveDisarmed0 = true;
+										
 										String str = "CanHasDisarmed0 :" + "yes";
 										sendToAllClients(str);
 										
@@ -23156,6 +24076,8 @@ public void decodeImage0() {
 							  	  	    }
 									}
 									else if (playerNumberAttacked == 1) {
+										
+										fveDisarmed1 = true;
 										
 										String str = "cAnHasDisarmed1 :" + "yes";
 										sendToAllClients(str);
@@ -23240,7 +24162,8 @@ public void decodeImage0() {
 								  	  	  			
 								  	  	  			else if (numberOfPlayers == 3) {
 								  	  	  				
-								  	  	  				threePlayerRedirect();
+								  	  	  				//threePlayerRedirect();
+								  	  	  				threePlayerRedirectWithHasteForClient();
 								  	  	  			}
 									  	  	  	}
 								  	  	  	}, 2000);
@@ -23436,7 +24359,8 @@ public void decodeImage0() {
 							  	  	  			
 							  	  	  			else if (numberOfPlayers == 3) {
 							  	  	  				
-							  	  	  				threePlayerRedirect();
+							  	  	  				//threePlayerRedirect();
+							  	  	  				threePlayerRedirectWithHasteForClient();
 							  	  	  			}
 								  	  	  	}
 							  	  	  	}, 2000);
@@ -23500,7 +24424,8 @@ public void decodeImage0() {
 							  	  	  			
 							  	  	  			else if (numberOfPlayers == 3) {
 							  	  	  				
-							  	  	  				threePlayerRedirect();
+							  	  	  				//threePlayerRedirect();
+							  	  	  				threePlayerRedirectWithHasteForClient();
 							  	  	  			}
 								  	  	  	}
 							  	  	  	}, 2000);							  	  	  	
@@ -25737,7 +26662,8 @@ public void decodeImage0() {
 							
 							else if (numberOfPlayers == 3) {
 								
-								threePlayerRedirect();
+								//threePlayerRedirect();
+								threePlayerRedirectWithHasteForClient();
 							}
 						}				  	  	  			
 		  	  	  	}
@@ -26567,7 +27493,11 @@ public void decodeImage0() {
 		
 				centerscrolltext.setVisibility(View.VISIBLE);
 		  		centerscrolltext.startAnimation(animAlphaText);
-		  		centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[playerNumberAttacked] + " uses dodge.");					
+		  		centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[playerNumberAttacked] + " uses dodge.");
+		  		
+		  		String str5 = "> " + ArrayOfPlayers.player[playerNumberAttacked] + " uses dodge.";
+		  		sendToAllClients(str5);
+		  		
 		
 				dodgeBlowSpell[playerNumberAttacked] = dodgeBlowSpell[playerNumberAttacked] - 1;
 				
@@ -26840,9 +27770,9 @@ public void decodeImage0() {
 	  			  		    		
 		  			  		    	centerscrolltext.setVisibility(View.VISIBLE);													
 							  		centerscrolltext.startAnimation(animAlphaText);
-									centerscrolltext.append("\n" + "> You dodge the hit.");
+									centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[5] + " uses dodge.");
 	  			  		    		
-									String str2 = ArrayOfPlayers.player[5] + " dodges the hit.";  								
+									String str2 = "> " + ArrayOfPlayers.player[5] + " uses dodge.";  								
   			  		    			sendToAllClients(str2);
 									
 									
@@ -28419,6 +29349,165 @@ else if (read.contains("cstmImage")) {//MAY WANT MORE COMPLICATED TERM SO IT DOE
 						endGame();						
 					}
 					
+					else if (read.contains("disconnected")) {
+						
+						if (id == 0) {
+							
+							runOnUiThread(new Runnable() {
+								
+						  	    @Override
+						  	    public void run() {
+						  	    	
+						  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+						  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+						  			
+						  			final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+						  			centerscrolltext.setTypeface(typeFace);
+							  	    	
+						  			
+						  	  	    final Handler h = new Handler();
+						  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+						  	  	  			
+						  	  	  		@Override
+							  	  	  	public void run() {			
+											
+						  	  	  			
+							  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
+									  		//centerscrolltext.startAnimation(animAlphaText);
+											centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + " has disconnected.");
+											
+											String str = "> " + ArrayOfPlayers.player[0] + " has disconnected.";
+											sendToAllClients(str);
+											
+											
+											playerDeadYet[0] = "yes";
+											
+											String str2 = "playerDeadYet" + 0 + " :" + "yes";
+											sendToAllClients(str2);
+											
+											
+											if (playersFighting.equals("zeroVsFive")) {
+												
+												Has0TakenTurn = "yes";
+											}
+											else if (playersFighting.equals("zeroVsOne")) {
+												
+												Has0TakenTurn = "yes";
+											}
+											//else if (playersFighting.equals("oneVsFive")) {
+												
+											//	hAs1TakenTurn = "yes";
+											//}
+											else if (playersFighting.equals("oneVsZero")) {
+												
+												hAs1TakenTurn = "yes";
+											}											
+											
+											
+											if (numberOfPlayers == 2 || (numberOfPlayers == 3 && playerDeadYet[1].equals("no"))) {
+												
+												final Handler h2 = new Handler();
+									  	  	  	h2.postDelayed(new Runnable() {
+									  	  	  			
+									  	  	  		@Override
+										  	  	  	public void run() {						
+												
+											    		gameOverCheck();
+									  	  	  		}
+									  	  	  	}, 2000);
+											}
+								  	  	  	
+								  	  	  	else if (numberOfPlayers == 3 && playerDeadYet[1].equals("yes")) {
+								  	  	  		
+								  	  	  		
+								  	  	  	}								  	  	  	
+								  	  	  	
+								  	  	  	
+						  	  	  		}
+						  	  	  	}, 2000);
+						  	    }
+							});							
+						}
+						
+						if (id == 1) {
+							
+							runOnUiThread(new Runnable() {
+								
+						  	    @Override
+						  	    public void run() {
+						  	    	
+						  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+						  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+						  			
+						  			final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+						  			centerscrolltext.setTypeface(typeFace);
+							  	    	
+						  			
+						  	  	    final Handler h = new Handler();
+						  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+						  	  	  			
+						  	  	  		@Override
+							  	  	  	public void run() {			
+											
+						  	  	  			
+							  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
+									  		//centerscrolltext.startAnimation(animAlphaText);
+											centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[1] + " has disconnected.");
+											
+											String str = "> " + ArrayOfPlayers.player[1] + " has disconnected.";
+											sendToAllClients(str);
+											
+											
+											playerDeadYet[1] = "yes";
+											
+											String str2 = "playerDeadYet" + 1 + " :" + "yes";
+											sendToAllClients(str2);
+											
+											
+											//if (playersFighting.equals("zeroVsFive")) {
+												
+											//	Has0TakenTurn = "yes";
+											//}
+											if (playersFighting.equals("zeroVsOne")) {
+												
+												Has0TakenTurn = "yes";
+											}
+											else if (playersFighting.equals("oneVsFive")) {
+												
+												hAs1TakenTurn = "yes";
+											}
+											else if (playersFighting.equals("oneVsZero")) {
+												
+												hAs1TakenTurn = "yes";
+											}											
+								    		
+											
+											if (numberOfPlayers == 2 || (numberOfPlayers == 3 && playerDeadYet[0].equals("no"))) {
+												
+												final Handler h2 = new Handler();
+									  	  	  	h2.postDelayed(new Runnable() {
+									  	  	  			
+									  	  	  		@Override
+										  	  	  	public void run() {						
+												
+											    		gameOverCheck();
+									  	  	  		}
+									  	  	  	}, 2000);
+											}
+								  	  	  	
+								  	  	  	else if (numberOfPlayers == 3 && playerDeadYet[0].equals("yes")) {
+								  	  	  		
+								  	  	  		
+								  	  	  	}											
+											
+											
+						  	  	  		}
+						  	  	  	}, 2000);
+						  	    }
+							});
+						}
+					}
+					
 					else if (read.contains("gameOver")) {
 						
 						String[] parts = read.split(":");
@@ -28466,18 +29555,26 @@ else if (read.contains("cstmImage")) {//MAY WANT MORE COMPLICATED TERM SO IT DOE
 										if (playersFighting.equals("zeroVsFive")) {
 											
 											Has0TakenTurn = "yes";
+										
+											has5TakenTurn = "yes";
 										}
 										else if (playersFighting.equals("zeroVsOne")) {
 											
 											Has0TakenTurn = "yes";
+											
+											hAs1TakenTurn = "yes";
 										}
 										else if (playersFighting.equals("oneVsFive")) {
 											
 											hAs1TakenTurn = "yes";
+											
+											has5TakenTurn = "yes";
 										}
 										else if (playersFighting.equals("oneVsZero")) {
 											
 											hAs1TakenTurn = "yes";
+											
+											Has0TakenTurn = "yes";
 										}
 										
 							    		
@@ -28543,6 +29640,35 @@ else if (read.contains("cstmImage")) {//MAY WANT MORE COMPLICATED TERM SO IT DOE
 					  	    }
 						});					
 					}
+					
+					
+					
+					else if (read.contains("FiveDisarmed0")) {
+						
+						FiveDisarmed0 = true;
+					}
+					else if (read.contains("fveDisarmed1")) {
+						
+						fveDisarmed1 = true;
+					}
+					else if (read.contains("ZeroDisarmed5")) {
+						
+						ZeroDisarmed5 = true;
+					}
+					else if (read.contains("zroDisarmed1")) {
+						
+						zroDisarmed1 = true;
+					}
+					else if (read.contains("OneDisarmed5")) {
+						
+						OneDisarmed5 = true;
+					}
+					else if (read.contains("oeDisarmed0")) {
+						
+						oeDisarmed0 = true;
+					}
+					
+					
 					
 					else if (read.contains("canHasDisarmed")) {//FOR CLIENTS INCOMING
 						
