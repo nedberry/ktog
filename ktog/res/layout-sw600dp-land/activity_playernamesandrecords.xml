@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.nedswebsite.ktog.MainActivity2" >
+   		
+   		
+   	<TextView
+   	    android:id="@+id/textviewtitlektogtext"
+   	    android:layout_width="wrap_content"
+   	    android:layout_height="220dp"
+   	    android:layout_alignParentTop="true"
+   	    android:layout_centerHorizontal="true"
+   	    android:fadeScrollbars="false"
+   	    android:gravity="center"
+   	    android:scrollbars="vertical"
+   	    android:textColor="#FFFFFF"
+   	    android:textSize="125sp" />	
+   		
+   		
+   		<!--
+   		android:layout_width="340dp"
+   	    android:layout_height="220dp"
+   	    android:layout_marginTop="20dp" 
+   	    android:layout_alignLeft="@+id/imageviewcenterscroll"        
+        android:layout_toLeftOf="@+id/textviewhitpointsright"
+        android:paddingBottom="42dp"
+   		-->
+   	
+   	
+   	
+   	
+   	
+   	<ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#000000"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textviewtitlektogtext" >
+
+        <HorizontalScrollView
+            android:id="@+id/hscrll1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <RelativeLayout
+                android:id="@+id/RelativeLayout1"
+                android:layout_width="fill_parent"
+                android:layout_gravity="center"
+                android:layout_height="fill_parent"
+                android:orientation="vertical" >
+
+                <TableLayout
+                    android:id="@+id/table_main"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true" >
+                </TableLayout>
+            </RelativeLayout>
+        </HorizontalScrollView>
+    </ScrollView>
+
+   	<View
+   	    android:id="@+id/line"
+   	    android:layout_width="wrap_content"
+   	    android:layout_height="2dip"
+   	    android:layout_alignBottom="@+id/textviewtitlektogtext"
+   	    android:layout_alignParentLeft="true"
+   	    android:layout_marginBottom="31dp"
+   	    android:background="#696969" />
+
+</RelativeLayout>

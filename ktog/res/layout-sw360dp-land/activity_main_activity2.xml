@@ -160,7 +160,12 @@
 		    <View
 		        android:id="@+id/line"
 		        android:layout_height="1dip"
-		        android:background="#FF0000" />
+		        
+		        android:background="#696969" />
+		    <!--
+		    android:background="#FF0000"
+		    -->
+		    
 		    	    
 		    
 		    <TableRow

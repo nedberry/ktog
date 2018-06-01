@@ -12,6 +12,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -43,6 +45,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
@@ -54,6 +58,7 @@ import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
@@ -61,6 +66,7 @@ import android.provider.MediaStore;
 import android.text.InputFilter;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Base64;
+import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -83,6 +89,10 @@ public class Host extends Activity {
 	
 	
 	int test;
+	int Wins;
+	int Loses;
+	int count = 0;
+	
 	
 	
 	
@@ -631,6 +641,19 @@ public class Host extends Activity {
 			  	  	  			h3.removeCallbacks(this);
 			  	  	  			h.removeCallbacks(this);
 			  	  	  			h4.removeCallbacks(this);
+			  	  	  			
+			  	  	  			
+			  	  	  			
+			  	  	  			
+
+			  	  	  			
+writeTextToFile();			  	  	  			
+			  	  	  			
+getTextFromFile();
+			  	  	  			
+			  	  	  			
+			  	  	  			
+			  	  	  			
 			  	  	  			
 				  	  	  		
 				  	  	  		
@@ -2343,7 +2366,125 @@ public class Host extends Activity {
 		
 
 	    System.exit(1); // kill off the crashed app
+	}	
+	
+	
+	
+	
+	
+	
+	public void writeTextToFile() {
+		
+		try {
+			//THIS WORKS, BUT THOUGHT BETTER TO SPECIFY IN CASE 'this.getExternalFilesDir(null)' DECIDES NOT TO WORK ON A SPECIFIC DEVICE.
+			//File playerName = new File(this.getExternalFilesDir(null), ArrayOfPlayers.player[5] + ".txt");
+			File playerName = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files", ArrayOfPlayers.player[5] + ".txt");
+			if (!playerName.exists())
+			playerName.createNewFile();
+
+			// Adds a line to the file
+			BufferedWriter writer = new BufferedWriter(new FileWriter(playerName, false));//FOR APPENd: true
+			writer.write("GamesPlayed:6:Wins:5:Loses:1");
+			writer.close();
+			/*
+			// Refresh the data so it can seen when the device is plugged in a
+			// computer. You may have to unplug and replug the device to see the
+			// latest changes. This is not necessary if the user should not modify
+			// the files.
+			MediaScannerConnection.scanFile(this, new String[]{testFile.toString()}, null, null);
+            */
+		} catch (IOException e) {
+			Log.e("ReadWriteFile", "Unable to write to the TestFile.txt file.");
+		}
+	}	
+	
+	public void getTextFromFile() {		
+		
+		//THIS WORKS, BUT THOUGHT BETTER TO SPECIFY IN CASE 'this.getExternalFilesDir(null)' DECIDES NOT TO WORK ON A SPECIFIC DEVICE.
+		//File playerName = new File(this.getExternalFilesDir(null), ArrayOfPlayers.player[5] + ".txt");
+		File playerName = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files", ArrayOfPlayers.player[5] + ".txt");
+		if (playerName != null) {
+		   
+		   BufferedReader reader = null;
+		   try {
+		      reader = new BufferedReader(new FileReader(playerName));
+		      String line;
+
+		      while ((line = reader.readLine()) != null) {
+		    	  
+		    	  String[] parts = line.split(":");
+		    	  String part1 = parts[0];
+		    	  String part2 = parts[1];
+		    	  String part3 = parts[2];
+		    	  String part4 = parts[3];
+		    	  
+		    	  Wins = Integer.parseInt(part2);
+		    	  Loses = Integer.parseInt(part4);
+		      }
+		      
+		      
+		      //FOLLOWING dOES NOT GIVE: "/storage/emulated/0/Android/data/com.nedswebsite.ktog/files"
+		      //SOMETHING LIKE:"data/data/com.nedswebsite.ktog/files"
+		      /*
+		      PackageManager m = getPackageManager();
+		      String s = getPackageName();
+		      try {
+		          PackageInfo p = m.getPackageInfo(s, 0);
+		          s = p.applicationInfo.dataDir;
+		      } catch (PackageManager.NameNotFoundException e) {
+		          Log.w("yourtag", "Error Package name not found ", e);
+		      }
+		      */
+		      //Integer count = countFiles(new File(s), Integer.valueOf(0));
+		      
+		      
+		      //File getFilesCount = new File("/Phone/Android/data/com.nedswebsite.ktog/files");
+		      //File getFilesCount = new File(s);
+		      File getFilesCount = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files");
+		      File[] files = getFilesCount.listFiles();
+		      
+		      
+		      if (files != null)
+				for (int i = 0; i < files.length; i++) {
+
+					count++;
+					File file = files[i];
+				}
+		      
+		      
+		      //File[] files = playerName.listFiles();
+		      //int numberOfFiles = files.length;
+		      		      
+		      
+		      //Toast.makeText(Host.this, "Wins = " + Wins + " " + "Loses = " + Loses, Toast.LENGTH_LONG).show();
+		      //Toast.makeText(Host.this, "Number Of Files = " + numberOfFiles, Toast.LENGTH_LONG).show();
+		      Toast.makeText(Host.this, "Number Of Files = " + count, Toast.LENGTH_LONG).show();
+		      //Toast.makeText(Host.this, "Filepath = " + s, Toast.LENGTH_LONG).show();
+		      //Toast.makeText(Host.this, "Number Of Files = " + count, Toast.LENGTH_LONG).show();
+		      
+		      
+		      reader.close();
+		   } catch (Exception e) {
+		      Log.e("ReadWriteFile", "Unable to read the TestFile.txt file.");
+		   }
+		}
 	}
+	/*
+	public Integer countFiles(File folder, Integer count) {
+	    File[] files = folder.listFiles();
+	    for (File file: files) {
+	        if (file.isFile()) {
+	            count++;
+	        } else {
+	            countFiles(file, count);
+	        }
+	    }
+
+	    return count;
+	}
+	*/
+	
+	
 	
 	
 	
@@ -2392,7 +2533,7 @@ public class Host extends Activity {
 			}
 		});	
 	}
-	 */
+	*/
 	
 	
 	/*

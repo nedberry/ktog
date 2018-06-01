@@ -791,11 +791,30 @@ public class Client2 extends Activity {
 										  	  	  				
 											  	  	  			String str = ArrayOfPlayers.player[0] + " has entered the game!";
 											  	  	  			out.println(str);
+											  	  	  			
+											  	  	  			
+												  	  	  		final Handler h7 = new Handler();
+													  	  	  	h7.postDelayed(new Runnable() {
+													  	  	  		@Override
+													  	  	  		public void run() {
+													  	  	  			
+													  	  	  			Toast.makeText(Client2.this, "The host will start the game...", Toast.LENGTH_LONG).show();
+													  	  	  		}
+													  	  	  	}, 2500);
 										  	  	  			}
 										  	  	  			else if (id == 1) {
 										  	  	  				
 											  	  	  			String str = ArrayOfPlayers.player[1] + " has entered the game!";
 											  	  	  			out.println(str);
+											  	  	  			
+												  	  	  		final Handler h7 = new Handler();
+													  	  	  	h7.postDelayed(new Runnable() {
+													  	  	  		@Override
+													  	  	  		public void run() {
+													  	  	  			
+													  	  	  			Toast.makeText(Client2.this, "The host will start the game...", Toast.LENGTH_LONG).show();
+													  	  	  		}
+													  	  	  	}, 2500);
 										  	  	  			}
 										  	  	  			
 
@@ -828,8 +847,8 @@ public class Client2 extends Activity {
 									  	  	  			
 									  	  	  			if (whatAvatar.equals("custom")) {
 									  	  	  				
-											  	  	  		final Handler h6 = new Handler();
-												  	  	  	h6.postDelayed(new Runnable() {
+											  	  	  		final Handler h8 = new Handler();
+												  	  	  	h8.postDelayed(new Runnable() {
 												  	  	  			
 												  	  	  		@Override
 												  	  	  		public void run() {
