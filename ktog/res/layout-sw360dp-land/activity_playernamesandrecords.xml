@@ -8,7 +8,9 @@
     <TextView
         android:id="@+id/textviewtitlektogtext"
         android:layout_width="wrap_content"
-        android:layout_height="136dp"
+        
+        android:layout_height="109dp"
+        
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:fadeScrollbars="false"
@@ -16,11 +18,16 @@
         android:scrollbars="vertical"
         android:textColor="#FFFFFF"
         android:textSize="77sp" />
-
+    
+    	<!--
+    	android:layout_height="136dp"
+    	-->
+    
    
 
     <ScrollView
         android:id="@+id/scrollView1"
+        android:layout_marginTop="28dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -55,7 +62,6 @@
         android:layout_height="2dip"
         android:layout_alignBottom="@+id/textviewtitlektogtext"
         android:layout_alignParentLeft="true"
-        android:layout_marginBottom="21dp"
         android:background="#696969" />
 
 </RelativeLayout>

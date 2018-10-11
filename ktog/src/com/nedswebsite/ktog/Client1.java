@@ -1,5 +1,10 @@
 package com.nedswebsite.ktog;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -30,11 +35,13 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.MediaStore;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.Contacts;
 import android.view.ContextThemeWrapper;
@@ -54,7 +61,7 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
 	public static final int PICK_IMAGE = 100;
 	public ImageView customImageView;
 	
-	String multiplayer = "no";	
+	String multiplayer = "yes";	
 	
 	InetAddress inetAddress;
 	
@@ -93,7 +100,7 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
 			                    	
     	buttonSound.start();
     	
-    	multiplayer = "yes";
+    	//multiplayer = "yes";
     	
     	
     	AlertDialog.Builder alert = new AlertDialog.Builder(Client1.this);
@@ -120,7 +127,9 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
     	
     	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
     	public void onClick(DialogInterface dialog, int whichButton) {        		         		
-    		  		
+    		
+    		//Toast.makeText(Client1.this,"MULTIPLAYER = " + multiplayer, Toast.LENGTH_LONG).show();
+    		
     		// NEED TO SEND TO ARRAY HERE:
     		String playername = input.getText().toString();
         	
@@ -196,64 +205,239 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		
+		//Toast.makeText(Client1.this,"WTF!?", Toast.LENGTH_LONG).show();
 		switch(requestCode){	
 		
-		case PICK_IMAGE://FOR IMAGE GALLERY						
+		case PICK_IMAGE://FOR IMAGE GALLERY
+			
+			//Toast.makeText(Client1.this,"WTF!?", Toast.LENGTH_LONG).show();
+			
 			if (resultCode == RESULT_OK && requestCode == PICK_IMAGE && multiplayer.equals("yes")) {
-				Uri imageUri = data.getData();
 				
+				final Uri imageUri = data.getData();
+				Uri imageUri2 = imageUri;
 				
-				final Intent svc=new Intent(this, Badonk2SoundService.class);
+				/*
+				File myFile = new File(imageUri.getPath());
+				myFile.getAbsolutePath();
 				
-				final String[] items = new String[] {"Join", "Cancel"};
-				final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.computer};
+				int file_size = Integer.parseInt(String.valueOf(myFile.length()/1024));//from bytes to kilobytes
+				*/
 				
-				ListAdapter adapter = new ArrayAdapterWithIcon(Client1.this, items, avatars);
+				//imageUri = data.getData();
 				
-				ContextThemeWrapper wrapper = new ContextThemeWrapper(Client1.this, R.layout.avatar_adapter);
-				AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
-				//builder.setIcon(R.drawable.computerhead);
-				builder.setTitle("Multiplayer");
-				
-				builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
-					public void onClick(DialogInterface dialog, int item) { 
-										
-						if (item == 0) {    					
-							
-							stopService(svc);
-							
-		    				
-		    				Intent intent = new Intent(Client1.this, Client2.class);
-		    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-		    				
-		    				//intent.putExtra("hostIP", hostIP);		    				
-		    				startActivity(intent);		    				
-		    	        	
-		    	        	dialog.dismiss();
-		    	        	
-		    	        	//finish();
-						}
-						else if (item == 1) {		
-		    	        	
-		    	        	dialog.dismiss();
-		    	        	
-		    	        	finish();
-						}    				    				
-			        	
-			        	//finish();
-			  		}
-				});	    		
-		    	
-		        builder.create().show();
+				/*
+				Intent intentFileSize = new Intent(MainActivity1.this, MainActivity2.class);
+				intentFileSize.putExtra("imageUri", imageUri.toString());
+				String image_path= intentFileSize.getStringExtra("imageUri"); 
+				Uri fileUri = Uri.parse(image_path);
+				*/
+				Bitmap bitmap = null;
+				try {
+					bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri2);
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+		        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+		        bitmap.compress(Bitmap.CompressFormat.JPEG, 0, stream);
+		        byte[] imageInByte = stream.toByteArray();
+		        float file_size = (imageInByte.length)/1024;//from bytes to kb
 		        
+		        Toast.makeText(Client1.this,"IMAGE SIZE = " + file_size, Toast.LENGTH_LONG).show();
+		        //APPARENT SCALING AT ABOUT FACTOR OF 6, DEPENING ON SIZE.	        
+		        //0=MAX COMPRESSION, 100=LEAST COMPRESSION
 				
-				Intent intent = new Intent(Client1.this, Client2.class);
-			    intent.putExtra("imageUri", imageUri.toString());
-				//intent.putExtra("imageUri", imageUri);
-			    startActivity(intent);
-			    
-			    //finish();
+				
+				
+				//File myFile = new File(imageUri.getPath());
+				//myFile.getAbsolutePath();
+				
+				//float file_size = Integer.parseInt(String.valueOf(myFile.length()/1024));	//from bytes to kilobytes
+																							//(1 MB = 1024 KBytes)
+																							//float for files less than 1 (will get 0 for these if int)
+				
+				if (file_size > 0 && file_size < 6) {
+					
+					final Intent svc=new Intent(this, Badonk2SoundService.class);
+					
+					final String[] items = new String[] {"Join", "Cancel"};
+					final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.computer};
+					
+					ListAdapter adapter = new ArrayAdapterWithIcon(Client1.this, items, avatars);
+					
+					ContextThemeWrapper wrapper = new ContextThemeWrapper(Client1.this, R.layout.avatar_adapter);
+					AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
+					//builder.setIcon(R.drawable.computerhead);
+					builder.setTitle("Multiplayer");
+					
+					builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
+						public void onClick(DialogInterface dialog, int item) { 
+											
+							if (item == 0) {    					
+								
+								stopService(svc);
+								
+			    				/*
+			    				Intent intent = new Intent(Client1.this, Client2.class);
+			    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+			    				
+			    				//intent.putExtra("hostIP", hostIP);		    				
+			    				startActivity(intent);		    				
+			    	        	*/
+								Intent intent = new Intent(Client1.this, Client2.class);
+							    intent.putExtra("imageUri", imageUri.toString());
+								//intent.putExtra("imageUri", imageUri);
+							    startActivity(intent);
+								
+			    	        	
+			    	        	dialog.dismiss();
+			    	        	
+			    	        	//finish();
+							}
+							else if (item == 1) {		
+			    	        	
+			    	        	dialog.dismiss();
+			    	        	
+			    	        	finish();
+							}    				    				
+				        	
+				        	//finish();
+				  		}
+					});	    		
+			    	
+			        builder.create().show();
+			        
+					/*
+					Intent intent = new Intent(Client1.this, Client2.class);
+				    intent.putExtra("imageUri", imageUri.toString());
+					//intent.putExtra("imageUri", imageUri);
+				    startActivity(intent);
+				    */
+				    
+				    //finish();
+				}
+				/*
+				else if (file_size > 100 && file_size < 201) {
+					
+					try {
+	
+				        // BitmapFactory options to downsize the image
+				        BitmapFactory.Options o = new BitmapFactory.Options();
+				        o.inJustDecodeBounds = true;
+				        o.inSampleSize = 6;
+				        // factor of downsizing the image
+	
+				        FileInputStream inputStream = new FileInputStream(myFile);
+				        //Bitmap selectedBitmap = null;
+				        BitmapFactory.decodeStream(inputStream, null, o);
+				        inputStream.close();
+	
+				        // The new size we want to scale to
+				        final int REQUIRED_SIZE=75;
+	
+				        // Find the correct scale value. It should be the power of 2.
+				        int scale = 1;
+				        while(o.outWidth / scale / 2 >= REQUIRED_SIZE &&
+				                        o.outHeight / scale / 2 >= REQUIRED_SIZE) {
+				            scale *= 2;
+				        }
+	
+				        BitmapFactory.Options o2 = new BitmapFactory.Options();
+				        o2.inSampleSize = scale;
+				        inputStream = new FileInputStream(myFile);
+	
+				        Bitmap selectedBitmap = BitmapFactory.decodeStream(inputStream, null, o2);
+				        inputStream.close();
+	
+				        // here i override the original image file
+				        //file.createNewFile();
+				        File file = new File("/storage/sdcard0/avatarClientScaled");
+				        FileOutputStream outputStream = new FileOutputStream(file);
+				        
+				        selectedBitmap.compress(Bitmap.CompressFormat.JPEG, 100 , outputStream);
+				        
+				        imageUri = Uri.fromFile(file);
+				        //imageUri.fromFile(new File("/storage/sdcard0/avatar5"));
+	
+				        //return file;
+				    } catch (Exception e) {
+				    	
+				    	Toast.makeText(Client1.this,"ERROR. Please try again.", Toast.LENGTH_LONG).show();
+				        //return null;
+				    }
+					
+					
+					final Intent svc=new Intent(this, Badonk2SoundService.class);
+					
+					final String[] items = new String[] {"Join", "Cancel"};
+					final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.computer};
+					
+					ListAdapter adapter = new ArrayAdapterWithIcon(Client1.this, items, avatars);
+					
+					ContextThemeWrapper wrapper = new ContextThemeWrapper(Client1.this, R.layout.avatar_adapter);
+					AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
+					//builder.setIcon(R.drawable.computerhead);
+					builder.setTitle("Multiplayer");
+					
+					builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
+						public void onClick(DialogInterface dialog, int item) { 
+											
+							if (item == 0) {    					
+								
+								stopService(svc);
+								
+			    				
+			    				Intent intent = new Intent(Client1.this, Client2.class);
+			    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+			    				
+			    				//intent.putExtra("hostIP", hostIP);		    				
+			    				startActivity(intent);		    				
+			    	        	
+			    	        	dialog.dismiss();
+			    	        	
+			    	        	//finish();
+							}
+							else if (item == 1) {		
+			    	        	
+			    	        	dialog.dismiss();
+			    	        	
+			    	        	finish();
+							}    				    				
+				        	
+				        	//finish();
+				  		}
+					});	    		
+			    	
+			        builder.create().show();
+			        
+					
+					Intent intent = new Intent(Client1.this, Client2.class);
+				    intent.putExtra("imageUri", imageUri.toString());
+					//intent.putExtra("imageUri", imageUri);
+				    startActivity(intent);
+				    
+				    //finish();
+				}
+				*/
+				else if (file_size > 6) {
+					
+					Toast.makeText(Client1.this,"Avatar image must be less than 60 KB (" + file_size +" ).", Toast.LENGTH_LONG).show();
+				}
+				
+				else {
+					
+					Toast.makeText(Client1.this,"ERROR LOADING IMAGE " + file_size, Toast.LENGTH_LONG).show();
+				}
+			}
+			
+			else {
+				
+				Toast.makeText(Client1.this,"MULTIPLAYER = " + multiplayer, Toast.LENGTH_LONG).show();
 			}
 		break;		
 		
@@ -287,9 +471,11 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
     				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
     				
     				//intent.putExtra("hostIP", hostIP);    				
-    				startActivity(intent);    	        	
+    				startActivity(intent);
     				
     	        	dialog.dismiss();
+    	        	
+    	        	//Client1.this.finish();
     	        	
     	        	//finish();
 				}
@@ -343,7 +529,7 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
 	@Override
     public void onBackPressed() {
 			
-			final Intent svc=new Intent(this, Badonk2SoundService.class);
+			Intent svc=new Intent(this, Badonk2SoundService.class);
 			stopService(svc);
 			
             super.onBackPressed();
@@ -353,6 +539,9 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
 	// DESTROYS EVERYTHING (EXCEPT SERVICE?)
 	@Override
 	protected void onDestroy() {
+		
+		Intent svc=new Intent(this, Badonk2SoundService.class);
+		stopService(svc);
 		
 	    android.os.Process.killProcess(android.os.Process.myPid());
 	    

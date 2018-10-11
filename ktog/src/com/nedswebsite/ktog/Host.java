@@ -37,7 +37,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.nedswebsite.ktog.Client2.sendBullShit;
+//import com.nedswebsite.ktog.Client2.sendBullShit;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -87,10 +87,14 @@ import android.widget.Toast;
 
 public class Host extends Activity {
 	
-	
 	int test;
-	int Wins;
-	int Loses;
+	
+	int tempCriticalHit;//# of successful crit hits for that user during game (INCLUdING MB)
+	//don't need tempGames, tempWins or tempLoses (just adding 1)
+	
+	int Games;//currently saved stat
+	int Wins;//currently saved stat
+	int Loses;//currently saved stat
 	int count = 0;
 	
 	
@@ -647,9 +651,9 @@ public class Host extends Activity {
 			  	  	  			
 
 			  	  	  			
-writeTextToFile();			  	  	  			
+//writeTextToFile();			  	  	  			
 			  	  	  			
-getTextFromFile();
+//getTextFromFile();
 			  	  	  			
 			  	  	  			
 			  	  	  			
@@ -2361,7 +2365,7 @@ getTextFromFile();
 	    */
 		
 			
-		String str = ArrayOfPlayers.player[5] + " has disconnected.";
+		String str = "> " + ArrayOfPlayers.player[5] + " has disconnected.";
   		sendToAllClients(str);
 		
 
@@ -2384,7 +2388,7 @@ getTextFromFile();
 
 			// Adds a line to the file
 			BufferedWriter writer = new BufferedWriter(new FileWriter(playerName, false));//FOR APPENd: true
-			writer.write("GamesPlayed:6:Wins:5:Loses:1");
+			writer.write("GamesPlayed:0:Wins:0:Loses:0");
 			writer.close();
 			/*
 			// Refresh the data so it can seen when the device is plugged in a
@@ -2396,7 +2400,7 @@ getTextFromFile();
 		} catch (IOException e) {
 			Log.e("ReadWriteFile", "Unable to write to the TestFile.txt file.");
 		}
-	}	
+	}
 	
 	public void getTextFromFile() {		
 		
@@ -2411,7 +2415,7 @@ getTextFromFile();
 		      String line;
 
 		      while ((line = reader.readLine()) != null) {
-		    	  
+		    	  /*
 		    	  String[] parts = line.split(":");
 		    	  String part1 = parts[0];
 		    	  String part2 = parts[1];
@@ -2420,6 +2424,7 @@ getTextFromFile();
 		    	  
 		    	  Wins = Integer.parseInt(part2);
 		    	  Loses = Integer.parseInt(part4);
+		    	  */
 		      }
 		      
 		      
@@ -3343,7 +3348,7 @@ getTextFromFile();
 		
 				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
 				
-				Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobig);					  	  	  	
+				Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobigcure);					  	  	  	
 			  	  	
 		  	  	TextView cureGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
 		  	  	
@@ -3365,7 +3370,7 @@ getTextFromFile();
 		  	  		@Override
 		  	  		public void run() {
 		  	  			
-			  	  		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletosmall);						  	  	  	
+			  	  		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletosmallcure);						  	  	  	
 			  	  	  	
 				  	  	final TextView cureGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
 				  	  	cureGraphic.setTypeface(typeFace);
@@ -3441,7 +3446,7 @@ getTextFromFile();
 		
 				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
 				
-				Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobig);					  	  	  	
+				Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobigdodge);					  	  	  	
 			  	  	
 		  	  	TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
 		  	  	
@@ -3463,7 +3468,7 @@ getTextFromFile();
 		  	  		@Override
 		  	  		public void run() {
 		  	  			
-			  	  		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletosmall);						  	  	  	
+			  	  		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletosmalldodge);						  	  	  	
 			  	  	  	
 				  	  	final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
 				  	  	dodgeGraphic.setTypeface(typeFace);
@@ -3499,7 +3504,7 @@ getTextFromFile();
 				
 				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
 				
-				Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobig);					  	  	  	
+				Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobigmb);					  	  	  	
 			  	  	
 		  	  	TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
 		  	  	
@@ -3521,7 +3526,7 @@ getTextFromFile();
 		  	  		@Override
 		  	  		public void run() {
 		  	  			
-			  	  		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletosmall);						  	  	  	
+			  	  		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletosmallmb);						  	  	  	
 			  	  	  	
 				  	  	final TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
 				  	  	mightyBlowGraphic.setTypeface(typeFace);
@@ -3557,7 +3562,7 @@ getTextFromFile();
 		
 				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
 				
-				Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobig);					  	  	  	
+				Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobigch);					  	  	  	
 			  	  	
 		  	  	TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
 		  	  	
@@ -3579,7 +3584,7 @@ getTextFromFile();
 		  	  		@Override
 		  	  		public void run() {
 		  	  			
-			  	  		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletosmall);						  	  	  	
+			  	  		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletosmallch);						  	  	  	
 			  	  	  	
 				  	  	final TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
 				  	  	criticalHitGraphic.setTypeface(typeFace);
@@ -3617,7 +3622,7 @@ getTextFromFile();
 		
 				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
 				
-				Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobig);					  	  	  	
+				Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobigcm);					  	  	  	
 			  	  	
 		  	  	TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
 		  	  	
@@ -3639,7 +3644,7 @@ getTextFromFile();
 		  	  		@Override
 		  	  		public void run() {
 		  	  			
-			  	  		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletosmall);						  	  	  	
+			  	  		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletosmallcm);						  	  	  	
 			  	  	  	
 				  	  	final TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
 				  	  	criticalMissGraphic.setTypeface(typeFace);
@@ -14784,7 +14789,7 @@ getTextFromFile();
 		    public void run() {
 		        try {
 		        	
-		    		InetAddress address = InetAddress.getByName(ArrayOfIP.hostIP[0]);
+		    		InetAddress address = InetAddress.getByName(ArrayOfIP.hostIP[1]);
 			        socket1 = new Socket(address, 4001);
 		    		
 		    		
@@ -14817,14 +14822,15 @@ getTextFromFile();
 		    public void run() {
 		        try {
 		        	
-		    		InetAddress address = InetAddress.getByName(ArrayOfIP.hostIP[0]);
+		    		InetAddress address = InetAddress.getByName(ArrayOfIP.hostIP[1]);
 			        socket2 = new Socket(address, 4002);
 		    		
 		    		
 			        //File file = new File(image_path);
-			        try (InputStream is = new BufferedInputStream(new FileInputStream("/storage/sdcard0/avatar0"));
+			        try (InputStream is = new BufferedInputStream(new FileInputStream("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files/avatar0"));//WAS: /storage/sdcard0/avatar0
 			                DataOutputStream dos = new DataOutputStream(socket2.getOutputStream());) {
-			            dos.writeLong("/storage/sdcard0/avatar0".length()); // <-- remember to read a long on server.
+			            dos.writeLong("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files/avatar0".length()); // <-- remember to read a long on server.
+			            													//WAS: "/storage/sdcard0/avatar0"
 			            int val;
 			            while ((val = is.read()) != -1) {
 			                dos.write(val);
@@ -14855,9 +14861,10 @@ getTextFromFile();
 		    		
 		    		
 			        //File file = new File(image_path);
-			        try (InputStream is = new BufferedInputStream(new FileInputStream("/storage/sdcard0/avatar1"));
+			        try (InputStream is = new BufferedInputStream(new FileInputStream("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files/avatar1"));//WAS: /storage/sdcard0/avatar1
 			                DataOutputStream dos = new DataOutputStream(socket3.getOutputStream());) {
-			            dos.writeLong("/storage/sdcard0/avatar1".length()); // <-- remember to read a long on server.
+			            dos.writeLong("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files/avatar1".length()); // <-- remember to read a long on server.
+			            													//WAS: "/storage/sdcard0/avatar1"
 			            int val;
 			            while ((val = is.read()) != -1) {
 			                dos.write(val);
@@ -14969,7 +14976,8 @@ getTextFromFile();
 	  	  	    	
 		  	  	    if (ArrayOfAvatars.avatar[0].equals("custom")){
 		  	  	    	
-			  	  	    File imgFile = new  File("/storage/sdcard0/avatar0");//WAS .png
+			  	  	    File imgFile = new  File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files/avatar0");//WAS .png
+			  	  	    																					//WAS: /storage/sdcard0/avatar0
 	
 						if(imgFile.exists()){
 	
@@ -15115,7 +15123,8 @@ getTextFromFile();
 		  		  	  	    	
 		  			  	  	    if (ArrayOfAvatars.avatar[0].equals("custom")){
 		  			  	  	    	
-		  				  	  	    File imgFile = new  File("/storage/sdcard0/avatar0");//WAS .png
+		  				  	  	    File imgFile = new  File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files/avatar0");//WAS .png
+		  				  	  	    																			//WAS: /storage/sdcard0/avatar0
 		  		
 		  							if(imgFile.exists()){
 		  		
@@ -15202,7 +15211,8 @@ getTextFromFile();
 		  		  	  	    	
 		  			  	  	    if (ArrayOfAvatars.avatar[1].equals("custom")){
 		  			  	  	    	
-		  				  	  	    File imgFile = new  File("/storage/sdcard0/avatar1");//WAS .png
+		  				  	  	    File imgFile = new  File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files/avatar1");//WAS .png
+		  				  	  	    																				//WAS: /storage/sdcard0/avatar1
 		  		
 		  							if(imgFile.exists()){
 		  		
@@ -15702,7 +15712,8 @@ getTextFromFile();
 		                  			
 		                  			if (ArrayOfAvatars.avatar[0].equals("custom")){
 			  			  	  	    	
-			  				  	  	    File imgFile = new  File("/storage/sdcard0/avatar0");//WAS .png
+			  				  	  	    File imgFile = new  File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files/avatar0");//WAS .png
+			  				  	  	    																			//WAS: /storage/sdcard0/avatar0
 			  		
 			  							if(imgFile.exists()){
 			  		
@@ -15881,7 +15892,8 @@ getTextFromFile();
 									
 		                  			if (ArrayOfAvatars.avatar[1].equals("custom")){
 			  			  	  	    	
-			  				  	  	    File imgFile = new  File("/storage/sdcard0/avatar1");//WAS .png
+			  				  	  	    File imgFile = new  File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files/avatar1");//WAS .png
+		  				  	  	    																						//WAS: /storage/sdcard0/avatar1
 			  		
 			  							if(imgFile.exists()){
 			  		
@@ -16159,7 +16171,8 @@ getTextFromFile();
 			  		                  			
 				  		                  		if (ArrayOfAvatars.avatar[0].equals("custom")){
 						  			  	  	    	
-						  				  	  	    File imgFile = new  File("/storage/sdcard0/avatar0");//WAS .png
+						  				  	  	    File imgFile = new  File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files/avatar0");//WAS .png
+						  				  	  	    																			//WAS: /storage/sdcard0/avatar0
 						  		
 						  							if(imgFile.exists()){
 						  		
@@ -16241,7 +16254,8 @@ getTextFromFile();
 			  		                  			
 				  		                  		if (ArrayOfAvatars.avatar[1].equals("custom")){
 						  			  	  	    	
-						  				  	  	    File imgFile = new  File("/storage/sdcard0/avatar1");//WAS .png
+						  				  	  	    File imgFile = new  File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files/avatar1");//WAS .png
+						  				  	  	    																			//WAS: /storage/sdcard0/avatar1
 						  		
 						  							if(imgFile.exists()){
 						  		
@@ -17548,7 +17562,8 @@ getTextFromFile();
 		  	  	  			
 	            			if (ArrayOfAvatars.avatar[0].equals("custom")){
 	  			  	  	    	
-	  				  	  	    File imgFile = new  File("/storage/sdcard0/avatar0");//WAS .png
+	  				  	  	    File imgFile = new  File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files/avatar0");//WAS .png
+	  				  	  	    																			//WAS: /storage/sdcard0/avatar0
 	  		
 	  							if(imgFile.exists()){
 	  		
@@ -18063,7 +18078,8 @@ getTextFromFile();
 					computerAvatar.setImageDrawable(null);
 					
 					
-					File imgFile = new  File("/storage/sdcard0/avatar5");//WAS .png
+					File imgFile = new  File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files/avatar5");//WAS .png
+																											//WAS: /storage/sdcard0/avatar5
 
 					if(imgFile.exists()){
 
@@ -18142,7 +18158,8 @@ getTextFromFile();
 					computerAvatar.setImageDrawable(null);
 					
 					
-					File imgFile = new  File("/storage/sdcard0/avatar1");//WAS .png
+					File imgFile = new  File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files/avatar1");//WAS .png
+																											//WAS: /storage/sdcard0/avatar1
 
 					if(imgFile.exists()){
 
@@ -18223,7 +18240,8 @@ getTextFromFile();
 					computerAvatar.setImageDrawable(null);
 					
 					
-					File imgFile = new  File("/storage/sdcard0/avatar0");//WAS .png
+					File imgFile = new  File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files/avatar0");//WAS .png
+																											//WAS: /storage/sdcard0/avatar0
 
 					if(imgFile.exists()){
 
@@ -18373,7 +18391,8 @@ getTextFromFile();
 		  	  	  			
 	            			if (ArrayOfAvatars.avatar[1].equals("custom")){
 	  			  	  	    	
-	  				  	  	    File imgFile = new  File("/storage/sdcard0/avatar1");//WAS .png
+	  				  	  	    File imgFile = new  File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files/avatar1");//WAS .png
+	  				  	  	    																			//WAS: /storage/sdcard0/avatar1
 	  		
 	  							if(imgFile.exists()){
 	  		
@@ -28182,7 +28201,7 @@ getTextFromFile();
 		try {
 			
 			ServerSocket clientSocket0 = new ServerSocket(3000);
-			File file = new File("/storage/sdcard0/avatar0");
+			File file = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files/avatar0");//WAS: /storage/sdcard0/avatar0
 			try (Socket s = clientSocket0.accept();
 			        DataInputStream dis = new DataInputStream(
 			                s.getInputStream());
@@ -28230,7 +28249,7 @@ getTextFromFile();
 		try {
 			
 			ServerSocket clientSocket0 = new ServerSocket(3001);
-			File file = new File("/storage/sdcard0/avatar1");
+			File file = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files/avatar1");//WAS: /storage/sdcard0/avatar1
 			try (Socket s = clientSocket0.accept();
 			        DataInputStream dis = new DataInputStream(
 			                s.getInputStream());

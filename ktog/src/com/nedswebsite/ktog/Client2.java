@@ -11,6 +11,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -63,6 +65,7 @@ import android.text.InputFilter;
 import android.text.format.Formatter;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Base64;
+import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -88,6 +91,15 @@ import android.widget.Toast;
  */
 public class Client2 extends Activity {
     
+	int tempCriticalHit;//# of successful crit hits for that user during game (INCLUdING MB)
+	//don't need tempGames, tempWins or tempLoses (just adding 1)
+	
+	int Games;//currently saved stat
+	int Wins;//currently saved stat
+	int Loses;//currently saved stat
+	int count = 0;
+	
+	
 	Handler updateConversationHandler;
 	
 	private Socket socket;
@@ -829,7 +841,9 @@ public class Client2 extends Activity {
 											  	  		}
 									  	  	  			
 									  	  	  			
-									  	  	  			
+//writeTextToFile();			  	  	  			
+									  	  		
+//getTextFromFile();
 									  	  	  			
 									  	  	  			
 										  	  	  		Thread.setDefaultUncaughtExceptionHandler (new Thread.UncaughtExceptionHandler()
@@ -972,6 +986,7 @@ public class Client2 extends Activity {
 								  	  		}
 						  	  	  			
 						  	  	  			
+
 						  	  	  			
 						  	  	  			
 						  	  	  			/*
@@ -2475,10 +2490,148 @@ public class Client2 extends Activity {
 		    }
 		    */
 		});
-  	  	
-  	  	
-  	  	
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	public void writeTextToFile() {
+		
+		File playerName = null;
+		
+		try {
+			
+			if (id == 0) {
+				
+				//THIS WORKS, BUT THOUGHT BETTER TO SPECIFY IN CASE 'this.getExternalFilesDir(null)' DECIDES NOT TO WORK ON A SPECIFIC DEVICE.
+				//File playerName = new File(this.getExternalFilesDir(null), ArrayOfPlayers.player[5] + ".txt");
+				playerName = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files", ArrayOfPlayers.player[0] + ".txt");
+				
+			}
+			else if (id == 1) {
+				
+				//THIS WORKS, BUT THOUGHT BETTER TO SPECIFY IN CASE 'this.getExternalFilesDir(null)' DECIDES NOT TO WORK ON A SPECIFIC DEVICE.
+				//File playerName = new File(this.getExternalFilesDir(null), ArrayOfPlayers.player[5] + ".txt");
+				playerName = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files", ArrayOfPlayers.player[1] + ".txt");
+				
+			}
+			
+			
+			if (!playerName.exists())
+				playerName.createNewFile();
+
+				// Adds a line to the file
+				BufferedWriter writer = new BufferedWriter(new FileWriter(playerName, false));//FOR APPENd: true
+				writer.write("GamesPlayed:0:Wins:0:Loses:0");
+				writer.close();
+				/*
+				// Refresh the data so it can seen when the device is plugged in a
+				// computer. You may have to unplug and replug the device to see the
+				// latest changes. This is not necessary if the user should not modify
+				// the files.
+				MediaScannerConnection.scanFile(this, new String[]{testFile.toString()}, null, null);
+	            */
+			
+			
+		} catch (IOException e) {
+			Log.e("ReadWriteFile", "Unable to write to the TestFile.txt file.");
+		}
+	}
+	
+	public void getTextFromFile() {		
+		
+		File playerName = null;
+		
+		if (id == 0) {
+			
+			//THIS WORKS, BUT THOUGHT BETTER TO SPECIFY IN CASE 'this.getExternalFilesDir(null)' DECIDES NOT TO WORK ON A SPECIFIC DEVICE.
+			//File playerName = new File(this.getExternalFilesDir(null), ArrayOfPlayers.player[5] + ".txt");
+			playerName = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files", ArrayOfPlayers.player[0] + ".txt");
+			
+		}		
+		else if (id == 1) {
+			
+			//THIS WORKS, BUT THOUGHT BETTER TO SPECIFY IN CASE 'this.getExternalFilesDir(null)' DECIDES NOT TO WORK ON A SPECIFIC DEVICE.
+			//File playerName = new File(this.getExternalFilesDir(null), ArrayOfPlayers.player[5] + ".txt");
+			playerName = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files", ArrayOfPlayers.player[1] + ".txt");
+			
+		}
+		
+		if (playerName != null) {
+			   
+		   BufferedReader reader = null;
+		   try {
+		      reader = new BufferedReader(new FileReader(playerName));
+		      String line;
+
+		      while ((line = reader.readLine()) != null) {
+		    	  /*
+		    	  String[] parts = line.split(":");
+		    	  String part1 = parts[0];
+		    	  String part2 = parts[1];
+		    	  String part3 = parts[2];
+		    	  String part4 = parts[3];
+		    	  
+		    	  Wins = Integer.parseInt(part2);
+		    	  Loses = Integer.parseInt(part4);
+		    	  */
+		      }
+		      
+		      
+		      //FOLLOWING dOES NOT GIVE: "/storage/emulated/0/Android/data/com.nedswebsite.ktog/files"
+		      //SOMETHING LIKE:"data/data/com.nedswebsite.ktog/files"
+		      /*
+		      PackageManager m = getPackageManager();
+		      String s = getPackageName();
+		      try {
+		          PackageInfo p = m.getPackageInfo(s, 0);
+		          s = p.applicationInfo.dataDir;
+		      } catch (PackageManager.NameNotFoundException e) {
+		          Log.w("yourtag", "Error Package name not found ", e);
+		      }
+		      */
+		      //Integer count = countFiles(new File(s), Integer.valueOf(0));
+		      
+		      
+		      //File getFilesCount = new File("/Phone/Android/data/com.nedswebsite.ktog/files");
+		      //File getFilesCount = new File(s);
+		      File getFilesCount = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files");
+		      File[] files = getFilesCount.listFiles();
+		      
+		      
+		      if (files != null)
+				for (int i = 0; i < files.length; i++) {
+
+					count++;
+					File file = files[i];
+				}
+		      
+		      
+		      //File[] files = playerName.listFiles();
+		      //int numberOfFiles = files.length;
+		      		      
+		      
+		      //Toast.makeText(Host.this, "Wins = " + Wins + " " + "Loses = " + Loses, Toast.LENGTH_LONG).show();
+		      //Toast.makeText(Host.this, "Number Of Files = " + numberOfFiles, Toast.LENGTH_LONG).show();
+		      Toast.makeText(Client2.this, "Number Of Files = " + count, Toast.LENGTH_LONG).show();
+		      //Toast.makeText(Host.this, "Filepath = " + s, Toast.LENGTH_LONG).show();
+		      //Toast.makeText(Host.this, "Number Of Files = " + count, Toast.LENGTH_LONG).show();
+		      
+		      
+		      reader.close();
+		   } catch (Exception e) {
+		      Log.e("ReadWriteFile", "Unable to read the TestFile.txt file.");
+		   }
+		}
+	}
+	
+	
+	
+	
 	
 	
 	
@@ -2514,13 +2667,13 @@ public class Client2 extends Activity {
 		Toast.makeText(Client2.this, ArrayOfPlayers.player[1], Toast.LENGTH_LONG).show();
 	}
 	*/
-	
+	/*
 	public byte[] getBytesFromBitmap(Bitmap bitmap) {
 	    ByteArrayOutputStream stream = new ByteArrayOutputStream();
-	    bitmap.compress(CompressFormat.JPEG, 70, stream);
+	    bitmap.compress(CompressFormat.JPEG, 0, stream);//WAS 70
 	    return stream.toByteArray();
 	}
-	
+	*/
 	
 	/*
 	 * 
@@ -2643,13 +2796,14 @@ public class Client2 extends Activity {
 	@Override
 	protected void onDestroy() {		
 		
-		final Intent svc=new Intent(this, Badonk2SoundService.class);
-
+		Intent svc=new Intent(this, Badonk2SoundService.class);
+		stopService(svc);
+		
 		if (socket != null) {
 			try {
 				socket.close();
 				
-				stopService(svc);
+				//stopService(svc);
 				
 				android.os.Process.killProcess(android.os.Process.myPid());
 			    
@@ -2667,7 +2821,7 @@ public class Client2 extends Activity {
 				
 				socket0.close();
 				
-				stopService(svc);
+				//stopService(svc);
 				
 				android.os.Process.killProcess(android.os.Process.myPid());
 			    
@@ -6509,7 +6663,8 @@ public class Client2 extends Activity {
 					computerAvatar.setImageDrawable(null);
 					
 					
-					File imgFile = new  File("/storage/sdcard0/avatar5");//WAS .png
+					File imgFile = new  File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files/avatar5");	//WAS .png
+																												//WAS: /storage/sdcard0/avatar5
 
 					if(imgFile.exists()){
 
@@ -6619,7 +6774,8 @@ public class Client2 extends Activity {
 					computerAvatar.setImageDrawable(null);
 					
 					
-					File imgFile = new  File("/storage/sdcard0/avatar1");//WAS .png
+					File imgFile = new  File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files/avatar1");	//WAS .png
+																												//WAS: /storage/sdcard0/avatar1
 
 					if(imgFile.exists()){
 
@@ -6700,7 +6856,8 @@ public class Client2 extends Activity {
 					computerAvatar.setImageDrawable(null);
 					
 					
-					File imgFile = new  File("/storage/sdcard0/avatar0");//WAS .png
+					File imgFile = new  File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files/avatar0");	//WAS .png
+																												//WAS: /storage/sdcard0/avatar0
 
 					if(imgFile.exists()){
 
@@ -7457,7 +7614,8 @@ public class Client2 extends Activity {
     			
     			if (ArrayOfAvatars.avatar[0].equals("custom")){
 		  	  	    	
-			  	  	    File imgFile = new  File("/storage/sdcard0/avatar0");//WAS .png
+			  	  	    File imgFile = new  File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files/avatar0");	//WAS .png
+			  	  	    																						//WAS: /storage/sdcard0/avatar0
 	
 						if(imgFile.exists()){
 	
@@ -7520,7 +7678,8 @@ public class Client2 extends Activity {
     			
     			if (ArrayOfAvatars.avatar[1].equals("custom")){
 		  	  	    	
-			  	  	    File imgFile = new  File("/storage/sdcard0/avatar1");//WAS .png
+			  	  	    File imgFile = new  File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files/avatar1");	//WAS .png
+			  	  	    																						//WAS: /storage/sdcard0/avatar1
 	
 						if(imgFile.exists()){
 	
@@ -7834,7 +7993,8 @@ public class Client2 extends Activity {
 						
 						if (ArrayOfAvatars.avatar[0].equals("custom")){
 			  	  	    	
-				  	  	    File imgFile = new  File("/storage/sdcard0/avatar0");//WAS .png
+				  	  	    File imgFile = new  File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files/avatar0");//WAS .png
+				  	  	    																					//WAS: /storage/sdcard0/avatar0
 		
 							if(imgFile.exists()){
 		
@@ -7920,7 +8080,8 @@ public class Client2 extends Activity {
 						
 						if (ArrayOfAvatars.avatar[1].equals("custom")){
 			  	  	    	
-				  	  	    File imgFile = new  File("/storage/sdcard0/avatar1");//WAS .png
+				  	  	    File imgFile = new  File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files/avatar1");//WAS .png
+				  	  	    																					//WAS: /storage/sdcard0/avatar1
 		
 							if(imgFile.exists()){
 		
@@ -8408,7 +8569,7 @@ public class Client2 extends Activity {
 
 
 	
-	public void victoryDefeatAnimation() {		
+	public void victoryDefeatAnimation() {	
 		
 		runOnUiThread(new Runnable() {
 			@Override
@@ -14359,9 +14520,9 @@ public class Client2 extends Activity {
 	public void ReceiveImage50(){
 		try {
 			
-			ServerSocket clientSocket5 = new ServerSocket(4000);
-			File file = new File("/storage/sdcard0/avatar5");
-			try (Socket s = clientSocket5.accept();
+			ServerSocket clientSocket50 = new ServerSocket(4000);
+			File file = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files/avatar5");//WAS: /storage/sdcard0/avatar5
+			try (Socket s = clientSocket50.accept();
 			        DataInputStream dis = new DataInputStream(
 			                s.getInputStream());
 			        OutputStream fos = new BufferedOutputStream(
@@ -14373,7 +14534,7 @@ public class Client2 extends Activity {
 			    fos.flush();
 			    dis.close();
 			    fos.close();
-			    clientSocket5.close();
+			    clientSocket50.close();
 			}
 			
 			} catch (Exception e) {
@@ -14384,9 +14545,9 @@ public class Client2 extends Activity {
 	public void ReceiveImage51(){
 		try {
 			
-			ServerSocket clientSocket5 = new ServerSocket(4001);
-			File file = new File("/storage/sdcard0/avatar5");
-			try (Socket s = clientSocket5.accept();
+			ServerSocket clientSocket51 = new ServerSocket(4001);
+			File file = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files/avatar5");//WAS: /storage/sdcard0/avatar5
+			try (Socket s = clientSocket51.accept();
 			        DataInputStream dis = new DataInputStream(
 			                s.getInputStream());
 			        OutputStream fos = new BufferedOutputStream(
@@ -14398,7 +14559,7 @@ public class Client2 extends Activity {
 			    fos.flush();
 			    dis.close();
 			    fos.close();
-			    clientSocket5.close();
+			    clientSocket51.close();
 			}
 			
 			} catch (Exception e) {
@@ -14410,7 +14571,7 @@ public class Client2 extends Activity {
 		try {
 			
 			ServerSocket clientSocket0 = new ServerSocket(4002);
-			File file = new File("/storage/sdcard0/avatar0");
+			File file = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files/avatar0");//WAS: /storage/sdcard0/avatar0
 			try (Socket s = clientSocket0.accept();
 			        DataInputStream dis = new DataInputStream(
 			                s.getInputStream());
@@ -14435,7 +14596,7 @@ public class Client2 extends Activity {
 		try {
 			
 			ServerSocket clientSocket1 = new ServerSocket(4003);
-			File file = new File("/storage/sdcard0/avatar1");
+			File file = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files/avatar1");//WAS: /storage/sdcard0/avatar1
 			try (Socket s = clientSocket1.accept();
 			        DataInputStream dis = new DataInputStream(
 			                s.getInputStream());
@@ -14487,7 +14648,7 @@ public class Client2 extends Activity {
 	
 	
 	
-	
+	/*
 	class sendBullShit implements Runnable {
 
 		@Override
@@ -14507,20 +14668,20 @@ public class Client2 extends Activity {
 				bufferedWriter.flush();
 	  			bufferedWriter.close();
 	  			
-  	  			/*
-  	  			PrintWriter out = new PrintWriter(new BufferedWriter(
-	  					new OutputStreamWriter(socket0.getOutputStream())),
-	  					true);
   	  			
-  	  			out.println("Blahblah");
-  	  			*/
+  	  			//PrintWriter out = new PrintWriter(new BufferedWriter(
+	  					//new OutputStreamWriter(socket0.getOutputStream())),
+	  					//true);
+  	  			
+  	  			//out.println("Blahblah");
+  	  			
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 	}
-	
+	*/
 	
 	
 	

@@ -1,5 +1,11 @@
 package com.nedswebsite.ktog;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.NavigableMap;
@@ -33,6 +39,7 @@ import android.text.InputFilter;
 import android.text.Spannable;
 import android.text.method.ScrollingMovementMethod;
 import android.text.style.BackgroundColorSpan;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
@@ -64,6 +71,14 @@ import android.widget.Toast;
 import android.view.ViewGroup;
 
 public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app stopped" message on S4 w/o this)
+	
+	int tempCriticalHit;//# of successful crit hits for that user during game (INCLUdING MB)
+	//don't need tempGames, tempWins or tempLoses (just adding 1)
+	
+	int Games;//currently saved stat
+	int Wins;//currently saved stat
+	int Loses;//currently saved stat
+	int count = 0;
 	
 	int playerNumberAttacked;
 	//int i;
@@ -521,6 +536,15 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 						  		  			
 						  		  			
 						  		  			//preventinitiativediefromleaking = "off";
+						  		  			
+						  		  			
+						  		  			
+//writeTextToFile();			  	  	  			
+	
+//getTextFromFile();
+						  		  			
+						  		  			
+						  		  			
 					  	  	  		}
 					  	  	  	}, 750);
 			  	  	  		}
@@ -1813,6 +1837,76 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 	 */
 	
 	
+	
+	
+	public void writeTextToFile() {
+		
+		try {
+			
+			File playerName = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files", ArrayOfPlayers.player[0] + ".txt");
+			if (!playerName.exists())
+			playerName.createNewFile();
+
+			// Adds a line to the file
+			BufferedWriter writer = new BufferedWriter(new FileWriter(playerName, false));//FOR APPENd: true
+			writer.write("GamesPlayed:0:Wins:0:Loses:0");
+			writer.close();
+			
+		} catch (IOException e) {
+			Log.e("ReadWriteFile", "Unable to write to the TestFile.txt file.");
+		}
+	}
+	
+	public void getTextFromFile() {
+		
+		File playerName = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files", ArrayOfPlayers.player[0] + ".txt");
+		if (playerName != null) {
+		   
+		   BufferedReader reader = null;
+		   try {
+		      reader = new BufferedReader(new FileReader(playerName));
+		      String line;
+
+		      while ((line = reader.readLine()) != null) {
+		    	  
+		    	  String[] parts = line.split(":");
+		    	  String part1 = parts[0];
+		    	  String part2 = parts[1];
+		    	  String part3 = parts[2];
+		    	  String part4 = parts[3];
+		    	  String part5 = parts[4];
+		    	  String part6 = parts[5];
+		    	  
+		    	  Games = Integer.parseInt(part2);
+		    	  Wins = Integer.parseInt(part4);
+		    	  Loses = Integer.parseInt(part6);
+		    	  
+		    	  
+		    	  // Adds a line to the file
+		    	  BufferedWriter writer = new BufferedWriter(new FileWriter(playerName, false));//FOR APPENd: true
+		    	  writer.write("GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 1) + ":Loses:" + (Games + 1));
+		    	  writer.close();
+		      }
+		      
+		      reader.close();
+		   } catch (Exception e) {
+		      Log.e("ReadWriteFile", "Unable to read the TestFile.txt file.");
+		   }
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	protected int getDataAttackDamage() {
 		// TODO Auto-generated method stub
 		return 0;
@@ -2327,7 +2421,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		
 		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
 		
-		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletobig);					  	  	  	
+		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletobigcure);					  	  	  	
 	  	  	
   	  	TextView cureGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
   	  	
@@ -2349,7 +2443,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
   	  		@Override
   	  		public void run() {
   	  			
-	  	  		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletosmall);						  	  	  	
+	  	  		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletosmallcure);						  	  	  	
 	  	  	  	
 		  	  	final TextView cureGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
 		  	  	cureGraphic.setTypeface(typeFace);
@@ -2365,7 +2459,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		
 		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
 		
-		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletobig);					  	  	  	
+		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletobigdodge);					  	  	  	
 	  	  	
   	  	TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
   	  	
@@ -2387,7 +2481,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
   	  		@Override
   	  		public void run() {
   	  			
-	  	  		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletosmall);						  	  	  	
+	  	  		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletosmalldodge);						  	  	  	
 	  	  	  	
 		  	  	final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
 		  	  	dodgeGraphic.setTypeface(typeFace);
@@ -2403,7 +2497,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		
 		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
 		
-		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletobig);					  	  	  	
+		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletobigmb);					  	  	  	
 	  	  	
   	  	TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
   	  	
@@ -2425,7 +2519,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
   	  		@Override
   	  		public void run() {
   	  			
-	  	  		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletosmall);						  	  	  	
+	  	  		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletosmallmb);						  	  	  	
 	  	  	  	
 		  	  	final TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
 		  	  	mightyBlowGraphic.setTypeface(typeFace);
@@ -2479,7 +2573,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		
 		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
 		
-		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletobig);					  	  	  	
+		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletobigch);					  	  	  	
 	  	  	
   	  	TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
   	  	
@@ -2487,7 +2581,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 	  	criticalHitGraphic.bringToFront();
   	  	
   	  	criticalHitGraphic.setTypeface(typeFace);
-  	  	criticalHitGraphic.setText("Critical     Hit");  	  	
+  	  	criticalHitGraphic.setText("Critical Hit");  	  	
   	  	
   	  	criticalHitGraphic.clearAnimation();
   	  	criticalHitGraphic.startAnimation(a);
@@ -2501,11 +2595,11 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
   	  		@Override
   	  		public void run() {
   	  			
-	  	  		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletosmall);						  	  	  	
+	  	  		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletosmallch);						  	  	  	
 	  	  	  	
 		  	  	final TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
 		  	  	criticalHitGraphic.setTypeface(typeFace);
-		  	  	criticalHitGraphic.setText("Critical     Hit");
+		  	  	criticalHitGraphic.setText("Critical Hit");
 	  	  	  	
 		  	  	criticalHitGraphic.clearAnimation();
 		  	  	criticalHitGraphic.startAnimation(a);
@@ -2517,7 +2611,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		
 		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
 		
-		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletobig);					  	  	  	
+		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletobigcm);					  	  	  	
 	  	  	
   	  	TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
   	  	
@@ -2539,7 +2633,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
   	  		@Override
   	  		public void run() {
   	  			
-	  	  		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletosmall);						  	  	  	
+	  	  		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletosmallcm);						  	  	  	
 	  	  	  	
 		  	  	final TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
 		  	  	criticalMissGraphic.setTypeface(typeFace);
@@ -18941,7 +19035,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 				centerscrolltext.setVisibility(View.VISIBLE);													
 		  		centerscrolltext.startAnimation(animAlphaText);
 		  		//centerscrolltext.append("\n");
-		  		centerscrolltext.append("\n" + " >>>>>>>>>>>   " + " Turn " + ArrayOfTurn.turn[0] + "   <<<<<<<<<<<");				
+		  		centerscrolltext.append("\n" + " >>>>>>>>>   " + " Turn " + ArrayOfTurn.turn[0] + "   <<<<<<<<<");				
 		  		//centerscrolltext.append("\n");
 				
 				
@@ -19307,10 +19401,10 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
   	  	    	titleBlankButton.bringToFront();
 	  			
 				
-				centerscrolltext.setVisibility(View.VISIBLE);													
+				centerscrolltext.setVisibility(View.VISIBLE);
 		  		centerscrolltext.startAnimation(animAlphaText);
 		  		//centerscrolltext.append("\n");
-		  		centerscrolltext.append("\n" + " >>>>>>>>>>>   " + " Turn " + ArrayOfTurn.turn[0] + "   <<<<<<<<<<<");				
+		  		centerscrolltext.append("\n" + " >>>>>>>>>   " + " Turn " + ArrayOfTurn.turn[0] + "   <<<<<<<<<");	
 		  		//centerscrolltext.append("\n");
 				
 				
@@ -20074,6 +20168,11 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 						  	  	  			*/
 							  	  	  		//Intent openMainActivity1 = new Intent("com.nedswebsite.ktog.MAINACTIVITY2");
 						    	        	//startActivity(openMainActivity1);
+							    			
+							    			
+							    			writeTextToFile();
+							    			
+							    			getTextFromFile();
 							  	  	  	}
 						  	  	  	}, 500);
 					  	  	  	}
@@ -20243,6 +20342,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
   	  	    }
 		});
 	}
+	
 	
 	public void victoryDefeatAnimation() {
 		

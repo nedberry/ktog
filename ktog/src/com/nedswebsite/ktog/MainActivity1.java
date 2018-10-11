@@ -1,6 +1,12 @@
 package com.nedswebsite.ktog;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -30,6 +36,7 @@ import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.format.Formatter;
 import android.text.style.URLSpan;
+import android.util.Log;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
@@ -42,8 +49,11 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
+import android.media.MediaScannerConnection;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -54,20 +64,34 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.Contacts;
+import android.provider.MediaStore;
 import android.view.ContextThemeWrapper;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app stopped" message on S4 w/o this)			
+	
+	public String[] name = new String[100];
+	//public String[] name;
+	String tempName;
+	int count = 0;
+	
+	int numberOfPlayers;
+	
+	
 	
 	public static final int PICK_IMAGE = 100;
 	public ImageView customImageView;
@@ -119,10 +143,16 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 		//stopService(svc);
 		startService(svc);
 		
+		
+		getCount();
+		
+		
 		onePlayerButton.setOnClickListener(new View.OnClickListener() {
             @Override
 			public void onClick(View v) {
-			                    	
+			    
+            	numberOfPlayers = 1;//will be 1 or 2 to indicate single or multiplayer
+            	
 	        	buttonSound.start();
 	        	
 	        	//stopService(svc);
@@ -164,7 +194,7 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	            	ArrayOfPlayers.player[0] = playername;
 	            	ArrayOfPlayers.player[1] = playercomputer;
 	            	
-	            	savePlayerName();
+	            	//savePlayerName();
 	            	
 	            	insertToDatabase(playername);	        	
 		        	
@@ -249,7 +279,9 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 		multiPlayerButton.setOnClickListener(new View.OnClickListener() {
             @Override
 			public void onClick(View v) {
-			                    	
+			    
+            	numberOfPlayers = 2;//will be 1 or 2 to indicate single or multiplayer
+            	
 	        	buttonSound.start();
 	        	
 	        	multiplayer = "yes";
@@ -287,7 +319,7 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	            	ArrayOfPlayers.player[5] = playername;
 	            	//ArrayOfPlayers.player[1] = playercomputer;
 	            	
-	            	savePlayerName();
+	            	//savePlayerName();
 	            	
 	            	insertToDatabase(playername);	        	
 		        	
@@ -390,6 +422,418 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	        	MainActivity1.this.startActivity(i);
 			}
 		});
+		
+		guysButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+			public void onClick(View v) {
+            	
+	        	buttonSound.start();
+	        	
+	        	
+	        	stopService(svc);
+	        	
+	        	
+	        	//getCount();
+	        	
+	        	//Toast.makeText(MainActivity1.this, String.valueOf(count), Toast.LENGTH_LONG).show();
+	        	
+	        	
+	        	try {
+				      
+	        			getPlayerNamesFromFile();
+	        			
+				   } catch (Exception e) {
+				      
+				   		Toast.makeText(MainActivity1.this, "LOW MEMORY", Toast.LENGTH_LONG).show();
+				}
+	        	
+  	  	  		
+		  		// Instead of String[] items, Here you can also use ArrayList for your custom object..
+	        	
+	        	final String[] nameForAdapter = new String[count];
+	        	
+	        	for (int i = 0; i < count; i++) {
+	        		
+	        		nameForAdapter[i] = name[i];
+	        	}
+	        	
+		  		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.list_row, R.id.title, nameForAdapter) {
+	
+		  		    ViewHolder holder;
+		  		    Drawable icon;//FOR LAST AVATAR THAT WAS USED??? (LOCATION CAN BE SAVE LIKE OTHER GAME DATA)
+	
+		  		    class ViewHolder {
+		  		        ImageView icon;
+		  		        TextView title;						
+		  		    }
+	
+		  		    public View getView(int position, View convertView, ViewGroup parent) {
+		  		        final LayoutInflater inflater = (LayoutInflater) getApplicationContext()
+		  		                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);		  			  		        
+	
+		  		        if (convertView == null) {
+		  		            convertView = inflater.inflate(R.layout.list_row, null);
+	
+		  		            holder = new ViewHolder();
+		  		            holder.icon = (ImageView) convertView.findViewById(R.id.icon);
+		  		            holder.title = (TextView) convertView.findViewById(R.id.title);		  		           
+		  		            
+		  		            convertView.setTag(holder);
+		  		        }
+		  		        
+		  		        else {
+		  		            // view already defined, retrieve view holder
+		  		            holder = (ViewHolder) convertView.getTag();
+		  		        }       
+	
+		  		       // Drawable drawable = getResources().getDrawable(R.drawable.list_icon); //this is an image from the drawables folder
+	
+		  		        holder.title.setText(nameForAdapter[position]);
+		  		        //holder.icon.setImageDrawable(drawable);     
+		  		        
+	
+		  		        return convertView;
+		  		    }
+		  		};
+		  		
+		  		
+		  		// THIS WAY ALLOWS YOU TO STYLE THE DIALOG (ex. background doesn't dim.):
+		  		ContextThemeWrapper cw = new ContextThemeWrapper(MainActivity1.this, R.style.DialogWindowTitle_Holo);
+		  		AlertDialog.Builder builder = new AlertDialog.Builder(cw);		  			  		
+		  		
+	  			
+		  		builder.setTitle("Choose Your Guy");
+		  		
+		  		
+	  			//builder.setCancelable(false);
+	  			
+	  			/*
+				builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+					@Override
+					public void onCancel(DialogInterface dialog) {		  							
+						
+						//IF NOTHING DOESN'T WORK, TRY:
+						
+						//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+			        	//MainActivity1.this.startActivity(i);
+					}
+				});
+	  			*/
+				
+	            builder.setAdapter(adapter,
+	                    new DialogInterface.OnClickListener() {
+	                        @Override
+	                        public void onClick(final DialogInterface dialog, int item) {
+	                        	
+	                        	for (int i = 0; i < count; i++) {
+	                        	
+		                        	if (item == i) {
+		                        		
+		                        		buttonSound.start();
+		                        		
+		                        		//ArrayOfPlayers.player[5] = name[i];
+		                        		tempName = name[i];
+		                        		
+		                        		//Toast.makeText(MainActivity1.this, name[i], Toast.LENGTH_LONG).show();
+		                        		
+		                        		
+		                        		final String[] items = {"One Player", "Multiplayer"};
+		                        		
+		                        		// Instead of String[] items, Here you can also use ArrayList for your custom object..
+		                        		
+		                		  		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.list_row, R.id.title,items) {
+		                	
+		                		  		    ViewHolder holder;
+		                		  		    Drawable icon;//FOR LAST AVATAR THAT WAS USED??? (LOCATION CAN BE SAVE LIKE OTHER GAME DATA)
+		                	
+		                		  		    class ViewHolder {
+		                		  		        ImageView icon;
+		                		  		        TextView title;						
+		                		  		    }
+		                	
+		                		  		    public View getView(int position, View convertView, ViewGroup parent) {
+		                		  		        final LayoutInflater inflater = (LayoutInflater) getApplicationContext()
+		                		  		                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);		  			  		        
+		                	
+		                		  		        if (convertView == null) {
+		                		  		            convertView = inflater.inflate(R.layout.list_row, null);
+		                	
+		                		  		            holder = new ViewHolder();
+		                		  		            holder.icon = (ImageView) convertView.findViewById(R.id.icon);
+		                		  		            holder.title = (TextView) convertView.findViewById(R.id.title);		  		           
+		                		  		            
+		                		  		            convertView.setTag(holder);
+		                		  		        }
+		                		  		        
+		                		  		        else {
+		                		  		            // view already defined, retrieve view holder
+		                		  		            holder = (ViewHolder) convertView.getTag();
+		                		  		        }       
+		                	
+		                		  		       // Drawable drawable = getResources().getDrawable(R.drawable.list_icon); //this is an image from the drawables folder
+		                	
+		                		  		        holder.title.setText(items[position]);
+		                		  		        //holder.icon.setImageDrawable(drawable);     
+		                		  		        
+		                	
+		                		  		        return convertView;
+		                		  		    }
+		                		  		};
+		                		  		
+		                		  		
+		                		  		// THIS WAY ALLOWS YOU TO STYLE THE DIALOG (ex. background doesn't dim.):
+		                		  		ContextThemeWrapper cw = new ContextThemeWrapper(MainActivity1.this, R.style.DialogWindowTitle_Holo);
+		                		  		AlertDialog.Builder builder = new AlertDialog.Builder(cw);		  			  		
+		                		  		
+		                	  			
+		                		  		builder.setTitle("Choose Your Game");
+		                		  		
+		                		  		
+		                	  			//builder.setCancelable(false);
+		                	  			
+		                	  			/*
+		                				builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+		                					@Override
+		                					public void onCancel(DialogInterface dialog) {		  							
+		                						
+		                						//IF NOTHING DOESN'T WORK, TRY:
+		                						
+		                						//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+		                			        	//MainActivity1.this.startActivity(i);
+		                					}
+		                				});
+		                	  			*/
+		                				
+		                	            builder.setAdapter(adapter,
+		                	                    new DialogInterface.OnClickListener() {
+		                	                        @Override
+		                	                        public void onClick(final DialogInterface dialog, int item) {
+		                	                        	
+	                		                        	if (item == 0) {
+	                		                        		
+	                		                        		buttonSound.start();
+	                		                        		
+	                		                        		
+	                		                        		ArrayOfPlayers.player[0] = tempName;
+	                		                        		ArrayOfPlayers.player[1] = "Computer";
+	                		                        		
+	                		                        		
+	                		                        		final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead", "Custom"};
+	                		            		    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2, R.drawable.computer};
+	                		            		    		
+	                		            		    		ListAdapter adapter = new ArrayAdapterWithIcon(MainActivity1.this, items, avatars);
+	                		            		    		
+	                		            		    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
+	                		            		    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
+	                		            		    		//builder.setIcon(R.drawable.computerhead);
+	                		            		    		builder.setTitle("Choose Your Avatar");
+	                		            		    		
+	                		            		    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
+	                		            		    			public void onClick(DialogInterface dialog, int item) { 
+	                		            		    								
+	                		            		    				if (item == 0) {
+	                		            		    					ArrayOfAvatars.avatar[0] = "computer";
+	                		            		    					
+	                		            		    					stopService(svc);	    				
+	                		            			    				
+	                		            			    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+	                		            			    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+	                		            			    				startActivity(intent);
+	                		            			    	        	
+	                		            			    	        	dialog.dismiss();
+	                		            		    				}
+	                		            		    				else if (item == 1) {
+	                		            		    					ArrayOfAvatars.avatar[0] = "crossedswords";
+	                		            		    					
+	                		            		    					stopService(svc);	    				
+	                		            			    				
+	                		            			    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+	                		            			    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+	                		            			    				startActivity(intent);
+	                		            			    	        	
+	                		            			    	        	dialog.dismiss();
+	                		            		    				}
+	                		            		    				else if (item == 2) {
+	                		            		    					ArrayOfAvatars.avatar[0] = "stonedead";
+	                		            		    					
+	                		            		    					stopService(svc);	    				
+	                		            			    				
+	                		            			    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+	                		            			    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+	                		            			    				startActivity(intent);
+	                		            			    	        	
+	                		            			    	        	dialog.dismiss();
+	                		            		    				}
+	                		            		    				else if (item == 3) {
+	                		            		    					ArrayOfAvatars.avatar[0] = "custom";
+	                		            		    					
+	                		            		    					stopService(svc);
+	                		            		    					
+	                		            		    					openGallery();
+	                		            		    					
+	                		            		    					dialog.dismiss();
+	                		            		    				}    				
+	                		            		    	        	
+	                		            		    	        	//finish();
+	                		            	        	  		}
+	                		            		    		});	    		
+	                		            		        	
+	                		            		            builder.create().show();
+	                		                        	}
+	                		                        	
+	                		                        	else if (item == 1) {
+	                		                        		
+	                		                        		buttonSound.start();
+	                		                        		
+	                		                        		multiplayer = "yes";
+	                		                        		
+	                		                        		ArrayOfPlayers.player[5] = tempName;
+	                		                        		
+	                		                        		
+	                		                        		final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead", "Custom"};
+	                		            		    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2, R.drawable.computer};
+	                		            		    		
+	                		            		    		ListAdapter adapter = new ArrayAdapterWithIcon(MainActivity1.this, items, avatars);
+	                		            		    		
+	                		            		    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
+	                		            		    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
+	                		            		    		//builder.setIcon(R.drawable.computerhead);
+	                		            		    		builder.setTitle("Choose Your Avatar");
+	                		            		    		
+	                		            		    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
+	                		            		    			public void onClick(DialogInterface dialog, int item) { 
+	                		            		    								
+	                		            		    				if (item == 0) {
+	                		            		    					ArrayOfAvatars.avatar[5] = "computer";
+	                		            		    					
+	                		            		    					goToHostOrJoin();
+	                		            			    	        	
+	                		            			    	        	dialog.dismiss();
+	                		            		    				}
+	                		            		    				else if (item == 1) {
+	                		            		    					ArrayOfAvatars.avatar[5] = "crossedswords";
+	                		            		    					
+	                		            		    					goToHostOrJoin();
+	                		            			    	        	
+	                		            			    	        	dialog.dismiss();
+	                		            		    				}
+	                		            		    				else if (item == 2) {
+	                		            		    					ArrayOfAvatars.avatar[5] = "stonedead";
+	                		            		    					
+	                		            		    					goToHostOrJoin();
+	                		            			    	        	
+	                		            			    	        	dialog.dismiss();
+	                		            		    				}
+	                		            		    				else if (item == 3) {
+	                		            		    					ArrayOfAvatars.avatar[5] = "custom";	    					
+	                		            		    					
+	                		            		    					openGallery();
+	                		            		    					
+	                		            		    					dialog.dismiss();
+	                		            		    				}    				
+	                		            		    	        	
+	                		            		    	        	//finish();
+	                		            	        	  		}
+	                		            		    		});	    		
+	                		            		        	
+	                		            		            builder.create().show();
+	                		                        	}
+		                	                        }
+		                	                    });	            
+		                	            
+		                	            AlertDialog alert = builder.create();
+		                	            alert.show();	            
+		                	            
+		                	            
+		                	            WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+
+		                	            lp.copyFrom(alert.getWindow().getAttributes());
+		                	            lp.width = 1050;	            
+		                	            alert.getWindow().setAttributes(lp);
+		                	            
+		                	            
+		                	            //h.removeCallbacks(this);
+		                	        	
+		                	        	//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+		                	        	//MainActivity1.this.startActivity(i);
+		                        	}
+	                        	}
+	                        }
+	                    });	            
+	            
+	            AlertDialog alert = builder.create();
+	            alert.show();	            
+	            
+	            
+	            WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+
+	            lp.copyFrom(alert.getWindow().getAttributes());
+	            lp.width = 1050;	            
+	            alert.getWindow().setAttributes(lp);
+	            
+	            
+	            //h.removeCallbacks(this);
+	        	
+	        	//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+	        	//MainActivity1.this.startActivity(i);
+			}
+		});
+	}
+	
+	
+	public void getCount() {
+		
+		File directory = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files");
+		File[] files = directory.listFiles();
+      
+		if (files != null)
+			for (int i = 0; i < files.length; ++i) {
+
+				count++;
+				File file = files[i];
+			}
+	}
+	
+	public void getPlayerNamesFromFile() {
+		
+		File directory = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files");
+		
+		// Refresh the data so it can seen when the device is plugged in a
+		// computer. You may have to unplug and replug the device to see the
+		// latest changes. This is not necessary if the user should not modify
+		// the files.
+		//MediaScannerConnection.scanFile(this, new String[]{directory.toString()}, null, null);
+		
+		File[] files = directory.listFiles();
+		
+		for (int i = 0; i < files.length; ++i) {
+			
+			File file = files[i];
+			
+			//File playerName = new File(this.getExternalFilesDir(null), ArrayOfPlayers.player[5] + ".txt");
+			if (file != null) {
+			   
+			   BufferedReader reader = null;
+			   try {
+			      reader = new BufferedReader(new FileReader(file));
+			      String line;
+
+			      while ((line = reader.readLine()) != null) {
+			    	  
+			    	  String filename = file.getName().toString();
+			    	  filename = filename.substring(0, filename.lastIndexOf("."));
+			    	  
+			    	  name[i] = filename;			    	  
+			    	  
+			    	  //Toast.makeText(playerNamesAndRecords.this, "Games = " + gamesPlayed[0] + " " + "Wins = " + wins[0] + " " + "Loses = " + loses[0], Toast.LENGTH_LONG).show();
+			      }
+			      
+			      reader.close();
+			   } catch (Exception e) {
+			      Log.e("ReadWriteFile", "Unable to read the TestFile.txt file.");
+			   }
+			}
+		}
 	}
 	
 	
@@ -454,17 +898,234 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 		break;		
 		*/
 		case PICK_IMAGE://FOR IMAGE GALLERY
+			
 			if (resultCode == RESULT_OK && requestCode == PICK_IMAGE && multiplayer.equals("no")) {
-				imageUri = data.getData();
-				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
-			    intent.putExtra("imageUri", imageUri.toString());
-				//intent.putExtra("imageUri", imageUri);
-			    startActivity(intent);						    			       	
-			}			
-			else if (resultCode == RESULT_OK && requestCode == PICK_IMAGE && multiplayer.equals("yes")) {
+				
 				imageUri = data.getData();
 				
-				goToHostOrJoin();
+				/*
+				Intent intentFileSize = new Intent(MainActivity1.this, MainActivity2.class);
+				intentFileSize.putExtra("imageUri", imageUri.toString());
+				String image_path= intentFileSize.getStringExtra("imageUri"); 
+				Uri fileUri = Uri.parse(image_path);
+				*/
+				Bitmap bitmap = null;
+				try {
+					bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+		        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+		        bitmap.compress(Bitmap.CompressFormat.JPEG, 0, stream);
+		        byte[] imageInByte = stream.toByteArray();
+		        float file_size = (imageInByte.length)/1024;//from bytes to kb
+		        
+		        Toast.makeText(MainActivity1.this,"IMAGE SIZE = " + file_size, Toast.LENGTH_LONG).show();
+		        //APPARENT SCALING AT ABOUT FACTOR OF 6, DEPENING ON SIZE.	        
+		        //0=MAX COMPRESSION, 100=LEAST COMPRESSION
+				
+				
+				
+				//File myFile = new File(imageUri.getPath());
+				//myFile.getAbsolutePath();
+				
+				//float file_size = Integer.parseInt(String.valueOf(myFile.length()/1024));	//from bytes to kilobytes
+																							//(1 MB = 1024 KBytes)
+																							//float for files less than 1 (will get 0 for these if int)
+				if (file_size > 0 && file_size < 6) {
+					
+					Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+				    intent.putExtra("imageUri", imageUri.toString());
+					//intent.putExtra("imageUri", imageUri);
+				    startActivity(intent);
+				}
+				/*
+				else if (file_size > 100 && file_size < 201) {
+					
+					try {
+	
+				        // BitmapFactory options to downsize the image
+				        BitmapFactory.Options o = new BitmapFactory.Options();
+				        o.inJustDecodeBounds = true;
+				        o.inSampleSize = 6;
+				        // factor of downsizing the image
+	
+				        FileInputStream inputStream = new FileInputStream(myFile);
+				        //Bitmap selectedBitmap = null;
+				        BitmapFactory.decodeStream(inputStream, null, o);
+				        inputStream.close();
+	
+				        // The new size we want to scale to
+				        final int REQUIRED_SIZE=75;
+	
+				        // Find the correct scale value. It should be the power of 2.
+				        int scale = 1;
+				        while(o.outWidth / scale / 2 >= REQUIRED_SIZE &&
+				                        o.outHeight / scale / 2 >= REQUIRED_SIZE) {
+				            scale *= 2;
+				        }
+	
+				        BitmapFactory.Options o2 = new BitmapFactory.Options();
+				        o2.inSampleSize = scale;
+				        inputStream = new FileInputStream(myFile);
+	
+				        Bitmap selectedBitmap = BitmapFactory.decodeStream(inputStream, null, o2);
+				        inputStream.close();
+	
+				        // here i override the original image file
+				        //file.createNewFile();
+				        File file = new File("/storage/sdcard0/avatar5");
+				        FileOutputStream outputStream = new FileOutputStream(file);
+				        
+				        selectedBitmap.compress(Bitmap.CompressFormat.JPEG, 100 , outputStream);
+				        
+				        imageUri = Uri.fromFile(file);
+				        //imageUri.fromFile(new File("/storage/sdcard0/avatar5"));
+	
+				        //return file;
+				    } catch (Exception e) {
+				    	
+				    	Toast.makeText(MainActivity1.this,"ERROR. Please try again.", Toast.LENGTH_LONG).show();
+				        //return null;
+				    }
+					
+					Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+				    intent.putExtra("imageUri", imageUri.toString());
+					//intent.putExtra("imageUri", imageUri);
+				    startActivity(intent);
+				}
+				*/
+				else if (file_size > 6) {
+					
+					Toast.makeText(MainActivity1.this,"Avatar image must be less than 60 KB (" + file_size +" ).", Toast.LENGTH_LONG).show();
+				}
+				
+				else {
+					
+					Toast.makeText(MainActivity1.this,"ERROR LOADING IMAGE " + file_size, Toast.LENGTH_LONG).show();
+				}
+			}
+			
+			else if (resultCode == RESULT_OK && requestCode == PICK_IMAGE && multiplayer.equals("yes")) {
+				/*
+				imageUri = data.getData();
+				
+				
+				File myFile = new File(imageUri.getPath());
+				myFile.getAbsolutePath();
+				
+				float file_size = Integer.parseInt(String.valueOf(myFile.length()/1024));//from bytes to kilobytes
+				*/
+				
+				imageUri = data.getData();
+				
+				/*
+				Intent intentFileSize = new Intent(MainActivity1.this, MainActivity2.class);
+				intentFileSize.putExtra("imageUri", imageUri.toString());
+				String image_path= intentFileSize.getStringExtra("imageUri"); 
+				Uri fileUri = Uri.parse(image_path);
+				*/
+				Bitmap bitmap = null;
+				try {
+					bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+		        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+		        bitmap.compress(Bitmap.CompressFormat.JPEG, 0, stream);
+		        byte[] imageInByte = stream.toByteArray();
+		        float file_size = (imageInByte.length)/1024;//from bytes to kb
+		        
+		        Toast.makeText(MainActivity1.this,"IMAGE SIZE = " + file_size, Toast.LENGTH_LONG).show();
+		        //APPARENT SCALING AT ABOUT FACTOR OF 6, DEPENING ON SIZE.	        
+		        //0=MAX COMPRESSION, 100=LEAST COMPRESSION
+				
+				
+				
+				File myFile = new File(imageUri.getPath());
+				myFile.getAbsolutePath();
+				
+				//float file_size = Integer.parseInt(String.valueOf(myFile.length()/1024));	//from bytes to kilobytes
+																							//(1 MB = 1024 KBytes)
+																							//float for files less than 1 (will get 0 for these if int)
+				
+				if (file_size > 0 && file_size < 6) {
+					
+					goToHostOrJoin();
+				}
+				/*
+				else if (file_size > 100 && file_size < 201) {
+					
+					try {
+
+				        // BitmapFactory options to downsize the image
+				        BitmapFactory.Options o = new BitmapFactory.Options();
+				        o.inJustDecodeBounds = true;
+				        o.inSampleSize = 6;
+				        // factor of downsizing the image
+
+				        FileInputStream inputStream = new FileInputStream(myFile);
+				        //Bitmap selectedBitmap = null;
+				        BitmapFactory.decodeStream(inputStream, null, o);
+				        inputStream.close();
+
+				        // The new size we want to scale to
+				        final int REQUIRED_SIZE=75;
+
+				        // Find the correct scale value. It should be the power of 2.
+				        int scale = 1;
+				        while(o.outWidth / scale / 2 >= REQUIRED_SIZE &&
+				                        o.outHeight / scale / 2 >= REQUIRED_SIZE) {
+				            scale *= 2;
+				        }
+
+				        BitmapFactory.Options o2 = new BitmapFactory.Options();
+				        o2.inSampleSize = scale;
+				        inputStream = new FileInputStream(myFile);
+
+				        Bitmap selectedBitmap = BitmapFactory.decodeStream(inputStream, null, o2);
+				        inputStream.close();
+
+				        // here i override the original image file
+				        //file.createNewFile();
+				        File file = new File("/storage/sdcard0/avatar5");
+				        FileOutputStream outputStream = new FileOutputStream(file);
+				        
+				        selectedBitmap.compress(Bitmap.CompressFormat.JPEG, 100 , outputStream);
+				        
+				        imageUri = Uri.fromFile(file);
+				        //imageUri.fromFile(new File("/storage/sdcard0/avatar5"));
+
+				        //return file;
+				    } catch (Exception e) {
+				    	
+				    	Toast.makeText(MainActivity1.this,"ERROR. Please try again.", Toast.LENGTH_LONG).show();
+				        //return null;
+				    }
+					
+					goToHostOrJoin();
+				}
+				*/
+				else if (file_size > 6) {
+					
+					Toast.makeText(MainActivity1.this,"Avatar image must be less than 60 KB (" + file_size +" ).", Toast.LENGTH_LONG).show();
+				}
+				
+				else {
+					
+					Toast.makeText(MainActivity1.this,"ERROR LOADING IMAGE " + file_size, Toast.LENGTH_LONG).show();
+				}
+				
 				/*
 				final Intent svc=new Intent(this, Badonk2SoundService.class);
 				
@@ -689,6 +1350,16 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 		
 		}
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	public void goToHostOrJoin() {
 		
@@ -1217,53 +1888,72 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
         sendPostReqAsyncTask.execute(player);		
     }
 	
-	
+	/*
 	public void savePlayerName() {
 		
 		try {
 			
-			File playerName = new File(this.getExternalFilesDir(null), ArrayOfPlayers.player[5] + ".txt");
-		
-			if (!playerName.exists()) {
-			
-				playerName.createNewFile();
-			}
-			else if (playerName.exists()) {
+			if (numberOfPlayers == 1) {
 				
-				Toast.makeText(MainActivity1.this, "\"" + ArrayOfPlayers.player[5] + "\"" + " is a save name.", Toast.LENGTH_LONG).show();
+				File playerName = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files", ArrayOfPlayers.player[0] + ".txt");			
+				//File playerName = new File(this.getExternalFilesDir(null), ArrayOfPlayers.player[5] + ".txt");
 				
-				/*
-				AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity1.this);
-
-	        	alert.setTitle("Player Name");
-	        	alert.setMessage("You are using the saved name " + "\"" + ArrayOfPlayers.player[5] + "\"" +".");
-	        	
-	        	
-	        	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-	        		public void onClick(DialogInterface dialog, int whichButton) {
-		    	        	
-	        			dialog.dismiss();
-        	  		}
-	    		});	
-
-	        	alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-	        		public void onClick(DialogInterface dialog, int whichButton) {
-	        			
-	        			dialog.dismiss();
-	        			
-	        			finish();
-	        		}
-	        	});
-	        	
-	        	alert.show();
-	        	*/
+				if (!playerName.exists()) {
+				
+					playerName.createNewFile();
+				}
+				else if (playerName.exists()) {
+					
+					Toast.makeText(MainActivity1.this, ArrayOfPlayers.player[0] + " is a saved name.", Toast.LENGTH_LONG).show();
+				}
 			}
 			
+			else if (numberOfPlayers == 2) {//or more
+				
+				File playerName = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files", ArrayOfPlayers.player[5] + ".txt");			
+				//File playerName = new File(this.getExternalFilesDir(null), ArrayOfPlayers.player[5] + ".txt");
+				
+				if (!playerName.exists()) {
+				
+					playerName.createNewFile();
+				}
+				else if (playerName.exists()) {
+					
+					Toast.makeText(MainActivity1.this, ArrayOfPlayers.player[5] + " is a saved name.", Toast.LENGTH_LONG).show();
+					
+					
+					//AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity1.this);
+
+		        	//alert.setTitle("Player Name");
+		        	//alert.setMessage("You are using the saved name " + "\"" + ArrayOfPlayers.player[5] + "\"" +".");
+		        	
+		        	
+		        	//alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+		        		//public void onClick(DialogInterface dialog, int whichButton) {
+			    	        	
+		        			//dialog.dismiss();
+	        	  		//}
+		    		//});	
+
+		        	//alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+		        		//public void onClick(DialogInterface dialog, int whichButton) {
+		        			
+		        			//dialog.dismiss();
+		        			
+		        			//finish();
+		        		//}
+		        	//});
+		        	
+		        	//alert.show();
+		        	
+				}
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+	*/
 	
 	
 	//===================================================================================================
@@ -1299,6 +1989,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
                 @Override
     			public void onClick(View v) {
                 	
+                	numberOfPlayers = 1;//will be 1 or 2 to indicate single or multiplayer
+                	
 	            	buttonSound1.start();
 	            	//stopService(svc);
 	            	
@@ -1330,7 +2022,7 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	                	ArrayOfPlayers.player[0] = playername;
 	                	ArrayOfPlayers.player[1] = playercomputer;
 	                	
-	                	savePlayerName();
+	                	//savePlayerName();
 	                	
 	                	insertToDatabase(playername);    	        	
 	    	        	
@@ -1415,7 +2107,9 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
     		multiPlayerButton.setOnClickListener(new View.OnClickListener() {
                 @Override
     			public void onClick(View v) {
-    			                    	
+    			    
+                	numberOfPlayers = 2;//will be 1 or 2 to indicate single or multiplayer
+                	
 	            	buttonSound.start();
 	            	
 	            	multiplayer = "yes";
@@ -1453,7 +2147,7 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	                	ArrayOfPlayers.player[5] = playername;
 	                	//ArrayOfPlayers.player[1] = playercomputer;
 	                	
-	                	savePlayerName();
+	                	//savePlayerName();
 	                	
 	                	insertToDatabase(playername);	        	
 	    	        	
@@ -1552,6 +2246,350 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
     			}
     		});
     		
+    		guysButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+    			public void onClick(View v) {
+    			                    	
+    	        	buttonSound.start();
+    	        	
+    	        	
+    	        	stopService(svc);
+    	        	
+    	        	
+    	        	//getCount();
+    	        	
+    	        	
+    	        	try {
+  				      
+	        			getPlayerNamesFromFile();
+	        			
+    	        		} catch (Exception e) {
+				      
+				   		Toast.makeText(MainActivity1.this, "LOW MEMORY", Toast.LENGTH_LONG).show();
+	        		}
+    	        	
+      	  	  		
+    		  		// Instead of String[] items, Here you can also use ArrayList for your custom object..
+    	        	
+    	        	final String[] nameForAdapter = new String[count];
+    	        	
+    	        	for (int i = 0; i < count; i++) {
+    	        		
+    	        		nameForAdapter[i] = name[i];
+    	        	}
+    	        	
+    		  		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.list_row, R.id.title, nameForAdapter) {
+    	
+    		  		    ViewHolder holder;
+    		  		    Drawable icon;//FOR LAST AVATAR THAT WAS USED??? (LOCATION CAN BE SAVE LIKE OTHER GAME DATA)
+    	
+    		  		    class ViewHolder {
+    		  		        ImageView icon;
+    		  		        TextView title;						
+    		  		    }
+    	
+    		  		    public View getView(int position, View convertView, ViewGroup parent) {
+    		  		        final LayoutInflater inflater = (LayoutInflater) getApplicationContext()
+    		  		                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);		  			  		        
+    	
+    		  		        if (convertView == null) {
+    		  		            convertView = inflater.inflate(R.layout.list_row, null);
+    	
+    		  		            holder = new ViewHolder();
+    		  		            holder.icon = (ImageView) convertView.findViewById(R.id.icon);
+    		  		            holder.title = (TextView) convertView.findViewById(R.id.title);		  		           
+    		  		            
+    		  		            convertView.setTag(holder);
+    		  		        }
+    		  		        
+    		  		        else {
+    		  		            // view already defined, retrieve view holder
+    		  		            holder = (ViewHolder) convertView.getTag();
+    		  		        }       
+    	
+    		  		       // Drawable drawable = getResources().getDrawable(R.drawable.list_icon); //this is an image from the drawables folder
+    	
+    		  		        holder.title.setText(nameForAdapter[position]);
+    		  		        //holder.icon.setImageDrawable(drawable);     
+    		  		        
+    	
+    		  		        return convertView;
+    		  		    }
+    		  		};
+    		  		
+    		  		
+    		  		// THIS WAY ALLOWS YOU TO STYLE THE DIALOG (ex. background doesn't dim.):
+    		  		ContextThemeWrapper cw = new ContextThemeWrapper(MainActivity1.this, R.style.DialogWindowTitle_Holo);
+    		  		AlertDialog.Builder builder = new AlertDialog.Builder(cw);		  			  		
+    		  		
+    	  			
+    		  		builder.setTitle("Choose Your Guy");
+    		  		
+    		  		
+    	  			//builder.setCancelable(false);
+    	  			
+    	  			/*
+    				builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+    					@Override
+    					public void onCancel(DialogInterface dialog) {		  							
+    						
+    						//IF NOTHING DOESN'T WORK, TRY:
+    						
+    						//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+    			        	//MainActivity1.this.startActivity(i);
+    					}
+    				});
+    	  			*/
+    				
+    	            builder.setAdapter(adapter,
+    	                    new DialogInterface.OnClickListener() {
+    	                        @Override
+    	                        public void onClick(final DialogInterface dialog, int item) {
+    	                        	
+    	                        	for (int i = 0; i < count; i++) {
+    	                        	
+    		                        	if (item == i) {
+    		                        		
+    		                        		buttonSound.start();
+    		                        		
+    		                        		ArrayOfPlayers.player[5] = name[i];
+    		                        		
+    		                        		
+    		                        		final String[] items = {"One Player", "Multiplayer"};
+    		                        		
+    		                        		// Instead of String[] items, Here you can also use ArrayList for your custom object..
+    		                        		
+    		                		  		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.list_row, R.id.title,items) {
+    		                	
+    		                		  		    ViewHolder holder;
+    		                		  		    Drawable icon;//FOR LAST AVATAR THAT WAS USED??? (LOCATION CAN BE SAVE LIKE OTHER GAME DATA)
+    		                	
+    		                		  		    class ViewHolder {
+    		                		  		        ImageView icon;
+    		                		  		        TextView title;						
+    		                		  		    }
+    		                	
+    		                		  		    public View getView(int position, View convertView, ViewGroup parent) {
+    		                		  		        final LayoutInflater inflater = (LayoutInflater) getApplicationContext()
+    		                		  		                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);		  			  		        
+    		                	
+    		                		  		        if (convertView == null) {
+    		                		  		            convertView = inflater.inflate(R.layout.list_row, null);
+    		                	
+    		                		  		            holder = new ViewHolder();
+    		                		  		            holder.icon = (ImageView) convertView.findViewById(R.id.icon);
+    		                		  		            holder.title = (TextView) convertView.findViewById(R.id.title);		  		           
+    		                		  		            
+    		                		  		            convertView.setTag(holder);
+    		                		  		        }
+    		                		  		        
+    		                		  		        else {
+    		                		  		            // view already defined, retrieve view holder
+    		                		  		            holder = (ViewHolder) convertView.getTag();
+    		                		  		        }       
+    		                	
+    		                		  		       // Drawable drawable = getResources().getDrawable(R.drawable.list_icon); //this is an image from the drawables folder
+    		                	
+    		                		  		        holder.title.setText(items[position]);
+    		                		  		        //holder.icon.setImageDrawable(drawable);     
+    		                		  		        
+    		                	
+    		                		  		        return convertView;
+    		                		  		    }
+    		                		  		};
+    		                		  		
+    		                		  		
+    		                		  		// THIS WAY ALLOWS YOU TO STYLE THE DIALOG (ex. background doesn't dim.):
+    		                		  		ContextThemeWrapper cw = new ContextThemeWrapper(MainActivity1.this, R.style.DialogWindowTitle_Holo);
+    		                		  		AlertDialog.Builder builder = new AlertDialog.Builder(cw);		  			  		
+    		                		  		
+    		                	  			
+    		                		  		builder.setTitle("Choose Your Game");
+    		                		  		
+    		                		  		
+    		                	  			//builder.setCancelable(false);
+    		                	  			
+    		                	  			/*
+    		                				builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+    		                					@Override
+    		                					public void onCancel(DialogInterface dialog) {		  							
+    		                						
+    		                						//IF NOTHING DOESN'T WORK, TRY:
+    		                						
+    		                						//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+    		                			        	//MainActivity1.this.startActivity(i);
+    		                					}
+    		                				});
+    		                	  			*/
+    		                				
+    		                	            builder.setAdapter(adapter,
+    		                	                    new DialogInterface.OnClickListener() {
+    		                	                        @Override
+    		                	                        public void onClick(final DialogInterface dialog, int item) {
+    		                	                        	
+    	                		                        	if (item == 0) {
+    	                		                        		
+    	                		                        		buttonSound.start();
+    	                		                        		
+    	                		                        		final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead", "Custom"};
+    	                		            		    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2, R.drawable.computer};
+    	                		            		    		
+    	                		            		    		ListAdapter adapter = new ArrayAdapterWithIcon(MainActivity1.this, items, avatars);
+    	                		            		    		
+    	                		            		    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
+    	                		            		    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
+    	                		            		    		//builder.setIcon(R.drawable.computerhead);
+    	                		            		    		builder.setTitle("Choose Your Avatar");
+    	                		            		    		
+    	                		            		    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
+    	                		            		    			public void onClick(DialogInterface dialog, int item) { 
+    	                		            		    								
+    	                		            		    				if (item == 0) {
+    	                		            		    					ArrayOfAvatars.avatar[0] = "computer";
+    	                		            		    					
+    	                		            		    					stopService(svc);	    				
+    	                		            			    				
+    	                		            			    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+    	                		            			    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+    	                		            			    				startActivity(intent);
+    	                		            			    	        	
+    	                		            			    	        	dialog.dismiss();
+    	                		            		    				}
+    	                		            		    				else if (item == 1) {
+    	                		            		    					ArrayOfAvatars.avatar[0] = "crossedswords";
+    	                		            		    					
+    	                		            		    					stopService(svc);	    				
+    	                		            			    				
+    	                		            			    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+    	                		            			    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+    	                		            			    				startActivity(intent);
+    	                		            			    	        	
+    	                		            			    	        	dialog.dismiss();
+    	                		            		    				}
+    	                		            		    				else if (item == 2) {
+    	                		            		    					ArrayOfAvatars.avatar[0] = "stonedead";
+    	                		            		    					
+    	                		            		    					stopService(svc);	    				
+    	                		            			    				
+    	                		            			    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+    	                		            			    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+    	                		            			    				startActivity(intent);
+    	                		            			    	        	
+    	                		            			    	        	dialog.dismiss();
+    	                		            		    				}
+    	                		            		    				else if (item == 3) {
+    	                		            		    					ArrayOfAvatars.avatar[0] = "custom";
+    	                		            		    					
+    	                		            		    					stopService(svc);
+    	                		            		    					
+    	                		            		    					openGallery();
+    	                		            		    					
+    	                		            		    					dialog.dismiss();
+    	                		            		    				}    				
+    	                		            		    	        	
+    	                		            		    	        	//finish();
+    	                		            	        	  		}
+    	                		            		    		});	    		
+    	                		            		        	
+    	                		            		            builder.create().show();
+    	                		                        	}
+    	                		                        	
+    	                		                        	else if (item == 1) {
+    	                		                        		
+    	                		                        		buttonSound.start();
+    	                		                        		
+    	                		                        		multiplayer = "yes";
+    	                		                        		
+    	                		                        		
+    	                		                        		final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead", "Custom"};
+    	                		            		    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2, R.drawable.computer};
+    	                		            		    		
+    	                		            		    		ListAdapter adapter = new ArrayAdapterWithIcon(MainActivity1.this, items, avatars);
+    	                		            		    		
+    	                		            		    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
+    	                		            		    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
+    	                		            		    		//builder.setIcon(R.drawable.computerhead);
+    	                		            		    		builder.setTitle("Choose Your Avatar");
+    	                		            		    		
+    	                		            		    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
+    	                		            		    			public void onClick(DialogInterface dialog, int item) { 
+    	                		            		    								
+    	                		            		    				if (item == 0) {
+    	                		            		    					ArrayOfAvatars.avatar[5] = "computer";
+    	                		            		    					
+    	                		            		    					goToHostOrJoin();
+    	                		            			    	        	
+    	                		            			    	        	dialog.dismiss();
+    	                		            		    				}
+    	                		            		    				else if (item == 1) {
+    	                		            		    					ArrayOfAvatars.avatar[5] = "crossedswords";
+    	                		            		    					
+    	                		            		    					goToHostOrJoin();
+    	                		            			    	        	
+    	                		            			    	        	dialog.dismiss();
+    	                		            		    				}
+    	                		            		    				else if (item == 2) {
+    	                		            		    					ArrayOfAvatars.avatar[5] = "stonedead";
+    	                		            		    					
+    	                		            		    					goToHostOrJoin();
+    	                		            			    	        	
+    	                		            			    	        	dialog.dismiss();
+    	                		            		    				}
+    	                		            		    				else if (item == 3) {
+    	                		            		    					ArrayOfAvatars.avatar[5] = "custom";	    					
+    	                		            		    					
+    	                		            		    					openGallery();
+    	                		            		    					
+    	                		            		    					dialog.dismiss();
+    	                		            		    				}    				
+    	                		            		    	        	
+    	                		            		    	        	//finish();
+    	                		            	        	  		}
+    	                		            		    		});	    		
+    	                		            		        	
+    	                		            		            builder.create().show();
+    	                		                        	}
+    		                	                        }
+    		                	                    });	            
+    		                	            
+    		                	            AlertDialog alert = builder.create();
+    		                	            alert.show();	            
+    		                	            
+    		                	            
+    		                	            WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+
+    		                	            lp.copyFrom(alert.getWindow().getAttributes());
+    		                	            lp.width = 1050;	            
+    		                	            alert.getWindow().setAttributes(lp);
+    		                	            
+    		                	            
+    		                	            //h.removeCallbacks(this);
+    		                	        	
+    		                	        	//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+    		                	        	//MainActivity1.this.startActivity(i);
+    		                        	}
+    	                        	}
+    	                        }
+    	                    });	            
+    	            
+    	            AlertDialog alert = builder.create();
+    	            alert.show();	            
+    	            
+    	            
+    	            WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+
+    	            lp.copyFrom(alert.getWindow().getAttributes());
+    	            lp.width = 1050;	            
+    	            alert.getWindow().setAttributes(lp);
+    	            
+    	            
+    	            //h.removeCallbacks(this);
+    	        	
+    	        	//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+    	        	//MainActivity1.this.startActivity(i);
+    			}
+    		});
+    		
         	buttonSound1.start();        	
         } 
         
@@ -1571,6 +2609,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
     		onePlayerButton.setOnClickListener(new View.OnClickListener() {
                 @Override
     			public void onClick(View v) {
+                	
+                	numberOfPlayers = 1;//will be 1 or 2 to indicate single or multiplayer
                 	
 	            	buttonSound1.start();
 	            	//stopService(svc);
@@ -1603,7 +2643,7 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	                	ArrayOfPlayers.player[0] = playername;
 	                	ArrayOfPlayers.player[1] = playercomputer;
 	                	
-	                	savePlayerName();
+	                	//savePlayerName();
 	                	
 	                	insertToDatabase(playername);    	        	
 	    	        	
@@ -1688,7 +2728,9 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
     		multiPlayerButton.setOnClickListener(new View.OnClickListener() {
                 @Override
     			public void onClick(View v) {
-    			                    	
+    			    
+                	numberOfPlayers = 2;//will be 1 or 2 to indicate single or multiplayer
+                	
 	            	buttonSound.start();
 	            	
 	            	multiplayer = "yes";
@@ -1726,7 +2768,7 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	                	ArrayOfPlayers.player[5] = playername;
 	                	//ArrayOfPlayers.player[1] = playercomputer;
 	                	
-	                	savePlayerName();
+	                	//savePlayerName();
 	                	
 	                	insertToDatabase(playername);	        	
 	    	        	
@@ -1821,6 +2863,349 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	            	
 	            	Intent i = new Intent(MainActivity1.this, playerNamesAndRecords.class);
 	            	MainActivity1.this.startActivity(i);
+    			}
+    		});
+    		
+    		guysButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+    			public void onClick(View v) {
+    			                    	
+    	        	buttonSound.start();
+    	        	
+    	        	
+    	        	stopService(svc);
+    	        	
+    	        	
+    	        	//getCount();
+    	        	
+    	        	
+    	        	try {
+  				      
+	        			getPlayerNamesFromFile();
+	        			
+    	        		} catch (Exception e) {
+				      
+				   		Toast.makeText(MainActivity1.this, "LOW MEMORY", Toast.LENGTH_LONG).show();
+	        		}
+    	        	
+      	  	  		
+    		  		// Instead of String[] items, Here you can also use ArrayList for your custom object..
+    	        	
+    	        	final String[] nameForAdapter = new String[count];
+    	        	
+    	        	for (int i = 0; i < count; i++) {
+    	        		
+    	        		nameForAdapter[i] = name[i];
+    	        	}
+    	        	
+    		  		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.list_row, R.id.title, nameForAdapter) {
+    	
+    		  		    ViewHolder holder;
+    		  		    Drawable icon;//FOR LAST AVATAR THAT WAS USED??? (LOCATION CAN BE SAVE LIKE OTHER GAME DATA)
+    	
+    		  		    class ViewHolder {
+    		  		        ImageView icon;
+    		  		        TextView title;						
+    		  		    }
+    	
+    		  		    public View getView(int position, View convertView, ViewGroup parent) {
+    		  		        final LayoutInflater inflater = (LayoutInflater) getApplicationContext()
+    		  		                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);		  			  		        
+    	
+    		  		        if (convertView == null) {
+    		  		            convertView = inflater.inflate(R.layout.list_row, null);
+    	
+    		  		            holder = new ViewHolder();
+    		  		            holder.icon = (ImageView) convertView.findViewById(R.id.icon);
+    		  		            holder.title = (TextView) convertView.findViewById(R.id.title);		  		           
+    		  		            
+    		  		            convertView.setTag(holder);
+    		  		        }
+    		  		        
+    		  		        else {
+    		  		            // view already defined, retrieve view holder
+    		  		            holder = (ViewHolder) convertView.getTag();
+    		  		        }       
+    	
+    		  		       // Drawable drawable = getResources().getDrawable(R.drawable.list_icon); //this is an image from the drawables folder
+    	
+    		  		        holder.title.setText(nameForAdapter[position]);
+    		  		        //holder.icon.setImageDrawable(drawable);     
+    		  		        
+    	
+    		  		        return convertView;
+    		  		    }
+    		  		};
+    		  		
+    		  		
+    		  		// THIS WAY ALLOWS YOU TO STYLE THE DIALOG (ex. background doesn't dim.):
+    		  		ContextThemeWrapper cw = new ContextThemeWrapper(MainActivity1.this, R.style.DialogWindowTitle_Holo);
+    		  		AlertDialog.Builder builder = new AlertDialog.Builder(cw);		  			  		
+    		  		
+    		  		
+    		  		builder.setTitle("Choose Your Guy");
+    		  		
+    		  		
+    	  			//builder.setCancelable(false);
+    	  			
+    	  			/*
+    				builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+    					@Override
+    					public void onCancel(DialogInterface dialog) {		  							
+    						
+    						//IF NOTHING DOESN'T WORK, TRY:
+    						
+    						//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+    			        	//MainActivity1.this.startActivity(i);
+    					}
+    				});
+    	  			*/
+    				
+    	            builder.setAdapter(adapter,
+    	                    new DialogInterface.OnClickListener() {
+    	                        @Override
+    	                        public void onClick(final DialogInterface dialog, int item) {
+    	                        	
+    	                        	for (int i = 0; i < count; i++) {
+    	                        	
+    		                        	if (item == i) {
+    		                        		
+    		                        		buttonSound.start();
+    		                        		
+    		                        		ArrayOfPlayers.player[5] = name[i];
+    		                        		
+    		                        		
+    		                        		final String[] items = {"One Player", "Multiplayer"};
+    		                        		
+    		                        		// Instead of String[] items, Here you can also use ArrayList for your custom object..
+    		                        		
+    		                		  		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.list_row, R.id.title,items) {
+    		                	
+    		                		  		    ViewHolder holder;
+    		                		  		    Drawable icon;//FOR LAST AVATAR THAT WAS USED??? (LOCATION CAN BE SAVE LIKE OTHER GAME DATA)
+    		                	
+    		                		  		    class ViewHolder {
+    		                		  		        ImageView icon;
+    		                		  		        TextView title;						
+    		                		  		    }
+    		                	
+    		                		  		    public View getView(int position, View convertView, ViewGroup parent) {
+    		                		  		        final LayoutInflater inflater = (LayoutInflater) getApplicationContext()
+    		                		  		                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);		  			  		        
+    		                	
+    		                		  		        if (convertView == null) {
+    		                		  		            convertView = inflater.inflate(R.layout.list_row, null);
+    		                	
+    		                		  		            holder = new ViewHolder();
+    		                		  		            holder.icon = (ImageView) convertView.findViewById(R.id.icon);
+    		                		  		            holder.title = (TextView) convertView.findViewById(R.id.title);		  		           
+    		                		  		            
+    		                		  		            convertView.setTag(holder);
+    		                		  		        }
+    		                		  		        
+    		                		  		        else {
+    		                		  		            // view already defined, retrieve view holder
+    		                		  		            holder = (ViewHolder) convertView.getTag();
+    		                		  		        }       
+    		                	
+    		                		  		       // Drawable drawable = getResources().getDrawable(R.drawable.list_icon); //this is an image from the drawables folder
+    		                	
+    		                		  		        holder.title.setText(items[position]);
+    		                		  		        //holder.icon.setImageDrawable(drawable);     
+    		                		  		        
+    		                	
+    		                		  		        return convertView;
+    		                		  		    }
+    		                		  		};
+    		                		  		
+    		                		  		
+    		                		  		// THIS WAY ALLOWS YOU TO STYLE THE DIALOG (ex. background doesn't dim.):
+    		                		  		ContextThemeWrapper cw = new ContextThemeWrapper(MainActivity1.this, R.style.DialogWindowTitle_Holo);
+    		                		  		AlertDialog.Builder builder = new AlertDialog.Builder(cw);		  			  		
+    		                		  		
+    		                	  			
+    		                		  		builder.setTitle("Choose Your Game");
+    		                		  		
+    		                	  			//builder.setCancelable(false);
+    		                	  			
+    		                	  			/*
+    		                				builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+    		                					@Override
+    		                					public void onCancel(DialogInterface dialog) {		  							
+    		                						
+    		                						//IF NOTHING DOESN'T WORK, TRY:
+    		                						
+    		                						//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+    		                			        	//MainActivity1.this.startActivity(i);
+    		                					}
+    		                				});
+    		                	  			*/
+    		                				
+    		                	            builder.setAdapter(adapter,
+    		                	                    new DialogInterface.OnClickListener() {
+    		                	                        @Override
+    		                	                        public void onClick(final DialogInterface dialog, int item) {
+    		                	                        	
+    	                		                        	if (item == 0) {
+    	                		                        		
+    	                		                        		buttonSound.start();
+    	                		                        		
+    	                		                        		final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead", "Custom"};
+    	                		            		    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2, R.drawable.computer};
+    	                		            		    		
+    	                		            		    		ListAdapter adapter = new ArrayAdapterWithIcon(MainActivity1.this, items, avatars);
+    	                		            		    		
+    	                		            		    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
+    	                		            		    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
+    	                		            		    		//builder.setIcon(R.drawable.computerhead);
+    	                		            		    		builder.setTitle("Choose Your Avatar");
+    	                		            		    		
+    	                		            		    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
+    	                		            		    			public void onClick(DialogInterface dialog, int item) { 
+    	                		            		    								
+    	                		            		    				if (item == 0) {
+    	                		            		    					ArrayOfAvatars.avatar[0] = "computer";
+    	                		            		    					
+    	                		            		    					stopService(svc);	    				
+    	                		            			    				
+    	                		            			    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+    	                		            			    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+    	                		            			    				startActivity(intent);
+    	                		            			    	        	
+    	                		            			    	        	dialog.dismiss();
+    	                		            		    				}
+    	                		            		    				else if (item == 1) {
+    	                		            		    					ArrayOfAvatars.avatar[0] = "crossedswords";
+    	                		            		    					
+    	                		            		    					stopService(svc);	    				
+    	                		            			    				
+    	                		            			    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+    	                		            			    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+    	                		            			    				startActivity(intent);
+    	                		            			    	        	
+    	                		            			    	        	dialog.dismiss();
+    	                		            		    				}
+    	                		            		    				else if (item == 2) {
+    	                		            		    					ArrayOfAvatars.avatar[0] = "stonedead";
+    	                		            		    					
+    	                		            		    					stopService(svc);	    				
+    	                		            			    				
+    	                		            			    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+    	                		            			    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+    	                		            			    				startActivity(intent);
+    	                		            			    	        	
+    	                		            			    	        	dialog.dismiss();
+    	                		            		    				}
+    	                		            		    				else if (item == 3) {
+    	                		            		    					ArrayOfAvatars.avatar[0] = "custom";
+    	                		            		    					
+    	                		            		    					stopService(svc);
+    	                		            		    					
+    	                		            		    					openGallery();
+    	                		            		    					
+    	                		            		    					dialog.dismiss();
+    	                		            		    				}    				
+    	                		            		    	        	
+    	                		            		    	        	//finish();
+    	                		            	        	  		}
+    	                		            		    		});	    		
+    	                		            		        	
+    	                		            		            builder.create().show();
+    	                		                        	}
+    	                		                        	
+    	                		                        	else if (item == 1) {
+    	                		                        		
+    	                		                        		buttonSound.start();
+    	                		                        		
+    	                		                        		multiplayer = "yes";
+    	                		                        		
+    	                		                        		
+    	                		                        		final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead", "Custom"};
+    	                		            		    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2, R.drawable.computer};
+    	                		            		    		
+    	                		            		    		ListAdapter adapter = new ArrayAdapterWithIcon(MainActivity1.this, items, avatars);
+    	                		            		    		
+    	                		            		    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
+    	                		            		    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
+    	                		            		    		//builder.setIcon(R.drawable.computerhead);
+    	                		            		    		builder.setTitle("Choose Your Avatar");
+    	                		            		    		
+    	                		            		    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
+    	                		            		    			public void onClick(DialogInterface dialog, int item) { 
+    	                		            		    								
+    	                		            		    				if (item == 0) {
+    	                		            		    					ArrayOfAvatars.avatar[5] = "computer";
+    	                		            		    					
+    	                		            		    					goToHostOrJoin();
+    	                		            			    	        	
+    	                		            			    	        	dialog.dismiss();
+    	                		            		    				}
+    	                		            		    				else if (item == 1) {
+    	                		            		    					ArrayOfAvatars.avatar[5] = "crossedswords";
+    	                		            		    					
+    	                		            		    					goToHostOrJoin();
+    	                		            			    	        	
+    	                		            			    	        	dialog.dismiss();
+    	                		            		    				}
+    	                		            		    				else if (item == 2) {
+    	                		            		    					ArrayOfAvatars.avatar[5] = "stonedead";
+    	                		            		    					
+    	                		            		    					goToHostOrJoin();
+    	                		            			    	        	
+    	                		            			    	        	dialog.dismiss();
+    	                		            		    				}
+    	                		            		    				else if (item == 3) {
+    	                		            		    					ArrayOfAvatars.avatar[5] = "custom";	    					
+    	                		            		    					
+    	                		            		    					openGallery();
+    	                		            		    					
+    	                		            		    					dialog.dismiss();
+    	                		            		    				}    				
+    	                		            		    	        	
+    	                		            		    	        	//finish();
+    	                		            	        	  		}
+    	                		            		    		});	    		
+    	                		            		        	
+    	                		            		            builder.create().show();
+    	                		                        	}
+    		                	                        }
+    		                	                    });	            
+    		                	            
+    		                	            AlertDialog alert = builder.create();
+    		                	            alert.show();	            
+    		                	            
+    		                	            
+    		                	            WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+
+    		                	            lp.copyFrom(alert.getWindow().getAttributes());
+    		                	            lp.width = 1050;	            
+    		                	            alert.getWindow().setAttributes(lp);
+    		                	            
+    		                	            
+    		                	            //h.removeCallbacks(this);
+    		                	        	
+    		                	        	//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+    		                	        	//MainActivity1.this.startActivity(i);
+    		                        	}
+    	                        	}
+    	                        }
+    	                    });	            
+    	            
+    	            AlertDialog alert = builder.create();
+    	            alert.show();	            
+    	            
+    	            
+    	            WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+
+    	            lp.copyFrom(alert.getWindow().getAttributes());
+    	            lp.width = 1050;	            
+    	            alert.getWindow().setAttributes(lp);
+    	            
+    	            
+    	            //h.removeCallbacks(this);
+    	        	
+    	        	//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+    	        	//MainActivity1.this.startActivity(i);
     			}
     		});
     		
