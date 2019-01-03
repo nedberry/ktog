@@ -76,9 +76,7 @@ public class playerNamesAndRecords extends Activity {
 	}
 	
 	
-	
-	
-	
+		
 	public void getCount() {
 		
 		File directory = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files");

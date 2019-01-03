@@ -368,11 +368,16 @@ public class Host extends Activity {
 		// This will hide the system bar until user swipes up from bottom or down from top.		
 		//getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_IMMERSIVE | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
 		
+		
+		
 		setContentView(R.layout.activity_main_activity2);		
 		// For the little space between the action & attack button.
 		getWindow().getDecorView().setBackgroundColor(Color.BLACK);		
 		
-		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);		    			
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+		
+		//NEW
+		getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 		
 		
 		// Crashes if this is put up top.
@@ -701,9 +706,9 @@ public class Host extends Activity {
 			  	  	  		}
 			  	  	  	}, 1000);
 		  	  	  	}
-	  	  	  	}, 1000);//FINAGLING TO GET RIGHT (MAINLY 1ST TIME) - should be at least 4800?	  	WHY???????  		  			
-  	  		}
-  	  	}, 2000);
+	  	  	  	}, 3550);//FINAGLING TO GET RIGHT (MAINLY 1ST TIME) - should be at least 4800?	  	WHY???????  		  			
+  	  		}			//WAS: 1000
+  	  	}, 1000);//WAS: 2000
   	  	
   	  	
   	  	//determineInitiative();
@@ -1079,9 +1084,9 @@ public class Host extends Activity {
 			    			  	  		h.removeCallbacks(this);
 			    			  	  		h2.removeCallbacks(this);
 		    			  	  	  	}
-		    		  	  	  	}, 11250);
+		    		  	  	  	}, 10500);//WAS: 11250
 	  			  	  	  	}
-	  		  	  	  	}, 600);
+	  		  	  	  	}, 300);//WAS: 600
 	          		}         		           				
 	          	}            	
 			}            
@@ -1324,7 +1329,8 @@ public class Host extends Activity {
 
 		    	alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 		    	  public void onClick(DialogInterface dialog, int whichButton) {
-		    	    // Canceled.
+		    	    
+		    		  hideSystemUI();
 		    	  }
 		    	});
 		    	
@@ -2352,6 +2358,21 @@ public class Host extends Activity {
 	
 	
 	
+	public void hideSystemUI() {
+        // Set the IMMERSIVE flag.
+        // Set the content to appear under the system bars so that the content
+        // doesn't resize when the system bars hide and show.
+        getWindow().getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+    }
+	
+	
+	
 	
 	
 	public void handleUncaughtException (Thread thread, Throwable e) {
@@ -2750,6 +2771,8 @@ public class Host extends Activity {
 
 				dialog.dismiss();
 				
+				//hideSystemUI();
+				
 				
 				//------------------------------------------------------------NEWER
 				
@@ -2858,6 +2881,8 @@ public class Host extends Activity {
 			public void onClick(DialogInterface dialog, int whichButton) {
 
 				dialog.dismiss();
+				
+				hideSystemUI();
 
 				// hideNavigation();
 			}
@@ -2870,6 +2895,9 @@ public class Host extends Activity {
 	
 	@Override
 	public void onResume() {
+		
+		hideSystemUI();
+		
 	    super.onResume();
 	    
 	    
@@ -14557,10 +14585,10 @@ public class Host extends Activity {
 		  	  			
 			  	  		
 		  	  		}
-		  	  	}, 10325); // FINAGELED!	  	  			
-  	  	  	}
-  	  	}, 675); // SHOULD BE AT LEAST 675? WAS 525 		  	    	  	  			  	  			
-	
+		  	  	}, 9500); // FINAGELED!	  	  			
+  	  	  	}				//WAS: 10325
+  	  	}, 338); // SHOULD BE AT LEAST 675? WAS 525 		  	    	  	  			  	  			
+  					//WAS: 675
 	  	//Toast.makeText(MainActivity2.this,"isinitiativestarted = " +  isinitiativestarted + " aretheredoubles = " + aretheredoubles, Toast.LENGTH_SHORT).show();  	 	
 	  	  		
 	}
@@ -16204,6 +16232,8 @@ public class Host extends Activity {
 		  		                        		
 												
 												dialog.dismiss();
+												
+												hideSystemUI();
 		  									}
 		  		                        	
 		  		                        	else if (item == 0 && playerDeadYet[0].equals("yes")) {
@@ -16286,7 +16316,9 @@ public class Host extends Activity {
 			  		                  			unfoldRightScroll();
 												
 												
-												dialog.dismiss();																						
+												dialog.dismiss();
+												
+												hideSystemUI();																						
 		  									}
 		  		                        	
 		  		                        	else if (item == 1 && playerDeadYet[1].equals("yes")) {
@@ -21479,7 +21511,7 @@ public class Host extends Activity {
 							
 							h.removeCallbacks(this);
 			  	  	  	}
-		  	  	  	}, 600);					
+		  	  	  	}, 300);//WAS: 600					
 				}
 				
 				else {				
@@ -21551,7 +21583,7 @@ public class Host extends Activity {
 							
 							h.removeCallbacks(this);
 			  	  	  	}
-		  	  	  	}, 600);
+		  	  	  	}, 300);//WAS: 600
 				}
 							
 			}
@@ -21666,6 +21698,8 @@ public class Host extends Activity {
 	                        		attack();
 									
 									dialog.dismiss();
+									
+									hideSystemUI();
 	                        		
 	                        		/*
 									centerscrolltext.setVisibility(View.VISIBLE);													
@@ -21687,6 +21721,8 @@ public class Host extends Activity {
 											attack();
 											
 											dialog.dismiss();
+											
+											hideSystemUI();
 							  	  	  	}
 						  	  	  	}, 1000);
 						  	  	  	*/										
@@ -21697,6 +21733,8 @@ public class Host extends Activity {
 	                        		disarm();
 									
 									dialog.dismiss();
+									
+									hideSystemUI();
 	                        		
 	                        		/*
 									centerscrolltext.setVisibility(View.VISIBLE);													
@@ -21718,6 +21756,8 @@ public class Host extends Activity {
 											disarm();
 											
 											dialog.dismiss();
+											
+											hideSystemUI();
 							  	  	  	}
 						  	  	  	}, 1000);
 						  	  	  	*/										
@@ -21728,6 +21768,8 @@ public class Host extends Activity {
 	                        		haste();
 	                        		
 	                        		dialog.dismiss();
+	                        		
+	                        		hideSystemUI();
 	                        		
 	                        		/*
 									centerscrolltext.setVisibility(View.VISIBLE);													
@@ -21750,6 +21792,8 @@ public class Host extends Activity {
 											haste();
 											
 											dialog.dismiss();
+											
+											hideSystemUI();
 							  	  	  	}
 						  	  	  	}, 1000);
 						  	  	  	*/									
@@ -21760,6 +21804,8 @@ public class Host extends Activity {
 	                        		cure();
 									
 									dialog.dismiss();
+									
+									hideSystemUI();
 	                        		
 	                        		/*
 									centerscrolltext.setVisibility(View.VISIBLE);													
@@ -21782,6 +21828,8 @@ public class Host extends Activity {
 											cure();
 											
 											dialog.dismiss();
+											
+											hideSystemUI();
 							  	  	  	}
 						  	  	  	}, 1000);
 						  	  	  	*/										
@@ -21792,6 +21840,8 @@ public class Host extends Activity {
 	                        		bless();
 									
 									dialog.dismiss();
+									
+									hideSystemUI();
 	                        		
 									/*
 									centerscrolltext.setVisibility(View.VISIBLE);													
@@ -21814,6 +21864,8 @@ public class Host extends Activity {
 											bless();
 											
 											dialog.dismiss();
+											
+											hideSystemUI();
 							  	  	  	}
 						  	  	  	}, 1000);
 						  	  	  	*/									
@@ -21828,6 +21880,8 @@ public class Host extends Activity {
 								isInvokingService = "true";
 	                        	
 	                            dialog.dismiss();
+	                            
+	                            hideSystemUI();
 	                        }
 	                    });	            
 	            
@@ -21968,6 +22022,8 @@ public class Host extends Activity {
 	  		                        		attack();
 											
 											dialog.dismiss();
+											
+											hideSystemUI();
 	  		                        		
 	  		                        		/*
 	  		                        		centerscrolltext.setVisibility(View.VISIBLE);													
@@ -21991,6 +22047,8 @@ public class Host extends Activity {
 													attack();
 													
 													dialog.dismiss();
+													
+													hideSystemUI();
 									  	  	  	}
 								  	  	  	}, 1000);
 								  	  	  	*/										
@@ -22004,6 +22062,8 @@ public class Host extends Activity {
 											if (hasteSpell[5] < 1) {
 												
 												dialog.dismiss();
+												
+												hideSystemUI();
 												
 												
 												AlertDialog.Builder alert = new AlertDialog.Builder(Host.this);
@@ -22021,6 +22081,8 @@ public class Host extends Activity {
 											    		disarmedAction();
 											    		
 											    		dialog.dismiss();
+											    		
+											    		hideSystemUI();
 											    	}
 										    	});								    	
 										    	alert.show();							
@@ -22034,6 +22096,8 @@ public class Host extends Activity {
 												disarmedAction();
 												
 												dialog.dismiss();
+												
+												hideSystemUI();
 												*/
 											}					
 											
@@ -22044,6 +22108,8 @@ public class Host extends Activity {
 												//disarmedAction();
 							  	  	  			
 							  	  	  			dialog.dismiss();
+							  	  	  			
+							  	  	  			hideSystemUI();
 												
 												/*
 												centerscrolltext.setVisibility(View.VISIBLE);													
@@ -22064,6 +22130,8 @@ public class Host extends Activity {
 									  	  	  			haste();
 									  	  	  			
 									  	  	  			dialog.dismiss();
+									  	  	  			
+									  	  	  			hideSystemUI();
 										  	  	  	}
 									  	  	  	}, 1000);
 									  	  	  	*/											
@@ -22076,6 +22144,8 @@ public class Host extends Activity {
 												//haste();
 												
 												dialog.dismiss();
+												
+												hideSystemUI();
 											}
 											*/									
 	  									}
@@ -22090,6 +22160,8 @@ public class Host extends Activity {
 												cure();
 							  	  	  			
 							  	  	  			dialog.dismiss();
+							  	  	  			
+							  	  	  			hideSystemUI();
 												
 												/*
 												centerscrolltext.setVisibility(View.VISIBLE);													
@@ -22110,6 +22182,8 @@ public class Host extends Activity {
 									  	  	  			cure();
 									  	  	  			
 									  	  	  			dialog.dismiss();
+									  	  	  			
+									  	  	  			hideSystemUI();
 										  	  	  	}
 									  	  	  	}, 1000);
 									  	  	  	*/													
@@ -22118,6 +22192,8 @@ public class Host extends Activity {
 											else if (cureSpell[5] < 1) {
 												
 												dialog.dismiss();
+												
+												hideSystemUI();
 												
 												
 												AlertDialog.Builder alert = new AlertDialog.Builder(Host.this);
@@ -22135,6 +22211,8 @@ public class Host extends Activity {
 											    		disarmedAction();
 											    		
 											    		dialog.dismiss();
+											    		
+											    		hideSystemUI();
 											    	}
 										    	});								    	
 										    	alert.show();
@@ -22147,6 +22225,8 @@ public class Host extends Activity {
 	  									isInvokingService = "true";
 	  		                        	
 	  		                            //dialog.dismiss();
+	  									
+	  									//hideSystemUI();
 	  		                        }
 	  		                    });	            
 	  		            
@@ -22773,6 +22853,8 @@ public class Host extends Activity {
 		  		    		
 		  		    		dialog.dismiss();
 		  		    		
+		  		    		hideSystemUI();
+		  		    		
 		  		    		
 		  		    		// NEED THIS HANDLER OTHERWISE BLESS GRAPHIC GETS OFF-CENTER MID-WAY THRU.
 		  		    		final Handler h = new Handler();
@@ -22797,6 +22879,8 @@ public class Host extends Activity {
 		  	    			disarmNoBless();
 		  	    			
 		  	    			dialog.dismiss();
+		  	    			
+		  	    			hideSystemUI();
 		          	  }
 		          	});			  	    	
 		  	    	alert.show();						
@@ -22981,6 +23065,8 @@ public class Host extends Activity {
 				    		runActionsOnUi();
 				    		
 				    		dialog.dismiss();
+				    		
+				    		hideSystemUI();
 				    	}
 			    	});								    	
 			    	alert.show();
@@ -23114,6 +23200,8 @@ public class Host extends Activity {
 				    		runActionsOnUi();
 				    		
 				    		dialog.dismiss();
+				    		
+				    		hideSystemUI();
 				    	}
 			    	});								    	
 			    	alert.show();						  		
@@ -23242,6 +23330,8 @@ public class Host extends Activity {
 				    		runActionsOnUi();
 				    		
 				    		dialog.dismiss();
+				    		
+				    		hideSystemUI();
 				    	}
 			    	});								    	
 			    	alert.show();						  		
@@ -25035,6 +25125,8 @@ public class Host extends Activity {
 							  		    		criticalHitMightyBlowPartOne();							  					
 							  		    		
 							  		    		dialog.dismiss();
+							  		    		
+							  		    		hideSystemUI();
 							  		    	}
 							  	    	});
 							  	    	
@@ -25046,6 +25138,8 @@ public class Host extends Activity {
 							          		criticalHitPartOne();											
 							          		
 							          		dialog.dismiss();
+							          		
+							          		hideSystemUI();
 							          	  }
 							          	});
 							  	    	
@@ -25125,6 +25219,8 @@ public class Host extends Activity {
 				  		    		criticalHitMightyBlowPartOne();				  					
 				  		    		
 				  		    		dialog.dismiss();
+				  		    		
+				  		    		hideSystemUI();
 				  		    	}
 				  	    	});
 				  	    	
@@ -25136,6 +25232,8 @@ public class Host extends Activity {
 				          		criticalHitPartOne();								
 				          		
 				          		dialog.dismiss();
+				          		
+				          		hideSystemUI();
 				          	  }
 				          	});
 				  	    	
@@ -25249,6 +25347,8 @@ public class Host extends Activity {
 					  		    		mightyBlow();										
 					  		    		
 					  		    		dialog.dismiss();
+					  		    		
+					  		    		hideSystemUI();
 					  		    	}
 					  	    	});
 					  	    	
@@ -25260,6 +25360,8 @@ public class Host extends Activity {
 					  	    			damagePartTwo();					          		  
 					          		  
 					  	    			dialog.dismiss();
+					  	    			
+					  	    			hideSystemUI();
 					          	  }
 					          	});	  	    	
 					  	    	
@@ -25337,6 +25439,8 @@ public class Host extends Activity {
 				  		    		mightyBlow();									
 				  		    		
 				  		    		dialog.dismiss();
+				  		    		
+				  		    		hideSystemUI();
 				  		    	}
 				  	    	});
 				  	    	
@@ -25348,6 +25452,8 @@ public class Host extends Activity {
 				          		  damagePartTwo();				          		  
 				          		  
 				          		  dialog.dismiss();
+				          		  
+				          		  hideSystemUI();
 				          	  }
 				          	});	  	    	
 				  	    	
@@ -25711,6 +25817,8 @@ public class Host extends Activity {
 								    		gameOverCheck();
 								    		
 								    		dialog.dismiss();
+								    		
+								    		hideSystemUI();
 										}
 									});									
 									
@@ -25729,6 +25837,8 @@ public class Host extends Activity {
 								    		gameOverCheck();
 								    		
 								    		dialog.dismiss();
+								    		
+								    		hideSystemUI();
 								    	}
 							    	});						    	
 							    	alert.show();																							
@@ -26503,6 +26613,8 @@ public class Host extends Activity {
 						    		gameOverCheck();
 						    		
 						    		dialog.dismiss();
+						    		
+						    		hideSystemUI();
 								}
 							});
 							
@@ -26517,6 +26629,8 @@ public class Host extends Activity {
 						    		gameOverCheck();
 						    		
 						    		dialog.dismiss();
+						    		
+						    		hideSystemUI();
 						    	}
 					    	});								    	
 					    	alert.show();
@@ -26787,6 +26901,8 @@ public class Host extends Activity {
 						    		gameOverCheck();
 						    		
 						    		dialog.dismiss();
+						    		
+						    		hideSystemUI();
 								}
 							});
 							
@@ -26800,6 +26916,8 @@ public class Host extends Activity {
 						    		gameOverCheck();
 						    		
 						    		dialog.dismiss();
+						    		
+						    		hideSystemUI();
 						    	}
 					    	});								    	
 					    	alert.show();
@@ -27074,6 +27192,8 @@ public class Host extends Activity {
 						    		gameOverCheck();
 						    		
 						    		dialog.dismiss();
+						    		
+						    		hideSystemUI();
 								}
 							});
 							
@@ -27087,6 +27207,8 @@ public class Host extends Activity {
 						    		gameOverCheck();
 						    		
 						    		dialog.dismiss();
+						    		
+						    		hideSystemUI();
 						    	}
 					    	});								    	
 					    	alert.show();
@@ -27417,6 +27539,8 @@ public class Host extends Activity {
 						    		gameOverCheck();
 						    		
 						    		dialog.dismiss();
+						    		
+						    		hideSystemUI();
 								}
 							});							
 							
@@ -27430,6 +27554,8 @@ public class Host extends Activity {
 						    		gameOverCheck();
 						    		
 						    		dialog.dismiss();
+						    		
+						    		hideSystemUI();
 						    	}
 					    	});								    	
 					    	alert.show();
@@ -27922,6 +28048,8 @@ public class Host extends Activity {
 	  			  		    		
 	  			  		    		dialog.dismiss();
 	  			  		    		
+	  			  		    		hideSystemUI();
+	  			  		    		
 	  			  		    		dodgeBlowSpell[5] = dodgeBlowSpell[5] - 1;
   			  		    		
   			  		    			String str = "usedDodge5";  								
@@ -28078,6 +28206,8 @@ public class Host extends Activity {
 	  			          		  	rollDodgeFor = "null";	  			          		  
 	  			          		  
 	  			          		  	dialog.dismiss();
+	  			          		  	
+	  			          		  	hideSystemUI();
 	  			          	  	}
 	  			          	});
 	  			  	    	
@@ -28141,6 +28271,8 @@ public class Host extends Activity {
 									rollDodgeFor = "null";	  			          		  
 	  			          		  
 									dialog.dismiss();
+									
+									hideSystemUI();
 								}
 							});
 	  			  	    	
@@ -29775,6 +29907,8 @@ else if (read.contains("cstmImage")) {//MAY WANT MORE COMPLICATED TERM SO IT DOE
 											    		gameOverCheck();
 											    		
 											    		dialog.dismiss();
+											    		
+											    		hideSystemUI();
 													}
 												});
 												
@@ -29789,6 +29923,8 @@ else if (read.contains("cstmImage")) {//MAY WANT MORE COMPLICATED TERM SO IT DOE
 											    		gameOverCheck();
 											    		
 											    		dialog.dismiss();
+											    		
+											    		hideSystemUI();
 											    	}
 										    	});								    	
 										    	alert.show();

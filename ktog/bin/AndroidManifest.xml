@@ -17,7 +17,7 @@
     
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <!-- NEED EXTERNAL STORAGE PERM.?????? (for avatars) -->  
+    <!-- NEED EXTERNAL STORAGE PERM.?????? (for avatars, video) -->  
 
     <application
         android:allowBackup="true"

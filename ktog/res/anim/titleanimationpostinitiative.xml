@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <animation-list xmlns:android="http://schemas.android.com/apk/res/android"
     android:oneshot="true" >    
-        
+    
+    <!--
+    
     <item android:drawable="@drawable/title1blank" android:duration="75" />    
     <item android:drawable="@drawable/title2blank" android:duration="75" />
     <item android:drawable="@drawable/title3blank" android:duration="75" />
@@ -42,6 +44,50 @@
     <item android:drawable="@drawable/title4blank" android:duration="75" />
     <item android:drawable="@drawable/title3blank" android:duration="75" />
     <item android:drawable="@drawable/title2blank" android:duration="75" />
+    <item android:drawable="@drawable/title1blank" android:duration="75" />
+	
+	-->
+    
+    <item android:drawable="@drawable/title1blank" android:duration="75" />    
+    
+    <item android:drawable="@drawable/title3blank" android:duration="75" />
+    
+    <item android:drawable="@drawable/title5blank" android:duration="75" />
+    
+    <item android:drawable="@drawable/title7blank" android:duration="75" />
+    
+    <item android:drawable="@drawable/scrollclosed" android:duration="75" />
+    <item android:drawable="@drawable/scrollclosed" android:duration="75" />
+    <item android:drawable="@drawable/scrollclosed" android:duration="75" />
+    
+    
+    <item android:drawable="@drawable/title7blank" android:duration="75" />
+    
+    <item android:drawable="@drawable/title5blank" android:duration="75" />
+    
+    <item android:drawable="@drawable/title3blank" android:duration="75" />
+    
+    
+    <item android:drawable="@drawable/title1blank" android:duration="10000" />    
+    
+    
+    <item android:drawable="@drawable/title3blank" android:duration="75" />
+    
+    <item android:drawable="@drawable/title5blank" android:duration="75" />
+    
+    <item android:drawable="@drawable/title7blank" android:duration="75" />
+    
+    <item android:drawable="@drawable/scrollclosed" android:duration="75" />
+    <item android:drawable="@drawable/scrollclosed" android:duration="75" />
+    <item android:drawable="@drawable/scrollclosed" android:duration="75" />
+    
+    
+    <item android:drawable="@drawable/title7blank" android:duration="75" />
+    
+    <item android:drawable="@drawable/title5blank" android:duration="75" />
+    
+    <item android:drawable="@drawable/title3blank" android:duration="75" />
+    
     <item android:drawable="@drawable/title1blank" android:duration="75" />
 
 </animation-list>

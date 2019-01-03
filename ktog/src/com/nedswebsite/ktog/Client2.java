@@ -294,6 +294,8 @@ public class Client2 extends Activity {
 		// This will hide the system bar until user swipes up from bottom or down from top.		
 		//getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_IMMERSIVE | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
 		
+				
+		
 		setContentView(R.layout.activity_main_activity2);		
 		// For the little space between the action & attack button.
 		getWindow().getDecorView().setBackgroundColor(Color.BLACK);		
@@ -301,6 +303,9 @@ public class Client2 extends Activity {
 		
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		
+		
+		//NEW
+		getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 		
 		
     			
@@ -1015,9 +1020,9 @@ public class Client2 extends Activity {
 			  	  	  		//}
 			  	  	  	//}, 2000);
 		  	  	  	}
-	  	  	  	}, 1000);//FINAGLING TO GET RIGHT (MAINLY 1ST TIME) - should be at least 4700?	  	  		  			
-  	  		}
-  	  	}, 2000);
+	  	  	  	}, 3550);//FINAGLING TO GET RIGHT (MAINLY 1ST TIME) - should be at least 4700?	  	  		  			
+  	  		}			//WAS: 1000
+  	  	}, 1000);//WAS: 2000
   	  	
   	  	
   	  	//determineInitiative();
@@ -1371,9 +1376,9 @@ public class Client2 extends Activity {
 			    			  	  		
 			    			  	  		istitlestatsopen = "no";
 		    			  	  	  	}
-		    		  	  	  	}, 11250);
+		    		  	  	  	}, 10500);//WAS: 11250
 	  			  	  	  	}
-	  		  	  	  	}, 600);
+	  		  	  	  	}, 300);//WAS: 600
 	          		}         		           				
 	          	}            	
 			}            
@@ -1473,7 +1478,8 @@ public class Client2 extends Activity {
 
 		    	alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 		    	  public void onClick(DialogInterface dialog, int whichButton) {
-		    	    // Canceled.
+		    	    
+		    		  hideSystemUI();
 		    	  }
 		    	});
 		    	
@@ -2496,6 +2502,21 @@ public class Client2 extends Activity {
 	
 	
 	
+	public void hideSystemUI() {
+        // Set the IMMERSIVE flag.
+        // Set the content to appear under the system bars so that the content
+        // doesn't resize when the system bars hide and show.
+        getWindow().getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+    }
+	
+	
+	
 	
 	
 	
@@ -2856,7 +2877,9 @@ public class Client2 extends Activity {
 				
 				stopService(svc);
 				
-				dialog.dismiss();				
+				dialog.dismiss();
+				
+				//hideSystemUI();				
 
 				Intent intent = new Intent(Client2.this, MainActivity1.class);
 				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -2871,6 +2894,8 @@ public class Client2 extends Activity {
 			public void onClick(DialogInterface dialog, int whichButton) {
 
 				dialog.dismiss();
+				
+				hideSystemUI();
 
 				// hideNavigation();
 			}
@@ -2880,6 +2905,13 @@ public class Client2 extends Activity {
 		// Toast.makeText(MainActivity2.this,"onBackPressed WORKING!!!!",
 		// Toast.LENGTH_SHORT).show();
 	}
+	
+	public void onResume() {
+		
+		hideSystemUI();
+		
+		super.onResume();		
+	}	
 	
 	
 	/*
@@ -6355,10 +6387,10 @@ public class Client2 extends Activity {
 				  	  			//myThread.start();
 					  	  		
 				  	  		}
-				  	  	}, 10325); // FINAGELED!	  	  			
-		  	  	  	}
-		  	  	}, 675); // SHOULD BE AT LEAST 675? WAS 525 		  	    	  	  			  	  			
-	
+				  	  	}, 9500); // FINAGELED!	  	  			
+		  	  	  	}				//WAS: 10325
+		  	  	}, 338); // SHOULD BE AT LEAST 675? WAS 525 		  	    	  	  			  	  			
+		  					//WAS: 675
 	  			//Toast.makeText(MainActivity2.this,"isinitiativestarted = " +  isinitiativestarted + " aretheredoubles = " + aretheredoubles, Toast.LENGTH_SHORT).show();  	 	
 	  	
 			}
@@ -7136,6 +7168,8 @@ public class Client2 extends Activity {
 			  		                        		}			  		                        		
 													
 													dialog.dismiss();
+													
+													hideSystemUI();
 			  									}
 			  		                        	
 			  		                        	else if (item == 0 && playerDeadYet[5].equals("yes")) {
@@ -7238,6 +7272,8 @@ public class Client2 extends Activity {
 			  		                        		}
 													
 													dialog.dismiss();
+													
+													hideSystemUI();
 			  									}
 			  		                        	
 			  		                        	else if (item == 1 && playerDeadYet[1].equals("yes")) {
@@ -7462,6 +7498,8 @@ public class Client2 extends Activity {
 			  		                        		}
 			  		                        		
 													dialog.dismiss();
+													
+													hideSystemUI();
 			  									}
 			  		                        	
 			  		                        	else if (item == 0 && playerDeadYet[5].equals("yes")) {
@@ -7563,7 +7601,9 @@ public class Client2 extends Activity {
 							  		      				img2.setImageDrawable(null);
 			  		                        		}
 													
-													dialog.dismiss();																						
+													dialog.dismiss();
+													
+													hideSystemUI();																						
 			  									}
 			  		                        	
 			  		                        	else if (item == 1 && playerDeadYet[0].equals("yes")) {
@@ -8389,6 +8429,8 @@ public class Client2 extends Activity {
 						sendToHost(str);
 			    		
 			    		dialog.dismiss();
+			    		
+			    		hideSystemUI();
 			    	}
 		    	});
 		    	
@@ -8415,6 +8457,8 @@ public class Client2 extends Activity {
 						sendToHost(str);
 		    			
 			    		dialog.dismiss();
+			    		
+			    		hideSystemUI();
 		    		}
 		    	});		  	    	
 		    	alert.show();
@@ -8688,7 +8732,7 @@ public class Client2 extends Activity {
 								}								
 							}
 			  	  	  	}
-		  	  	  	}, 600);					
+		  	  	  	}, 300);//WAS: 600
 				}
 				
 				else {				
@@ -8784,7 +8828,7 @@ public class Client2 extends Activity {
 								}								
 							}
 			  	  	  	}
-		  	  	  	}, 600);
+		  	  	  	}, 300);//WAS: 600
 				}
 							
 			}
@@ -9570,6 +9614,8 @@ public class Client2 extends Activity {
 	                        		attack();
 									
 									dialog.dismiss();
+									
+									hideSystemUI();
 	                        		
 	                        		/*
 									centerscrolltext.setVisibility(View.VISIBLE);													
@@ -9592,6 +9638,8 @@ public class Client2 extends Activity {
 						  	  	  			attack();
 											
 											dialog.dismiss();
+											
+											hideSystemUI();
 							  	  	  	}
 						  	  	  	}, 1000);
 						  	  	  	*/										
@@ -9602,6 +9650,8 @@ public class Client2 extends Activity {
 	                        		disarm();
 									
 									dialog.dismiss();
+									
+									hideSystemUI();
 	                        		
 	                        		/*
 									centerscrolltext.setVisibility(View.VISIBLE);													
@@ -9624,6 +9674,8 @@ public class Client2 extends Activity {
 						  	  	  			disarm();
 											
 											dialog.dismiss();
+											
+											hideSystemUI();
 							  	  	  	}
 						  	  	  	}, 1000);
 						  	  	  	*/									
@@ -9634,6 +9686,8 @@ public class Client2 extends Activity {
 	                        		haste();
 	                        		
 	                        		dialog.dismiss();
+	                        		
+	                        		hideSystemUI();
 	                        		
 	                        		/*
 									centerscrolltext.setVisibility(View.VISIBLE);													
@@ -9655,6 +9709,8 @@ public class Client2 extends Activity {
 											haste();
 											
 											dialog.dismiss();
+											
+											hideSystemUI();
 							  	  	  	}
 						  	  	  	}, 1000);
 						  	  	  	*/								
@@ -9665,6 +9721,8 @@ public class Client2 extends Activity {
 	                        		cure();
 									
 									dialog.dismiss();
+									
+									hideSystemUI();
 	                        		
 	                        		/*
 									centerscrolltext.setVisibility(View.VISIBLE);													
@@ -9686,6 +9744,8 @@ public class Client2 extends Activity {
 											cure();
 											
 											dialog.dismiss();
+											
+											hideSystemUI();
 							  	  	  	}
 						  	  	  	}, 1000);
 						  	  	  	*/										
@@ -9696,6 +9756,8 @@ public class Client2 extends Activity {
 	                        		bless();
 									
 									dialog.dismiss();
+									
+									hideSystemUI();
 	                        		
 									/*
 									centerscrolltext.setVisibility(View.VISIBLE);													
@@ -9718,6 +9780,8 @@ public class Client2 extends Activity {
 						  	  	  			bless();
 											
 											dialog.dismiss();
+											
+											hideSystemUI();
 							  	  	  	}
 						  	  	  	}, 1000);
 						  	  	  	*/								
@@ -9732,6 +9796,8 @@ public class Client2 extends Activity {
 								//isInvokingService = "true";
 	                        	
 	                            dialog.dismiss();
+	                            
+	                            hideSystemUI();
 	                        }
 	                    });	            
 	            
@@ -9890,6 +9956,8 @@ public class Client2 extends Activity {
 	  		                        		attack();
 						  	  	  			
 						  	  	  			dialog.dismiss();
+						  	  	  			
+						  	  	  			hideSystemUI();
 	  		                        		
 	  		                        		/*
 	  		                        		centerscrolltext.setVisibility(View.VISIBLE);													
@@ -9914,6 +9982,8 @@ public class Client2 extends Activity {
 								  	  	  			attack();
 								  	  	  			
 								  	  	  			dialog.dismiss();
+								  	  	  			
+								  	  	  			hideSystemUI();
 									  	  	  	}
 								  	  	  	}, 1000);
 								  	  	  	*/									
@@ -9924,6 +9994,8 @@ public class Client2 extends Activity {
 											if (hasteSpell[playerNumberAttacking] < 1) {
 												
 												dialog.dismiss();
+												
+												hideSystemUI();
 												
 												
 												AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this);
@@ -9941,6 +10013,8 @@ public class Client2 extends Activity {
 											    		disarmedAction();
 											    		
 											    		dialog.dismiss();
+											    		
+											    		hideSystemUI();
 											    	}
 										    	});								    	
 										    	alert.show();									
@@ -9962,6 +10036,8 @@ public class Client2 extends Activity {
 												//disarmedAction();
 							  	  	  			
 							  	  	  			dialog.dismiss();
+							  	  	  			
+							  	  	  			hideSystemUI();
 												
 												/*
 												centerscrolltext.setVisibility(View.VISIBLE);													
@@ -9982,7 +10058,9 @@ public class Client2 extends Activity {
 									  	  	  			
 									  	  	  			haste();
 									  	  	  			
-									  	  	  		dialog.dismiss();
+									  	  	  			dialog.dismiss();
+									  	  	  		
+									  	  	  			hideSystemUI();
 										  	  	  	}
 									  	  	  	}, 1000);
 									  	  	  	*/												
@@ -9995,6 +10073,8 @@ public class Client2 extends Activity {
 												//haste();
 												
 												dialog.dismiss();
+												
+												hideSystemUI();
 											}										
 	  									}
 	  		                        	
@@ -10005,6 +10085,8 @@ public class Client2 extends Activity {
 												cure();
 							  	  	  			
 							  	  	  			dialog.dismiss();
+							  	  	  			
+							  	  	  			hideSystemUI();
 												
 												/*
 												centerscrolltext.setVisibility(View.VISIBLE);													
@@ -10026,6 +10108,8 @@ public class Client2 extends Activity {
 									  	  	  			cure();
 									  	  	  			
 									  	  	  			dialog.dismiss();
+									  	  	  			
+									  	  	  			hideSystemUI();
 										  	  	  	}
 									  	  	  	}, 1000);
 									  	  	  	*/													
@@ -10034,6 +10118,8 @@ public class Client2 extends Activity {
 											else if (cureSpell[playerNumberAttacking] < 1) {
 												
 												dialog.dismiss();
+												
+												hideSystemUI();
 												
 												
 												AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this);
@@ -10051,6 +10137,8 @@ public class Client2 extends Activity {
 											    		disarmedAction();
 											    		
 											    		dialog.dismiss();
+											    		
+											    		hideSystemUI();
 											    	}
 										    	});								    	
 										    	alert.show();
@@ -10062,6 +10150,8 @@ public class Client2 extends Activity {
 	  									//isInvokingService = "true";
 	  		                        	
 	  		                            //dialog.dismiss();
+	  		                        	
+	  		                        	//hideSystemUI();
 	  		                        }
 	  		                    });	            
 	  		            
@@ -10342,6 +10432,8 @@ public class Client2 extends Activity {
 				    		runActionsOnUi();
 				    		
 				    		dialog.dismiss();
+				    		
+				    		hideSystemUI();
 				    	}
 			    	});							    	
 			    	alert.show();  					  	  	  	
@@ -10468,6 +10560,8 @@ public class Client2 extends Activity {
 				    		runActionsOnUi();
 				    		
 				    		dialog.dismiss();
+				    		
+				    		hideSystemUI();
 				    	}
 			    	});								    	
 			    	alert.show();						  		
@@ -10529,6 +10623,8 @@ public class Client2 extends Activity {
 		  		    		
 		  		    		dialog.dismiss();
 		  		    		
+		  		    		hideSystemUI();
+		  		    		
 		  		    		
 		  		    		// NEED THIS HANDLER OTHERWISE BLESS GRAPHIC GETS OFF-CENTER MID-WAY THRU.
 		  		    		final Handler h = new Handler();
@@ -10551,6 +10647,8 @@ public class Client2 extends Activity {
 		  	    			disarmNoBless();
 		  	    			
 		  	    			dialog.dismiss();
+		  	    			
+		  	    			hideSystemUI();
 		          	  }
 		          	});			  	    	
 		  	    	alert.show();						
@@ -10830,6 +10928,8 @@ public class Client2 extends Activity {
 				    		runActionsOnUi();
 				    		
 				    		dialog.dismiss();
+				    		
+				    		hideSystemUI();
 				    	}
 			    	});								    	
 			    	alert.show();						  		
@@ -10937,6 +11037,8 @@ public class Client2 extends Activity {
 							  		    		criticalHitMightyBlowPartOne();							  					
 							  		    		
 							  		    		dialog.dismiss();
+							  		    		
+							  		    		hideSystemUI();
 							  		    	}
 							  	    	});
 							  	    	
@@ -10948,6 +11050,8 @@ public class Client2 extends Activity {
 							          		criticalHitPartOne();											
 							          		
 							          		dialog.dismiss();
+							          		
+							          		hideSystemUI();
 							          	  }
 							          	});
 							  	    	
@@ -11013,6 +11117,8 @@ public class Client2 extends Activity {
 		  		    		criticalHitMightyBlowPartOne();							  					
 		  		    		
 		  		    		dialog.dismiss();
+		  		    		
+		  		    		hideSystemUI();
 		  		    	}
 		  	    	});
 		  	    	
@@ -11024,6 +11130,8 @@ public class Client2 extends Activity {
 		          		criticalHitPartOne();											
 		          		
 		          		dialog.dismiss();
+		          		
+		          		hideSystemUI();
 		          	  }
 		          	});
 		  	    	
@@ -11726,6 +11834,8 @@ public class Client2 extends Activity {
 					  		    		mightyBlow();										
 					  		    		
 					  		    		dialog.dismiss();
+					  		    		
+					  		    		hideSystemUI();
 					  		    	}
 					  	    	});
 					  	    	
@@ -11737,6 +11847,8 @@ public class Client2 extends Activity {
 					  	    			damagePartTwo();					          		  
 					          		  
 					  	    			dialog.dismiss();
+					  	    			
+					  	    			hideSystemUI();
 					          	  }
 					          	});	  	    	
 					  	    	
@@ -11800,6 +11912,8 @@ public class Client2 extends Activity {
 		  		    		mightyBlow();										
 		  		    		
 		  		    		dialog.dismiss();
+		  		    		
+		  		    		hideSystemUI();
 		  		    	}
 		  	    	});
 		  	    	
@@ -11811,6 +11925,8 @@ public class Client2 extends Activity {
 		  	    			damagePartTwo();					          		  
 		          		  
 		  	    			dialog.dismiss();
+		  	    			
+		  	    			hideSystemUI();
 		          	  }
 		          	});	  	    	
 		  	    	

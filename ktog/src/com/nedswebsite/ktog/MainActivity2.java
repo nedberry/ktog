@@ -72,6 +72,8 @@ import android.view.ViewGroup;
 
 public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app stopped" message on S4 w/o this)
 	
+	//Toast.makeText(MainActivity2.this, "TEST", Toast.LENGTH_SHORT).show();
+	
 	int tempCriticalHit;//# of successful crit hits for that user during game (INCLUdING MB)
 	//don't need tempGames, tempWins or tempLoses (just adding 1)
 	
@@ -216,8 +218,15 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 
 		WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		
+		
+		
+		//getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
+		//getActionBar().hide();
+		
+		
 		// This will hide the system bar until user swipes up from bottom or down from top.		
 		//getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_IMMERSIVE | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+		
 		
 		setContentView(R.layout.activity_main_activity2);		
 		// For the little space between the action & attack button.
@@ -225,6 +234,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		
 		
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+		
+		getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 		
 		
 		//Globals g = Globals.getInstance();
@@ -550,9 +561,9 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 			  	  	  		}
 			  	  	  	}, 2000);
 		  	  	  	}
-	  	  	  	}, 3000);//FINAGLING TO GET RIGHT (MAINLY 1ST TIME) - should be at least 4700?	  	  		  			
-  	  		}
-  	  	}, 2000);
+	  	  	  	}, 3516);//FINAGLING TO GET RIGHT (MAINLY 1ST TIME) - should be at least 4700?	  	  		  			
+  		}				//WAS: 3000
+  	  	}, 1000);//WAS: 2000
   	  	
   	  	
   	  	determineInitiative();
@@ -780,9 +791,9 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 			    			  	  		
 			    			  	  		istitlestatsopen = "no";
 		    			  	  	  	}
-		    		  	  	  	}, 11250);
+		    		  	  	  	}, 10600);//WAS: 11250...10500
     			  	  	  	}
-    		  	  	  	}, 600);
+    		  	  	  	}, 300);//WAS: 600
             		}
             		/*
             		else if (isinitiativestartedinterrupted.equals("yes")) {
@@ -1837,6 +1848,19 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 	 */
 	
 	
+	public void hideSystemUI() {
+        // Set the IMMERSIVE flag.
+        // Set the content to appear under the system bars so that the content
+        // doesn't resize when the system bars hide and show.
+        getWindow().getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+    }
+	
 	
 	
 	public void writeTextToFile() {
@@ -1946,6 +1970,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 	    			
 	    			dialog.dismiss();
 	    			
+	    			//hideSystemUI();
+	    			
 	    			//hideNavigation();
 	    			
 	    			//NOT SURE ARRAYS ARE GETTING WIPED COMPLETELY W THE INTENT CODE BELOW, SO ADDED THIS:
@@ -2000,6 +2026,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 	    			
 	    			dialog.dismiss();
 	    			
+	    			hideSystemUI();
+	    			
 	    			//hideNavigation();		         		            		  
 	    		}
 	    	});	  	    	
@@ -2043,6 +2071,9 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 	
 	@Override
 	public void onResume() {
+		
+		hideSystemUI();
+		
 	    super.onResume();
 	    // put your code here...
 	    
@@ -5085,14 +5116,21 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 	  		    		finishInitiative();
 	  		    		
 	  		    		dialog.dismiss();
+	  		    		
+	  		    		hideSystemUI();
 	  		    	}
 	  	    	});		  	    	
-	  	    	alert.show(); 	  	  							  	  	  	
+	  	    	alert.show();
+	  	    	//here
+	  	    	//getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+	  	    	//SAME AS hideSystemUI() TO HIE NAV BAR
   	  		}
-  	  	}, 2000);	  	
+  	  	}, 2000); 	
 	}
 	
 	public void finishInitiative() {
+		
+		//getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 		
 		final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 		//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
@@ -5344,10 +5382,10 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		  	  			//myThread.start();
 			  	  		
 		  	  		}
-		  	  	}, 10325); // FINAGELED!	  	  			
-  	  	  	}
-  	  	}, 675); // SHOULD BE AT LEAST 675? WAS 525 		  	    	  	  			  	  			
-	
+		  	  	}, 9725); // FINAGELED!	 9500 	  			
+  	  	  	}				//WAS: 10325
+  	  	}, 338); // SHOULD BE AT LEAST 675? WAS 525 		  	    	  	  			  	  			
+  					//WAS: 675
 	  	//Toast.makeText(MainActivity2.this,"isinitiativestarted = " +  isinitiativestarted + " aretheredoubles = " + aretheredoubles, Toast.LENGTH_SHORT).show();  	 	
 	  	  		
 	}	 	
@@ -5414,6 +5452,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 					if (canHasDisarmed[1].equals("no")) {					
 						
 		  	  	  		ArrayOfAttackResult.attackResult[0] = (int) (Math.random() * 20) + 1;//(int) (Math.random() * 20) + 1			
+						//ArrayOfAttackResult.attackResult[0] = 20;
+						
 						
 						centerscrolltext.setVisibility(View.VISIBLE);													
 				  		centerscrolltext.startAnimation(animAlphaText);
@@ -5532,6 +5572,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 																  		    		
 																  		    		dialog.dismiss();
 																  		    		
+																  		    		hideSystemUI();
+																  		    		
 																  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
 																  		    		
 																  		    		centerscrolltext.setVisibility(View.VISIBLE);													
@@ -5591,6 +5633,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 																          		  	computerDamage();								          		  	
 																          		  	
 																          		  	dialog.dismiss();
+																          		  	
+																          		  	hideSystemUI();
 																          	  }
 																          	});	  	    	
 																  	    	
@@ -5777,6 +5821,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 																  		    		
 																  		    		dialog.dismiss();																  		    		
 																  		    		
+																  		    		hideSystemUI();
+																  		    		
 																  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
 																  		    		
 																  		    		centerscrolltext.setVisibility(View.VISIBLE);													
@@ -5837,6 +5883,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 																          		  	//return;
 																          		  	
 																          		  	dialog.dismiss();
+																          		  	
+																          		  	hideSystemUI();
 																          	  }
 																          	});	  	    	
 																  	    	
@@ -6074,6 +6122,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 																  		    		
 																  		    		dialog.dismiss();
 																  		    		
+																  		    		hideSystemUI();
+																  		    		
 																  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
 																  		    		
 																  		    		centerscrolltext.setVisibility(View.VISIBLE);													
@@ -6132,6 +6182,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 																          		  	//return;
 																          		  	
 																          		  	dialog.dismiss();
+																          		  	
+																          		  	hideSystemUI();
 																          	  }
 																          	});	  	    	
 																  	    	
@@ -6312,6 +6364,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 																  		    		
 																  		    		dialog.dismiss();																  		    		
 																  		    		
+																  		    		hideSystemUI();
+																  		    		
 																  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
 																  		    		
 																  		    		centerscrolltext.setVisibility(View.VISIBLE);													
@@ -6370,6 +6424,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 																          		  	//return;
 																          		  	
 																          		  	dialog.dismiss();
+																          		  	
+																          		  	hideSystemUI();
 																          	  }
 																          	});	  	    	
 																  	    	
@@ -6628,6 +6684,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 	  			  		    		
 	  			  		    		dialog.dismiss();
 	  			  		    		
+	  			  		    		hideSystemUI();
+	  			  		    		
 	  			  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
 	  			  		    		
 		  			  		    	centerscrolltext.setVisibility(View.VISIBLE);													
@@ -6688,6 +6746,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 	  			          		  computerCriticalHitDamage();
 	  			          		  
 	  			          		  dialog.dismiss();
+	  			          		  
+	  			          		  hideSystemUI();
 	  			          	  }
 	  			          	});	  	    	
 	  			  	    	
@@ -6916,6 +6976,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 												    		gameOverCheck();
 												    		
 												    		dialog.dismiss();
+												    		
+												    		hideSystemUI();
 												    	}
 											    	});
 											    	
@@ -7166,6 +7228,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 													    		gameOverCheck();
 													    		
 													    		dialog.dismiss();
+													    		
+													    		hideSystemUI();
 													    	}
 												    	});
 												    	
@@ -7392,6 +7456,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 													    		gameOverCheck();
 													    		
 													    		dialog.dismiss();
+													    		
+													    		hideSystemUI();
 													    	}
 												    	});
 												    	
@@ -7597,6 +7663,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 											    		gameOverCheck();
 											    		
 											    		dialog.dismiss();
+											    		
+											    		hideSystemUI();
 											    	}
 										    	});
 										    	
@@ -7893,6 +7961,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 														  		    		*/
 														  		    		dialog.dismiss();
 														  		    		
+														  		    		hideSystemUI();
+														  		    		
 														  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
 														  		    		
 														  		    		centerscrolltext.setVisibility(View.VISIBLE);													
@@ -7945,6 +8015,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 														          		  	//return;
 														          		  	
 														          		  	dialog.dismiss();
+														          		  	
+														          		  	hideSystemUI();
 														          	  }
 														          	});	  	    	
 														  	    	
@@ -8145,6 +8217,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 														  		    		*/
 														  		    		dialog.dismiss();
 														  		    		
+														  		    		hideSystemUI();
+														  		    		
 														  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
 														  		    		
 														  		    		centerscrolltext.setVisibility(View.VISIBLE);													
@@ -8197,6 +8271,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 														          		  	//return;
 														          		  	
 														          		  	dialog.dismiss();
+														          		  	
+														          		  	hideSystemUI();
 														          	  }
 														          	});	  	    	
 														  	    	
@@ -8559,6 +8635,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 															  		    		*/
 															  		    		dialog.dismiss();
 															  		    		
+															  		    		hideSystemUI();
+															  		    		
 															  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
 															  		    		
 															  		    		centerscrolltext.setVisibility(View.VISIBLE);													
@@ -8617,6 +8695,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 															          		  	//return;
 															          		  	
 															          		  	dialog.dismiss();
+															          		  	
+															          		  	hideSystemUI();
 															          	  }
 															          	});	  	    	
 															  	    	
@@ -8739,6 +8819,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 															  		    		*/
 															  		    		dialog.dismiss();
 															  		    		
+															  		    		hideSystemUI();
+															  		    		
 															  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
 															  		    		
 															  		    		centerscrolltext.setVisibility(View.VISIBLE);													
@@ -8797,6 +8879,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 															          		  	//return;
 															          		  	
 															          		  	dialog.dismiss();
+															          		  	
+															          		  	hideSystemUI();
 															          	  }
 															          	});	  	    	
 															  	    	
@@ -9601,6 +9685,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 												  		    		*/
 												  		    		dialog.dismiss();
 												  		    		
+												  		    		hideSystemUI();
+												  		    		
 												  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
 												  		    		
 												  		    		centerscrolltext.setVisibility(View.VISIBLE);													
@@ -9652,6 +9738,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 												          		  	//return;
 												          		  	
 												          		  	dialog.dismiss();
+												          		  	
+												          		  	hideSystemUI();
 												          	  }
 												          	});	  	    	
 												  	    	
@@ -9797,6 +9885,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 												  		    		*/
 												  		    		dialog.dismiss();
 												  		    		
+												  		    		hideSystemUI();
+												  		    		
 												  		    		dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
 												  		    		
 												  		    		centerscrolltext.setVisibility(View.VISIBLE);													
@@ -9848,6 +9938,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 												          		  	//return;
 												          		  	
 												          		  	dialog.dismiss();
+												          		  	
+												          		  	hideSystemUI();
 												          	  }
 												          	});	  	    	
 												  	    	
@@ -9999,6 +10091,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 					    			
 					    			dialog.dismiss();
 					    			
+					    			hideSystemUI();
+					    			
 					    			dodgeBlowSpell[0] = dodgeBlowSpell[0] - 1;
 					    			
 					    			centerscrolltext.setVisibility(View.VISIBLE);													
@@ -10050,6 +10144,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 					    			computerCriticalHitDamageDisarmed();
 					    			
 					    			dialog.dismiss();
+					    			
+					    			hideSystemUI();
 					    		}
 					    	});	  	    	
 			    	
@@ -10255,6 +10351,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 												    		gameOverCheck();
 												    		
 												    		dialog.dismiss();
+												    		
+												    		hideSystemUI();
 												    	}
 											    	});
 											    	
@@ -10498,6 +10596,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 													    		gameOverCheck();
 													    		
 													    		dialog.dismiss();
+													    		
+													    		hideSystemUI();
 													    	}
 												    	});
 												    	
@@ -10711,6 +10811,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 													    		gameOverCheck();
 													    		
 													    		dialog.dismiss();
+													    		
+													    		hideSystemUI();
 													    	}
 												    	});
 												    	
@@ -10903,6 +11005,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 											    		gameOverCheck();
 											    		
 											    		dialog.dismiss();
+											    		
+											    		hideSystemUI();
 											    	}
 										    	});
 										    	
@@ -11239,6 +11343,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 																								    		gameOverCheck();
 																								    		
 																								    		dialog.dismiss();
+																								    		
+																								    		hideSystemUI();
 																								    	}
 																							    	});
 																							    	
@@ -11457,6 +11563,9 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 																		    			playerHitPointsTextView.startAnimation(animPulsingAnimation);
 																						
 																		    			
+																		    			isInvokingService = "true";
+																		    			
+																		    			
 																						final Handler h = new Handler();
 																			  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 																			  	  	  			
@@ -11558,6 +11667,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 																											gameOverCheck();
 																											
 																											dialog.dismiss();
+																											
+																											hideSystemUI();
 																								    	}
 																							    	});
 																							    	
@@ -11584,6 +11695,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 																								  						
 																								  		turn();    							
 																								  	}
+																									
+																									//ISN'T POSSIBLE TO USE MB & HASTE SO WHY IS THIS HERE?:
 																									else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && iscomputerhasteused.equals("yes")) {		
 																								  	    			
 																								  		computerHastePartTwo();   							
@@ -11951,6 +12064,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 																							gameOverCheck();
 																							
 																							dialog.dismiss();
+																							
+																							hideSystemUI();
 																				    	}
 																			    	});
 																			    	
@@ -12450,6 +12565,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 															gameOverCheck();
 															
 															dialog.dismiss();
+															
+															hideSystemUI();
 												    	}
 											    	});
 											    	
@@ -12847,6 +12964,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 																							gameOverCheck();
 																							
 																							dialog.dismiss();
+																							
+																							hideSystemUI();
 																				    	}
 																			    	});
 																			    	
@@ -13777,6 +13896,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 						    		gameOverCheck();
 						    		
 						    		dialog.dismiss();
+						    		
+						    		hideSystemUI();
 						    	}
 					    	});								    	
 					    	alert.show();																			
@@ -13897,6 +14018,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 													//return;
 								  		    		
 								  		    		dialog.dismiss();
+								  		    		
+								  		    		hideSystemUI();
 								  		    	}
 								  	    	});
 								  	    	
@@ -13909,6 +14032,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 								          		  //return;
 								          		  
 								          		  dialog.dismiss();
+								          		  
+								          		  hideSystemUI();
 								          	  }
 								          	});	  	    	
 								  	    	
@@ -13970,6 +14095,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 			  	  	  	
 					else if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] <= 6 && ArrayOfHitPoints.hitpoints[playerNumberAttacked] > 0) {
 						
+						isblessrolled = "no";
+						
 						final Handler h = new Handler();
 			  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 			  	  	  			
@@ -14018,7 +14145,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 						  	  	  		else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
 							    			
 											hastePartTwo();   							
-										}					  	  	  	
+										}
 						  	  	  	}
 					  	  	  	}, 6000);
 								// NEED THIS?:
@@ -14067,6 +14194,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 										//return;
 					  		    		
 					  		    		dialog.dismiss();
+					  		    		
+					  		    		hideSystemUI();
 					  		    	}
 					  	    	});
 					  	    	
@@ -14079,6 +14208,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 					          		  //return;
 					          		  
 					          		  dialog.dismiss();
+					          		  
+					          		  hideSystemUI();
 					          	  }
 					          	});	  	    	
 					  	    	
@@ -14434,6 +14565,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 						    		gameOverCheck();
 						    		
 						    		dialog.dismiss();
+						    		
+						    		hideSystemUI();
 						    	}
 					    	});								    	
 					    	alert.show();																			
@@ -14571,6 +14704,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 								  					//return;
 								  		    		
 								  		    		dialog.dismiss();
+								  		    		
+								  		    		hideSystemUI();
 								  		    	}
 								  	    	});
 								  	    	
@@ -14583,6 +14718,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 												//return;
 								          		
 								          		dialog.dismiss();
+								          		
+								          		hideSystemUI();
 								          	  }
 								          	});		  	    	
 								  	    	alert.show();					
@@ -14639,6 +14776,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 							
 							else {
 								
+								isblessrolled = "no";
+								
 								centerscrolltext.setVisibility(View.VISIBLE);
 						  		centerscrolltext.startAnimation(animAlphaText);
 						  		centerscrolltext.append("\n" + "> The computer uses dodge.");					
@@ -14681,7 +14820,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 						  	  	  		else if ((ArrayOfInitiative.initiative[0] < ArrayOfInitiative.initiative[1]) && ishasteused.equals("yes")) {		
 							    			
 											hastePartTwo();   							
-										}					  	  	  	
+										}
 						  	  	  	}
 					  	  	  	}, 6000);
 								// NEED THIS?:
@@ -14723,6 +14862,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 							  					//return;
 							  		    		
 							  		    		dialog.dismiss();
+							  		    		
+							  		    		hideSystemUI();
 							  		    	}
 							  	    	});
 							  	    	
@@ -14735,6 +14876,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 											//return;
 							          		
 							          		dialog.dismiss();
+							          		
+							          		hideSystemUI();
 							          	  }
 							          	});		  	    	
 							  	    	alert.show();					
@@ -15152,6 +15295,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 						    		gameOverCheck();
 						    		
 						    		dialog.dismiss();
+						    		
+						    		hideSystemUI();
 						    	}
 					    	});								    	
 					    	alert.show();																			
@@ -15579,6 +15724,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 						    		gameOverCheck();
 						    		
 						    		dialog.dismiss();
+						    		
+						    		hideSystemUI();
 						    	}
 					    	});								    	
 					    	alert.show();																			
@@ -16027,6 +16174,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 									    		gameOverCheck();
 									    		
 									    		dialog.dismiss();
+									    		
+									    		hideSystemUI();
 									    	}
 								    	});						    	
 								    	alert.show();				
@@ -16304,6 +16453,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 			  		    		
 			  		    		dialog.dismiss();
 			  		    		
+			  		    		hideSystemUI();
+			  		    		
 			  		    		
 			  		    		// NEED THIS HANDLER OTHERWISE BLESS GRAPHIC GETS OFF-CENTER MID-WAY THRU.
 			  		    		final Handler h = new Handler();
@@ -16326,6 +16477,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 			  	    			disarmNoBless();
 			  	    			
 			  	    			dialog.dismiss();
+			  	    			
+			  	    			hideSystemUI();
 			          	  }
 			          	});			  	    	
 			  	    	alert.show();						
@@ -17076,6 +17229,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 				    		runActionsOnUi();
 				    		
 				    		dialog.dismiss();
+				    		
+				    		hideSystemUI();
 				    	}
 			    	});								    	
 			    	alert.show();	  				
@@ -17414,6 +17569,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 				    		runActionsOnUi();
 				    		
 				    		dialog.dismiss();
+				    		
+				    		hideSystemUI();
 				    	}
 			    	});								    	
 			    	alert.show();					
@@ -17954,6 +18111,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 				    		runActionsOnUi();
 				    		
 				    		dialog.dismiss();
+				    		
+				    		hideSystemUI();
 				    	}
 			    	});								    	
 			    	alert.show();				
@@ -18175,6 +18334,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 											attack();
 											
 											dialog.dismiss();
+											
+											hideSystemUI();
 							  	  	  	}
 						  	  	  	}, 1000);										
 								}
@@ -18196,6 +18357,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 											disarm();
 											
 											dialog.dismiss();
+											
+											hideSystemUI();
 							  	  	  	}
 						  	  	  	}, 1000);										
 								}
@@ -18217,6 +18380,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 											haste();
 											
 											dialog.dismiss();
+											
+											hideSystemUI();
 							  	  	  	}
 						  	  	  	}, 1000);									
 								}
@@ -18238,6 +18403,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 											cure();
 											
 											dialog.dismiss();
+											
+											hideSystemUI();
 							  	  	  	}
 						  	  	  	}, 1000);										
 								}
@@ -18259,6 +18426,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 											bless();
 											
 											dialog.dismiss();
+											
+											hideSystemUI();
 							  	  	  	}
 						  	  	  	}, 1000);									
 								}
@@ -18272,6 +18441,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 								isInvokingService = "true";
 	                        	
 	                            dialog.dismiss();
+	                            
+	                            hideSystemUI();
 	                        }
 	                    });	            
 	            
@@ -18362,6 +18533,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 												attack();
 												
 												dialog.dismiss();
+												
+												hideSystemUI();
 								  	  	  	}
 							  	  	  	}, 1000);										
 									}
@@ -18382,6 +18555,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 												disarm();
 												
 												dialog.dismiss();
+												
+												hideSystemUI();
 								  	  	  	}
 							  	  	  	}, 1000);										
 									}
@@ -18402,6 +18577,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 												haste();
 												
 												dialog.dismiss();
+												
+												hideSystemUI();
 								  	  	  	}
 							  	  	  	}, 1000);									
 									}
@@ -18422,6 +18599,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 												cure();
 												
 												dialog.dismiss();
+												
+												hideSystemUI();
 								  	  	  	}
 							  	  	  	}, 1000);										
 									}
@@ -18442,6 +18621,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 												bless();
 												
 												dialog.dismiss();
+												
+												hideSystemUI();
 								  	  	  	}
 							  	  	  	}, 1000);									
 									}
@@ -18703,6 +18884,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		  									isInvokingService = "true";
 		  		                        	
 		  		                            dialog.dismiss();
+		  		                            
+		  		                            hideSystemUI();
 		  		                        }
 		  		                    });	            
 		  		            
@@ -19037,8 +19220,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		  		//centerscrolltext.append("\n");
 		  		centerscrolltext.append("\n" + " >>>>>>>>>   " + " Turn " + ArrayOfTurn.turn[0] + "   <<<<<<<<<");				
 		  		//centerscrolltext.append("\n");
-				
-				
+		  		
 				final Handler h = new Handler();
 	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 	  	  	  			
@@ -19152,8 +19334,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 			  	  			
 							if (isInvokingService.equals("true")){
 								//NEED THIS?
-								SystemClock.sleep(1000);	        		
-									
+								SystemClock.sleep(1000);
+								
 								runActionsOnUi();
 							}
 			  	  		}
@@ -19999,7 +20181,9 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 						  		    		
 						  		    		isInvokingService = "true";
 						  		    		
-						  		    		dialog.dismiss();					  		    		
+						  		    		dialog.dismiss();
+						  		    		
+						  		    		hideSystemUI();					  		    		
 						  		    	}
 						  	    	});
 						  	    	
@@ -20007,6 +20191,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 						          	  public void onClick(DialogInterface dialog, int whichButton) {
 						          		  	
 						          		  	dialog.dismiss();
+						          		  	
+						          		  	hideSystemUI();
 						          		  
 						          		  	//hideNavigation();
 						          		  	
@@ -20399,7 +20585,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 								istitlestatsopen = "no";
 							}			  	  	  	
 			  	  	  	}
-		  	  	  	}, 600);					
+		  	  	  	}, 300);//WAS: 600
 				}
 				
 				else {				
@@ -20442,7 +20628,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 								titlevictorydefeat.append("Defeat");
 							}					
 			  	  	  	}
-		  	  	  	}, 600);
+		  	  	  	}, 300);//WAS: 600
 				}
 			}
   		});
@@ -20470,6 +20656,6 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 				
 	  	    }
   		});	
-	}	
+	}
 
 }

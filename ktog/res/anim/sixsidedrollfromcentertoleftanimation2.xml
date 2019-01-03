@@ -2,6 +2,8 @@
 <animation-list xmlns:android="http://schemas.android.com/apk/res/android"
     android:oneshot="true" >  
     
+    <!--
+    
     <item android:drawable="@drawable/sixsixrightleftrotate" android:duration="75" />
     <item android:drawable="@drawable/sixsixfiveleft1" android:duration="75" />
     <item android:drawable="@drawable/sixfiveleft2" android:duration="75" />
@@ -15,6 +17,25 @@
     <item android:drawable="@drawable/sixoneright4" android:duration="75" />
     <item android:drawable="@drawable/sixonefiveright3" android:duration="75" />
     <item android:drawable="@drawable/sixfiveright2" android:duration="75" />
+    <item android:drawable="@drawable/sixfivesixright1" android:duration="75" />
+    
+    <item android:drawable="@drawable/sixtworotate6" android:duration="75" />
+
+	-->
+
+	<item android:drawable="@drawable/sixsixrightleftrotate" android:duration="75" />
+    
+    <item android:drawable="@drawable/sixfiveleft2" android:duration="75" />
+    
+    <item android:drawable="@drawable/sixoneleft4" android:duration="75" />
+    
+    <item android:drawable="@drawable/sixtwoleft6" android:duration="75" />
+    
+    
+    <item android:drawable="@drawable/sixtwooneright5" android:duration="75" />
+    
+    <item android:drawable="@drawable/sixonefiveright3" android:duration="75" />
+    
     <item android:drawable="@drawable/sixfivesixright1" android:duration="75" />
     
     <item android:drawable="@drawable/sixtworotate6" android:duration="75" />

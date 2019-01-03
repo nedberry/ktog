@@ -31,6 +31,9 @@ public class Video extends ActionBarActivity
         final VideoView vv = (VideoView)findViewById(R.id.videoview);
         Uri uri = Uri.parse("android.resource://com.nedswebsite.ktog/"+R.raw.ktogintrovideo);
         vv.setVideoURI(uri);
+        
+        //vv.requestFocus();
+        
         vv.start();
         
         

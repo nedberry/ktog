@@ -36,6 +36,7 @@ import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -80,8 +81,22 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
 		// This will hide the system bar until user swipes up from bottom or down from top.		
 		getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_IMMERSIVE
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
-		*/		
+		*/
+		
+		
 		setContentView(R.layout.activity_main_activity1);
+		
+		//NEW
+		// For the little space between the action & attack button.
+		getWindow().getDecorView().setBackgroundColor(Color.BLACK);		
+		
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+		
+		//NEW
+		getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+				
+		
+		
 		
 		ImageView img = (ImageView)findViewById(R.id.menu1);
 		
@@ -160,6 +175,8 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
     					goToJoin();
 	    	        	
 	    	        	dialog.dismiss();
+	    	        	
+	    	        	hideSystemUI();
     				}
     				else if (item == 1) {
     					ArrayOfAvatars.avatar[0] = "stonedead";
@@ -167,6 +184,8 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
     					goToJoin();
 	    	        	
 	    	        	dialog.dismiss();
+	    	        	
+	    	        	hideSystemUI();
     				}
     				else if (item == 2) {
     					ArrayOfAvatars.avatar[0] = "custom";	    					
@@ -174,6 +193,8 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
     					openGallery();
     					
     					dialog.dismiss();
+    					
+    					hideSystemUI();
     				}    				
     	        	
     	        	//finish();
@@ -187,7 +208,8 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
 
     	alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
     	  public void onClick(DialogInterface dialog, int whichButton) {
-    	    // Canceled.
+    	    
+    		  hideSystemUI();
     	  }
     	});
     	
@@ -297,11 +319,15 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
 			    	        	
 			    	        	dialog.dismiss();
 			    	        	
+			    	        	hideSystemUI();
+			    	        	
 			    	        	//finish();
 							}
 							else if (item == 1) {		
 			    	        	
 			    	        	dialog.dismiss();
+			    	        	
+			    	        	hideSystemUI();
 			    	        	
 			    	        	finish();
 							}    				    				
@@ -475,6 +501,8 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
     				
     	        	dialog.dismiss();
     	        	
+    	        	hideSystemUI();
+    	        	
     	        	//Client1.this.finish();
     	        	
     	        	//finish();
@@ -482,6 +510,8 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
 				else if (item == 1) {		
     	        	
     	        	dialog.dismiss();
+    	        	
+    	        	hideSystemUI();
     	        	
     	        	finish();
     	        	
@@ -492,7 +522,23 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
 		});	    		
     	
         builder.create().show();		
-	}	
+	}
+	
+	
+	
+	public void hideSystemUI() {
+        // Set the IMMERSIVE flag.
+        // Set the content to appear under the system bars so that the content
+        // doesn't resize when the system bars hide and show.
+        getWindow().getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+    }
+	
 	
 	
 	//===================================================================================================
@@ -529,6 +575,8 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
 	@Override
     public void onBackPressed() {
 			
+			//hideSystemUI();
+			
 			Intent svc=new Intent(this, Badonk2SoundService.class);
 			stopService(svc);
 			
@@ -558,11 +606,13 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
 	
 	public void onResume() {
 		
+		hideSystemUI();
+		
 		super.onResume();
 		
 		Intent svc=new Intent(this, Badonk2SoundService.class);
 		startService(svc);		
-	}	
+	}
 	
 	
 	//===================================================================================================

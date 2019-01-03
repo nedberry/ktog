@@ -116,16 +116,44 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 		
 		//Toast.makeText(MainActivity1.this,"EMPTY SPACE TEST", Toast.LENGTH_LONG).show();
 		
+		/*
 		// USED THE FOLLOWING TO REMOVE TITLE BAR:
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 
 		WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		/*
+		
 		// This will hide the system bar until user swipes up from bottom or down from top.		
-		getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_IMMERSIVE
-                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
-		*/		
+		//getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_IMMERSIVE
+        //        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+				
 		setContentView(R.layout.activity_main_activity1);
+		*/
+		
+		
+		// USED THE FOLLOWING TO REMOVE TITLE BAR:
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 
+		WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		
+		
+		//getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
+		//getActionBar().hide();
+		
+		
+		// This will hide the system bar until user swipes up from bottom or down from top.		
+		//getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_IMMERSIVE | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+		
+		
+		setContentView(R.layout.activity_main_activity1);		
+		// For the little space between the action & attack button.
+		getWindow().getDecorView().setBackgroundColor(Color.BLACK);		
+		
+		
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+		
+		getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+		
+		
 		
 		ImageView img = (ImageView)findViewById(R.id.menu1);
 		
@@ -163,7 +191,9 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 				//startActivity(openNewGuyOldGuy);
 	        	
 	        	AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity1.this);
-	
+	        	
+	        	alert.setCancelable(false);
+	        	
 	        	alert.setTitle("One Player");
 	        	alert.setMessage("Enter Name");
 	
@@ -223,6 +253,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 			    				startActivity(intent);
 			    	        	
 			    	        	dialog.dismiss();
+			    	        	
+			    	        	hideSystemUI();
 		    				}
 		    				else if (item == 1) {
 		    					ArrayOfAvatars.avatar[0] = "crossedswords";
@@ -234,6 +266,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 			    				startActivity(intent);
 			    	        	
 			    	        	dialog.dismiss();
+			    	        	
+			    	        	hideSystemUI();
 		    				}
 		    				else if (item == 2) {
 		    					ArrayOfAvatars.avatar[0] = "stonedead";
@@ -245,6 +279,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 			    				startActivity(intent);
 			    	        	
 			    	        	dialog.dismiss();
+			    	        	
+			    	        	hideSystemUI();
 		    				}
 		    				else if (item == 3) {
 		    					ArrayOfAvatars.avatar[0] = "custom";
@@ -254,6 +290,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 		    					openGallery();
 		    					
 		    					dialog.dismiss();
+		    					
+		    					hideSystemUI();
 		    				}    				
 		    	        	
 		    	        	//finish();
@@ -267,12 +305,12 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	
 	        	alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 	        	  public void onClick(DialogInterface dialog, int whichButton) {
-	        	    // Canceled.
+	        	    
+	        		  hideSystemUI();
 	        	  }
 	        	});
 	        	
-	        	alert.show();        	
-        	
+	        	alert.show();
 			}
 		});		
 		
@@ -344,6 +382,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 		    					goToHostOrJoin();
 			    	        	
 			    	        	dialog.dismiss();
+			    	        	
+			    	        	hideSystemUI();
 		    				}
 		    				else if (item == 1) {
 		    					ArrayOfAvatars.avatar[5] = "crossedswords";
@@ -351,6 +391,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 		    					goToHostOrJoin();
 			    	        	
 			    	        	dialog.dismiss();
+			    	        	
+			    	        	hideSystemUI();
 		    				}
 		    				else if (item == 2) {
 		    					ArrayOfAvatars.avatar[5] = "stonedead";
@@ -358,6 +400,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 		    					goToHostOrJoin();
 			    	        	
 			    	        	dialog.dismiss();
+			    	        	
+			    	        	hideSystemUI();
 		    				}
 		    				else if (item == 3) {
 		    					ArrayOfAvatars.avatar[5] = "custom";	    					
@@ -365,6 +409,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 		    					openGallery();
 		    					
 		    					dialog.dismiss();
+		    					
+		    					hideSystemUI();
 		    				}    				
 		    	        	
 		    	        	//finish();
@@ -375,10 +421,11 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 		        	
 	        	  }
 	        	});
-	
+	        	
 	        	alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 	        	  public void onClick(DialogInterface dialog, int whichButton) {
-	        	    // Canceled.
+	        	    
+	        		  hideSystemUI();
 	        	  }
 	        	});
 	        	
@@ -442,343 +489,380 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 				      
 	        			getPlayerNamesFromFile();
 	        			
+	        			
+	        			stopService(svc);
+						startService(svc);
+	        			
+	        			
+	        			// Instead of String[] items, Here you can also use ArrayList for your custom object..
+	    	        	
+	    	        	final String[] nameForAdapter = new String[count];
+	    	        	
+	    	        	for (int i = 0; i < count; i++) {
+	    	        		
+	    	        		nameForAdapter[i] = name[i];
+	    	        	}
+	    	        	
+	    		  		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.list_row, R.id.title, nameForAdapter) {
+	    	
+	    		  		    ViewHolder holder;
+	    		  		    Drawable icon;//FOR LAST AVATAR THAT WAS USED??? (LOCATION CAN BE SAVE LIKE OTHER GAME DATA)
+	    	
+	    		  		    class ViewHolder {
+	    		  		        ImageView icon;
+	    		  		        TextView title;						
+	    		  		    }
+	    	
+	    		  		    public View getView(int position, View convertView, ViewGroup parent) {
+	    		  		        final LayoutInflater inflater = (LayoutInflater) getApplicationContext()
+	    		  		                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);		  			  		        
+	    	
+	    		  		        if (convertView == null) {
+	    		  		            convertView = inflater.inflate(R.layout.list_row, null);
+	    	
+	    		  		            holder = new ViewHolder();
+	    		  		            holder.icon = (ImageView) convertView.findViewById(R.id.icon);
+	    		  		            holder.title = (TextView) convertView.findViewById(R.id.title);		  		           
+	    		  		            
+	    		  		            convertView.setTag(holder);
+	    		  		        }
+	    		  		        
+	    		  		        else {
+	    		  		            // view already defined, retrieve view holder
+	    		  		            holder = (ViewHolder) convertView.getTag();
+	    		  		        }       
+	    	
+	    		  		       // Drawable drawable = getResources().getDrawable(R.drawable.list_icon); //this is an image from the drawables folder
+	    	
+	    		  		        holder.title.setText(nameForAdapter[position]);
+	    		  		        //holder.icon.setImageDrawable(drawable);     
+	    		  		        
+	    	
+	    		  		        return convertView;
+	    		  		    }
+	    		  		};
+	    		  		
+	    		  		
+	    		  		// THIS WAY ALLOWS YOU TO STYLE THE DIALOG (ex. background doesn't dim.):
+	    		  		ContextThemeWrapper cw = new ContextThemeWrapper(MainActivity1.this, R.style.DialogWindowTitle_Holo);
+	    		  		AlertDialog.Builder builder = new AlertDialog.Builder(cw);		  			  		
+	    		  		
+	    	  			
+	    		  		builder.setTitle("Choose Your Guy");
+	    		  		
+	    		  		
+	    	  			//builder.setCancelable(false);
+	    	  			
+	    	  			/*
+	    				builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+	    					@Override
+	    					public void onCancel(DialogInterface dialog) {		  							
+	    						
+	    						//IF NOTHING DOESN'T WORK, TRY:
+	    						
+	    						//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+	    			        	//MainActivity1.this.startActivity(i);
+	    					}
+	    				});
+	    	  			*/
+	    				
+	    	            builder.setAdapter(adapter,
+	    	                    new DialogInterface.OnClickListener() {
+	    	                        @Override
+	    	                        public void onClick(final DialogInterface dialog, int item) {
+	    	                        	
+	    	                        	for (int i = 0; i < count; i++) {
+	    	                        	
+	    		                        	if (item == i) {
+	    		                        		
+	    		                        		buttonSound.start();
+	    		                        		
+	    		                        		//ArrayOfPlayers.player[5] = name[i];
+	    		                        		tempName = name[i];
+	    		                        		
+	    		                        		//Toast.makeText(MainActivity1.this, name[i], Toast.LENGTH_LONG).show();
+	    		                        		
+	    		                        		
+	    		                        		final String[] items = {"One Player", "Multiplayer"};
+	    		                        		
+	    		                        		// Instead of String[] items, Here you can also use ArrayList for your custom object..
+	    		                        		
+	    		                		  		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.list_row, R.id.title,items) {
+	    		                	
+	    		                		  		    ViewHolder holder;
+	    		                		  		    Drawable icon;//FOR LAST AVATAR THAT WAS USED??? (LOCATION CAN BE SAVE LIKE OTHER GAME DATA)
+	    		                	
+	    		                		  		    class ViewHolder {
+	    		                		  		        ImageView icon;
+	    		                		  		        TextView title;						
+	    		                		  		    }
+	    		                	
+	    		                		  		    public View getView(int position, View convertView, ViewGroup parent) {
+	    		                		  		        final LayoutInflater inflater = (LayoutInflater) getApplicationContext()
+	    		                		  		                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);		  			  		        
+	    		                	
+	    		                		  		        if (convertView == null) {
+	    		                		  		            convertView = inflater.inflate(R.layout.list_row, null);
+	    		                	
+	    		                		  		            holder = new ViewHolder();
+	    		                		  		            holder.icon = (ImageView) convertView.findViewById(R.id.icon);
+	    		                		  		            holder.title = (TextView) convertView.findViewById(R.id.title);		  		           
+	    		                		  		            
+	    		                		  		            convertView.setTag(holder);
+	    		                		  		        }
+	    		                		  		        
+	    		                		  		        else {
+	    		                		  		            // view already defined, retrieve view holder
+	    		                		  		            holder = (ViewHolder) convertView.getTag();
+	    		                		  		        }       
+	    		                	
+	    		                		  		       // Drawable drawable = getResources().getDrawable(R.drawable.list_icon); //this is an image from the drawables folder
+	    		                	
+	    		                		  		        holder.title.setText(items[position]);
+	    		                		  		        //holder.icon.setImageDrawable(drawable);     
+	    		                		  		        
+	    		                	
+	    		                		  		        return convertView;
+	    		                		  		    }
+	    		                		  		};
+	    		                		  		
+	    		                		  		
+	    		                		  		// THIS WAY ALLOWS YOU TO STYLE THE DIALOG (ex. background doesn't dim.):
+	    		                		  		ContextThemeWrapper cw = new ContextThemeWrapper(MainActivity1.this, R.style.DialogWindowTitle_Holo);
+	    		                		  		AlertDialog.Builder builder = new AlertDialog.Builder(cw);		  			  		
+	    		                		  		
+	    		                	  			
+	    		                		  		builder.setTitle("Choose Your Game");
+	    		                		  		
+	    		                		  		
+	    		                	  			//builder.setCancelable(false);
+	    		                	  			
+	    		                	  			/*
+	    		                				builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+	    		                					@Override
+	    		                					public void onCancel(DialogInterface dialog) {		  							
+	    		                						
+	    		                						//IF NOTHING DOESN'T WORK, TRY:
+	    		                						
+	    		                						//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+	    		                			        	//MainActivity1.this.startActivity(i);
+	    		                					}
+	    		                				});
+	    		                	  			*/
+	    		                				
+	    		                	            builder.setAdapter(adapter,
+	    		                	                    new DialogInterface.OnClickListener() {
+	    		                	                        @Override
+	    		                	                        public void onClick(final DialogInterface dialog, int item) {
+	    		                	                        	
+	    	                		                        	if (item == 0) {
+	    	                		                        		
+	    	                		                        		buttonSound.start();
+	    	                		                        		
+	    	                		                        		
+	    	                		                        		ArrayOfPlayers.player[0] = tempName;
+	    	                		                        		ArrayOfPlayers.player[1] = "Computer";
+	    	                		                        		
+	    	                		                        		
+	    	                		                        		final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead", "Custom"};
+	    	                		            		    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2, R.drawable.computer};
+	    	                		            		    		
+	    	                		            		    		ListAdapter adapter = new ArrayAdapterWithIcon(MainActivity1.this, items, avatars);
+	    	                		            		    		
+	    	                		            		    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
+	    	                		            		    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
+	    	                		            		    		//builder.setIcon(R.drawable.computerhead);
+	    	                		            		    		builder.setTitle("Choose Your Avatar");
+	    	                		            		    		
+	    	                		            		    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
+	    	                		            		    			public void onClick(DialogInterface dialog, int item) { 
+	    	                		            		    								
+	    	                		            		    				if (item == 0) {
+	    	                		            		    					ArrayOfAvatars.avatar[0] = "computer";
+	    	                		            		    					
+	    	                		            		    					stopService(svc);	    				
+	    	                		            			    				
+	    	                		            			    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+	    	                		            			    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+	    	                		            			    				startActivity(intent);
+	    	                		            			    	        	
+	    	                		            			    	        	dialog.dismiss();
+	    	                		            			    	        	
+	    	                		            			    	        	hideSystemUI();
+	    	                		            		    				}
+	    	                		            		    				else if (item == 1) {
+	    	                		            		    					ArrayOfAvatars.avatar[0] = "crossedswords";
+	    	                		            		    					
+	    	                		            		    					stopService(svc);	    				
+	    	                		            			    				
+	    	                		            			    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+	    	                		            			    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+	    	                		            			    				startActivity(intent);
+	    	                		            			    	        	
+	    	                		            			    	        	dialog.dismiss();
+	    	                		            			    	        	
+	    	                		            			    	        	hideSystemUI();
+	    	                		            		    				}
+	    	                		            		    				else if (item == 2) {
+	    	                		            		    					ArrayOfAvatars.avatar[0] = "stonedead";
+	    	                		            		    					
+	    	                		            		    					stopService(svc);	    				
+	    	                		            			    				
+	    	                		            			    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+	    	                		            			    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+	    	                		            			    				startActivity(intent);
+	    	                		            			    	        	
+	    	                		            			    	        	dialog.dismiss();
+	    	                		            			    	        	
+	    	                		            			    	        	hideSystemUI();
+	    	                		            		    				}
+	    	                		            		    				else if (item == 3) {
+	    	                		            		    					ArrayOfAvatars.avatar[0] = "custom";
+	    	                		            		    					
+	    	                		            		    					stopService(svc);
+	    	                		            		    					
+	    	                		            		    					openGallery();
+	    	                		            		    					
+	    	                		            		    					dialog.dismiss();
+	    	                		            		    					
+	    	                		            		    					hideSystemUI();
+	    	                		            		    				}    				
+	    	                		            		    	        	
+	    	                		            		    	        	//finish();
+	    	                		            	        	  		}
+	    	                		            		    		});	    		
+	    	                		            		        	
+	    	                		            		            builder.create().show();
+	    	                		                        	}
+	    	                		                        	
+	    	                		                        	else if (item == 1) {
+	    	                		                        		
+	    	                		                        		buttonSound.start();
+	    	                		                        		
+	    	                		                        		multiplayer = "yes";
+	    	                		                        		
+	    	                		                        		ArrayOfPlayers.player[5] = tempName;
+	    	                		                        		
+	    	                		                        		
+	    	                		                        		final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead", "Custom"};
+	    	                		            		    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2, R.drawable.computer};
+	    	                		            		    		
+	    	                		            		    		ListAdapter adapter = new ArrayAdapterWithIcon(MainActivity1.this, items, avatars);
+	    	                		            		    		
+	    	                		            		    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
+	    	                		            		    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
+	    	                		            		    		//builder.setIcon(R.drawable.computerhead);
+	    	                		            		    		builder.setTitle("Choose Your Avatar");
+	    	                		            		    		
+	    	                		            		    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
+	    	                		            		    			public void onClick(DialogInterface dialog, int item) { 
+	    	                		            		    								
+	    	                		            		    				if (item == 0) {
+	    	                		            		    					ArrayOfAvatars.avatar[5] = "computer";
+	    	                		            		    					
+	    	                		            		    					goToHostOrJoin();
+	    	                		            			    	        	
+	    	                		            			    	        	dialog.dismiss();
+	    	                		            			    	        	
+	    	                		            			    	        	hideSystemUI();
+	    	                		            		    				}
+	    	                		            		    				else if (item == 1) {
+	    	                		            		    					ArrayOfAvatars.avatar[5] = "crossedswords";
+	    	                		            		    					
+	    	                		            		    					goToHostOrJoin();
+	    	                		            			    	        	
+	    	                		            			    	        	dialog.dismiss();
+	    	                		            			    	        	
+	    	                		            			    	        	hideSystemUI();
+	    	                		            		    				}
+	    	                		            		    				else if (item == 2) {
+	    	                		            		    					ArrayOfAvatars.avatar[5] = "stonedead";
+	    	                		            		    					
+	    	                		            		    					goToHostOrJoin();
+	    	                		            			    	        	
+	    	                		            			    	        	dialog.dismiss();
+	    	                		            			    	        	
+	    	                		            			    	        	hideSystemUI();
+	    	                		            		    				}
+	    	                		            		    				else if (item == 3) {
+	    	                		            		    					ArrayOfAvatars.avatar[5] = "custom";	    					
+	    	                		            		    					
+	    	                		            		    					openGallery();
+	    	                		            		    					
+	    	                		            		    					dialog.dismiss();
+	    	                		            		    					
+	    	                		            		    					hideSystemUI();
+	    	                		            		    				}    				
+	    	                		            		    	        	
+	    	                		            		    	        	//finish();
+	    	                		            	        	  		}
+	    	                		            		    		});	    		
+	    	                		            		        	
+	    	                		            		            builder.create().show();
+	    	                		                        	}
+	    		                	                        }
+	    		                	                    });	            
+	    		                	            
+	    		                	            AlertDialog alert = builder.create();
+	    		                	            alert.show();	            
+	    		                	            
+	    		                	            
+	    		                	            WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+
+	    		                	            lp.copyFrom(alert.getWindow().getAttributes());
+	    		                	            lp.width = 1050;	            
+	    		                	            alert.getWindow().setAttributes(lp);
+	    		                	            
+	    		                	            
+	    		                	            //h.removeCallbacks(this);
+	    		                	        	
+	    		                	        	//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+	    		                	        	//MainActivity1.this.startActivity(i);
+	    		                        	}
+	    	                        	}
+	    	                        }
+	    	                    });	            
+	    	            
+	    	            AlertDialog alert = builder.create();
+	    	            alert.show();	            
+	    	            
+	    	            
+	    	            WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+
+	    	            lp.copyFrom(alert.getWindow().getAttributes());
+	    	            lp.width = 1050;	            
+	    	            alert.getWindow().setAttributes(lp);
+	    	            
+	    	            
+	    	            //h.removeCallbacks(this);
+	    	        	
+	    	        	//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+	    	        	//MainActivity1.this.startActivity(i);
+	        			
 				   } catch (Exception e) {
 				      
-				   		Toast.makeText(MainActivity1.this, "LOW MEMORY", Toast.LENGTH_LONG).show();
+				   		Toast.makeText(MainActivity1.this, "No Guys", Toast.LENGTH_LONG).show();
+				   		
+						stopService(svc);
+						startService(svc);
 				}
-	        	
-  	  	  		
-		  		// Instead of String[] items, Here you can also use ArrayList for your custom object..
-	        	
-	        	final String[] nameForAdapter = new String[count];
-	        	
-	        	for (int i = 0; i < count; i++) {
-	        		
-	        		nameForAdapter[i] = name[i];
-	        	}
-	        	
-		  		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.list_row, R.id.title, nameForAdapter) {
-	
-		  		    ViewHolder holder;
-		  		    Drawable icon;//FOR LAST AVATAR THAT WAS USED??? (LOCATION CAN BE SAVE LIKE OTHER GAME DATA)
-	
-		  		    class ViewHolder {
-		  		        ImageView icon;
-		  		        TextView title;						
-		  		    }
-	
-		  		    public View getView(int position, View convertView, ViewGroup parent) {
-		  		        final LayoutInflater inflater = (LayoutInflater) getApplicationContext()
-		  		                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);		  			  		        
-	
-		  		        if (convertView == null) {
-		  		            convertView = inflater.inflate(R.layout.list_row, null);
-	
-		  		            holder = new ViewHolder();
-		  		            holder.icon = (ImageView) convertView.findViewById(R.id.icon);
-		  		            holder.title = (TextView) convertView.findViewById(R.id.title);		  		           
-		  		            
-		  		            convertView.setTag(holder);
-		  		        }
-		  		        
-		  		        else {
-		  		            // view already defined, retrieve view holder
-		  		            holder = (ViewHolder) convertView.getTag();
-		  		        }       
-	
-		  		       // Drawable drawable = getResources().getDrawable(R.drawable.list_icon); //this is an image from the drawables folder
-	
-		  		        holder.title.setText(nameForAdapter[position]);
-		  		        //holder.icon.setImageDrawable(drawable);     
-		  		        
-	
-		  		        return convertView;
-		  		    }
-		  		};
-		  		
-		  		
-		  		// THIS WAY ALLOWS YOU TO STYLE THE DIALOG (ex. background doesn't dim.):
-		  		ContextThemeWrapper cw = new ContextThemeWrapper(MainActivity1.this, R.style.DialogWindowTitle_Holo);
-		  		AlertDialog.Builder builder = new AlertDialog.Builder(cw);		  			  		
-		  		
-	  			
-		  		builder.setTitle("Choose Your Guy");
-		  		
-		  		
-	  			//builder.setCancelable(false);
-	  			
-	  			/*
-				builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
-					@Override
-					public void onCancel(DialogInterface dialog) {		  							
-						
-						//IF NOTHING DOESN'T WORK, TRY:
-						
-						//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
-			        	//MainActivity1.this.startActivity(i);
-					}
-				});
-	  			*/
-				
-	            builder.setAdapter(adapter,
-	                    new DialogInterface.OnClickListener() {
-	                        @Override
-	                        public void onClick(final DialogInterface dialog, int item) {
-	                        	
-	                        	for (int i = 0; i < count; i++) {
-	                        	
-		                        	if (item == i) {
-		                        		
-		                        		buttonSound.start();
-		                        		
-		                        		//ArrayOfPlayers.player[5] = name[i];
-		                        		tempName = name[i];
-		                        		
-		                        		//Toast.makeText(MainActivity1.this, name[i], Toast.LENGTH_LONG).show();
-		                        		
-		                        		
-		                        		final String[] items = {"One Player", "Multiplayer"};
-		                        		
-		                        		// Instead of String[] items, Here you can also use ArrayList for your custom object..
-		                        		
-		                		  		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.list_row, R.id.title,items) {
-		                	
-		                		  		    ViewHolder holder;
-		                		  		    Drawable icon;//FOR LAST AVATAR THAT WAS USED??? (LOCATION CAN BE SAVE LIKE OTHER GAME DATA)
-		                	
-		                		  		    class ViewHolder {
-		                		  		        ImageView icon;
-		                		  		        TextView title;						
-		                		  		    }
-		                	
-		                		  		    public View getView(int position, View convertView, ViewGroup parent) {
-		                		  		        final LayoutInflater inflater = (LayoutInflater) getApplicationContext()
-		                		  		                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);		  			  		        
-		                	
-		                		  		        if (convertView == null) {
-		                		  		            convertView = inflater.inflate(R.layout.list_row, null);
-		                	
-		                		  		            holder = new ViewHolder();
-		                		  		            holder.icon = (ImageView) convertView.findViewById(R.id.icon);
-		                		  		            holder.title = (TextView) convertView.findViewById(R.id.title);		  		           
-		                		  		            
-		                		  		            convertView.setTag(holder);
-		                		  		        }
-		                		  		        
-		                		  		        else {
-		                		  		            // view already defined, retrieve view holder
-		                		  		            holder = (ViewHolder) convertView.getTag();
-		                		  		        }       
-		                	
-		                		  		       // Drawable drawable = getResources().getDrawable(R.drawable.list_icon); //this is an image from the drawables folder
-		                	
-		                		  		        holder.title.setText(items[position]);
-		                		  		        //holder.icon.setImageDrawable(drawable);     
-		                		  		        
-		                	
-		                		  		        return convertView;
-		                		  		    }
-		                		  		};
-		                		  		
-		                		  		
-		                		  		// THIS WAY ALLOWS YOU TO STYLE THE DIALOG (ex. background doesn't dim.):
-		                		  		ContextThemeWrapper cw = new ContextThemeWrapper(MainActivity1.this, R.style.DialogWindowTitle_Holo);
-		                		  		AlertDialog.Builder builder = new AlertDialog.Builder(cw);		  			  		
-		                		  		
-		                	  			
-		                		  		builder.setTitle("Choose Your Game");
-		                		  		
-		                		  		
-		                	  			//builder.setCancelable(false);
-		                	  			
-		                	  			/*
-		                				builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
-		                					@Override
-		                					public void onCancel(DialogInterface dialog) {		  							
-		                						
-		                						//IF NOTHING DOESN'T WORK, TRY:
-		                						
-		                						//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
-		                			        	//MainActivity1.this.startActivity(i);
-		                					}
-		                				});
-		                	  			*/
-		                				
-		                	            builder.setAdapter(adapter,
-		                	                    new DialogInterface.OnClickListener() {
-		                	                        @Override
-		                	                        public void onClick(final DialogInterface dialog, int item) {
-		                	                        	
-	                		                        	if (item == 0) {
-	                		                        		
-	                		                        		buttonSound.start();
-	                		                        		
-	                		                        		
-	                		                        		ArrayOfPlayers.player[0] = tempName;
-	                		                        		ArrayOfPlayers.player[1] = "Computer";
-	                		                        		
-	                		                        		
-	                		                        		final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead", "Custom"};
-	                		            		    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2, R.drawable.computer};
-	                		            		    		
-	                		            		    		ListAdapter adapter = new ArrayAdapterWithIcon(MainActivity1.this, items, avatars);
-	                		            		    		
-	                		            		    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
-	                		            		    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
-	                		            		    		//builder.setIcon(R.drawable.computerhead);
-	                		            		    		builder.setTitle("Choose Your Avatar");
-	                		            		    		
-	                		            		    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
-	                		            		    			public void onClick(DialogInterface dialog, int item) { 
-	                		            		    								
-	                		            		    				if (item == 0) {
-	                		            		    					ArrayOfAvatars.avatar[0] = "computer";
-	                		            		    					
-	                		            		    					stopService(svc);	    				
-	                		            			    				
-	                		            			    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
-	                		            			    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-	                		            			    				startActivity(intent);
-	                		            			    	        	
-	                		            			    	        	dialog.dismiss();
-	                		            		    				}
-	                		            		    				else if (item == 1) {
-	                		            		    					ArrayOfAvatars.avatar[0] = "crossedswords";
-	                		            		    					
-	                		            		    					stopService(svc);	    				
-	                		            			    				
-	                		            			    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
-	                		            			    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-	                		            			    				startActivity(intent);
-	                		            			    	        	
-	                		            			    	        	dialog.dismiss();
-	                		            		    				}
-	                		            		    				else if (item == 2) {
-	                		            		    					ArrayOfAvatars.avatar[0] = "stonedead";
-	                		            		    					
-	                		            		    					stopService(svc);	    				
-	                		            			    				
-	                		            			    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
-	                		            			    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-	                		            			    				startActivity(intent);
-	                		            			    	        	
-	                		            			    	        	dialog.dismiss();
-	                		            		    				}
-	                		            		    				else if (item == 3) {
-	                		            		    					ArrayOfAvatars.avatar[0] = "custom";
-	                		            		    					
-	                		            		    					stopService(svc);
-	                		            		    					
-	                		            		    					openGallery();
-	                		            		    					
-	                		            		    					dialog.dismiss();
-	                		            		    				}    				
-	                		            		    	        	
-	                		            		    	        	//finish();
-	                		            	        	  		}
-	                		            		    		});	    		
-	                		            		        	
-	                		            		            builder.create().show();
-	                		                        	}
-	                		                        	
-	                		                        	else if (item == 1) {
-	                		                        		
-	                		                        		buttonSound.start();
-	                		                        		
-	                		                        		multiplayer = "yes";
-	                		                        		
-	                		                        		ArrayOfPlayers.player[5] = tempName;
-	                		                        		
-	                		                        		
-	                		                        		final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead", "Custom"};
-	                		            		    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2, R.drawable.computer};
-	                		            		    		
-	                		            		    		ListAdapter adapter = new ArrayAdapterWithIcon(MainActivity1.this, items, avatars);
-	                		            		    		
-	                		            		    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
-	                		            		    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
-	                		            		    		//builder.setIcon(R.drawable.computerhead);
-	                		            		    		builder.setTitle("Choose Your Avatar");
-	                		            		    		
-	                		            		    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
-	                		            		    			public void onClick(DialogInterface dialog, int item) { 
-	                		            		    								
-	                		            		    				if (item == 0) {
-	                		            		    					ArrayOfAvatars.avatar[5] = "computer";
-	                		            		    					
-	                		            		    					goToHostOrJoin();
-	                		            			    	        	
-	                		            			    	        	dialog.dismiss();
-	                		            		    				}
-	                		            		    				else if (item == 1) {
-	                		            		    					ArrayOfAvatars.avatar[5] = "crossedswords";
-	                		            		    					
-	                		            		    					goToHostOrJoin();
-	                		            			    	        	
-	                		            			    	        	dialog.dismiss();
-	                		            		    				}
-	                		            		    				else if (item == 2) {
-	                		            		    					ArrayOfAvatars.avatar[5] = "stonedead";
-	                		            		    					
-	                		            		    					goToHostOrJoin();
-	                		            			    	        	
-	                		            			    	        	dialog.dismiss();
-	                		            		    				}
-	                		            		    				else if (item == 3) {
-	                		            		    					ArrayOfAvatars.avatar[5] = "custom";	    					
-	                		            		    					
-	                		            		    					openGallery();
-	                		            		    					
-	                		            		    					dialog.dismiss();
-	                		            		    				}    				
-	                		            		    	        	
-	                		            		    	        	//finish();
-	                		            	        	  		}
-	                		            		    		});	    		
-	                		            		        	
-	                		            		            builder.create().show();
-	                		                        	}
-		                	                        }
-		                	                    });	            
-		                	            
-		                	            AlertDialog alert = builder.create();
-		                	            alert.show();	            
-		                	            
-		                	            
-		                	            WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-
-		                	            lp.copyFrom(alert.getWindow().getAttributes());
-		                	            lp.width = 1050;	            
-		                	            alert.getWindow().setAttributes(lp);
-		                	            
-		                	            
-		                	            //h.removeCallbacks(this);
-		                	        	
-		                	        	//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
-		                	        	//MainActivity1.this.startActivity(i);
-		                        	}
-	                        	}
-	                        }
-	                    });	            
-	            
-	            AlertDialog alert = builder.create();
-	            alert.show();	            
-	            
-	            
-	            WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-
-	            lp.copyFrom(alert.getWindow().getAttributes());
-	            lp.width = 1050;	            
-	            alert.getWindow().setAttributes(lp);
-	            
-	            
-	            //h.removeCallbacks(this);
-	        	
-	        	//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
-	        	//MainActivity1.this.startActivity(i);
 			}
 		});
 	}
+	
+	
+	public void hideSystemUI() {
+        // Set the IMMERSIVE flag.
+        // Set the content to appear under the system bars so that the content
+        // doesn't resize when the system bars hide and show.
+        getWindow().getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+    }
 	
 	
 	public void getCount() {
@@ -1317,6 +1401,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 								startActivity(intent);
 								
 								dialog.dismiss();
+								
+								hideSystemUI();
 			          		  }
 			          		  
 			          		  else {
@@ -1327,14 +1413,9 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 			    	        								          		  	
 			          		  	
 			          		  	dialog.dismiss();
+			          		  	
+			          		  	hideSystemUI();
 			          		  }
-			          		  
-			          		  
-			          		  
-			          		  
-			          		  	
-			          		  	
-			    				
 			          	  }
 			          	});	  	    	
 			  	    	
@@ -1397,6 +1478,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
     	        	*/
     				
     	        	dialog.dismiss();
+    	        	
+    	        	hideSystemUI();
 				}
 				else if (item == 1) {    					
 					
@@ -1408,10 +1491,14 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 					Toast.makeText(MainActivity1.this,"JOIN BY INVITE ONLY :(", Toast.LENGTH_LONG).show();
     	        	
     	        	dialog.dismiss();
+    	        	
+    	        	hideSystemUI();
 				}
 				else if (item == 2) {		
     	        	
     	        	dialog.dismiss();
+    	        	
+    	        	hideSystemUI();
 				}    				    				
 	        	
 	        	//finish();
@@ -1455,6 +1542,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
     	        	*/
     				
     	        	dialog.dismiss();
+    	        	
+    	        	hideSystemUI();
 				}
 				else if (item == 1) {
 					
@@ -1569,10 +1658,14 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 					}
     	        	*/
     	        	dialog.dismiss();
+    	        	
+    	        	hideSystemUI();
 				}
 				else if (item == 2) {		
     	        	
     	        	dialog.dismiss();
+    	        	
+    	        	hideSystemUI();
 				}    				    				
 	        	
 	        	//finish();
@@ -1698,6 +1791,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	@Override
     public void onBackPressed() {		
 		
+		//hideSystemUI();
+		
 		//Toast.makeText(MainActivity1.this, "SMS TEST", Toast.LENGTH_SHORT).show();
 		
 		final Intent svc=new Intent(this, Badonk2SoundService.class);
@@ -1803,6 +1898,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	}
 	
 	public void onResume() {
+		
+		hideSystemUI();
 		
 		if (!isMessageSent) {
 		
@@ -1964,7 +2061,9 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	@Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);        
-             
+        
+        hideSystemUI();
+        
         // For sound for buttons:
      	final MediaPlayer buttonSound1 = MediaPlayer.create(MainActivity1.this, R.raw.swordswing);
         final MediaPlayer buttonSound2 = MediaPlayer.create(MainActivity1.this, R.raw.sworddraw1);
@@ -1995,7 +2094,9 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	            	//stopService(svc);
 	            	
 	            	AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity1.this);
-	
+	            	
+	            	alert.setCancelable(false);
+	            	
 	            	alert.setTitle("One Player");
 	            	alert.setMessage("Enter Name");
 	
@@ -2051,6 +2152,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	        	    				startActivity(intent);
 	        	                	
 	        	                	dialog.dismiss();
+	        	                	
+	        	                	hideSystemUI();
 	    	    				}
 	    	    				else if (item == 1) {
 	    	    					ArrayOfAvatars.avatar[0] = "crossedswords";
@@ -2062,6 +2165,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	        	    				startActivity(intent);
 	        	                	
 	        	                	dialog.dismiss();
+	        	                	
+	        	                	hideSystemUI();
 	    	    				}
 	    	    				else if (item == 2) {
 	    	    					ArrayOfAvatars.avatar[0] = "stonedead";
@@ -2073,6 +2178,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	        	    				startActivity(intent);
 	        	                	
 	        	                	dialog.dismiss();
+	        	                	
+	        	                	hideSystemUI();
 	    	    				}
 	    	    				else if (item == 3) {
 	    	    					ArrayOfAvatars.avatar[0] = "custom";
@@ -2082,6 +2189,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	    	    					openGallery();
 	    	    					
 	    	    					dialog.dismiss();
+	    	    					
+	    	    					hideSystemUI();
 	    	    				}   	    				
 	    	                	
 	    	                	//finish();
@@ -2095,7 +2204,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	
 	            	alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 	            	  public void onClick(DialogInterface dialog, int whichButton) {
-	            	    // Canceled.
+	            	    
+	            		  hideSystemUI();
 	            	  }
 	            	});
 	            	
@@ -2172,6 +2282,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	    	    					goToHostOrJoin();
 	    		    	        	
 	    		    	        	dialog.dismiss();
+	    		    	        	
+	    		    	        	hideSystemUI();
 	    	    				}
 	    	    				else if (item == 1) {
 	    	    					ArrayOfAvatars.avatar[5] = "crossedswords";
@@ -2179,6 +2291,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	    	    					goToHostOrJoin();
 	    		    	        	
 	    		    	        	dialog.dismiss();
+	    		    	        	
+	    		    	        	hideSystemUI();
 	    	    				}
 	    	    				else if (item == 2) {
 	    	    					ArrayOfAvatars.avatar[5] = "stonedead";
@@ -2186,6 +2300,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	    	    					goToHostOrJoin();
 	    		    	        	
 	    		    	        	dialog.dismiss();
+	    		    	        	
+	    		    	        	hideSystemUI();
 	    	    				}
 	    	    				else if (item == 3) {
 	    	    					ArrayOfAvatars.avatar[5] = "custom";	    					
@@ -2193,6 +2309,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	    	    					openGallery();
 	    	    					
 	    	    					dialog.dismiss();
+	    	    					
+	    	    					hideSystemUI();
 	    	    				}    				
 	    	    	        	
 	    	    	        	//finish();
@@ -2206,7 +2324,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	
 	            	alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 	            	  public void onClick(DialogInterface dialog, int whichButton) {
-	            	    // Canceled.
+	            	    
+	            		  hideSystemUI();
 	            	  }
 	            	});
 	            	
@@ -2263,330 +2382,353 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
   				      
 	        			getPlayerNamesFromFile();
 	        			
+	        			
+	        			stopService(svc);
+						startService(svc);
+	        			
+	        			
+	        			// Instead of String[] items, Here you can also use ArrayList for your custom object..
+	    	        	
+	    	        	final String[] nameForAdapter = new String[count];
+	    	        	
+	    	        	for (int i = 0; i < count; i++) {
+	    	        		
+	    	        		nameForAdapter[i] = name[i];
+	    	        	}
+	    	        	
+	    		  		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.list_row, R.id.title, nameForAdapter) {
+	    	
+	    		  		    ViewHolder holder;
+	    		  		    Drawable icon;//FOR LAST AVATAR THAT WAS USED??? (LOCATION CAN BE SAVE LIKE OTHER GAME DATA)
+	    	
+	    		  		    class ViewHolder {
+	    		  		        ImageView icon;
+	    		  		        TextView title;						
+	    		  		    }
+	    	
+	    		  		    public View getView(int position, View convertView, ViewGroup parent) {
+	    		  		        final LayoutInflater inflater = (LayoutInflater) getApplicationContext()
+	    		  		                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);		  			  		        
+	    	
+	    		  		        if (convertView == null) {
+	    		  		            convertView = inflater.inflate(R.layout.list_row, null);
+	    	
+	    		  		            holder = new ViewHolder();
+	    		  		            holder.icon = (ImageView) convertView.findViewById(R.id.icon);
+	    		  		            holder.title = (TextView) convertView.findViewById(R.id.title);		  		           
+	    		  		            
+	    		  		            convertView.setTag(holder);
+	    		  		        }
+	    		  		        
+	    		  		        else {
+	    		  		            // view already defined, retrieve view holder
+	    		  		            holder = (ViewHolder) convertView.getTag();
+	    		  		        }       
+	    	
+	    		  		       // Drawable drawable = getResources().getDrawable(R.drawable.list_icon); //this is an image from the drawables folder
+	    	
+	    		  		        holder.title.setText(nameForAdapter[position]);
+	    		  		        //holder.icon.setImageDrawable(drawable);     
+	    		  		        
+	    	
+	    		  		        return convertView;
+	    		  		    }
+	    		  		};
+	    		  		
+	    		  		
+	    		  		// THIS WAY ALLOWS YOU TO STYLE THE DIALOG (ex. background doesn't dim.):
+	    		  		ContextThemeWrapper cw = new ContextThemeWrapper(MainActivity1.this, R.style.DialogWindowTitle_Holo);
+	    		  		AlertDialog.Builder builder = new AlertDialog.Builder(cw);		  			  		
+	    		  		
+	    	  			
+	    		  		builder.setTitle("Choose Your Guy");
+	    		  		
+	    		  		
+	    	  			//builder.setCancelable(false);
+	    	  			
+	    	  			/*
+	    				builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+	    					@Override
+	    					public void onCancel(DialogInterface dialog) {		  							
+	    						
+	    						//IF NOTHING DOESN'T WORK, TRY:
+	    						
+	    						//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+	    			        	//MainActivity1.this.startActivity(i);
+	    					}
+	    				});
+	    	  			*/
+	    				
+	    	            builder.setAdapter(adapter,
+	    	                    new DialogInterface.OnClickListener() {
+	    	                        @Override
+	    	                        public void onClick(final DialogInterface dialog, int item) {
+	    	                        	
+	    	                        	for (int i = 0; i < count; i++) {
+	    	                        	
+	    		                        	if (item == i) {
+	    		                        		
+	    		                        		buttonSound.start();
+	    		                        		
+	    		                        		ArrayOfPlayers.player[5] = name[i];
+	    		                        		
+	    		                        		
+	    		                        		final String[] items = {"One Player", "Multiplayer"};
+	    		                        		
+	    		                        		// Instead of String[] items, Here you can also use ArrayList for your custom object..
+	    		                        		
+	    		                		  		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.list_row, R.id.title,items) {
+	    		                	
+	    		                		  		    ViewHolder holder;
+	    		                		  		    Drawable icon;//FOR LAST AVATAR THAT WAS USED??? (LOCATION CAN BE SAVE LIKE OTHER GAME DATA)
+	    		                	
+	    		                		  		    class ViewHolder {
+	    		                		  		        ImageView icon;
+	    		                		  		        TextView title;						
+	    		                		  		    }
+	    		                	
+	    		                		  		    public View getView(int position, View convertView, ViewGroup parent) {
+	    		                		  		        final LayoutInflater inflater = (LayoutInflater) getApplicationContext()
+	    		                		  		                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);		  			  		        
+	    		                	
+	    		                		  		        if (convertView == null) {
+	    		                		  		            convertView = inflater.inflate(R.layout.list_row, null);
+	    		                	
+	    		                		  		            holder = new ViewHolder();
+	    		                		  		            holder.icon = (ImageView) convertView.findViewById(R.id.icon);
+	    		                		  		            holder.title = (TextView) convertView.findViewById(R.id.title);		  		           
+	    		                		  		            
+	    		                		  		            convertView.setTag(holder);
+	    		                		  		        }
+	    		                		  		        
+	    		                		  		        else {
+	    		                		  		            // view already defined, retrieve view holder
+	    		                		  		            holder = (ViewHolder) convertView.getTag();
+	    		                		  		        }       
+	    		                	
+	    		                		  		       // Drawable drawable = getResources().getDrawable(R.drawable.list_icon); //this is an image from the drawables folder
+	    		                	
+	    		                		  		        holder.title.setText(items[position]);
+	    		                		  		        //holder.icon.setImageDrawable(drawable);     
+	    		                		  		        
+	    		                	
+	    		                		  		        return convertView;
+	    		                		  		    }
+	    		                		  		};
+	    		                		  		
+	    		                		  		
+	    		                		  		// THIS WAY ALLOWS YOU TO STYLE THE DIALOG (ex. background doesn't dim.):
+	    		                		  		ContextThemeWrapper cw = new ContextThemeWrapper(MainActivity1.this, R.style.DialogWindowTitle_Holo);
+	    		                		  		AlertDialog.Builder builder = new AlertDialog.Builder(cw);		  			  		
+	    		                		  		
+	    		                	  			
+	    		                		  		builder.setTitle("Choose Your Game");
+	    		                		  		
+	    		                		  		
+	    		                	  			//builder.setCancelable(false);
+	    		                	  			
+	    		                	  			/*
+	    		                				builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+	    		                					@Override
+	    		                					public void onCancel(DialogInterface dialog) {		  							
+	    		                						
+	    		                						//IF NOTHING DOESN'T WORK, TRY:
+	    		                						
+	    		                						//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+	    		                			        	//MainActivity1.this.startActivity(i);
+	    		                					}
+	    		                				});
+	    		                	  			*/
+	    		                				
+	    		                	            builder.setAdapter(adapter,
+	    		                	                    new DialogInterface.OnClickListener() {
+	    		                	                        @Override
+	    		                	                        public void onClick(final DialogInterface dialog, int item) {
+	    		                	                        	
+	    	                		                        	if (item == 0) {
+	    	                		                        		
+	    	                		                        		buttonSound.start();
+	    	                		                        		
+	    	                		                        		final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead", "Custom"};
+	    	                		            		    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2, R.drawable.computer};
+	    	                		            		    		
+	    	                		            		    		ListAdapter adapter = new ArrayAdapterWithIcon(MainActivity1.this, items, avatars);
+	    	                		            		    		
+	    	                		            		    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
+	    	                		            		    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
+	    	                		            		    		//builder.setIcon(R.drawable.computerhead);
+	    	                		            		    		builder.setTitle("Choose Your Avatar");
+	    	                		            		    		
+	    	                		            		    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
+	    	                		            		    			public void onClick(DialogInterface dialog, int item) { 
+	    	                		            		    								
+	    	                		            		    				if (item == 0) {
+	    	                		            		    					ArrayOfAvatars.avatar[0] = "computer";
+	    	                		            		    					
+	    	                		            		    					stopService(svc);	    				
+	    	                		            			    				
+	    	                		            			    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+	    	                		            			    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+	    	                		            			    				startActivity(intent);
+	    	                		            			    	        	
+	    	                		            			    	        	dialog.dismiss();
+	    	                		            			    	        	
+	    	                		            			    	        	hideSystemUI();
+	    	                		            		    				}
+	    	                		            		    				else if (item == 1) {
+	    	                		            		    					ArrayOfAvatars.avatar[0] = "crossedswords";
+	    	                		            		    					
+	    	                		            		    					stopService(svc);	    				
+	    	                		            			    				
+	    	                		            			    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+	    	                		            			    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+	    	                		            			    				startActivity(intent);
+	    	                		            			    	        	
+	    	                		            			    	        	dialog.dismiss();
+	    	                		            			    	        	
+	    	                		            			    	        	hideSystemUI();
+	    	                		            		    				}
+	    	                		            		    				else if (item == 2) {
+	    	                		            		    					ArrayOfAvatars.avatar[0] = "stonedead";
+	    	                		            		    					
+	    	                		            		    					stopService(svc);	    				
+	    	                		            			    				
+	    	                		            			    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+	    	                		            			    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+	    	                		            			    				startActivity(intent);
+	    	                		            			    	        	
+	    	                		            			    	        	dialog.dismiss();
+	    	                		            			    	        	
+	    	                		            			    	        	hideSystemUI();
+	    	                		            		    				}
+	    	                		            		    				else if (item == 3) {
+	    	                		            		    					ArrayOfAvatars.avatar[0] = "custom";
+	    	                		            		    					
+	    	                		            		    					stopService(svc);
+	    	                		            		    					
+	    	                		            		    					openGallery();
+	    	                		            		    					
+	    	                		            		    					dialog.dismiss();
+	    	                		            		    					
+	    	                		            		    					hideSystemUI();
+	    	                		            		    				}    				
+	    	                		            		    	        	
+	    	                		            		    	        	//finish();
+	    	                		            	        	  		}
+	    	                		            		    		});	    		
+	    	                		            		        	
+	    	                		            		            builder.create().show();
+	    	                		                        	}
+	    	                		                        	
+	    	                		                        	else if (item == 1) {
+	    	                		                        		
+	    	                		                        		buttonSound.start();
+	    	                		                        		
+	    	                		                        		multiplayer = "yes";
+	    	                		                        		
+	    	                		                        		
+	    	                		                        		final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead", "Custom"};
+	    	                		            		    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2, R.drawable.computer};
+	    	                		            		    		
+	    	                		            		    		ListAdapter adapter = new ArrayAdapterWithIcon(MainActivity1.this, items, avatars);
+	    	                		            		    		
+	    	                		            		    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
+	    	                		            		    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
+	    	                		            		    		//builder.setIcon(R.drawable.computerhead);
+	    	                		            		    		builder.setTitle("Choose Your Avatar");
+	    	                		            		    		
+	    	                		            		    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
+	    	                		            		    			public void onClick(DialogInterface dialog, int item) { 
+	    	                		            		    								
+	    	                		            		    				if (item == 0) {
+	    	                		            		    					ArrayOfAvatars.avatar[5] = "computer";
+	    	                		            		    					
+	    	                		            		    					goToHostOrJoin();
+	    	                		            			    	        	
+	    	                		            			    	        	dialog.dismiss();
+	    	                		            			    	        	
+	    	                		            			    	        	hideSystemUI();
+	    	                		            		    				}
+	    	                		            		    				else if (item == 1) {
+	    	                		            		    					ArrayOfAvatars.avatar[5] = "crossedswords";
+	    	                		            		    					
+	    	                		            		    					goToHostOrJoin();
+	    	                		            			    	        	
+	    	                		            			    	        	dialog.dismiss();
+	    	                		            			    	        	
+	    	                		            			    	        	hideSystemUI();
+	    	                		            		    				}
+	    	                		            		    				else if (item == 2) {
+	    	                		            		    					ArrayOfAvatars.avatar[5] = "stonedead";
+	    	                		            		    					
+	    	                		            		    					goToHostOrJoin();
+	    	                		            			    	        	
+	    	                		            			    	        	dialog.dismiss();
+	    	                		            			    	        	
+	    	                		            			    	        	hideSystemUI();
+	    	                		            		    				}
+	    	                		            		    				else if (item == 3) {
+	    	                		            		    					ArrayOfAvatars.avatar[5] = "custom";	    					
+	    	                		            		    					
+	    	                		            		    					openGallery();
+	    	                		            		    					
+	    	                		            		    					dialog.dismiss();
+	    	                		            		    					
+	    	                		            		    					hideSystemUI();
+	    	                		            		    				}    				
+	    	                		            		    	        	
+	    	                		            		    	        	//finish();
+	    	                		            	        	  		}
+	    	                		            		    		});	    		
+	    	                		            		        	
+	    	                		            		            builder.create().show();
+	    	                		                        	}
+	    		                	                        }
+	    		                	                    });	            
+	    		                	            
+	    		                	            AlertDialog alert = builder.create();
+	    		                	            alert.show();	            
+	    		                	            
+	    		                	            
+	    		                	            WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+
+	    		                	            lp.copyFrom(alert.getWindow().getAttributes());
+	    		                	            lp.width = 1050;	            
+	    		                	            alert.getWindow().setAttributes(lp);
+	    		                	            
+	    		                	            
+	    		                	            //h.removeCallbacks(this);
+	    		                	        	
+	    		                	        	//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+	    		                	        	//MainActivity1.this.startActivity(i);
+	    		                        	}
+	    	                        	}
+	    	                        }
+	    	                    });	            
+	    	            
+	    	            AlertDialog alert = builder.create();
+	    	            alert.show();	            
+	    	            
+	    	            
+	    	            WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+
+	    	            lp.copyFrom(alert.getWindow().getAttributes());
+	    	            lp.width = 1050;	            
+	    	            alert.getWindow().setAttributes(lp);
+	    	            
+	    	            
+	    	            //h.removeCallbacks(this);
+	    	        	
+	    	        	//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+	    	        	//MainActivity1.this.startActivity(i);
+	        			
     	        		} catch (Exception e) {
 				      
-				   		Toast.makeText(MainActivity1.this, "LOW MEMORY", Toast.LENGTH_LONG).show();
+				   		Toast.makeText(MainActivity1.this, "No Guys", Toast.LENGTH_LONG).show();
+				   		
+				   		stopService(svc);
+						startService(svc);
 	        		}
-    	        	
-      	  	  		
-    		  		// Instead of String[] items, Here you can also use ArrayList for your custom object..
-    	        	
-    	        	final String[] nameForAdapter = new String[count];
-    	        	
-    	        	for (int i = 0; i < count; i++) {
-    	        		
-    	        		nameForAdapter[i] = name[i];
-    	        	}
-    	        	
-    		  		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.list_row, R.id.title, nameForAdapter) {
-    	
-    		  		    ViewHolder holder;
-    		  		    Drawable icon;//FOR LAST AVATAR THAT WAS USED??? (LOCATION CAN BE SAVE LIKE OTHER GAME DATA)
-    	
-    		  		    class ViewHolder {
-    		  		        ImageView icon;
-    		  		        TextView title;						
-    		  		    }
-    	
-    		  		    public View getView(int position, View convertView, ViewGroup parent) {
-    		  		        final LayoutInflater inflater = (LayoutInflater) getApplicationContext()
-    		  		                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);		  			  		        
-    	
-    		  		        if (convertView == null) {
-    		  		            convertView = inflater.inflate(R.layout.list_row, null);
-    	
-    		  		            holder = new ViewHolder();
-    		  		            holder.icon = (ImageView) convertView.findViewById(R.id.icon);
-    		  		            holder.title = (TextView) convertView.findViewById(R.id.title);		  		           
-    		  		            
-    		  		            convertView.setTag(holder);
-    		  		        }
-    		  		        
-    		  		        else {
-    		  		            // view already defined, retrieve view holder
-    		  		            holder = (ViewHolder) convertView.getTag();
-    		  		        }       
-    	
-    		  		       // Drawable drawable = getResources().getDrawable(R.drawable.list_icon); //this is an image from the drawables folder
-    	
-    		  		        holder.title.setText(nameForAdapter[position]);
-    		  		        //holder.icon.setImageDrawable(drawable);     
-    		  		        
-    	
-    		  		        return convertView;
-    		  		    }
-    		  		};
-    		  		
-    		  		
-    		  		// THIS WAY ALLOWS YOU TO STYLE THE DIALOG (ex. background doesn't dim.):
-    		  		ContextThemeWrapper cw = new ContextThemeWrapper(MainActivity1.this, R.style.DialogWindowTitle_Holo);
-    		  		AlertDialog.Builder builder = new AlertDialog.Builder(cw);		  			  		
-    		  		
-    	  			
-    		  		builder.setTitle("Choose Your Guy");
-    		  		
-    		  		
-    	  			//builder.setCancelable(false);
-    	  			
-    	  			/*
-    				builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
-    					@Override
-    					public void onCancel(DialogInterface dialog) {		  							
-    						
-    						//IF NOTHING DOESN'T WORK, TRY:
-    						
-    						//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
-    			        	//MainActivity1.this.startActivity(i);
-    					}
-    				});
-    	  			*/
-    				
-    	            builder.setAdapter(adapter,
-    	                    new DialogInterface.OnClickListener() {
-    	                        @Override
-    	                        public void onClick(final DialogInterface dialog, int item) {
-    	                        	
-    	                        	for (int i = 0; i < count; i++) {
-    	                        	
-    		                        	if (item == i) {
-    		                        		
-    		                        		buttonSound.start();
-    		                        		
-    		                        		ArrayOfPlayers.player[5] = name[i];
-    		                        		
-    		                        		
-    		                        		final String[] items = {"One Player", "Multiplayer"};
-    		                        		
-    		                        		// Instead of String[] items, Here you can also use ArrayList for your custom object..
-    		                        		
-    		                		  		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.list_row, R.id.title,items) {
-    		                	
-    		                		  		    ViewHolder holder;
-    		                		  		    Drawable icon;//FOR LAST AVATAR THAT WAS USED??? (LOCATION CAN BE SAVE LIKE OTHER GAME DATA)
-    		                	
-    		                		  		    class ViewHolder {
-    		                		  		        ImageView icon;
-    		                		  		        TextView title;						
-    		                		  		    }
-    		                	
-    		                		  		    public View getView(int position, View convertView, ViewGroup parent) {
-    		                		  		        final LayoutInflater inflater = (LayoutInflater) getApplicationContext()
-    		                		  		                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);		  			  		        
-    		                	
-    		                		  		        if (convertView == null) {
-    		                		  		            convertView = inflater.inflate(R.layout.list_row, null);
-    		                	
-    		                		  		            holder = new ViewHolder();
-    		                		  		            holder.icon = (ImageView) convertView.findViewById(R.id.icon);
-    		                		  		            holder.title = (TextView) convertView.findViewById(R.id.title);		  		           
-    		                		  		            
-    		                		  		            convertView.setTag(holder);
-    		                		  		        }
-    		                		  		        
-    		                		  		        else {
-    		                		  		            // view already defined, retrieve view holder
-    		                		  		            holder = (ViewHolder) convertView.getTag();
-    		                		  		        }       
-    		                	
-    		                		  		       // Drawable drawable = getResources().getDrawable(R.drawable.list_icon); //this is an image from the drawables folder
-    		                	
-    		                		  		        holder.title.setText(items[position]);
-    		                		  		        //holder.icon.setImageDrawable(drawable);     
-    		                		  		        
-    		                	
-    		                		  		        return convertView;
-    		                		  		    }
-    		                		  		};
-    		                		  		
-    		                		  		
-    		                		  		// THIS WAY ALLOWS YOU TO STYLE THE DIALOG (ex. background doesn't dim.):
-    		                		  		ContextThemeWrapper cw = new ContextThemeWrapper(MainActivity1.this, R.style.DialogWindowTitle_Holo);
-    		                		  		AlertDialog.Builder builder = new AlertDialog.Builder(cw);		  			  		
-    		                		  		
-    		                	  			
-    		                		  		builder.setTitle("Choose Your Game");
-    		                		  		
-    		                		  		
-    		                	  			//builder.setCancelable(false);
-    		                	  			
-    		                	  			/*
-    		                				builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
-    		                					@Override
-    		                					public void onCancel(DialogInterface dialog) {		  							
-    		                						
-    		                						//IF NOTHING DOESN'T WORK, TRY:
-    		                						
-    		                						//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
-    		                			        	//MainActivity1.this.startActivity(i);
-    		                					}
-    		                				});
-    		                	  			*/
-    		                				
-    		                	            builder.setAdapter(adapter,
-    		                	                    new DialogInterface.OnClickListener() {
-    		                	                        @Override
-    		                	                        public void onClick(final DialogInterface dialog, int item) {
-    		                	                        	
-    	                		                        	if (item == 0) {
-    	                		                        		
-    	                		                        		buttonSound.start();
-    	                		                        		
-    	                		                        		final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead", "Custom"};
-    	                		            		    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2, R.drawable.computer};
-    	                		            		    		
-    	                		            		    		ListAdapter adapter = new ArrayAdapterWithIcon(MainActivity1.this, items, avatars);
-    	                		            		    		
-    	                		            		    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
-    	                		            		    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
-    	                		            		    		//builder.setIcon(R.drawable.computerhead);
-    	                		            		    		builder.setTitle("Choose Your Avatar");
-    	                		            		    		
-    	                		            		    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
-    	                		            		    			public void onClick(DialogInterface dialog, int item) { 
-    	                		            		    								
-    	                		            		    				if (item == 0) {
-    	                		            		    					ArrayOfAvatars.avatar[0] = "computer";
-    	                		            		    					
-    	                		            		    					stopService(svc);	    				
-    	                		            			    				
-    	                		            			    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
-    	                		            			    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-    	                		            			    				startActivity(intent);
-    	                		            			    	        	
-    	                		            			    	        	dialog.dismiss();
-    	                		            		    				}
-    	                		            		    				else if (item == 1) {
-    	                		            		    					ArrayOfAvatars.avatar[0] = "crossedswords";
-    	                		            		    					
-    	                		            		    					stopService(svc);	    				
-    	                		            			    				
-    	                		            			    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
-    	                		            			    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-    	                		            			    				startActivity(intent);
-    	                		            			    	        	
-    	                		            			    	        	dialog.dismiss();
-    	                		            		    				}
-    	                		            		    				else if (item == 2) {
-    	                		            		    					ArrayOfAvatars.avatar[0] = "stonedead";
-    	                		            		    					
-    	                		            		    					stopService(svc);	    				
-    	                		            			    				
-    	                		            			    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
-    	                		            			    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-    	                		            			    				startActivity(intent);
-    	                		            			    	        	
-    	                		            			    	        	dialog.dismiss();
-    	                		            		    				}
-    	                		            		    				else if (item == 3) {
-    	                		            		    					ArrayOfAvatars.avatar[0] = "custom";
-    	                		            		    					
-    	                		            		    					stopService(svc);
-    	                		            		    					
-    	                		            		    					openGallery();
-    	                		            		    					
-    	                		            		    					dialog.dismiss();
-    	                		            		    				}    				
-    	                		            		    	        	
-    	                		            		    	        	//finish();
-    	                		            	        	  		}
-    	                		            		    		});	    		
-    	                		            		        	
-    	                		            		            builder.create().show();
-    	                		                        	}
-    	                		                        	
-    	                		                        	else if (item == 1) {
-    	                		                        		
-    	                		                        		buttonSound.start();
-    	                		                        		
-    	                		                        		multiplayer = "yes";
-    	                		                        		
-    	                		                        		
-    	                		                        		final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead", "Custom"};
-    	                		            		    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2, R.drawable.computer};
-    	                		            		    		
-    	                		            		    		ListAdapter adapter = new ArrayAdapterWithIcon(MainActivity1.this, items, avatars);
-    	                		            		    		
-    	                		            		    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
-    	                		            		    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
-    	                		            		    		//builder.setIcon(R.drawable.computerhead);
-    	                		            		    		builder.setTitle("Choose Your Avatar");
-    	                		            		    		
-    	                		            		    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
-    	                		            		    			public void onClick(DialogInterface dialog, int item) { 
-    	                		            		    								
-    	                		            		    				if (item == 0) {
-    	                		            		    					ArrayOfAvatars.avatar[5] = "computer";
-    	                		            		    					
-    	                		            		    					goToHostOrJoin();
-    	                		            			    	        	
-    	                		            			    	        	dialog.dismiss();
-    	                		            		    				}
-    	                		            		    				else if (item == 1) {
-    	                		            		    					ArrayOfAvatars.avatar[5] = "crossedswords";
-    	                		            		    					
-    	                		            		    					goToHostOrJoin();
-    	                		            			    	        	
-    	                		            			    	        	dialog.dismiss();
-    	                		            		    				}
-    	                		            		    				else if (item == 2) {
-    	                		            		    					ArrayOfAvatars.avatar[5] = "stonedead";
-    	                		            		    					
-    	                		            		    					goToHostOrJoin();
-    	                		            			    	        	
-    	                		            			    	        	dialog.dismiss();
-    	                		            		    				}
-    	                		            		    				else if (item == 3) {
-    	                		            		    					ArrayOfAvatars.avatar[5] = "custom";	    					
-    	                		            		    					
-    	                		            		    					openGallery();
-    	                		            		    					
-    	                		            		    					dialog.dismiss();
-    	                		            		    				}    				
-    	                		            		    	        	
-    	                		            		    	        	//finish();
-    	                		            	        	  		}
-    	                		            		    		});	    		
-    	                		            		        	
-    	                		            		            builder.create().show();
-    	                		                        	}
-    		                	                        }
-    		                	                    });	            
-    		                	            
-    		                	            AlertDialog alert = builder.create();
-    		                	            alert.show();	            
-    		                	            
-    		                	            
-    		                	            WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-
-    		                	            lp.copyFrom(alert.getWindow().getAttributes());
-    		                	            lp.width = 1050;	            
-    		                	            alert.getWindow().setAttributes(lp);
-    		                	            
-    		                	            
-    		                	            //h.removeCallbacks(this);
-    		                	        	
-    		                	        	//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
-    		                	        	//MainActivity1.this.startActivity(i);
-    		                        	}
-    	                        	}
-    	                        }
-    	                    });	            
-    	            
-    	            AlertDialog alert = builder.create();
-    	            alert.show();	            
-    	            
-    	            
-    	            WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-
-    	            lp.copyFrom(alert.getWindow().getAttributes());
-    	            lp.width = 1050;	            
-    	            alert.getWindow().setAttributes(lp);
-    	            
-    	            
-    	            //h.removeCallbacks(this);
-    	        	
-    	        	//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
-    	        	//MainActivity1.this.startActivity(i);
     			}
     		});
     		
@@ -2594,6 +2736,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
         } 
         
         else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+        	
+        	hideSystemUI();
         	
         	setContentView(R.layout.activity_main_activity1);
         	
@@ -2616,7 +2760,9 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	            	//stopService(svc);
 	            	
 	            	AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity1.this);
-	
+	            	
+	            	alert.setCancelable(false);
+	            	
 	            	alert.setTitle("One Player");
 	            	alert.setMessage("Enter Name");
 	
@@ -2672,6 +2818,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	        	    				startActivity(intent);
 	        	                	
 	        	                	dialog.dismiss();
+	        	                	
+	        	                	hideSystemUI();
 	    	    				}
 	    	    				else if (item == 1) {
 	    	    					ArrayOfAvatars.avatar[0] = "crossedswords";
@@ -2683,6 +2831,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	        	    				startActivity(intent);
 	        	                	
 	        	                	dialog.dismiss();
+	        	                	
+	        	                	hideSystemUI();
 	    	    				}
 	    	    				else if (item == 2) {
 	    	    					ArrayOfAvatars.avatar[0] = "stonedead";
@@ -2694,6 +2844,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	        	    				startActivity(intent);
 	        	                	
 	        	                	dialog.dismiss();
+	        	                	
+	        	                	hideSystemUI();
 	    	    				}
 	    	    				else if (item == 3) {
 	    	    					ArrayOfAvatars.avatar[0] = "custom";
@@ -2703,6 +2855,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	    	    					openGallery();
 	    	    					
 	    	    					dialog.dismiss();
+	    	    					
+	    	    					hideSystemUI();
 	    	    				}   	    				
 	    	                	
 	    	                	//finish();
@@ -2716,7 +2870,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	
 	            	alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 	            	  public void onClick(DialogInterface dialog, int whichButton) {
-	            	    // Canceled.
+	            	    
+	            		  hideSystemUI();
 	            	  }
 	            	});
 	            	
@@ -2793,6 +2948,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	    	    					goToHostOrJoin();
 	    		    	        	
 	    		    	        	dialog.dismiss();
+	    		    	        	
+	    		    	        	hideSystemUI();
 	    	    				}
 	    	    				else if (item == 1) {
 	    	    					ArrayOfAvatars.avatar[5] = "crossedswords";
@@ -2800,6 +2957,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	    	    					goToHostOrJoin();
 	    		    	        	
 	    		    	        	dialog.dismiss();
+	    		    	        	
+	    		    	        	hideSystemUI();
 	    	    				}
 	    	    				else if (item == 2) {
 	    	    					ArrayOfAvatars.avatar[5] = "stonedead";
@@ -2807,6 +2966,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	    	    					goToHostOrJoin();
 	    		    	        	
 	    		    	        	dialog.dismiss();
+	    		    	        	
+	    		    	        	hideSystemUI();
 	    	    				}
 	    	    				else if (item == 3) {
 	    	    					ArrayOfAvatars.avatar[5] = "custom";	    					
@@ -2814,6 +2975,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	    	    					openGallery();
 	    	    					
 	    	    					dialog.dismiss();
+	    	    					
+	    	    					hideSystemUI();
 	    	    				}    				
 	    	    	        	
 	    	    	        	//finish();
@@ -2827,7 +2990,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	
 	            	alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 	            	  public void onClick(DialogInterface dialog, int whichButton) {
-	            	    // Canceled.
+	            	    
+	            		  hideSystemUI();
 	            	  }
 	            	});
 	            	
@@ -2883,329 +3047,352 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
   				      
 	        			getPlayerNamesFromFile();
 	        			
+	        			
+	        			stopService(svc);
+						startService(svc);
+	        			
+	        			
+	        			// Instead of String[] items, Here you can also use ArrayList for your custom object..
+	    	        	
+	    	        	final String[] nameForAdapter = new String[count];
+	    	        	
+	    	        	for (int i = 0; i < count; i++) {
+	    	        		
+	    	        		nameForAdapter[i] = name[i];
+	    	        	}
+	    	        	
+	    		  		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.list_row, R.id.title, nameForAdapter) {
+	    	
+	    		  		    ViewHolder holder;
+	    		  		    Drawable icon;//FOR LAST AVATAR THAT WAS USED??? (LOCATION CAN BE SAVE LIKE OTHER GAME DATA)
+	    	
+	    		  		    class ViewHolder {
+	    		  		        ImageView icon;
+	    		  		        TextView title;						
+	    		  		    }
+	    	
+	    		  		    public View getView(int position, View convertView, ViewGroup parent) {
+	    		  		        final LayoutInflater inflater = (LayoutInflater) getApplicationContext()
+	    		  		                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);		  			  		        
+	    	
+	    		  		        if (convertView == null) {
+	    		  		            convertView = inflater.inflate(R.layout.list_row, null);
+	    	
+	    		  		            holder = new ViewHolder();
+	    		  		            holder.icon = (ImageView) convertView.findViewById(R.id.icon);
+	    		  		            holder.title = (TextView) convertView.findViewById(R.id.title);		  		           
+	    		  		            
+	    		  		            convertView.setTag(holder);
+	    		  		        }
+	    		  		        
+	    		  		        else {
+	    		  		            // view already defined, retrieve view holder
+	    		  		            holder = (ViewHolder) convertView.getTag();
+	    		  		        }       
+	    	
+	    		  		       // Drawable drawable = getResources().getDrawable(R.drawable.list_icon); //this is an image from the drawables folder
+	    	
+	    		  		        holder.title.setText(nameForAdapter[position]);
+	    		  		        //holder.icon.setImageDrawable(drawable);     
+	    		  		        
+	    	
+	    		  		        return convertView;
+	    		  		    }
+	    		  		};
+	    		  		
+	    		  		
+	    		  		// THIS WAY ALLOWS YOU TO STYLE THE DIALOG (ex. background doesn't dim.):
+	    		  		ContextThemeWrapper cw = new ContextThemeWrapper(MainActivity1.this, R.style.DialogWindowTitle_Holo);
+	    		  		AlertDialog.Builder builder = new AlertDialog.Builder(cw);		  			  		
+	    		  		
+	    		  		
+	    		  		builder.setTitle("Choose Your Guy");
+	    		  		
+	    		  		
+	    	  			//builder.setCancelable(false);
+	    	  			
+	    	  			/*
+	    				builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+	    					@Override
+	    					public void onCancel(DialogInterface dialog) {		  							
+	    						
+	    						//IF NOTHING DOESN'T WORK, TRY:
+	    						
+	    						//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+	    			        	//MainActivity1.this.startActivity(i);
+	    					}
+	    				});
+	    	  			*/
+	    				
+	    	            builder.setAdapter(adapter,
+	    	                    new DialogInterface.OnClickListener() {
+	    	                        @Override
+	    	                        public void onClick(final DialogInterface dialog, int item) {
+	    	                        	
+	    	                        	for (int i = 0; i < count; i++) {
+	    	                        	
+	    		                        	if (item == i) {
+	    		                        		
+	    		                        		buttonSound.start();
+	    		                        		
+	    		                        		ArrayOfPlayers.player[5] = name[i];
+	    		                        		
+	    		                        		
+	    		                        		final String[] items = {"One Player", "Multiplayer"};
+	    		                        		
+	    		                        		// Instead of String[] items, Here you can also use ArrayList for your custom object..
+	    		                        		
+	    		                		  		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.list_row, R.id.title,items) {
+	    		                	
+	    		                		  		    ViewHolder holder;
+	    		                		  		    Drawable icon;//FOR LAST AVATAR THAT WAS USED??? (LOCATION CAN BE SAVE LIKE OTHER GAME DATA)
+	    		                	
+	    		                		  		    class ViewHolder {
+	    		                		  		        ImageView icon;
+	    		                		  		        TextView title;						
+	    		                		  		    }
+	    		                	
+	    		                		  		    public View getView(int position, View convertView, ViewGroup parent) {
+	    		                		  		        final LayoutInflater inflater = (LayoutInflater) getApplicationContext()
+	    		                		  		                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);		  			  		        
+	    		                	
+	    		                		  		        if (convertView == null) {
+	    		                		  		            convertView = inflater.inflate(R.layout.list_row, null);
+	    		                	
+	    		                		  		            holder = new ViewHolder();
+	    		                		  		            holder.icon = (ImageView) convertView.findViewById(R.id.icon);
+	    		                		  		            holder.title = (TextView) convertView.findViewById(R.id.title);		  		           
+	    		                		  		            
+	    		                		  		            convertView.setTag(holder);
+	    		                		  		        }
+	    		                		  		        
+	    		                		  		        else {
+	    		                		  		            // view already defined, retrieve view holder
+	    		                		  		            holder = (ViewHolder) convertView.getTag();
+	    		                		  		        }       
+	    		                	
+	    		                		  		       // Drawable drawable = getResources().getDrawable(R.drawable.list_icon); //this is an image from the drawables folder
+	    		                	
+	    		                		  		        holder.title.setText(items[position]);
+	    		                		  		        //holder.icon.setImageDrawable(drawable);     
+	    		                		  		        
+	    		                	
+	    		                		  		        return convertView;
+	    		                		  		    }
+	    		                		  		};
+	    		                		  		
+	    		                		  		
+	    		                		  		// THIS WAY ALLOWS YOU TO STYLE THE DIALOG (ex. background doesn't dim.):
+	    		                		  		ContextThemeWrapper cw = new ContextThemeWrapper(MainActivity1.this, R.style.DialogWindowTitle_Holo);
+	    		                		  		AlertDialog.Builder builder = new AlertDialog.Builder(cw);		  			  		
+	    		                		  		
+	    		                	  			
+	    		                		  		builder.setTitle("Choose Your Game");
+	    		                		  		
+	    		                	  			//builder.setCancelable(false);
+	    		                	  			
+	    		                	  			/*
+	    		                				builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+	    		                					@Override
+	    		                					public void onCancel(DialogInterface dialog) {		  							
+	    		                						
+	    		                						//IF NOTHING DOESN'T WORK, TRY:
+	    		                						
+	    		                						//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+	    		                			        	//MainActivity1.this.startActivity(i);
+	    		                					}
+	    		                				});
+	    		                	  			*/
+	    		                				
+	    		                	            builder.setAdapter(adapter,
+	    		                	                    new DialogInterface.OnClickListener() {
+	    		                	                        @Override
+	    		                	                        public void onClick(final DialogInterface dialog, int item) {
+	    		                	                        	
+	    	                		                        	if (item == 0) {
+	    	                		                        		
+	    	                		                        		buttonSound.start();
+	    	                		                        		
+	    	                		                        		final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead", "Custom"};
+	    	                		            		    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2, R.drawable.computer};
+	    	                		            		    		
+	    	                		            		    		ListAdapter adapter = new ArrayAdapterWithIcon(MainActivity1.this, items, avatars);
+	    	                		            		    		
+	    	                		            		    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
+	    	                		            		    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
+	    	                		            		    		//builder.setIcon(R.drawable.computerhead);
+	    	                		            		    		builder.setTitle("Choose Your Avatar");
+	    	                		            		    		
+	    	                		            		    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
+	    	                		            		    			public void onClick(DialogInterface dialog, int item) { 
+	    	                		            		    								
+	    	                		            		    				if (item == 0) {
+	    	                		            		    					ArrayOfAvatars.avatar[0] = "computer";
+	    	                		            		    					
+	    	                		            		    					stopService(svc);	    				
+	    	                		            			    				
+	    	                		            			    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+	    	                		            			    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+	    	                		            			    				startActivity(intent);
+	    	                		            			    	        	
+	    	                		            			    	        	dialog.dismiss();
+	    	                		            			    	        	
+	    	                		            			    	        	hideSystemUI();
+	    	                		            		    				}
+	    	                		            		    				else if (item == 1) {
+	    	                		            		    					ArrayOfAvatars.avatar[0] = "crossedswords";
+	    	                		            		    					
+	    	                		            		    					stopService(svc);	    				
+	    	                		            			    				
+	    	                		            			    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+	    	                		            			    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+	    	                		            			    				startActivity(intent);
+	    	                		            			    	        	
+	    	                		            			    	        	dialog.dismiss();
+	    	                		            			    	        	
+	    	                		            			    	        	hideSystemUI();
+	    	                		            		    				}
+	    	                		            		    				else if (item == 2) {
+	    	                		            		    					ArrayOfAvatars.avatar[0] = "stonedead";
+	    	                		            		    					
+	    	                		            		    					stopService(svc);	    				
+	    	                		            			    				
+	    	                		            			    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+	    	                		            			    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+	    	                		            			    				startActivity(intent);
+	    	                		            			    	        	
+	    	                		            			    	        	dialog.dismiss();
+	    	                		            			    	        	
+	    	                		            			    	        	hideSystemUI();
+	    	                		            		    				}
+	    	                		            		    				else if (item == 3) {
+	    	                		            		    					ArrayOfAvatars.avatar[0] = "custom";
+	    	                		            		    					
+	    	                		            		    					stopService(svc);
+	    	                		            		    					
+	    	                		            		    					openGallery();
+	    	                		            		    					
+	    	                		            		    					dialog.dismiss();
+	    	                		            		    					
+	    	                		            		    					hideSystemUI();
+	    	                		            		    				}    				
+	    	                		            		    	        	
+	    	                		            		    	        	//finish();
+	    	                		            	        	  		}
+	    	                		            		    		});	    		
+	    	                		            		        	
+	    	                		            		            builder.create().show();
+	    	                		                        	}
+	    	                		                        	
+	    	                		                        	else if (item == 1) {
+	    	                		                        		
+	    	                		                        		buttonSound.start();
+	    	                		                        		
+	    	                		                        		multiplayer = "yes";
+	    	                		                        		
+	    	                		                        		
+	    	                		                        		final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead", "Custom"};
+	    	                		            		    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2, R.drawable.computer};
+	    	                		            		    		
+	    	                		            		    		ListAdapter adapter = new ArrayAdapterWithIcon(MainActivity1.this, items, avatars);
+	    	                		            		    		
+	    	                		            		    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
+	    	                		            		    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
+	    	                		            		    		//builder.setIcon(R.drawable.computerhead);
+	    	                		            		    		builder.setTitle("Choose Your Avatar");
+	    	                		            		    		
+	    	                		            		    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
+	    	                		            		    			public void onClick(DialogInterface dialog, int item) { 
+	    	                		            		    								
+	    	                		            		    				if (item == 0) {
+	    	                		            		    					ArrayOfAvatars.avatar[5] = "computer";
+	    	                		            		    					
+	    	                		            		    					goToHostOrJoin();
+	    	                		            			    	        	
+	    	                		            			    	        	dialog.dismiss();
+	    	                		            			    	        	
+	    	                		            			    	        	hideSystemUI();
+	    	                		            		    				}
+	    	                		            		    				else if (item == 1) {
+	    	                		            		    					ArrayOfAvatars.avatar[5] = "crossedswords";
+	    	                		            		    					
+	    	                		            		    					goToHostOrJoin();
+	    	                		            			    	        	
+	    	                		            			    	        	dialog.dismiss();
+	    	                		            			    	        	
+	    	                		            			    	        	hideSystemUI();
+	    	                		            		    				}
+	    	                		            		    				else if (item == 2) {
+	    	                		            		    					ArrayOfAvatars.avatar[5] = "stonedead";
+	    	                		            		    					
+	    	                		            		    					goToHostOrJoin();
+	    	                		            			    	        	
+	    	                		            			    	        	dialog.dismiss();
+	    	                		            			    	        	
+	    	                		            			    	        	hideSystemUI();
+	    	                		            		    				}
+	    	                		            		    				else if (item == 3) {
+	    	                		            		    					ArrayOfAvatars.avatar[5] = "custom";	    					
+	    	                		            		    					
+	    	                		            		    					openGallery();
+	    	                		            		    					
+	    	                		            		    					dialog.dismiss();
+	    	                		            		    					
+	    	                		            		    					hideSystemUI();
+	    	                		            		    				}    				
+	    	                		            		    	        	
+	    	                		            		    	        	//finish();
+	    	                		            	        	  		}
+	    	                		            		    		});	    		
+	    	                		            		        	
+	    	                		            		            builder.create().show();
+	    	                		                        	}
+	    		                	                        }
+	    		                	                    });	            
+	    		                	            
+	    		                	            AlertDialog alert = builder.create();
+	    		                	            alert.show();	            
+	    		                	            
+	    		                	            
+	    		                	            WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+
+	    		                	            lp.copyFrom(alert.getWindow().getAttributes());
+	    		                	            lp.width = 1050;	            
+	    		                	            alert.getWindow().setAttributes(lp);
+	    		                	            
+	    		                	            
+	    		                	            //h.removeCallbacks(this);
+	    		                	        	
+	    		                	        	//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+	    		                	        	//MainActivity1.this.startActivity(i);
+	    		                        	}
+	    	                        	}
+	    	                        }
+	    	                    });	            
+	    	            
+	    	            AlertDialog alert = builder.create();
+	    	            alert.show();	            
+	    	            
+	    	            
+	    	            WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+
+	    	            lp.copyFrom(alert.getWindow().getAttributes());
+	    	            lp.width = 1050;	            
+	    	            alert.getWindow().setAttributes(lp);
+	    	            
+	    	            
+	    	            //h.removeCallbacks(this);
+	    	        	
+	    	        	//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+	    	        	//MainActivity1.this.startActivity(i);
+	        			
     	        		} catch (Exception e) {
 				      
-				   		Toast.makeText(MainActivity1.this, "LOW MEMORY", Toast.LENGTH_LONG).show();
+				   		Toast.makeText(MainActivity1.this, "No Guys", Toast.LENGTH_LONG).show();
+				   		
+				   		stopService(svc);
+						startService(svc);
 	        		}
-    	        	
-      	  	  		
-    		  		// Instead of String[] items, Here you can also use ArrayList for your custom object..
-    	        	
-    	        	final String[] nameForAdapter = new String[count];
-    	        	
-    	        	for (int i = 0; i < count; i++) {
-    	        		
-    	        		nameForAdapter[i] = name[i];
-    	        	}
-    	        	
-    		  		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.list_row, R.id.title, nameForAdapter) {
-    	
-    		  		    ViewHolder holder;
-    		  		    Drawable icon;//FOR LAST AVATAR THAT WAS USED??? (LOCATION CAN BE SAVE LIKE OTHER GAME DATA)
-    	
-    		  		    class ViewHolder {
-    		  		        ImageView icon;
-    		  		        TextView title;						
-    		  		    }
-    	
-    		  		    public View getView(int position, View convertView, ViewGroup parent) {
-    		  		        final LayoutInflater inflater = (LayoutInflater) getApplicationContext()
-    		  		                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);		  			  		        
-    	
-    		  		        if (convertView == null) {
-    		  		            convertView = inflater.inflate(R.layout.list_row, null);
-    	
-    		  		            holder = new ViewHolder();
-    		  		            holder.icon = (ImageView) convertView.findViewById(R.id.icon);
-    		  		            holder.title = (TextView) convertView.findViewById(R.id.title);		  		           
-    		  		            
-    		  		            convertView.setTag(holder);
-    		  		        }
-    		  		        
-    		  		        else {
-    		  		            // view already defined, retrieve view holder
-    		  		            holder = (ViewHolder) convertView.getTag();
-    		  		        }       
-    	
-    		  		       // Drawable drawable = getResources().getDrawable(R.drawable.list_icon); //this is an image from the drawables folder
-    	
-    		  		        holder.title.setText(nameForAdapter[position]);
-    		  		        //holder.icon.setImageDrawable(drawable);     
-    		  		        
-    	
-    		  		        return convertView;
-    		  		    }
-    		  		};
-    		  		
-    		  		
-    		  		// THIS WAY ALLOWS YOU TO STYLE THE DIALOG (ex. background doesn't dim.):
-    		  		ContextThemeWrapper cw = new ContextThemeWrapper(MainActivity1.this, R.style.DialogWindowTitle_Holo);
-    		  		AlertDialog.Builder builder = new AlertDialog.Builder(cw);		  			  		
-    		  		
-    		  		
-    		  		builder.setTitle("Choose Your Guy");
-    		  		
-    		  		
-    	  			//builder.setCancelable(false);
-    	  			
-    	  			/*
-    				builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
-    					@Override
-    					public void onCancel(DialogInterface dialog) {		  							
-    						
-    						//IF NOTHING DOESN'T WORK, TRY:
-    						
-    						//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
-    			        	//MainActivity1.this.startActivity(i);
-    					}
-    				});
-    	  			*/
-    				
-    	            builder.setAdapter(adapter,
-    	                    new DialogInterface.OnClickListener() {
-    	                        @Override
-    	                        public void onClick(final DialogInterface dialog, int item) {
-    	                        	
-    	                        	for (int i = 0; i < count; i++) {
-    	                        	
-    		                        	if (item == i) {
-    		                        		
-    		                        		buttonSound.start();
-    		                        		
-    		                        		ArrayOfPlayers.player[5] = name[i];
-    		                        		
-    		                        		
-    		                        		final String[] items = {"One Player", "Multiplayer"};
-    		                        		
-    		                        		// Instead of String[] items, Here you can also use ArrayList for your custom object..
-    		                        		
-    		                		  		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.list_row, R.id.title,items) {
-    		                	
-    		                		  		    ViewHolder holder;
-    		                		  		    Drawable icon;//FOR LAST AVATAR THAT WAS USED??? (LOCATION CAN BE SAVE LIKE OTHER GAME DATA)
-    		                	
-    		                		  		    class ViewHolder {
-    		                		  		        ImageView icon;
-    		                		  		        TextView title;						
-    		                		  		    }
-    		                	
-    		                		  		    public View getView(int position, View convertView, ViewGroup parent) {
-    		                		  		        final LayoutInflater inflater = (LayoutInflater) getApplicationContext()
-    		                		  		                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);		  			  		        
-    		                	
-    		                		  		        if (convertView == null) {
-    		                		  		            convertView = inflater.inflate(R.layout.list_row, null);
-    		                	
-    		                		  		            holder = new ViewHolder();
-    		                		  		            holder.icon = (ImageView) convertView.findViewById(R.id.icon);
-    		                		  		            holder.title = (TextView) convertView.findViewById(R.id.title);		  		           
-    		                		  		            
-    		                		  		            convertView.setTag(holder);
-    		                		  		        }
-    		                		  		        
-    		                		  		        else {
-    		                		  		            // view already defined, retrieve view holder
-    		                		  		            holder = (ViewHolder) convertView.getTag();
-    		                		  		        }       
-    		                	
-    		                		  		       // Drawable drawable = getResources().getDrawable(R.drawable.list_icon); //this is an image from the drawables folder
-    		                	
-    		                		  		        holder.title.setText(items[position]);
-    		                		  		        //holder.icon.setImageDrawable(drawable);     
-    		                		  		        
-    		                	
-    		                		  		        return convertView;
-    		                		  		    }
-    		                		  		};
-    		                		  		
-    		                		  		
-    		                		  		// THIS WAY ALLOWS YOU TO STYLE THE DIALOG (ex. background doesn't dim.):
-    		                		  		ContextThemeWrapper cw = new ContextThemeWrapper(MainActivity1.this, R.style.DialogWindowTitle_Holo);
-    		                		  		AlertDialog.Builder builder = new AlertDialog.Builder(cw);		  			  		
-    		                		  		
-    		                	  			
-    		                		  		builder.setTitle("Choose Your Game");
-    		                		  		
-    		                	  			//builder.setCancelable(false);
-    		                	  			
-    		                	  			/*
-    		                				builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
-    		                					@Override
-    		                					public void onCancel(DialogInterface dialog) {		  							
-    		                						
-    		                						//IF NOTHING DOESN'T WORK, TRY:
-    		                						
-    		                						//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
-    		                			        	//MainActivity1.this.startActivity(i);
-    		                					}
-    		                				});
-    		                	  			*/
-    		                				
-    		                	            builder.setAdapter(adapter,
-    		                	                    new DialogInterface.OnClickListener() {
-    		                	                        @Override
-    		                	                        public void onClick(final DialogInterface dialog, int item) {
-    		                	                        	
-    	                		                        	if (item == 0) {
-    	                		                        		
-    	                		                        		buttonSound.start();
-    	                		                        		
-    	                		                        		final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead", "Custom"};
-    	                		            		    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2, R.drawable.computer};
-    	                		            		    		
-    	                		            		    		ListAdapter adapter = new ArrayAdapterWithIcon(MainActivity1.this, items, avatars);
-    	                		            		    		
-    	                		            		    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
-    	                		            		    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
-    	                		            		    		//builder.setIcon(R.drawable.computerhead);
-    	                		            		    		builder.setTitle("Choose Your Avatar");
-    	                		            		    		
-    	                		            		    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
-    	                		            		    			public void onClick(DialogInterface dialog, int item) { 
-    	                		            		    								
-    	                		            		    				if (item == 0) {
-    	                		            		    					ArrayOfAvatars.avatar[0] = "computer";
-    	                		            		    					
-    	                		            		    					stopService(svc);	    				
-    	                		            			    				
-    	                		            			    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
-    	                		            			    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-    	                		            			    				startActivity(intent);
-    	                		            			    	        	
-    	                		            			    	        	dialog.dismiss();
-    	                		            		    				}
-    	                		            		    				else if (item == 1) {
-    	                		            		    					ArrayOfAvatars.avatar[0] = "crossedswords";
-    	                		            		    					
-    	                		            		    					stopService(svc);	    				
-    	                		            			    				
-    	                		            			    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
-    	                		            			    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-    	                		            			    				startActivity(intent);
-    	                		            			    	        	
-    	                		            			    	        	dialog.dismiss();
-    	                		            		    				}
-    	                		            		    				else if (item == 2) {
-    	                		            		    					ArrayOfAvatars.avatar[0] = "stonedead";
-    	                		            		    					
-    	                		            		    					stopService(svc);	    				
-    	                		            			    				
-    	                		            			    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
-    	                		            			    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-    	                		            			    				startActivity(intent);
-    	                		            			    	        	
-    	                		            			    	        	dialog.dismiss();
-    	                		            		    				}
-    	                		            		    				else if (item == 3) {
-    	                		            		    					ArrayOfAvatars.avatar[0] = "custom";
-    	                		            		    					
-    	                		            		    					stopService(svc);
-    	                		            		    					
-    	                		            		    					openGallery();
-    	                		            		    					
-    	                		            		    					dialog.dismiss();
-    	                		            		    				}    				
-    	                		            		    	        	
-    	                		            		    	        	//finish();
-    	                		            	        	  		}
-    	                		            		    		});	    		
-    	                		            		        	
-    	                		            		            builder.create().show();
-    	                		                        	}
-    	                		                        	
-    	                		                        	else if (item == 1) {
-    	                		                        		
-    	                		                        		buttonSound.start();
-    	                		                        		
-    	                		                        		multiplayer = "yes";
-    	                		                        		
-    	                		                        		
-    	                		                        		final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead", "Custom"};
-    	                		            		    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2, R.drawable.computer};
-    	                		            		    		
-    	                		            		    		ListAdapter adapter = new ArrayAdapterWithIcon(MainActivity1.this, items, avatars);
-    	                		            		    		
-    	                		            		    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
-    	                		            		    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
-    	                		            		    		//builder.setIcon(R.drawable.computerhead);
-    	                		            		    		builder.setTitle("Choose Your Avatar");
-    	                		            		    		
-    	                		            		    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
-    	                		            		    			public void onClick(DialogInterface dialog, int item) { 
-    	                		            		    								
-    	                		            		    				if (item == 0) {
-    	                		            		    					ArrayOfAvatars.avatar[5] = "computer";
-    	                		            		    					
-    	                		            		    					goToHostOrJoin();
-    	                		            			    	        	
-    	                		            			    	        	dialog.dismiss();
-    	                		            		    				}
-    	                		            		    				else if (item == 1) {
-    	                		            		    					ArrayOfAvatars.avatar[5] = "crossedswords";
-    	                		            		    					
-    	                		            		    					goToHostOrJoin();
-    	                		            			    	        	
-    	                		            			    	        	dialog.dismiss();
-    	                		            		    				}
-    	                		            		    				else if (item == 2) {
-    	                		            		    					ArrayOfAvatars.avatar[5] = "stonedead";
-    	                		            		    					
-    	                		            		    					goToHostOrJoin();
-    	                		            			    	        	
-    	                		            			    	        	dialog.dismiss();
-    	                		            		    				}
-    	                		            		    				else if (item == 3) {
-    	                		            		    					ArrayOfAvatars.avatar[5] = "custom";	    					
-    	                		            		    					
-    	                		            		    					openGallery();
-    	                		            		    					
-    	                		            		    					dialog.dismiss();
-    	                		            		    				}    				
-    	                		            		    	        	
-    	                		            		    	        	//finish();
-    	                		            	        	  		}
-    	                		            		    		});	    		
-    	                		            		        	
-    	                		            		            builder.create().show();
-    	                		                        	}
-    		                	                        }
-    		                	                    });	            
-    		                	            
-    		                	            AlertDialog alert = builder.create();
-    		                	            alert.show();	            
-    		                	            
-    		                	            
-    		                	            WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-
-    		                	            lp.copyFrom(alert.getWindow().getAttributes());
-    		                	            lp.width = 1050;	            
-    		                	            alert.getWindow().setAttributes(lp);
-    		                	            
-    		                	            
-    		                	            //h.removeCallbacks(this);
-    		                	        	
-    		                	        	//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
-    		                	        	//MainActivity1.this.startActivity(i);
-    		                        	}
-    	                        	}
-    	                        }
-    	                    });	            
-    	            
-    	            AlertDialog alert = builder.create();
-    	            alert.show();	            
-    	            
-    	            
-    	            WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-
-    	            lp.copyFrom(alert.getWindow().getAttributes());
-    	            lp.width = 1050;	            
-    	            alert.getWindow().setAttributes(lp);
-    	            
-    	            
-    	            //h.removeCallbacks(this);
-    	        	
-    	        	//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
-    	        	//MainActivity1.this.startActivity(i);
     			}
     		});
     		
