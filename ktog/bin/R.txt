@@ -680,10 +680,9 @@ int raw dierolling3 0x7f050005
 int raw dierolling3b 0x7f050006
 int raw drumdicebutton 0x7f050007
 int raw ktogintrovideo 0x7f050008
-int raw scrollrollingandunrolling 0x7f050009
-int raw scrollsunrolling 0x7f05000a
-int raw sworddraw1 0x7f05000b
-int raw swordswing 0x7f05000c
+int raw scroll3 0x7f050009
+int raw sworddraw1 0x7f05000a
+int raw swordswing 0x7f05000b
 int string abc_action_bar_home_description 0x7f0b0001
 int string abc_action_bar_up_description 0x7f0b0002
 int string abc_action_menu_overflow_description 0x7f0b0003

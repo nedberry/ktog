@@ -100,6 +100,8 @@ public class Host extends Activity {
 	
 	
 	
+	String win = "na";
+	
 	String has5TakenTurn = "no";
 	String Has0TakenTurn = "no";
 	String hAs1TakenTurn = "no";
@@ -348,7 +350,7 @@ public class Host extends Activity {
 		final Intent svc=new Intent(this, Badonk2SoundService.class);
 		//startService(svc);
 		
-		MediaPlayerWrapper.play(Host.this, R.raw.buttonsound6);
+		//MediaPlayerWrapper.play(Host.this, R.raw.buttonsound6);
 		
 		
 		updateConversationHandler = new Handler();
@@ -585,10 +587,14 @@ public class Host extends Activity {
 		disarmedtextright.append("Disarmed");
 		
 		View lineInSummaryTableLayout = (View) findViewById(R.id.line);
-		lineInSummaryTableLayout.setVisibility(View.INVISIBLE);			
+		lineInSummaryTableLayout.setVisibility(View.INVISIBLE);
 		
 		
-		preInitiativeTitle();//SHOULD REALLY BE CALLED "startTitle" (just using preInitiativeTitle() animation for "Lobby")		
+		
+		preInitiativeTitle();//SHOULD REALLY BE CALLED "startTitle" (just using preInitiativeTitle() animation for "Lobby")
+		
+		MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+		
 		
 		
 		// THESE RUN METHODS ARE THREAD-SAFE, SUPPOSEDLY.
@@ -606,6 +612,19 @@ public class Host extends Activity {
 	  			centerscrolltext.append("\n" + "> NEW LINE TEST");
 	  			centerscrolltext.append("\n" + "> NEW LINE TEST");
 	  	  	  	*/
+	  			
+	  			
+	  			final Handler h4 = new Handler();
+	  	  	  	h4.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {
+	  	  	  			
+	  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+	  	  	  		}
+	  	  	  	}, 2750);
+	  			
+	  			
 	  			
   	  	  		final Handler h = new Handler();
 	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -758,7 +777,11 @@ public class Host extends Activity {
 	          			
 	          			istitlestatsopen = "yes";
 	              		
+	          			
+	          			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+	          			
 	              		myInitiativeIsStarted();
+	              		
 	              		
 	              		titleBlankButton.setEnabled(false);// HERE & BELOW BECUSE GETTING WEIRD BEHAVIOR WHEN BUTTON WAS HIT AN ODD NUMBER OF TIMES (EXCEPT THE FIRST TIME).
 	              		
@@ -778,6 +801,18 @@ public class Host extends Activity {
 		              		}
 	              		}
 	              		*/
+	              		
+	              		
+	              		final Handler h5 = new Handler();
+        	  	  	  	h5.postDelayed(new Runnable() {		  	  	  			
+        	  	  	  			
+        	  	  	  		@Override
+        		  	  	  	public void run() {
+
+        	  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+        	  	  	  		}
+    	  	  	  		}, 500);
+	              		
 	              		
 	              		final Handler h = new Handler();
 	  		  	  	  	h.postDelayed(new Runnable() {
@@ -1059,6 +1094,18 @@ public class Host extends Activity {
 				  			  	  	hasteplayer4textview.setVisibility(View.VISIBLE);
 			    		  	  	}
 	    			  	  		*/
+			    		  	  	
+			    		  	  	
+			    		  	  	final Handler h3 = new Handler();
+		        	  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
+		        	  	  	  			
+		        	  	  	  		@Override
+		        		  	  	  	public void run() {
+
+		        	  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+		        	  	  	  		}
+		    	  	  	  		}, 10100);
+			    		  	  	
 	    			  	  		
 		    			  	  	final Handler h2 = new Handler();
 		    		  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
@@ -1090,7 +1137,7 @@ public class Host extends Activity {
 	          		}         		           				
 	          	}            	
 			}            
-		}); 	  	
+		});
   	  	
   	  	startButton.setOnClickListener(new View.OnClickListener() {
           @Override
@@ -2398,7 +2445,7 @@ public class Host extends Activity {
 	
 	
 	
-	public void writeTextToFile() {
+	public void writeTextToFile() {//CREATES PLAYER PROFILE IF IT DOESN'T EXIST
 		
 		try {
 			//THIS WORKS, BUT THOUGHT BETTER TO SPECIFY IN CASE 'this.getExternalFilesDir(null)' DECIDES NOT TO WORK ON A SPECIFIC DEVICE.
@@ -2407,60 +2454,92 @@ public class Host extends Activity {
 			if (!playerName.exists())
 			playerName.createNewFile();
 
-			// Adds a line to the file
+			// adds line to the file
 			BufferedWriter writer = new BufferedWriter(new FileWriter(playerName, false));//FOR APPENd: true
 			writer.write("GamesPlayed:0:Wins:0:Loses:0");
 			writer.close();
-			/*
-			// Refresh the data so it can seen when the device is plugged in a
-			// computer. You may have to unplug and replug the device to see the
-			// latest changes. This is not necessary if the user should not modify
-			// the files.
-			MediaScannerConnection.scanFile(this, new String[]{testFile.toString()}, null, null);
-            */
+			
 		} catch (IOException e) {
 			Log.e("ReadWriteFile", "Unable to write to the TestFile.txt file.");
 		}
 	}
 	
-	public void getTextFromFile() {		
+	public void getTextFromFile() {//READS EXISTING DATA FROM PLAYER PROFILE AND WRITES NEW DATA
 		
 		//THIS WORKS, BUT THOUGHT BETTER TO SPECIFY IN CASE 'this.getExternalFilesDir(null)' DECIDES NOT TO WORK ON A SPECIFIC DEVICE.
 		//File playerName = new File(this.getExternalFilesDir(null), ArrayOfPlayers.player[5] + ".txt");
 		File playerName = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files", ArrayOfPlayers.player[5] + ".txt");
-		if (playerName != null) {
-		   
-		   BufferedReader reader = null;
+		//if (playerName != null) {
+		
+		BufferedReader reader = null;
 		   try {
 		      reader = new BufferedReader(new FileReader(playerName));
 		      String line;
 
 		      while ((line = reader.readLine()) != null) {
-		    	  /*
+		    	  
 		    	  String[] parts = line.split(":");
 		    	  String part1 = parts[0];
 		    	  String part2 = parts[1];
 		    	  String part3 = parts[2];
 		    	  String part4 = parts[3];
+		    	  String part5 = parts[4];
+		    	  String part6 = parts[5];
 		    	  
-		    	  Wins = Integer.parseInt(part2);
-		    	  Loses = Integer.parseInt(part4);
-		    	  */
+		    	  Games = Integer.parseInt(part2);
+		    	  Wins = Integer.parseInt(part4);
+		    	  Loses = Integer.parseInt(part6);
+		    	  
+		    	  
+		    	  // Adds a line to the file
+		    	  BufferedWriter writer = new BufferedWriter(new FileWriter(playerName, false));//FOR APPENd: true
+		    	  //WAS:
+		    	  //writer.write("GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 1) + ":Loses:" + (Games + 1));
+		    	  
+		    	  if (win.equals("yes")) {
+		    		  writer.write("GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 1) + ":Loses:" + (Loses + 0));
+		    		  writer.close();
+		    	  }
+		    	  if (win.equals("no")) {
+		    		  writer.write("GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 0) + ":Loses:" + (Loses + 1));
+		    		  writer.close();
+		    	  }
+		      }
+		      
+		      reader.close();
+		
+		      /*WAS:
+	   		BufferedReader reader = null;
+		   	try {
+		      reader = new BufferedReader(new FileReader(playerName));
+		      String line;
+
+		      while ((line = reader.readLine()) != null) {
+		    	  
+		    	  //String[] parts = line.split(":");
+		    	  //String part1 = parts[0];
+		    	  //String part2 = parts[1];
+		    	  //String part3 = parts[2];
+		    	  //String part4 = parts[3];
+		    	  
+		    	  //Wins = Integer.parseInt(part2);
+		    	  //Loses = Integer.parseInt(part4);
+		    	  
 		      }
 		      
 		      
 		      //FOLLOWING dOES NOT GIVE: "/storage/emulated/0/Android/data/com.nedswebsite.ktog/files"
 		      //SOMETHING LIKE:"data/data/com.nedswebsite.ktog/files"
-		      /*
-		      PackageManager m = getPackageManager();
-		      String s = getPackageName();
-		      try {
-		          PackageInfo p = m.getPackageInfo(s, 0);
-		          s = p.applicationInfo.dataDir;
-		      } catch (PackageManager.NameNotFoundException e) {
-		          Log.w("yourtag", "Error Package name not found ", e);
-		      }
-		      */
+		      
+		      //PackageManager m = getPackageManager();
+		      //String s = getPackageName();
+		      //try {
+		      //    PackageInfo p = m.getPackageInfo(s, 0);
+		      //    s = p.applicationInfo.dataDir;
+		      //} catch (PackageManager.NameNotFoundException e) {
+		      //    Log.w("yourtag", "Error Package name not found ", e);
+		      //}
+		      
 		      //Integer count = countFiles(new File(s), Integer.valueOf(0));
 		      
 		      
@@ -2490,10 +2569,11 @@ public class Host extends Activity {
 		      
 		      
 		      reader.close();
+		      */
 		   } catch (Exception e) {
 		      Log.e("ReadWriteFile", "Unable to read the TestFile.txt file.");
 		   }
-		}
+		//}
 	}
 	/*
 	public Integer countFiles(File folder, Integer count) {
@@ -14068,14 +14148,27 @@ public class Host extends Activity {
 		}
 		*/
 		
+		MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+		
 		myInitiativeTransition();
 		
 		//String str2 = "myInitiativeTransition";
 		//sendToAllClients(str2);
+		
+		
+		final Handler h = new Handler();
+  	  	h.postDelayed(new Runnable() {		  	  	  			
+  	  			
+  	  		@Override
+  	  		public void run() {
+
+  	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+  	  		}
+		}, 500);
 	  	  		
 	  	  		
-  	  	final Handler h = new Handler();
-  		h.postDelayed(new Runnable() {
+  	  	final Handler h2 = new Handler();
+  		h2.postDelayed(new Runnable() {
   	  			
   	  		@Override
   	  	  	public void run() {
@@ -14361,16 +14454,31 @@ public class Host extends Activity {
 	  	  		//titlerulestext.bringToFront();
 		  	  	
 		  	  	
+		  	  	
+		  	  	final Handler h3 = new Handler();
+	  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {
+
+	  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+	  	  	  		}
+	  	  		}, 9200);
+		  	  	
+		  	  	
+		  	  	
 		  	  	ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
 				chatBlankButton.bringToFront();
 	  	  		
   	  			  	  			
-	  	  		final Handler h2 = new Handler();
-		  	  	h2.postDelayed(new Runnable() {
+	  	  		final Handler h4 = new Handler();
+		  	  	h4.postDelayed(new Runnable() {
 	
 		  	  		@Override
-		  	  		public void run()
-		  	  		{
+		  	  		public void run() {
+		  	  			
+		  	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+		  	  			
 		  	  			//titlerulestext.setVisibility(View.INVISIBLE);
 		  	  			summaryTableLayout.setVisibility(View.INVISIBLE);		  	  			
 			  	  		
@@ -14540,15 +14648,13 @@ public class Host extends Activity {
 					  	  	  	}, 1000);
 				  			}
 			  	  		}
-			  	  		
-			  	  		
 		  	  			
 		  	  			
 		  	  			
 		  	  			
 		  	  			
-			  	  		final Handler h3 = new Handler();
-				  	  	h3.postDelayed(new Runnable() {
+			  	  		final Handler h5 = new Handler();
+				  	  	h5.postDelayed(new Runnable() {
 			
 				  	  		@Override
 				  	  		public void run() {
@@ -14578,8 +14684,6 @@ public class Host extends Activity {
 				  	  			//myThread.start();
 				  	  		}
 				  	  	}, 2000);
-		  	  			
-		  	  			
 		  	  			
 		  	  			
 		  	  			
@@ -17561,6 +17665,8 @@ public class Host extends Activity {
 		  			playerCardStopFadeInFadeOut();
 		  				  			
 		  		  	
+		  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+		  			
 		  			foldScrolls();
 		  		  	
 		  			String str6 = "foldScrolls";
@@ -18390,6 +18496,8 @@ public class Host extends Activity {
 		  			playerCardStopFadeInFadeOut();
 		  				  			
 		  		  	
+		  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+		  			
 		  			foldScrolls();
 		  		  	
 		  			String str6 = "foldScrolls";
@@ -19804,6 +19912,8 @@ public class Host extends Activity {
 		  			computerCardStopFadeInFadeOut();
 		  		  	
 		  			
+		  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+		  			
 		  			foldScrolls();
 		  		  	
 		  			String str6 = "foldScrolls";
@@ -20972,7 +21082,21 @@ public class Host extends Activity {
   	  	    	
   	  	    	if (numberOfPlayers == 2) {
   	  	    		
+  	  	    		MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+  	  	    		
   	  	    		victoryDefeatAnimation();
+  	  	    		
+  	  	    		
+	  	  	    	final Handler h = new Handler();
+			  	  	h.postDelayed(new Runnable() {		  	  	  			
+			  	  			
+			  	  		@Override
+			  	  		public void run() {
+		
+			  	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+			  	  		}
+			  	  	}, 500);
+  	  	    		
   	  	    	
   	  	    		String str = "victoryDefeatAnimation";
   	  	    		sendToAllClients(str);
@@ -20982,6 +21106,8 @@ public class Host extends Activity {
 					/*&& playerDeadYet[2] == "yes" && playerDeadYet[3] == "yes"	&& playerDeadYet[4] == "yes" && playerDeadYet[5] == "yes"*/
 						
 						gameOn = 0;
+						
+						win = "yes";
 						
 						
 						final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
@@ -20999,8 +21125,8 @@ public class Host extends Activity {
 						sendToClient0(str2);
 						
 			  			
-			  			final Handler h = new Handler();
-			  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+			  			final Handler h2 = new Handler();
+			  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
 			  	  	  			
 			  	  	  		@Override
 				  	  	  	public void run() {
@@ -21013,15 +21139,17 @@ public class Host extends Activity {
 			  	  	  			sendToClient0(str3);
 			  	  	  			
 			  	  	  			
-			  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.buttonsound6);
+			  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.buttonsound4b);
 			  	  	  			
-				  	  	  		final Handler h2 = new Handler();
-					  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
+				  	  	  		final Handler h3 = new Handler();
+					  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
 					  	  	  			
 					  	  	  		@Override
 						  	  	  	public void run() {
 					  	  	  			
 					  	  	  			//MediaPlayerWrapper.play(MainActivity2.this, R.raw.buttonsound6);
+					  	  	  			
+					  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
 					  	  	  			
 					  	  	  			foldScrolls();
 					  	  	  			
@@ -21051,8 +21179,13 @@ public class Host extends Activity {
 							  	  	  	}, 500);
 							  	  	  	*/
 						  	  	  		
+						  	  	  		writeTextToFile();
+					    			
+						  	  	  		getTextFromFile();
+						  	  	  		
 						  	  	  		h.removeCallbacks(this);
 						  	  	  		h2.removeCallbacks(this);
+						  	  	  		h3.removeCallbacks(this);
 						  	  	  	}
 					  	  	  	}, 2000);
 				  	  	  	}
@@ -21064,6 +21197,8 @@ public class Host extends Activity {
 							&& playerDeadYet[4] == "yes" && playerDeadYet[5] == "yes"*/) {
 						
 						gameOn = 0;
+						
+						win = "no";
 						
 						
 						final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
@@ -21082,8 +21217,8 @@ public class Host extends Activity {
 						sendToClient0(str4);
 			  			
 			  			
-			  			final Handler h = new Handler();
-			  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+			  			final Handler h2 = new Handler();
+			  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
 			  	  	  			
 			  	  	  		@Override
 				  	  	  	public void run() {
@@ -21098,13 +21233,15 @@ public class Host extends Activity {
 			  	  	  			
 			  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.buttonsound6);
 			  	  	  			
-				  	  	  		final Handler h2 = new Handler();
-					  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
+				  	  	  		final Handler h3 = new Handler();
+					  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
 					  	  	  			
 					  	  	  		@Override
 						  	  	  	public void run() {
 					  	  	  			
 					  	  	  			//MediaPlayerWrapper.play(MainActivity2.this, R.raw.buttonsound6);
+					  	  	  			
+					  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
 					  	  	  			
 					  	  	  			foldScrolls();
 					  	  	  			
@@ -21134,8 +21271,13 @@ public class Host extends Activity {
 							  	  	  	}, 500);
 							  	  	  	*/
 						  	  	  		
+						  	  	  		writeTextToFile();
+					    			
+						  	  	  		getTextFromFile();
+						  	  	  		
 						  	  	  		h.removeCallbacks(this);
 						  	  	  		h2.removeCallbacks(this);
+						  	  	  		h3.removeCallbacks(this);
 						  	  	  	}
 					  	  	  	}, 2000);
 				  	  	  	}
@@ -21156,13 +21298,29 @@ public class Host extends Activity {
 					if (playerDeadYet[5].equals("no") && playerDeadYet[0].equals("yes") && playerDeadYet[1].equals("yes")) {
 					/*&& playerDeadYet[2] == "yes" && playerDeadYet[3] == "yes"	&& playerDeadYet[4] == "yes" && playerDeadYet[5] == "yes"*/
 						
+						MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+						
 						victoryDefeatAnimation();
+						
+						
+						final Handler h = new Handler();
+				  	  	h.postDelayed(new Runnable() {		  	  	  			
+				  	  			
+				  	  		@Override
+				  	  		public void run() {
+			
+				  	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+				  	  		}
+				  	  	}, 500);
+				  	  	
 		  	  	    	
 		  	    		String str = "victoryDefeatAnimation";
 		  	    		sendToAllClients(str);
 						
 						
 						gameOn = 0;
+						
+						win = "yes";
 						
 						
 						final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
@@ -21180,8 +21338,8 @@ public class Host extends Activity {
 			  			sendToAllClients(str2);
 						
 			  			
-			  			final Handler h = new Handler();
-			  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+			  			final Handler h2 = new Handler();
+			  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
 			  	  	  			
 			  	  	  		@Override
 				  	  	  	public void run() {
@@ -21194,15 +21352,17 @@ public class Host extends Activity {
 			  	  	  			sendToAllClients(str3);
 			  	  	  			
 			  	  	  			
-			  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.buttonsound6);
+			  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.buttonsound4b);
 			  	  	  			
-				  	  	  		final Handler h2 = new Handler();
-					  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
+				  	  	  		final Handler h3 = new Handler();
+					  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
 					  	  	  			
 					  	  	  		@Override
 						  	  	  	public void run() {
 					  	  	  			
 					  	  	  			//MediaPlayerWrapper.play(MainActivity2.this, R.raw.buttonsound6);
+					  	  	  			
+					  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
 					  	  	  			
 					  	  	  			foldScrolls();
 					  	  	  			
@@ -21232,8 +21392,13 @@ public class Host extends Activity {
 							  	  	  	}, 500);
 							  	  	  	*/
 						  	  	  		
+						  	  	  		writeTextToFile();
+					    			
+						  	  	  		getTextFromFile();
+						  	  	  		
 						  	  	  		h.removeCallbacks(this);
 						  	  	  		h2.removeCallbacks(this);
+						  	  	  		h3.removeCallbacks(this);
 						  	  	  	}
 					  	  	  	}, 2000);
 				  	  	  	}
@@ -21244,13 +21409,29 @@ public class Host extends Activity {
 							/*&& playerDeadYet[2] == "yes" && playerDeadYet[3] == "yes"
 							&& playerDeadYet[4] == "yes" && playerDeadYet[5] == "yes"*/) {
 						
+						MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+						
 						victoryDefeatAnimation();
+						
+						
+						final Handler h = new Handler();
+				  	  	h.postDelayed(new Runnable() {		  	  	  			
+				  	  			
+				  	  		@Override
+				  	  		public void run() {
+			
+				  	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+				  	  		}
+				  	  	}, 500);
+						
 		  	  	    	
 		  	    		String str = "victoryDefeatAnimation";
 		  	    		sendToAllClients(str);
 						
 						
 						gameOn = 0;
+						
+						win = "no";
 						
 						
 						final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
@@ -21269,8 +21450,8 @@ public class Host extends Activity {
 			  			sendToAllClients(str4);
 			  			
 			  			
-			  			final Handler h = new Handler();
-			  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+			  			final Handler h2 = new Handler();
+			  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
 			  	  	  			
 			  	  	  		@Override
 				  	  	  	public void run() {
@@ -21285,13 +21466,15 @@ public class Host extends Activity {
 			  	  	  			
 			  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.buttonsound6);
 			  	  	  			
-				  	  	  		final Handler h2 = new Handler();
-					  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
+				  	  	  		final Handler h3 = new Handler();
+					  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
 					  	  	  			
 					  	  	  		@Override
 						  	  	  	public void run() {
 					  	  	  			
 					  	  	  			//MediaPlayerWrapper.play(MainActivity2.this, R.raw.buttonsound6);
+					  	  	  			
+					  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
 					  	  	  			
 					  	  	  			foldScrolls();
 					  	  	  			
@@ -21321,8 +21504,13 @@ public class Host extends Activity {
 							  	  	  	}, 500);
 							  	  	  	*/
 						  	  	  		
+						  	  	  		writeTextToFile();
+					    			
+						  	  	  		getTextFromFile();
+						  	  	  		
 						  	  	  		h.removeCallbacks(this);
 						  	  	  		h2.removeCallbacks(this);
+						  	  	  		h3.removeCallbacks(this);
 						  	  	  	}
 					  	  	  	}, 2000);
 				  	  	  	}
@@ -21333,13 +21521,29 @@ public class Host extends Activity {
 							/*&& playerDeadYet[2] == "yes" && playerDeadYet[3] == "yes"
 							&& playerDeadYet[4] == "yes" && playerDeadYet[5] == "yes"*/) {
 						
+						MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+						
 						victoryDefeatAnimation();
+						
+						
+						final Handler h = new Handler();
+				  	  	h.postDelayed(new Runnable() {		  	  	  			
+				  	  			
+				  	  		@Override
+				  	  		public void run() {
+			
+				  	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+				  	  		}
+				  	  	}, 500);
+						
 		  	  	    	
 		  	    		String str = "victoryDefeatAnimation";
 		  	    		sendToAllClients(str);
 						
 						
 						gameOn = 0;
+						
+						win = "no";
 						
 						
 						final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
@@ -21358,8 +21562,8 @@ public class Host extends Activity {
 			  			sendToAllClients(str4);
 			  			
 			  			
-			  			final Handler h = new Handler();
-			  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+			  			final Handler h2 = new Handler();
+			  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
 			  	  	  			
 			  	  	  		@Override
 				  	  	  	public void run() {
@@ -21374,13 +21578,15 @@ public class Host extends Activity {
 			  	  	  			
 			  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.buttonsound6);
 			  	  	  			
-				  	  	  		final Handler h2 = new Handler();
-					  	  	  	h2.postDelayed(new Runnable() {
+				  	  	  		final Handler h3 = new Handler();
+					  	  	  	h3.postDelayed(new Runnable() {
 					  	  	  			
 					  	  	  		@Override
 						  	  	  	public void run() {
 					  	  	  			
 					  	  	  			//MediaPlayerWrapper.play(MainActivity2.this, R.raw.buttonsound6);
+					  	  	  			
+					  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
 					  	  	  			
 					  	  	  			foldScrolls();
 					  	  	  			
@@ -21410,8 +21616,13 @@ public class Host extends Activity {
 							  	  	  	}, 500);
 							  	  	  	*/
 						  	  	  		
+						  	  	  		writeTextToFile();
+					    			
+						  	  	  		getTextFromFile();
+						  	  	  		
 						  	  	  		h.removeCallbacks(this);
 						  	  	  		h2.removeCallbacks(this);
+						  	  	  		h3.removeCallbacks(this);
 						  	  	  	}
 					  	  	  	}, 2000);
 				  	  	  	}

@@ -177,8 +177,9 @@ public class Client2 extends Activity {
 	
 	
 	
-	//String image = "noImage";
+	String win = "na";
 	
+	//String image = "noImage";
 	
 	String zeroAttackingFirst = "no";
 	String oneAttackingFirst = "no";
@@ -269,7 +270,7 @@ public class Client2 extends Activity {
 	    }
 		*/
 		
-		MediaPlayerWrapper.play(Client2.this, R.raw.buttonsound6);
+		//MediaPlayerWrapper.play(Client2.this, R.raw.buttonsound6);
 		
 		final Intent svc=new Intent(this, Badonk2SoundService.class);
 		//stopService(svc);
@@ -697,7 +698,11 @@ public class Client2 extends Activity {
 		lineInSummaryTableLayout.setVisibility(View.INVISIBLE);
 		
 		
+		
 		preInitiativeTitle();//SHOULD REALLY BE CALLED "startTitle" (just using preInitiativeTitle() animation for "Lobby")
+		
+		MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
+		
 		
 		
 		// THESE RUN METHODS ARE THREAD-SAFE, SUPPOSEDLY.
@@ -717,7 +722,18 @@ public class Client2 extends Activity {
 	  	  	  	*/
 	  			
 	  			
-	  			startService(svc);
+	  			final Handler h4 = new Handler();
+	  	  	  	h4.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {
+	  	  	  			
+	  	  	  			MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
+	  	  	  		}
+	  	  	  	}, 2750);
+	  			
+	  			
+	  			//startService(svc);
 	  	  	  	
 	  			
   	  	  		final Handler h = new Handler();
@@ -758,6 +774,8 @@ public class Client2 extends Activity {
 					  	  	  			// Does this thread help:?
 						  	  	  		@Override
 						  	  	  		public void run() {
+						  	  	  			
+						  	  	  			startService(svc);
 						  	  	  			
 						  	  	  			try {
 						  	  	  		
@@ -1056,8 +1074,12 @@ public class Client2 extends Activity {
 	          			isinitiativestartedinterrupted = "yes";
 	          			
 	          			istitlestatsopen = "yes";
+	          			
+	          			
+	          			MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
 	              		
 	              		myInitiativeIsStarted();
+	              		
 	              		
 	              		titleBlankButton.setEnabled(false);// HERE & BELOW BECUSE GETTING WEIRD BEHAVIOR WHEN BUTTON WAS HIT AN ODD NUMBER OF TIMES (EXCEPT THE FIRST TIME).
 	              		
@@ -1077,6 +1099,18 @@ public class Client2 extends Activity {
 		              		}
 	              		}
 	              		*/
+	              		
+	              		
+	              		final Handler h5 = new Handler();
+        	  	  	  	h5.postDelayed(new Runnable() {		  	  	  			
+        	  	  	  			
+        	  	  	  		@Override
+        		  	  	  	public void run() {
+
+        	  	  	  			MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
+        	  	  	  		}
+    	  	  	  		}, 500);
+	              		
 	              		
 	              		final Handler h = new Handler();
 	  		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -1355,6 +1389,18 @@ public class Client2 extends Activity {
 				  			  	  	hasteplayer4textview.setVisibility(View.VISIBLE);
 			    		  	  	}    		  	  	
 	    			  	  		*/
+			    		  	  	
+			    		  	  	
+			    		  	  	final Handler h3 = new Handler();
+		        	  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
+		        	  	  	  			
+		        	  	  	  		@Override
+		        		  	  	  	public void run() {
+
+		        	  	  	  			MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
+		        	  	  	  		}
+		    	  	  	  		}, 10100);
+			    		  	  	
 	    			  	  		
 		    			  	  	final Handler h = new Handler();
 		    		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -2520,7 +2566,7 @@ public class Client2 extends Activity {
 	
 	
 	
-	public void writeTextToFile() {
+	public void writeTextToFile() {//CREATES PLAYER PROFILE IF IT DOESN'T EXIST
 		
 		File playerName = null;
 		
@@ -2531,39 +2577,29 @@ public class Client2 extends Activity {
 				//THIS WORKS, BUT THOUGHT BETTER TO SPECIFY IN CASE 'this.getExternalFilesDir(null)' DECIDES NOT TO WORK ON A SPECIFIC DEVICE.
 				//File playerName = new File(this.getExternalFilesDir(null), ArrayOfPlayers.player[5] + ".txt");
 				playerName = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files", ArrayOfPlayers.player[0] + ".txt");
-				
 			}
-			else if (id == 1) {
+			if (id == 1) {//WAS: else
 				
 				//THIS WORKS, BUT THOUGHT BETTER TO SPECIFY IN CASE 'this.getExternalFilesDir(null)' DECIDES NOT TO WORK ON A SPECIFIC DEVICE.
 				//File playerName = new File(this.getExternalFilesDir(null), ArrayOfPlayers.player[5] + ".txt");
 				playerName = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files", ArrayOfPlayers.player[1] + ".txt");
-				
 			}
 			
 			
 			if (!playerName.exists())
 				playerName.createNewFile();
 
-				// Adds a line to the file
+				// adds line to the file
 				BufferedWriter writer = new BufferedWriter(new FileWriter(playerName, false));//FOR APPENd: true
 				writer.write("GamesPlayed:0:Wins:0:Loses:0");
 				writer.close();
-				/*
-				// Refresh the data so it can seen when the device is plugged in a
-				// computer. You may have to unplug and replug the device to see the
-				// latest changes. This is not necessary if the user should not modify
-				// the files.
-				MediaScannerConnection.scanFile(this, new String[]{testFile.toString()}, null, null);
-	            */
-			
 			
 		} catch (IOException e) {
 			Log.e("ReadWriteFile", "Unable to write to the TestFile.txt file.");
 		}
 	}
 	
-	public void getTextFromFile() {		
+	public void getTextFromFile() {//READS EXISTING DATA FROM PLAYER PROFILE AND WRITES NEW DATA
 		
 		File playerName = null;
 		
@@ -2572,49 +2608,85 @@ public class Client2 extends Activity {
 			//THIS WORKS, BUT THOUGHT BETTER TO SPECIFY IN CASE 'this.getExternalFilesDir(null)' DECIDES NOT TO WORK ON A SPECIFIC DEVICE.
 			//File playerName = new File(this.getExternalFilesDir(null), ArrayOfPlayers.player[5] + ".txt");
 			playerName = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files", ArrayOfPlayers.player[0] + ".txt");
-			
 		}		
-		else if (id == 1) {
+		if (id == 1) {//WAS: else
 			
 			//THIS WORKS, BUT THOUGHT BETTER TO SPECIFY IN CASE 'this.getExternalFilesDir(null)' DECIDES NOT TO WORK ON A SPECIFIC DEVICE.
 			//File playerName = new File(this.getExternalFilesDir(null), ArrayOfPlayers.player[5] + ".txt");
 			playerName = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files", ArrayOfPlayers.player[1] + ".txt");
-			
 		}
 		
-		if (playerName != null) {
-			   
+		
+		BufferedReader reader = null;
+		   try {
+		      reader = new BufferedReader(new FileReader(playerName));
+		      String line;
+
+		      while ((line = reader.readLine()) != null) {
+		    	  
+		    	  String[] parts = line.split(":");
+		    	  String part1 = parts[0];
+		    	  String part2 = parts[1];
+		    	  String part3 = parts[2];
+		    	  String part4 = parts[3];
+		    	  String part5 = parts[4];
+		    	  String part6 = parts[5];
+		    	  
+		    	  Games = Integer.parseInt(part2);
+		    	  Wins = Integer.parseInt(part4);
+		    	  Loses = Integer.parseInt(part6);
+		    	  
+		    	  
+		    	  // Adds a line to the file
+		    	  BufferedWriter writer = new BufferedWriter(new FileWriter(playerName, false));//FOR APPENd: true
+		    	  //WAS:
+		    	  //writer.write("GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 1) + ":Loses:" + (Games + 1));
+		    	  
+		    	  if (win.equals("yes")) {
+		    		  writer.write("GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 1) + ":Loses:" + (Loses + 0));
+		    		  writer.close();
+		    	  }
+		    	  if (win.equals("no")) {
+		    		  writer.write("GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 0) + ":Loses:" + (Loses + 1));
+		    		  writer.close();
+		    	  }
+		      }
+		      
+		      reader.close();
+		
+		//if (playerName != null) {
+		/*
 		   BufferedReader reader = null;
 		   try {
 		      reader = new BufferedReader(new FileReader(playerName));
 		      String line;
 
 		      while ((line = reader.readLine()) != null) {
-		    	  /*
-		    	  String[] parts = line.split(":");
-		    	  String part1 = parts[0];
-		    	  String part2 = parts[1];
-		    	  String part3 = parts[2];
-		    	  String part4 = parts[3];
 		    	  
-		    	  Wins = Integer.parseInt(part2);
-		    	  Loses = Integer.parseInt(part4);
-		    	  */
+		    	  //String[] parts = line.split(":");
+		    	  //String part1 = parts[0];
+		    	  //String part2 = parts[1];
+		    	  //String part3 = parts[2];
+		    	  //String part4 = parts[3];
+		    	  
+		    	  //Wins = Integer.parseInt(part2);
+		    	  //Loses = Integer.parseInt(part4);
+		    	  
 		      }
 		      
 		      
 		      //FOLLOWING dOES NOT GIVE: "/storage/emulated/0/Android/data/com.nedswebsite.ktog/files"
 		      //SOMETHING LIKE:"data/data/com.nedswebsite.ktog/files"
-		      /*
-		      PackageManager m = getPackageManager();
-		      String s = getPackageName();
-		      try {
-		          PackageInfo p = m.getPackageInfo(s, 0);
-		          s = p.applicationInfo.dataDir;
-		      } catch (PackageManager.NameNotFoundException e) {
-		          Log.w("yourtag", "Error Package name not found ", e);
-		      }
-		      */
+		      
+		      //PackageManager m = getPackageManager();
+		      //String s = getPackageName();
+		      //try {
+		      //    PackageInfo p = m.getPackageInfo(s, 0);
+		      //    s = p.applicationInfo.dataDir;
+		      //} catch (PackageManager.NameNotFoundException e) {
+		      //    Log.w("yourtag", "Error Package name not found ", e);
+		      //}
+		      
 		      //Integer count = countFiles(new File(s), Integer.valueOf(0));
 		      
 		      
@@ -2644,10 +2716,11 @@ public class Client2 extends Activity {
 		      
 		      
 		      reader.close();
+		      */
 		   } catch (Exception e) {
 		      Log.e("ReadWriteFile", "Unable to read the TestFile.txt file.");
 		   }
-		}
+		//}
 	}
 	
 	
@@ -6006,7 +6079,6 @@ public class Client2 extends Activity {
 				
 				
 				
-				
 				getLocalIpAddress();
 				
 				String str = "localIPAddress :" + iPClient;
@@ -6014,7 +6086,7 @@ public class Client2 extends Activity {
 				
 				
 				
-				
+          		MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
 				
 				myInitiativeTransition();
 				
@@ -6034,10 +6106,22 @@ public class Client2 extends Activity {
 						secondsubscript = 5;
 					}					
 				}				
-			  	*/ 		
+			  	*/
+				
+				
+				final Handler h = new Handler();
+		  	  	h.postDelayed(new Runnable() {		  	  	  			
+		  	  			
+		  	  		@Override
+		  	  		public void run() {
+
+		  	  			MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
+		  	  		}
+		  	  	}, 500);
+				
 			  	  		
-		  	  	final Handler h = new Handler();
-		  		h.postDelayed(new Runnable() {		  	  	  			
+		  	  	final Handler h2 = new Handler();
+		  		h2.postDelayed(new Runnable() {		  	  	  			
 		  	  			
 		  	  		@Override
 		  	  	  	public void run() {
@@ -6331,21 +6415,36 @@ public class Client2 extends Activity {
 			  	  		//titlerulestext.bringToFront();
 				  	  	
 				  	  	
+				  	  	
+				  	  	final Handler h3 = new Handler();
+			  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
+			  	  	  			
+			  	  	  		@Override
+				  	  	  	public void run() {
+
+			  	  	  			MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
+			  	  	  		}
+			  	  		}, 9200);
+				  	  	
+				  	  	
+				  	  	
 				  	  	forChat();
 			  	  		
 		  	  			  	  			
-			  	  		final Handler h3 = new Handler();
-				  	  	h3.postDelayed(new Runnable() {
+			  	  		final Handler h4 = new Handler();
+				  	  	h4.postDelayed(new Runnable() {
 			
 				  	  		@Override
-				  	  		public void run()
-				  	  		{
+				  	  		public void run() {
+				  	  			
+				  	  			MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
+				  	  			
 				  	  			//titlerulestext.setVisibility(View.INVISIBLE);
 				  	  			summaryTableLayout.setVisibility(View.INVISIBLE);		  	  			
 					  	  		
 				  	  	  		lineInSummaryTableLayout.setVisibility(View.INVISIBLE);
 				  	  	  		
-				  	  	  	//summaryTableLayout.removeAllViews();
+				  	  	  		//summaryTableLayout.removeAllViews();
 				  	  			
 				  	  			TextView titletext = (TextView) findViewById(R.id.textviewtitlektogtext);
 				  	  			
@@ -7994,6 +8093,8 @@ public class Client2 extends Activity {
 				playersFighting = "fiveVsZero";
 				
 				
+				MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
+				
 				foldScrolls();
 				//scrollAnimationLeftDownReverse();
 				
@@ -8062,6 +8163,8 @@ public class Client2 extends Activity {
 			  			}
 						
 						
+						MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
+						
 						unfoldScrolls();
 						
 						
@@ -8080,6 +8183,8 @@ public class Client2 extends Activity {
 				
 				playersFighting = "fiveVsOne";
 				
+				
+				MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
 				
 				foldScrolls();
 				//scrollAnimationLeftDownReverse();
@@ -8148,6 +8253,8 @@ public class Client2 extends Activity {
 			  				clientAvatar.setBackgroundResource(R.drawable.stonedead2);
 			  			}
 						
+						
+						MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
 						
 						unfoldScrolls();
 						
@@ -8613,7 +8720,7 @@ public class Client2 extends Activity {
 
 
 	
-	public void victoryDefeatAnimation() {	
+	public void victoryDefeatAnimation() {
 		
 		runOnUiThread(new Runnable() {
 			@Override
@@ -8669,16 +8776,34 @@ public class Client2 extends Activity {
 							
 								if (playerDeadYet[5].equals("no") && playerDeadYet[0].equals("yes")) {
 									
+									MediaPlayerWrapper.play(Client2.this, R.raw.buttonsound6);
+									
 									titlevictorydefeat.append("Defeat");									
 									
 									istitlestatsopen = "no";
+									
+									
+									win = "no";
+									
+									writeTextToFile();
+					    			
+					    			getTextFromFile();
 								}
 								
 								else if (playerDeadYet[0].equals("no") && playerDeadYet[5].equals("yes")) {
 									
+									MediaPlayerWrapper.play(Client2.this, R.raw.buttonsound4b);
+									
 									titlevictorydefeat.append("Victory");									
 									
 									istitlestatsopen = "no";
+									
+									
+									win = "yes";
+									
+									writeTextToFile();
+					    			
+					    			getTextFromFile();
 								}
 							}
 							
@@ -8688,46 +8813,100 @@ public class Client2 extends Activity {
 									
 									if (playerDeadYet[5].equals("no") && playerDeadYet[0].equals("yes") && playerDeadYet[1].equals("yes")) {
 										
+										MediaPlayerWrapper.play(Client2.this, R.raw.buttonsound6);
+										
 										titlevictorydefeat.append("Defeat");									
 										
 										istitlestatsopen = "no";
+										
+										
+										win = "no";
+										
+										writeTextToFile();
+						    			
+						    			getTextFromFile();
 									}
 									
 									else if (playerDeadYet[1].equals("no") && playerDeadYet[0].equals("yes") && playerDeadYet[5].equals("yes")) {
 										
+										MediaPlayerWrapper.play(Client2.this, R.raw.buttonsound6);
+										
 										titlevictorydefeat.append("Defeat");									
 										
 										istitlestatsopen = "no";
+										
+										
+										win = "no";
+										
+										writeTextToFile();
+						    			
+						    			getTextFromFile();
 									}
 									
 									else if (playerDeadYet[0].equals("no") && playerDeadYet[5].equals("yes") && playerDeadYet[1].equals("yes")) {
 										
+										MediaPlayerWrapper.play(Client2.this, R.raw.buttonsound4b);
+										
 										titlevictorydefeat.append("Victory");									
 										
 										istitlestatsopen = "no";
+										
+										
+										win = "yes";
+										
+										writeTextToFile();
+						    			
+						    			getTextFromFile();
 									}
 								}
 								else if (id == 1) {
 									
 									if (playerDeadYet[5].equals("no") && playerDeadYet[1].equals("yes") && playerDeadYet[0].equals("yes")) {
 										
+										MediaPlayerWrapper.play(Client2.this, R.raw.buttonsound6);
+										
 										titlevictorydefeat.append("Defeat");									
 										
 										istitlestatsopen = "no";
+										
+										
+										win = "no";
+										
+										writeTextToFile();
+						    			
+						    			getTextFromFile();
 									}
 									
 									else if (playerDeadYet[0].equals("no") && playerDeadYet[1].equals("yes") && playerDeadYet[5].equals("yes")) {
 										
+										MediaPlayerWrapper.play(Client2.this, R.raw.buttonsound6);
+										
 										titlevictorydefeat.append("Defeat");									
 										
 										istitlestatsopen = "no";
+										
+										
+										win = "no";
+										
+										writeTextToFile();
+						    			
+						    			getTextFromFile();
 									}
 									
 									else if (playerDeadYet[1].equals("no") && playerDeadYet[5].equals("yes") && playerDeadYet[0].equals("yes")) {
 										
+										MediaPlayerWrapper.play(Client2.this, R.raw.buttonsound4b);
+										
 										titlevictorydefeat.append("Victory");									
 										
 										istitlestatsopen = "no";
+										
+										
+										win = "yes";
+										
+										writeTextToFile();
+						    			
+						    			getTextFromFile();
 									}
 								}								
 							}
@@ -8769,12 +8948,31 @@ public class Client2 extends Activity {
 							
 								if (playerDeadYet[5].equals("no") && playerDeadYet[0].equals("yes")) {
 									
-									titlevictorydefeat.append("Defeat");									
+									MediaPlayerWrapper.play(Client2.this, R.raw.buttonsound6);
+									
+									titlevictorydefeat.append("Defeat");
+									
+									
+									win = "no";
+									
+									writeTextToFile();
+					    			
+					    			getTextFromFile();
+									
 								}
 								
 								else if (playerDeadYet[0].equals("no") && playerDeadYet[5].equals("yes")) {
 									
-									titlevictorydefeat.append("Victory");									
+									MediaPlayerWrapper.play(Client2.this, R.raw.buttonsound4b);
+									
+									titlevictorydefeat.append("Victory");
+									
+									
+									win = "yes";
+									
+									writeTextToFile();
+					    			
+					    			getTextFromFile();
 								}
 							}
 							
@@ -8784,46 +8982,100 @@ public class Client2 extends Activity {
 									
 									if (playerDeadYet[5].equals("no") && playerDeadYet[0].equals("yes") && playerDeadYet[1].equals("yes")) {
 										
+										MediaPlayerWrapper.play(Client2.this, R.raw.buttonsound6);
+										
 										titlevictorydefeat.append("Defeat");									
 										
 										istitlestatsopen = "no";
+										
+										
+										win = "no";
+										
+										writeTextToFile();
+						    			
+						    			getTextFromFile();
 									}
 									
 									else if (playerDeadYet[1].equals("no") && playerDeadYet[0].equals("yes") && playerDeadYet[5].equals("yes")) {
 										
+										MediaPlayerWrapper.play(Client2.this, R.raw.buttonsound6);
+										
 										titlevictorydefeat.append("Defeat");									
 										
 										istitlestatsopen = "no";
+										
+										
+										win = "no";
+										
+										writeTextToFile();
+						    			
+						    			getTextFromFile();
 									}
 									
 									else if (playerDeadYet[0].equals("no") && playerDeadYet[5].equals("yes") && playerDeadYet[1].equals("yes")) {
 										
+										MediaPlayerWrapper.play(Client2.this, R.raw.buttonsound4b);
+										
 										titlevictorydefeat.append("Victory");									
 										
 										istitlestatsopen = "no";
+										
+										
+										win = "yes";
+										
+										writeTextToFile();
+						    			
+						    			getTextFromFile();
 									}
 								}
 								else if (id == 1) {
 									
 									if (playerDeadYet[5].equals("no") && playerDeadYet[1].equals("yes") && playerDeadYet[0].equals("yes")) {
 										
+										MediaPlayerWrapper.play(Client2.this, R.raw.buttonsound6);
+										
 										titlevictorydefeat.append("Defeat");									
 										
 										istitlestatsopen = "no";
+										
+										
+										win = "no";
+										
+										writeTextToFile();
+						    			
+						    			getTextFromFile();
 									}
 									
 									else if (playerDeadYet[0].equals("no") && playerDeadYet[1].equals("yes") && playerDeadYet[5].equals("yes")) {
 										
+										MediaPlayerWrapper.play(Client2.this, R.raw.buttonsound6);
+										
 										titlevictorydefeat.append("Defeat");									
 										
 										istitlestatsopen = "no";
+										
+										
+										win = "no";
+										
+										writeTextToFile();
+						    			
+						    			getTextFromFile();
 									}
 									
 									else if (playerDeadYet[1].equals("no") && playerDeadYet[5].equals("yes") && playerDeadYet[0].equals("yes")) {
 										
+										MediaPlayerWrapper.play(Client2.this, R.raw.buttonsound4b);
+										
 										titlevictorydefeat.append("Victory");									
 										
 										istitlestatsopen = "no";
+										
+										
+										win = "yes";
+										
+										writeTextToFile();
+						    			
+						    			getTextFromFile();
 									}
 								}								
 							}
@@ -14983,10 +15235,12 @@ public class Client2 extends Activity {
 						
 						finishInitiative();						
 					}
+					/*
 					else if (read.contains("myInitiativeTransition")) {			
 						
 						myInitiativeTransition();						
 					}
+					*/
 					else if (read.contains("FirstSubscript")) {
 						
 						String[] parts = read.split(":");
@@ -15792,7 +16046,20 @@ public class Client2 extends Activity {
 					}
 					else if (read.contains("victoryDefeatAnimation")) {
 						
+						MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
+						
 						victoryDefeatAnimation();
+						
+						
+						final Handler h = new Handler();
+				  	  	h.postDelayed(new Runnable() {		  	  	  			
+				  	  			
+				  	  		@Override
+				  	  		public void run() {
+			
+				  	  			MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
+				  	  		}
+				  	  	}, 500);
 					}
 					
 					else if (read.contains("cmputerTwentySidedRollFromLeft1")) {
@@ -16381,6 +16648,8 @@ public class Client2 extends Activity {
 					else if (read.contains("foldScrolls")) {
 						
 						hideImageView();
+						
+						MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
 						
 						foldScrolls();
 						

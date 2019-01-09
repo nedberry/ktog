@@ -1554,10 +1554,9 @@ containing a value of this type.
         public static final int dierolling3b=0x7f050006;
         public static final int drumdicebutton=0x7f050007;
         public static final int ktogintrovideo=0x7f050008;
-        public static final int scrollrollingandunrolling=0x7f050009;
-        public static final int scrollsunrolling=0x7f05000a;
-        public static final int sworddraw1=0x7f05000b;
-        public static final int swordswing=0x7f05000c;
+        public static final int scroll3=0x7f050009;
+        public static final int sworddraw1=0x7f05000a;
+        public static final int swordswing=0x7f05000b;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 

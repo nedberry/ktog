@@ -138,6 +138,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 	
 	
 	
+	String win = "na";
 	
 	//IS THIS WORKING NOW (W NEW onbackpressed CODE)????????????
 	// Using variable because was getting null pointer if onbackpressed before rollfromleft was completed:
@@ -249,7 +250,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
     	final MediaPlayer activityOpeningSound = MediaPlayer.create(MainActivity2.this, R.raw.buttonsound6);
 		activityOpeningSound.start();
 		*/
-    	MediaPlayerWrapper.play(MainActivity2.this, R.raw.buttonsound6);    	
+    	//MediaPlayerWrapper.play(MainActivity2.this, R.raw.buttonsound6);    	
     			
 		
 		
@@ -475,26 +476,43 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		lineInSummaryTableLayout.setVisibility(View.INVISIBLE);
 		
 		
+		
 		preInitiativeTitle();
+		
+		MediaPlayerWrapper.play(MainActivity2.this, R.raw.scroll3);
+		
 		
 		
 		// THESE RUN METHODS ARE THREAD-SAFE, SUPPOSEDLY.
-		final Handler h3 = new Handler(); // A handler is associated with the thread it is created in.
-  	  	h3.postDelayed(new Runnable() {
+		final Handler h = new Handler(); // A handler is associated with the thread it is created in.
+  	  	h.postDelayed(new Runnable() {
 
   	  		@Override
-  	  		public void run()
-  	  		{  	  			
+  	  		public void run() {
+  	  			
   	  			centerscrolltext.setVisibility(View.VISIBLE);
   	  			centerscrolltext.startAnimation(animAlphaText);
-	  			centerscrolltext.append("> Welcome, " + ArrayOfPlayers.player[0] + ".");  	  	  				  	  	  			
-	  	  	  			
-	  	  	  			
-  	  	  		final Handler h = new Handler();
-	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  			centerscrolltext.append("> Welcome, " + ArrayOfPlayers.player[0] + ".");
+	  			
+	  			
+	  			final Handler h2 = new Handler();
+	  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
 	  	  	  			
 	  	  	  		@Override
 		  	  	  	public void run() {
+	  	  	  			
+	  	  	  			MediaPlayerWrapper.play(MainActivity2.this, R.raw.scroll3);
+	  	  	  		}
+	  	  	  	}, 2750);
+	  	  	  			
+	  	  	  	
+  	  	  		final Handler h3 = new Handler();
+	  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {
+	  	  	  			
+	  	  	  			MediaPlayerWrapper.play(MainActivity2.this, R.raw.scroll3);
 	  	  	  			
 	  	  	  			titletext.setVisibility(View.INVISIBLE);
 	  	  	  			
@@ -608,7 +626,11 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
             			
             			istitlestatsopen = "yes";
                 		
+            			
+            			MediaPlayerWrapper.play(MainActivity2.this, R.raw.scroll3);
+            			
                 		myInitiativeIsStarted();
+                		
                 		
                 		titleBlankButton.setEnabled(false);// HERE & BELOW BECUSE GETTING WEIRD BEHAVIOR WHEN BUTTON WAS HIT AN ODD NUMBER OF TIMES (EXCEPT THE FIRST TIME).
                 		
@@ -626,8 +648,21 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
                 		}
                 		
                 		
+                		
                 		final Handler h = new Handler();
-    		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+        	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+        	  	  	  			
+        	  	  	  		@Override
+        		  	  	  	public void run() {
+
+        	  	  	  			MediaPlayerWrapper.play(MainActivity2.this, R.raw.scroll3);
+        	  	  	  		}
+    	  	  	  		}, 500);
+                		
+                		
+                		
+                		final Handler h2 = new Handler();
+    		  	  	  	h2.postDelayed(new Runnable() {
     		  	  	  			
     		  	  	  		@Override
     			  	  	  	public void run() {    		  	  	  			
@@ -771,11 +806,26 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 			    		  	  	hasteplayer2textview.setVisibility(View.VISIBLE);	    			  	  		
 	    			  	  		
 	    			  	  		
-		    			  	  	final Handler h = new Handler();
-		    		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+			    		  	  	
+			    		  	  	final Handler h3 = new Handler();
+		        	  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
+		        	  	  	  			
+		        	  	  	  		@Override
+		        		  	  	  	public void run() {
+
+		        	  	  	  			MediaPlayerWrapper.play(MainActivity2.this, R.raw.scroll3);
+		        	  	  	  		}
+		    	  	  	  		}, 10100);
+			    		  	  	
+			    		  	  	
+			    		  	  	
+		    			  	  	final Handler h4 = new Handler();
+		    		  	  	  	h4.postDelayed(new Runnable() {		  	  	  			
 		    		  	  	  			
 		    		  	  	  		@Override
 		    			  	  	  	public void run() {
+		    		  	  	  			
+		    		  	  	  			MediaPlayerWrapper.play(MainActivity2.this, R.raw.scroll3);
 		    		  	  	  			
 			    		  	  	  		//titlerulestext.setVisibility(View.INVISIBLE);
 			    		  	  	  		summaryTableLayout.setVisibility(View.INVISIBLE);
@@ -790,6 +840,18 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 			    			  	  		titleBlankButton.setEnabled(true);
 			    			  	  		
 			    			  	  		istitlestatsopen = "no";
+			    			  	  		
+			    			  	  		/*
+				    			  	  	final Handler h5 = new Handler();
+				        	  	  	  	h5.postDelayed(new Runnable() {		  	  	  			
+				        	  	  	  			
+				        	  	  	  		@Override
+				        		  	  	  	public void run() {
+	
+				        	  	  	  			MediaPlayerWrapper.play(MainActivity2.this, R.raw.scroll3);
+				        	  	  	  		}
+				    	  	  	  		}, 100);
+				    	  	  	  		*/
 		    			  	  	  	}
 		    		  	  	  	}, 10600);//WAS: 11250...10500
     			  	  	  	}
@@ -826,7 +888,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
             		*/            				
             	}            	
 			}            
-		});		
+		});
 				
 		
 		// USE android:background="@drawable/(SOME PNG)" TO SPECIFY AREA ON SCREEN ??
@@ -1863,7 +1925,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 	
 	
 	
-	public void writeTextToFile() {
+	public void writeTextToFile() {//CREATES PLAYER PROFILE IF IT DOESN'T EXIST
 		
 		try {
 			
@@ -1871,7 +1933,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 			if (!playerName.exists())
 			playerName.createNewFile();
 
-			// Adds a line to the file
+			// adds line to the file
 			BufferedWriter writer = new BufferedWriter(new FileWriter(playerName, false));//FOR APPENd: true
 			writer.write("GamesPlayed:0:Wins:0:Loses:0");
 			writer.close();
@@ -1881,10 +1943,10 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		}
 	}
 	
-	public void getTextFromFile() {
+	public void getTextFromFile() {//READS EXISTING DATA FROM PLAYER PROFILE AND WRITES NEW DATA
 		
 		File playerName = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files", ArrayOfPlayers.player[0] + ".txt");
-		if (playerName != null) {
+		//if (playerName != null) {
 		   
 		   BufferedReader reader = null;
 		   try {
@@ -1908,25 +1970,25 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		    	  
 		    	  // Adds a line to the file
 		    	  BufferedWriter writer = new BufferedWriter(new FileWriter(playerName, false));//FOR APPENd: true
-		    	  writer.write("GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 1) + ":Loses:" + (Games + 1));
-		    	  writer.close();
+		    	  //WAS:
+		    	  //writer.write("GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 1) + ":Loses:" + (Games + 1));
+		    	  
+		    	  if (win.equals("yes")) {
+		    		  writer.write("GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 1) + ":Loses:" + (Loses + 0));
+		    		  writer.close();
+		    	  }
+		    	  if (win.equals("no")) {
+		    		  writer.write("GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 0) + ":Loses:" + (Loses + 1));
+		    		  writer.close();
+		    	  }
 		      }
 		      
 		      reader.close();
 		   } catch (Exception e) {
 		      Log.e("ReadWriteFile", "Unable to read the TestFile.txt file.");
 		   }
-		}
+		//}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
@@ -2076,6 +2138,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		
 	    super.onResume();
 	    // put your code here...
+	    
+	    MediaPlayerWrapper.play(MainActivity2.this, R.raw.scroll3);
 	    
 	    unfoldScrolls();
 	    
@@ -5157,6 +5221,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		centerscrolltext.append("\n" + "> Let the battle begin...");		
 		
 		
+		MediaPlayerWrapper.play(MainActivity2.this, R.raw.scroll3);
+		
 		myInitiativeTransition();
 		
 		
@@ -5171,10 +5237,23 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 			firstsubscript = 1;
 			secondsubscript = 0;
 		}
+		
+		
+		
+		final Handler h = new Handler();
+	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  	  			
+	  	  		@Override
+	  	  		public void run() {
+
+	  	  			MediaPlayerWrapper.play(MainActivity2.this, R.raw.scroll3);
+	  	  		}
+  		}, 500);
+		
+		
 	  	  		
-	  	  		
-  	  	final Handler h = new Handler();
-  		h.postDelayed(new Runnable() {		  	  	  			
+  	  	final Handler h2 = new Handler();
+  		h2.postDelayed(new Runnable() {		  	  	  			
   	  			
   	  		@Override
   	  	  	public void run() {
@@ -5328,14 +5407,30 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 	  	  		
 	  	  		
 	  	  		//titlerulestext.bringToFront();
+		  	  	
+		  	  	
+		  	  	
+		  	  	final Handler h3 = new Handler();
+	  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {
+
+	  	  	  			MediaPlayerWrapper.play(MainActivity2.this, R.raw.scroll3);
+	  	  	  		}
+	  	  		}, 9200);
+		  	  	
+		  	  	
 	  	  		
   	  			  	  			
-	  	  		final Handler h3 = new Handler();
-		  	  	h3.postDelayed(new Runnable() {
+	  	  		final Handler h4 = new Handler();
+		  	  	h4.postDelayed(new Runnable() {
 	
 		  	  		@Override
-		  	  		public void run()
-		  	  		{
+		  	  		public void run() {
+		  	  			
+		  	  			MediaPlayerWrapper.play(MainActivity2.this, R.raw.scroll3);
+		  	  			
 		  	  			//titlerulestext.setVisibility(View.INVISIBLE);
 		  	  			summaryTableLayout.setVisibility(View.INVISIBLE);		  	  			
 			  	  		
@@ -5380,6 +5475,20 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		  	  			
 		  	  			//Thread myThread = new Thread(myRunnable);
 		  	  			//myThread.start();
+		  	  			
+		  	  			
+		  	  			/*
+			  	  		final Handler h5 = new Handler();
+	    	  	  	  	h5.postDelayed(new Runnable() {		  	  	  			
+	    	  	  	  			
+	    	  	  	  		@Override
+	    		  	  	  	public void run() {
+	
+	    	  	  	  			MediaPlayerWrapper.play(MainActivity2.this, R.raw.scroll3);
+	    	  	  	  		}
+		  	  	  		}, 500);
+		  	  			*/
+		  	  			
 			  	  		
 		  	  		}
 		  	  	}, 9725); // FINAGELED!	 9500 	  			
@@ -5388,7 +5497,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
   					//WAS: 675
 	  	//Toast.makeText(MainActivity2.this,"isinitiativestarted = " +  isinitiativestarted + " aretheredoubles = " + aretheredoubles, Toast.LENGTH_SHORT).show();  	 	
 	  	  		
-	}	 	
+	}
 	
 	
 	/*
@@ -20264,6 +20373,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		Toast.makeText(MainActivity2.this, "IT'S FUCKING LOOPING", Toast.LENGTH_SHORT).show();
 	}
 	*/
+	
 	public void gameOverCheck() {
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
@@ -20278,13 +20388,28 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
   	  	    	Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");				
   	  	    	
     			
+  	  	    	MediaPlayerWrapper.play(MainActivity2.this, R.raw.scroll3);
+  	  	    	
   	  	    	victoryDefeatAnimation();
+  	  	    	
+  	  	    	
+	  	  	    final Handler h = new Handler();
+		  	  	h.postDelayed(new Runnable() {		  	  	  			
+		  	  			
+		  	  		@Override
+		  	  		public void run() {
+	
+		  	  			MediaPlayerWrapper.play(MainActivity2.this, R.raw.scroll3);
+		  	  		}
+		  	  	}, 500);
   	  	    	
   	  	    	
 				if (playerDeadYet[0] == "no" && playerDeadYet[1] == "yes") {
 				/*&& playerDeadYet[2] == "yes" && playerDeadYet[3] == "yes"	&& playerDeadYet[4] == "yes" && playerDeadYet[5] == "yes"*/
 					
 					gameOn = 0;
+					
+					win = "yes";
 					
 					
 					final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
@@ -20298,8 +20423,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		  	  		centerscrolltext.startAnimation(animAlphaText);
 		  			centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you are victorious!");
 		  			
-		  			final Handler h = new Handler();
-		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+		  			final Handler h2 = new Handler();
+		  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
 		  	  	  			
 		  	  	  		@Override
 			  	  	  	public void run() {
@@ -20308,20 +20433,22 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		  	  	  			centerscrolltext.startAnimation(animAlphaText);
 		  	  	  			centerscrolltext.append("\n" + "> Game Over!");
 		  	  	  			
-		  	  	  			MediaPlayerWrapper.play(MainActivity2.this, R.raw.buttonsound6);
+		  	  	  			MediaPlayerWrapper.play(MainActivity2.this, R.raw.buttonsound4b);
 		  	  	  			
-			  	  	  		final Handler h = new Handler();
-				  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+			  	  	  		final Handler h3 = new Handler();
+				  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
 				  	  	  			
 				  	  	  		@Override
 					  	  	  	public void run() {
 				  	  	  			
 				  	  	  			//MediaPlayerWrapper.play(MainActivity2.this, R.raw.buttonsound6);
 				  	  	  			
+				  	  	  			MediaPlayerWrapper.play(MainActivity2.this, R.raw.scroll3);
+				  	  	  			
 				  	  	  			foldScrolls();
 				  	  	  			
-					  	  	  		final Handler h = new Handler();
-						  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+					  	  	  		final Handler h4 = new Handler();
+						  	  	  	h4.postDelayed(new Runnable() {		  	  	  			
 						  	  	  			
 						  	  	  		@Override
 							  	  	  	public void run() {
@@ -20388,6 +20515,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 					
 					gameOn = 0;
 					
+					win = "no";
+					
 					
 					final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 					//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
@@ -20401,8 +20530,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		  	  		centerscrolltext.startAnimation(animAlphaText);
 		  			centerscrolltext.append("\n" + "> The computer is victorious!");
 		  			
-		  			final Handler h = new Handler();
-		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+		  			final Handler h2 = new Handler();
+		  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
 		  	  	  			
 		  	  	  		@Override
 			  	  	  	public void run() {
@@ -20413,18 +20542,20 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		  	  	  			
 		  	  	  			MediaPlayerWrapper.play(MainActivity2.this, R.raw.buttonsound6);
 		  	  	  			
-			  	  	  		final Handler h = new Handler();
-				  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+			  	  	  		final Handler h3 = new Handler();
+				  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
 				  	  	  			
 				  	  	  		@Override
 					  	  	  	public void run() {
 				  	  	  			
 				  	  	  			//MediaPlayerWrapper.play(MainActivity2.this, R.raw.buttonsound6);
 				  	  	  			
+				  	  	  			MediaPlayerWrapper.play(MainActivity2.this, R.raw.scroll3);
+				  	  	  			
 				  	  	  			foldScrolls();
 				  	  	  			
-					  	  	  		final Handler h = new Handler();
-						  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+					  	  	  		final Handler h4 = new Handler();
+						  	  	  	h4.postDelayed(new Runnable() {		  	  	  			
 						  	  	  			
 						  	  	  		@Override
 							  	  	  	public void run() {
@@ -20457,6 +20588,11 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 						  	  	  			*/
 							  	  	  		//Intent openMainActivity1 = new Intent("com.nedswebsite.ktog.MAINACTIVITY2");
 						    	        	//startActivity(openMainActivity1);
+							    			
+							    			
+							    			writeTextToFile();
+							    			
+							    			getTextFromFile();
 							  	  	  	}
 						  	  	  	}, 500);
 					  	  	  	}
