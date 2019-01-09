@@ -463,10 +463,27 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	        	buttonSound.start();
 	        	
 	        	
-	        	stopService(svc);
+	        	//stopService(svc);
 	        	
-	        	Intent i = new Intent(MainActivity1.this, playerNamesAndRecords.class);
-	        	MainActivity1.this.startActivity(i);
+	        	
+	        	File directory = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files");
+	    		File[] files = directory.listFiles();
+	          
+	    		if (files != null) {
+	    			
+	    			stopService(svc);
+	    			
+	    			Intent i = new Intent(MainActivity1.this, playerNamesAndRecords.class);
+	    			MainActivity1.this.startActivity(i);
+	    		}
+	    		
+	    		else {
+	    			
+	    			Toast.makeText(MainActivity1.this, "No Records", Toast.LENGTH_LONG).show();
+	    			
+	    			stopService(svc);
+					startService(svc);
+	    		}
 			}
 		});
 		
@@ -2355,13 +2372,30 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
                 @Override
     			public void onClick(View v) {
     			                    	
-	            	buttonSound.start();
-	            	
-	            	
-	            	stopService(svc);
-	            	
-	            	Intent i = new Intent(MainActivity1.this, playerNamesAndRecords.class);
-	            	MainActivity1.this.startActivity(i);
+                	buttonSound.start();
+    	        	
+    	        	
+    	        	//stopService(svc);
+    	        	
+    	        	
+    	        	File directory = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files");
+    	    		File[] files = directory.listFiles();
+    	          
+    	    		if (files != null) {
+    	    			
+    	    			stopService(svc);
+    	    			
+    	    			Intent i = new Intent(MainActivity1.this, playerNamesAndRecords.class);
+    	    			MainActivity1.this.startActivity(i);
+    	    		}
+    	    		
+    	    		else {
+    	    			
+    	    			Toast.makeText(MainActivity1.this, "No Records", Toast.LENGTH_LONG).show();
+    	    			
+    	    			stopService(svc);
+    					startService(svc);
+    	    		}
     			}
     		});
     		
@@ -3020,13 +3054,30 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
                 @Override
     			public void onClick(View v) {
     			                    	
-	            	buttonSound.start();
-	            	
-	            	
-	            	stopService(svc);
-	            	
-	            	Intent i = new Intent(MainActivity1.this, playerNamesAndRecords.class);
-	            	MainActivity1.this.startActivity(i);
+                	buttonSound.start();
+    	        	
+    	        	
+    	        	//stopService(svc);
+    	        	
+    	        	
+    	        	File directory = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files");
+    	    		File[] files = directory.listFiles();
+    	          
+    	    		if (files != null) {
+    	    			
+    	    			stopService(svc);
+    	    			
+    	    			Intent i = new Intent(MainActivity1.this, playerNamesAndRecords.class);
+    	    			MainActivity1.this.startActivity(i);
+    	    		}
+    	    		
+    	    		else {
+    	    			
+    	    			Toast.makeText(MainActivity1.this, "No Records", Toast.LENGTH_LONG).show();
+    	    			
+    	    			stopService(svc);
+    					startService(svc);
+    	    		}
     			}
     		});
     		

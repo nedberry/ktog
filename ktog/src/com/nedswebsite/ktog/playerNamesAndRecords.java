@@ -81,26 +81,16 @@ public class playerNamesAndRecords extends Activity {
 		
 		File directory = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files");
 		File[] files = directory.listFiles();
-      
-		if (files != null) {
-			for (int i = 0; i < files.length; ++i) {
+		
+		for (int i = 0; i < files.length; ++i) {
 
-				count++;
-				File file = files[i];
-			}
-		
-			getTextAndDataFromFile();
-		
-			list();
+			count++;
+			File file = files[i];
 		}
-		
-		else {
-			
-			finish();
-			
-			Intent i = new Intent(playerNamesAndRecords.this, MainActivity1.class);
-			playerNamesAndRecords.this.startActivity(i);
-		}
+	
+		getTextAndDataFromFile();
+	
+		list();
 	}
 	
 	/*
