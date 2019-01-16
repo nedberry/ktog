@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -462,10 +463,72 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 			                    	
 	        	buttonSound.start();
 	        	
+	        	stopService(svc);
+    			
+    			//Intent i = new Intent(MainActivity1.this, playerNamesAndRecords.class);
+    			//MainActivity1.this.startActivity(i);
+    			
+	        	if (count == 0) {
+	        		
+	        		Toast.makeText(MainActivity1.this, "No Records", Toast.LENGTH_LONG).show();
+	    			
+	    			stopService(svc);
+					startService(svc);
+	        	}
+	        	
+	        	else {
+	        		
+	        		stopService(svc);
+	    			
+	    			Intent i = new Intent(MainActivity1.this, playerNamesAndRecords.class);
+	    			MainActivity1.this.startActivity(i);
+	        	}
+	        	
+	        	
+	        	/*
+	        	String filename = "myPrefs";
+	        	File f = new File(getApplicationContext().getApplicationInfo().dataDir + "/shared_prefs/" + filename + ".xml");
+	        	
+    			if (f.exists()) {
+    				
+    				stopService(svc);
+	    			
+	    			Intent i = new Intent(MainActivity1.this, playerNamesAndRecords.class);
+	    			MainActivity1.this.startActivity(i);
+    			}
+    			    
+    			else {
+    				
+    				Toast.makeText(MainActivity1.this, "No Records", Toast.LENGTH_LONG).show();
+	    			
+	    			stopService(svc);
+					startService(svc);
+    			}
+	        	*/
+	        	
+	        	/*
+	        	SharedPreferences pref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+	        	String value = pref.getString("unknown_key",null);
+	        	
+	        	if (value == null) {
+	        	    
+	        		Toast.makeText(MainActivity1.this, "No Records", Toast.LENGTH_LONG).show();
+	    			
+	    			stopService(svc);
+					startService(svc);
+	        		
+	        	} else {
+
+	        		stopService(svc);
+	    			
+	    			Intent i = new Intent(MainActivity1.this, playerNamesAndRecords.class);
+	    			MainActivity1.this.startActivity(i);
+	        	}
+	        	*/
 	        	
 	        	//stopService(svc);
 	        	
-	        	
+	        	/*
 	        	File directory = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files");
 	    		File[] files = directory.listFiles();
 	          
@@ -484,6 +547,7 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	    			stopService(svc);
 					startService(svc);
 	    		}
+	    		*/
 			}
 		});
 		
@@ -502,7 +566,17 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	        	//Toast.makeText(MainActivity1.this, String.valueOf(count), Toast.LENGTH_LONG).show();
 	        	
 	        	
-	        	try {
+	        	if (count == 0) {
+	        		
+	        		Toast.makeText(MainActivity1.this, "No Guys", Toast.LENGTH_LONG).show();
+			   		
+					stopService(svc);
+					startService(svc);
+	        	}
+	        	
+	        	else {
+	        	
+	        	//try {
 				      
 	        			getPlayerNamesFromFile();
 	        			
@@ -856,13 +930,14 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	    	        	//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
 	    	        	//MainActivity1.this.startActivity(i);
 	        			
-				   } catch (Exception e) {
+				   //} catch (Exception e) {
 				      
-				   		Toast.makeText(MainActivity1.this, "No Guys", Toast.LENGTH_LONG).show();
+				   		//Toast.makeText(MainActivity1.this, "No Guys", Toast.LENGTH_LONG).show();
 				   		
-						stopService(svc);
-						startService(svc);
-				}
+						//stopService(svc);
+						//startService(svc);
+				//}
+            	}
 			}
 		});
 	}
@@ -884,6 +959,10 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	
 	public void getCount() {
 		
+		SharedPreferences pref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+		count = pref.getAll().size();
+		
+		/*
 		File directory = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files");
 		File[] files = directory.listFiles();
       
@@ -893,18 +972,51 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 				count++;
 				File file = files[i];
 			}
+			*/
 	}
 	
 	public void getPlayerNamesFromFile() {
 		
-		File directory = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files");
+		SharedPreferences pref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+		
+		Map<String,?> keys = pref.getAll();
+		int i = 0;
+		for(Map.Entry<String,?> entry : keys.entrySet()) {
+			
+			Log.d("map values",entry.getKey() + ": " + entry.getValue().toString());
+			
+			//for (int i = 0; i < count; ++i) {
+				
+			
+			String userstats = entry.getValue().toString();
+			
+			String[] parts = userstats.split(":");
+			
+			String part1 = parts[0];
+			String part2 = parts[1];
+			String part3 = parts[2];
+			String part4 = parts[3];
+			String part5 = parts[4];
+			String part6 = parts[5];
+		
+			
+			name[i] = entry.getKey();
+			//name[0] = file.getName().toString();
+			//gamesPlayed[i] = Integer.parseInt(part2);
+			//wins[i] = Integer.parseInt(part4);
+			//loses[i] = Integer.parseInt(part6);
+			
+			i++;
+		}
+		
+		//File directory = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files");
 		
 		// Refresh the data so it can seen when the device is plugged in a
 		// computer. You may have to unplug and replug the device to see the
 		// latest changes. This is not necessary if the user should not modify
 		// the files.
 		//MediaScannerConnection.scanFile(this, new String[]{directory.toString()}, null, null);
-		
+		/*
 		File[] files = directory.listFiles();
 		
 		for (int i = 0; i < files.length; ++i) {
@@ -935,6 +1047,7 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 			   }
 			}
 		}
+		*/
 	}
 	
 	
@@ -2374,10 +2487,72 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
     			                    	
                 	buttonSound.start();
     	        	
+                	stopService(svc);
+	    			
+                	
+                	if (count == 0) {
+    	        		
+    	        		Toast.makeText(MainActivity1.this, "No Records", Toast.LENGTH_LONG).show();
+    	    			
+    	    			stopService(svc);
+    					startService(svc);
+    	        	}
+    	        	
+    	        	else {
+    	        		
+    	        		stopService(svc);
+    	    			
+    	    			Intent i = new Intent(MainActivity1.this, playerNamesAndRecords.class);
+    	    			MainActivity1.this.startActivity(i);
+    	        	}
+                	
+	    			//Intent i = new Intent(MainActivity1.this, playerNamesAndRecords.class);
+	    			//MainActivity1.this.startActivity(i);
+                	
+                	/*
+                	String filename = "myPrefs";
+                	File f = new File(getApplicationContext().getApplicationInfo().dataDir + "/shared_prefs/" + filename + ".xml");
+    	        	
+        			if (f.exists()) {
+        				
+        				stopService(svc);
+    	    			
+    	    			Intent i = new Intent(MainActivity1.this, playerNamesAndRecords.class);
+    	    			MainActivity1.this.startActivity(i);
+        			}
+        			    
+        			else {
+        				
+        				Toast.makeText(MainActivity1.this, "No Records", Toast.LENGTH_LONG).show();
+    	    			
+    	    			stopService(svc);
+    					startService(svc);
+        			}
+        			*/
+        			
+	    			/*
+                	SharedPreferences pref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+    	        	String value = pref.getString("unknown_key",null);
+    	        	
+    	        	if (value == null) {
+    	        	    
+    	        		Toast.makeText(MainActivity1.this, "No Records", Toast.LENGTH_LONG).show();
+    	    			
+    	    			stopService(svc);
+    					startService(svc);
+    	        		
+    	        	} else {
+
+    	        		stopService(svc);
+    	    			
+    	    			Intent i = new Intent(MainActivity1.this, playerNamesAndRecords.class);
+    	    			MainActivity1.this.startActivity(i);
+    	        	}
+                	*/
     	        	
     	        	//stopService(svc);
     	        	
-    	        	
+    	        	/*
     	        	File directory = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files");
     	    		File[] files = directory.listFiles();
     	          
@@ -2396,6 +2571,7 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
     	    			stopService(svc);
     					startService(svc);
     	    		}
+    	    		*/
     			}
     		});
     		
@@ -2412,7 +2588,17 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
     	        	//getCount();
     	        	
     	        	
-    	        	try {
+    	        	if (count == 0) {
+    	        		
+    	        		Toast.makeText(MainActivity1.this, "No Guys", Toast.LENGTH_LONG).show();
+    			   		
+    					stopService(svc);
+    					startService(svc);
+    	        	}
+    	        	
+    	        	else {
+    	        	
+    	        	//try {
   				      
 	        			getPlayerNamesFromFile();
 	        			
@@ -2756,13 +2942,14 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	    	        	//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
 	    	        	//MainActivity1.this.startActivity(i);
 	        			
-    	        		} catch (Exception e) {
+    	        		//} catch (Exception e) {
 				      
-				   		Toast.makeText(MainActivity1.this, "No Guys", Toast.LENGTH_LONG).show();
+				   		//Toast.makeText(MainActivity1.this, "No Guys", Toast.LENGTH_LONG).show();
 				   		
-				   		stopService(svc);
-						startService(svc);
-	        		}
+				   		//stopService(svc);
+						//startService(svc);
+	        		//}
+    	        	}
     			}
     		});
     		
@@ -3056,10 +3243,72 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
     			                    	
                 	buttonSound.start();
     	        	
+                	stopService(svc);
+	    			
+                	
+                	if (count == 0) {
+    	        		
+    	        		Toast.makeText(MainActivity1.this, "No Records", Toast.LENGTH_LONG).show();
+    	    			
+    	    			stopService(svc);
+    					startService(svc);
+    	        	}
     	        	
+    	        	else {
+    	        		
+    	        		stopService(svc);
+    	    			
+    	    			Intent i = new Intent(MainActivity1.this, playerNamesAndRecords.class);
+    	    			MainActivity1.this.startActivity(i);
+    	        	}
+                	
+	    			//Intent i = new Intent(MainActivity1.this, playerNamesAndRecords.class);
+	    			//MainActivity1.this.startActivity(i);
+                	
+                	/*
+                	String filename = "myPrefs";
+                	File f = new File(getApplicationContext().getApplicationInfo().dataDir + "/shared_prefs/" + filename + ".xml");
+    	        	
+        			if (f.exists()) {
+        				
+        				stopService(svc);
+    	    			
+    	    			Intent i = new Intent(MainActivity1.this, playerNamesAndRecords.class);
+    	    			MainActivity1.this.startActivity(i);
+        			}
+        			    
+        			else {
+        				
+        				Toast.makeText(MainActivity1.this, "No Records", Toast.LENGTH_LONG).show();
+    	    			
+    	    			stopService(svc);
+    					startService(svc);
+        			}
+        			*/
+        			
+	    			/*
+                	SharedPreferences pref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+    	        	String value = pref.getString("unknown_key",null);
+    	        	
+    	        	if (value == null) {
+    	        	    
+    	        		Toast.makeText(MainActivity1.this, "No Records", Toast.LENGTH_LONG).show();
+    	    			
+    	    			stopService(svc);
+    					startService(svc);
+    	        		
+    	        	} else {
+
+    	        		stopService(svc);
+    	    			
+    	    			Intent i = new Intent(MainActivity1.this, playerNamesAndRecords.class);
+    	    			MainActivity1.this.startActivity(i);
+    	        	}
+                	*/
+                	
     	        	//stopService(svc);
     	        	
-    	        	
+    	        	/*
     	        	File directory = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files");
     	    		File[] files = directory.listFiles();
     	          
@@ -3078,6 +3327,7 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
     	    			stopService(svc);
     					startService(svc);
     	    		}
+    	    		*/
     			}
     		});
     		
@@ -3094,7 +3344,17 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
     	        	//getCount();
     	        	
     	        	
-    	        	try {
+    	        	if (count == 0) {
+    	        		
+    	        		Toast.makeText(MainActivity1.this, "No Guys", Toast.LENGTH_LONG).show();
+    			   		
+    					stopService(svc);
+    					startService(svc);
+    	        	}
+    	        	
+    	        	else {
+    	        	
+    	        	//try {
   				      
 	        			getPlayerNamesFromFile();
 	        			
@@ -3437,13 +3697,14 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	    	        	//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
 	    	        	//MainActivity1.this.startActivity(i);
 	        			
-    	        		} catch (Exception e) {
+    	        		//} catch (Exception e) {
 				      
-				   		Toast.makeText(MainActivity1.this, "No Guys", Toast.LENGTH_LONG).show();
+				   		//Toast.makeText(MainActivity1.this, "No Guys", Toast.LENGTH_LONG).show();
 				   		
-				   		stopService(svc);
-						startService(svc);
-	        		}
+				   		//stopService(svc);
+						//startService(svc);
+	        		//}
+    	        	}
     			}
     		});
     		

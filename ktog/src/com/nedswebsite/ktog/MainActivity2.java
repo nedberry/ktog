@@ -31,6 +31,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
@@ -1927,9 +1928,30 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 	
 	public void writeTextToFile() {//CREATES PLAYER PROFILE IF IT DOESN'T EXIST
 		
+		SharedPreferences pref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+		boolean check = pref.contains(ArrayOfPlayers.player[0]);
+		
+		if (!check) {
+			
+			SharedPreferences.Editor edit = pref.edit();
+			edit.putString(ArrayOfPlayers.player[0], "GamesPlayed:0:Wins:0:Loses:0");
+						
+			edit.commit();
+		}
+		
+		
+		/*
 		try {
 			
+			//File playerName = new File(this.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS), ArrayOfPlayers.player[0] + ".txt");
+			
+			//File playerName = new File(this.getFilesDir(), "/files/" + ArrayOfPlayers.player[0] + ".txt");
+			
+			//WORKS FOR ROOTED DEVICES:
 			File playerName = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files", ArrayOfPlayers.player[0] + ".txt");
+			//File playerName = new File("/data/data/com.nedswebsite.ktog/files/" + ArrayOfPlayers.player[0] + ".txt");
+
+			
 			if (!playerName.exists())
 			playerName.createNewFile();
 
@@ -1941,13 +1963,57 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		} catch (IOException e) {
 			Log.e("ReadWriteFile", "Unable to write to the TestFile.txt file.");
 		}
+		*/
 	}
 	
 	public void getTextFromFile() {//READS EXISTING DATA FROM PLAYER PROFILE AND WRITES NEW DATA
 		
-		File playerName = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files", ArrayOfPlayers.player[0] + ".txt");
+		SharedPreferences pref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+		
+		String username = pref.getString(ArrayOfPlayers.player[0], "");
+		
+		
+		String[] parts = username.split(":");
+		
+		String part1 = parts[0];//GamesPlayed
+  	  	String part2 = parts[1];//0
+  	  	String part3 = parts[2];//Wins
+  	  	String part4 = parts[3];//0
+  	  	String part5 = parts[4];//Loses
+  	  	String part6 = parts[5];//0
+  	  	
+  	  	Games = Integer.parseInt(part2);
+  	  	Wins = Integer.parseInt(part4);
+  	  	Loses = Integer.parseInt(part6);
+  	  	
+  	  	// Adds a line to the file
+  	  	
+  	  	SharedPreferences.Editor edit = pref.edit();
+  	  	
+  	  	if (win.equals("yes")) {
+  	  		
+  	  		edit.putString(ArrayOfPlayers.player[0], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 1) + ":Loses:" + (Loses + 0));
+  	  		edit.commit();
+  	  	}
+  	  	if (win.equals("no")) {
+  	  		
+  	  		edit.putString(ArrayOfPlayers.player[0], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 0) + ":Loses:" + (Loses + 1));
+  	  		edit.commit();
+  	  	}
+		
+		
+		
+		//File playerName = new File(this.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS), ArrayOfPlayers.player[0] + ".txt");
+		
+		//File playerName = new File(this.getFilesDir(), "/files/" + ArrayOfPlayers.player[0] + ".txt");
+		
+		//WORKS FOR ROOTED DEVICES:
+		//File playerName = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files", ArrayOfPlayers.player[0] + ".txt");
+		//File playerName = new File("/data/data/com.nedswebsite.ktog/files/" + ArrayOfPlayers.player[0] + ".txt");
+
+		
 		//if (playerName != null) {
-		   
+		   /*
 		   BufferedReader reader = null;
 		   try {
 		      reader = new BufferedReader(new FileReader(playerName));
@@ -1956,12 +2022,12 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		      while ((line = reader.readLine()) != null) {
 		    	  
 		    	  String[] parts = line.split(":");
-		    	  String part1 = parts[0];
-		    	  String part2 = parts[1];
-		    	  String part3 = parts[2];
-		    	  String part4 = parts[3];
-		    	  String part5 = parts[4];
-		    	  String part6 = parts[5];
+		    	  String part1 = parts[0];//gamesplayed
+		    	  String part2 = parts[1];//0
+		    	  String part3 = parts[2];//wins
+		    	  String part4 = parts[3];//0
+		    	  String part5 = parts[4];//loses
+		    	  String part6 = parts[5];//0
 		    	  
 		    	  Games = Integer.parseInt(part2);
 		    	  Wins = Integer.parseInt(part4);
@@ -1985,8 +2051,9 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		      
 		      reader.close();
 		   } catch (Exception e) {
-		      Log.e("ReadWriteFile", "Unable to read the TestFile.txt file.");
+		      Log.e("ReadWriteFile", "Unable to read/write the TestFile.txt file.");
 		   }
+		   */
 		//}
 	}
 	
@@ -2057,12 +2124,12 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 	    			playerDeadYet = new String[] {"yes", "yes", "yes", "yes", "yes", "yes"};	    			
 	    			canHasDisarmed = new String[] {"no", "no", "no", "no", "no", "no"};
 	    			
-	    			
+	    			/*
 	    			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
 	    			SharedPreferences.Editor editor = preferences.edit();
 	    			editor.clear();
 	    			editor.commit();
-	    			
+	    			*/
 	    			
 	    			Intent intent = new Intent(MainActivity2.this, MainActivity1.class);
 	    			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -2121,11 +2188,12 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		playerDeadYet = new String[] {"yes", "yes", "yes", "yes", "yes", "yes"};	    			
 		canHasDisarmed = new String[] {"no", "no", "no", "no", "no", "no"};
 		
-		
+		/*
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity2.this);
 		SharedPreferences.Editor editor = preferences.edit();
 		editor.clear();
 		editor.commit();
+		*/
 		
 	    // Must always call the super method at the end.
 	    super.onDestroy();

@@ -4,9 +4,12 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FilenameFilter;
+import java.util.Map;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -79,7 +82,21 @@ public class playerNamesAndRecords extends Activity {
 		
 	public void getCount() {
 		
-		File directory = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files");
+		SharedPreferences pref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+		count = pref.getAll().size();
+		
+		getTextAndDataFromFile();
+		
+		list();
+		
+		//File directory = new File(this.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS), ArrayOfPlayers.player[0] + ".txt");
+		
+		//File directory = new File(this.getFilesDir(), "/files/");
+		
+		//WORKS FOR ROOTED DEVICES:
+		//File directory = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files");
+		//File directory = new File("/data/data/com.nedswebsite.ktog/files/" + ArrayOfPlayers.player[0] + ".txt");
+		/*
 		File[] files = directory.listFiles();
 		
 		for (int i = 0; i < files.length; ++i) {
@@ -91,6 +108,7 @@ public class playerNamesAndRecords extends Activity {
 		getTextAndDataFromFile();
 	
 		list();
+		*/
 	}
 	
 	/*
@@ -114,8 +132,70 @@ public class playerNamesAndRecords extends Activity {
 	
 	public void getTextAndDataFromFile() {
 		
-		File directory = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files");
+		SharedPreferences pref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
 		
+		Map<String,?> keys = pref.getAll();
+		int i = 0;
+		for(Map.Entry<String,?> entry : keys.entrySet()) {
+			
+			Log.d("map values",entry.getKey() + ": " + entry.getValue().toString());
+			
+			//for (int i = 0; i < count; ++i) {
+				
+			
+			String userstats = entry.getValue().toString();
+			
+			String[] parts = userstats.split(":");
+			
+			String part1 = parts[0];
+			String part2 = parts[1];
+			String part3 = parts[2];
+			String part4 = parts[3];
+			String part5 = parts[4];
+			String part6 = parts[5];
+		
+			
+			name[i] = entry.getKey();
+			//name[0] = file.getName().toString();
+			gamesPlayed[i] = Integer.parseInt(part2);
+			wins[i] = Integer.parseInt(part4);
+			loses[i] = Integer.parseInt(part6);
+			
+			i++;
+			//}
+			/*
+			for (int i = 0; i < count; ++i) {
+				
+				String userstats = entry.getValue().toString();
+				
+				String[] parts = userstats.split(":");
+				
+				String part1 = parts[0];
+				String part2 = parts[1];
+				String part3 = parts[2];
+				String part4 = parts[3];
+				String part5 = parts[4];
+				String part6 = parts[5];
+				
+				
+				name[i] = entry.getKey();
+				//name[0] = file.getName().toString();
+				gamesPlayed[i] = Integer.parseInt(part2);
+				wins[i] = Integer.parseInt(part4);
+				loses[i] = Integer.parseInt(part6);
+			}
+			*/
+		}
+		
+		
+		//File directory = new File(this.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS), ArrayOfPlayers.player[0] + ".txt");
+		
+		//File directory = new File(this.getFilesDir(), "/files/");
+		
+		//WORKS FOR ROOTED DEVICES:
+		//File directory = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files");
+		//File directory = new File("/data/data/com.nedswebsite.ktog/files/" + ArrayOfPlayers.player[0] + ".txt");
+		/*
 		File[] files = directory.listFiles();
 		
 		for (int i = 0; i < files.length; ++i) {
@@ -158,6 +238,7 @@ public class playerNamesAndRecords extends Activity {
 			   }
 			}
 		}
+		*/
 	}
 	
 	
