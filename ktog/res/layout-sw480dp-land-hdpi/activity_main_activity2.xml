@@ -907,7 +907,10 @@
    		<!-- android:scrollbarSize="100dp" ISN"T WORKING  -->
    	
    	
-   	
+   	<ImageView
+        android:id="@+id/scrollanimationdown"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
         
    	<ImageView
         android:id="@+id/scrollanimation"

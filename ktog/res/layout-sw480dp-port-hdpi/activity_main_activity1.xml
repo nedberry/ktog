@@ -20,29 +20,30 @@
 	    android:id="@+id/imagebuttononeplayer"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:layout_alignLeft="@+id/imagebuttonmultiplayer"
-	    android:layout_alignParentTop="true"
-	    android:layout_marginTop="285dp"
+	    android:layout_centerHorizontal="true"
+	    android:layout_above="@+id/imagebuttonmultiplayer"
+	    android:layout_marginBottom="20dp"
 	    android:background="@drawable/one_player"
 	    android:cropToPadding="false" />
-
+	
 	<ImageButton
 	    android:id="@+id/imagebuttonmultiplayer"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:layout_alignLeft="@+id/imagebuttonabout"
-	    android:layout_below="@+id/imagebuttononeplayer"
-	    android:layout_marginTop="20dp"
+	    android:layout_centerHorizontal="true"
+	    android:layout_centerVertical="true"
+	    
+	    android:layout_marginBottom="20dp"
 	    android:background="@drawable/multi_player"
 	    android:cropToPadding="false" />
-
+	
 	<ImageButton
 	    android:id="@+id/imagebuttonabout"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:layout_below="@+id/imagebuttonmultiplayer"
 	    android:layout_centerHorizontal="true"
-	    android:layout_marginTop="20dp"
+	    android:layout_below="@+id/imagebuttonmultiplayer"
+	    android:layout_marginBottom="20dp"
 	    android:background="@drawable/about"
 	    android:cropToPadding="false" />
 
@@ -50,8 +51,7 @@
 	    android:id="@+id/buttonguys"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:layout_alignBaseline="@+id/buttonrecords"
-	    android:layout_alignBottom="@+id/buttonrecords"
+	    android:layout_below="@+id/imagebuttonabout"
 	    android:layout_alignLeft="@+id/imagebuttonabout"
 	    android:background="@drawable/roundedbuttonsw480"
 	    android:text="Guys"
@@ -63,9 +63,8 @@
 	    android:id="@+id/buttonrecords"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:layout_alignRight="@+id/imagebuttonabout"
 	    android:layout_below="@+id/imagebuttonabout"
-	    android:layout_marginTop="20dp"
+	    android:layout_alignRight="@+id/imagebuttonabout"
 	    android:background="@drawable/roundedbuttonsw480"
 	    android:text="Records"
 	    android:textSize="15dp"

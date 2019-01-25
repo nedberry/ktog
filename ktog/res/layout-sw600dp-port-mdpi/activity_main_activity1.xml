@@ -21,7 +21,8 @@
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:layout_centerHorizontal="true"
-	    android:layout_marginTop="330dp"
+	    android:layout_above="@+id/imagebuttonmultiplayer"
+	    android:layout_marginBottom="20dp"
 	    android:background="@drawable/one_player"
 	    android:cropToPadding="false" />
 	
@@ -30,7 +31,9 @@
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:layout_centerHorizontal="true"
-	    android:layout_marginTop="435dp"
+	    android:layout_centerVertical="true"
+	    
+	    android:layout_marginBottom="20dp"
 	    android:background="@drawable/multi_player"
 	    android:cropToPadding="false" />
 	
@@ -39,31 +42,32 @@
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:layout_centerHorizontal="true"
-	    android:layout_marginTop="540dp"
+	    android:layout_below="@+id/imagebuttonmultiplayer"
+	    android:layout_marginBottom="20dp"
 	    android:background="@drawable/about"
 	    android:cropToPadding="false" />
-
-	<Button
-	    android:id="@+id/buttonrecords"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_alignRight="@+id/imagebuttonabout"
-	    android:layout_below="@+id/imagebuttonabout"
-	    android:layout_marginTop="23dp"
-	    android:background="@drawable/roundedbuttonsw600"
-	    android:text="Records"
-	    android:textColor="#000000"
-	    android:textStyle="bold" />
 
 	<Button
 	    android:id="@+id/buttonguys"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:layout_alignBaseline="@+id/buttonrecords"
-	    android:layout_alignBottom="@+id/buttonrecords"
+	    android:layout_below="@+id/imagebuttonabout"
 	    android:layout_alignLeft="@+id/imagebuttonabout"
 	    android:background="@drawable/roundedbuttonsw600"
 	    android:text="Guys"
+	    android:textSize="15dp"
+	    android:textColor="#000000"
+	    android:textStyle="bold" />
+
+	<Button
+	    android:id="@+id/buttonrecords"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@+id/imagebuttonabout"
+	    android:layout_alignRight="@+id/imagebuttonabout"
+	    android:background="@drawable/roundedbuttonsw600"
+	    android:text="Records"
+	    android:textSize="15dp"
 	    android:textColor="#000000"
 	    android:textStyle="bold" />
     

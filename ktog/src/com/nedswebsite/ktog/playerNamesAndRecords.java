@@ -261,7 +261,7 @@ public class playerNamesAndRecords extends Activity {
         TextView tv1 = new TextView(this);
         tv1.setTypeface(typeFace);
         tv1.setTextSize(35);
-        tv1.setText(" Games Played ");
+        tv1.setText(" Games ");
         tv1.setTextColor(Color.WHITE);
         tbrow0.addView(tv1);
         
@@ -320,5 +320,18 @@ public class playerNamesAndRecords extends Activity {
             
             playerRecords.addView(tbrow);
         }
+    }
+	
+	
+	@Override
+    public void onBackPressed() {
+        
+    	Intent intent = new Intent(playerNamesAndRecords.this, MainActivity1.class);
+    	intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);  //this combination of flags would start a new instance even if the instance of same Activity exists.
+		intent.addFlags(Intent.FLAG_ACTIVITY_TASK_ON_HOME);
+    	finish();
+    	startActivity(intent);
+        //Rules.this.startActivity(i);
     }
 }

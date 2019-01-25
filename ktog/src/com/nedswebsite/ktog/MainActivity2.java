@@ -545,8 +545,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 					  	  	  			
 					  	  	  			// Does this thread help:?
 						  	  	  		@Override
-						  	  	  		public void run()
-						  	  	  		{  	  			
+						  	  	  		public void run() {
+						  	  	  			
 							  	  	  		sixSidedWobbleStart();
 							  	  	  		
 							  	  	  		isSixSidedReadyToBeRolled = "yes";
@@ -581,7 +581,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 			  	  	  	}, 2000);
 		  	  	  	}
 	  	  	  	}, 3516);//FINAGLING TO GET RIGHT (MAINLY 1ST TIME) - should be at least 4700?	  	  		  			
-  		}				//WAS: 3000
+  	  		}			//WAS: 3000
   	  	}, 1000);//WAS: 2000
   	  	
   	  	
@@ -2209,7 +2209,13 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 	    
 	    MediaPlayerWrapper.play(MainActivity2.this, R.raw.scroll3);
 	    
+	    
+	    final ImageView img2 = (ImageView)findViewById(R.id.scrollanimation);
+		img2.setBackgroundResource(R.anim.scrollanimationup);
+	    img2.setVisibility(View.VISIBLE);
+	    
 	    unfoldScrolls();
+	    
 	    
 	    //ONE OF THE 1ST 2-IFS & THE 3RD-IF COULD HAPPEN AT SAME TIME ON onResume.(WORKING-MULTIPLE IFS CAN HAPPEN AT SAME TIME)
 	    if (isSixSidedReadyToBeRolled.equals("yes")) {
@@ -2477,7 +2483,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 			@Override
 			public void run() {
 				// Setting up scroll frame animation.
-				ImageView img = (ImageView)findViewById(R.id.scrollanimation);
+				final ImageView img = (ImageView)findViewById(R.id.scrollanimation);
 				img.setBackgroundResource(R.anim.scrollanimationup);
 			
 				// Get the background, which has been compiled to an AnimationDrawable object.
@@ -2486,9 +2492,25 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 				// Start the animation.
 				frameAnimation.stop();
 				frameAnimation.start();
+				
+				
+				//WORKAROUND FOR DEVICES WITH LARGER WIDTH THAN DRAWABLE RESOLUTION.
+				//ANIMATION DRAWABLES WILL NOT FILL OUT FULLY AND USER CAN SEE IT.
+				//ALSO NEEDED NEW IMAGEVIEW IN LAND/MAIN2 XML (scrollanimationdown).
+				//NOT HANDLED YET FOR MULTIPLAYER (USE INVISIBLE/VISIBLE---USED GONE HERE
+				//BECAUSE unfoldScrolls() IS CALLED ONLY ONCE).
+				final Handler h = new Handler();
+	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {
+	  	  	  			
+	  	  	  			img.setVisibility(View.GONE);
+		  	  	  	}
+	  	  	  	}, 1000);
 	  	    }
   		});	
-	}	
+	}
 	
 	public void preInitiativeTitle() {	
 		/*
@@ -20513,6 +20535,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 				  	  	  			
 				  	  	  			MediaPlayerWrapper.play(MainActivity2.this, R.raw.scroll3);
 				  	  	  			
+				  	  	  			
 				  	  	  			foldScrolls();
 				  	  	  			
 					  	  	  		final Handler h4 = new Handler();
@@ -20838,14 +20861,14 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
   		});
 	}
 	
-	public void foldScrolls() {		
+	public void foldScrolls() {
 		
 		// USING "runOnUiThread(new Runnable() {}" TO SEE IF IT WORKS BETTER THAN NOT USING IT.
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
 				// Setting up scroll frame animation.
-				ImageView img = (ImageView)findViewById(R.id.scrollanimation);
+				ImageView img = (ImageView)findViewById(R.id.scrollanimationdown);
 				img.setBackgroundResource(R.anim.scrollanimationdown);
 				
 				img.bringToFront();
