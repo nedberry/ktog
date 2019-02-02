@@ -5,16 +5,19 @@
     android:layout_height="match_parent"
     android:background="@drawable/mainmenutitle"
     tools:context="com.nedswebsite.ktog.MainActivity1" >
-
+	
+    <!--
     <ImageView
         android:id="@+id/menu1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true" />
-        <!-- CODE NOT USED:
+     -->
+     <!-- CODE NOT USED:
         android:src="@drawable/unpressedoneplayer"
         android:background="@null" -->
+        
 
 	<ImageButton
 	    android:id="@+id/imagebuttononeplayer"

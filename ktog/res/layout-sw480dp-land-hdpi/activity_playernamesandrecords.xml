@@ -9,7 +9,7 @@
         android:id="@+id/textviewtitlektogtext"
         android:layout_width="wrap_content"
         
-        android:layout_height="109dp"
+        android:layout_height="wrap_content"
         
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
@@ -20,18 +20,33 @@
         android:textSize="77sp" />
     
     	<!--
+    	android:layout_height="109dp"
+    	
     	android:layout_height="136dp"
     	-->
+    	
+    	<ImageView
+        android:id="@+id/swordsborder"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textviewtitlektogtext"
+        android:background="@drawable/swordsborder" />
+   		<!--
+   		android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+   		android:scaleType="fitXY"
+        android:gravity="center"
+   		-->
     
    
 
     <ScrollView
         android:id="@+id/scrollView1"
-        android:layout_marginTop="28dp"
+        
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textviewtitlektogtext"
+        android:layout_below="@+id/swordsborder"
         android:background="#000000" >
 
         <HorizontalScrollView
@@ -55,7 +70,12 @@
             </RelativeLayout>
         </HorizontalScrollView>
     </ScrollView>
-
+	
+    <!--
+    android:layout_marginTop="28dp"
+    -->
+    
+    <!--
     <View
         android:id="@+id/line"
         android:layout_width="wrap_content"
@@ -63,5 +83,6 @@
         android:layout_alignBottom="@+id/textviewtitlektogtext"
         android:layout_alignParentLeft="true"
         android:background="#696969" />
+        -->
 
 </RelativeLayout>

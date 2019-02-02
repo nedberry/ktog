@@ -95,12 +95,17 @@ public class Host extends Activity {
 	int Games;//currently saved stat
 	int Wins;//currently saved stat
 	int Loses;//currently saved stat
+	int CritHitMB;
+	int MaxTurns;
+	
 	int count = 0;
 	
 	
 	
 	
 	String win = "na";
+	String critHitWithMB = "na";
+	
 	
 	String has5TakenTurn = "no";
 	String Has0TakenTurn = "no";
@@ -641,6 +646,9 @@ public class Host extends Activity {
 		  					
 		  	  	  		titlelobbytext.setVisibility(View.VISIBLE);				  		
 		  	  	  		titlelobbytext.append("Lobby");
+		  	  	  		
+		  	  	  		
+		  	  	  		MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
 		  				
 		  	  	  		
 		  	  	  		playerHitPointsTextView.clearAnimation();
@@ -1112,6 +1120,8 @@ public class Host extends Activity {
 		    		  	  	  			
 		    		  	  	  		@Override
 		    			  	  	  	public void run() {
+		    		  	  	  			
+		    		  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
 		    		  	  	  			
 			    		  	  	  		//titlerulestext.setVisibility(View.INVISIBLE);
 			    		  	  	  		summaryTableLayout.setVisibility(View.INVISIBLE);
@@ -2447,6 +2457,18 @@ public class Host extends Activity {
 	
 	public void writeTextToFile() {//CREATES PLAYER PROFILE IF IT DOESN'T EXIST
 		
+		SharedPreferences pref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+		boolean check = pref.contains(ArrayOfPlayers.player[5]);
+		
+		if (!check) {
+			
+			SharedPreferences.Editor edit = pref.edit();
+			edit.putString(ArrayOfPlayers.player[5], "GamesPlayed:0:Wins:0:Loses:0:CritHitMB:0:MaxTurns:0");
+						
+			edit.commit();
+		}
+		
+		/*
 		try {
 			//THIS WORKS, BUT THOUGHT BETTER TO SPECIFY IN CASE 'this.getExternalFilesDir(null)' DECIDES NOT TO WORK ON A SPECIFIC DEVICE.
 			//File playerName = new File(this.getExternalFilesDir(null), ArrayOfPlayers.player[5] + ".txt");
@@ -2462,10 +2484,91 @@ public class Host extends Activity {
 		} catch (IOException e) {
 			Log.e("ReadWriteFile", "Unable to write to the TestFile.txt file.");
 		}
+		*/
 	}
+	
 	
 	public void getTextFromFile() {//READS EXISTING DATA FROM PLAYER PROFILE AND WRITES NEW DATA
 		
+		SharedPreferences pref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+		
+		String username = pref.getString(ArrayOfPlayers.player[5], "");
+		
+		
+		String[] parts = username.split(":");
+		
+		String part1 = parts[0];//GamesPlayed
+  	  	String part2 = parts[1];//0
+  	  	String part3 = parts[2];//Wins
+  	  	String part4 = parts[3];//0
+  	  	String part5 = parts[4];//Loses
+  	  	String part6 = parts[5];//0
+  	  	String part7 = parts[6];//CritHitWithMB
+		String part8 = parts[7];//0
+		String part9 = parts[8];//MaxTurns
+		String part10 = parts[9];//0
+  	  	
+  	  	Games = Integer.parseInt(part2);
+  	  	Wins = Integer.parseInt(part4);
+  	  	Loses = Integer.parseInt(part6);
+  	  	CritHitMB = Integer.parseInt(part8);
+  	  	MaxTurns = Integer.parseInt(part10);
+  	  	//IF U ADD NEW RECORD, THE GAME WILL CRASH BECAUSE IT DOESN'T EXIST YET ON DEVICE.
+  	  	//HAVE TO UNINSTALL/REINSTALL, BUT LOSE OLD RECORDS. NO FIX YET.
+  	  	
+  	  	SharedPreferences.Editor edit = pref.edit();
+  	  	
+  	  	if (ArrayOfTurn.turn[0] >= MaxTurns) {
+	  		
+	  		if (win.equals("yes") && (critHitWithMB.equals("na"))) {
+	  		
+	  			edit.putString(ArrayOfPlayers.player[5], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 1) + ":Loses:" + (Loses + 0) + ":CritHitMB:" + (CritHitMB + 0) + ":MaxTurns:" + (ArrayOfTurn.turn[0]));
+	  			edit.commit();
+	  	  	}
+	  	  	if (win.equals("yes") && (critHitWithMB.equals("yes"))) {
+		  		
+		  		edit.putString(ArrayOfPlayers.player[5], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 1) + ":Loses:" + (Loses + 0) + ":CritHitMB:" + (CritHitMB + 1) + ":MaxTurns:" + (ArrayOfTurn.turn[0]));
+		  		edit.commit();
+		  	}
+	  	  	
+	  	  	if (win.equals("no") && (critHitWithMB.equals("na"))) {
+	  	  		
+	  	  		edit.putString(ArrayOfPlayers.player[5], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 0) + ":Loses:" + (Loses + 1) + ":CritHitMB:" + (CritHitMB + 0) + ":MaxTurns:" + (ArrayOfTurn.turn[0]));
+	  	  		edit.commit();
+	  	  	}
+	  	  	if (win.equals("no") && (critHitWithMB.equals("yes"))) {
+		  		
+		  		edit.putString(ArrayOfPlayers.player[5], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 0) + ":Loses:" + (Loses + 1) + ":CritHitMB:" + (CritHitMB + 1) + ":MaxTurns:" + (ArrayOfTurn.turn[0]));
+		  		edit.commit();
+		  	}
+	  	}
+	  	
+	  	if (ArrayOfTurn.turn[0] < MaxTurns) {
+	  		
+	  		if (win.equals("yes") && (critHitWithMB.equals("na"))) {
+	  		
+	  			edit.putString(ArrayOfPlayers.player[5], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 1) + ":Loses:" + (Loses + 0) + ":CritHitMB:" + (CritHitMB + 0) + ":MaxTurns:" + (MaxTurns));
+	  			edit.commit();
+	  	  	}
+	  	  	if (win.equals("yes") && (critHitWithMB.equals("yes"))) {
+		  		
+		  		edit.putString(ArrayOfPlayers.player[5], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 1) + ":Loses:" + (Loses + 0) + ":CritHitMB:" + (CritHitMB + 1) + ":MaxTurns:" + (MaxTurns));
+		  		edit.commit();
+		  	}
+	  	  	
+	  	  	if (win.equals("no") && (critHitWithMB.equals("na"))) {
+	  	  		
+	  	  		edit.putString(ArrayOfPlayers.player[5], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 0) + ":Loses:" + (Loses + 1) + ":CritHitMB:" + (CritHitMB + 0) + ":MaxTurns:" + (MaxTurns));
+	  	  		edit.commit();
+	  	  	}
+	  	  	if (win.equals("no") && (critHitWithMB.equals("yes"))) {
+		  		
+		  		edit.putString(ArrayOfPlayers.player[5], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 0) + ":Loses:" + (Loses + 1) + ":CritHitMB:" + (CritHitMB + 1) + ":MaxTurns:" + (MaxTurns));
+		  		edit.commit();
+		  	}
+	  	}
+		
+		/*
 		//THIS WORKS, BUT THOUGHT BETTER TO SPECIFY IN CASE 'this.getExternalFilesDir(null)' DECIDES NOT TO WORK ON A SPECIFIC DEVICE.
 		//File playerName = new File(this.getExternalFilesDir(null), ArrayOfPlayers.player[5] + ".txt");
 		File playerName = new File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files", ArrayOfPlayers.player[5] + ".txt");
@@ -2507,7 +2610,12 @@ public class Host extends Activity {
 		      }
 		      
 		      reader.close();
-		
+		      
+		   } catch (Exception e) {
+			      Log.e("ReadWriteFile", "Unable to read the TestFile.txt file.");
+			   }
+			   */
+		      
 		      /*WAS:
 	   		BufferedReader reader = null;
 		   	try {
@@ -2570,11 +2678,13 @@ public class Host extends Activity {
 		      
 		      reader.close();
 		      */
-		   } catch (Exception e) {
-		      Log.e("ReadWriteFile", "Unable to read the TestFile.txt file.");
-		   }
+		   //} catch (Exception e) {
+		   //   Log.e("ReadWriteFile", "Unable to read the TestFile.txt file.");
+		   //}
 		//}
 	}
+	
+	
 	/*
 	public Integer countFiles(File folder, Integer count) {
 	    File[] files = folder.listFiles();
@@ -3144,7 +3254,7 @@ public class Host extends Activity {
 	
 	
 	//@SuppressWarnings("deprecation")
-	public void unfoldLeftScroll() {		
+	public void unfoldLeftScroll() {
 		
 		// USING "runOnUiThread(new Runnable() {}" TO SEE IF IT WORKS BETTER THAN NOT USING IT.
 		runOnUiThread(new Runnable() {
@@ -3240,7 +3350,7 @@ public class Host extends Activity {
 	}
 	*/
 	
-	public void preInitiativeTitle() {	
+	public void preInitiativeTitle() {
 		/*
 		ImageView img = (ImageView)findViewById(R.id.titleanimation);		
 		img.setBackgroundResource(R.anim.titleanimationpreinitiative);
@@ -26793,7 +26903,19 @@ public class Host extends Activity {
 							sendToAllClients(str2);
 							
 				    		
-				    		gameOverCheck();							
+							
+							final Handler h = new Handler();
+				  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+				  	  	  			
+				  	  	  		@Override
+					  	  	  	public void run() {
+				  	  	  			
+				  	  	  			gameOverCheck();
+					  	  	  	}
+				  	  	  	}, 2000);
+							
+							
+				    		//gameOverCheck();							
 							
 							  
 							// Picture of one sword destroying another.
@@ -27082,7 +27204,17 @@ public class Host extends Activity {
 							sendToAllClients(str2);
 							
 				    		
-				    		gameOverCheck();							
+							final Handler h = new Handler();
+				  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+				  	  	  			
+				  	  	  		@Override
+					  	  	  	public void run() {
+				  	  	  			
+				  	  	  			gameOverCheck();
+					  	  	  	}
+				  	  	  	}, 2000);
+							
+				    		//gameOverCheck();							
 							
 							 
 							// Picture of one sword destroying another.
@@ -27373,7 +27505,17 @@ public class Host extends Activity {
 							sendToAllClients(str2);
 							
 				    		
-				    		gameOverCheck();						
+							final Handler h = new Handler();
+				  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+				  	  	  			
+				  	  	  		@Override
+					  	  	  	public void run() {
+				  	  	  			
+				  	  	  			gameOverCheck();
+					  	  	  	}
+				  	  	  	}, 2000);
+							
+				    		//gameOverCheck();						
 							
 							 
 							// Picture of one sword destroying another.
@@ -27623,7 +27765,6 @@ public class Host extends Activity {
 											
 											
 											criticalHitMightyBlowDamageResultsHandler();
-						  	  	  			
 							  	  	  	}
 						  	  	  	}, 2000);						
 								}
@@ -27644,30 +27785,29 @@ public class Host extends Activity {
 						  	  	  		@Override
 							  	  	  	public void run() {
 						  	  	  			
-						  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
-								  		centerscrolltext.startAnimation(animAlphaText);
-										centerscrolltext.append("\n" + "> Double damage for Mighty Blow = " + (((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) * 2) + ".");
-										
-										String str6 = "> Double damage for Mighty Blow = " + (((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) * 2) + ".";
-										sendToAllClients(str6);
-										
-										
-										String str7 = playerNumberAttacked + "ArrayOfHitPoints.hitpoints[" + playerNumberAttacked + "] :" + (ArrayOfHitPoints.hitpoints[playerNumberAttacked] - (((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) * 2));
-										sendToAllClients(str7);
-										
-										ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - (((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) * 2);										
-										
-										
-										TextView playerNumberAttackedHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
-										playerNumberAttackedHitPointsTextView.setTypeface(typeFace);
-										playerNumberAttackedHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[playerNumberAttacked]));
-										//playerNumberAttackedHitPointsTextView.bringToFront();
-										Animation animPulsingAnimation = AnimationUtils.loadAnimation(Host.this, R.anim.pulsinganimation);				
-										playerNumberAttackedHitPointsTextView.startAnimation(animPulsingAnimation);
-										
-										
-										criticalHitMightyBlowDamageResultsHandler();
-						  	  	  			
+							  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
+									  		centerscrolltext.startAnimation(animAlphaText);
+											centerscrolltext.append("\n" + "> Double damage for Mighty Blow = " + (((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) * 2) + ".");
+											
+											String str6 = "> Double damage for Mighty Blow = " + (((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) * 2) + ".";
+											sendToAllClients(str6);
+											
+											
+											String str7 = playerNumberAttacked + "ArrayOfHitPoints.hitpoints[" + playerNumberAttacked + "] :" + (ArrayOfHitPoints.hitpoints[playerNumberAttacked] - (((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) * 2));
+											sendToAllClients(str7);
+											
+											ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - (((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) * 2);										
+											
+											
+											TextView playerNumberAttackedHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+											playerNumberAttackedHitPointsTextView.setTypeface(typeFace);
+											playerNumberAttackedHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[playerNumberAttacked]));
+											//playerNumberAttackedHitPointsTextView.bringToFront();
+											Animation animPulsingAnimation = AnimationUtils.loadAnimation(Host.this, R.anim.pulsinganimation);				
+											playerNumberAttackedHitPointsTextView.startAnimation(animPulsingAnimation);
+											
+											
+											criticalHitMightyBlowDamageResultsHandler();
 							  	  	  	}
 						  	  	  	}, 2000);							
 								}				  	  	  			  	  	  		
@@ -27680,6 +27820,8 @@ public class Host extends Activity {
 	}
 	
 	public void criticalHitMightyBlowDamageResultsHandler() {
+		
+		critHitWithMB = "yes";
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
@@ -27718,9 +27860,19 @@ public class Host extends Activity {
 							
 							String str2 = "playerDeadYet" + playerNumberAttacked + " :" + "yes";
 							sendToAllClients(str2);
-							
 				    		
-				    		gameOverCheck();						
+							
+							final Handler h = new Handler();
+				  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+				  	  	  			
+				  	  	  		@Override
+					  	  	  	public void run() {
+				  	  	  			
+				  	  	  			gameOverCheck();
+					  	  	  	}
+				  	  	  	}, 2000);
+				  	  	  	
+				    		//gameOverCheck();						
 							
 							 
 							// Picture of one sword destroying another.

@@ -156,7 +156,7 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 		
 		
 		
-		ImageView img = (ImageView)findViewById(R.id.menu1);
+		//ImageView img = (ImageView)findViewById(R.id.menu1);
 		
 		final ImageButton onePlayerButton = (ImageButton) findViewById(R.id.imagebuttononeplayer);
 		final ImageButton multiPlayerButton = (ImageButton) findViewById(R.id.imagebuttonmultiplayer);
@@ -330,6 +330,21 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	
 	        	alert.setTitle("Multiplayer");
 	        	alert.setMessage("Enter Name");
+	        	
+	        	
+	        	alert.setOnCancelListener(new DialogInterface.OnCancelListener() {
+					@Override
+					public void onCancel(DialogInterface dialog) {		  							
+						
+						//IF NOTHING DOESN'T WORK, TRY:
+						
+						stopService(svc);
+						
+						Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+			        	MainActivity1.this.startActivity(i);
+					}
+				});
+	        	
 	
 	        	// Set an EditText view to get user input:
 	        	final EditText input = new EditText(MainActivity1.this);
@@ -372,7 +387,23 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 		    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
 		    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
 		    		//builder.setIcon(R.drawable.computerhead);
+		    		
 		    		builder.setTitle("Choose Your Avatar");
+		    		
+		    		
+		    		builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+    					@Override
+    					public void onCancel(DialogInterface dialog) {		  							
+    						
+    						//IF NOTHING DOESN'T WORK, TRY:
+    						
+    						stopService(svc);
+    						
+    						Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+    			        	MainActivity1.this.startActivity(i);
+    					}
+    				});
+		    		
 		    		
 		    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
 		    			public void onClick(DialogInterface dialog, int item) { 
@@ -644,18 +675,20 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	    		  		
 	    	  			//builder.setCancelable(false);
 	    	  			
-	    	  			/*
+	    	  			
 	    				builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
 	    					@Override
 	    					public void onCancel(DialogInterface dialog) {		  							
 	    						
 	    						//IF NOTHING DOESN'T WORK, TRY:
 	    						
-	    						//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
-	    			        	//MainActivity1.this.startActivity(i);
+	    						stopService(svc);
+	    						
+	    						Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+	    			        	MainActivity1.this.startActivity(i);
 	    					}
 	    				});
-	    	  			*/
+	    	  			
 	    				
 	    	            builder.setAdapter(adapter,
 	    	                    new DialogInterface.OnClickListener() {
@@ -728,18 +761,18 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	    		                		  		
 	    		                	  			//builder.setCancelable(false);
 	    		                	  			
-	    		                	  			/*
-	    		                				builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
-	    		                					@Override
-	    		                					public void onCancel(DialogInterface dialog) {		  							
-	    		                						
-	    		                						//IF NOTHING DOESN'T WORK, TRY:
-	    		                						
-	    		                						//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
-	    		                			        	//MainActivity1.this.startActivity(i);
-	    		                					}
-	    		                				});
-	    		                	  			*/
+	    		                		  		builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+	    		        	    					@Override
+	    		        	    					public void onCancel(DialogInterface dialog) {		  							
+	    		        	    						
+	    		        	    						//IF NOTHING DOESN'T WORK, TRY:
+	    		        	    						
+	    		        	    						stopService(svc);
+	    		        	    						
+	    		        	    						Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+	    		        	    			        	MainActivity1.this.startActivity(i);
+	    		        	    					}
+	    		        	    				});
 	    		                				
 	    		                	            builder.setAdapter(adapter,
 	    		                	                    new DialogInterface.OnClickListener() {
@@ -763,7 +796,23 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	    	                		            		    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
 	    	                		            		    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
 	    	                		            		    		//builder.setIcon(R.drawable.computerhead);
+	    	                		            		    		
 	    	                		            		    		builder.setTitle("Choose Your Avatar");
+	    	                		            		    		
+	    	                		            		    		
+	    	                		            		    		builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+	    	                		        	    					@Override
+	    	                		        	    					public void onCancel(DialogInterface dialog) {		  							
+	    	                		        	    						
+	    	                		        	    						//IF NOTHING DOESN'T WORK, TRY:
+	    	                		        	    						
+	    	                		        	    						stopService(svc);
+	    	                		        	    						
+	    	                		        	    						Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+	    	                		        	    			        	MainActivity1.this.startActivity(i);
+	    	                		        	    					}
+	    	                		        	    				});
+	    	                		            		    		
 	    	                		            		    		
 	    	                		            		    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
 	    	                		            		    			public void onClick(DialogInterface dialog, int item) { 
@@ -843,7 +892,23 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	    	                		            		    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
 	    	                		            		    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
 	    	                		            		    		//builder.setIcon(R.drawable.computerhead);
+	    	                		            		    		
 	    	                		            		    		builder.setTitle("Choose Your Avatar");
+	    	                		            		    		
+	    	                		            		    		
+	    	                		            		    		builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+	    	                		        	    					@Override
+	    	                		        	    					public void onCancel(DialogInterface dialog) {		  							
+	    	                		        	    						
+	    	                		        	    						//IF NOTHING DOESN'T WORK, TRY:
+	    	                		        	    						
+	    	                		        	    						stopService(svc);
+	    	                		        	    						
+	    	                		        	    						Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+	    	                		        	    			        	MainActivity1.this.startActivity(i);
+	    	                		        	    					}
+	    	                		        	    				});
+	    	                		            		    		
 	    	                		            		    		
 	    	                		            		    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
 	    	                		            		    			public void onClick(DialogInterface dialog, int item) { 
@@ -1584,7 +1649,23 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
 		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
 		//builder.setIcon(R.drawable.computerhead);
+		
 		builder.setTitle("Multiplayer");
+		
+		
+		builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+			@Override
+			public void onCancel(DialogInterface dialog) {		  							
+				
+				//IF NOTHING DOESN'T WORK, TRY:
+				
+				stopService(svc);
+				
+				Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+	        	MainActivity1.this.startActivity(i);
+			}
+		});
+		
 		
 		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
 			public void onClick(DialogInterface dialog, int item) { 
@@ -1650,7 +1731,23 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
 		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
 		//builder.setIcon(R.drawable.computerhead);
+		
 		builder.setTitle("Invite");
+		
+		
+		builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+			@Override
+			public void onCancel(DialogInterface dialog) {		  							
+				
+				//IF NOTHING DOESN'T WORK, TRY:
+				
+				stopService(svc);
+				
+				Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+	        	MainActivity1.this.startActivity(i);
+			}
+		});
+		
 		
 		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
 			public void onClick(DialogInterface dialog, int item) { 
@@ -1967,6 +2064,9 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	// DESTROYS EVERYTHING (EXCEPT SERVICE?)
 	@Override
 	protected void onDestroy() {
+		
+		Intent svc=new Intent(this, Badonk2SoundService.class);
+		stopService(svc);
 		
 		//Toast.makeText(MainActivity1.this, "SMS TEST", Toast.LENGTH_SHORT).show();
 		
@@ -2359,7 +2459,22 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	
 	            	alert.setTitle("Multiplayer");
 	            	alert.setMessage("Enter Name");
-	
+	            	
+	            	
+	            	alert.setOnCancelListener(new DialogInterface.OnCancelListener() {
+    					@Override
+    					public void onCancel(DialogInterface dialog) {		  							
+    						
+    						//IF NOTHING DOESN'T WORK, TRY:
+    						
+    						stopService(svc);
+    						
+    						Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+    			        	MainActivity1.this.startActivity(i);
+    					}
+    				});
+	            	
+	            	
 	            	// Set an EditText view to get user input:
 	            	final EditText input = new EditText(MainActivity1.this);
 	            	input.setSingleLine(true);
@@ -2401,7 +2516,23 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	    	    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
 	    	    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
 	    	    		//builder.setIcon(R.drawable.computerhead);
+	    	    		
 	    	    		builder.setTitle("Choose Your Avatar");
+	    	    		
+	    	    		
+	    	    		builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+	    					@Override
+	    					public void onCancel(DialogInterface dialog) {		  							
+	    						
+	    						//IF NOTHING DOESN'T WORK, TRY:
+	    						
+	    						stopService(svc);
+	    						
+	    						Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+	    			        	MainActivity1.this.startActivity(i);
+	    					}
+	    				});
+	    	    		
 	    	    		
 	    	    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
 	    	    			public void onClick(DialogInterface dialog, int item) { 
@@ -2666,18 +2797,20 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	    		  		
 	    	  			//builder.setCancelable(false);
 	    	  			
-	    	  			/*
+	    	  			
 	    				builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
 	    					@Override
 	    					public void onCancel(DialogInterface dialog) {		  							
 	    						
 	    						//IF NOTHING DOESN'T WORK, TRY:
 	    						
-	    						//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
-	    			        	//MainActivity1.this.startActivity(i);
+	    						stopService(svc);
+	    						
+	    						Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+	    			        	MainActivity1.this.startActivity(i);
 	    					}
 	    				});
-	    	  			*/
+	    	  			
 	    				
 	    	            builder.setAdapter(adapter,
 	    	                    new DialogInterface.OnClickListener() {
@@ -2747,18 +2880,18 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	    		                		  		
 	    		                	  			//builder.setCancelable(false);
 	    		                	  			
-	    		                	  			/*
-	    		                				builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
-	    		                					@Override
-	    		                					public void onCancel(DialogInterface dialog) {		  							
-	    		                						
-	    		                						//IF NOTHING DOESN'T WORK, TRY:
-	    		                						
-	    		                						//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
-	    		                			        	//MainActivity1.this.startActivity(i);
-	    		                					}
-	    		                				});
-	    		                	  			*/
+	    		                		  		builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+	    		        	    					@Override
+	    		        	    					public void onCancel(DialogInterface dialog) {		  							
+	    		        	    						
+	    		        	    						//IF NOTHING DOESN'T WORK, TRY:
+	    		        	    						
+	    		        	    						stopService(svc);
+	    		        	    						
+	    		        	    						Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+	    		        	    			        	MainActivity1.this.startActivity(i);
+	    		        	    					}
+	    		        	    				});
 	    		                				
 	    		                	            builder.setAdapter(adapter,
 	    		                	                    new DialogInterface.OnClickListener() {
@@ -2777,7 +2910,23 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	    	                		            		    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
 	    	                		            		    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
 	    	                		            		    		//builder.setIcon(R.drawable.computerhead);
+	    	                		            		    		
 	    	                		            		    		builder.setTitle("Choose Your Avatar");
+	    	                		            		    		
+	    	                		            		    		
+	    	                		            		    		builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+	    	                		        	    					@Override
+	    	                		        	    					public void onCancel(DialogInterface dialog) {		  							
+	    	                		        	    						
+	    	                		        	    						//IF NOTHING DOESN'T WORK, TRY:
+	    	                		        	    						
+	    	                		        	    						stopService(svc);
+	    	                		        	    						
+	    	                		        	    						Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+	    	                		        	    			        	MainActivity1.this.startActivity(i);
+	    	                		        	    					}
+	    	                		        	    				});
+	    	                		            		    		
 	    	                		            		    		
 	    	                		            		    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
 	    	                		            		    			public void onClick(DialogInterface dialog, int item) { 
@@ -2855,7 +3004,23 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	    	                		            		    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
 	    	                		            		    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
 	    	                		            		    		//builder.setIcon(R.drawable.computerhead);
+	    	                		            		    		
 	    	                		            		    		builder.setTitle("Choose Your Avatar");
+	    	                		            		    		
+	    	                		            		    		
+	    	                		            		    		builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+	    	                		        	    					@Override
+	    	                		        	    					public void onCancel(DialogInterface dialog) {		  							
+	    	                		        	    						
+	    	                		        	    						//IF NOTHING DOESN'T WORK, TRY:
+	    	                		        	    						
+	    	                		        	    						stopService(svc);
+	    	                		        	    						
+	    	                		        	    						Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+	    	                		        	    			        	MainActivity1.this.startActivity(i);
+	    	                		        	    					}
+	    	                		        	    				});
+	    	                		            		    		
 	    	                		            		    		
 	    	                		            		    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
 	    	                		            		    			public void onClick(DialogInterface dialog, int item) { 
@@ -2954,7 +3119,7 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
     		});
     		
         	buttonSound1.start();        	
-        } 
+        }
         
         else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
         	
@@ -3116,7 +3281,22 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	
 	            	alert.setTitle("Multiplayer");
 	            	alert.setMessage("Enter Name");
-	
+	            	
+	            	
+	            	alert.setOnCancelListener(new DialogInterface.OnCancelListener() {
+    					@Override
+    					public void onCancel(DialogInterface dialog) {		  							
+    						
+    						//IF NOTHING DOESN'T WORK, TRY:
+    						
+    						stopService(svc);
+    						
+    						Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+    			        	MainActivity1.this.startActivity(i);
+    					}
+    				});
+	            	
+	            	
 	            	// Set an EditText view to get user input:
 	            	final EditText input = new EditText(MainActivity1.this);
 	            	input.setSingleLine(true);
@@ -3158,7 +3338,23 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	    	    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
 	    	    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
 	    	    		//builder.setIcon(R.drawable.computerhead);
+	    	    		
 	    	    		builder.setTitle("Choose Your Avatar");
+	    	    		
+	    	    		
+	    	    		builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+	    					@Override
+	    					public void onCancel(DialogInterface dialog) {		  							
+	    						
+	    						//IF NOTHING DOESN'T WORK, TRY:
+	    						
+	    						stopService(svc);
+	    						
+	    						Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+	    			        	MainActivity1.this.startActivity(i);
+	    					}
+	    				});
+	    	    		
 	    	    		
 	    	    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
 	    	    			public void onClick(DialogInterface dialog, int item) { 
@@ -3422,18 +3618,20 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	    		  		
 	    	  			//builder.setCancelable(false);
 	    	  			
-	    	  			/*
+	    	  			
 	    				builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
 	    					@Override
 	    					public void onCancel(DialogInterface dialog) {		  							
 	    						
 	    						//IF NOTHING DOESN'T WORK, TRY:
 	    						
-	    						//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
-	    			        	//MainActivity1.this.startActivity(i);
+	    						stopService(svc);
+	    						
+	    						Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+	    			        	MainActivity1.this.startActivity(i);
 	    					}
 	    				});
-	    	  			*/
+	    	  			
 	    				
 	    	            builder.setAdapter(adapter,
 	    	                    new DialogInterface.OnClickListener() {
@@ -3502,18 +3700,18 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	    		                		  		
 	    		                	  			//builder.setCancelable(false);
 	    		                	  			
-	    		                	  			/*
-	    		                				builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
-	    		                					@Override
-	    		                					public void onCancel(DialogInterface dialog) {		  							
-	    		                						
-	    		                						//IF NOTHING DOESN'T WORK, TRY:
-	    		                						
-	    		                						//Intent i = new Intent(MainActivity1.this, MainActivity1.class);
-	    		                			        	//MainActivity1.this.startActivity(i);
-	    		                					}
-	    		                				});
-	    		                	  			*/
+	    		                		  		builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+	    		        	    					@Override
+	    		        	    					public void onCancel(DialogInterface dialog) {		  							
+	    		        	    						
+	    		        	    						//IF NOTHING DOESN'T WORK, TRY:
+	    		        	    						
+	    		        	    						stopService(svc);
+	    		        	    						
+	    		        	    						Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+	    		        	    			        	MainActivity1.this.startActivity(i);
+	    		        	    					}
+	    		        	    				});
 	    		                				
 	    		                	            builder.setAdapter(adapter,
 	    		                	                    new DialogInterface.OnClickListener() {
@@ -3532,7 +3730,23 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	    	                		            		    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
 	    	                		            		    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
 	    	                		            		    		//builder.setIcon(R.drawable.computerhead);
+	    	                		            		    		
 	    	                		            		    		builder.setTitle("Choose Your Avatar");
+	    	                		            		    		
+	    	                		            		    		
+	    	                		            		    		builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+	    	                		        	    					@Override
+	    	                		        	    					public void onCancel(DialogInterface dialog) {		  							
+	    	                		        	    						
+	    	                		        	    						//IF NOTHING DOESN'T WORK, TRY:
+	    	                		        	    						
+	    	                		        	    						stopService(svc);
+	    	                		        	    						
+	    	                		        	    						Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+	    	                		        	    			        	MainActivity1.this.startActivity(i);
+	    	                		        	    					}
+	    	                		        	    				});
+	    	                		            		    		
 	    	                		            		    		
 	    	                		            		    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
 	    	                		            		    			public void onClick(DialogInterface dialog, int item) { 
@@ -3610,7 +3824,23 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	    	                		            		    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
 	    	                		            		    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
 	    	                		            		    		//builder.setIcon(R.drawable.computerhead);
+	    	                		            		    		
 	    	                		            		    		builder.setTitle("Choose Your Avatar");
+	    	                		            		    		
+	    	                		            		    		
+	    	                		            		    		builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+	    	                		        	    					@Override
+	    	                		        	    					public void onCancel(DialogInterface dialog) {		  							
+	    	                		        	    						
+	    	                		        	    						//IF NOTHING DOESN'T WORK, TRY:
+	    	                		        	    						
+	    	                		        	    						stopService(svc);
+	    	                		        	    						
+	    	                		        	    						Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+	    	                		        	    			        	MainActivity1.this.startActivity(i);
+	    	                		        	    					}
+	    	                		        	    				});
+	    	                		            		    		
 	    	                		            		    		
 	    	                		            		    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
 	    	                		            		    			public void onClick(DialogInterface dialog, int item) { 

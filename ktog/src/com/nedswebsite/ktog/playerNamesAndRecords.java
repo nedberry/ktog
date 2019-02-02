@@ -19,6 +19,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -39,6 +40,9 @@ public class playerNamesAndRecords extends Activity {
 	public int[] gamesPlayed = new int[100];
 	public int[] wins = new int[100];
 	public int[] loses = new int[100];
+	public int[] crithitwithmb = new int[100];
+	public int[] maxturns = new int[100];
+	
 	
 	
 	@Override
@@ -67,7 +71,11 @@ public class playerNamesAndRecords extends Activity {
 		final TextView titletext = (TextView) findViewById(R.id.textviewtitlektogtext);	
 		titletext.setTypeface(typeFace);		
 		titletext.setVisibility(View.VISIBLE);				  		
-		titletext.append("Player Records");		
+		//titletext.append("Player Records");
+		titletext.append("High Scores");
+		
+		
+		ImageView swordsborder = (ImageView) findViewById(R.id.swordsborder);
 		
 		
 		getCount();
@@ -153,6 +161,10 @@ public class playerNamesAndRecords extends Activity {
 			String part4 = parts[3];
 			String part5 = parts[4];
 			String part6 = parts[5];
+			String part7 = parts[6];
+			String part8 = parts[7];
+			String part9 = parts[8];
+			String part10 = parts[9];
 		
 			
 			name[i] = entry.getKey();
@@ -160,6 +172,8 @@ public class playerNamesAndRecords extends Activity {
 			gamesPlayed[i] = Integer.parseInt(part2);
 			wins[i] = Integer.parseInt(part4);
 			loses[i] = Integer.parseInt(part6);
+			crithitwithmb[i] = Integer.parseInt(part8);
+			maxturns[i] = Integer.parseInt(part10);
 			
 			i++;
 			//}
@@ -278,6 +292,21 @@ public class playerNamesAndRecords extends Activity {
         tv3.setText(" Loses ");
         tv3.setTextColor(Color.WHITE);
         tbrow0.addView(tv3);
+        
+        TextView tv4 = new TextView(this);
+        tv4.setTypeface(typeFace);
+        tv4.setTextSize(35);
+        tv4.setText(" Crit.Hit/MB ");
+        tv4.setTextColor(Color.WHITE);
+        tbrow0.addView(tv4);
+        
+        TextView tv5 = new TextView(this);
+        tv5.setTypeface(typeFace);
+        tv5.setTextSize(35);
+        tv5.setText(" Turns ");
+        tv5.setTextColor(Color.WHITE);
+        tbrow0.addView(tv5);
+        
         playerRecords.addView(tbrow0);
         
         for (int i = 0; i < count; i++) {
@@ -317,6 +346,25 @@ public class playerNamesAndRecords extends Activity {
             t4v.setTextColor(Color.WHITE);
             t4v.setGravity(Gravity.CENTER);
             tbrow.addView(t4v);
+            
+            TextView t5v = new TextView(this);
+            t5v.setTypeface(typeFace);
+            t5v.setTextSize(25);
+            t5v.setText(String.valueOf(crithitwithmb[i]));
+            //t4v.setText(loses[i]);
+            t5v.setTextColor(Color.WHITE);
+            t5v.setGravity(Gravity.CENTER);
+            tbrow.addView(t5v);
+            
+            TextView t6v = new TextView(this);
+            t6v.setTypeface(typeFace);
+            t6v.setTextSize(25);
+            t6v.setText(String.valueOf(maxturns[i]));
+            //t4v.setText(loses[i]);
+            t6v.setTextColor(Color.WHITE);
+            t6v.setGravity(Gravity.CENTER);
+            tbrow.addView(t6v);
+            
             
             playerRecords.addView(tbrow);
         }

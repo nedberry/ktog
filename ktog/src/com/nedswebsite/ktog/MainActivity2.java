@@ -81,7 +81,11 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 	int Games;//currently saved stat
 	int Wins;//currently saved stat
 	int Loses;//currently saved stat
+	int CritHitMB;
+	int MaxTurns;
+	
 	int count = 0;
+	
 	
 	int playerNumberAttacked;
 	//int i;
@@ -140,6 +144,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 	
 	
 	String win = "na";
+	String critHitWithMB = "na";
+	
 	
 	//IS THIS WORKING NOW (W NEW onbackpressed CODE)????????????
 	// Using variable because was getting null pointer if onbackpressed before rollfromleft was completed:
@@ -1934,7 +1940,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		if (!check) {
 			
 			SharedPreferences.Editor edit = pref.edit();
-			edit.putString(ArrayOfPlayers.player[0], "GamesPlayed:0:Wins:0:Loses:0");
+			edit.putString(ArrayOfPlayers.player[0], "GamesPlayed:0:Wins:0:Loses:0:CritHitMB:0:MaxTurns:0");
 						
 			edit.commit();
 		}
@@ -1981,25 +1987,77 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
   	  	String part4 = parts[3];//0
   	  	String part5 = parts[4];//Loses
   	  	String part6 = parts[5];//0
+  	  	String part7 = parts[6];//CritHitWithMB
+		String part8 = parts[7];//0
+		String part9 = parts[8];//MaxTurns
+		String part10 = parts[9];//0
   	  	
   	  	Games = Integer.parseInt(part2);
   	  	Wins = Integer.parseInt(part4);
   	  	Loses = Integer.parseInt(part6);
+  	  	CritHitMB = Integer.parseInt(part8);
+  	  	MaxTurns = Integer.parseInt(part10);
+  	  	//IF U ADD NEW RECORD, THE GAME WILL CRASH BECAUSE IT DOESN'T EXIST YET ON DEVICE.
+  	  	//HAVE TO UNINSTALL/REINSTALL, BUT LOSE OLD RECORDS. NO FIX YET.
   	  	
-  	  	// Adds a line to the file
+  	  	
+  	  	Toast.makeText(MainActivity2.this,"ARRAY OF TURNS = " + ArrayOfTurn.turn[0], Toast.LENGTH_SHORT).show();
+  	  	Toast.makeText(MainActivity2.this,"MAX TURNS = " + MaxTurns, Toast.LENGTH_SHORT).show();
+  	  	
   	  	
   	  	SharedPreferences.Editor edit = pref.edit();
   	  	
-  	  	if (win.equals("yes")) {
+  	  	if (ArrayOfTurn.turn[0] >= MaxTurns) {
   	  		
-  	  		edit.putString(ArrayOfPlayers.player[0], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 1) + ":Loses:" + (Loses + 0));
-  	  		edit.commit();
-  	  	}
-  	  	if (win.equals("no")) {
+  	  		if (win.equals("yes") && (critHitWithMB.equals("na"))) {
   	  		
-  	  		edit.putString(ArrayOfPlayers.player[0], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 0) + ":Loses:" + (Loses + 1));
-  	  		edit.commit();
+  	  			edit.putString(ArrayOfPlayers.player[0], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 1) + ":Loses:" + (Loses + 0) + ":CritHitMB:" + (CritHitMB + 0) + ":MaxTurns:" + (ArrayOfTurn.turn[0]));
+  	  			edit.commit();
+	  	  	}
+	  	  	if (win.equals("yes") && (critHitWithMB.equals("yes"))) {
+		  		
+		  		edit.putString(ArrayOfPlayers.player[0], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 1) + ":Loses:" + (Loses + 0) + ":CritHitMB:" + (CritHitMB + 1) + ":MaxTurns:" + (ArrayOfTurn.turn[0]));
+		  		edit.commit();
+		  	}
+	  	  	
+	  	  	if (win.equals("no") && (critHitWithMB.equals("na"))) {
+	  	  		
+	  	  		edit.putString(ArrayOfPlayers.player[0], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 0) + ":Loses:" + (Loses + 1) + ":CritHitMB:" + (CritHitMB + 0) + ":MaxTurns:" + (ArrayOfTurn.turn[0]));
+	  	  		edit.commit();
+	  	  	}
+	  	  	if (win.equals("no") && (critHitWithMB.equals("yes"))) {
+		  		
+		  		edit.putString(ArrayOfPlayers.player[0], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 0) + ":Loses:" + (Loses + 1) + ":CritHitMB:" + (CritHitMB + 1) + ":MaxTurns:" + (ArrayOfTurn.turn[0]));
+		  		edit.commit();
+		  	}
   	  	}
+  	  	
+  	  	else if (ArrayOfTurn.turn[0] < MaxTurns) {
+	  		
+  	  		if (win.equals("yes") && (critHitWithMB.equals("na"))) {
+  	  		
+  	  			edit.putString(ArrayOfPlayers.player[0], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 1) + ":Loses:" + (Loses + 0) + ":CritHitMB:" + (CritHitMB + 0) + ":MaxTurns:" + (MaxTurns));
+  	  			edit.commit();
+	  	  	}
+	  	  	if (win.equals("yes") && (critHitWithMB.equals("yes"))) {
+		  		
+		  		edit.putString(ArrayOfPlayers.player[0], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 1) + ":Loses:" + (Loses + 0) + ":CritHitMB:" + (CritHitMB + 1) + ":MaxTurns:" + (MaxTurns));
+		  		edit.commit();
+		  	}
+	  	  	
+	  	  	if (win.equals("no") && (critHitWithMB.equals("na"))) {
+	  	  		
+	  	  		edit.putString(ArrayOfPlayers.player[0], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 0) + ":Loses:" + (Loses + 1) + ":CritHitMB:" + (CritHitMB + 0) + ":MaxTurns:" + (MaxTurns));
+	  	  		edit.commit();
+	  	  	}
+	  	  	if (win.equals("no") && (critHitWithMB.equals("yes"))) {
+		  		
+		  		edit.putString(ArrayOfPlayers.player[0], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 0) + ":Loses:" + (Loses + 1) + ":CritHitMB:" + (CritHitMB + 1) + ":MaxTurns:" + (MaxTurns));
+		  		edit.commit();
+		  	}
+	  	}
+  	  	
+  	  	
 		
 		
 		
@@ -2496,9 +2554,12 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 				
 				//WORKAROUND FOR DEVICES WITH LARGER WIDTH THAN DRAWABLE RESOLUTION.
 				//ANIMATION DRAWABLES WILL NOT FILL OUT FULLY AND USER CAN SEE IT.
-				//ALSO NEEDED NEW IMAGEVIEW IN LAND/MAIN2 XML (scrollanimationdown).
+				//ALSO NEEDED NEW IMAGEVIEW IN LAND/MAIN2 XML FOR foldscrolls()(scrollanimationdown).
 				//NOT HANDLED YET FOR MULTIPLAYER (USE INVISIBLE/VISIBLE---USED GONE HERE
 				//BECAUSE unfoldScrolls() IS CALLED ONLY ONCE).
+				//**********************************************************************************
+				//TO PROPERLY CLEAR ANIMATION?: findViewById(R.id.scrollanimation).clearAnimation();
+				//**********************************************************************************
 				final Handler h = new Handler();
 	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 	  	  	  			
@@ -14188,7 +14249,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 					  	  	  		@Override
 						  	  	  	public void run() {
 					  	  	  			
-						  	  	  		if (mightyBlowSpell[0] > 0 && ishasteused.equals("no") && isblessrolled.equals("no") && issecondroundofhasteused.equals("no")) {
+						  	  	  		if ((mightyBlowSpell[0] > 0) && ishasteused.equals("no") && isblessrolled.equals("no") && issecondroundofhasteused.equals("no")) {
 											/*
 											centerscrolltext.setVisibility(View.VISIBLE);													
 									  		centerscrolltext.startAnimation(animAlphaText);		  		
@@ -14364,7 +14425,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		  	  	  		@Override
 			  	  	  	public void run() {
 		  	  	  			
-			  	  	  		if (mightyBlowSpell[0] > 0 && ishasteused.equals("no") && isblessrolled.equals("no") && issecondroundofhasteused.equals("no")) {
+			  	  	  		if ((mightyBlowSpell[0] > 0) && ishasteused.equals("no") && isblessrolled.equals("no") && issecondroundofhasteused.equals("no")) {
 								/*
 								centerscrolltext.setVisibility(View.VISIBLE);													
 						  		centerscrolltext.startAnimation(animAlphaText);		  		
@@ -14549,9 +14610,6 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 								
 								isattackdamagerolled = "yes";
 								preventattackdamagediefromleaking = "off";
-								
-								
-								
 			  	  	  		}
 			  	  	  	}, 750);					  	  	  		
 	  	  	  		}
@@ -14879,7 +14937,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 	  				  	  	  		@Override
 	  					  	  	  	public void run() {
 	  				  	  	  			
-	  				  	  	  			if (mightyBlowSpell[0] > 0 && ishasteused.equals("no") && isblessrolled.equals("no")) {
+	  				  	  	  			if ((mightyBlowSpell[0] > 0) && ishasteused.equals("no") && isblessrolled.equals("no") && issecondroundofhasteused.equals("no")) {
 									
 											AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 								  			
@@ -15037,7 +15095,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 				  	  	  		@Override
 					  	  	  	public void run() {
 				  	  	  			
-				  	  	  			if (mightyBlowSpell[0] > 0 && ishasteused.equals("no") && isblessrolled.equals("no")) {
+				  	  	  			if ((mightyBlowSpell[0] > 0) && ishasteused.equals("no") && isblessrolled.equals("no") && issecondroundofhasteused.equals("no")) {
 								
 										AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
 							  			
@@ -15765,7 +15823,6 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 											
 											
 											criticalHitMightyBlowDamageResultsHandler();
-						  	  	  			
 							  	  	  	}
 						  	  	  	}, 2000);						
 								}
@@ -15782,24 +15839,23 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 						  	  	  		@Override
 							  	  	  	public void run() {
 						  	  	  			
-						  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
-								  		centerscrolltext.startAnimation(animAlphaText);
-										centerscrolltext.append("\n" + "> Double damage for Mighty Blow = " + (((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) * 2) + ".");
-										
-										
-										ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - (((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) * 2);
-										
-										
-										TextView playerNumberAttackedHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
-										playerNumberAttackedHitPointsTextView.setTypeface(typeFace);
-										playerNumberAttackedHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[playerNumberAttacked]));
-										//playerNumberAttackedHitPointsTextView.bringToFront();
-										Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);				
-										playerNumberAttackedHitPointsTextView.startAnimation(animPulsingAnimation);
-										
-										
-										criticalHitMightyBlowDamageResultsHandler();
-						  	  	  			
+							  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
+									  		centerscrolltext.startAnimation(animAlphaText);
+											centerscrolltext.append("\n" + "> Double damage for Mighty Blow = " + (((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) * 2) + ".");
+											
+											
+											ArrayOfHitPoints.hitpoints[playerNumberAttacked] = ArrayOfHitPoints.hitpoints[playerNumberAttacked] - (((ArrayOfCriticalHitAttackDamageOne.criticalHitAttackDamageOne[0] + ArrayOfCriticalHitAttackDamageTwo.criticalHitAttackDamageTwo[0]) - 2) * 2);
+											
+											
+											TextView playerNumberAttackedHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+											playerNumberAttackedHitPointsTextView.setTypeface(typeFace);
+											playerNumberAttackedHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[playerNumberAttacked]));
+											//playerNumberAttackedHitPointsTextView.bringToFront();
+											Animation animPulsingAnimation = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.pulsinganimation);				
+											playerNumberAttackedHitPointsTextView.startAnimation(animPulsingAnimation);
+											
+											
+											criticalHitMightyBlowDamageResultsHandler();
 							  	  	  	}
 						  	  	  	}, 2000);							
 								}								
@@ -15814,6 +15870,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 	}
 	
 	public void criticalHitMightyBlowDamageResultsHandler() {
+		
+		critHitWithMB = "yes";
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
@@ -20538,6 +20596,12 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 				  	  	  			
 				  	  	  			foldScrolls();
 				  	  	  			
+				  	  	  			
+				  	  	  			writeTextToFile();
+				    			
+				  	  	  			getTextFromFile();
+				    			
+				  	  	  			
 					  	  	  		final Handler h4 = new Handler();
 						  	  	  	h4.postDelayed(new Runnable() {		  	  	  			
 						  	  	  			
@@ -20560,6 +20624,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 							    			//requestWindowFeature(Window.FEATURE_NO_TITLE); 
 							    			//intent.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 							    			
+							    			
 							    			finish();
 							    			startActivity(intent);  	  	  			
 						  	  	  			
@@ -20572,11 +20637,6 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 						  	  	  			*/
 							  	  	  		//Intent openMainActivity1 = new Intent("com.nedswebsite.ktog.MAINACTIVITY2");
 						    	        	//startActivity(openMainActivity1);
-							    			
-							    			
-							    			writeTextToFile();
-							    			
-							    			getTextFromFile();
 							  	  	  	}
 						  	  	  	}, 500);
 					  	  	  	}
@@ -20645,6 +20705,12 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 				  	  	  			
 				  	  	  			foldScrolls();
 				  	  	  			
+				  	  	  			
+					  	  	  		writeTextToFile();
+					    			
+					    			getTextFromFile();
+				    			
+				  	  	  			
 					  	  	  		final Handler h4 = new Handler();
 						  	  	  	h4.postDelayed(new Runnable() {		  	  	  			
 						  	  	  			
@@ -20667,6 +20733,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 							    			//requestWindowFeature(Window.FEATURE_NO_TITLE); 
 							    			//intent.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 							    			
+							    			
+							    			
 							    			finish();						    			
 							    			startActivity(intent);			
 						  	  	  			
@@ -20679,11 +20747,6 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 						  	  	  			*/
 							  	  	  		//Intent openMainActivity1 = new Intent("com.nedswebsite.ktog.MAINACTIVITY2");
 						    	        	//startActivity(openMainActivity1);
-							    			
-							    			
-							    			writeTextToFile();
-							    			
-							    			getTextFromFile();
 							  	  	  	}
 						  	  	  	}, 500);
 					  	  	  	}
@@ -20879,8 +20942,6 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 				// Start the animation.
 				frameAnimation.stop();
 				frameAnimation.start();
-				
-				
 	  	    }
   		});	
 	}

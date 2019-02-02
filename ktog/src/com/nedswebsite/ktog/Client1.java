@@ -98,7 +98,7 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
 		
 		
 		
-		ImageView img = (ImageView)findViewById(R.id.menu1);
+		//ImageView img = (ImageView)findViewById(R.id.menu1);
 		
 		//final ImageButton onePlayerButton = (ImageButton) findViewById(R.id.imagebuttononeplayer);
 		//final ImageButton multiPlayerButton = (ImageButton) findViewById(R.id.imagebuttonmultiplayer);
