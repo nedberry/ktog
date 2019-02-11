@@ -21,39 +21,45 @@
     
     
     
-    <!-- First try at styling alert dialog: -->
-    <style name="AlertDialogThemeTitle" parent="android:Theme.Dialog">
-    	<item name="android:gravity">center_horizontal</item>
-    	<item name="android:textColor">#FFFFFF</item>
+    
+	
+	
+	
+	
+	<style name="customalertdialog" parent="@android:style/Theme.Dialog">
+	    
+		<item name="android:windowBackground">@drawable/customalertdialog</item>
+		
+		
+		
+		<item name="android:textColor">#FFFFFF</item>
     	<item name="android:background">#000000</item>
-	</style>	
-    
-    <!-- The base AlertDialog theme is Theme.Holo.Dialog.Alert, but it is private! 
-    No worries, we can copy the source code from the same link to “recreate” this default theme. 
-    If we copy only Theme.Holo.Dialog.Alert we’ll get an error, because DialogWindowTitle.Holo
-    is also a private style. We do the same trick here: copy it from the source. -->
-    
-    <!-- Local copy of android:Theme.Holo.Dialog.Alert -->
-	<style name="Theme_Holo_Dialog_Alert" parent="@android:style/Theme.Holo.Dialog">
-		<item name="android:windowBackground">@android:color/transparent</item>
-		<item name="android:windowTitleStyle">@style/DialogWindowTitle_Holo</item>
-		<item name="android:windowContentOverlay">@null</item>
-		<item name="android:windowMinWidthMajor">@android:dimen/dialog_min_width_major</item>
-		<item name="android:windowMinWidthMinor">@android:dimen/dialog_min_width_minor</item>	
-	</style>
  
-	<!-- Local copy of android:DialogWindowTitle.Holo -->
+		<!-- Prevents background from dimming when builder/dialog is called -->     
+		<item name="android:backgroundDimEnabled">false</item>
+ 
+		
+ 		<item name="android:gravity">center_horizontal</item>
+ 
+ 
+	</style>
+	<!-- 
+	<item name="android:gravity">center_horizontal</item>
+	<item name="android:windowContentOverlay">@null</item>
+ <item name="android:windowIsTranslucent">true</item>
+ 
+ <item name="android:windowNoTitle">true</item> 
+	<item name="android:windowMinWidthMajor">@android:dimen/dialog_min_width_major</item>
+		<item name="android:windowMinWidthMinor">@android:dimen/dialog_min_width_minor</item>
+	<item name="android:windowIsTranslucent">true</item>
+	 -->
+	
+	
+ 
+	<!--
 	<style name="DialogWindowTitle_Holo">
 	    
-	    <item name="android:gravity">center_horizontal</item>
-	    
-		<item name="android:maxLines">1</item>
-		<item name="android:scrollHorizontally">true</item>
-		<item name="android:textAppearance">@android:style/TextAppearance.Holo.DialogWindowTitle</item>
-		
-		<!-- Prevents background from dimming when builder/dialog is called -->
-		<item name="android:backgroundDimEnabled">false</item>
-		
 	</style>    
+    -->
     
 </resources>

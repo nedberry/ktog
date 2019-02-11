@@ -35,7 +35,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
-import android.support.v7.app.ActionBarActivity;
+
 import android.text.InputFilter;
 import android.text.Spannable;
 import android.text.method.ScrollingMovementMethod;
@@ -2001,8 +2001,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
   	  	//HAVE TO UNINSTALL/REINSTALL, BUT LOSE OLD RECORDS. NO FIX YET.
   	  	
   	  	
-  	  	Toast.makeText(MainActivity2.this,"ARRAY OF TURNS = " + ArrayOfTurn.turn[0], Toast.LENGTH_SHORT).show();
-  	  	Toast.makeText(MainActivity2.this,"MAX TURNS = " + MaxTurns, Toast.LENGTH_SHORT).show();
+  	  	//Toast.makeText(MainActivity2.this,"ARRAY OF TURNS = " + ArrayOfTurn.turn[0], Toast.LENGTH_SHORT).show();
+  	  	//Toast.makeText(MainActivity2.this,"MAX TURNS = " + MaxTurns, Toast.LENGTH_SHORT).show();
   	  	
   	  	
   	  	SharedPreferences.Editor edit = pref.edit();
@@ -2147,9 +2147,9 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 	@Override
     public void onBackPressed() {		
 			
-		AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+		AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this, R.style.customalertdialog);
 			
-	    	alert.setTitle("KtOG");	  	    	
+	    	//alert.setTitle("KtOG");	  	    	
 	    	alert.setMessage("Are you sure you want to exit?");	  	    		  	    	
 	    	
 	    	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -5305,11 +5305,20 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
   	  		@Override
   	  		public void run() {
   	  			
-	  	  		AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+  	  			
+  	  			// Use a blank drawable to hide the imageview animation:
+	  			ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
+	  			img.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+	  			img.setImageResource(R.drawable.sixsixrightleftrotateblank);
+	  			// To save memory?:
+	  			img.setImageDrawable(null);
+  	  			
+  	  			
+	  	  		AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this, R.style.customalertdialog);
 	  			
 	  	  		alert.setCancelable(false);
 	  	  		
-	  	    	alert.setTitle("Initiative Results");
+	  	    	//alert.setTitle("Initiative Results");
 	  	    	
 	  	    	//alert.setMessage(ArrayOfPlayers.player[0] + getString(R.string.tab) + ArrayOfPlayers.player[1]);
 	  	    	//alert.setMessage(ArrayOfInitiative.initiative[0] + getString(R.string.tab) + ArrayOfInitiative.initiative[0]);
@@ -5361,7 +5370,9 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
   		// Use a blank drawable to hide the imageview animation:
   		ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
   		img.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
-		img.setImageResource(R.drawable.sixsixrightleftrotateblank);		
+		img.setImageResource(R.drawable.sixsixrightleftrotateblank);
+		// To save memory?:
+		img.setImageDrawable(null);
   		
 		
 		// Re-enables ability to use srollbar:
@@ -5803,11 +5814,13 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 																			centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", do you want to dodge?");
 																			*/
 																			
-																			AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+																			AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this, R.style.customalertdialog);
 																  			
 																			alert.setCancelable(false);
 																			
-																  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
+																  	    	//alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
+																  	    	alert.setMessage(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
+
 																  	    	/*
 																  	    	alert.setMessage("something");
 																  	    	*/	  	    	
@@ -5847,7 +5860,10 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 																	  		    	ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 																	  		    	img.setBackgroundResource(R.drawable.twentytwentyblank);
 																	  		    	img.setImageResource(R.drawable.twentytwentyblank);
-																  		    		
+																	  		    	// To save memory?:
+																		  			img.setImageDrawable(null);
+																	  		    	
+																		  			
 																  		    		dodgeGraphic();
 																  		    		
 																  		    		final Handler h = new Handler();
@@ -6052,11 +6068,13 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 																			centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", do you want to dodge?");
 																			*/
 																			
-																			AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+																			AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this, R.style.customalertdialog);
 																  			
 																			alert.setCancelable(false);
 																			
-																  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
+																  	    	//alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
+																  	    	alert.setMessage(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
+
 																  	    	/*
 																  	    	alert.setMessage("something");
 																  	    	*/	  	    	
@@ -6096,7 +6114,10 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 																	  		    	ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 																	  		    	img.setBackgroundResource(R.drawable.twentytwentyblank);
 																	  		    	img.setImageResource(R.drawable.twentytwentyblank);
-																  		    		
+																	  		    	// To save memory?:
+																		  			img.setImageDrawable(null);
+																	  		    	
+																		  			
 																  		    		dodgeGraphic();
 																  		    		
 																  		    		final Handler h = new Handler();
@@ -6353,11 +6374,13 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 																			centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", do you want to dodge?");
 																			*/
 																			
-																			AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+																			AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this, R.style.customalertdialog);
 																  			
 																			alert.setCancelable(false);
 																			
-																  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
+																  	    	//alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
+																  	    	alert.setMessage(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
+
 																  	    	/*
 																  	    	alert.setMessage("something");
 																  	    	*/	  	    	
@@ -6397,7 +6420,10 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 																	  		    	ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 																	  		    	img.setBackgroundResource(R.drawable.twentytwentyblank);
 																	  		    	img.setImageResource(R.drawable.twentytwentyblank);
-																  		    		
+																	  		    	// To save memory?:
+																		  			img.setImageDrawable(null);
+																	  		    	
+																		  			
 																  		    		dodgeGraphic();
 																  		    		
 																  		    		final Handler h = new Handler();
@@ -6595,11 +6621,13 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 																			centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", do you want to dodge?");
 																			*/
 																			
-																			AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+																			AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this, R.style.customalertdialog);
 																  			
 																			alert.setCancelable(false);
 																			
-																  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
+																  	    	//alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
+																  	    	alert.setMessage(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
+
 																  	    	/*
 																  	    	alert.setMessage("something");
 																  	    	*/	  	    	
@@ -6639,7 +6667,10 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 																	  		    	ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 																	  		    	img.setBackgroundResource(R.drawable.twentytwentyblank);
 																	  		    	img.setImageResource(R.drawable.twentytwentyblank);
-																  		    		
+																	  		    	// To save memory?:
+																		  			img.setImageDrawable(null);
+																	  		    	
+																		  			
 																  		    		dodgeGraphic();
 																  		    		
 																  		    		final Handler h = new Handler();
@@ -6893,7 +6924,10 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		  		ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 		  		img.setBackgroundResource(R.drawable.twentytwentyblank);
 		  		img.setImageResource(R.drawable.twentytwentyblank);
-				
+		  		// To save memory?:
+	  			img.setImageDrawable(null);
+		  		
+	  			
 	  			criticalHitGraphic();					  	  	  		
 			  	  	  	
 				  	  	  		
@@ -6915,11 +6949,13 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 	  						centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", do you want to dodge?");
 	  						*/
 	  						
-	  						AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+	  						AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this, R.style.customalertdialog);
 	  			  			
 	  						alert.setCancelable(false);
 	  						
-	  			  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
+	  			  	    	//alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
+	  			  	    	alert.setMessage(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
+
 	  			  	    	/*
 	  			  	    	alert.setMessage("something");
 	  			  	    	*/	  	    	
@@ -6959,7 +6995,10 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 					  		    	ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 					  		    	img.setBackgroundResource(R.drawable.twentytwentyblank);
 					  		    	img.setImageResource(R.drawable.twentytwentyblank);
-	  			  		    		
+					  		    	// To save memory?:
+						  			img.setImageDrawable(null);
+					  		    	
+						  			
 	  			  		    		dodgeGraphic();			  			  		    		
 	  			  		    		
 	  			  		    		final Handler h = new Handler();
@@ -7201,6 +7240,12 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 							  	  	  			
 								  	  	  		if (ArrayOfHitPoints.hitpoints[0] <= 0) {
 													
+								  	  	  			// Use a blank drawable to hide the imageview animation:
+								  		  			ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
+								  		  			img.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+								  		  			img.setImageResource(R.drawable.sixsixrightleftrotateblank);
+								  		  			// To save memory?:
+								  		  			img.setImageDrawable(null);
 													
 													/*
 													 * 
@@ -7217,12 +7262,14 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 													centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you have been slain!");
 													*/
 													
-													AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+													AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this, R.style.customalertdialog);
 												      
 													alert.setCancelable(false);
 													
-													alert.setTitle(ArrayOfPlayers.player[0] + ", you have been slain.");
-										  	    	/*
+													//alert.setTitle(ArrayOfPlayers.player[0] + ", you have been defeated.");
+													alert.setMessage(ArrayOfPlayers.player[0] + ", you have been defeated.");
+
+													/*
 										  	    	alert.setMessage("something");
 										  	    	*/	    	
 											    	
@@ -7295,6 +7342,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		  		ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 		  		img.setBackgroundResource(R.drawable.twentytwentyblank);
 		  		img.setImageResource(R.drawable.twentytwentyblank);
+		  		// To save memory?:
+	  			img.setImageDrawable(null);
 	  			
 	  			
 	  			// IF MB
@@ -7454,6 +7503,12 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 								  	  	  			
 													if (ArrayOfHitPoints.hitpoints[0] <= 0) {
 														
+														// Use a blank drawable to hide the imageview animation:
+									  		  			ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
+									  		  			img.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+									  		  			img.setImageResource(R.drawable.sixsixrightleftrotateblank);
+									  		  			// To save memory?:
+									  		  			img.setImageDrawable(null);
 														
 														/*
 														 * 
@@ -7469,12 +7524,14 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 														centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you have been slain!");
 														*/
 														
-														AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+														AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this, R.style.customalertdialog);
 													    
 														alert.setCancelable(false);
 														
-														alert.setTitle(ArrayOfPlayers.player[0] + ", you have been slain.");
-											  	    	/*
+														//alert.setTitle(ArrayOfPlayers.player[0] + ", you have been defeated.");
+														alert.setMessage(ArrayOfPlayers.player[0] + ", you have been defeated.");
+
+														/*
 											  	    	alert.setMessage("something");
 											  	    	*/	    	
 												    	
@@ -7682,6 +7739,12 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 								  	  	  			
 													if (ArrayOfHitPoints.hitpoints[0] <= 0) {
 														
+														// Use a blank drawable to hide the imageview animation:
+									  		  			ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
+									  		  			img.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+									  		  			img.setImageResource(R.drawable.sixsixrightleftrotateblank);
+									  		  			// To save memory?:
+									  		  			img.setImageDrawable(null);
 														
 														/*
 														 * 
@@ -7697,12 +7760,14 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 														centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you have been slain!");
 														*/
 														
-														AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+														AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this, R.style.customalertdialog);
 													    
 														alert.setCancelable(false);
 														
-														alert.setTitle(ArrayOfPlayers.player[0] + ", you have been slain.");
-											  	    	/*
+														//alert.setTitle(ArrayOfPlayers.player[0] + ", you have been defeated.");
+														alert.setMessage(ArrayOfPlayers.player[0] + ", you have been defeated.");
+
+														/*
 											  	    	alert.setMessage("something");
 											  	    	*/	    	
 												    	
@@ -7889,6 +7954,12 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 						  	  	  			
 											if (ArrayOfHitPoints.hitpoints[0] <= 0) {
 												
+												// Use a blank drawable to hide the imageview animation:
+							  		  			ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
+							  		  			img.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+							  		  			img.setImageResource(R.drawable.sixsixrightleftrotateblank);
+							  		  			// To save memory?:
+							  		  			img.setImageDrawable(null);
 												
 												/*
 												 * 
@@ -7904,12 +7975,14 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 												centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you have been slain!");
 												*/
 												
-												AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+												AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this, R.style.customalertdialog);
 											    
 												alert.setCancelable(false);
 												
-												alert.setTitle(ArrayOfPlayers.player[0] + ", you have been slain.");
-									  	    	/*
+												//alert.setTitle(ArrayOfPlayers.player[0] + ", you have been defeated.");
+												alert.setMessage(ArrayOfPlayers.player[0] + ", you have been defeated.");
+
+												/*
 									  	    	alert.setMessage("something");
 									  	    	*/	    	
 										    	
@@ -8194,11 +8267,13 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 																	centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", do you want to dodge?");
 																	*/
 																	
-																	AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+																	AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this, R.style.customalertdialog);
 														  			
 																	alert.setCancelable(false);
 																	
-														  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
+														  	    	//alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
+														  	    	alert.setMessage(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
+
 														  	    	/*
 														  	    	alert.setMessage("something");
 														  	    	*/	  	    	
@@ -8236,7 +8311,10 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 															  		    	ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 															  		    	img.setBackgroundResource(R.drawable.twentytwentyblank);
 															  		    	img.setImageResource(R.drawable.twentytwentyblank);
-														  		    		
+															  		    	// To save memory?:
+																  			img.setImageDrawable(null);
+															  		    	
+																  			
 														  		    		dodgeGraphic();
 														  		    		
 														  		    		final Handler h = new Handler();
@@ -8450,11 +8528,13 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 																	centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", do you want to dodge?");
 																	*/
 																	
-																	AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+																	AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this, R.style.customalertdialog);
 														  			
 																	alert.setCancelable(false);
 																	
-														  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
+														  	    	//alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
+														  	    	alert.setMessage(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
+
 														  	    	/*
 														  	    	alert.setMessage("something");
 														  	    	*/	  	    	
@@ -8492,7 +8572,10 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 															  		    	ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 															  		    	img.setBackgroundResource(R.drawable.twentytwentyblank);
 															  		    	img.setImageResource(R.drawable.twentytwentyblank);
-														  		    		
+															  		    	// To save memory?:
+																  			img.setImageDrawable(null);
+															  		    	
+																  			
 														  		    		dodgeGraphic();
 														  		    		
 														  		    		final Handler h = new Handler();
@@ -8744,6 +8827,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		  			ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
 		  			img.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
 		  			img.setImageResource(R.drawable.sixsixrightleftrotateblank);
+		  			// To save memory?:
+		  			img.setImageDrawable(null);
 		  			
 		  			
 		  			ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);	  	  			
@@ -8868,11 +8953,13 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 																		centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", do you want to dodge?");
 																		*/
 																		
-																		AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+																		AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this, R.style.customalertdialog);
 															  			
 																		alert.setCancelable(false);
 																		
-															  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
+															  	    	//alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
+															  	    	alert.setMessage(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
+
 															  	    	/*
 															  	    	alert.setMessage("something");
 															  	    	*/	  	    	
@@ -8910,7 +8997,10 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 																  		    	ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 																  		    	img.setBackgroundResource(R.drawable.twentytwentyblank);
 																  		    	img.setImageResource(R.drawable.twentytwentyblank);
-															  		    		
+																  		    	// To save memory?:
+																	  			img.setImageDrawable(null);
+																	  			
+																	  			
 															  		    		dodgeGraphic();
 															  		    		
 															  		    		final Handler h = new Handler();
@@ -9052,11 +9142,13 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 																		centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", do you want to dodge?");
 																		*/
 																		
-																		AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+																		AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this, R.style.customalertdialog);
 															  			
 																		alert.setCancelable(false);
 																		
-															  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
+															  	    	//alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
+															  	    	alert.setMessage(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
+
 															  	    	/*
 															  	    	alert.setMessage("something");
 															  	    	*/	  	    	
@@ -9094,7 +9186,10 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 																  		    	ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 																  		    	img.setBackgroundResource(R.drawable.twentytwentyblank);
 																  		    	img.setImageResource(R.drawable.twentytwentyblank);
-															  		    		
+																  		    	// To save memory?:
+																	  			img.setImageDrawable(null);
+																	  			
+																	  			
 															  		    		dodgeGraphic();
 															  		    		
 															  		    		final Handler h = new Handler();
@@ -9918,11 +10013,13 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 															centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", do you want to dodge?");
 															*/
 															
-															AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+															AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this, R.style.customalertdialog);
 												  			
 															alert.setCancelable(false);
 															
-												  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
+												  	    	//alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
+												  	    	alert.setMessage(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
+
 												  	    	/*
 												  	    	alert.setMessage("something");
 												  	    	*/	  	    	
@@ -9960,7 +10057,10 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 													  		    	ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 													  		    	img.setBackgroundResource(R.drawable.twentytwentyblank);
 													  		    	img.setImageResource(R.drawable.twentytwentyblank);
-												  		    		
+													  		    	// To save memory?:
+														  			img.setImageDrawable(null);
+														  			
+														  			
 												  		    		dodgeGraphic();
 												  		    		
 												  		    		final Handler h = new Handler();
@@ -10118,11 +10218,13 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 															centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", do you want to dodge?");
 															*/
 															
-															AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+															AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this, R.style.customalertdialog);
 												  			
 															alert.setCancelable(false);
 															
-												  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
+												  	    	//alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
+												  	    	alert.setMessage(ArrayOfPlayers.player[0] + ", do you want to use your Dodge spell?");
+
 												  	    	/*
 												  	    	alert.setMessage("something");
 												  	    	*/	  	    	
@@ -10160,7 +10262,10 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 													  		    	ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 													  		    	img.setBackgroundResource(R.drawable.twentytwentyblank);
 													  		    	img.setImageResource(R.drawable.twentytwentyblank);
-												  		    		
+													  		    	// To save memory?:
+														  			img.setImageDrawable(null);
+														  			
+														  			
 												  		    		dodgeGraphic();
 												  		    		
 												  		    		final Handler h = new Handler();
@@ -10576,6 +10681,12 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 							  	  	  			
 												if (ArrayOfHitPoints.hitpoints[0] <= 0) {
 													
+													// Use a blank drawable to hide the imageview animation:
+								  		  			ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
+								  		  			img.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+								  		  			img.setImageResource(R.drawable.sixsixrightleftrotateblank);
+								  		  			// To save memory?:
+								  		  			img.setImageDrawable(null);
 													
 													/*
 													 * 
@@ -10592,12 +10703,14 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 													centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you have been slain!");
 													*/
 													
-													AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+													AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this, R.style.customalertdialog);
 												    
 													alert.setCancelable(false);
 													
-													alert.setTitle(ArrayOfPlayers.player[0] + ", you have been slain.");
-										  	    	/*
+													//alert.setTitle(ArrayOfPlayers.player[0] + ", you have been defeated.");
+													alert.setMessage(ArrayOfPlayers.player[0] + ", you have been defeated.");
+
+													/*
 										  	    	alert.setMessage("something");
 										  	    	*/	    	
 											    	
@@ -10661,6 +10774,9 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 		img.setBackgroundResource(R.drawable.twentytwentyblank);
 		img.setImageResource(R.drawable.twentytwentyblank);
+		// To save memory?:
+		img.setImageDrawable(null);
+		
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
@@ -10822,6 +10938,12 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 								  	  	  			
 													if (ArrayOfHitPoints.hitpoints[0] <= 0) {
 														
+														// Use a blank drawable to hide the imageview animation:
+									  		  			ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
+									  		  			img.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+									  		  			img.setImageResource(R.drawable.sixsixrightleftrotateblank);
+									  		  			// To save memory?:
+									  		  			img.setImageDrawable(null);
 														
 														/*
 														 * 
@@ -10837,12 +10959,14 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 														centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you have been slain!");
 														*/
 														
-														AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+														AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this, R.style.customalertdialog);
 													    
 														alert.setCancelable(false);
 														
-														alert.setTitle(ArrayOfPlayers.player[0] + ", you have been slain.");
-											  	    	/*
+														//alert.setTitle(ArrayOfPlayers.player[0] + ", you have been defeated.");
+														alert.setMessage(ArrayOfPlayers.player[0] + ", you have been defeated.");
+
+														/*
 											  	    	alert.setMessage("something");
 											  	    	*/	    	
 												    	
@@ -11037,6 +11161,12 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 								  	  	  			
 													if (ArrayOfHitPoints.hitpoints[0] <= 0) {
 														
+														// Use a blank drawable to hide the imageview animation:
+									  		  			ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
+									  		  			img.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+									  		  			img.setImageResource(R.drawable.sixsixrightleftrotateblank);
+									  		  			// To save memory?:
+									  		  			img.setImageDrawable(null);
 														
 														/*
 														 * 
@@ -11052,12 +11182,14 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 														centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you have been slain!");
 														*/
 														
-														AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+														AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this, R.style.customalertdialog);
 													    
 														alert.setCancelable(false);
 														
-														alert.setTitle(ArrayOfPlayers.player[0] + ", you have been slain.");
-											  	    	/*
+														//alert.setTitle(ArrayOfPlayers.player[0] + ", you have been defeated.");
+														alert.setMessage(ArrayOfPlayers.player[0] + ", you have been defeated.");
+
+														/*
 											  	    	alert.setMessage("something");
 											  	    	*/	    	
 												    	
@@ -11231,6 +11363,12 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 						  	  	  			
 											if (ArrayOfHitPoints.hitpoints[0] <= 0) {
 												
+												// Use a blank drawable to hide the imageview animation:
+							  		  			ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
+							  		  			img.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+							  		  			img.setImageResource(R.drawable.sixsixrightleftrotateblank);
+							  		  			// To save memory?:
+							  		  			img.setImageDrawable(null);
 												
 												/*
 												 * 
@@ -11246,12 +11384,14 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 												centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you have been slain!");
 												*/
 												
-												AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+												AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this, R.style.customalertdialog);
 											    
 												alert.setCancelable(false);
 												
-												alert.setTitle(ArrayOfPlayers.player[0] + ", you have been slain.");
-									  	    	/*
+												//alert.setTitle(ArrayOfPlayers.player[0] + ", you have been defeated.");
+												alert.setMessage(ArrayOfPlayers.player[0] + ", you have been defeated.");
+
+												/*
 									  	    	alert.setMessage("something");
 									  	    	*/	    	
 										    	
@@ -11893,6 +12033,12 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 																			  	  	  			
 																								if (ArrayOfHitPoints.hitpoints[0] <= 0) {
 																									
+																									// Use a blank drawable to hide the imageview animation:
+																				  		  			ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
+																				  		  			img.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+																				  		  			img.setImageResource(R.drawable.sixsixrightleftrotateblank);
+																				  		  			// To save memory?:
+																				  		  			img.setImageDrawable(null);
 																									
 																									/*
 																									 * 
@@ -11908,12 +12054,14 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 																									centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you have been slain!");
 																									*/
 																									
-																									AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+																									AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this, R.style.customalertdialog);
 																								    
 																									alert.setCancelable(false);
 																									
-																									alert.setTitle(ArrayOfPlayers.player[0] + ", you have been slain.");
-																						  	    	/*
+																									//alert.setTitle(ArrayOfPlayers.player[0] + ", you have been defeated.");
+																									alert.setMessage(ArrayOfPlayers.player[0] + ", you have been defeated.");
+
+																									/*
 																						  	    	alert.setMessage("something");
 																						  	    	*/	    	
 																							    	
@@ -12290,6 +12438,12 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 															  	  	  			
 																				if (ArrayOfHitPoints.hitpoints[0] <= 0) {
 																					
+																					// Use a blank drawable to hide the imageview animation:
+																  		  			ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
+																  		  			img.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+																  		  			img.setImageResource(R.drawable.sixsixrightleftrotateblank);
+																  		  			// To save memory?:
+																  		  			img.setImageDrawable(null);
 																					
 																					/*
 																					 * 
@@ -12305,12 +12459,14 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 																					centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", you have been slain!");
 																					*/
 																					
-																					AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+																					AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this, R.style.customalertdialog);
 																				    
 																					alert.setCancelable(false);
 																					
-																					alert.setTitle(ArrayOfPlayers.player[0] + ", you have been slain.");
-																		  	    	/*
+																					//alert.setTitle(ArrayOfPlayers.player[0] + ", you have been defeated.");
+																					alert.setMessage(ArrayOfPlayers.player[0] + ", you have been defeated.");
+
+																					/*
 																		  	    	alert.setMessage("something");
 																		  	    	*/	    	
 																			    	
@@ -12400,6 +12556,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		  		ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 		  		img.setBackgroundResource(R.drawable.twentytwentyblank);
 		  		img.setImageResource(R.drawable.twentytwentyblank);
+		  		// To save memory?:
+	  			img.setImageDrawable(null);
 	  			
 	  			
 	  			criticalMissGraphic(); 	  	
@@ -12681,8 +12839,10 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 						ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 						img.setBackgroundResource(R.drawable.twentytwentyblank);
 						img.setImageResource(R.drawable.twentytwentyblank);
+						// To save memory?:
+			  			img.setImageDrawable(null);
 						
-						
+			  			
 						final Handler h = new Handler();
 			  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 			  	  	  			
@@ -12791,7 +12951,14 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 							  	  	  			
 												if (ArrayOfHitPoints.hitpoints[1] <= 0) {
 													
-													
+													// Use a blank drawable to hide the imageview animation:
+										  			ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
+										  			img.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+										  			img.setImageResource(R.drawable.sixsixrightleftrotateblank);
+										  			// To save memory?:
+										  			img.setImageDrawable(null);
+										  			
+										  			
 													/*
 													 * 
 													 * Picture of one sword destroying another.
@@ -12806,12 +12973,14 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 													centerscrolltext.append("\n" + "> The computer has been slain!");
 													*/
 													
-													AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+													AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this, R.style.customalertdialog);
 												    
 													alert.setCancelable(false);
 													
-													alert.setTitle("The computer has been slain.");
-										  	    	/*
+													//alert.setTitle("The computer has been defeated.");
+													alert.setMessage("The computer has been defeated.");
+
+													/*
 										  	    	alert.setMessage("something");
 										  	    	*/	    	
 											    	
@@ -13716,6 +13885,9 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
   		ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 		img.setBackgroundResource(R.drawable.twentytwentyblank);
 		img.setImageResource(R.drawable.twentytwentyblank);
+		// To save memory?:
+		img.setImageDrawable(null);
+		
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
@@ -14129,6 +14301,14 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 	  	  	  			
 						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] <= 0) {
 							
+							// Use a blank drawable to hide the imageview animation:
+				  			ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
+				  			img.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+				  			img.setImageResource(R.drawable.sixsixrightleftrotateblank);
+				  			// To save memory?:
+				  			img.setImageDrawable(null);
+				  			
+				  			
 							/*
 							 * 
 							 * Picture of one sword destroying another.
@@ -14137,12 +14317,14 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 							 * 
 							 */
 							
-							AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+							AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this, R.style.customalertdialog);
 						    
 							alert.setCancelable(false);							
 							
-							alert.setTitle("The computer has been slain.");
-				  	    	/*
+							//alert.setTitle("The computer has been defeated.");
+							alert.setMessage("The computer has been defeated.");
+							
+							/*
 				  	    	alert.setMessage("something");
 				  	    	*/	    	
 					    	
@@ -14256,11 +14438,13 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 											centerscrolltext.append("\n" + ArrayOfPlayers.player[i] + ", do you want to use Mighty Blow?");
 											*/
 											
-											AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+											AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this, R.style.customalertdialog);
 								  			
 											alert.setCancelable(false);
 											
-								  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use Mighty Blow?");
+								  	    	//alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use Mighty Blow?");
+								  	    	alert.setMessage(ArrayOfPlayers.player[0] + ", do you want to use Mighty Blow?");
+
 								  	    	/*
 								  	    	alert.setMessage("something");
 								  	    	*/	  	    	
@@ -14376,7 +14560,10 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 				  		    	ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				  		    	img.setBackgroundResource(R.drawable.twentytwentyblank);
 				  		    	img.setImageResource(R.drawable.twentytwentyblank);
-								
+				  		    	// To save memory?:
+					  			img.setImageDrawable(null);
+					  			
+					  			
 								dodgeGraphic();						
 								
 								final Handler h4 = new Handler();
@@ -14432,11 +14619,13 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 								centerscrolltext.append("\n" + ArrayOfPlayers.player[i] + ", do you want to use Mighty Blow?");
 								*/
 								
-								AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+								AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this, R.style.customalertdialog);
 					  			
 								alert.setCancelable(false);
 								
-					  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use Mighty Blow?");
+					  	    	//alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use Mighty Blow?");
+					  	    	alert.setMessage(ArrayOfPlayers.player[0] + ", do you want to use Mighty Blow?");
+
 					  	    	/*
 					  	    	alert.setMessage("something");
 					  	    	*/	  	    	
@@ -14539,6 +14728,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
   		ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 		img.setBackgroundResource(R.drawable.twentytwentyblank);
 		img.setImageResource(R.drawable.twentytwentyblank);
+		// To save memory?:
+		img.setImageDrawable(null);
 		
 		img.setEnabled(false);
 		
@@ -14795,6 +14986,14 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 	  	  	  			
 						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] <= 0) {
 							
+							// Use a blank drawable to hide the imageview animation:
+				  			ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
+				  			img.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+				  			img.setImageResource(R.drawable.sixsixrightleftrotateblank);
+				  			// To save memory?:
+				  			img.setImageDrawable(null);
+				  			
+				  			
 							/*
 							 * 
 							 * Picture of one sword destroying another.
@@ -14803,12 +15002,14 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 							 * 
 							 */
 							
-							AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+							AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this, R.style.customalertdialog);
 						    
 							alert.setCancelable(false);
 							
-							alert.setTitle("The computer has been slain.");
-				  	    	/*
+							//alert.setTitle("The computer has been defeated.");
+							alert.setMessage("The computer has been defeated.");
+
+							/*
 				  	    	alert.setMessage("something");
 				  	    	*/	    	
 					    	
@@ -14904,8 +15105,10 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		  		ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 		  		img.setBackgroundResource(R.drawable.twentytwentyblank);
 		  		img.setImageResource(R.drawable.twentytwentyblank);
-	  			
+		  		// To save memory?:
+	  			img.setImageDrawable(null);
 		  		
+	  			
 	  			criticalHitGraphic();		
 	  	  	  	
 	  	  	  			
@@ -14939,11 +15142,13 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 	  				  	  	  			
 	  				  	  	  			if ((mightyBlowSpell[0] > 0) && ishasteused.equals("no") && isblessrolled.equals("no") && issecondroundofhasteused.equals("no")) {
 									
-											AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+											AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this, R.style.customalertdialog);
 								  			
 											alert.setCancelable(false);
 											
-								  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use Mighty Blow?");
+								  	    	//alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use Mighty Blow?");
+								  	    	alert.setMessage(ArrayOfPlayers.player[0] + ", do you want to use Mighty Blow?");
+
 								  	    	/*
 								  	    	alert.setMessage("something");
 								  	    	*/	  	    	
@@ -15048,7 +15253,10 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 				  		    	ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 				  		    	img.setBackgroundResource(R.drawable.twentytwentyblank);
 				  		    	img.setImageResource(R.drawable.twentytwentyblank);
-								
+				  		    	// To save memory?:
+					  			img.setImageDrawable(null);
+					  			
+					  			
 								dodgeGraphic();								
 								
 								final Handler h4 = new Handler();
@@ -15097,11 +15305,13 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 				  	  	  			
 				  	  	  			if ((mightyBlowSpell[0] > 0) && ishasteused.equals("no") && isblessrolled.equals("no") && issecondroundofhasteused.equals("no")) {
 								
-										AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+										AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this, R.style.customalertdialog);
 							  			
 										alert.setCancelable(false);
 										
-							  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use Mighty Blow?");
+							  	    	//alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use Mighty Blow?");
+							  	    	alert.setMessage(ArrayOfPlayers.player[0] + ", do you want to use Mighty Blow?");
+
 							  	    	/*
 							  	    	alert.setMessage("something");
 							  	    	*/	  	    	
@@ -15204,7 +15414,10 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
   		ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 		img.setBackgroundResource(R.drawable.twentytwentyblank);
 		img.setImageResource(R.drawable.twentytwentyblank);
-		
+		// To save memory?:
+		img.setImageDrawable(null);
+			
+			
 		isblessrolled = "no";
 		
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
@@ -15525,6 +15738,14 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		  	  			
 						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] <= 0) {
 							
+							// Use a blank drawable to hide the imageview animation:
+				  			ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
+				  			img.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+				  			img.setImageResource(R.drawable.sixsixrightleftrotateblank);
+				  			// To save memory?:
+				  			img.setImageDrawable(null);
+				  			
+				  			
 							/*
 							 * 
 							 * Picture of one sword destroying another.
@@ -15533,12 +15754,14 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 							 * 
 							 */
 							
-							AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+							AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this, R.style.customalertdialog);
 						    
 							alert.setCancelable(false);
 							
-							alert.setTitle("The computer has been slain.");
-				  	    	/*
+							//alert.setTitle("The computer has been defeated.");
+							alert.setMessage("The computer has been defeated.");
+
+							/*
 				  	    	alert.setMessage("something");
 				  	    	*/	    	
 					    	
@@ -15591,7 +15814,10 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
   		ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 		img.setBackgroundResource(R.drawable.twentytwentyblank);
 		img.setImageResource(R.drawable.twentytwentyblank);
-		
+		// To save memory?:
+		img.setImageDrawable(null);
+			
+			
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
 		runOnUiThread(new Runnable() {
@@ -15954,6 +16180,14 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		  	  			
 						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] <= 0) {
 							
+							// Use a blank drawable to hide the imageview animation:
+				  			ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
+				  			img.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+				  			img.setImageResource(R.drawable.sixsixrightleftrotateblank);
+				  			// To save memory?:
+				  			img.setImageDrawable(null);
+				  			
+							
 							/*
 							 * 
 							 * Picture of one sword destroying another.
@@ -15962,14 +16196,16 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 							 * 
 							 */
 							
-							AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+							AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this, R.style.customalertdialog);
 						    
 							alert.setCancelable(false);
 							
-							alert.setTitle("The computer has been slain.");
-				  	    	/*
+							//alert.setTitle("The computer has been defeated.");
+							alert.setMessage("The computer has been defeated.");
+
+							/*
 				  	    	alert.setMessage("something");
-				  	    	*/	    	
+				  	    	*/
 					    	
 					    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 						    	public void onClick(DialogInterface dialog, int whichButton) {
@@ -16034,6 +16270,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		  		ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 		  		img.setBackgroundResource(R.drawable.twentytwentyblank);
 		  		img.setImageResource(R.drawable.twentytwentyblank);
+		  		// To save memory?:
+	  			img.setImageDrawable(null);
 	  			
 		  		
 	  			criticalMissGraphic();  				  					
@@ -16215,7 +16453,10 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		ImageView img = (ImageView)findViewById(R.id.twentysidedanimation);		
 		img.setBackgroundResource(R.drawable.twentytwentyblank);
 		img.setImageResource(R.drawable.twentytwentyblank);
-		
+		// To save memory?:
+		img.setImageDrawable(null);
+			
+			
 		final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
 		
 		runOnUiThread(new Runnable() {
@@ -16401,6 +16642,13 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 			  	  	  			
 								if (ArrayOfHitPoints.hitpoints[0] <= 0) {
 									
+									// Use a blank drawable to hide the imageview animation:
+				  		  			ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
+				  		  			img.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+				  		  			img.setImageResource(R.drawable.sixsixrightleftrotateblank);
+				  		  			// To save memory?:
+				  		  			img.setImageDrawable(null);
+									
 									/*
 									 * 
 									 * Picture of one sword destroying another.
@@ -16410,14 +16658,16 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 									 */
 									
 									
-									if (numberOfPlayers == 1) {
+									if (numberOfPlayers == 1) {//NEE THIS?
 										
-										AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+										AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this, R.style.customalertdialog);
 									    
 										alert.setCancelable(false);
 										
-										alert.setTitle("You have been slain.");
-							  	    	/*
+										//alert.setTitle("You have been defeated.");
+										alert.setMessage("You have been defeated.");
+
+										/*
 							  	    	alert.setMessage("something");
 							  	    	*/	    	
 								    	
@@ -16690,11 +16940,13 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 					
 					if (blessSpell[0] > 0) {		
 							
-						AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+						AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this, R.style.customalertdialog);
 			  			
 						alert.setCancelable(false);
 						
-			  	    	alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use your bless spell?");
+			  	    	//alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use your bless spell?");
+			  	    	alert.setMessage(ArrayOfPlayers.player[0] + ", do you want to use your bless spell?");
+
 			  	    	/*
 			  	    	alert.setMessage("something");
 			  	    	*/	  	    	
@@ -17471,10 +17723,12 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 	  			
 	  			else {
   	  	  			
-	  				AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+	  				AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this, R.style.customalertdialog);
 				      
-					alert.setTitle(ArrayOfPlayers.player[0] + ", you have already used your Haste spells.");
-		  	    	/*
+					//alert.setTitle(ArrayOfPlayers.player[0] + ", you have already used your Haste spells.");
+					alert.setMessage(ArrayOfPlayers.player[0] + ", you have already used your Haste spells.");
+
+					/*
 		  	    	alert.setMessage("something");
 		  	    	*/	    	
 			    	
@@ -17610,12 +17864,16 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 				  	  	  	ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 				  	  	  	img1.setBackgroundResource(R.drawable.twentytwentyblank);
 				  	  	  	img1.setImageResource(R.drawable.twentytwentyblank);
-			
+				  	  	  	// To save memory?:
+				  			img1.setImageDrawable(null);
+				  			
 				  	  	  	// Use a blank drawable to hide the imageview animation:
 				  	  	  	ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
 				  	  	  	img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
 				  	  	  	img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
-		  	  	  			
+				  	  	  	// To save memory?:
+				  			img2.setImageDrawable(null);
+				  			
 		  	  	  			
 			  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 					  		centerscrolltext.startAnimation(animAlphaText);
@@ -17811,10 +18069,12 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 				
 				else {
 					
-					AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+					AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this, R.style.customalertdialog);
 				      
-					alert.setTitle(ArrayOfPlayers.player[0] + ", you have already used your Bless spell.");
-		  	    	/*
+					//alert.setTitle(ArrayOfPlayers.player[0] + ", you have already used your Bless spell.");
+					alert.setMessage(ArrayOfPlayers.player[0] + ", you have already used your Bless spell.");
+
+					/*
 		  	    	alert.setMessage("something");
 		  	    	*/	    	
 			    	
@@ -18353,10 +18613,12 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 				
 				else {
 					
-					AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this);
+					AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity2.this, R.style.customalertdialog);
 				      
-					alert.setTitle(ArrayOfPlayers.player[0] + ", you have already used your Cure spell.");
-		  	    	/*
+					//alert.setTitle(ArrayOfPlayers.player[0] + ", you have already used your Cure spell.");
+					alert.setMessage(ArrayOfPlayers.player[0] + ", you have already used your Cure spell.");
+
+					/*
 		  	    	alert.setMessage("something");
 		  	    	*/	    	
 			    	
@@ -18491,7 +18753,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 	  			//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
 	  			
 	  			final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-	  			centerscrolltext.setTypeface(typeFace);	  			
+	  			centerscrolltext.setTypeface(typeFace);
 	  			
 	  			
 	  			// NEW WAY TO DO DIALOG
@@ -18546,15 +18808,30 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		  		
 		  		
 		  		// THIS WAY ALLOWS YOU TO STYLE THE DIALOG (ex. background doesn't dim.):
-		  		ContextThemeWrapper cw = new ContextThemeWrapper(MainActivity2.this, R.style.DialogWindowTitle_Holo);
-		  		AlertDialog.Builder builder = new AlertDialog.Builder(cw);
+		  		ContextThemeWrapper cw = new ContextThemeWrapper(MainActivity2.this, R.layout.avatar_adapter);
+		  		AlertDialog.Builder builder = new AlertDialog.Builder(cw, R.style.customalertdialog);
 		  		
 		  		//ORIGINAL WAY TO DO IT:
 	  			//AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity2.this);
 	  			
 	  			builder.setCancelable(false);	  			
 	  			
-	  			builder.setTitle("Choose Action");	  			
+	  			//builder.setTitle("Choose Action");
+	  			//Toast.makeText(MainActivity2.this,"Choose Action", Toast.LENGTH_SHORT).show();
+	  			
+	  			Toast toast = Toast.makeText(MainActivity2.this, "Choose An Action", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
+	  			View view = toast.getView();
+	  			view.setBackgroundResource(R.drawable.centerscroll3toast);
+	  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+
+	  			TextView text = (TextView) view.findViewById(android.R.id.message);
+	  			//Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  			text.setTypeface(typeFace);
+	  			text.setTextColor(Color.parseColor("#FFFFFF"));
+	  			//text.setRotation(-45);
+	  			text.setGravity(Gravity.CENTER);
+	  			
+	  			toast.show();
 	  			
 	  			
 	  			// if back pressed: DOES THIS WORK????????????
@@ -19020,15 +19297,30 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		  			  		
 		  			  		
 		  			  		// THIS WAY ALLOWS YOU TO STYLE THE DIALOG (ex. background doesn't dim.):
-		  			  		ContextThemeWrapper cw = new ContextThemeWrapper(MainActivity2.this, R.style.DialogWindowTitle_Holo);
-		  			  		AlertDialog.Builder builder = new AlertDialog.Builder(cw);
+		  			  		ContextThemeWrapper cw = new ContextThemeWrapper(MainActivity2.this, R.layout.avatar_adapter);
+		  			  		AlertDialog.Builder builder = new AlertDialog.Builder(cw, R.style.customalertdialog);
 		  			  		
 		  			  		//ORIGINAL WAY TO DO IT:
 		  		  			//AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity2.this);
 		  		  			
 		  		  			builder.setCancelable(false);	  			
 		  		  			
-		  		  			builder.setTitle("Choose Action");	  			
+		  		  			//builder.setTitle("Choose Action");
+		  		  			//Toast.makeText(MainActivity2.this,"Choose Action", Toast.LENGTH_SHORT).show();
+		  		  			
+			  		  		Toast toast = Toast.makeText(MainActivity2.this, "Choose An Action", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
+	    		  			View view = toast.getView();
+	    		  			view.setBackgroundResource(R.drawable.centerscroll3toast);
+	    		  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+	
+	    		  			TextView text = (TextView) view.findViewById(android.R.id.message);
+	    		  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	    		  			text.setTypeface(typeFace);
+	    		  			text.setTextColor(Color.parseColor("#FFFFFF"));
+	    		  			//text.setRotation(-45);
+	    		  			text.setGravity(Gravity.CENTER);
+	    		  			
+	    		  			toast.show();
 		  		  			
 		  		  			
 		  		  			// if back pressed: DOES THIS WORK????????????
@@ -19328,7 +19620,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 				playerDeadYet[a] = "no";
 			}
 		
-		    //Toast.makeText(this, "Service Started", Toast.LENGTH_LONG).show();
+		    //Toast.makeText(this, "Service Started", Toast.LENGTH_SHORT).show();
 		    
 		    final int gameOn = 1;
 		    //final int turn = 1;
@@ -19345,7 +19637,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		    turn();
 		}
 		
-		else if (numberOfPlayers > 1) {			
+		else if (numberOfPlayers > 1) {
 			
 			//WHAT TO DO????????
 		}					    
@@ -19366,12 +19658,17 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img1.setBackgroundResource(R.drawable.twentytwentyblank);
 				img1.setImageResource(R.drawable.twentytwentyblank);
-
+				// To save memory?:
+	  			img1.setImageDrawable(null);
+	  			
 				// Use a blank drawable to hide the imageview animation:
 				ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
 				img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
 				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
-				
+				// To save memory?:
+	  			img2.setImageDrawable(null);
+	  			
+	  			
 				computerCardStopFadeInFadeOut();
     			playerCardStartFadeInFadeOut();
     			
@@ -19399,12 +19696,17 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img1.setBackgroundResource(R.drawable.twentytwentyblank);
 				img1.setImageResource(R.drawable.twentytwentyblank);
-
+				// To save memory?:
+	  			img1.setImageDrawable(null);
+	  			
 				// Use a blank drawable to hide the imageview animation:
 				ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
 				img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
 				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
+				// To save memory?:
+	  			img2.setImageDrawable(null);
 				
+	  			
 				playerCardStopFadeInFadeOut();
     			computerCardStartFadeInFadeOut();
     			
@@ -19639,12 +19941,16 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img1.setBackgroundResource(R.drawable.twentytwentyblank);
 				img1.setImageResource(R.drawable.twentytwentyblank);
-
+				// To save memory?:
+	  			img1.setImageDrawable(null);
+	  			
 				// Use a blank drawable to hide the imageview animation:
 				ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
 				img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
 				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
-  	  	    	
+				// To save memory?:
+	  			img2.setImageDrawable(null);
+	  			
   	  	    	
 	  	  	    final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
 	  			// Re-enables ability to use srollbar:
@@ -20004,12 +20310,16 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img1.setBackgroundResource(R.drawable.twentytwentyblank);
 				img1.setImageResource(R.drawable.twentytwentyblank);
-		
+				// To save memory?:
+	  			img1.setImageDrawable(null);
+	  			
 				// Use a blank drawable to hide the imageview animation:
 				ImageView img2 = (ImageView)findViewById(R.id.sixsidedanimation);
 				img2.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
 				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
-				
+				// To save memory?:
+	  			img2.setImageDrawable(null);
+	  			
 				
 				computerCardStopFadeInFadeOut();
 				playerCardStartFadeInFadeOut();

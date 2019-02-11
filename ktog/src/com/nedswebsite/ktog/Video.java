@@ -1,17 +1,18 @@
 package com.nedswebsite.ktog;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.VideoView;
 
-public class Video extends ActionBarActivity
+public class Video extends Activity
 {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 

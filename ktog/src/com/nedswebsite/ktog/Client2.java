@@ -67,6 +67,7 @@ import android.text.method.ScrollingMovementMethod;
 import android.util.Base64;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -265,7 +266,12 @@ public class Client2 extends Activity {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);		
+		super.onCreate(savedInstanceState);
+		
+		
+		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+		
 		
 		/*
 		if (android.os.Build.VERSION.SDK_INT > 9) {
@@ -788,7 +794,7 @@ public class Client2 extends Activity {
 						  	  	  			
 						  	  	  			try {
 						  	  	  		
-								  	  	  		//Toast.makeText(Client2.this, "THIS IS THE HOSTIP" + hostIP, Toast.LENGTH_LONG).show();
+								  	  	  		//Toast.makeText(Client2.this, "THIS IS THE HOSTIP" + hostIP, Toast.LENGTH_SHORT).show();
 							  	  	  			
 						  	  	  				
 						  	  	  				PrintWriter out = new PrintWriter(new BufferedWriter(
@@ -842,7 +848,20 @@ public class Client2 extends Activity {
 													  	  	  		@Override
 													  	  	  		public void run() {
 													  	  	  			
-													  	  	  			Toast.makeText(Client2.this, "The host will start the game...", Toast.LENGTH_LONG).show();
+													  	  	  			//Toast.makeText(Client2.this, "The host will start the game...", Toast.LENGTH_SHORT).show();
+														  	  	  		Toast toast = Toast.makeText(Client2.this, "The host will start the game...", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
+		    	                		            		  			View view = toast.getView();
+		    	                		            		  			view.setBackgroundResource(R.drawable.centerscroll3toast);
+		    	                		            		  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+	
+		    	                		            		  			TextView text = (TextView) view.findViewById(android.R.id.message);
+		    	                		            		  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+		    	                		            		  			text.setTypeface(typeFace);
+		    	                		            		  			text.setTextColor(Color.parseColor("#FFFFFF"));
+		    	                		            		  			//text.setRotation(-45);
+		    	                		            		  			text.setGravity(Gravity.CENTER);
+		    	                		            		  			
+		    	                		            		  			toast.show();
 													  	  	  		}
 													  	  	  	}, 2500);
 										  	  	  			}
@@ -856,7 +875,20 @@ public class Client2 extends Activity {
 													  	  	  		@Override
 													  	  	  		public void run() {
 													  	  	  			
-													  	  	  			Toast.makeText(Client2.this, "The host will start the game...", Toast.LENGTH_LONG).show();
+													  	  	  			//Toast.makeText(Client2.this, "The host will start the game...", Toast.LENGTH_SHORT).show();
+														  	  	  		Toast toast = Toast.makeText(Client2.this, "The host will start the game...", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
+		    	                		            		  			View view = toast.getView();
+		    	                		            		  			view.setBackgroundResource(R.drawable.centerscroll3toast);
+		    	                		            		  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+	
+		    	                		            		  			TextView text = (TextView) view.findViewById(android.R.id.message);
+		    	                		            		  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+		    	                		            		  			text.setTypeface(typeFace);
+		    	                		            		  			text.setTextColor(Color.parseColor("#FFFFFF"));
+		    	                		            		  			//text.setRotation(-45);
+		    	                		            		  			text.setGravity(Gravity.CENTER);
+		    	                		            		  			
+		    	                		            		  			toast.show();
 													  	  	  		}
 													  	  	  	}, 2500);
 										  	  	  			}
@@ -1447,12 +1479,12 @@ public class Client2 extends Activity {
 			public void onClick(View v) {
 
 				// Toast.makeText(Client2.this, "CHAT TEST",
-				// Toast.LENGTH_LONG).show();				
+				// Toast.LENGTH_SHORT).show();				
 				
 				
-				AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this);
+				AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this, R.style.customalertdialog);
 
-		    	alert.setTitle("Chat");
+		    	//alert.setTitle("Chat");
 		    	alert.setMessage("Enter Message");
 
 		    	// Set an EditText view to get user input:
@@ -2632,7 +2664,21 @@ public class Client2 extends Activity {
 			
 		} catch (Exception e) {
 			//Log.e("ReadWriteFile", "Unable to write to the TestFile.txt file.");
-			Toast.makeText(Client2.this, "Error -- Player not saved.", Toast.LENGTH_LONG).show();
+			//Toast.makeText(Client2.this, "Error -- Player not saved.", Toast.LENGTH_SHORT).show();
+			
+			Toast toast = Toast.makeText(Client2.this, "Error -- Player not saved.", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
+  			View view = toast.getView();
+  			view.setBackgroundResource(R.drawable.centerscroll3toast);
+  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+
+  			TextView text = (TextView) view.findViewById(android.R.id.message);
+  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+  			text.setTypeface(typeFace);
+  			text.setTextColor(Color.parseColor("#FFFFFF"));
+  			//text.setRotation(-45);
+  			text.setGravity(Gravity.CENTER);
+  			
+  			toast.show();
 		}
 	}
 	
@@ -2815,7 +2861,21 @@ public class Client2 extends Activity {
 			
 		} catch (Exception e) {
 			//Log.e("ReadWriteFile", "Unable to write to the TestFile.txt file.");
-			Toast.makeText(Client2.this, "Error -- Data not saved.", Toast.LENGTH_LONG).show();
+			//Toast.makeText(Client2.this, "Error -- Data not saved.", Toast.LENGTH_SHORT).show();
+			
+			Toast toast = Toast.makeText(Client2.this, "Error -- Data not saved.", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
+  			View view = toast.getView();
+  			view.setBackgroundResource(R.drawable.centerscroll3toast);
+  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+
+  			TextView text = (TextView) view.findViewById(android.R.id.message);
+  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+  			text.setTypeface(typeFace);
+  			text.setTextColor(Color.parseColor("#FFFFFF"));
+  			//text.setRotation(-45);
+  			text.setGravity(Gravity.CENTER);
+  			
+  			toast.show();
 		}
 		
 		/*
@@ -2915,11 +2975,11 @@ public class Client2 extends Activity {
 		      //int numberOfFiles = files.length;
 		      		      
 		      
-		      //Toast.makeText(Host.this, "Wins = " + Wins + " " + "Loses = " + Loses, Toast.LENGTH_LONG).show();
-		      //Toast.makeText(Host.this, "Number Of Files = " + numberOfFiles, Toast.LENGTH_LONG).show();
-		      Toast.makeText(Client2.this, "Number Of Files = " + count, Toast.LENGTH_LONG).show();
-		      //Toast.makeText(Host.this, "Filepath = " + s, Toast.LENGTH_LONG).show();
-		      //Toast.makeText(Host.this, "Number Of Files = " + count, Toast.LENGTH_LONG).show();
+		      //Toast.makeText(Host.this, "Wins = " + Wins + " " + "Loses = " + Loses, Toast.LENGTH_SHORT).show();
+		      //Toast.makeText(Host.this, "Number Of Files = " + numberOfFiles, Toast.LENGTH_SHORT).show();
+		      Toast.makeText(Client2.this, "Number Of Files = " + count, Toast.LENGTH_SHORT).show();
+		      //Toast.makeText(Host.this, "Filepath = " + s, Toast.LENGTH_SHORT).show();
+		      //Toast.makeText(Host.this, "Number Of Files = " + count, Toast.LENGTH_SHORT).show();
 		      
 		      
 		      reader.close();
@@ -2963,9 +3023,9 @@ public class Client2 extends Activity {
 	/*
 	public void names() {		
 		
-		Toast.makeText(Client2.this, ArrayOfPlayers.player[5], Toast.LENGTH_LONG).show();
-		Toast.makeText(Client2.this, ArrayOfPlayers.player[0], Toast.LENGTH_LONG).show();
-		Toast.makeText(Client2.this, ArrayOfPlayers.player[1], Toast.LENGTH_LONG).show();
+		Toast.makeText(Client2.this, ArrayOfPlayers.player[5], Toast.LENGTH_SHORT).show();
+		Toast.makeText(Client2.this, ArrayOfPlayers.player[0], Toast.LENGTH_SHORT).show();
+		Toast.makeText(Client2.this, ArrayOfPlayers.player[1], Toast.LENGTH_SHORT).show();
 	}
 	*/
 	/*
@@ -3004,7 +3064,7 @@ public class Client2 extends Activity {
 		    
 		} catch (Throwable t) {
 		    //t.printStackTrace();
-			Toast.makeText(Client2.this, "HOSTIP CONVERSION DID NOT WORK", Toast.LENGTH_LONG).show();
+			Toast.makeText(Client2.this, "HOSTIP CONVERSION DID NOT WORK", Toast.LENGTH_SHORT).show();
 		}
 		*/	
 		//Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -3038,7 +3098,7 @@ public class Client2 extends Activity {
 		        //TODO: handle verification and username from here.
 		    }
 		} catch (Throwable t) {
-			Toast.makeText(Client2.this, "HOSTIP CONVERSION DID NOT WORK", Toast.LENGTH_LONG).show();
+			Toast.makeText(Client2.this, "HOSTIP CONVERSION DID NOT WORK", Toast.LENGTH_SHORT).show();
 		}
 		*/
 		/*
@@ -3051,7 +3111,7 @@ public class Client2 extends Activity {
 		        
 		    }
 		} catch (Throwable t) {
-			Toast.makeText(Client2.this, "HOSTIP CONVERSION DID NOT WORK", Toast.LENGTH_LONG).show();
+			Toast.makeText(Client2.this, "HOSTIP CONVERSION DID NOT WORK", Toast.LENGTH_SHORT).show();
 		}
 		*/
 		/*
@@ -3062,10 +3122,10 @@ public class Client2 extends Activity {
 		for (String key: paramNames) {
 		    String value = url.getQueryParameter("ip");
 		    hostIP = value;
-		    Toast.makeText(Client2.this, hostIP, Toast.LENGTH_LONG).show();
+		    Toast.makeText(Client2.this, hostIP, Toast.LENGTH_SHORT).show();
 			} 
 		}catch (Throwable t) {
-			Toast.makeText(Client2.this, "HOSTIP CONVERSION DID NOT WORK", Toast.LENGTH_LONG).show();
+			Toast.makeText(Client2.this, "HOSTIP CONVERSION DID NOT WORK", Toast.LENGTH_SHORT).show();
 		}
 		*/
 		/*
@@ -3074,9 +3134,9 @@ public class Client2 extends Activity {
 			//uri.getQueryParameter("ip");
 			String value = uri.getQueryParameter("ip");
 		    hostIP = value;
-		    Toast.makeText(Client2.this, hostIP, Toast.LENGTH_LONG).show();
+		    Toast.makeText(Client2.this, hostIP, Toast.LENGTH_SHORT).show();
 		} catch (Throwable t) {
-				Toast.makeText(Client2.this, "HOSTIP CONVERSION DID NOT WORK", Toast.LENGTH_LONG).show();
+				Toast.makeText(Client2.this, "HOSTIP CONVERSION DID NOT WORK", Toast.LENGTH_SHORT).show();
 		}
 		*/
 		/*
@@ -3085,9 +3145,9 @@ public class Client2 extends Activity {
 			Uri data = intent.getData();
 			String ip = data.getQueryParameter("ip");
 			hostIP = ip;
-		    Toast.makeText(Client2.this, hostIP, Toast.LENGTH_LONG).show();
+		    Toast.makeText(Client2.this, hostIP, Toast.LENGTH_SHORT).show();
 		} catch (Throwable t) {
-				Toast.makeText(Client2.this, "HOSTIP CONVERSION DID NOT WORK", Toast.LENGTH_LONG).show();
+				Toast.makeText(Client2.this, "HOSTIP CONVERSION DID NOT WORK", Toast.LENGTH_SHORT).show();
 		}
 		*/
 		
@@ -3140,11 +3200,11 @@ public class Client2 extends Activity {
 	
 	public void onBackPressed() {
 		
-		AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this);
+		AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this, R.style.customalertdialog);
 		
 		final Intent svc=new Intent(this, Badonk2SoundService.class);
 
-		alert.setTitle("KtOG");
+		//alert.setTitle("KtOG");
 		alert.setMessage("Are you sure you want to exit?");
 
 		alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -6109,7 +6169,7 @@ public class Client2 extends Activity {
 		  	  			/*
 			  	  		for (int counter = 0; counter < clientWorkers.size(); counter++) {
 			        	  
-			        	  Toast.makeText(Host.this, clientWorkers.get(counter), Toast.LENGTH_LONG).show();		               		
+			        	  Toast.makeText(Host.this, clientWorkers.get(counter), Toast.LENGTH_SHORT).show();		               		
 			  	  		}
 			  	  		*/
 		  	  			
@@ -6717,12 +6777,12 @@ public class Client2 extends Activity {
 		                	
 		                	
 		                	String hostIPFull = inetAddress.getHostAddress();//WAS String
-		                	//Toast.makeText(MainActivity1.this, hostIP, Toast.LENGTH_LONG).show();
+		                	//Toast.makeText(MainActivity1.this, hostIP, Toast.LENGTH_SHORT).show();
 		                	
 		                	
 		                	
 		                	hostIP = hostIPFull.split("%")[0];
-		                	Toast.makeText(MainActivity1.this, hostIP, Toast.LENGTH_LONG).show();
+		                	Toast.makeText(MainActivity1.this, hostIP, Toast.LENGTH_SHORT).show();
 		                	//return hostIP;
                             
                             
@@ -6910,6 +6970,7 @@ public class Client2 extends Activity {
 	}
 	*/
 	
+	/*
 	public void playersFightingTest() {//DELETE IF NOT USED!!!!!!!!!!!!!
 
 		runOnUiThread(new Runnable() {
@@ -6922,13 +6983,7 @@ public class Client2 extends Activity {
 			}
 		});
 	}
-	
-	
-	
-	
-	
-	
-	
+	*/	
 	
 	
 	
@@ -7356,13 +7411,27 @@ public class Client2 extends Activity {
 			  			  		
 			  			  		
 			  			  		// THIS WAY ALLOWS YOU TO STYLE THE DIALOG (ex. background doesn't dim.):
-			  			  		ContextThemeWrapper cw = new ContextThemeWrapper(Client2.this, R.style.DialogWindowTitle_Holo);
-			  			  		AlertDialog.Builder builder = new AlertDialog.Builder(cw);		  			  		
+			  			  		ContextThemeWrapper cw = new ContextThemeWrapper(Client2.this, R.layout.avatar_adapter);
+			  			  		AlertDialog.Builder builder = new AlertDialog.Builder(cw, R.style.customalertdialog);		  			  		
 			  			  		
 			  		  			
 			  		  			builder.setCancelable(false);	  			
 			  		  			
-			  		  			builder.setTitle("Choose Player To Attack"); 		  			
+			  		  			//builder.setTitle("Choose Player To Attack");
+			  		  			
+				  		  		Toast toast = Toast.makeText(Client2.this, "Choose Player To Attack", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
+	        		  			View view = toast.getView();
+	        		  			view.setBackgroundResource(R.drawable.centerscroll3toast);
+	        		  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+	
+	        		  			TextView text = (TextView) view.findViewById(android.R.id.message);
+	        		  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	        		  			text.setTypeface(typeFace);
+	        		  			text.setTextColor(Color.parseColor("#FFFFFF"));
+	        		  			//text.setRotation(-45);
+	        		  			text.setGravity(Gravity.CENTER);
+	        		  			
+	        		  			toast.show();
 			  		  			
 			  		  			
 			  					builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
@@ -7686,13 +7755,27 @@ public class Client2 extends Activity {
 			  			  		
 			  			  		
 			  			  		// THIS WAY ALLOWS YOU TO STYLE THE DIALOG (ex. background doesn't dim.):
-			  			  		ContextThemeWrapper cw = new ContextThemeWrapper(Client2.this, R.style.DialogWindowTitle_Holo);
-			  			  		AlertDialog.Builder builder = new AlertDialog.Builder(cw);		  			  		
+			  			  		ContextThemeWrapper cw = new ContextThemeWrapper(Client2.this, R.layout.avatar_adapter);
+			  			  		AlertDialog.Builder builder = new AlertDialog.Builder(cw, R.style.customalertdialog);		  			  		
 			  			  		
 			  		  			
 			  		  			builder.setCancelable(false);	  			
 			  		  			
-			  		  			builder.setTitle("Choose Player To Attack"); 		  			
+			  		  			//builder.setTitle("Choose Player To Attack");
+			  		  			
+				  		  		Toast toast = Toast.makeText(Client2.this, "Choose Player To Attack", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
+	        		  			View view = toast.getView();
+	        		  			view.setBackgroundResource(R.drawable.centerscroll3toast);
+	        		  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+	
+	        		  			TextView text = (TextView) view.findViewById(android.R.id.message);
+	        		  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	        		  			text.setTypeface(typeFace);
+	        		  			text.setTextColor(Color.parseColor("#FFFFFF"));
+	        		  			//text.setRotation(-45);
+	        		  			text.setGravity(Gravity.CENTER);
+	        		  			
+	        		  			toast.show();
 			  		  			
 			  		  			
 			  					builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
@@ -7995,7 +8078,7 @@ public class Client2 extends Activity {
     			computerCardStartFadeInFadeOut();
     			
     			
-    			//Toast.makeText(Client2.this, "reveal0onright", Toast.LENGTH_LONG).show();
+    			//Toast.makeText(Client2.this, "reveal0onright", Toast.LENGTH_SHORT).show();
 			}
 		});
 	}
@@ -8059,7 +8142,7 @@ public class Client2 extends Activity {
     			computerCardStartFadeInFadeOut();
     			
     			
-    			//Toast.makeText(Client2.this, "reveal1onright", Toast.LENGTH_LONG).show();
+    			//Toast.makeText(Client2.this, "reveal1onright", Toast.LENGTH_SHORT).show();
 			}
 		});
 	}
@@ -8521,7 +8604,7 @@ public class Client2 extends Activity {
 				//playerHitPointsTextView.startAnimation(animPulsingAnimation);				
 				
 				
-				//Toast.makeText(Client2.this, "Player # Attacked = " + playerNumberAttacked + ", # Of Players = " + numberOfPlayers, Toast.LENGTH_LONG).show();
+				//Toast.makeText(Client2.this, "Player # Attacked = " + playerNumberAttacked + ", # Of Players = " + numberOfPlayers, Toast.LENGTH_SHORT).show();
 			}
 		});
 	}
@@ -8573,7 +8656,7 @@ public class Client2 extends Activity {
 				img.bringToFront();
 				*/
 				
-				//Toast.makeText(Client2.this, "Player # Attacked = " + playerNumberAttacked + ", # Of Players = " + numberOfPlayers, Toast.LENGTH_LONG).show();
+				//Toast.makeText(Client2.this, "Player # Attacked = " + playerNumberAttacked + ", # Of Players = " + numberOfPlayers, Toast.LENGTH_SHORT).show();
 			}
 		});
 	}
@@ -8703,17 +8786,17 @@ public class Client2 extends Activity {
   	  	    @Override
   	  	    public void run() {
 		
-				AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this);
+				AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this, R.style.customalertdialog);
 					
 				alert.setCancelable(false);
 				
 				if (id == 0) {
 					
-					alert.setTitle(ArrayOfPlayers.player[0] + ", do you want to use Dodge?");
+					alert.setMessage(ArrayOfPlayers.player[0] + ", do you want to use Dodge?");
   	  			}
   	  			else if (id == 1) {
   	  				
-  	  				alert.setTitle(ArrayOfPlayers.player[1] + ", do you want to use Dodge?");
+  	  				alert.setMessage(ArrayOfPlayers.player[1] + ", do you want to use Dodge?");
   	  			}
 		    	
 		    	/*
@@ -10059,15 +10142,29 @@ public class Client2 extends Activity {
 		  		
 		  		
 		  		// THIS WAY ALLOWS YOU TO STYLE THE DIALOG (ex. background doesn't dim.):
-		  		ContextThemeWrapper cw = new ContextThemeWrapper(Client2.this, R.style.DialogWindowTitle_Holo);
-		  		AlertDialog.Builder builder = new AlertDialog.Builder(cw);
+		  		ContextThemeWrapper cw = new ContextThemeWrapper(Client2.this, R.layout.avatar_adapter);
+		  		AlertDialog.Builder builder = new AlertDialog.Builder(cw, R.style.customalertdialog);
 		  		
 		  		//ORIGINAL WAY TO DO IT:
 	  			//AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity2.this);
 	  			
 	  			builder.setCancelable(false);	  			
 	  			
-	  			builder.setTitle("Choose Action");	  			
+	  			//builder.setTitle("Choose Action");
+	  			
+	  			Toast toast = Toast.makeText(Client2.this, "Choose An Action", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
+	  			View view = toast.getView();
+	  			view.setBackgroundResource(R.drawable.centerscroll3toast);
+	  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+
+	  			TextView text = (TextView) view.findViewById(android.R.id.message);
+	  			//Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  			text.setTypeface(typeFace);
+	  			text.setTextColor(Color.parseColor("#FFFFFF"));
+	  			//text.setRotation(-45);
+	  			text.setGravity(Gravity.CENTER);
+	  			
+	  			toast.show();
 	  			
 	  			
 	  			// if back pressed: DOES THIS WORK????????????
@@ -10401,15 +10498,29 @@ public class Client2 extends Activity {
 	  			  		
 	  			  		
 	  			  		// THIS WAY ALLOWS YOU TO STYLE THE DIALOG (ex. background doesn't dim.):
-	  			  		ContextThemeWrapper cw = new ContextThemeWrapper(Client2.this, R.style.DialogWindowTitle_Holo);
-	  			  		AlertDialog.Builder builder = new AlertDialog.Builder(cw);
+	  			  		ContextThemeWrapper cw = new ContextThemeWrapper(Client2.this, R.layout.avatar_adapter);
+	  			  		AlertDialog.Builder builder = new AlertDialog.Builder(cw, R.style.customalertdialog);
 	  			  		
 	  			  		//ORIGINAL WAY TO DO IT:
 	  		  			//AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity2.this);
 	  		  			
 	  		  			builder.setCancelable(false);	  			
 	  		  			
-	  		  			builder.setTitle("Choose Action");	  			
+	  		  			//builder.setTitle("Choose Action");
+	  		  			
+		  		  		Toast toast = Toast.makeText(Client2.this, "Choose An Action", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
+			  			View view = toast.getView();
+			  			view.setBackgroundResource(R.drawable.centerscroll3toast);
+			  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+	
+			  			TextView text = (TextView) view.findViewById(android.R.id.message);
+			  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+			  			text.setTypeface(typeFace);
+			  			text.setTextColor(Color.parseColor("#FFFFFF"));
+			  			//text.setRotation(-45);
+			  			text.setGravity(Gravity.CENTER);
+			  			
+			  			toast.show();
 	  		  			
 	  		  			
 	  		  			// if back pressed: DOES THIS WORK????????????
@@ -10476,10 +10587,12 @@ public class Client2 extends Activity {
 												hideSystemUI();
 												
 												
-												AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this);
+												AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this, R.style.customalertdialog);
 											      
-												alert.setTitle(ArrayOfPlayers.player[playerNumberAttacking] + ", you have already used your Haste spells.");
-									  	    	/*
+												//alert.setTitle(ArrayOfPlayers.player[playerNumberAttacking] + ", you have already used your Haste spells.");
+												alert.setMessage(ArrayOfPlayers.player[playerNumberAttacking] + ", you have already used your Haste spells.");
+
+												/*
 									  	    	alert.setMessage("something");
 									  	    	*/	    	
 										    	
@@ -10600,10 +10713,12 @@ public class Client2 extends Activity {
 												hideSystemUI();
 												
 												
-												AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this);
+												AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this, R.style.customalertdialog);
 											      
-												alert.setTitle(ArrayOfPlayers.player[playerNumberAttacking] + ", you have already used your Cure spell.");
-									  	    	/*
+												//alert.setTitle(ArrayOfPlayers.player[playerNumberAttacking] + ", you have already used your Cure spell.");
+												alert.setMessage(ArrayOfPlayers.player[playerNumberAttacking] + ", you have already used your Cure spell.");
+
+												/*
 									  	    	alert.setMessage("something");
 									  	    	*/	    	
 										    	
@@ -10895,10 +11010,12 @@ public class Client2 extends Activity {
 	  			
 	  			else {
   	  	  			
-	  				AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this);
+	  				AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this, R.style.customalertdialog);
 				      
-					alert.setTitle(ArrayOfPlayers.player[playerNumberAttacking] + ", you have already used your Haste spells.");
-		  	    	/*
+					//alert.setTitle(ArrayOfPlayers.player[playerNumberAttacking] + ", you have already used your Haste spells.");
+					alert.setMessage(ArrayOfPlayers.player[playerNumberAttacking] + ", you have already used your Haste spells.");
+
+					/*
 		  	    	alert.setMessage("something");
 		  	    	*/	    	
 			    	
@@ -11023,10 +11140,12 @@ public class Client2 extends Activity {
 				
 				else {
 					
-					AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this);
+					AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this, R.style.customalertdialog);
 				      
-					alert.setTitle(ArrayOfPlayers.player[playerNumberAttacking] + ", you have already used your Cure spell.");
-		  	    	/*
+					//alert.setTitle(ArrayOfPlayers.player[playerNumberAttacking] + ", you have already used your Cure spell.");
+					alert.setMessage(ArrayOfPlayers.player[playerNumberAttacking] + ", you have already used your Cure spell.");
+
+					/*
 		  	    	alert.setMessage("something");
 		  	    	*/	    	
 			    	
@@ -11073,11 +11192,13 @@ public class Client2 extends Activity {
 					
 				if (blessSpell[playerNumberAttacking] > 0) {
 						
-					AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this);
+					AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this, R.style.customalertdialog);
 		  			
 					alert.setCancelable(false);
 					
-		  	    	alert.setTitle(ArrayOfPlayers.player[playerNumberAttacking] + ", do you want to use your bless spell?");
+		  	    	//alert.setTitle(ArrayOfPlayers.player[playerNumberAttacking] + ", do you want to use your bless spell?");
+		  	    	alert.setMessage(ArrayOfPlayers.player[playerNumberAttacking] + ", do you want to use your bless spell?");
+
 		  	    	/*
 		  	    	alert.setMessage("something");
 		  	    	*/	  	    	
@@ -11391,10 +11512,12 @@ public class Client2 extends Activity {
 				
 				else {
 					
-					AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this);
+					AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this, R.style.customalertdialog);
 				      
-					alert.setTitle(ArrayOfPlayers.player[playerNumberAttacking] + ", you have already used your Bless spell.");
-		  	    	/*
+					//alert.setTitle(ArrayOfPlayers.player[playerNumberAttacking] + ", you have already used your Bless spell.");
+					alert.setMessage(ArrayOfPlayers.player[playerNumberAttacking] + ", you have already used your Bless spell.");
+
+					/*
 		  	    	alert.setMessage("something");
 		  	    	*/	    	
 			    	
@@ -11486,11 +11609,13 @@ public class Client2 extends Activity {
 				  	  	  			
 				  	  	  			if (mightyBlowSpell[playerNumberAttacking] > 0 && ishasteused.equals("no") && isblessrolled.equals("no")) {
 								
-										AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this);
+										AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this, R.style.customalertdialog);
 							  			
 										alert.setCancelable(false);
 										
-							  	    	alert.setTitle(ArrayOfPlayers.player[playerNumberAttacking] + ", do you want to use Mighty Blow?");
+							  	    	//alert.setTitle(ArrayOfPlayers.player[playerNumberAttacking] + ", do you want to use Mighty Blow?");
+							  	    	alert.setMessage(ArrayOfPlayers.player[playerNumberAttacking] + ", do you want to use Mighty Blow?");
+
 							  	    	/*
 							  	    	alert.setMessage("something");
 							  	    	*/	  	    	
@@ -11566,11 +11691,13 @@ public class Client2 extends Activity {
 	  	  	  			
   	  			if (mightyBlowSpell[playerNumberAttacking] > 0 && ishasteused.equals("no") && isblessrolled.equals("no")) {
 			
-					AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this);
+					AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this, R.style.customalertdialog);
 		  			
 					alert.setCancelable(false);
 					
-		  	    	alert.setTitle(ArrayOfPlayers.player[playerNumberAttacking] + ", do you want to use Mighty Blow?");
+		  	    	//alert.setTitle(ArrayOfPlayers.player[playerNumberAttacking] + ", do you want to use Mighty Blow?");
+		  	    	alert.setMessage(ArrayOfPlayers.player[playerNumberAttacking] + ", do you want to use Mighty Blow?");
+
 		  	    	/*
 		  	    	alert.setMessage("something");
 		  	    	*/	  	    	
@@ -12283,11 +12410,13 @@ public class Client2 extends Activity {
 		  	  	  			
 			  	  	  		if (mightyBlowSpell[playerNumberAttacking] > 0 && ishasteused.equals("no") && isblessrolled.equals("no") && issecondroundofhasteused.equals("no")) {							
 								
-								AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this);
+								AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this, R.style.customalertdialog);
 					  			
 								alert.setCancelable(false);
 								
-					  	    	alert.setTitle(ArrayOfPlayers.player[playerNumberAttacking] + ", do you want to use Mighty Blow?");
+					  	    	//alert.setTitle(ArrayOfPlayers.player[playerNumberAttacking] + ", do you want to use Mighty Blow?");
+					  	    	alert.setMessage(ArrayOfPlayers.player[playerNumberAttacking] + ", do you want to use Mighty Blow?");
+
 					  	    	/*
 					  	    	alert.setMessage("something");
 					  	    	*/	  	    	
@@ -12361,11 +12490,13 @@ public class Client2 extends Activity {
 	  			
 	  			if (mightyBlowSpell[playerNumberAttacking] > 0 && ishasteused.equals("no") && isblessrolled.equals("no") && issecondroundofhasteused.equals("no")) {								
 					
-					AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this);
+					AlertDialog.Builder alert = new AlertDialog.Builder(Client2.this, R.style.customalertdialog);
 		  			
 					alert.setCancelable(false);
 					
-		  	    	alert.setTitle(ArrayOfPlayers.player[playerNumberAttacking] + ", do you want to use Mighty Blow?");
+		  	    	//alert.setTitle(ArrayOfPlayers.player[playerNumberAttacking] + ", do you want to use Mighty Blow?");
+		  	    	alert.setMessage(ArrayOfPlayers.player[playerNumberAttacking] + ", do you want to use Mighty Blow?");
+
 		  	    	/*
 		  	    	alert.setMessage("something");
 		  	    	*/	  	    	
@@ -14963,7 +15094,7 @@ public class Client2 extends Activity {
 			@Override
 			public void run() {			
 				
-				Toast.makeText(Client2.this, "WORKING!!!!!!!!!!!!", Toast.LENGTH_LONG).show();
+				Toast.makeText(Client2.this, "WORKING!!!!!!!!!!!!", Toast.LENGTH_SHORT).show();
 			}
 		});
 		
@@ -15011,8 +15142,8 @@ public class Client2 extends Activity {
 	
 	
 	
-	public String getPath(Uri uri) 
-    {
+	public String getPath(Uri uri) {
+		
         String[] projection = { MediaStore.Images.Media.DATA };
         Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
         if (cursor == null) return null;
@@ -15219,16 +15350,16 @@ public class Client2 extends Activity {
 	
 	public void print(Object obj){
 		
-		try {  	  	  		
-	  			
+		try {	
 	  			PrintWriter out = new PrintWriter(new BufferedWriter(
 	  					new OutputStreamWriter(socket.getOutputStream())),
 	  					true);
 	  			out.println(obj);  	  			
 	  		} 
 		
-		catch(IOException e) {				
-			e.printStackTrace();  	  		
+			catch(IOException e) {
+				
+				e.printStackTrace();  	  		
 	  		}			
 	}
 	
@@ -15296,8 +15427,6 @@ public class Client2 extends Activity {
 				
 				
 				this.input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-				
-				
 
 			} catch (UnknownHostException e1) {
 				e1.printStackTrace();

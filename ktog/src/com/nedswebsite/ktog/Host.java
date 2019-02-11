@@ -60,6 +60,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.StrictMode;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
@@ -348,6 +349,10 @@ public class Host extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);		
+		
+		
+		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
 		
 		
 		final MediaPlayer buttonSound = MediaPlayer.create(Host.this, R.raw.swordswing);
@@ -1212,7 +1217,7 @@ public class Host extends Activity {
   		  	  			/*
 	  		  	  		for (int counter = 0; counter < clientWorkers.size(); counter++) {
 	  		        	  
-	  		        	  Toast.makeText(Host.this, clientWorkers.get(counter), Toast.LENGTH_LONG).show();		               		
+	  		        	  Toast.makeText(Host.this, clientWorkers.get(counter), Toast.LENGTH_SHORT).show();		               		
 	  		  	  		}
 	  		  	  		*/
   		  	  			
@@ -1308,35 +1313,35 @@ public class Host extends Activity {
           @Override
 			public void onClick(View v) {
         	  
-        	  //Toast.makeText(Host.this, "CHAT TEST", Toast.LENGTH_LONG).show();
+        	  //Toast.makeText(Host.this, "CHAT TEST", Toast.LENGTH_SHORT).show();
         	  
         	  
         	  
-        	  AlertDialog.Builder alert = new AlertDialog.Builder(Host.this);
+        	  AlertDialog.Builder alert = new AlertDialog.Builder(Host.this, R.style.customalertdialog);
 
-		    	alert.setTitle("Chat");
-		    	alert.setMessage("Enter Message");
+        	  //alert.setTitle("Chat");
+        	  alert.setMessage("Enter Message");
 
-		    	// Set an EditText view to get user input:
-		    	final EditText input = new EditText(Host.this);
-		    	input.setSingleLine(true);
-		    	// Limits to 1 line (clicking return is like clicking "ok".)
-		    	alert.setView(input);
-		    	// Limits the number of characters entered to 50.
-		    	InputFilter[] FilterArray = new InputFilter[1];
-		    	FilterArray[0] = new InputFilter.LengthFilter(50);
-		    	input.setFilters(FilterArray);
-		    	
-		    	// THIS WILL GET KEYBOARD AUTOMATICALLY FOR S4:
-		    	/*
-		    	input.requestFocus();
-		        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-		        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
-		        */
-		    	
-		    	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-		    	public void onClick(DialogInterface dialog, int whichButton) {		    		
-		    		
+        	  // Set an EditText view to get user input:
+        	  final EditText input = new EditText(Host.this);
+        	  input.setSingleLine(true);
+        	  // Limits to 1 line (clicking return is like clicking "ok".)
+        	  alert.setView(input);
+        	  // Limits the number of characters entered to 50.
+        	  InputFilter[] FilterArray = new InputFilter[1];
+        	  FilterArray[0] = new InputFilter.LengthFilter(50);
+        	  input.setFilters(FilterArray);
+	    	
+        	  // THIS WILL GET KEYBOARD AUTOMATICALLY FOR S4:
+        	  /*
+	    		input.requestFocus();
+	        	InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+	        	imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+        	   */
+	    	
+        	  alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+        		  
+        		  public void onClick(DialogInterface dialog, int whichButton) {
 		    		
 		    		final String str = input.getText().toString();
 		    		sendToAll(str);
@@ -1381,7 +1386,7 @@ public class Host extends Activity {
 		  	  			e.printStackTrace();
 		  	  		}
 		  	  		*/
-		    	}
+        		  }
 		    	});
 
 		    	alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -1392,8 +1397,6 @@ public class Host extends Activity {
 		    	});
 		    	
 		    	alert.show();
-          	
-          	            	
 			}            
   	  	});  	  	
   	  	
@@ -2669,11 +2672,11 @@ public class Host extends Activity {
 		      //int numberOfFiles = files.length;
 		      		      
 		      
-		      //Toast.makeText(Host.this, "Wins = " + Wins + " " + "Loses = " + Loses, Toast.LENGTH_LONG).show();
-		      //Toast.makeText(Host.this, "Number Of Files = " + numberOfFiles, Toast.LENGTH_LONG).show();
-		      Toast.makeText(Host.this, "Number Of Files = " + count, Toast.LENGTH_LONG).show();
-		      //Toast.makeText(Host.this, "Filepath = " + s, Toast.LENGTH_LONG).show();
-		      //Toast.makeText(Host.this, "Number Of Files = " + count, Toast.LENGTH_LONG).show();
+		      //Toast.makeText(Host.this, "Wins = " + Wins + " " + "Loses = " + Loses, Toast.LENGTH_SHORT).show();
+		      //Toast.makeText(Host.this, "Number Of Files = " + numberOfFiles, Toast.LENGTH_SHORT).show();
+		      Toast.makeText(Host.this, "Number Of Files = " + count, Toast.LENGTH_SHORT).show();
+		      //Toast.makeText(Host.this, "Filepath = " + s, Toast.LENGTH_SHORT).show();
+		      //Toast.makeText(Host.this, "Number Of Files = " + count, Toast.LENGTH_SHORT).show();
 		      
 		      
 		      reader.close();
@@ -2949,11 +2952,11 @@ public class Host extends Activity {
 		
 	public void onBackPressed() {
 		
-		AlertDialog.Builder alert = new AlertDialog.Builder(Host.this);
+		AlertDialog.Builder alert = new AlertDialog.Builder(Host.this, R.style.customalertdialog);
 		
 		final Intent svc=new Intent(this, Badonk2SoundService.class);
 
-		alert.setTitle("KtOG");
+		//alert.setTitle("KtOG");
 		alert.setMessage("Are you sure you want to exit?");
 
 		alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -6393,7 +6396,7 @@ public class Host extends Activity {
 	public void determineDoubles() {	
 		
 		//DOES NOT LIKE TOASTS WITH HOST/CLIENT THREAD RUNNING
-		//Toast.makeText(Host.this, "ALL PLAYERS FINISHED ROLLING", Toast.LENGTH_LONG).show();
+		//Toast.makeText(Host.this, "ALL PLAYERS FINISHED ROLLING", Toast.LENGTH_SHORT).show();
 		// FOR TESTING:
 		/*runOnUiThread(new Runnable() {
   	  	    @Override
@@ -14889,6 +14892,7 @@ public class Host extends Activity {
 		});
 	}
 	*/
+	/*
 	public void test1() {
 		
 		runOnUiThread(new Runnable() {
@@ -14949,7 +14953,7 @@ public class Host extends Activity {
 			}
 		});
 	}
-	
+	*/
 	/*
 	public void playersFightingTest() {//DELETE IF NOT USED!!!!!!!!!!!!!
 
@@ -14964,6 +14968,7 @@ public class Host extends Activity {
 		});
 	}
 	*/
+	/*
 	public void turnTest() {
 		
 		runOnUiThread(new Runnable() {
@@ -14974,7 +14979,7 @@ public class Host extends Activity {
 			}
 		});
 	}
-	
+	*/
 	
 	
 	
@@ -15605,7 +15610,7 @@ public class Host extends Activity {
 		
 		/*
 		for (int i=0; i<ArrayOfInvites.invites[0]; i++) {			
-			Toast.makeText(Host.this, ArrayOfPlayers.player[i] + " " + ArrayOfID.id[i], Toast.LENGTH_LONG).show();			
+			Toast.makeText(Host.this, ArrayOfPlayers.player[i] + " " + ArrayOfID.id[i], Toast.LENGTH_SHORT).show();			
 		}
 		*/				
 	}
@@ -16347,13 +16352,26 @@ public class Host extends Activity {
 		  			  		
 		  			  		
 		  			  		// THIS WAY ALLOWS YOU TO STYLE THE DIALOG (ex. background doesn't dim.):
-		  			  		ContextThemeWrapper cw = new ContextThemeWrapper(Host.this, R.style.DialogWindowTitle_Holo);
-		  			  		AlertDialog.Builder builder = new AlertDialog.Builder(cw);		  			  		
-		  			  		
+		  			  		ContextThemeWrapper cw = new ContextThemeWrapper(Host.this, R.layout.avatar_adapter);
+		  			  		AlertDialog.Builder builder = new AlertDialog.Builder(cw, R.style.customalertdialog);
 		  		  			
 		  		  			builder.setCancelable(false);	  			
 		  		  			
-		  		  			builder.setTitle("Choose Player To Attack"); 		  			
+		  		  			//builder.setTitle("Choose Player To Attack");
+		  		  			
+			  		  		Toast toast = Toast.makeText(Host.this, "Choose Player To Attack", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
+	    		  			View view = toast.getView();
+	    		  			view.setBackgroundResource(R.drawable.centerscroll3toast);
+	    		  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+	
+	    		  			TextView text = (TextView) view.findViewById(android.R.id.message);
+	    		  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	    		  			text.setTypeface(typeFace);
+	    		  			text.setTextColor(Color.parseColor("#FFFFFF"));
+	    		  			//text.setRotation(-45);
+	    		  			text.setGravity(Gravity.CENTER);
+	    		  			
+	    		  			toast.show();
 		  		  			
 		  		  			
 		  					builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
@@ -17638,7 +17656,7 @@ public class Host extends Activity {
 	  	  	  		@Override
 		  	  	  	public void run() {
 	  	  	  			
-	  	  	  			test1();
+	  	  	  			//test1();
 	  	  	  			
 			  	  		if (canHasDisarmed[5].equals("yes")) {
 							
@@ -17649,18 +17667,18 @@ public class Host extends Activity {
 				  	  	  	String str6 = "hostSideDisarmed";
 				  	  	  	sendToAllClients(str6);
 				  	  	  	
-			  	  			test2();
+			  	  			//test2();
 							
 			  	  			if ((didHumanCriticalMiss[5].equals("yes") && disarmedTurnStart[5] == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[5].equals("yes") && disarmedTurnStart[5] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[5].equals("yes") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0])) {			  	  				
 				  	  			
-			  	  				test3();
+			  	  				//test3();
 			  	  				
 			  	  				disarmedAction();				  	  			
 			  	  			}
 			  	  			
 			  	  			else if ((didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0])) {
 			  	  				//ADDED: (didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] == ArrayOfTurn.turn[0]) TO TRY & FIX WHEN ANB AND B DIS N THEN A ATT N HANG PROBLEM.
-			  	  				test4();
+			  	  				//test4();
 			  	  				
 								disarmedAction();
 												  	  			
@@ -17668,7 +17686,7 @@ public class Host extends Activity {
 				  	    	
 				  			else if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 3 == ArrayOfTurn.turn[0]) {
 				  				
-				  				test5();
+				  				//test5();
 				  				
 				  				canHasDisarmed[5] = "no";
 				  				
@@ -21986,15 +22004,29 @@ public class Host extends Activity {
 		  		
 		  		
 		  		// THIS WAY ALLOWS YOU TO STYLE THE DIALOG (ex. background doesn't dim.):
-		  		ContextThemeWrapper cw = new ContextThemeWrapper(Host.this, R.style.DialogWindowTitle_Holo);
-		  		AlertDialog.Builder builder = new AlertDialog.Builder(cw);
+		  		ContextThemeWrapper cw = new ContextThemeWrapper(Host.this, R.layout.avatar_adapter);
+		  		AlertDialog.Builder builder = new AlertDialog.Builder(cw, R.style.customalertdialog);
 		  		
 		  		//ORIGINAL WAY TO DO IT:
 	  			//AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity2.this);
 	  			
 	  			builder.setCancelable(false);	  			
 	  			
-	  			builder.setTitle("Choose Action");	  			
+	  			//builder.setTitle("Choose Action");
+	  			
+	  			Toast toast = Toast.makeText(Host.this, "Choose An Action", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
+	  			View view = toast.getView();
+	  			view.setBackgroundResource(R.drawable.centerscroll3toast);
+	  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+
+	  			TextView text = (TextView) view.findViewById(android.R.id.message);
+	  			//Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  			text.setTypeface(typeFace);
+	  			text.setTextColor(Color.parseColor("#FFFFFF"));
+	  			//text.setRotation(-45);
+	  			text.setGravity(Gravity.CENTER);
+	  			
+	  			toast.show();
 	  			
 	  			
 	  			// if back pressed: DOES THIS WORK????????????
@@ -22310,15 +22342,29 @@ public class Host extends Activity {
 	  			  		
 	  			  		
 	  			  		// THIS WAY ALLOWS YOU TO STYLE THE DIALOG (ex. background doesn't dim.):
-	  			  		ContextThemeWrapper cw = new ContextThemeWrapper(Host.this, R.style.DialogWindowTitle_Holo);
-	  			  		AlertDialog.Builder builder = new AlertDialog.Builder(cw);
+	  			  		ContextThemeWrapper cw = new ContextThemeWrapper(Host.this, R.layout.avatar_adapter);
+	  			  		AlertDialog.Builder builder = new AlertDialog.Builder(cw, R.style.customalertdialog);
 	  			  		
 	  			  		//ORIGINAL WAY TO DO IT:
 	  		  			//AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity2.this);
 	  		  			
 	  		  			builder.setCancelable(false);	  			
 	  		  			
-	  		  			builder.setTitle("Choose Action");	  			
+	  		  			//builder.setTitle("Choose Action");
+	  		  			
+		  		  		Toast toast = Toast.makeText(Host.this, "Choose An Action", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
+			  			View view = toast.getView();
+			  			view.setBackgroundResource(R.drawable.centerscroll3toast);
+			  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+	
+			  			TextView text = (TextView) view.findViewById(android.R.id.message);
+			  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+			  			text.setTypeface(typeFace);
+			  			text.setTextColor(Color.parseColor("#FFFFFF"));
+			  			//text.setRotation(-45);
+			  			text.setGravity(Gravity.CENTER);
+			  			
+			  			toast.show();
 	  		  			
 	  		  			
 	  		  			// if back pressed: DOES THIS WORK????????????
@@ -22387,10 +22433,12 @@ public class Host extends Activity {
 												hideSystemUI();
 												
 												
-												AlertDialog.Builder alert = new AlertDialog.Builder(Host.this);
+												AlertDialog.Builder alert = new AlertDialog.Builder(Host.this, R.style.customalertdialog);
 											      
-												alert.setTitle(ArrayOfPlayers.player[5] + ", you have already used your Haste spells.");
-									  	    	/*
+												//alert.setTitle(ArrayOfPlayers.player[5] + ", you have already used your Haste spells.");
+												alert.setMessage(ArrayOfPlayers.player[5] + ", you have already used your Haste spells.");
+												
+												/*
 									  	    	alert.setMessage("something");
 									  	    	*/	    	
 										    	
@@ -22517,10 +22565,12 @@ public class Host extends Activity {
 												hideSystemUI();
 												
 												
-												AlertDialog.Builder alert = new AlertDialog.Builder(Host.this);
+												AlertDialog.Builder alert = new AlertDialog.Builder(Host.this, R.layout.avatar_adapter);
 											      
-												alert.setTitle(ArrayOfPlayers.player[5] + ", you have already used your Cure spell.");
-									  	    	/*
+												//alert.setTitle(ArrayOfPlayers.player[5] + ", you have already used your Cure spell.");
+												alert.setMessage(ArrayOfPlayers.player[5] + ", you have already used your Cure spell.");
+												
+												/*
 									  	    	alert.setMessage("something");
 									  	    	*/	    	
 										    	
@@ -22765,7 +22815,7 @@ public class Host extends Activity {
 			if (ishasteused.equals("yes")) {
 				
 				test=1;
-				turnTest();
+				//turnTest();
 				
 				hastePartTwo();
 			}
@@ -22774,7 +22824,7 @@ public class Host extends Activity {
 				if ((initiativeFinal[0] > initiativeFinal[1]) && Has0TakenTurn.equals("no") && hAs1TakenTurn.equals("no")) {
 					
 					test=2;
-					turnTest();
+					//turnTest();
 					
 					String str = "hastePartTwo";
 	  	  			sendToClient0(str);
@@ -22784,7 +22834,7 @@ public class Host extends Activity {
 				if ((initiativeFinal[1] > initiativeFinal[0]) && hAs1TakenTurn.equals("yes") && Has0TakenTurn.equals("no")) {
 					
 					test=3;
-					turnTest();
+					//turnTest();
 					
 					String str = "hastePartTwo";
 	  	  			sendToClient0(str);
@@ -22798,7 +22848,7 @@ public class Host extends Activity {
 				if ((initiativeFinal[0] > initiativeFinal[1]) && Has0TakenTurn.equals("yes") && hAs1TakenTurn.equals("no")) {
 
 					test=4;
-					turnTest();
+					//turnTest();
 					
 					String str = "hastePartTwo";
 	  	  			sendToClient1(str);
@@ -22808,7 +22858,7 @@ public class Host extends Activity {
 				if ((initiativeFinal[1] > initiativeFinal[0]) && hAs1TakenTurn.equals("no") && Has0TakenTurn.equals("no")) {
 
 					test=5;
-					turnTest();
+					//turnTest();
 					
 					String str = "hastePartTwo";
 	  	  			sendToClient1(str);
@@ -22819,35 +22869,35 @@ public class Host extends Activity {
 			else if ((initiativeFinal[0] > initiativeFinal[1]) && Has0TakenTurn.equals("no") && hAs1TakenTurn.equals("no")) {
 
 				test=6;
-				turnTest();
+				//turnTest();
 				
 				gameEngine3V35Part2For0Part1();
 			}
 			else if ((initiativeFinal[0] > initiativeFinal[1]) && Has0TakenTurn.equals("yes") && hAs1TakenTurn.equals("no")) {
 
 				test=7;
-				turnTest();
+				//turnTest();
 				
 				gameEngine3V35Part2For1Part1();
 			}
 			else if ((initiativeFinal[1] > initiativeFinal[0]) && Has0TakenTurn.equals("no") && hAs1TakenTurn.equals("no")) {
 
 				test=8;
-				turnTest();
+				//turnTest();
 				
 				gameEngine3V35Part2For1Part1();
 			}
 			else if ((initiativeFinal[1] > initiativeFinal[0]) && Has0TakenTurn.equals("no") && hAs1TakenTurn.equals("yes")) {
 
 				test=9;
-				turnTest();
+				//turnTest();
 				
 				gameEngine3V35Part2For0Part1();
 			}			
 			else {
 
 				test=10;
-				turnTest();
+				//turnTest();
 				
 				turn();
 			}
@@ -22859,7 +22909,7 @@ public class Host extends Activity {
 			if (ishasteused0.equals("yes")) {
 				
 				test=11;
-				turnTest();
+				//turnTest();
 				
 				String str = "hastePartTwo";
 	  			sendToClient0(str);
@@ -22869,14 +22919,14 @@ public class Host extends Activity {
 				if ((initiativeFinal[5] > initiativeFinal[1]) && has5TakenTurn.equals("no") && hAs1TakenTurn.equals("no")) {
 
 					test=12;
-					turnTest();
+					//turnTest();
 					
 					hastePartTwo();
 				}
 				if ((initiativeFinal[1] > initiativeFinal[5]) && hAs1TakenTurn.equals("yes") && has5TakenTurn.equals("no")) {
 
 					test=13;
-					turnTest();
+					//turnTest();
 					
 					hastePartTwo();
 				}
@@ -22886,7 +22936,7 @@ public class Host extends Activity {
 				if ((initiativeFinal[5] > initiativeFinal[1]) && has5TakenTurn.equals("yes") && hAs1TakenTurn.equals("no")) {				
 
 					test=14;
-					turnTest();
+					//turnTest();
 					
 					String str = "hastePartTwo";
 	  	  			sendToClient1(str);
@@ -22896,7 +22946,7 @@ public class Host extends Activity {
 				if ((initiativeFinal[1] > initiativeFinal[5]) && hAs1TakenTurn.equals("no") && has5TakenTurn.equals("no")) {
 
 					test=15;
-					turnTest();
+					//turnTest();
 					
 					String str = "hastePartTwo";
 	  	  			sendToClient1(str);
@@ -22907,21 +22957,21 @@ public class Host extends Activity {
 			else if ((initiativeFinal[5] > initiativeFinal[1]) && (has5TakenTurn.equals("no") && hAs1TakenTurn.equals("no"))) {//ABN CHECK
 
 				test=16;
-				turnTest();
+				//turnTest();
 				
 				gameEngine3V3XPart2For5Part1();
 			}
 			else if ((initiativeFinal[5] > initiativeFinal[1]) && has5TakenTurn.equals("yes") && hAs1TakenTurn.equals("no")) {
 
 				test=17;
-				turnTest();
+				//turnTest();
 				
 				gameEngine3V35Part2For1Part1();
 			}
 			else if ((initiativeFinal[1] > initiativeFinal[5]) && hAs1TakenTurn.equals("no") && has5TakenTurn.equals("no")) {
 
 				test=18;
-				turnTest();
+				//turnTest();
 				
 				//gameEngine3V3XPart2For5Part1();
 				gameEngine3V35Part2For1Part1();
@@ -22929,14 +22979,14 @@ public class Host extends Activity {
 			else if ((initiativeFinal[1] > initiativeFinal[5]) && hAs1TakenTurn.equals("yes") && has5TakenTurn.equals("no")) {
 
 				test=19;
-				turnTest();
+				//turnTest();
 				
 				gameEngine3V3XPart2For5Part1();
 			}
 			else {
 
 				test=20;
-				turnTest();
+				//turnTest();
 				
 				turn();
 			}			
@@ -22948,7 +22998,7 @@ public class Host extends Activity {
 			if (ishasteused1.equals("yes")) {
 				
 				test=21;
-				turnTest();
+				//turnTest();
 				
 				String str = "hastePartTwo";
 	  			sendToClient1(str);
@@ -22958,14 +23008,14 @@ public class Host extends Activity {
 				if ((initiativeFinal[5] > initiativeFinal[0]) && has5TakenTurn.equals("no") && Has0TakenTurn.equals("no")) {
 
 					test=22;
-					turnTest();
+					//turnTest();
 					
 					hastePartTwo();
 				}
 				if ((initiativeFinal[0] > initiativeFinal[5]) && Has0TakenTurn.equals("yes") && has5TakenTurn.equals("no")) {
 
 					test=23;
-					turnTest();
+					//turnTest();
 					
 					hastePartTwo();
 				}
@@ -22975,7 +23025,7 @@ public class Host extends Activity {
 				if ((initiativeFinal[5] > initiativeFinal[0]) && has5TakenTurn.equals("yes") && Has0TakenTurn.equals("no")) {
 
 					test=24;
-					turnTest();
+					//turnTest();
 					
 					String str = "hastePartTwo";
 	  	  			sendToClient0(str);
@@ -22985,7 +23035,7 @@ public class Host extends Activity {
 				if ((initiativeFinal[0] > initiativeFinal[5]) && Has0TakenTurn.equals("no") && has5TakenTurn.equals("no")) {
 
 					test=25;
-					turnTest();
+					//turnTest();
 					
 					String str = "hastePartTwo";
 	  	  			sendToClient0(str);
@@ -22996,41 +23046,41 @@ public class Host extends Activity {
 			else if ((initiativeFinal[5] > initiativeFinal[0]) && has5TakenTurn.equals("no") && Has0TakenTurn.equals("no")) {
 
 				test=26;
-				turnTest();
+				//turnTest();
 				
 				gameEngine3V3XPart2For5Part1();
 			}
 			else if ((initiativeFinal[5] > initiativeFinal[0]) && has5TakenTurn.equals("yes") && Has0TakenTurn.equals("no")) {
 
 				test=27;
-				turnTest();
+				//turnTest();
 				
 				gameEngine3V35Part2For0Part1();
 			}
 			else if ((initiativeFinal[0] > initiativeFinal[5]) && Has0TakenTurn.equals("no") && has5TakenTurn.equals("no")) {
 
 				test=28;
-				turnTest();
+				//turnTest();
 				
 				gameEngine3V35Part2For0Part1();
 			}
 			else if ((initiativeFinal[0] > initiativeFinal[5]) && Has0TakenTurn.equals("yes") && has5TakenTurn.equals("no")) {
 
 				test=29;
-				turnTest();
+				//turnTest();
 				
 				gameEngine3V3XPart2For5Part1();
 			}
 			else {
 
 				test=30;
-				turnTest();
+				//turnTest();
 				
 				turn();
 			}
 		}
 		
-		turnTest();
+		//turnTest();
 	}
 	
 	
@@ -23146,11 +23196,13 @@ public class Host extends Activity {
 					
 				if (blessSpell[5] > 0) {		
 						
-					AlertDialog.Builder alert = new AlertDialog.Builder(Host.this);
+					AlertDialog.Builder alert = new AlertDialog.Builder(Host.this, R.layout.avatar_adapter);
 		  			
 					alert.setCancelable(false);
 					
-		  	    	alert.setTitle(ArrayOfPlayers.player[5] + ", do you want to use your bless spell?");
+		  	    	//alert.setTitle(ArrayOfPlayers.player[5] + ", do you want to use your bless spell?");
+		  	    	alert.setMessage(ArrayOfPlayers.player[5] + ", do you want to use your bless spell?");
+
 		  	    	/*
 		  	    	alert.setMessage("something");
 		  	    	*/	  	    	
@@ -23371,10 +23423,12 @@ public class Host extends Activity {
 	  			
 	  			else {
   	  	  			
-	  				AlertDialog.Builder alert = new AlertDialog.Builder(Host.this);
+	  				AlertDialog.Builder alert = new AlertDialog.Builder(Host.this, R.layout.avatar_adapter);
 				      
-					alert.setTitle(ArrayOfPlayers.player[5] + ", you have already used your Haste spells.");
-		  	    	/*
+					//alert.setTitle(ArrayOfPlayers.player[5] + ", you have already used your Haste spells.");
+					alert.setMessage(ArrayOfPlayers.player[5] + ", you have already used your Haste spells.");
+
+					/*
 		  	    	alert.setMessage("something");
 		  	    	*/	    	
 			    	
@@ -23506,10 +23560,12 @@ public class Host extends Activity {
 				
 				else {
 					
-					AlertDialog.Builder alert = new AlertDialog.Builder(Host.this);
+					AlertDialog.Builder alert = new AlertDialog.Builder(Host.this, R.layout.avatar_adapter);
 				      
-					alert.setTitle(ArrayOfPlayers.player[5] + ", you have already used your Cure spell.");
-		  	    	/*
+					//alert.setTitle(ArrayOfPlayers.player[5] + ", you have already used your Cure spell.");
+					alert.setMessage(ArrayOfPlayers.player[5] + ", you have already used your Cure spell.");
+
+					/*
 		  	    	alert.setMessage("something");
 		  	    	*/	    	
 			    	
@@ -23636,10 +23692,12 @@ public class Host extends Activity {
 				
 				else {
 					
-					AlertDialog.Builder alert = new AlertDialog.Builder(Host.this);
+					AlertDialog.Builder alert = new AlertDialog.Builder(Host.this, R.layout.avatar_adapter);
 				      
 					alert.setTitle(ArrayOfPlayers.player[5] + ", you have already used your Bless spell.");
-		  	    	/*
+					alert.setMessage(ArrayOfPlayers.player[5] + ", you have already used your Bless spell.");
+
+					/*
 		  	    	alert.setMessage("something");
 		  	    	*/	    	
 			    	
@@ -25417,11 +25475,13 @@ public class Host extends Activity {
 				  	  	  			
 				  	  	  			if (mightyBlowSpell[5] > 0 && ishasteused.equals("no") && isblessrolled.equals("no")) {
 								
-										AlertDialog.Builder alert = new AlertDialog.Builder(Host.this);
+										AlertDialog.Builder alert = new AlertDialog.Builder(Host.this, R.layout.avatar_adapter);
 							  			
 										alert.setCancelable(false);
 										
-							  	    	alert.setTitle(ArrayOfPlayers.player[5] + ", do you want to use Mighty Blow?");
+							  	    	//alert.setTitle(ArrayOfPlayers.player[5] + ", do you want to use Mighty Blow?");
+							  	    	alert.setMessage(ArrayOfPlayers.player[5] + ", do you want to use Mighty Blow?");
+
 							  	    	/*
 							  	    	alert.setMessage("something");
 							  	    	*/	  	    	
@@ -25511,11 +25571,13 @@ public class Host extends Activity {
 	  	  	  			
 	  	  	  			if (mightyBlowSpell[5] > 0 && ishasteused.equals("no") && isblessrolled.equals("no")) {
 				
-							AlertDialog.Builder alert = new AlertDialog.Builder(Host.this);
+							AlertDialog.Builder alert = new AlertDialog.Builder(Host.this, R.layout.avatar_adapter);
 				  			
 							alert.setCancelable(false);
 							
-				  	    	alert.setTitle(ArrayOfPlayers.player[5] + ", do you want to use Mighty Blow?");
+				  	    	//alert.setTitle(ArrayOfPlayers.player[5] + ", do you want to use Mighty Blow?");
+				  	    	alert.setMessage(ArrayOfPlayers.player[5] + ", do you want to use Mighty Blow?");
+
 				  	    	/*
 				  	    	alert.setMessage("something");
 				  	    	*/	  	    	
@@ -25639,11 +25701,13 @@ public class Host extends Activity {
 		  	  	  			
 			  	  	  		if (mightyBlowSpell[5] > 0 && ishasteused.equals("no") && isblessrolled.equals("no") && issecondroundofhasteused.equals("no")) {								
 								
-								AlertDialog.Builder alert = new AlertDialog.Builder(Host.this);
+								AlertDialog.Builder alert = new AlertDialog.Builder(Host.this, R.layout.avatar_adapter);
 					  			
 								alert.setCancelable(false);
 								
-					  	    	alert.setTitle(ArrayOfPlayers.player[5] + ", do you want to use Mighty Blow?");
+					  	    	//alert.setTitle(ArrayOfPlayers.player[5] + ", do you want to use Mighty Blow?");
+					  	    	alert.setMessage(ArrayOfPlayers.player[5] + ", do you want to use Mighty Blow?");
+
 					  	    	/*
 					  	    	alert.setMessage("something");
 					  	    	*/	  	    	
@@ -25731,11 +25795,13 @@ public class Host extends Activity {
 	  	  	  			
 		  	  	  		if (mightyBlowSpell[5] > 0 && ishasteused.equals("no") && isblessrolled.equals("no") && issecondroundofhasteused.equals("no")) {											
 							
-							AlertDialog.Builder alert = new AlertDialog.Builder(Host.this);
+							AlertDialog.Builder alert = new AlertDialog.Builder(Host.this, R.layout.avatar_adapter);
 				  			
 							alert.setCancelable(false);
 							
-				  	    	alert.setTitle(ArrayOfPlayers.player[5] + ", do you want to use Mighty Blow?");
+				  	    	//alert.setTitle(ArrayOfPlayers.player[5] + ", do you want to use Mighty Blow?");
+				  	    	alert.setMessage(ArrayOfPlayers.player[5] + ", do you want to use Mighty Blow?");
+
 				  	    	/*
 				  	    	alert.setMessage("something");
 				  	    	*/  	    	
@@ -26102,7 +26168,14 @@ public class Host extends Activity {
 			  	  	  			
 								if (ArrayOfHitPoints.hitpoints[5] <= 0) {
 									
-									String str3 = ArrayOfPlayers.player[5] + "has been slain!";
+									// Use a blank drawable to hide the imageview animation:
+				  		  			ImageView img = (ImageView)findViewById(R.id.sixsidedanimation);
+				  		  			img.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+				  		  			img.setImageResource(R.drawable.sixsixrightleftrotateblank);
+				  		  			// To save memory?:
+				  		  			img.setImageDrawable(null);
+									
+									String str3 = ArrayOfPlayers.player[5] + "has been defeated!";
 									sendToAllClients(str3);
 									
 									/*
@@ -26114,12 +26187,14 @@ public class Host extends Activity {
 									 */									
 									
 										
-									AlertDialog.Builder alert = new AlertDialog.Builder(Host.this);
+									AlertDialog.Builder alert = new AlertDialog.Builder(Host.this, R.layout.avatar_adapter);
 								    
 									alert.setCancelable(false);
 									
-									alert.setTitle("You have been slain.");
-						  	    	/*
+									//alert.setTitle("You have been defeated.");
+									alert.setMessage("You have been defeated.");
+
+									/*
 						  	    	alert.setMessage("something");
 						  	    	*/	    	
 							    	
@@ -26886,14 +26961,13 @@ public class Host extends Activity {
 	  	  	  			playerNumberAttackedHitPointsTextView.clearAnimation();	  	  	  			
 	  	  	  			
 	  	  	  			
-						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] <= 0) 
-						{
+						if (ArrayOfHitPoints.hitpoints[playerNumberAttacked] <= 0) {
 							
 							centerscrolltext.setVisibility(View.VISIBLE);
 					  		centerscrolltext.startAnimation(animAlphaText);
-							centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[playerNumberAttacked] + " has been slain!");
+							centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[playerNumberAttacked] + " has been defeated!");
 							
-							String str = ArrayOfPlayers.player[playerNumberAttacked] + " has been slain!";
+							String str = ArrayOfPlayers.player[playerNumberAttacked] + " has been defeated!";
 							sendToAllClients(str);
 							
 							
@@ -27192,9 +27266,9 @@ public class Host extends Activity {
 							
 							centerscrolltext.setVisibility(View.VISIBLE);
 					  		centerscrolltext.startAnimation(animAlphaText);
-							centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[playerNumberAttacked] + " has been slain!");
+							centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[playerNumberAttacked] + " has been defeated!");
 							
-							String str = ArrayOfPlayers.player[playerNumberAttacked] + " has been slain!";
+							String str = ArrayOfPlayers.player[playerNumberAttacked] + " has been defeated!";
 							sendToAllClients(str);
 							
 							
@@ -27493,9 +27567,9 @@ public class Host extends Activity {
 							
 							centerscrolltext.setVisibility(View.VISIBLE);
 					  		centerscrolltext.startAnimation(animAlphaText);
-							centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[playerNumberAttacked] + " has been slain!");
+							centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[playerNumberAttacked] + " has been defeated!");
 							
-							String str = ArrayOfPlayers.player[playerNumberAttacked] + " has been slain!";
+							String str = ArrayOfPlayers.player[playerNumberAttacked] + " has been defeated!";
 							sendToAllClients(str);
 							
 							
@@ -27850,9 +27924,9 @@ public class Host extends Activity {
 							
 							centerscrolltext.setVisibility(View.VISIBLE);
 					  		centerscrolltext.startAnimation(animAlphaText);
-							centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[playerNumberAttacked] + " has been slain!");
+							centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[playerNumberAttacked] + " has been defeated!");
 							
-							String str = ArrayOfPlayers.player[playerNumberAttacked] + " has been slain!";
+							String str = ArrayOfPlayers.player[playerNumberAttacked] + " has been defeated!";
 							sendToAllClients(str);
 							
 							
@@ -28382,11 +28456,13 @@ public class Host extends Activity {
 	  						centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + ", do you want to dodge?");
 	  						*/
 	  						
-	  						AlertDialog.Builder alert = new AlertDialog.Builder(Host.this);
+	  						AlertDialog.Builder alert = new AlertDialog.Builder(Host.this, R.style.customalertdialog);
 	  			  			
 	  						alert.setCancelable(false);
 	  						
-	  			  	    	alert.setTitle(ArrayOfPlayers.player[5] + ", do you want to use your Dodge spell?");
+	  			  	    	//alert.setTitle(ArrayOfPlayers.player[5] + ", do you want to use your Dodge spell?");
+	  			  	    	alert.setMessage(ArrayOfPlayers.player[5] + ", do you want to use your Dodge spell?");
+
 	  			  	    	/*
 	  			  	    	alert.setMessage("something");
 	  			  	    	*/	  	    	
@@ -29121,8 +29197,8 @@ else if (read.contains("whatAvatar")) {//MAY WANT MORE COMPLICATED TERM SO IT DO
 						/*
 						//TESTING:
 						//THESE DONT WORK?:
-						//Toast.makeText(Host.this, id, Toast.LENGTH_LONG).show();						
-						//Toast.makeText(Host.this, part2, Toast.LENGTH_LONG).show();
+						//Toast.makeText(Host.this, id, Toast.LENGTH_SHORT).show();						
+						//Toast.makeText(Host.this, part2, Toast.LENGTH_SHORT).show();
 						read = "id= " + id + "name= " + part2;
 						//THIS IS GETTING POSTED TWICE TO HOST UI?:
 						updateConversationHandler.post(new updateUIThread(read));
@@ -30195,9 +30271,9 @@ else if (read.contains("cstmImage")) {//MAY WANT MORE COMPLICATED TERM SO IT DOE
 					  	  	  			
 						  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 								  		//centerscrolltext.startAnimation(animAlphaText);
-										centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[deadGuy] + " has been slain!");
+										centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[deadGuy] + " has been defeated!");
 										
-										String str = "> " + ArrayOfPlayers.player[deadGuy] + " has been slain!";
+										String str = "> " + ArrayOfPlayers.player[deadGuy] + " has been defeated!";
 										sendToAllClients(str);
 										
 										

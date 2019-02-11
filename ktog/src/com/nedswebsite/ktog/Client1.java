@@ -24,7 +24,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
-import android.support.v7.app.ActionBarActivity;
+
 import android.text.Html;
 import android.text.InputFilter;
 import android.app.Activity;
@@ -37,6 +37,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -46,6 +47,7 @@ import android.provider.MediaStore;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.Contacts;
 import android.view.ContextThemeWrapper;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -55,6 +57,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped" message on S4 w/o this)			
@@ -118,10 +121,25 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
     	//multiplayer = "yes";
     	
     	
-    	AlertDialog.Builder alert = new AlertDialog.Builder(Client1.this);
+    	AlertDialog.Builder alert = new AlertDialog.Builder(Client1.this, R.style.customalertdialog);
 
-    	alert.setTitle("Multiplayer");
-    	alert.setMessage("Enter Name");
+    	//alert.setTitle("Multiplayer");
+    	//alert.setMessage("Enter Name");
+    	
+    	Toast toast = Toast.makeText(Client1.this, "Enter name", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
+		View view = toast.getView();
+		view.setBackgroundResource(R.drawable.centerscroll3toast);
+		toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+
+		TextView text = (TextView) view.findViewById(android.R.id.message);
+		Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+		text.setTypeface(typeFace);
+		text.setTextColor(Color.parseColor("#FFFFFF"));
+		//text.setRotation(-45);
+		text.setGravity(Gravity.CENTER);
+		
+		toast.show();
+    	
 
     	// Set an EditText view to get user input:
     	final EditText input = new EditText(Client1.this);
@@ -143,7 +161,7 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
     	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
     	public void onClick(DialogInterface dialog, int whichButton) {        		         		
     		
-    		//Toast.makeText(Client1.this,"MULTIPLAYER = " + multiplayer, Toast.LENGTH_LONG).show();
+    		//Toast.makeText(Client1.this,"MULTIPLAYER = " + multiplayer, Toast.LENGTH_SHORT).show();
     		
     		// NEED TO SEND TO ARRAY HERE:
     		String playername = input.getText().toString();
@@ -162,9 +180,24 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
     		ListAdapter adapter = new ArrayAdapterWithIcon(Client1.this, items, avatars);
     		
     		ContextThemeWrapper wrapper = new ContextThemeWrapper(Client1.this, R.layout.avatar_adapter);
-    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
+    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper, R.style.customalertdialog);
     		//builder.setIcon(R.drawable.computerhead);
-    		builder.setTitle("Choose Your Avatar");
+    		//builder.setTitle("Choose Your Avatar");
+    		
+    		Toast toast = Toast.makeText(Client1.this, "Choose An Avatar", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
+  			View view = toast.getView();
+  			view.setBackgroundResource(R.drawable.centerscroll3toast);
+  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+
+  			TextView text = (TextView) view.findViewById(android.R.id.message);
+  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+  			text.setTypeface(typeFace);
+  			text.setTextColor(Color.parseColor("#FFFFFF"));
+  			//text.setRotation(-45);
+  			text.setGravity(Gravity.CENTER);
+  			
+  			toast.show();
+  			
     		
     		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
     			public void onClick(DialogInterface dialog, int item) { 
@@ -227,12 +260,12 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		//Toast.makeText(Client1.this,"WTF!?", Toast.LENGTH_LONG).show();
+		//Toast.makeText(Client1.this,"WTF!?", Toast.LENGTH_SHORT).show();
 		switch(requestCode){	
 		
 		case PICK_IMAGE://FOR IMAGE GALLERY
 			
-			//Toast.makeText(Client1.this,"WTF!?", Toast.LENGTH_LONG).show();
+			//Toast.makeText(Client1.this,"WTF!?", Toast.LENGTH_SHORT).show();
 			
 			if (resultCode == RESULT_OK && requestCode == PICK_IMAGE && multiplayer.equals("yes")) {
 				
@@ -270,7 +303,21 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
 		        byte[] imageInByte = stream.toByteArray();
 		        float file_size = (imageInByte.length)/1024;//from bytes to kb
 		        
-		        Toast.makeText(Client1.this,"IMAGE SIZE = " + file_size, Toast.LENGTH_LONG).show();
+		        //Toast.makeText(Client1.this,"IMAGE SIZE = " + file_size, Toast.LENGTH_SHORT).show();
+		        Toast toast = Toast.makeText(Client1.this, "IMAGE SIZE = " + file_size, Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
+	  			View view = toast.getView();
+	  			view.setBackgroundResource(R.drawable.centerscroll3toast);
+	  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+
+	  			TextView text = (TextView) view.findViewById(android.R.id.message);
+	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  			text.setTypeface(typeFace);
+	  			text.setTextColor(Color.parseColor("#FFFFFF"));
+	  			//text.setRotation(-45);
+	  			text.setGravity(Gravity.CENTER);
+	  			
+	  			toast.show();
+		        
 		        //APPARENT SCALING AT ABOUT FACTOR OF 6, DEPENING ON SIZE.	        
 		        //0=MAX COMPRESSION, 100=LEAST COMPRESSION
 				
@@ -293,9 +340,9 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
 					ListAdapter adapter = new ArrayAdapterWithIcon(Client1.this, items, avatars);
 					
 					ContextThemeWrapper wrapper = new ContextThemeWrapper(Client1.this, R.layout.avatar_adapter);
-					AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
+					AlertDialog.Builder builder = new AlertDialog.Builder(wrapper, R.style.customalertdialog);
 					//builder.setIcon(R.drawable.computerhead);
-					builder.setTitle("Multiplayer");
+					//builder.setTitle("Multiplayer");
 					
 					builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
 						public void onClick(DialogInterface dialog, int item) { 
@@ -393,7 +440,7 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
 				        //return file;
 				    } catch (Exception e) {
 				    	
-				    	Toast.makeText(Client1.this,"ERROR. Please try again.", Toast.LENGTH_LONG).show();
+				    	Toast.makeText(Client1.this,"ERROR. Please try again.", Toast.LENGTH_SHORT).show();
 				        //return null;
 				    }
 					
@@ -452,21 +499,60 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
 				*/
 				else if (file_size > 6) {
 					
-					Toast.makeText(Client1.this,"Avatar image must be less than 60 KB (" + file_size +" ).", Toast.LENGTH_LONG).show();
+					//Toast.makeText(Client1.this,"Avatar image must be less than 60 KB (" + file_size +" ).", Toast.LENGTH_SHORT).show();
+					Toast toast2 = Toast.makeText(Client1.this, "Avatar image must be less than 60 KB (" + file_size +" ).", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
+		  			View view2 = toast2.getView();
+		  			view2.setBackgroundResource(R.drawable.centerscroll3toast);
+		  			toast2.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+
+		  			TextView text2 = (TextView) view2.findViewById(android.R.id.message);
+		  			//Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+		  			text2.setTypeface(typeFace);
+		  			text2.setTextColor(Color.parseColor("#FFFFFF"));
+		  			//text.setRotation(-45);
+		  			text2.setGravity(Gravity.CENTER);
+		  			
+		  			toast2.show();
 				}
 				
 				else {
 					
-					Toast.makeText(Client1.this,"ERROR LOADING IMAGE " + file_size, Toast.LENGTH_LONG).show();
+					//Toast.makeText(Client1.this,"ERROR LOADING IMAGE " + file_size, Toast.LENGTH_SHORT).show();
+					Toast toast3 = Toast.makeText(Client1.this, "ERROR LOADING IMAGE " + file_size, Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
+		  			View view3 = toast3.getView();
+		  			view3.setBackgroundResource(R.drawable.centerscroll3toast);
+		  			toast3.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+
+		  			TextView text3 = (TextView) view3.findViewById(android.R.id.message);
+		  			//Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+		  			text3.setTypeface(typeFace);
+		  			text3.setTextColor(Color.parseColor("#FFFFFF"));
+		  			//text.setRotation(-45);
+		  			text3.setGravity(Gravity.CENTER);
+		  			
+		  			toast3.show();
 				}
 			}
 			
 			else {
 				
-				Toast.makeText(Client1.this,"MULTIPLAYER = " + multiplayer, Toast.LENGTH_LONG).show();
+				//Toast.makeText(Client1.this,"MULTIPLAYER = " + multiplayer, Toast.LENGTH_SHORT).show();
+				Toast toast4 = Toast.makeText(Client1.this, "MULTIPLAYER = " + multiplayer, Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
+	  			View view4 = toast4.getView();
+	  			view4.setBackgroundResource(R.drawable.centerscroll3toast);
+	  			toast4.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+
+	  			TextView text4 = (TextView) view4.findViewById(android.R.id.message);
+	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  			text4.setTypeface(typeFace);
+	  			text4.setTextColor(Color.parseColor("#FFFFFF"));
+	  			//text.setRotation(-45);
+	  			text4.setGravity(Gravity.CENTER);
+	  			
+	  			toast4.show();
 			}
-		break;		
-		
+			
+			break;//NEED THIS?
 		}
 	}
 	
@@ -481,9 +567,9 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
 		ListAdapter adapter = new ArrayAdapterWithIcon(Client1.this, items, avatars);
 		
 		ContextThemeWrapper wrapper = new ContextThemeWrapper(Client1.this, R.layout.avatar_adapter);
-		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
+		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper, R.style.customalertdialog);
 		//builder.setIcon(R.drawable.computerhead);
-		builder.setTitle("Multiplayer");
+		//builder.setTitle("Multiplayer");
 		
 		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
 			public void onClick(DialogInterface dialog, int item) { 
@@ -564,12 +650,25 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
 			
 			ArrayOfIP.hostIP[5] = hostIP;
 			
-		    //Toast.makeText(Client1.this, hostIP, Toast.LENGTH_LONG).show();
+		    //Toast.makeText(Client1.this, hostIP, Toast.LENGTH_SHORT).show();
 		    
 		} catch (Throwable t) {
-				Toast.makeText(Client1.this, "HOSTIP CONVERSION DID NOT WORK", Toast.LENGTH_LONG).show();
+			
+			//Toast.makeText(Client1.this, "HOSTIP CONVERSION DID NOT WORK", Toast.LENGTH_SHORT).show();
+			Toast toast = Toast.makeText(Client1.this, "HOSTIP CONVERSION DID NOT WORK", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
+  			View view = toast.getView();
+  			view.setBackgroundResource(R.drawable.centerscroll3toast);
+  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+
+  			TextView text = (TextView) view.findViewById(android.R.id.message);
+  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+  			text.setTypeface(typeFace);
+  			text.setTextColor(Color.parseColor("#FFFFFF"));
+  			//text.setRotation(-45);
+  			text.setGravity(Gravity.CENTER);
+  			
+  			toast.show();
 		}
-		
 	}
 	
 	@Override
@@ -654,7 +753,7 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
 
-            Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
             TextView textViewResult = (TextView) findViewById(R.id.textViewResult);
             textViewResult.setText("Inserted");
         }*/
@@ -691,7 +790,7 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
         	
         	//Intent openMainActivity2 = new Intent("com.nedswebsite.ktog.MAINACTIVITY2");
         	//startActivity(openMainActivity2);
-        	//Toast.makeText(Client1.this,"Multi-player not working yet :(", Toast.LENGTH_LONG).show();
+        	//Toast.makeText(Client1.this,"Multi-player not working yet :(", Toast.LENGTH_SHORT).show();
             	            				
     		
     		
@@ -711,7 +810,7 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
             	
             //Intent openMainActivity2 = new Intent("com.nedswebsite.ktog.MAINACTIVITY2");
             //startActivity(openMainActivity2);
-            //Toast.makeText(Client1.this,"Multi-player not working yet :(", Toast.LENGTH_LONG).show();    		
+            //Toast.makeText(Client1.this,"Multi-player not working yet :(", Toast.LENGTH_SHORT).show();    		
         }
     }	
 	
