@@ -24,7 +24,7 @@
 	    android:layout_height="wrap_content"
 	    android:layout_centerHorizontal="true"
 	    android:layout_above="@+id/imagebuttonmultiplayer"
-	    android:layout_marginBottom="25dp"
+	    android:layout_marginBottom="30dp"
 	    android:background="@drawable/one_player"
 	    android:cropToPadding="false" />
 	
@@ -34,8 +34,7 @@
 	    android:layout_height="wrap_content"
 	    android:layout_centerHorizontal="true"
 	    android:layout_centerVertical="true"
-	    
-	    android:layout_marginBottom="25dp"
+	    android:layout_marginBottom="30dp"
 	    android:background="@drawable/multi_player"
 	    android:cropToPadding="false" />
 	
@@ -45,7 +44,7 @@
 	    android:layout_height="wrap_content"
 	    android:layout_centerHorizontal="true"
 	    android:layout_below="@+id/imagebuttonmultiplayer"
-	    android:layout_marginBottom="25dp"
+	    android:layout_marginBottom="30dp"
 	    android:background="@drawable/about"
 	    android:cropToPadding="false" />
 

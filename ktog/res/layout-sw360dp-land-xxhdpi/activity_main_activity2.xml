@@ -12,10 +12,12 @@
         android:layout_height="wrap_content"        
         android:layout_alignLeft="@+id/imageviewcenterscroll"        
         android:layout_toLeftOf="@+id/textviewhitpointsright"
-        android:layout_marginTop="165dp"
+        
+        android:layout_centerInParent="true"
+        
         android:background="@drawable/start"
 	    android:cropToPadding="false" />
-    
+    	<!-- WAS:  android:layout_marginTop="165dp"   -->
     
     
     
@@ -41,65 +43,64 @@
     <ImageButton
         android:id="@+id/imagebuttontitleblank"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"  
-        
+        android:layout_height="wrap_content"
         
         android:layout_toRightOf="@+id/imageviewscroll3b5left"
    	    android:layout_toLeftOf="@+id/imageviewscroll3b5right"
         
-              
-        
-        android:layout_marginTop="12dp"
         android:alpha="0"
         android:background="@drawable/titleblanksmall" />
     
     	<!--
+    	android:layout_marginTop="12dp"
     	android:layout_alignLeft="@+id/imageviewcenterscroll"        
         android:layout_toLeftOf="@+id/textviewhitpointsright"    
      	-->
     
     <TextView
    	    android:id="@+id/textviewtitlelobbytext"
-   	    android:layout_width="211dp"
-   	    android:layout_height="136dp"
-   	    
+   	    android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
    	    
    	    android:layout_toRightOf="@+id/imageviewscroll3b5left"
    	    android:layout_toLeftOf="@+id/imageviewscroll3b5right"
-        
                
-        android:layout_marginTop="12dp"        
+        android:layout_marginTop="9dp"   
    	    android:fadeScrollbars="false"   	    
    	    android:scrollbars="vertical"
    	    android:textColor="#FFFFFF"   	    
    	    android:gravity="center"
-   	    android:textSize="58sp"   	    
-   	    android:paddingBottom="23dp" />
+   	    android:textSize="58sp" />
     
     	<!--
+    	android:layout_marginTop="12dp"
+    	android:layout_width="211dp"
+   	    android:layout_height="136dp"
     	android:layout_alignLeft="@+id/imageviewcenterscroll"        
-        android:layout_toLeftOf="@+id/textviewhitpointsright"    
+        android:layout_toLeftOf="@+id/textviewhitpointsright"
+        android:paddingBottom="23dp"
      	-->
     
     <TextView
    	    android:id="@+id/textviewtitlektogtext"
-   	    android:layout_width="211dp"
-   	    android:layout_height="136dp"
-   	    
+   	    android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
    	    
    	   	android:layout_toRightOf="@+id/imageviewscroll3b5left"
-   	    android:layout_toLeftOf="@+id/imageviewscroll3b5right" 
+   	    android:layout_toLeftOf="@+id/imageviewscroll3b5right"
         
-               
-        android:layout_marginTop="12dp"        
+        android:layout_marginTop="9dp"
    	    android:fadeScrollbars="false"   	    
    	    android:scrollbars="vertical"
    	    android:textColor="#FFFFFF"   	    
    	    android:gravity="center"
-   	    android:textSize="77sp"   	    
-   	    android:paddingBottom="18dp" />
-    
+   	    android:textSize="77sp" />
+    	
     	<!--
+    	android:layout_marginTop="12dp"
+    	android:paddingBottom="18dp"
+    	android:layout_width="211dp"
+   	    android:layout_height="136dp"
     	android:layout_alignLeft="@+id/imageviewcenterscroll"        
         android:layout_toLeftOf="@+id/textviewhitpointsright"    
      	-->
@@ -115,43 +116,46 @@
       
      <TextView
    	    android:id="@+id/textviewtitleinitiativetext"
-   	    android:layout_width="211dp"
-   	    android:layout_height="136dp"
-   	    
+   	    android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
    	    
    	    android:layout_toRightOf="@+id/imageviewscroll3b5left"
    	    android:layout_toLeftOf="@+id/imageviewscroll3b5right"
         
-              
-        android:layout_marginTop="12dp"       
+        android:layout_marginTop="27dp"
    	    android:fadeScrollbars="false"   	    
    	    android:scrollbars="vertical"
    	    android:textColor="#FFFFFF"   	    
    	    android:gravity="center"
-   	    android:textSize="46sp"  	    
-   	    android:paddingBottom="20dp" />
-     
+   	    android:textSize="46sp" />
+     	
      	<!--
+     	android:layout_marginTop="12dp"
+     	android:layout_width="211dp"
+   	    android:layout_height="136dp"
+     	android:paddingBottom="20dp"
     	android:layout_alignLeft="@+id/imageviewcenterscroll"        
         android:layout_toLeftOf="@+id/textviewhitpointsright"    
      	-->
      
 	<ScrollView
+		android:gravity="center|top"
 		android:layout_width="211dp"
    	    android:layout_height="136dp"
    	    
-   	    
    	    android:layout_toRightOf="@+id/imageviewscroll3b5left"
-   	    android:layout_toLeftOf="@+id/imageviewscroll3b5right"  
-        
+   	    android:layout_toLeftOf="@+id/imageviewscroll3b5right"
               
-        android:layout_marginTop="12dp"
-        android:gravity="top"  	   
+        android:layout_marginTop="5dp"
 		android:scrollbars="none">
 		
 	    <!--
+	    android:layout_marginTop="12dp"
+	    android:layout_width="211dp"
+   	    android:layout_height="136dp"
     	android:layout_alignLeft="@+id/imageviewcenterscroll"        
-        android:layout_toLeftOf="@+id/textviewhitpointsright"    
+        android:layout_toLeftOf="@+id/textviewhitpointsright"
+        android:gravity="top"
      	-->
 	    
 	  	<!--
@@ -171,12 +175,14 @@
 	   	    android:textSize="8sp"
 	   	    android:paddingTop="14dp" 	    
 	   	    android:paddingBottom="43dp"
-	   	    android:paddingRight="38dp"
-	   	    android:paddingLeft="41dp"   	    	
+	   	    android:paddingRight="43dp"
+	   	    android:paddingLeft="42dp"   	    	
 		   	android:stretchColumns="*" >
 	   	    <!--
 	   	    39
 	   	    40
+	   	    android:paddingRight="38dp"?
+	   	    android:paddingLeft="41dp"?
 	   	    android:paddingRight="43dp"
 	   	    android:paddingLeft="42dp"
 	   	    
@@ -287,6 +293,13 @@
 	            android:layout_height="wrap_content"
 	            android:layout_weight="1"
 	            android:textSize="8sp" />
+	            
+	            <!--
+	            TO SET LIMIT OF NAME LENGTH AND ADD DOTS (ALREADY LIMITED THO):
+	    		android:ellipsize="end"
+	            android:maxEms="5" 
+	            android:maxLines="1"
+     			-->
 	        
 	        <TextView
 	            android:id="@+id/hitpointsplayer1"
@@ -544,25 +557,26 @@
      
      <TextView
    	    android:id="@+id/textviewtitlevictorydefeattext"
-   	    android:layout_width="211dp"
-   	    android:layout_height="136dp"
-   	    
+   	    android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
    	    
    	    android:layout_toRightOf="@+id/imageviewscroll3b5left"
-   	    android:layout_toLeftOf="@+id/imageviewscroll3b5right"  
-        
+   	    android:layout_toLeftOf="@+id/imageviewscroll3b5right"
               
-        android:layout_marginTop="12dp"       
+        android:layout_marginTop="22dp"       
    	    android:fadeScrollbars="false"   	    
    	    android:scrollbars="vertical"
    	    android:textColor="#FFFFFF"   	    
    	    android:gravity="center"
-   	    android:textSize="53sp"  	    
-   	    android:paddingBottom="24dp" />
+   	    android:textSize="53sp" />
      
      	<!--
+     	android:layout_marginTop="12dp"
+     	android:layout_width="211dp"
+   	    android:layout_height="136dp"
     	android:layout_alignLeft="@+id/imageviewcenterscroll"        
-        android:layout_toLeftOf="@+id/textviewhitpointsright"    
+        android:layout_toLeftOf="@+id/textviewhitpointsright"
+        android:paddingBottom="24dp" 
      	-->
     
 
@@ -576,9 +590,7 @@
         android:gravity="bottom|center"
         android:minHeight="65dp"
         android:textColor="#FFFFFF"
-        android:textSize="15sp" />    
-    
-    
+        android:textSize="15sp" />
     
     
     
@@ -984,8 +996,8 @@
    	<ImageView
         android:id="@+id/titleanimation"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="15dp" />   	
+        android:layout_height="match_parent" />  
+        <!-- android:layout_marginTop="15dp" -->	 	
    	
    	<ImageView
         android:id="@+id/sixsidedanimation"

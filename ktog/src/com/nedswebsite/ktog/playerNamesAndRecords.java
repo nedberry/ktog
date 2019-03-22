@@ -65,7 +65,7 @@ public class playerNamesAndRecords extends Activity {
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		
 		
-		
+		/*
 		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
 		
 		final TextView titletext = (TextView) findViewById(R.id.textviewtitlektogtext);	
@@ -73,9 +73,9 @@ public class playerNamesAndRecords extends Activity {
 		titletext.setVisibility(View.VISIBLE);				  		
 		//titletext.append("Player Records");
 		titletext.append("High Scores");
+		*/
 		
-		
-		ImageView swordsborder = (ImageView) findViewById(R.id.swordsborder);
+		ImageView recordstitle = (ImageView) findViewById(R.id.recordstitle);
 		
 		
 		getCount();

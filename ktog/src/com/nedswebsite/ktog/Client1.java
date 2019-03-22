@@ -121,7 +121,13 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
     	//multiplayer = "yes";
     	
     	
-    	AlertDialog.Builder alert = new AlertDialog.Builder(Client1.this, R.style.customalertdialog);
+    	getName();
+	}
+	
+	
+	public void getName() {
+		
+		AlertDialog.Builder alert = new AlertDialog.Builder(Client1.this, R.style.customalertdialog);
 
     	//alert.setTitle("Multiplayer");
     	//alert.setMessage("Enter Name");
@@ -161,81 +167,104 @@ public class Client1 extends Activity {//WAS ActionBarActivity (got "app stopped
     	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
     	public void onClick(DialogInterface dialog, int whichButton) {        		         		
     		
-    		//Toast.makeText(Client1.this,"MULTIPLAYER = " + multiplayer, Toast.LENGTH_SHORT).show();
-    		
-    		// NEED TO SEND TO ARRAY HERE:
-    		String playername = input.getText().toString();
-        	
-        	
-        	ArrayOfPlayers.player[0] = playername;
-        	
-        	
-        	insertToDatabase(playername);	        	
-        	
-        	// ARRAY ADAPTER WITH ICON STUFF:	        	
-        	
-        	final String[] items = new String[] {"Crossed Swords", "Stone Dead", "Custom"};
-    		final Integer[] avatars = new Integer[] {R.drawable.crossedswords2, R.drawable.stonedead2, R.drawable.computer};
-    		
-    		ListAdapter adapter = new ArrayAdapterWithIcon(Client1.this, items, avatars);
-    		
-    		ContextThemeWrapper wrapper = new ContextThemeWrapper(Client1.this, R.layout.avatar_adapter);
-    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper, R.style.customalertdialog);
-    		//builder.setIcon(R.drawable.computerhead);
-    		//builder.setTitle("Choose Your Avatar");
-    		
-    		Toast toast = Toast.makeText(Client1.this, "Choose An Avatar", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
-  			View view = toast.getView();
-  			view.setBackgroundResource(R.drawable.centerscroll3toast);
-  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+    		if (input.getText().toString().isEmpty()) {
+    			
+    			Toast toast = Toast.makeText(Client1.this, "Name cannot be blank.", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
+	  			View view = toast.getView();
+	  			view.setBackgroundResource(R.drawable.centerscroll3toast);
+	  			toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
 
-  			TextView text = (TextView) view.findViewById(android.R.id.message);
-  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-  			text.setTypeface(typeFace);
-  			text.setTextColor(Color.parseColor("#FFFFFF"));
-  			//text.setRotation(-45);
-  			text.setGravity(Gravity.CENTER);
-  			
-  			toast.show();
-  			
+	  			TextView text = (TextView) view.findViewById(android.R.id.message);
+	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  			text.setTypeface(typeFace);
+	  			text.setTextColor(Color.parseColor("#FFFFFF"));
+	  			//text.setRotation(-45);
+	  			text.setGravity(Gravity.CENTER);
+	  			
+	  			toast.show();
+    		     
+    			hideSystemUI();
+    			
+    			getName();
+    		}
     		
-    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
-    			public void onClick(DialogInterface dialog, int item) { 
-    								
-    				if (item == 0) {
-    					ArrayOfAvatars.avatar[0] = "crossedswords";
-    					
-    					goToJoin();
+    		else {
+    			
+	    		//Toast.makeText(Client1.this,"MULTIPLAYER = " + multiplayer, Toast.LENGTH_SHORT).show();
+	    		
+	    		// NEED TO SEND TO ARRAY HERE:
+	    		String playername = input.getText().toString();
+	        	
+	        	
+	        	ArrayOfPlayers.player[0] = playername;
+	        	
+	        	
+	        	insertToDatabase(playername);	        	
+	        	
+	        	// ARRAY ADAPTER WITH ICON STUFF:	        	
+	        	
+	        	final String[] items = new String[] {"Crossed Swords", "Stone Dead", "Custom"};
+	    		final Integer[] avatars = new Integer[] {R.drawable.crossedswords2, R.drawable.stonedead2, R.drawable.computer};
+	    		
+	    		ListAdapter adapter = new ArrayAdapterWithIcon(Client1.this, items, avatars);
+	    		
+	    		ContextThemeWrapper wrapper = new ContextThemeWrapper(Client1.this, R.layout.avatar_adapter);
+	    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper, R.style.customalertdialog);
+	    		//builder.setIcon(R.drawable.computerhead);
+	    		//builder.setTitle("Choose Your Avatar");
+	    		
+	    		Toast toast = Toast.makeText(Client1.this, "Choose An Avatar", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
+	  			View view = toast.getView();
+	  			view.setBackgroundResource(R.drawable.centerscroll3toast);
+	  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+	
+	  			TextView text = (TextView) view.findViewById(android.R.id.message);
+	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	  			text.setTypeface(typeFace);
+	  			text.setTextColor(Color.parseColor("#FFFFFF"));
+	  			//text.setRotation(-45);
+	  			text.setGravity(Gravity.CENTER);
+	  			
+	  			toast.show();
+	  			
+	    		
+	    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
+	    			public void onClick(DialogInterface dialog, int item) { 
+	    								
+	    				if (item == 0) {
+	    					ArrayOfAvatars.avatar[0] = "crossedswords";
+	    					
+	    					goToJoin();
+		    	        	
+		    	        	dialog.dismiss();
+		    	        	
+		    	        	hideSystemUI();
+	    				}
+	    				else if (item == 1) {
+	    					ArrayOfAvatars.avatar[0] = "stonedead";
+	    					
+	    					goToJoin();
+		    	        	
+		    	        	dialog.dismiss();
+		    	        	
+		    	        	hideSystemUI();
+	    				}
+	    				else if (item == 2) {
+	    					ArrayOfAvatars.avatar[0] = "custom";	    					
+	    					
+	    					openGallery();
+	    					
+	    					dialog.dismiss();
+	    					
+	    					hideSystemUI();
+	    				}    				
 	    	        	
-	    	        	dialog.dismiss();
-	    	        	
-	    	        	hideSystemUI();
-    				}
-    				else if (item == 1) {
-    					ArrayOfAvatars.avatar[0] = "stonedead";
-    					
-    					goToJoin();
-	    	        	
-	    	        	dialog.dismiss();
-	    	        	
-	    	        	hideSystemUI();
-    				}
-    				else if (item == 2) {
-    					ArrayOfAvatars.avatar[0] = "custom";	    					
-    					
-    					openGallery();
-    					
-    					dialog.dismiss();
-    					
-    					hideSystemUI();
-    				}    				
-    	        	
-    	        	//finish();
-    	  		}
-    		});	    		
-        	
-            builder.create().show();            
-        	
+	    	        	//finish();
+	    	  		}
+	    		});	    		
+	        	
+	            builder.create().show();
+    		}
     	  }
     	});
 

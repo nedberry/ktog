@@ -15,13 +15,12 @@
 
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->        
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+        <item name="android:windowNoTitle">true</item>
     </style>
     
     
-    
-    
-    
+    <!-- ABOVE ARE NOT USED???????? -->
 	
 	
 	
@@ -40,20 +39,18 @@
  
 		
  		<item name="android:gravity">center_horizontal</item>
- 
- 
+ 		
 	</style>
 	<!-- 
 	<item name="android:gravity">center_horizontal</item>
 	<item name="android:windowContentOverlay">@null</item>
- <item name="android:windowIsTranslucent">true</item>
+ 	<item name="android:windowIsTranslucent">true</item>
  
- <item name="android:windowNoTitle">true</item> 
+ 	<item name="android:windowNoTitle">true</item> 
 	<item name="android:windowMinWidthMajor">@android:dimen/dialog_min_width_major</item>
-		<item name="android:windowMinWidthMinor">@android:dimen/dialog_min_width_minor</item>
+	<item name="android:windowMinWidthMinor">@android:dimen/dialog_min_width_minor</item>
 	<item name="android:windowIsTranslucent">true</item>
 	 -->
-	
 	
  
 	<!--
@@ -61,5 +58,8 @@
 	    
 	</style>    
     -->
+    
+    
+    
     
 </resources>

@@ -211,6 +211,11 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	  			//text.setRotation(-45);
 	  			text.setGravity(Gravity.CENTER);
 	  			
+	  			/*	ONLY WAY I COUL FIND TO CENTER TEXT IN CUSTOM TOAST FOR S3(4.4.2), S4(4.4.2) & AMAZON(5.3):
+	  			 	if ((getResources().getDisplayMetrics().densityDpi==160) && (android.os.Build.VERSION.RELEASE.startsWith("5.3")))
+  					text.setPadding(165, 0, 0, 0);
+	  			 */
+	  			
 	  			toast.show();
 	        	
 	        	
@@ -247,167 +252,188 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	        	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	        	public void onClick(DialogInterface dialog, int whichButton) {        		         		
 	        		
-	        		//needtoclearui = true;//USE:builder.setOnDismissListener
+	        		if (input.getText().toString().isEmpty()) {
+	        			
+	        			Toast toast = Toast.makeText(MainActivity1.this, "Name cannot be blank.", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
+	    	  			View view = toast.getView();
+	    	  			view.setBackgroundResource(R.drawable.centerscroll3toast);
+	    	  			toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+
+	    	  			TextView text = (TextView) view.findViewById(android.R.id.message);
+	    	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	    	  			text.setTypeface(typeFace);
+	    	  			text.setTextColor(Color.parseColor("#FFFFFF"));
+	    	  			//text.setRotation(-45);
+	    	  			text.setGravity(Gravity.CENTER);
+	    	  			
+	    	  			toast.show();
+	        		     
+	        			hideSystemUI();
+	        		}
 	        		
-	        		// NEED TO SEND TO ARRAY HERE:
-	        		String playername = input.getText().toString();
-	            	String playercomputer = "Computer".toString();
-	            	
-	            	ArrayOfPlayers.player[0] = playername;
-	            	ArrayOfPlayers.player[1] = playercomputer;
-	            	
-	            	//savePlayerName();
-	            	
-	            	insertToDatabase(playername);	        	
-		        	
-		        	// ARRAY ADAPTER WITH ICON STUFF:	        	
-		        	
-		        	final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead", "Custom"};
-		    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2, R.drawable.computer};
-		    		
-		    		ListAdapter adapter = new ArrayAdapterWithIcon(MainActivity1.this, items, avatars);
-		    		
-		    		
-		    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
-		    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper, R.style.customalertdialog);
-		    		//builder.setIcon(R.drawable.computerhead);
-		    		//builder.setTitle("Choose Your Avatar");
-		    		//builder.setMessage("Choose Your Avatar");
-		    		
-		    		//Toast.makeText(MainActivity1.this,"Choose Your Avatar", Toast.LENGTH_SHORT).show();
-		    		
-		    		Toast toast = Toast.makeText(MainActivity1.this, "Choose An Avatar", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
-		  			View view = toast.getView();
-		  			view.setBackgroundResource(R.drawable.centerscroll3toast);
-		  			//view.bringToFront();
-		  			
-		  			//view.setRotation(45);//ALREADY ROTATED IN GIMP
-		  			//toast.setGravity(Gravity.TOP, whichButton, whichButton);
-		  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
-		  			
-		  			//toast.setGravity(Gravity.TOP|Gravity.RIGHT, 450, 300);
-		  			//toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL|Gravity.CENTER_VERTICAL, 0, 0);
+	        		else {
+	        		     
+	        			//needtoclearui = true;//USE:builder.setOnDismissListener
+		        		
+		        		// NEED TO SEND TO ARRAY HERE:
+		        		String playername = input.getText().toString();
+		            	String playercomputer = "Computer".toString();
+		            	
+		            	ArrayOfPlayers.player[0] = playername;
+		            	ArrayOfPlayers.player[1] = playercomputer;
+		            	
+		            	//savePlayerName();
+		            	
+		            	insertToDatabase(playername);	        	
+			        	
+			        	// ARRAY ADAPTER WITH ICON STUFF:	        	
+			        	
+			        	final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead", "Custom"};
+			    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2, R.drawable.computer};
+			    		
+			    		ListAdapter adapter = new ArrayAdapterWithIcon(MainActivity1.this, items, avatars);
+			    		
+			    		
+			    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
+			    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper, R.style.customalertdialog);
+			    		//builder.setIcon(R.drawable.computerhead);
+			    		//builder.setTitle("Choose Your Avatar");
+			    		//builder.setMessage("Choose Your Avatar");
+			    		
+			    		//Toast.makeText(MainActivity1.this,"Choose Your Avatar", Toast.LENGTH_SHORT).show();
+			    		
+			    		Toast toast = Toast.makeText(MainActivity1.this, "Choose An Avatar", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
+			  			View view = toast.getView();
+			  			view.setBackgroundResource(R.drawable.centerscroll3toast);
+			  			//view.bringToFront();
+			  			
+			  			//view.setRotation(45);//ALREADY ROTATED IN GIMP
+			  			//toast.setGravity(Gravity.TOP, whichButton, whichButton);
+			  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+			  			
+			  			//toast.setGravity(Gravity.TOP|Gravity.RIGHT, 450, 300);
+			  			//toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL|Gravity.CENTER_VERTICAL, 0, 0);
 
-		  			TextView text = (TextView) view.findViewById(android.R.id.message);
-		  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-		  			text.setTypeface(typeFace);
-		  			//text.setTextSize(40);
-		  			text.setTextColor(Color.parseColor("#FFFFFF"));
-		  			
-		  			//text.setRotation(-45);
-		  			//toast.setGravity(Gravity.TOP|Gravity.RIGHT, 0, 0);
-		  			//text.setGravity(Gravity.CENTER|Gravity.CENTER_HORIZONTAL|Gravity.CENTER_VERTICAL);
-		  			text.setGravity(Gravity.CENTER);
-		  			
-		  			toast.show();
-		  			
-		    		/*IN CASE ABOVE STOPS WORKING:
-		    		LayoutInflater inflater = getLayoutInflater();
+			  			TextView text = (TextView) view.findViewById(android.R.id.message);
+			  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+			  			text.setTypeface(typeFace);
+			  			//text.setTextSize(40);
+			  			text.setTextColor(Color.parseColor("#FFFFFF"));
+			  			
+			  			//text.setRotation(-45);
+			  			//toast.setGravity(Gravity.TOP|Gravity.RIGHT, 0, 0);
+			  			//text.setGravity(Gravity.CENTER|Gravity.CENTER_HORIZONTAL|Gravity.CENTER_VERTICAL);
+			  			text.setGravity(Gravity.CENTER);
+			  			
+			  			toast.show();
+			  			
+			    		/*IN CASE ABOVE STOPS WORKING:
+			    		LayoutInflater inflater = getLayoutInflater();
 
-		    		View layout = inflater.inflate(R.layout.custom_toast,
-		    		(ViewGroup) findViewById(R.id.custom_toast_layout_id));
+			    		View layout = inflater.inflate(R.layout.custom_toast,
+			    		(ViewGroup) findViewById(R.id.custom_toast_layout_id));
 
-		    		// set a message
-		    		TextView text = (TextView) layout.findViewById(R.id.text);
-		    		text.setText("Choose An Avatar");
+			    		// set a message
+			    		TextView text = (TextView) layout.findViewById(R.id.text);
+			    		text.setText("Choose An Avatar");
 
-		    		// Toast...
-		    		Toast toast = new Toast(getApplicationContext());
-		    		toast.setGravity(Gravity.TOP_VERTICAL, 0, 0);
-		    		toast.setDuration(Toast.LENGTH_SHORT);
-		    		toast.setView(layout);
-		    		toast.show();
-		    		
-		    		
-		    		(in res/layout/custom_toast.xml)
-		    		<?xml version="1.0" encoding="utf-8"?>
-					<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-				    android:id="@+id/custom_toast_layout_id"
-				    android:layout_width="fill_parent"
-				    android:layout_height="fill_parent"
-				    android:background="#FFF"
-				    android:orientation="horizontal"
-				    android:padding="5dp" >
+			    		// Toast...
+			    		Toast toast = new Toast(getApplicationContext());
+			    		toast.setGravity(Gravity.TOP_VERTICAL, 0, 0);
+			    		toast.setDuration(Toast.LENGTH_SHORT);
+			    		toast.setView(layout);
+			    		toast.show();
+			    		
+			    		
+			    		(in res/layout/custom_toast.xml)
+			    		<?xml version="1.0" encoding="utf-8"?>
+						<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+					    android:id="@+id/custom_toast_layout_id"
+					    android:layout_width="fill_parent"
+					    android:layout_height="fill_parent"
+					    android:background="#FFF"
+					    android:orientation="horizontal"
+					    android:padding="5dp" >
 
-    				<TextView
-			        android:id="@+id/text"
-			        android:layout_width="wrap_content"
-			        android:layout_height="fill_parent"
-			        android:textColor="#FFF" />
+	    				<TextView
+				        android:id="@+id/text"
+				        android:layout_width="wrap_content"
+				        android:layout_height="fill_parent"
+				        android:textColor="#FFF" />
 
-					</LinearLayout>
-		  			*/
-		  			
-		    		
-		    		builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-		    	        @Override
-		    	        public void onDismiss(DialogInterface dialog) {
-		    	        	
-		    	        	hideSystemUI();
-		    	        }
-		    	    });
-		    		
-		    		
-		    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
-		    			public void onClick(DialogInterface dialog, int item) { 
-		    								
-		    				if (item == 0) {
-		    					ArrayOfAvatars.avatar[0] = "computer";
-		    					
-		    					stopService(svc);	    				
-			    				
-			    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
-			    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-			    				startActivity(intent);
-			    	        	
-			    	        	dialog.dismiss();
+						</LinearLayout>
+			  			*/
+			  			
+			    		
+			    		builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+			    	        @Override
+			    	        public void onDismiss(DialogInterface dialog) {
 			    	        	
 			    	        	hideSystemUI();
-		    				}
-		    				else if (item == 1) {
-		    					ArrayOfAvatars.avatar[0] = "crossedswords";
-		    					
-		    					stopService(svc);	    				
-			    				
-			    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
-			    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-			    				startActivity(intent);
+			    	        }
+			    	    });
+			    		
+			    		
+			    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
+			    			public void onClick(DialogInterface dialog, int item) { 
+			    								
+			    				if (item == 0) {
+			    					ArrayOfAvatars.avatar[0] = "computer";
+			    					
+			    					stopService(svc);	    				
+				    				
+				    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+				    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+				    				startActivity(intent);
+				    	        	
+				    	        	dialog.dismiss();
+				    	        	
+				    	        	hideSystemUI();
+			    				}
+			    				else if (item == 1) {
+			    					ArrayOfAvatars.avatar[0] = "crossedswords";
+			    					
+			    					stopService(svc);	    				
+				    				
+				    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+				    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+				    				startActivity(intent);
+				    	        	
+				    	        	dialog.dismiss();
+				    	        	
+				    	        	hideSystemUI();
+			    				}
+			    				else if (item == 2) {
+			    					ArrayOfAvatars.avatar[0] = "stonedead";
+			    					
+			    					stopService(svc);	    				
+				    				
+				    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+				    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+				    				startActivity(intent);
+				    	        	
+				    	        	dialog.dismiss();
+				    	        	
+				    	        	hideSystemUI();
+			    				}
+			    				else if (item == 3) {
+			    					ArrayOfAvatars.avatar[0] = "custom";
+			    					
+			    					stopService(svc);
+			    					
+			    					openGallery();
+			    					
+			    					dialog.dismiss();
+			    					
+			    					hideSystemUI();
+			    				}    				
 			    	        	
-			    	        	dialog.dismiss();
-			    	        	
-			    	        	hideSystemUI();
-		    				}
-		    				else if (item == 2) {
-		    					ArrayOfAvatars.avatar[0] = "stonedead";
-		    					
-		    					stopService(svc);	    				
-			    				
-			    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
-			    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-			    				startActivity(intent);
-			    	        	
-			    	        	dialog.dismiss();
-			    	        	
-			    	        	hideSystemUI();
-		    				}
-		    				else if (item == 3) {
-		    					ArrayOfAvatars.avatar[0] = "custom";
-		    					
-		    					stopService(svc);
-		    					
-		    					openGallery();
-		    					
-		    					dialog.dismiss();
-		    					
-		    					hideSystemUI();
-		    				}    				
-		    	        	
-		    	        	//finish();
-	        	  		}
-		    		});	    		
-		        	
-		            builder.create().show();            
-		        	
+			    	        	//finish();
+		        	  		}
+			    		});	    		
+			        	
+			            builder.create().show();
+	        		}
 	        	  }
 	        	});
 	
@@ -495,117 +521,138 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	        	
 	        	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	        	public void onClick(DialogInterface dialog, int whichButton) {        		         		
-	        		  		
-	        		// NEED TO SEND TO ARRAY HERE:
-	        		String playername = input.getText().toString();
-	            	//String playercomputer = "Computer".toString();
-	            	
-	            	ArrayOfPlayers.player[5] = playername;
-	            	//ArrayOfPlayers.player[1] = playercomputer;
-	            	
-	            	//savePlayerName();
-	            	
-	            	insertToDatabase(playername);	        	
-		        	
-		        	// ARRAY ADAPTER WITH ICON STUFF:	        	
-		        	
-		        	final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead", "Custom"};
-		    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2, R.drawable.computer};
-		    		
-		    		ListAdapter adapter = new ArrayAdapterWithIcon(MainActivity1.this, items, avatars);
-		    		
-		    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
-		    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper, R.style.customalertdialog);
-		    		//builder.setIcon(R.drawable.computerhead);
-		    		
-		    		//builder.setTitle("Choose Your Avatar");
-		    		//Toast.makeText(MainActivity1.this,"Choose Your Avatar", Toast.LENGTH_SHORT).show();
-		    		
-		    		
-		    		Toast toast = Toast.makeText(MainActivity1.this, "Choose An Avatar", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
-		  			View view = toast.getView();
-		  			view.setBackgroundResource(R.drawable.centerscroll3toast);
-		  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+	        		
+	        		if (input.getText().toString().isEmpty()) {
+	        			
+	        			Toast toast = Toast.makeText(MainActivity1.this, "Name cannot be blank.", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
+	    	  			View view = toast.getView();
+	    	  			view.setBackgroundResource(R.drawable.centerscroll3toast);
+	    	  			toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
 
-		  			TextView text = (TextView) view.findViewById(android.R.id.message);
-		  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-		  			text.setTypeface(typeFace);
-		  			text.setTextColor(Color.parseColor("#FFFFFF"));
-		  			//text.setRotation(-45);
-		  			text.setGravity(Gravity.CENTER);
-		  			
-		  			toast.show();
-		    		
-		    		
-		    		builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-		    	        @Override
-		    	        public void onDismiss(DialogInterface dialog) {
-		    	        	
-		    	        	hideSystemUI();
-		    	        }
-		    	    });
-		    		
-		    		/*
-		    		builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
-    					@Override
-    					public void onCancel(DialogInterface dialog) {		  							
-    						
-    						//IF NOTHING DOESN'T WORK, TRY:
-    						
-    						stopService(svc);
-    						
-    						Intent i = new Intent(MainActivity1.this, MainActivity1.class);
-    			        	MainActivity1.this.startActivity(i);
-    					}
-    				});
-		    		*/
-		    		
-		    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
-		    			public void onClick(DialogInterface dialog, int item) { 
-		    								
-		    				if (item == 0) {
-		    					ArrayOfAvatars.avatar[5] = "computer";
-		    					
-		    					goToHostOrJoin();
-			    	        	
-			    	        	dialog.dismiss();
-			    	        	
-			    	        	hideSystemUI();
-		    				}
-		    				else if (item == 1) {
-		    					ArrayOfAvatars.avatar[5] = "crossedswords";
-		    					
-		    					goToHostOrJoin();
-			    	        	
-			    	        	dialog.dismiss();
-			    	        	
-			    	        	hideSystemUI();
-		    				}
-		    				else if (item == 2) {
-		    					ArrayOfAvatars.avatar[5] = "stonedead";
-		    					
-		    					goToHostOrJoin();
-			    	        	
-			    	        	dialog.dismiss();
+	    	  			TextView text = (TextView) view.findViewById(android.R.id.message);
+	    	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+	    	  			text.setTypeface(typeFace);
+	    	  			text.setTextColor(Color.parseColor("#FFFFFF"));
+	    	  			//text.setRotation(-45);
+	    	  			text.setGravity(Gravity.CENTER);
+	    	  			
+	    	  			toast.show();
+	        		     
+	        			hideSystemUI();
+	        		}
+	        		
+	        		else {
+	        			
+		        		// NEED TO SEND TO ARRAY HERE:
+		        		String playername = input.getText().toString();
+		            	//String playercomputer = "Computer".toString();
+		            	
+		            	ArrayOfPlayers.player[5] = playername;
+		            	//ArrayOfPlayers.player[1] = playercomputer;
+		            	
+		            	//savePlayerName();
+		            	
+		            	insertToDatabase(playername);	        	
+			        	
+			        	// ARRAY ADAPTER WITH ICON STUFF:	        	
+			        	
+			        	final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead", "Custom"};
+			    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2, R.drawable.computer};
+			    		
+			    		ListAdapter adapter = new ArrayAdapterWithIcon(MainActivity1.this, items, avatars);
+			    		
+			    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
+			    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper, R.style.customalertdialog);
+			    		//builder.setIcon(R.drawable.computerhead);
+			    		
+			    		//builder.setTitle("Choose Your Avatar");
+			    		//Toast.makeText(MainActivity1.this,"Choose Your Avatar", Toast.LENGTH_SHORT).show();
+			    		
+			    		
+			    		Toast toast = Toast.makeText(MainActivity1.this, "Choose An Avatar", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
+			  			View view = toast.getView();
+			  			view.setBackgroundResource(R.drawable.centerscroll3toast);
+			  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+	
+			  			TextView text = (TextView) view.findViewById(android.R.id.message);
+			  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+			  			text.setTypeface(typeFace);
+			  			text.setTextColor(Color.parseColor("#FFFFFF"));
+			  			//text.setRotation(-45);
+			  			text.setGravity(Gravity.CENTER);
+			  			
+			  			toast.show();
+			    		
+			    		
+			    		builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+			    	        @Override
+			    	        public void onDismiss(DialogInterface dialog) {
 			    	        	
 			    	        	hideSystemUI();
-		    				}
-		    				else if (item == 3) {
-		    					ArrayOfAvatars.avatar[5] = "custom";	    					
-		    					
-		    					openGallery();
-		    					
-		    					dialog.dismiss();
-		    					
-		    					hideSystemUI();
-		    				}    				
-		    	        	
-		    	        	//finish();
-	        	  		}
-		    		});	    		
-		        	
-		            builder.create().show();            
-		        	
+			    	        }
+			    	    });
+			    		
+			    		/*
+			    		builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+	    					@Override
+	    					public void onCancel(DialogInterface dialog) {		  							
+	    						
+	    						//IF NOTHING DOESN'T WORK, TRY:
+	    						
+	    						stopService(svc);
+	    						
+	    						Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+	    			        	MainActivity1.this.startActivity(i);
+	    					}
+	    				});
+			    		*/
+			    		
+			    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
+			    			public void onClick(DialogInterface dialog, int item) { 
+			    								
+			    				if (item == 0) {
+			    					ArrayOfAvatars.avatar[5] = "computer";
+			    					
+			    					goToHostOrJoin();
+				    	        	
+				    	        	dialog.dismiss();
+				    	        	
+				    	        	hideSystemUI();
+			    				}
+			    				else if (item == 1) {
+			    					ArrayOfAvatars.avatar[5] = "crossedswords";
+			    					
+			    					goToHostOrJoin();
+				    	        	
+				    	        	dialog.dismiss();
+				    	        	
+				    	        	hideSystemUI();
+			    				}
+			    				else if (item == 2) {
+			    					ArrayOfAvatars.avatar[5] = "stonedead";
+			    					
+			    					goToHostOrJoin();
+				    	        	
+				    	        	dialog.dismiss();
+				    	        	
+				    	        	hideSystemUI();
+			    				}
+			    				else if (item == 3) {
+			    					ArrayOfAvatars.avatar[5] = "custom";	    					
+			    					
+			    					openGallery();
+			    					
+			    					dialog.dismiss();
+			    					
+			    					hideSystemUI();
+			    				}    				
+			    	        	
+			    	        	//finish();
+		        	  		}
+			    		});	    		
+			        	
+			            builder.create().show();            
+	        		}
 	        	  }
 	        	});
 	        	
@@ -616,8 +663,7 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	        	  }
 	        	});
 	        	
-	        	alert.show();        	
-            
+	        	alert.show(); 
 			}
 		});
 		
@@ -662,7 +708,7 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	        		Toast toast = Toast.makeText(MainActivity1.this, "No Records", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
 		  			View view = toast.getView();
 		  			view.setBackgroundResource(R.drawable.centerscroll3toast);
-		  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+		  			toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
 
 		  			TextView text = (TextView) view.findViewById(android.R.id.message);
 		  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
@@ -776,7 +822,7 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	        		Toast toast = Toast.makeText(MainActivity1.this, "No Guys", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
 		  			View view = toast.getView();
 		  			view.setBackgroundResource(R.drawable.centerscroll3toast);
-		  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+		  			toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
 
 		  			TextView text = (TextView) view.findViewById(android.R.id.message);
 		  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
@@ -896,6 +942,7 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	    		                        	if (item == i) {
 	    		                        		
 	    		                        		buttonSound.start();
+	    		                        		
 	    		                        		
 	    		                        		//ArrayOfPlayers.player[5] = name[i];
 	    		                        		tempName = name[i];
@@ -1220,9 +1267,17 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	    		                	            
 	    		                	            
 	    		                	            WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-
 	    		                	            lp.copyFrom(alert.getWindow().getAttributes());
-	    		                	            lp.width = 1050;	            
+	    		                	            
+	    		                	            if (getResources().getDisplayMetrics().densityDpi==160) {
+	    		                	            	
+	    		                	            	lp.width = 525;
+	    		                	            }
+	    		                	            else {
+	    		                	            	
+	    		                	            	lp.width = 1050;
+	    		                	            }
+	    		                	            
 	    		                	            alert.getWindow().setAttributes(lp);
 	    		                	            
 	    		                	            
@@ -1240,9 +1295,17 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	    	            
 	    	            
 	    	            WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-
 	    	            lp.copyFrom(alert.getWindow().getAttributes());
-	    	            lp.width = 1050;	            
+	    	            
+	    	            if (getResources().getDisplayMetrics().densityDpi==160) {
+	    	            	
+	    	            	lp.width = 525;
+	    	            }
+	    	            else {
+	    	            	
+	    	            	lp.width = 1050;
+	    	            }
+	    	            
 	    	            alert.getWindow().setAttributes(lp);
 	    	            
 	    	            
@@ -1979,8 +2042,10 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 		
 		final Intent svc=new Intent(this, Badonk2SoundService.class);
 		
-		final String[] items = new String[] {"Host", "Join", "Cancel"};
-		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.computer, R.drawable.computer};
+		//final String[] items = new String[] {"Host", "Join", "Cancel"};
+		final String[] items = new String[] {"Host", "Cancel"};
+		//final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.computer, R.drawable.computer};
+		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.computer};
 		
 		ListAdapter adapter = new ArrayAdapterWithIcon(MainActivity1.this, items, avatars);
 		
@@ -2039,6 +2104,7 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
     	        	
     	        	hideSystemUI();
 				}
+				/*
 				else if (item == 1) {    					
 					
 					stopService(svc);	    				
@@ -2073,7 +2139,14 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
     	        	
     	        	hideSystemUI();
 				}    				    				
-	        	
+	        	*/
+				else if (item == 1) {
+					
+					dialog.dismiss();
+    	        	
+    	        	hideSystemUI();
+				}
+				
 	        	//finish();
 	  		}
 		});	    		
@@ -2742,116 +2815,137 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	
 	            	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	            	public void onClick(DialogInterface dialog, int whichButton) {            		         		
-	            		  		
-	            		// NEED TO SEND TO ARRAY HERE:
-	            		String playername = input.getText().toString();
-	                	String playercomputer = "Computer".toString();
-	                	
-	                	ArrayOfPlayers.player[0] = playername;
-	                	ArrayOfPlayers.player[1] = playercomputer;
-	                	
-	                	//savePlayerName();
-	                	
-	                	insertToDatabase(playername);    	        	
-	    	        	
-	    	        	// ARRAY ADAPTER WITH ICON STUFF:    	        	
-	    	        	
-	                	final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead", "Custom"};
-	    	    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2, R.drawable.computer};
-	    	    		
-	    	    		ListAdapter adapter = new ArrayAdapterWithIcon(MainActivity1.this, items, avatars);
-	    	    		
-	    	    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
-	    	    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper, R.style.customalertdialog);
-	    	    		//builder.setIcon(R.drawable.computerhead);
-	    	    		//builder.setTitle("Choose Your Avatar");
-	    	    		//Toast.makeText(MainActivity1.this,"Choose Your Avatar", Toast.LENGTH_SHORT).show();
-	    	    		
-	    	    		
-	    	    		Toast toast = Toast.makeText(MainActivity1.this, "Choose An Avatar", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
-			  			View view = toast.getView();
-			  			view.setBackgroundResource(R.drawable.centerscroll3toast);
-			  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+	            		
+	            		if (input.getText().toString().isEmpty()) {
+		        			
+		        			Toast toast = Toast.makeText(MainActivity1.this, "Name cannot be blank.", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
+		    	  			View view = toast.getView();
+		    	  			view.setBackgroundResource(R.drawable.centerscroll3toast);
+		    	  			toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
 
-			  			TextView text = (TextView) view.findViewById(android.R.id.message);
-			  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-			  			text.setTypeface(typeFace);
-			  			text.setTextColor(Color.parseColor("#FFFFFF"));
-			  			//text.setRotation(-45);
-			  			text.setGravity(Gravity.CENTER);
-			  			
-			  			toast.show();	    	    		
-	    	    		
-	    	    		
-	    	    		builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-			    	        @Override
-			    	        public void onDismiss(DialogInterface dialog) {
-			    	        	
-			    	        	hideSystemUI();
-			    	        }
-			    	    });
-	    	    		
-	    	    		
-	    	    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
-	    	    			public void onClick(DialogInterface dialog, int item) { 
-	    	    								
-	    	    				if (item == 0) {
-	    	    					ArrayOfAvatars.avatar[0] = "computer";
-	    	    					
-	    	    					stopService(svc);
-	        	    				
-	        	    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
-	        	    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-	        	    				startActivity(intent);
-	        	                	
-	        	                	dialog.dismiss();
-	        	                	
-	        	                	hideSystemUI();
-	    	    				}
-	    	    				else if (item == 1) {
-	    	    					ArrayOfAvatars.avatar[0] = "crossedswords";
-	    	    					
-	    	    					stopService(svc);
-	        	    				
-	        	    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
-	        	    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-	        	    				startActivity(intent);
-	        	                	
-	        	                	dialog.dismiss();
-	        	                	
-	        	                	hideSystemUI();
-	    	    				}
-	    	    				else if (item == 2) {
-	    	    					ArrayOfAvatars.avatar[0] = "stonedead";
-	    	    					
-	    	    					stopService(svc);
-	        	    				
-	        	    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
-	        	    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-	        	    				startActivity(intent);
-	        	                	
-	        	                	dialog.dismiss();
-	        	                	
-	        	                	hideSystemUI();
-	    	    				}
-	    	    				else if (item == 3) {
-	    	    					ArrayOfAvatars.avatar[0] = "custom";
-	    	    					
-	    	    					stopService(svc);
-	    	    					
-	    	    					openGallery();
-	    	    					
-	    	    					dialog.dismiss();
-	    	    					
-	    	    					hideSystemUI();
-	    	    				}   	    				
-	    	                	
-	    	                	//finish();
-	            	  		}
-	    	    		});	    		
-	    	        	
-	    	            builder.create().show();    	            
-	    	        	
+		    	  			TextView text = (TextView) view.findViewById(android.R.id.message);
+		    	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+		    	  			text.setTypeface(typeFace);
+		    	  			text.setTextColor(Color.parseColor("#FFFFFF"));
+		    	  			//text.setRotation(-45);
+		    	  			text.setGravity(Gravity.CENTER);
+		    	  			
+		    	  			toast.show();
+		        		     
+		        			hideSystemUI();
+		        		}
+		        		
+		        		else {
+	            		
+		            		// NEED TO SEND TO ARRAY HERE:
+		            		String playername = input.getText().toString();
+		                	String playercomputer = "Computer".toString();
+		                	
+		                	ArrayOfPlayers.player[0] = playername;
+		                	ArrayOfPlayers.player[1] = playercomputer;
+		                	
+		                	//savePlayerName();
+		                	
+		                	insertToDatabase(playername);    	        	
+		    	        	
+		    	        	// ARRAY ADAPTER WITH ICON STUFF:    	        	
+		    	        	
+		                	final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead", "Custom"};
+		    	    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2, R.drawable.computer};
+		    	    		
+		    	    		ListAdapter adapter = new ArrayAdapterWithIcon(MainActivity1.this, items, avatars);
+		    	    		
+		    	    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
+		    	    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper, R.style.customalertdialog);
+		    	    		//builder.setIcon(R.drawable.computerhead);
+		    	    		//builder.setTitle("Choose Your Avatar");
+		    	    		//Toast.makeText(MainActivity1.this,"Choose Your Avatar", Toast.LENGTH_SHORT).show();
+		    	    		
+		    	    		
+		    	    		Toast toast = Toast.makeText(MainActivity1.this, "Choose An Avatar", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
+				  			View view = toast.getView();
+				  			view.setBackgroundResource(R.drawable.centerscroll3toast);
+				  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+	
+				  			TextView text = (TextView) view.findViewById(android.R.id.message);
+				  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+				  			text.setTypeface(typeFace);
+				  			text.setTextColor(Color.parseColor("#FFFFFF"));
+				  			//text.setRotation(-45);
+				  			text.setGravity(Gravity.CENTER);
+				  			
+				  			toast.show();	    	    		
+		    	    		
+		    	    		
+		    	    		builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+				    	        @Override
+				    	        public void onDismiss(DialogInterface dialog) {
+				    	        	
+				    	        	hideSystemUI();
+				    	        }
+				    	    });
+		    	    		
+		    	    		
+		    	    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
+		    	    			public void onClick(DialogInterface dialog, int item) { 
+		    	    								
+		    	    				if (item == 0) {
+		    	    					ArrayOfAvatars.avatar[0] = "computer";
+		    	    					
+		    	    					stopService(svc);
+		        	    				
+		        	    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+		        	    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+		        	    				startActivity(intent);
+		        	                	
+		        	                	dialog.dismiss();
+		        	                	
+		        	                	hideSystemUI();
+		    	    				}
+		    	    				else if (item == 1) {
+		    	    					ArrayOfAvatars.avatar[0] = "crossedswords";
+		    	    					
+		    	    					stopService(svc);
+		        	    				
+		        	    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+		        	    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+		        	    				startActivity(intent);
+		        	                	
+		        	                	dialog.dismiss();
+		        	                	
+		        	                	hideSystemUI();
+		    	    				}
+		    	    				else if (item == 2) {
+		    	    					ArrayOfAvatars.avatar[0] = "stonedead";
+		    	    					
+		    	    					stopService(svc);
+		        	    				
+		        	    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+		        	    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+		        	    				startActivity(intent);
+		        	                	
+		        	                	dialog.dismiss();
+		        	                	
+		        	                	hideSystemUI();
+		    	    				}
+		    	    				else if (item == 3) {
+		    	    					ArrayOfAvatars.avatar[0] = "custom";
+		    	    					
+		    	    					stopService(svc);
+		    	    					
+		    	    					openGallery();
+		    	    					
+		    	    					dialog.dismiss();
+		    	    					
+		    	    					hideSystemUI();
+		    	    				}   	    				
+		    	                	
+		    	                	//finish();
+		            	  		}
+		    	    		});	    		
+		    	        	
+		    	            builder.create().show();
+		        		}
 	            	  }
 	            	});
 	
@@ -2862,8 +2956,7 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	            	  }
 	            	});
 	            	
-	            	alert.show();           	
-            	
+	            	alert.show();
     			}
     		});		
     		
@@ -2940,117 +3033,138 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	            	
 	            	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	            	public void onClick(DialogInterface dialog, int whichButton) {        		         		
-	            		  		
-	            		// NEED TO SEND TO ARRAY HERE:
-	            		String playername = input.getText().toString();
-	                	//String playercomputer = "Computer".toString();
-	                	
-	                	ArrayOfPlayers.player[5] = playername;
-	                	//ArrayOfPlayers.player[1] = playercomputer;
-	                	
-	                	//savePlayerName();
-	                	
-	                	insertToDatabase(playername);	        	
-	    	        	
-	    	        	// ARRAY ADAPTER WITH ICON STUFF:	        	
-	    	        	
-	    	        	final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead", "Custom"};
-	    	    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2, R.drawable.computer};
-	    	    		
-	    	    		ListAdapter adapter = new ArrayAdapterWithIcon(MainActivity1.this, items, avatars);
-	    	    		
-	    	    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
-	    	    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper, R.style.customalertdialog);
-	    	    		//builder.setIcon(R.drawable.computerhead);
-	    	    		
-	    	    		//builder.setTitle("Choose Your Avatar");
-	    	    		//Toast.makeText(MainActivity1.this,"Choose Your Avatar", Toast.LENGTH_SHORT).show();
-	    	    		
-	    	    		
-	    	    		Toast toast = Toast.makeText(MainActivity1.this, "Choose An Avatar", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
-			  			View view = toast.getView();
-			  			view.setBackgroundResource(R.drawable.centerscroll3toast);
-			  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+	            		
+	            		if (input.getText().toString().isEmpty()) {
+		        			
+		        			Toast toast = Toast.makeText(MainActivity1.this, "Name cannot be blank.", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
+		    	  			View view = toast.getView();
+		    	  			view.setBackgroundResource(R.drawable.centerscroll3toast);
+		    	  			toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
 
-			  			TextView text = (TextView) view.findViewById(android.R.id.message);
-			  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-			  			text.setTypeface(typeFace);
-			  			text.setTextColor(Color.parseColor("#FFFFFF"));
-			  			//text.setRotation(-45);
-			  			text.setGravity(Gravity.CENTER);
-			  			
-			  			toast.show();	    	    		
-	    	    		
-	    	    		
-	    	    		builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-			    	        @Override
-			    	        public void onDismiss(DialogInterface dialog) {
-			    	        	
-			    	        	hideSystemUI();
-			    	        }
-			    	    });
-	    	    		
-	    	    		/*
-	    	    		builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
-	    					@Override
-	    					public void onCancel(DialogInterface dialog) {		  							
-	    						
-	    						//IF NOTHING DOESN'T WORK, TRY:
-	    						
-	    						stopService(svc);
-	    						
-	    						Intent i = new Intent(MainActivity1.this, MainActivity1.class);
-	    			        	MainActivity1.this.startActivity(i);
-	    					}
-	    				});
-	    	    		*/
-	    	    		
-	    	    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
-	    	    			public void onClick(DialogInterface dialog, int item) { 
-	    	    								
-	    	    				if (item == 0) {
-	    	    					ArrayOfAvatars.avatar[5] = "computer";
-	    	    					
-	    	    					goToHostOrJoin();
-	    		    	        	
-	    		    	        	dialog.dismiss();
-	    		    	        	
-	    		    	        	hideSystemUI();
-	    	    				}
-	    	    				else if (item == 1) {
-	    	    					ArrayOfAvatars.avatar[5] = "crossedswords";
-	    	    					
-	    	    					goToHostOrJoin();
-	    		    	        	
-	    		    	        	dialog.dismiss();
-	    		    	        	
-	    		    	        	hideSystemUI();
-	    	    				}
-	    	    				else if (item == 2) {
-	    	    					ArrayOfAvatars.avatar[5] = "stonedead";
-	    	    					
-	    	    					goToHostOrJoin();
-	    		    	        	
-	    		    	        	dialog.dismiss();
-	    		    	        	
-	    		    	        	hideSystemUI();
-	    	    				}
-	    	    				else if (item == 3) {
-	    	    					ArrayOfAvatars.avatar[5] = "custom";	    					
-	    	    					
-	    	    					openGallery();
-	    	    					
-	    	    					dialog.dismiss();
-	    	    					
-	    	    					hideSystemUI();
-	    	    				}    				
-	    	    	        	
-	    	    	        	//finish();
-	            	  		}
-	    	    		});	    		
-	    	        	
-	    	            builder.create().show();            
-	    	        	
+		    	  			TextView text = (TextView) view.findViewById(android.R.id.message);
+		    	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+		    	  			text.setTypeface(typeFace);
+		    	  			text.setTextColor(Color.parseColor("#FFFFFF"));
+		    	  			//text.setRotation(-45);
+		    	  			text.setGravity(Gravity.CENTER);
+		    	  			
+		    	  			toast.show();
+		        		     
+		        			hideSystemUI();
+		        		}
+		        		
+		        		else {
+	            		
+		            		// NEED TO SEND TO ARRAY HERE:
+		            		String playername = input.getText().toString();
+		                	//String playercomputer = "Computer".toString();
+		                	
+		                	ArrayOfPlayers.player[5] = playername;
+		                	//ArrayOfPlayers.player[1] = playercomputer;
+		                	
+		                	//savePlayerName();
+		                	
+		                	insertToDatabase(playername);	        	
+		    	        	
+		    	        	// ARRAY ADAPTER WITH ICON STUFF:	        	
+		    	        	
+		    	        	final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead", "Custom"};
+		    	    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2, R.drawable.computer};
+		    	    		
+		    	    		ListAdapter adapter = new ArrayAdapterWithIcon(MainActivity1.this, items, avatars);
+		    	    		
+		    	    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
+		    	    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper, R.style.customalertdialog);
+		    	    		//builder.setIcon(R.drawable.computerhead);
+		    	    		
+		    	    		//builder.setTitle("Choose Your Avatar");
+		    	    		//Toast.makeText(MainActivity1.this,"Choose Your Avatar", Toast.LENGTH_SHORT).show();
+		    	    		
+		    	    		
+		    	    		Toast toast = Toast.makeText(MainActivity1.this, "Choose An Avatar", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
+				  			View view = toast.getView();
+				  			view.setBackgroundResource(R.drawable.centerscroll3toast);
+				  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+	
+				  			TextView text = (TextView) view.findViewById(android.R.id.message);
+				  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+				  			text.setTypeface(typeFace);
+				  			text.setTextColor(Color.parseColor("#FFFFFF"));
+				  			//text.setRotation(-45);
+				  			text.setGravity(Gravity.CENTER);
+				  			
+				  			toast.show();	    	    		
+		    	    		
+		    	    		
+		    	    		builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+				    	        @Override
+				    	        public void onDismiss(DialogInterface dialog) {
+				    	        	
+				    	        	hideSystemUI();
+				    	        }
+				    	    });
+		    	    		
+		    	    		/*
+		    	    		builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+		    					@Override
+		    					public void onCancel(DialogInterface dialog) {		  							
+		    						
+		    						//IF NOTHING DOESN'T WORK, TRY:
+		    						
+		    						stopService(svc);
+		    						
+		    						Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+		    			        	MainActivity1.this.startActivity(i);
+		    					}
+		    				});
+		    	    		*/
+		    	    		
+		    	    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
+		    	    			public void onClick(DialogInterface dialog, int item) { 
+		    	    								
+		    	    				if (item == 0) {
+		    	    					ArrayOfAvatars.avatar[5] = "computer";
+		    	    					
+		    	    					goToHostOrJoin();
+		    		    	        	
+		    		    	        	dialog.dismiss();
+		    		    	        	
+		    		    	        	hideSystemUI();
+		    	    				}
+		    	    				else if (item == 1) {
+		    	    					ArrayOfAvatars.avatar[5] = "crossedswords";
+		    	    					
+		    	    					goToHostOrJoin();
+		    		    	        	
+		    		    	        	dialog.dismiss();
+		    		    	        	
+		    		    	        	hideSystemUI();
+		    	    				}
+		    	    				else if (item == 2) {
+		    	    					ArrayOfAvatars.avatar[5] = "stonedead";
+		    	    					
+		    	    					goToHostOrJoin();
+		    		    	        	
+		    		    	        	dialog.dismiss();
+		    		    	        	
+		    		    	        	hideSystemUI();
+		    	    				}
+		    	    				else if (item == 3) {
+		    	    					ArrayOfAvatars.avatar[5] = "custom";	    					
+		    	    					
+		    	    					openGallery();
+		    	    					
+		    	    					dialog.dismiss();
+		    	    					
+		    	    					hideSystemUI();
+		    	    				}    				
+		    	    	        	
+		    	    	        	//finish();
+		            	  		}
+		    	    		});	    		
+		    	        	
+		    	            builder.create().show();
+		        		}
 	            	  }
 	            	});
 	
@@ -3061,8 +3175,7 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	            	  }
 	            	});
 	            	
-	            	alert.show();        	
-                
+	            	alert.show();
     			}
     		});
     		
@@ -3098,7 +3211,7 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
                 		Toast toast = Toast.makeText(MainActivity1.this, "No Records", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
     		  			View view = toast.getView();
     		  			view.setBackgroundResource(R.drawable.centerscroll3toast);
-    		  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+    		  			toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
 
     		  			TextView text = (TextView) view.findViewById(android.R.id.message);
     		  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
@@ -3210,7 +3323,7 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
     	        		Toast toast = Toast.makeText(MainActivity1.this, "No Guys", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
     		  			View view = toast.getView();
     		  			view.setBackgroundResource(R.drawable.centerscroll3toast);
-    		  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+    		  			toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
 
     		  			TextView text = (TextView) view.findViewById(android.R.id.message);
     		  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
@@ -3330,7 +3443,9 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	    		                        		
 	    		                        		buttonSound.start();
 	    		                        		
-	    		                        		ArrayOfPlayers.player[5] = name[i];
+	    		                        		
+	    		                        		//ArrayOfPlayers.player[5] = name[i];
+	    		                        		tempName = name[i];
 	    		                        		
 	    		                        		
 	    		                        		final String[] items = {"One Player", "Multiplayer"};
@@ -3418,6 +3533,11 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	    	                		                        	if (item == 0) {
 	    	                		                        		
 	    	                		                        		buttonSound.start();
+	    	                		                        		
+	    	                		                        		
+	    	                		                        		ArrayOfPlayers.player[0] = tempName;
+	    	                		                        		ArrayOfPlayers.player[1] = "Computer";
+	    	                		                        		
 	    	                		                        		
 	    	                		                        		final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead", "Custom"};
 	    	                		            		    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2, R.drawable.computer};
@@ -3535,6 +3655,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	    	                		                        		buttonSound.start();
 	    	                		                        		
 	    	                		                        		multiplayer = "yes";
+	    	                		                        		
+	    	                		                        		ArrayOfPlayers.player[5] = tempName;
 	    	                		                        		
 	    	                		                        		
 	    	                		                        		final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead", "Custom"};
@@ -3756,115 +3878,136 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	
 	            	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	            	public void onClick(DialogInterface dialog, int whichButton) {            		         		
-	            		  		
-	            		// NEED TO SEND TO ARRAY HERE:
-	            		String playername = input.getText().toString();
-	                	String playercomputer = "Computer".toString();
-	                	
-	                	ArrayOfPlayers.player[0] = playername;
-	                	ArrayOfPlayers.player[1] = playercomputer;
-	                	
-	                	//savePlayerName();
-	                	
-	                	insertToDatabase(playername);    	        	
-	    	        	
-	    	        	// ARRAY ADAPTER WITH ICON STUFF:    	        	
-	    	        	
-	                	final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead", "Custom"};
-	    	    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2, R.drawable.computer};
-	    	    		
-	    	    		ListAdapter adapter = new ArrayAdapterWithIcon(MainActivity1.this, items, avatars);
-	    	    		
-	    	    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
-	    	    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper, R.style.customalertdialog);
-	    	    		//builder.setIcon(R.drawable.computerhead);
-	    	    		//builder.setTitle("Choose Your Avatar");
-	    	    		//Toast.makeText(MainActivity1.this,"Choose Your Avatar", Toast.LENGTH_SHORT).show();	    	    		
-	    	    		
-	    	    		Toast toast = Toast.makeText(MainActivity1.this, "Choose An Avatar", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
-			  			View view = toast.getView();
-			  			view.setBackgroundResource(R.drawable.centerscroll3toast);
-			  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+	            		
+	            		if (input.getText().toString().isEmpty()) {
+		        			
+		        			Toast toast = Toast.makeText(MainActivity1.this, "Name cannot be blank.", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
+		    	  			View view = toast.getView();
+		    	  			view.setBackgroundResource(R.drawable.centerscroll3toast);
+		    	  			toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
 
-			  			TextView text = (TextView) view.findViewById(android.R.id.message);
-			  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-			  			text.setTypeface(typeFace);
-			  			text.setTextColor(Color.parseColor("#FFFFFF"));
-			  			//text.setRotation(-45);
-			  			text.setGravity(Gravity.CENTER);
-			  			
-			  			toast.show();	    	    		
-	    	    		
-	    	    		
-	    	    		builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-			    	        @Override
-			    	        public void onDismiss(DialogInterface dialog) {
-			    	        	
-			    	        	hideSystemUI();
-			    	        }
-			    	    });
-	    	    		
-	    	    		
-	    	    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
-	    	    			public void onClick(DialogInterface dialog, int item) { 
-	    	    								
-	    	    				if (item == 0) {
-	    	    					ArrayOfAvatars.avatar[0] = "computer";
-	    	    					
-	    	    					stopService(svc);
-	        	    				
-	        	    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
-	        	    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-	        	    				startActivity(intent);
-	        	                	
-	        	                	dialog.dismiss();
-	        	                	
-	        	                	hideSystemUI();
-	    	    				}
-	    	    				else if (item == 1) {
-	    	    					ArrayOfAvatars.avatar[0] = "crossedswords";
-	    	    					
-	    	    					stopService(svc);
-	        	    				
-	        	    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
-	        	    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-	        	    				startActivity(intent);
-	        	                	
-	        	                	dialog.dismiss();
-	        	                	
-	        	                	hideSystemUI();
-	    	    				}
-	    	    				else if (item == 2) {
-	    	    					ArrayOfAvatars.avatar[0] = "stonedead";
-	    	    					
-	    	    					stopService(svc);
-	        	    				
-	        	    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
-	        	    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-	        	    				startActivity(intent);
-	        	                	
-	        	                	dialog.dismiss();
-	        	                	
-	        	                	hideSystemUI();
-	    	    				}
-	    	    				else if (item == 3) {
-	    	    					ArrayOfAvatars.avatar[0] = "custom";
-	    	    					
-	    	    					stopService(svc);
-	    	    					
-	    	    					openGallery();
-	    	    					
-	    	    					dialog.dismiss();
-	    	    					
-	    	    					hideSystemUI();
-	    	    				}   	    				
-	    	                	
-	    	                	//finish();
-	            	  		}
-	    	    		});	    		
-	    	        	
-	    	            builder.create().show();   	            
-	    	        	
+		    	  			TextView text = (TextView) view.findViewById(android.R.id.message);
+		    	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+		    	  			text.setTypeface(typeFace);
+		    	  			text.setTextColor(Color.parseColor("#FFFFFF"));
+		    	  			//text.setRotation(-45);
+		    	  			text.setGravity(Gravity.CENTER);
+		    	  			
+		    	  			toast.show();
+		        		     
+		        			hideSystemUI();
+		        		}
+		        		
+		        		else {
+	            		
+		            		// NEED TO SEND TO ARRAY HERE:
+		            		String playername = input.getText().toString();
+		                	String playercomputer = "Computer".toString();
+		                	
+		                	ArrayOfPlayers.player[0] = playername;
+		                	ArrayOfPlayers.player[1] = playercomputer;
+		                	
+		                	//savePlayerName();
+		                	
+		                	insertToDatabase(playername);    	        	
+		    	        	
+		    	        	// ARRAY ADAPTER WITH ICON STUFF:    	        	
+		    	        	
+		                	final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead", "Custom"};
+		    	    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2, R.drawable.computer};
+		    	    		
+		    	    		ListAdapter adapter = new ArrayAdapterWithIcon(MainActivity1.this, items, avatars);
+		    	    		
+		    	    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
+		    	    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper, R.style.customalertdialog);
+		    	    		//builder.setIcon(R.drawable.computerhead);
+		    	    		//builder.setTitle("Choose Your Avatar");
+		    	    		//Toast.makeText(MainActivity1.this,"Choose Your Avatar", Toast.LENGTH_SHORT).show();	    	    		
+		    	    		
+		    	    		Toast toast = Toast.makeText(MainActivity1.this, "Choose An Avatar", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
+				  			View view = toast.getView();
+				  			view.setBackgroundResource(R.drawable.centerscroll3toast);
+				  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+	
+				  			TextView text = (TextView) view.findViewById(android.R.id.message);
+				  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+				  			text.setTypeface(typeFace);
+				  			text.setTextColor(Color.parseColor("#FFFFFF"));
+				  			//text.setRotation(-45);
+				  			text.setGravity(Gravity.CENTER);
+				  			
+				  			toast.show();	    	    		
+		    	    		
+		    	    		
+		    	    		builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+				    	        @Override
+				    	        public void onDismiss(DialogInterface dialog) {
+				    	        	
+				    	        	hideSystemUI();
+				    	        }
+				    	    });
+		    	    		
+		    	    		
+		    	    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
+		    	    			public void onClick(DialogInterface dialog, int item) { 
+		    	    								
+		    	    				if (item == 0) {
+		    	    					ArrayOfAvatars.avatar[0] = "computer";
+		    	    					
+		    	    					stopService(svc);
+		        	    				
+		        	    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+		        	    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+		        	    				startActivity(intent);
+		        	                	
+		        	                	dialog.dismiss();
+		        	                	
+		        	                	hideSystemUI();
+		    	    				}
+		    	    				else if (item == 1) {
+		    	    					ArrayOfAvatars.avatar[0] = "crossedswords";
+		    	    					
+		    	    					stopService(svc);
+		        	    				
+		        	    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+		        	    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+		        	    				startActivity(intent);
+		        	                	
+		        	                	dialog.dismiss();
+		        	                	
+		        	                	hideSystemUI();
+		    	    				}
+		    	    				else if (item == 2) {
+		    	    					ArrayOfAvatars.avatar[0] = "stonedead";
+		    	    					
+		    	    					stopService(svc);
+		        	    				
+		        	    				Intent intent = new Intent(MainActivity1.this, MainActivity2.class);
+		        	    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+		        	    				startActivity(intent);
+		        	                	
+		        	                	dialog.dismiss();
+		        	                	
+		        	                	hideSystemUI();
+		    	    				}
+		    	    				else if (item == 3) {
+		    	    					ArrayOfAvatars.avatar[0] = "custom";
+		    	    					
+		    	    					stopService(svc);
+		    	    					
+		    	    					openGallery();
+		    	    					
+		    	    					dialog.dismiss();
+		    	    					
+		    	    					hideSystemUI();
+		    	    				}   	    				
+		    	                	
+		    	                	//finish();
+		            	  		}
+		    	    		});	    		
+		    	        	
+		    	            builder.create().show();
+		        		}
 	            	  }
 	            	});
 	
@@ -3875,8 +4018,7 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	            	  }
 	            	});
 	            	
-	            	alert.show();           	
-            	
+	            	alert.show();
     			}
     		});		
     		
@@ -3953,116 +4095,137 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	            	
 	            	alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	            	public void onClick(DialogInterface dialog, int whichButton) {        		         		
-	            		  		
-	            		// NEED TO SEND TO ARRAY HERE:
-	            		String playername = input.getText().toString();
-	                	//String playercomputer = "Computer".toString();
-	                	
-	                	ArrayOfPlayers.player[5] = playername;
-	                	//ArrayOfPlayers.player[1] = playercomputer;
-	                	
-	                	//savePlayerName();
-	                	
-	                	insertToDatabase(playername);	        	
-	    	        	
-	    	        	// ARRAY ADAPTER WITH ICON STUFF:	        	
-	    	        	
-	    	        	final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead", "Custom"};
-	    	    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2, R.drawable.computer};
-	    	    		
-	    	    		ListAdapter adapter = new ArrayAdapterWithIcon(MainActivity1.this, items, avatars);
-	    	    		
-	    	    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
-	    	    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper, R.style.customalertdialog);
-	    	    		//builder.setIcon(R.drawable.computerhead);
-	    	    		
-	    	    		//builder.setTitle("Choose Your Avatar");
-	    	    		//Toast.makeText(MainActivity1.this,"Choose Your Avatar", Toast.LENGTH_SHORT).show();	    	    		
-	    	    		
-	    	    		Toast toast = Toast.makeText(MainActivity1.this, "Choose An Avatar", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
-			  			View view = toast.getView();
-			  			view.setBackgroundResource(R.drawable.centerscroll3toast);
-			  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+	            		
+	            		if (input.getText().toString().isEmpty()) {
+		        			
+		        			Toast toast = Toast.makeText(MainActivity1.this, "Name cannot be blank.", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
+		    	  			View view = toast.getView();
+		    	  			view.setBackgroundResource(R.drawable.centerscroll3toast);
+		    	  			toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
 
-			  			TextView text = (TextView) view.findViewById(android.R.id.message);
-			  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-			  			text.setTypeface(typeFace);
-			  			text.setTextColor(Color.parseColor("#FFFFFF"));
-			  			//text.setRotation(-45);
-			  			text.setGravity(Gravity.CENTER);
-			  			
-			  			toast.show();
-	    	    		
-	    	    			    	    		
-	    	    		builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-			    	        @Override
-			    	        public void onDismiss(DialogInterface dialog) {
-			    	        	
-			    	        	hideSystemUI();
-			    	        }
-			    	    });
-	    	    		
-	    	    		/*
-	    	    		builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
-	    					@Override
-	    					public void onCancel(DialogInterface dialog) {		  							
-	    						
-	    						//IF NOTHING DOESN'T WORK, TRY:
-	    						
-	    						stopService(svc);
-	    						
-	    						Intent i = new Intent(MainActivity1.this, MainActivity1.class);
-	    			        	MainActivity1.this.startActivity(i);
-	    					}
-	    				});
-	    	    		*/
-	    	    		
-	    	    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
-	    	    			public void onClick(DialogInterface dialog, int item) { 
-	    	    								
-	    	    				if (item == 0) {
-	    	    					ArrayOfAvatars.avatar[5] = "computer";
-	    	    					
-	    	    					goToHostOrJoin();
-	    		    	        	
-	    		    	        	dialog.dismiss();
-	    		    	        	
-	    		    	        	hideSystemUI();
-	    	    				}
-	    	    				else if (item == 1) {
-	    	    					ArrayOfAvatars.avatar[5] = "crossedswords";
-	    	    					
-	    	    					goToHostOrJoin();
-	    		    	        	
-	    		    	        	dialog.dismiss();
-	    		    	        	
-	    		    	        	hideSystemUI();
-	    	    				}
-	    	    				else if (item == 2) {
-	    	    					ArrayOfAvatars.avatar[5] = "stonedead";
-	    	    					
-	    	    					goToHostOrJoin();
-	    		    	        	
-	    		    	        	dialog.dismiss();
-	    		    	        	
-	    		    	        	hideSystemUI();
-	    	    				}
-	    	    				else if (item == 3) {
-	    	    					ArrayOfAvatars.avatar[5] = "custom";	    					
-	    	    					
-	    	    					openGallery();
-	    	    					
-	    	    					dialog.dismiss();
-	    	    					
-	    	    					hideSystemUI();
-	    	    				}    				
-	    	    	        	
-	    	    	        	//finish();
-	            	  		}
-	    	    		});	    		
-	    	        	
-	    	            builder.create().show();            
-	    	        	
+		    	  			TextView text = (TextView) view.findViewById(android.R.id.message);
+		    	  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+		    	  			text.setTypeface(typeFace);
+		    	  			text.setTextColor(Color.parseColor("#FFFFFF"));
+		    	  			//text.setRotation(-45);
+		    	  			text.setGravity(Gravity.CENTER);
+		    	  			
+		    	  			toast.show();
+		        		     
+		        			hideSystemUI();
+		        		}
+		        		
+		        		else {
+	            		
+		            		// NEED TO SEND TO ARRAY HERE:
+		            		String playername = input.getText().toString();
+		                	//String playercomputer = "Computer".toString();
+		                	
+		                	ArrayOfPlayers.player[5] = playername;
+		                	//ArrayOfPlayers.player[1] = playercomputer;
+		                	
+		                	//savePlayerName();
+		                	
+		                	insertToDatabase(playername);	        	
+		    	        	
+		    	        	// ARRAY ADAPTER WITH ICON STUFF:	        	
+		    	        	
+		    	        	final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead", "Custom"};
+		    	    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2, R.drawable.computer};
+		    	    		
+		    	    		ListAdapter adapter = new ArrayAdapterWithIcon(MainActivity1.this, items, avatars);
+		    	    		
+		    	    		ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity1.this, R.layout.avatar_adapter);
+		    	    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper, R.style.customalertdialog);
+		    	    		//builder.setIcon(R.drawable.computerhead);
+		    	    		
+		    	    		//builder.setTitle("Choose Your Avatar");
+		    	    		//Toast.makeText(MainActivity1.this,"Choose Your Avatar", Toast.LENGTH_SHORT).show();	    	    		
+		    	    		
+		    	    		Toast toast = Toast.makeText(MainActivity1.this, "Choose An Avatar", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
+				  			View view = toast.getView();
+				  			view.setBackgroundResource(R.drawable.centerscroll3toast);
+				  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+	
+				  			TextView text = (TextView) view.findViewById(android.R.id.message);
+				  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+				  			text.setTypeface(typeFace);
+				  			text.setTextColor(Color.parseColor("#FFFFFF"));
+				  			//text.setRotation(-45);
+				  			text.setGravity(Gravity.CENTER);
+				  			
+				  			toast.show();
+		    	    		
+		    	    			    	    		
+		    	    		builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+				    	        @Override
+				    	        public void onDismiss(DialogInterface dialog) {
+				    	        	
+				    	        	hideSystemUI();
+				    	        }
+				    	    });
+		    	    		
+		    	    		/*
+		    	    		builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+		    					@Override
+		    					public void onCancel(DialogInterface dialog) {		  							
+		    						
+		    						//IF NOTHING DOESN'T WORK, TRY:
+		    						
+		    						stopService(svc);
+		    						
+		    						Intent i = new Intent(MainActivity1.this, MainActivity1.class);
+		    			        	MainActivity1.this.startActivity(i);
+		    					}
+		    				});
+		    	    		*/
+		    	    		
+		    	    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
+		    	    			public void onClick(DialogInterface dialog, int item) { 
+		    	    								
+		    	    				if (item == 0) {
+		    	    					ArrayOfAvatars.avatar[5] = "computer";
+		    	    					
+		    	    					goToHostOrJoin();
+		    		    	        	
+		    		    	        	dialog.dismiss();
+		    		    	        	
+		    		    	        	hideSystemUI();
+		    	    				}
+		    	    				else if (item == 1) {
+		    	    					ArrayOfAvatars.avatar[5] = "crossedswords";
+		    	    					
+		    	    					goToHostOrJoin();
+		    		    	        	
+		    		    	        	dialog.dismiss();
+		    		    	        	
+		    		    	        	hideSystemUI();
+		    	    				}
+		    	    				else if (item == 2) {
+		    	    					ArrayOfAvatars.avatar[5] = "stonedead";
+		    	    					
+		    	    					goToHostOrJoin();
+		    		    	        	
+		    		    	        	dialog.dismiss();
+		    		    	        	
+		    		    	        	hideSystemUI();
+		    	    				}
+		    	    				else if (item == 3) {
+		    	    					ArrayOfAvatars.avatar[5] = "custom";	    					
+		    	    					
+		    	    					openGallery();
+		    	    					
+		    	    					dialog.dismiss();
+		    	    					
+		    	    					hideSystemUI();
+		    	    				}    				
+		    	    	        	
+		    	    	        	//finish();
+		            	  		}
+		    	    		});	    		
+		    	        	
+		    	            builder.create().show();
+		        		}
 	            	  }
 	            	});
 	
@@ -4109,7 +4272,7 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
                 		Toast toast = Toast.makeText(MainActivity1.this, "No Records", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
     		  			View view = toast.getView();
     		  			view.setBackgroundResource(R.drawable.centerscroll3toast);
-    		  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+    		  			toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
 
     		  			TextView text = (TextView) view.findViewById(android.R.id.message);
     		  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
@@ -4221,7 +4384,7 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
     	        		Toast toast = Toast.makeText(MainActivity1.this, "No Guys", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
     		  			View view = toast.getView();
     		  			view.setBackgroundResource(R.drawable.centerscroll3toast);
-    		  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+    		  			toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
 
     		  			TextView text = (TextView) view.findViewById(android.R.id.message);
     		  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
@@ -4342,7 +4505,9 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	    		                        		
 	    		                        		buttonSound.start();
 	    		                        		
-	    		                        		ArrayOfPlayers.player[5] = name[i];
+	    		                        		
+	    		                        		//ArrayOfPlayers.player[5] = name[i];
+	    		                        		tempName = name[i];
 	    		                        		
 	    		                        		
 	    		                        		final String[] items = {"One Player", "Multiplayer"};
@@ -4430,6 +4595,11 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	    	                		                        	if (item == 0) {
 	    	                		                        		
 	    	                		                        		buttonSound.start();
+	    	                		                        		
+	    	                		                        		
+	    	                		                        		ArrayOfPlayers.player[0] = tempName;
+	    	                		                        		ArrayOfPlayers.player[1] = "Computer";
+	    	                		                        		
 	    	                		                        		
 	    	                		                        		final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead", "Custom"};
 	    	                		            		    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2, R.drawable.computer};
@@ -4547,6 +4717,8 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	    	                		                        		buttonSound.start();
 	    	                		                        		
 	    	                		                        		multiplayer = "yes";
+	    	                		                        		
+	    	                		                        		ArrayOfPlayers.player[5] = tempName;
 	    	                		                        		
 	    	                		                        		
 	    	                		                        		final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead", "Custom"};

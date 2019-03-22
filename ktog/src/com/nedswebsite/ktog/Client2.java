@@ -852,7 +852,7 @@ public class Client2 extends Activity {
 														  	  	  		Toast toast = Toast.makeText(Client2.this, "The host will start the game...", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
 		    	                		            		  			View view = toast.getView();
 		    	                		            		  			view.setBackgroundResource(R.drawable.centerscroll3toast);
-		    	                		            		  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+		    	                		            		  			toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
 	
 		    	                		            		  			TextView text = (TextView) view.findViewById(android.R.id.message);
 		    	                		            		  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
@@ -879,7 +879,7 @@ public class Client2 extends Activity {
 														  	  	  		Toast toast = Toast.makeText(Client2.this, "The host will start the game...", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
 		    	                		            		  			View view = toast.getView();
 		    	                		            		  			view.setBackgroundResource(R.drawable.centerscroll3toast);
-		    	                		            		  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+		    	                		            		  			toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
 	
 		    	                		            		  			TextView text = (TextView) view.findViewById(android.R.id.message);
 		    	                		            		  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
@@ -2725,23 +2725,99 @@ public class Client2 extends Activity {
 		  	  	if (ArrayOfTurn.turn[0] >= MaxTurns) {
 		  	  		
 		  	  		if (win.equals("yes") && (critHitWithMB.equals("na"))) {
-		  	  		
+		  	  			//NEW RECORD - TURNS & WINS
+			  	  		Toast toast = Toast.makeText(Client2.this, "New Record!" + "\n" + "Turns, Wins", Toast.LENGTH_LONG);//INSTEAD OF "Choose Action": R.string.string_message_id
+						View view = toast.getView();
+						view.setBackgroundResource(R.drawable.centerscroll3toast);
+						//toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+						toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+			
+						TextView text = (TextView) view.findViewById(android.R.id.message);
+						Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+						text.setTypeface(typeFace);
+						text.setTextColor(Color.parseColor("#FFFFFF"));
+						//text.setRotation(-45);
+						text.setGravity(Gravity.CENTER);
+						
+						/*	ONLY WAY I COUL FIND TO CENTER TEXT IN CUSTOM TOAST FOR S3(4.4.2), S4(4.4.2) & AMAZON(5.3):
+						 	if ((getResources().getDisplayMetrics().densityDpi==160) && (android.os.Build.VERSION.RELEASE.startsWith("5.3")))
+							text.setPadding(165, 0, 0, 0);
+						 */
+						toast.show();
+		  	  			
 		  	  			edit.putString(ArrayOfPlayers.player[0], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 1) + ":Loses:" + (Loses + 0) + ":CritHitMB:" + (CritHitMB + 0) + ":MaxTurns:" + (ArrayOfTurn.turn[0]));
 		  	  			edit.commit();
 			  	  	}
 			  	  	if (win.equals("yes") && (critHitWithMB.equals("yes"))) {
-				  		
+			  	  		//NEW RECORD - TURNS & WINS & CHMB
+				  	  	Toast toast = Toast.makeText(Client2.this, "New Record!" + "\n" + "Turns, Wins, CH/MB", Toast.LENGTH_LONG);//INSTEAD OF "Choose Action": R.string.string_message_id
+						View view = toast.getView();
+						view.setBackgroundResource(R.drawable.centerscroll3toast);
+						//toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+						toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+			
+						TextView text = (TextView) view.findViewById(android.R.id.message);
+						Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+						text.setTypeface(typeFace);
+						text.setTextColor(Color.parseColor("#FFFFFF"));
+						//text.setRotation(-45);
+						text.setGravity(Gravity.CENTER);
+						
+						/*	ONLY WAY I COUL FIND TO CENTER TEXT IN CUSTOM TOAST FOR S3(4.4.2), S4(4.4.2) & AMAZON(5.3):
+						 	if ((getResources().getDisplayMetrics().densityDpi==160) && (android.os.Build.VERSION.RELEASE.startsWith("5.3")))
+							text.setPadding(165, 0, 0, 0);
+						 */
+						toast.show();
+			  	  		
 				  		edit.putString(ArrayOfPlayers.player[0], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 1) + ":Loses:" + (Loses + 0) + ":CritHitMB:" + (CritHitMB + 1) + ":MaxTurns:" + (ArrayOfTurn.turn[0]));
 				  		edit.commit();
 				  	}
 			  	  	
 			  	  	if (win.equals("no") && (critHitWithMB.equals("na"))) {
+			  	  		//NEW RECORD - TURNS
+				  	  	Toast toast = Toast.makeText(Client2.this, "New Record!" + "\n" + "Turns", Toast.LENGTH_LONG);//INSTEAD OF "Choose Action": R.string.string_message_id
+						View view = toast.getView();
+						view.setBackgroundResource(R.drawable.centerscroll3toast);
+						//toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+						toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+			
+						TextView text = (TextView) view.findViewById(android.R.id.message);
+						Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+						text.setTypeface(typeFace);
+						text.setTextColor(Color.parseColor("#FFFFFF"));
+						//text.setRotation(-45);
+						text.setGravity(Gravity.CENTER);
+						
+						/*	ONLY WAY I COUL FIND TO CENTER TEXT IN CUSTOM TOAST FOR S3(4.4.2), S4(4.4.2) & AMAZON(5.3):
+						 	if ((getResources().getDisplayMetrics().densityDpi==160) && (android.os.Build.VERSION.RELEASE.startsWith("5.3")))
+							text.setPadding(165, 0, 0, 0);
+						 */
+						toast.show();
 			  	  		
 			  	  		edit.putString(ArrayOfPlayers.player[0], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 0) + ":Loses:" + (Loses + 1) + ":CritHitMB:" + (CritHitMB + 0) + ":MaxTurns:" + (ArrayOfTurn.turn[0]));
 			  	  		edit.commit();
 			  	  	}
 			  	  	if (win.equals("no") && (critHitWithMB.equals("yes"))) {
-				  		
+			  	  		//NEW RECORD - TURNS & CHMB
+				  	  	Toast toast = Toast.makeText(Client2.this, "New Record!" + "\n" + "Turns, CH/MB", Toast.LENGTH_LONG);//INSTEAD OF "Choose Action": R.string.string_message_id
+						View view = toast.getView();
+						view.setBackgroundResource(R.drawable.centerscroll3toast);
+						//toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+						toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+			
+						TextView text = (TextView) view.findViewById(android.R.id.message);
+						Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+						text.setTypeface(typeFace);
+						text.setTextColor(Color.parseColor("#FFFFFF"));
+						//text.setRotation(-45);
+						text.setGravity(Gravity.CENTER);
+						
+						/*	ONLY WAY I COUL FIND TO CENTER TEXT IN CUSTOM TOAST FOR S3(4.4.2), S4(4.4.2) & AMAZON(5.3):
+						 	if ((getResources().getDisplayMetrics().densityDpi==160) && (android.os.Build.VERSION.RELEASE.startsWith("5.3")))
+							text.setPadding(165, 0, 0, 0);
+						 */
+						toast.show();
+			  	  		
 				  		edit.putString(ArrayOfPlayers.player[0], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 0) + ":Loses:" + (Loses + 1) + ":CritHitMB:" + (CritHitMB + 1) + ":MaxTurns:" + (ArrayOfTurn.turn[0]));
 				  		edit.commit();
 				  	}
@@ -2750,23 +2826,80 @@ public class Client2 extends Activity {
 		  	  	if (ArrayOfTurn.turn[0] < MaxTurns) {
 			  		
 		  	  		if (win.equals("yes") && (critHitWithMB.equals("na"))) {
-		  	  		
+		  	  			//NEW RECORD - WINS
+			  	  		Toast toast = Toast.makeText(Client2.this, "New Record!" + "\n" + "Wins", Toast.LENGTH_LONG);//INSTEAD OF "Choose Action": R.string.string_message_id
+						View view = toast.getView();
+						view.setBackgroundResource(R.drawable.centerscroll3toast);
+						//toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+						toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+			
+						TextView text = (TextView) view.findViewById(android.R.id.message);
+						Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+						text.setTypeface(typeFace);
+						text.setTextColor(Color.parseColor("#FFFFFF"));
+						//text.setRotation(-45);
+						text.setGravity(Gravity.CENTER);
+						
+						/*	ONLY WAY I COUL FIND TO CENTER TEXT IN CUSTOM TOAST FOR S3(4.4.2), S4(4.4.2) & AMAZON(5.3):
+						 	if ((getResources().getDisplayMetrics().densityDpi==160) && (android.os.Build.VERSION.RELEASE.startsWith("5.3")))
+							text.setPadding(165, 0, 0, 0);
+						 */
+						toast.show();
+		  	  			
 		  	  			edit.putString(ArrayOfPlayers.player[0], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 1) + ":Loses:" + (Loses + 0) + ":CritHitMB:" + (CritHitMB + 0) + ":MaxTurns:" + (MaxTurns));
 		  	  			edit.commit();
 			  	  	}
 			  	  	if (win.equals("yes") && (critHitWithMB.equals("yes"))) {
-				  		
+			  	  		//NEW RECORD - WINS & CHMB
+				  	  	Toast toast = Toast.makeText(Client2.this, "New Record!" + "\n" + "Wins, CH/MB", Toast.LENGTH_LONG);//INSTEAD OF "Choose Action": R.string.string_message_id
+						View view = toast.getView();
+						view.setBackgroundResource(R.drawable.centerscroll3toast);
+						//toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+						toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+			
+						TextView text = (TextView) view.findViewById(android.R.id.message);
+						Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+						text.setTypeface(typeFace);
+						text.setTextColor(Color.parseColor("#FFFFFF"));
+						//text.setRotation(-45);
+						text.setGravity(Gravity.CENTER);
+						
+						/*	ONLY WAY I COUL FIND TO CENTER TEXT IN CUSTOM TOAST FOR S3(4.4.2), S4(4.4.2) & AMAZON(5.3):
+						 	if ((getResources().getDisplayMetrics().densityDpi==160) && (android.os.Build.VERSION.RELEASE.startsWith("5.3")))
+							text.setPadding(165, 0, 0, 0);
+						 */
+						toast.show();
+			  	  		
 				  		edit.putString(ArrayOfPlayers.player[0], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 1) + ":Loses:" + (Loses + 0) + ":CritHitMB:" + (CritHitMB + 1) + ":MaxTurns:" + (MaxTurns));
 				  		edit.commit();
 				  	}
 			  	  	
 			  	  	if (win.equals("no") && (critHitWithMB.equals("na"))) {
-			  	  		
+			  	  		//NO RECORDS
 			  	  		edit.putString(ArrayOfPlayers.player[0], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 0) + ":Loses:" + (Loses + 1) + ":CritHitMB:" + (CritHitMB + 0) + ":MaxTurns:" + (MaxTurns));
 			  	  		edit.commit();
 			  	  	}
 			  	  	if (win.equals("no") && (critHitWithMB.equals("yes"))) {
-				  		
+			  	  		//NEW RECORD - CHMB
+				  	  	Toast toast = Toast.makeText(Client2.this, "New Record!" + "\n" + "CH/MB", Toast.LENGTH_LONG);//INSTEAD OF "Choose Action": R.string.string_message_id
+						View view = toast.getView();
+						view.setBackgroundResource(R.drawable.centerscroll3toast);
+						//toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+						toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+			
+						TextView text = (TextView) view.findViewById(android.R.id.message);
+						Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+						text.setTypeface(typeFace);
+						text.setTextColor(Color.parseColor("#FFFFFF"));
+						//text.setRotation(-45);
+						text.setGravity(Gravity.CENTER);
+						
+						/*	ONLY WAY I COUL FIND TO CENTER TEXT IN CUSTOM TOAST FOR S3(4.4.2), S4(4.4.2) & AMAZON(5.3):
+						 	if ((getResources().getDisplayMetrics().densityDpi==160) && (android.os.Build.VERSION.RELEASE.startsWith("5.3")))
+							text.setPadding(165, 0, 0, 0);
+						 */
+						toast.show();
+			  	  		
 				  		edit.putString(ArrayOfPlayers.player[0], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 0) + ":Loses:" + (Loses + 1) + ":CritHitMB:" + (CritHitMB + 1) + ":MaxTurns:" + (MaxTurns));
 				  		edit.commit();
 				  	}
@@ -2811,23 +2944,99 @@ public class Client2 extends Activity {
 		  	  	if (ArrayOfTurn.turn[0] >= MaxTurns) {
 		  	  		
 		  	  		if (win.equals("yes") && (critHitWithMB.equals("na"))) {
-		  	  		
+		  	  			//NEW RECORD - TURNS & WINS
+			  	  		Toast toast = Toast.makeText(Client2.this, "New Record!" + "\n" + "Turns, Wins", Toast.LENGTH_LONG);//INSTEAD OF "Choose Action": R.string.string_message_id
+						View view = toast.getView();
+						view.setBackgroundResource(R.drawable.centerscroll3toast);
+						//toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+						toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+			
+						TextView text = (TextView) view.findViewById(android.R.id.message);
+						Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+						text.setTypeface(typeFace);
+						text.setTextColor(Color.parseColor("#FFFFFF"));
+						//text.setRotation(-45);
+						text.setGravity(Gravity.CENTER);
+						
+						/*	ONLY WAY I COUL FIND TO CENTER TEXT IN CUSTOM TOAST FOR S3(4.4.2), S4(4.4.2) & AMAZON(5.3):
+						 	if ((getResources().getDisplayMetrics().densityDpi==160) && (android.os.Build.VERSION.RELEASE.startsWith("5.3")))
+							text.setPadding(165, 0, 0, 0);
+						 */
+						toast.show();
+		  	  			
 		  	  			edit.putString(ArrayOfPlayers.player[1], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 1) + ":Loses:" + (Loses + 0) + ":CritHitMB:" + (CritHitMB + 0) + ":MaxTurns:" + (ArrayOfTurn.turn[0]));
 		  	  			edit.commit();
 			  	  	}
 			  	  	if (win.equals("yes") && (critHitWithMB.equals("yes"))) {
-				  		
+			  	  		//NEW RECORD - TURNS & WINS & CHMB
+				  	  	Toast toast = Toast.makeText(Client2.this, "New Record!" + "\n" + "Turns, Wins, CH/MB", Toast.LENGTH_LONG);//INSTEAD OF "Choose Action": R.string.string_message_id
+						View view = toast.getView();
+						view.setBackgroundResource(R.drawable.centerscroll3toast);
+						//toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+						toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+			
+						TextView text = (TextView) view.findViewById(android.R.id.message);
+						Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+						text.setTypeface(typeFace);
+						text.setTextColor(Color.parseColor("#FFFFFF"));
+						//text.setRotation(-45);
+						text.setGravity(Gravity.CENTER);
+						
+						/*	ONLY WAY I COUL FIND TO CENTER TEXT IN CUSTOM TOAST FOR S3(4.4.2), S4(4.4.2) & AMAZON(5.3):
+						 	if ((getResources().getDisplayMetrics().densityDpi==160) && (android.os.Build.VERSION.RELEASE.startsWith("5.3")))
+							text.setPadding(165, 0, 0, 0);
+						 */
+						toast.show();
+			  	  		
 				  		edit.putString(ArrayOfPlayers.player[1], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 1) + ":Loses:" + (Loses + 0) + ":CritHitMB:" + (CritHitMB + 1) + ":MaxTurns:" + (ArrayOfTurn.turn[0]));
 				  		edit.commit();
 				  	}
 			  	  	
 			  	  	if (win.equals("no") && (critHitWithMB.equals("na"))) {
+			  	  		//NEW RECORD - TURNS
+				  	  	Toast toast = Toast.makeText(Client2.this, "New Record!" + "\n" + "Turns", Toast.LENGTH_LONG);//INSTEAD OF "Choose Action": R.string.string_message_id
+						View view = toast.getView();
+						view.setBackgroundResource(R.drawable.centerscroll3toast);
+						//toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+						toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+			
+						TextView text = (TextView) view.findViewById(android.R.id.message);
+						Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+						text.setTypeface(typeFace);
+						text.setTextColor(Color.parseColor("#FFFFFF"));
+						//text.setRotation(-45);
+						text.setGravity(Gravity.CENTER);
+						
+						/*	ONLY WAY I COUL FIND TO CENTER TEXT IN CUSTOM TOAST FOR S3(4.4.2), S4(4.4.2) & AMAZON(5.3):
+						 	if ((getResources().getDisplayMetrics().densityDpi==160) && (android.os.Build.VERSION.RELEASE.startsWith("5.3")))
+							text.setPadding(165, 0, 0, 0);
+						 */
+						toast.show();
 			  	  		
 			  	  		edit.putString(ArrayOfPlayers.player[1], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 0) + ":Loses:" + (Loses + 1) + ":CritHitMB:" + (CritHitMB + 0) + ":MaxTurns:" + (ArrayOfTurn.turn[0]));
 			  	  		edit.commit();
 			  	  	}
 			  	  	if (win.equals("no") && (critHitWithMB.equals("yes"))) {
-				  		
+			  	  		//NEW RECORD - TURNS & CHMB
+				  	  	Toast toast = Toast.makeText(Client2.this, "New Record!" + "\n" + "Turns, CH/MB", Toast.LENGTH_LONG);//INSTEAD OF "Choose Action": R.string.string_message_id
+						View view = toast.getView();
+						view.setBackgroundResource(R.drawable.centerscroll3toast);
+						//toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+						toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+			
+						TextView text = (TextView) view.findViewById(android.R.id.message);
+						Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+						text.setTypeface(typeFace);
+						text.setTextColor(Color.parseColor("#FFFFFF"));
+						//text.setRotation(-45);
+						text.setGravity(Gravity.CENTER);
+						
+						/*	ONLY WAY I COUL FIND TO CENTER TEXT IN CUSTOM TOAST FOR S3(4.4.2), S4(4.4.2) & AMAZON(5.3):
+						 	if ((getResources().getDisplayMetrics().densityDpi==160) && (android.os.Build.VERSION.RELEASE.startsWith("5.3")))
+							text.setPadding(165, 0, 0, 0);
+						 */
+						toast.show();
+			  	  		
 				  		edit.putString(ArrayOfPlayers.player[1], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 0) + ":Loses:" + (Loses + 1) + ":CritHitMB:" + (CritHitMB + 1) + ":MaxTurns:" + (ArrayOfTurn.turn[0]));
 				  		edit.commit();
 				  	}
@@ -2836,23 +3045,80 @@ public class Client2 extends Activity {
 		  	  	if (ArrayOfTurn.turn[0] < MaxTurns) {
 			  		
 		  	  		if (win.equals("yes") && (critHitWithMB.equals("na"))) {
-		  	  		
+		  	  			//NEW RECORD - WINS
+			  	  		Toast toast = Toast.makeText(Client2.this, "New Record!" + "\n" + "Wins", Toast.LENGTH_LONG);//INSTEAD OF "Choose Action": R.string.string_message_id
+						View view = toast.getView();
+						view.setBackgroundResource(R.drawable.centerscroll3toast);
+						//toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+						toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+			
+						TextView text = (TextView) view.findViewById(android.R.id.message);
+						Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+						text.setTypeface(typeFace);
+						text.setTextColor(Color.parseColor("#FFFFFF"));
+						//text.setRotation(-45);
+						text.setGravity(Gravity.CENTER);
+						
+						/*	ONLY WAY I COUL FIND TO CENTER TEXT IN CUSTOM TOAST FOR S3(4.4.2), S4(4.4.2) & AMAZON(5.3):
+						 	if ((getResources().getDisplayMetrics().densityDpi==160) && (android.os.Build.VERSION.RELEASE.startsWith("5.3")))
+							text.setPadding(165, 0, 0, 0);
+						 */
+						toast.show();
+		  	  			
 		  	  			edit.putString(ArrayOfPlayers.player[1], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 1) + ":Loses:" + (Loses + 0) + ":CritHitMB:" + (CritHitMB + 0) + ":MaxTurns:" + (MaxTurns));
 		  	  			edit.commit();
 			  	  	}
 			  	  	if (win.equals("yes") && (critHitWithMB.equals("yes"))) {
-				  		
+			  	  		//NEW RECORD - WINS & CHMB
+				  	  	Toast toast = Toast.makeText(Client2.this, "New Record!" + "\n" + "Wins, CH/MB", Toast.LENGTH_LONG);//INSTEAD OF "Choose Action": R.string.string_message_id
+						View view = toast.getView();
+						view.setBackgroundResource(R.drawable.centerscroll3toast);
+						//toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+						toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+			
+						TextView text = (TextView) view.findViewById(android.R.id.message);
+						Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+						text.setTypeface(typeFace);
+						text.setTextColor(Color.parseColor("#FFFFFF"));
+						//text.setRotation(-45);
+						text.setGravity(Gravity.CENTER);
+						
+						/*	ONLY WAY I COUL FIND TO CENTER TEXT IN CUSTOM TOAST FOR S3(4.4.2), S4(4.4.2) & AMAZON(5.3):
+						 	if ((getResources().getDisplayMetrics().densityDpi==160) && (android.os.Build.VERSION.RELEASE.startsWith("5.3")))
+							text.setPadding(165, 0, 0, 0);
+						 */
+						toast.show();
+			  	  		
 				  		edit.putString(ArrayOfPlayers.player[1], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 1) + ":Loses:" + (Loses + 0) + ":CritHitMB:" + (CritHitMB + 1) + ":MaxTurns:" + (MaxTurns));
 				  		edit.commit();
 				  	}
 			  	  	
 			  	  	if (win.equals("no") && (critHitWithMB.equals("na"))) {
-			  	  		
+			  	  		//NO RECORDS
 			  	  		edit.putString(ArrayOfPlayers.player[1], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 0) + ":Loses:" + (Loses + 1) + ":CritHitMB:" + (CritHitMB + 0) + ":MaxTurns:" + (MaxTurns));
 			  	  		edit.commit();
 			  	  	}
 			  	  	if (win.equals("no") && (critHitWithMB.equals("yes"))) {
-				  		
+			  	  		//NEW RECORD - CHMB
+				  	  	Toast toast = Toast.makeText(Client2.this, "New Record!" + "\n" + "CH/MB", Toast.LENGTH_LONG);//INSTEAD OF "Choose Action": R.string.string_message_id
+						View view = toast.getView();
+						view.setBackgroundResource(R.drawable.centerscroll3toast);
+						//toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+						toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+			
+						TextView text = (TextView) view.findViewById(android.R.id.message);
+						Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+						text.setTypeface(typeFace);
+						text.setTextColor(Color.parseColor("#FFFFFF"));
+						//text.setRotation(-45);
+						text.setGravity(Gravity.CENTER);
+						
+						/*	ONLY WAY I COUL FIND TO CENTER TEXT IN CUSTOM TOAST FOR S3(4.4.2), S4(4.4.2) & AMAZON(5.3):
+						 	if ((getResources().getDisplayMetrics().densityDpi==160) && (android.os.Build.VERSION.RELEASE.startsWith("5.3")))
+							text.setPadding(165, 0, 0, 0);
+						 */
+						toast.show();
+			  	  		
 				  		edit.putString(ArrayOfPlayers.player[1], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 0) + ":Loses:" + (Loses + 1) + ":CritHitMB:" + (CritHitMB + 1) + ":MaxTurns:" + (MaxTurns));
 				  		edit.commit();
 				  	}
@@ -9024,9 +9290,8 @@ public class Client2 extends Activity {
 		  		chatBlankButton.bringToFront();
 				
 				
+		  		
 				//test();
-		  		
-		  		
 		  		
 		  		
 		  		
@@ -9040,9 +9305,6 @@ public class Client2 extends Activity {
 		  	  			MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
 		  	  		}
 		  	  	}, 500);
-				
-		  		
-		  		
 		  		
 				
 				
@@ -10155,7 +10417,7 @@ public class Client2 extends Activity {
 	  			Toast toast = Toast.makeText(Client2.this, "Choose An Action", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
 	  			View view = toast.getView();
 	  			view.setBackgroundResource(R.drawable.centerscroll3toast);
-	  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+	  			toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
 
 	  			TextView text = (TextView) view.findViewById(android.R.id.message);
 	  			//Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
@@ -10381,9 +10643,17 @@ public class Client2 extends Activity {
 	            
 	            
 	            WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-
 	            lp.copyFrom(alert.getWindow().getAttributes());
-	            lp.width = 1050;	            
+	            
+	            if (getResources().getDisplayMetrics().densityDpi==160) {
+	            	
+	            	lp.width = 525;
+	            }
+	            else {
+	            	
+	            	lp.width = 1050;
+	            }
+	            
 	            alert.getWindow().setAttributes(lp);
 	            
 	            /* CAN ADJUST DIALOGS HEIGHT & WIDTH
@@ -10511,7 +10781,7 @@ public class Client2 extends Activity {
 		  		  		Toast toast = Toast.makeText(Client2.this, "Choose An Action", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
 			  			View view = toast.getView();
 			  			view.setBackgroundResource(R.drawable.centerscroll3toast);
-			  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+			  			toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
 	
 			  			TextView text = (TextView) view.findViewById(android.R.id.message);
 			  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");

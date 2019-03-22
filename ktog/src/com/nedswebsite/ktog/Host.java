@@ -2524,23 +2524,99 @@ public class Host extends Activity {
   	  	if (ArrayOfTurn.turn[0] >= MaxTurns) {
 	  		
 	  		if (win.equals("yes") && (critHitWithMB.equals("na"))) {
-	  		
+	  			//NEW RECORD - TURNS & WINS
+	  	  		Toast toast = Toast.makeText(Host.this, "New Record!" + "\n" + "Turns, Wins", Toast.LENGTH_LONG);//INSTEAD OF "Choose Action": R.string.string_message_id
+				View view = toast.getView();
+				view.setBackgroundResource(R.drawable.centerscroll3toast);
+				//toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+				toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+	
+				TextView text = (TextView) view.findViewById(android.R.id.message);
+				Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+				text.setTypeface(typeFace);
+				text.setTextColor(Color.parseColor("#FFFFFF"));
+				//text.setRotation(-45);
+				text.setGravity(Gravity.CENTER);
+				
+				/*	ONLY WAY I COUL FIND TO CENTER TEXT IN CUSTOM TOAST FOR S3(4.4.2), S4(4.4.2) & AMAZON(5.3):
+				 	if ((getResources().getDisplayMetrics().densityDpi==160) && (android.os.Build.VERSION.RELEASE.startsWith("5.3")))
+					text.setPadding(165, 0, 0, 0);
+				 */
+				toast.show();
+	  			
 	  			edit.putString(ArrayOfPlayers.player[5], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 1) + ":Loses:" + (Loses + 0) + ":CritHitMB:" + (CritHitMB + 0) + ":MaxTurns:" + (ArrayOfTurn.turn[0]));
 	  			edit.commit();
 	  	  	}
 	  	  	if (win.equals("yes") && (critHitWithMB.equals("yes"))) {
-		  		
+	  	  		//NEW RECORD - TURNS & WINS & CHMB
+		  	  	Toast toast = Toast.makeText(Host.this, "New Record!" + "\n" + "Turns, Wins, CH/MB", Toast.LENGTH_LONG);//INSTEAD OF "Choose Action": R.string.string_message_id
+				View view = toast.getView();
+				view.setBackgroundResource(R.drawable.centerscroll3toast);
+				//toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+				toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+	
+				TextView text = (TextView) view.findViewById(android.R.id.message);
+				Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+				text.setTypeface(typeFace);
+				text.setTextColor(Color.parseColor("#FFFFFF"));
+				//text.setRotation(-45);
+				text.setGravity(Gravity.CENTER);
+				
+				/*	ONLY WAY I COUL FIND TO CENTER TEXT IN CUSTOM TOAST FOR S3(4.4.2), S4(4.4.2) & AMAZON(5.3):
+				 	if ((getResources().getDisplayMetrics().densityDpi==160) && (android.os.Build.VERSION.RELEASE.startsWith("5.3")))
+					text.setPadding(165, 0, 0, 0);
+				 */
+				toast.show();
+	  	  		
 		  		edit.putString(ArrayOfPlayers.player[5], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 1) + ":Loses:" + (Loses + 0) + ":CritHitMB:" + (CritHitMB + 1) + ":MaxTurns:" + (ArrayOfTurn.turn[0]));
 		  		edit.commit();
 		  	}
 	  	  	
 	  	  	if (win.equals("no") && (critHitWithMB.equals("na"))) {
+	  	  		//NEW RECORD - TURNS
+		  	  	Toast toast = Toast.makeText(Host.this, "New Record!" + "\n" + "Turns", Toast.LENGTH_LONG);//INSTEAD OF "Choose Action": R.string.string_message_id
+				View view = toast.getView();
+				view.setBackgroundResource(R.drawable.centerscroll3toast);
+				//toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+				toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+	
+				TextView text = (TextView) view.findViewById(android.R.id.message);
+				Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+				text.setTypeface(typeFace);
+				text.setTextColor(Color.parseColor("#FFFFFF"));
+				//text.setRotation(-45);
+				text.setGravity(Gravity.CENTER);
+				
+				/*	ONLY WAY I COUL FIND TO CENTER TEXT IN CUSTOM TOAST FOR S3(4.4.2), S4(4.4.2) & AMAZON(5.3):
+				 	if ((getResources().getDisplayMetrics().densityDpi==160) && (android.os.Build.VERSION.RELEASE.startsWith("5.3")))
+					text.setPadding(165, 0, 0, 0);
+				 */
+				toast.show();
 	  	  		
 	  	  		edit.putString(ArrayOfPlayers.player[5], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 0) + ":Loses:" + (Loses + 1) + ":CritHitMB:" + (CritHitMB + 0) + ":MaxTurns:" + (ArrayOfTurn.turn[0]));
 	  	  		edit.commit();
 	  	  	}
 	  	  	if (win.equals("no") && (critHitWithMB.equals("yes"))) {
-		  		
+	  	  		//NEW RECORD - TURNS & CHMB
+		  	  	Toast toast = Toast.makeText(Host.this, "New Record!" + "\n" + "Turns, CH/MB", Toast.LENGTH_LONG);//INSTEAD OF "Choose Action": R.string.string_message_id
+				View view = toast.getView();
+				view.setBackgroundResource(R.drawable.centerscroll3toast);
+				//toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+				toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+	
+				TextView text = (TextView) view.findViewById(android.R.id.message);
+				Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+				text.setTypeface(typeFace);
+				text.setTextColor(Color.parseColor("#FFFFFF"));
+				//text.setRotation(-45);
+				text.setGravity(Gravity.CENTER);
+				
+				/*	ONLY WAY I COUL FIND TO CENTER TEXT IN CUSTOM TOAST FOR S3(4.4.2), S4(4.4.2) & AMAZON(5.3):
+				 	if ((getResources().getDisplayMetrics().densityDpi==160) && (android.os.Build.VERSION.RELEASE.startsWith("5.3")))
+					text.setPadding(165, 0, 0, 0);
+				 */
+				toast.show();
+	  	  		
 		  		edit.putString(ArrayOfPlayers.player[5], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 0) + ":Loses:" + (Loses + 1) + ":CritHitMB:" + (CritHitMB + 1) + ":MaxTurns:" + (ArrayOfTurn.turn[0]));
 		  		edit.commit();
 		  	}
@@ -2549,23 +2625,80 @@ public class Host extends Activity {
 	  	if (ArrayOfTurn.turn[0] < MaxTurns) {
 	  		
 	  		if (win.equals("yes") && (critHitWithMB.equals("na"))) {
-	  		
+	  			//NEW RECORD - WINS
+	  	  		Toast toast = Toast.makeText(Host.this, "New Record!" + "\n" + "Wins", Toast.LENGTH_LONG);//INSTEAD OF "Choose Action": R.string.string_message_id
+				View view = toast.getView();
+				view.setBackgroundResource(R.drawable.centerscroll3toast);
+				//toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+				toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+	
+				TextView text = (TextView) view.findViewById(android.R.id.message);
+				Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+				text.setTypeface(typeFace);
+				text.setTextColor(Color.parseColor("#FFFFFF"));
+				//text.setRotation(-45);
+				text.setGravity(Gravity.CENTER);
+				
+				/*	ONLY WAY I COUL FIND TO CENTER TEXT IN CUSTOM TOAST FOR S3(4.4.2), S4(4.4.2) & AMAZON(5.3):
+				 	if ((getResources().getDisplayMetrics().densityDpi==160) && (android.os.Build.VERSION.RELEASE.startsWith("5.3")))
+					text.setPadding(165, 0, 0, 0);
+				 */
+				toast.show();
+	  			
 	  			edit.putString(ArrayOfPlayers.player[5], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 1) + ":Loses:" + (Loses + 0) + ":CritHitMB:" + (CritHitMB + 0) + ":MaxTurns:" + (MaxTurns));
 	  			edit.commit();
 	  	  	}
 	  	  	if (win.equals("yes") && (critHitWithMB.equals("yes"))) {
-		  		
+	  	  		//NEW RECORD - WINS & CHMB
+		  	  	Toast toast = Toast.makeText(Host.this, "New Record!" + "\n" + "Wins, CH/MB", Toast.LENGTH_LONG);//INSTEAD OF "Choose Action": R.string.string_message_id
+				View view = toast.getView();
+				view.setBackgroundResource(R.drawable.centerscroll3toast);
+				//toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+				toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+	
+				TextView text = (TextView) view.findViewById(android.R.id.message);
+				Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+				text.setTypeface(typeFace);
+				text.setTextColor(Color.parseColor("#FFFFFF"));
+				//text.setRotation(-45);
+				text.setGravity(Gravity.CENTER);
+				
+				/*	ONLY WAY I COUL FIND TO CENTER TEXT IN CUSTOM TOAST FOR S3(4.4.2), S4(4.4.2) & AMAZON(5.3):
+				 	if ((getResources().getDisplayMetrics().densityDpi==160) && (android.os.Build.VERSION.RELEASE.startsWith("5.3")))
+					text.setPadding(165, 0, 0, 0);
+				 */
+				toast.show();
+	  	  		
 		  		edit.putString(ArrayOfPlayers.player[5], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 1) + ":Loses:" + (Loses + 0) + ":CritHitMB:" + (CritHitMB + 1) + ":MaxTurns:" + (MaxTurns));
 		  		edit.commit();
 		  	}
 	  	  	
 	  	  	if (win.equals("no") && (critHitWithMB.equals("na"))) {
-	  	  		
+	  	  		//NO RECORDS
 	  	  		edit.putString(ArrayOfPlayers.player[5], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 0) + ":Loses:" + (Loses + 1) + ":CritHitMB:" + (CritHitMB + 0) + ":MaxTurns:" + (MaxTurns));
 	  	  		edit.commit();
 	  	  	}
 	  	  	if (win.equals("no") && (critHitWithMB.equals("yes"))) {
-		  		
+	  	  		//NEW RECORD - CHMB
+		  	  	Toast toast = Toast.makeText(Host.this, "New Record!" + "\n" + "CH/MB", Toast.LENGTH_LONG);//INSTEAD OF "Choose Action": R.string.string_message_id
+				View view = toast.getView();
+				view.setBackgroundResource(R.drawable.centerscroll3toast);
+				//toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+				toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+	
+				TextView text = (TextView) view.findViewById(android.R.id.message);
+				Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+				text.setTypeface(typeFace);
+				text.setTextColor(Color.parseColor("#FFFFFF"));
+				//text.setRotation(-45);
+				text.setGravity(Gravity.CENTER);
+				
+				/*	ONLY WAY I COUL FIND TO CENTER TEXT IN CUSTOM TOAST FOR S3(4.4.2), S4(4.4.2) & AMAZON(5.3):
+				 	if ((getResources().getDisplayMetrics().densityDpi==160) && (android.os.Build.VERSION.RELEASE.startsWith("5.3")))
+					text.setPadding(165, 0, 0, 0);
+				 */
+				toast.show();
+	  	  		
 		  		edit.putString(ArrayOfPlayers.player[5], "GamesPlayed:" + (Games + 1) + ":Wins:" + (Wins + 0) + ":Loses:" + (Loses + 1) + ":CritHitMB:" + (CritHitMB + 1) + ":MaxTurns:" + (MaxTurns));
 		  		edit.commit();
 		  	}
@@ -21266,8 +21399,12 @@ public class Host extends Activity {
 			  	  	  			String str3 = "> Game Over!";
 			  	  	  			sendToClient0(str3);
 			  	  	  			
-			  	  	  			
 			  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.buttonsound4b);
+			  	  	  			
+				  	  	  		writeTextToFile();
+				    			
+				  	  	  		getTextFromFile();
+			  	  	  			
 			  	  	  			
 				  	  	  		final Handler h3 = new Handler();
 					  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
@@ -21307,15 +21444,11 @@ public class Host extends Activity {
 							  	  	  	}, 500);
 							  	  	  	*/
 						  	  	  		
-						  	  	  		writeTextToFile();
-					    			
-						  	  	  		getTextFromFile();
-						  	  	  		
 						  	  	  		h.removeCallbacks(this);
 						  	  	  		h2.removeCallbacks(this);
 						  	  	  		h3.removeCallbacks(this);
 						  	  	  	}
-					  	  	  	}, 2000);
+					  	  	  	}, 3000);
 				  	  	  	}
 			  	  	  	}, 2000);					
 					}
@@ -21356,10 +21489,14 @@ public class Host extends Activity {
 			  	  	  			centerscrolltext.append("\n" + "> Game Over!");
 			  	  	  			
 			  	  	  			String str5 = "> Game Over!";
-			  	  	  			sendToClient0(str5);		  	  	  			
-			  	  	  			
+			  	  	  			sendToClient0(str5);
 			  	  	  			
 			  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.buttonsound6);
+			  	  	  			
+				  	  	  		writeTextToFile();
+				    			
+				  	  	  		getTextFromFile();
+			  	  	  			
 			  	  	  			
 				  	  	  		final Handler h3 = new Handler();
 					  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
@@ -21399,15 +21536,11 @@ public class Host extends Activity {
 							  	  	  	}, 500);
 							  	  	  	*/
 						  	  	  		
-						  	  	  		writeTextToFile();
-					    			
-						  	  	  		getTextFromFile();
-						  	  	  		
 						  	  	  		h.removeCallbacks(this);
 						  	  	  		h2.removeCallbacks(this);
 						  	  	  		h3.removeCallbacks(this);
 						  	  	  	}
-					  	  	  	}, 2000);
+					  	  	  	}, 3000);
 				  	  	  	}
 			  	  	  	}, 2000);					
 					}
@@ -21479,8 +21612,12 @@ public class Host extends Activity {
 			  	  	  			String str3 = "> Game Over!";
 			  	  	  			sendToAllClients(str3);
 			  	  	  			
-			  	  	  			
 			  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.buttonsound4b);
+			  	  	  			
+				  	  	  		writeTextToFile();
+				    			
+				  	  	  		getTextFromFile();
+			  	  	  			
 			  	  	  			
 				  	  	  		final Handler h3 = new Handler();
 					  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
@@ -21520,15 +21657,11 @@ public class Host extends Activity {
 							  	  	  	}, 500);
 							  	  	  	*/
 						  	  	  		
-						  	  	  		writeTextToFile();
-					    			
-						  	  	  		getTextFromFile();
-						  	  	  		
 						  	  	  		h.removeCallbacks(this);
 						  	  	  		h2.removeCallbacks(this);
 						  	  	  		h3.removeCallbacks(this);
 						  	  	  	}
-					  	  	  	}, 2000);
+					  	  	  	}, 3000);
 				  	  	  	}
 			  	  	  	}, 2000);					
 					}
@@ -21589,10 +21722,14 @@ public class Host extends Activity {
 			  	  	  			centerscrolltext.append("\n" + "> Game Over!");
 			  	  	  			
 			  	  	  			String str5 = "> Game Over!";
-			  	  	  			sendToAllClients(str5);		  	  	  			
-			  	  	  			
+			  	  	  			sendToAllClients(str5);
 			  	  	  			
 			  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.buttonsound6);
+			  	  	  			
+				  	  	  		writeTextToFile();
+				    			
+				  	  	  		getTextFromFile();
+			  	  	  			
 			  	  	  			
 				  	  	  		final Handler h3 = new Handler();
 					  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
@@ -21632,15 +21769,11 @@ public class Host extends Activity {
 							  	  	  	}, 500);
 							  	  	  	*/
 						  	  	  		
-						  	  	  		writeTextToFile();
-					    			
-						  	  	  		getTextFromFile();
-						  	  	  		
 						  	  	  		h.removeCallbacks(this);
 						  	  	  		h2.removeCallbacks(this);
 						  	  	  		h3.removeCallbacks(this);
 						  	  	  	}
-					  	  	  	}, 2000);
+					  	  	  	}, 3000);
 				  	  	  	}
 			  	  	  	}, 2000);					
 					}
@@ -21701,10 +21834,14 @@ public class Host extends Activity {
 			  	  	  			centerscrolltext.append("\n" + "> Game Over!");
 			  	  	  			
 			  	  	  			String str5 = "> Game Over!";
-			  	  	  			sendToAllClients(str5);		  	  	  			
-			  	  	  			
+			  	  	  			sendToAllClients(str5);
 			  	  	  			
 			  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.buttonsound6);
+			  	  	  			
+				  	  	  		writeTextToFile();
+				    			
+				  	  	  		getTextFromFile();
+			  	  	  			
 			  	  	  			
 				  	  	  		final Handler h3 = new Handler();
 					  	  	  	h3.postDelayed(new Runnable() {
@@ -21744,15 +21881,11 @@ public class Host extends Activity {
 							  	  	  	}, 500);
 							  	  	  	*/
 						  	  	  		
-						  	  	  		writeTextToFile();
-					    			
-						  	  	  		getTextFromFile();
-						  	  	  		
 						  	  	  		h.removeCallbacks(this);
 						  	  	  		h2.removeCallbacks(this);
 						  	  	  		h3.removeCallbacks(this);
 						  	  	  	}
-					  	  	  	}, 2000);
+					  	  	  	}, 3000);
 				  	  	  	}
 			  	  	  	}, 2000);					
 					}
@@ -22017,7 +22150,7 @@ public class Host extends Activity {
 	  			Toast toast = Toast.makeText(Host.this, "Choose An Action", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
 	  			View view = toast.getView();
 	  			view.setBackgroundResource(R.drawable.centerscroll3toast);
-	  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+	  			toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
 
 	  			TextView text = (TextView) view.findViewById(android.R.id.message);
 	  			//Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
@@ -22243,9 +22376,17 @@ public class Host extends Activity {
 	            
 	            
 	            WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-
 	            lp.copyFrom(alert.getWindow().getAttributes());
-	            lp.width = 1050;	            
+	            
+	            if (getResources().getDisplayMetrics().densityDpi==160) {
+	            	
+	            	lp.width = 525;
+	            }
+	            else {
+	            	
+	            	lp.width = 1050;
+	            }
+	            
 	            alert.getWindow().setAttributes(lp);
 	            
 	            /* CAN ADJUST DIALOGS HEIGHT & WIDTH
@@ -22355,7 +22496,7 @@ public class Host extends Activity {
 		  		  		Toast toast = Toast.makeText(Host.this, "Choose An Action", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
 			  			View view = toast.getView();
 			  			view.setBackgroundResource(R.drawable.centerscroll3toast);
-			  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+			  			toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
 	
 			  			TextView text = (TextView) view.findViewById(android.R.id.message);
 			  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
@@ -25475,7 +25616,7 @@ public class Host extends Activity {
 				  	  	  			
 				  	  	  			if (mightyBlowSpell[5] > 0 && ishasteused.equals("no") && isblessrolled.equals("no")) {
 								
-										AlertDialog.Builder alert = new AlertDialog.Builder(Host.this, R.layout.avatar_adapter);
+										AlertDialog.Builder alert = new AlertDialog.Builder(Host.this, R.style.customalertdialog);
 							  			
 										alert.setCancelable(false);
 										
@@ -25571,7 +25712,7 @@ public class Host extends Activity {
 	  	  	  			
 	  	  	  			if (mightyBlowSpell[5] > 0 && ishasteused.equals("no") && isblessrolled.equals("no")) {
 				
-							AlertDialog.Builder alert = new AlertDialog.Builder(Host.this, R.layout.avatar_adapter);
+							AlertDialog.Builder alert = new AlertDialog.Builder(Host.this, R.style.customalertdialog);
 				  			
 							alert.setCancelable(false);
 							
@@ -25701,7 +25842,7 @@ public class Host extends Activity {
 		  	  	  			
 			  	  	  		if (mightyBlowSpell[5] > 0 && ishasteused.equals("no") && isblessrolled.equals("no") && issecondroundofhasteused.equals("no")) {								
 								
-								AlertDialog.Builder alert = new AlertDialog.Builder(Host.this, R.layout.avatar_adapter);
+								AlertDialog.Builder alert = new AlertDialog.Builder(Host.this, R.style.customalertdialog);
 					  			
 								alert.setCancelable(false);
 								
@@ -25795,7 +25936,7 @@ public class Host extends Activity {
 	  	  	  			
 		  	  	  		if (mightyBlowSpell[5] > 0 && ishasteused.equals("no") && isblessrolled.equals("no") && issecondroundofhasteused.equals("no")) {											
 							
-							AlertDialog.Builder alert = new AlertDialog.Builder(Host.this, R.layout.avatar_adapter);
+							AlertDialog.Builder alert = new AlertDialog.Builder(Host.this, R.style.customalertdialog);
 				  			
 							alert.setCancelable(false);
 							
@@ -30100,8 +30241,7 @@ else if (read.contains("cstmImage")) {//MAY WANT MORE COMPLICATED TERM SO IT DOE
 						  	  	  	h.postDelayed(new Runnable() {		  	  	  			
 						  	  	  			
 						  	  	  		@Override
-							  	  	  	public void run() {			
-											
+							  	  	  	public void run() {
 						  	  	  			
 							  	  	  		centerscrolltext.setVisibility(View.VISIBLE);
 									  		//centerscrolltext.startAnimation(animAlphaText);
@@ -30134,11 +30274,123 @@ else if (read.contains("cstmImage")) {//MAY WANT MORE COMPLICATED TERM SO IT DOE
 												hAs1TakenTurn = "yes";
 											}											
 											
-											
-											if (numberOfPlayers == 2 || (numberOfPlayers == 3 && playerDeadYet[1].equals("no"))) {
+											if (numberOfPlayers == 2) {
 												
 												final Handler h2 = new Handler();
 									  	  	  	h2.postDelayed(new Runnable() {
+									  	  	  			
+									  	  	  		@Override
+										  	  	  	public void run() {
+//HERE									  	  		
+										  	  	  		//final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+										  	  	  		final Animation animAlphaText = AnimationUtils.loadAnimation(Host.this, R.anim.anim_alpha_text);
+
+									  	  	  			
+											  	  		ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+											  	  		titleBlankButton.setEnabled(false);
+											  	  		
+											  	  		runOnUiThread(new Runnable() {
+											  	  			
+										  	    	  	    @Override
+										  	    	  	    public void run() {
+										  	    	  	    	
+										  	    	  	    	Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");				
+										  	    	  	    												  	    	  	    		
+									  	    	  	    		MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+									  	    	  	    		
+									  	    	  	    		victoryDefeatAnimation();
+									  	    	  	    		
+									  	    	  	    		
+										  	  	  	  	    	final Handler h = new Handler();
+										  	  			  	  	h.postDelayed(new Runnable() {		  	  	  			
+										  	  			  	  			
+										  	  			  	  		@Override
+										  	  			  	  		public void run() {
+										  	  		
+										  	  			  	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+										  	  			  	  		}
+										  	  			  	  	}, 500);
+										  	    	  	    		
+										  	    	  	    	
+									  	    	  	    		String str = "victoryDefeatAnimation";
+									  	    	  	    		sendToAllClients(str);
+										  	  					
+										  	  						
+									  	  						gameOn = 0;
+									  	  						
+									  	  						win = "yes";
+									  	  						
+									  	  						
+									  	  						final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+									  	  						//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+									  	  						
+									  	  						//Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+									  	  						centerscrolltext.setTypeface(typeFace);					
+									  	  						
+									  	  						
+									  	  						centerscrolltext.setVisibility(View.VISIBLE);												
+									  	  			  	  		centerscrolltext.startAnimation(animAlphaText);
+									  	  			  			centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + " ran away!");
+									  	  			  			
+									  	  			  			String str2 = "> " + ArrayOfPlayers.player[5] + " ran away!";
+									  	  						sendToClient0(str2);
+									  	  						
+									  	  			  			
+									  	  			  			final Handler h2 = new Handler();
+									  	  			  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
+									  	  			  	  	  			
+									  	  			  	  	  		@Override
+									  	  				  	  	  	public void run() {
+									  	  			  	  	  			
+									  	  			  	  	  			centerscrolltext.setVisibility(View.VISIBLE);												
+									  	  			  	  	  			centerscrolltext.startAnimation(animAlphaText);
+									  	  			  	  	  			centerscrolltext.append("\n" + "> Game Over!");
+									  	  			  	  	  			
+									  	  			  	  	  			String str3 = "> Game Over!";
+									  	  			  	  	  			sendToClient0(str3);
+									  	  			  	  	  			
+									  	  			  	  	  			
+									  	  			  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.buttonsound4b);
+									  	  			  	  	  			
+									  	  				  	  	  		final Handler h3 = new Handler();
+									  	  					  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
+									  	  					  	  	  			
+									  	  					  	  	  		@Override
+									  	  						  	  	  	public void run() {
+									  	  					  	  	  			
+									  	  					  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+									  	  					  	  	  			
+									  	  					  	  	  			foldScrolls();
+									  	  					  	  	  			
+									  	  					  	  	  			String str4 = "foldScrolls";
+									  	  					  	  	  			sendToClient0(str4);
+									  	  					  	  	  			
+									  	  					  	  	  			
+									  	  						  	  	  		playerCardStopFadeInFadeOut();
+									  	  						  	  	  		computerCardStopFadeInFadeOut();
+									  	  					  	  	  			
+									  	  						  	  	  		
+									  	  						  	  	  		//writeTextToFile();
+									  	  					    			
+									  	  						  	  	  		//getTextFromFile();
+									  	  						  	  	  		
+									  	  						  	  	  		h.removeCallbacks(this);
+									  	  						  	  	  		h2.removeCallbacks(this);
+									  	  						  	  	  		h3.removeCallbacks(this);
+									  	  						  	  	  	}
+									  	  					  	  	  	}, 2000);
+									  	  				  	  	  	}
+									  	  			  	  	  	}, 2000);
+										  	    	  	    }
+											  	  		});
+									  	  	  		}
+									  	  	  	}, 2000);
+											}
+											
+											else if (numberOfPlayers == 3 && playerDeadYet[1].equals("no")) {
+												
+												final Handler h3 = new Handler();
+									  	  	  	h3.postDelayed(new Runnable() {
 									  	  	  			
 									  	  	  		@Override
 										  	  	  	public void run() {						
@@ -30149,11 +30401,17 @@ else if (read.contains("cstmImage")) {//MAY WANT MORE COMPLICATED TERM SO IT DOE
 											}
 								  	  	  	
 								  	  	  	else if (numberOfPlayers == 3 && playerDeadYet[1].equals("yes")) {
-								  	  	  		
-								  	  	  		
-								  	  	  	}								  	  	  	
-								  	  	  	
-								  	  	  	
+//here
+									  	  	  	final Handler h4 = new Handler();
+									  	  	  	h4.postDelayed(new Runnable() {
+									  	  	  			
+									  	  	  		@Override
+										  	  	  	public void run() {						
+												
+											    		gameOverCheck();
+									  	  	  		}
+									  	  	  	}, 2000);
+								  	  	  	}
 						  	  	  		}
 						  	  	  	}, 2000);
 						  	    }
@@ -30213,7 +30471,9 @@ else if (read.contains("cstmImage")) {//MAY WANT MORE COMPLICATED TERM SO IT DOE
 											}											
 								    		
 											
-											if (numberOfPlayers == 2 || (numberOfPlayers == 3 && playerDeadYet[0].equals("no"))) {
+											//if (numberOfPlayers == 2 || (numberOfPlayers == 3 && playerDeadYet[0].equals("no"))) {
+//here...dont need numberOfPlayers == 2 (for 2 players, [0] is used.
+											if (numberOfPlayers == 3 && playerDeadYet[0].equals("no")) {
 												
 												final Handler h2 = new Handler();
 									  	  	  	h2.postDelayed(new Runnable() {
@@ -30227,11 +30487,17 @@ else if (read.contains("cstmImage")) {//MAY WANT MORE COMPLICATED TERM SO IT DOE
 											}
 								  	  	  	
 								  	  	  	else if (numberOfPlayers == 3 && playerDeadYet[0].equals("yes")) {
-								  	  	  		
-								  	  	  		
-								  	  	  	}											
-											
-											
+//here
+									  	  	  	final Handler h3 = new Handler();
+									  	  	  	h3.postDelayed(new Runnable() {
+									  	  	  			
+									  	  	  		@Override
+										  	  	  	public void run() {						
+												
+											    		gameOverCheck();
+									  	  	  		}
+									  	  	  	}, 2000);
+								  	  	  	}
 						  	  	  		}
 						  	  	  	}, 2000);
 						  	    }

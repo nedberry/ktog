@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context="com.nedswebsite.ktog.MainActivity2" >
    		
-   		
+   	<!--	
    	<TextView
    	    android:id="@+id/textviewtitlektogtext"
    	    android:layout_width="wrap_content"
@@ -20,7 +20,7 @@
    	    android:textColor="#FFFFFF"
    	    android:textSize="125sp" />	
    		
-   		<!--
+   		
    		android:layout_height="176dp"
    		
    		android:layout_height="220dp"
@@ -34,12 +34,14 @@
    		-->
    		
    	<ImageView
-        android:id="@+id/swordsborder"
+        android:id="@+id/recordstitle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/swordsborder"
-        android:background="@drawable/swordsborder" />
+        
+        android:background="@drawable/recordstitle" />
    		<!--
+   		android:layout_below="@+id/textviewtitlektogtext"
+   		
    		android:scaleType="fitCenter"
         android:adjustViewBounds="true"
    		android:scaleType="fitXY"
@@ -50,12 +52,12 @@
    	
    	<ScrollView
         android:id="@+id/scrollView1"
-        
+        android:layout_marginTop="5dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="#000000"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/swordsborder" >
+        android:layout_below="@+id/recordstitle" >
 
         <HorizontalScrollView
             android:id="@+id/hscrll1"
