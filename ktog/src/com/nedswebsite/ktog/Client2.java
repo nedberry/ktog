@@ -3928,6 +3928,8 @@ public class Client2 extends Activity {
 				Animation a = AnimationUtils.loadAnimation(Client2.this, R.anim.textscaletobig);					  	  	  	
 			  	  	
 		  	  	TextView hasteGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+		  	  	hasteGraphic.setLayerType(View.LAYER_TYPE_SOFTWARE, null);//FOR TEXT NOT SHOWING ON 2560X1440
+
 		  	  	
 		  	  	hasteGraphic.setVisibility(View.VISIBLE);
 			  	hasteGraphic.bringToFront();
@@ -3975,6 +3977,8 @@ public class Client2 extends Activity {
 				Animation a = AnimationUtils.loadAnimation(Client2.this, R.anim.textscaletobig);					  	  	  	
 			  	  	
 		  	  	TextView cureGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+		  	  	cureGraphic.setLayerType(View.LAYER_TYPE_SOFTWARE, null);//FOR TEXT NOT SHOWING ON 2560X1440
+
 		  	  	
 		  	  	cureGraphic.setVisibility(View.VISIBLE);
 			  	cureGraphic.bringToFront();
@@ -4022,6 +4026,8 @@ public class Client2 extends Activity {
 				Animation a = AnimationUtils.loadAnimation(Client2.this, R.anim.textscaletobig);					  	  	  	
 			  	  	
 		  	  	TextView blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+		  	  	blessGraphic.setLayerType(View.LAYER_TYPE_SOFTWARE, null);//FOR TEXT NOT SHOWING ON 2560X1440
+
 		  		
 		  	  	blessGraphic.setVisibility(View.VISIBLE);
 				blessGraphic.bringToFront();
@@ -4078,6 +4084,8 @@ public class Client2 extends Activity {
 				Animation a = AnimationUtils.loadAnimation(Client2.this, R.anim.textscaletobig);					  	  	  	
 			  	  	
 		  	  	TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+		  	  	criticalMissGraphic.setLayerType(View.LAYER_TYPE_SOFTWARE, null);//FOR TEXT NOT SHOWING ON 2560X1440
+
 		  	  	
 		  	  	criticalMissGraphic.setVisibility(View.VISIBLE);
 			  	criticalMissGraphic.bringToFront();
@@ -4134,6 +4142,8 @@ public class Client2 extends Activity {
 				Animation a = AnimationUtils.loadAnimation(Client2.this, R.anim.textscaletobig);					  	  	  	
 			  	  	
 		  	  	TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+		  	  	criticalHitGraphic.setLayerType(View.LAYER_TYPE_SOFTWARE, null);//FOR TEXT NOT SHOWING ON 2560X1440
+
 		  	  	
 		  	  	criticalHitGraphic.setVisibility(View.VISIBLE);
 			  	criticalHitGraphic.bringToFront();
@@ -4190,6 +4200,8 @@ public class Client2 extends Activity {
 				Animation a = AnimationUtils.loadAnimation(Client2.this, R.anim.textscaletobig);					  	  	  	
 			  	  	
 		  	  	TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
+		  	  	dodgeGraphic.setLayerType(View.LAYER_TYPE_SOFTWARE, null);//FOR TEXT NOT SHOWING ON 2560X1440
+
 		  	  	
 		  	  	dodgeGraphic.setVisibility(View.VISIBLE);
 			  	dodgeGraphic.bringToFront();
@@ -4246,6 +4258,8 @@ public class Client2 extends Activity {
 				Animation a = AnimationUtils.loadAnimation(Client2.this, R.anim.textscaletobig);					  	  	  	
 			  	  	
 		  	  	TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+		  	  	mightyBlowGraphic.setLayerType(View.LAYER_TYPE_SOFTWARE, null);//FOR TEXT NOT SHOWING ON 2560X1440
+
 		  	  	
 		  	  	mightyBlowGraphic.setVisibility(View.VISIBLE);
 			  	mightyBlowGraphic.bringToFront();
@@ -10414,19 +10428,22 @@ public class Client2 extends Activity {
 	  			
 	  			//builder.setTitle("Choose Action");
 	  			
-	  			Toast toast = Toast.makeText(Client2.this, "Choose An Action", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
-	  			View view = toast.getView();
-	  			view.setBackgroundResource(R.drawable.centerscroll3toast);
-	  			toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+	  			if (ArrayOfTurn.turn[0] == 1) {
+	  				
+	  				Toast toast = Toast.makeText(Client2.this, "Choose An Action", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
+		  			View view = toast.getView();
+		  			view.setBackgroundResource(R.drawable.centerscroll3toast);
+		  			toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
 
-	  			TextView text = (TextView) view.findViewById(android.R.id.message);
-	  			//Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-	  			text.setTypeface(typeFace);
-	  			text.setTextColor(Color.parseColor("#FFFFFF"));
-	  			//text.setRotation(-45);
-	  			text.setGravity(Gravity.CENTER);
-	  			
-	  			toast.show();
+		  			TextView text = (TextView) view.findViewById(android.R.id.message);
+		  			//Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+		  			text.setTypeface(typeFace);
+		  			text.setTextColor(Color.parseColor("#FFFFFF"));
+		  			//text.setRotation(-45);
+		  			text.setGravity(Gravity.CENTER);
+		  			
+		  			toast.show();
+	  			}
 	  			
 	  			
 	  			// if back pressed: DOES THIS WORK????????????
@@ -10778,19 +10795,22 @@ public class Client2 extends Activity {
 	  		  			
 	  		  			//builder.setTitle("Choose Action");
 	  		  			
-		  		  		Toast toast = Toast.makeText(Client2.this, "Choose An Action", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
-			  			View view = toast.getView();
-			  			view.setBackgroundResource(R.drawable.centerscroll3toast);
-			  			toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
-	
-			  			TextView text = (TextView) view.findViewById(android.R.id.message);
-			  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-			  			text.setTypeface(typeFace);
-			  			text.setTextColor(Color.parseColor("#FFFFFF"));
-			  			//text.setRotation(-45);
-			  			text.setGravity(Gravity.CENTER);
-			  			
-			  			toast.show();
+	  		  			if (ArrayOfTurn.turn[0] == 1) {
+	  		  			
+			  		  		Toast toast = Toast.makeText(Client2.this, "Choose An Action", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
+				  			View view = toast.getView();
+				  			view.setBackgroundResource(R.drawable.centerscroll3toast);
+				  			toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+		
+				  			TextView text = (TextView) view.findViewById(android.R.id.message);
+				  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+				  			text.setTypeface(typeFace);
+				  			text.setTextColor(Color.parseColor("#FFFFFF"));
+				  			//text.setRotation(-45);
+				  			text.setGravity(Gravity.CENTER);
+				  			
+				  			toast.show();
+	  		  			}
 	  		  			
 	  		  			
 	  		  			// if back pressed: DOES THIS WORK????????????
@@ -17345,6 +17365,10 @@ public class Client2 extends Activity {
 					
 										
 					else {
+						
+						MediaPlayer quillwritingshort = MediaPlayer.create(Client2.this, R.raw.quillwritingshort);
+						quillwritingshort.start();
+						
 						updateConversationHandler.post(new updateUIThread(read));
 					}
 

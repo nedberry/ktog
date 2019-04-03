@@ -3808,7 +3808,7 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
         	buttonSound1.start();        	
         }
         
-        else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+        else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
         	
         	hideSystemUI();
         	

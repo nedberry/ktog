@@ -65,7 +65,7 @@
    	    android:layout_toRightOf="@+id/imageviewscroll3b5left"
    	    android:layout_toLeftOf="@+id/imageviewscroll3b5right"
    	    
-        android:layout_marginTop="12dp"        
+        android:layout_marginTop="55dp"        
    	    android:fadeScrollbars="false"   	    
    	    android:scrollbars="vertical"
    	    android:textColor="#FFFFFF"   	    
@@ -89,7 +89,7 @@
    	   	android:layout_toRightOf="@+id/imageviewscroll3b5left"
    	    android:layout_toLeftOf="@+id/imageviewscroll3b5right"
    	    
-        android:layout_marginTop="12dp"        
+        android:layout_marginTop="33dp"        
    	    android:fadeScrollbars="false"   	    
    	    android:scrollbars="vertical"
    	    android:textColor="#FFFFFF"   	    
@@ -122,11 +122,12 @@
    	    android:layout_toRightOf="@+id/imageviewscroll3b5left"
    	    android:layout_toLeftOf="@+id/imageviewscroll3b5right"
    	    
-        android:layout_marginTop="18dp"       
+        android:layout_marginTop="45dp"       
    	    android:fadeScrollbars="false"   	    
    	    android:scrollbars="vertical"
    	    android:textColor="#FFFFFF"   	    
-   	    android:gravity="center" />
+   	    android:gravity="center"
+   	    android:textSize="65sp" />
      
      	<!--
      	android:layout_marginTop="31dp"
@@ -172,7 +173,7 @@
 	        android:textColor="#FFFFFF"   	    
 	   	    android:gravity="top"   	    
 	   	    android:textSize="9sp"
-	   	    android:paddingTop="20dp" 	    
+	   	    android:paddingTop="25dp" 	    
 	   	    android:paddingBottom="43dp"
 	   	    android:paddingRight="52dp"
 	   	    android:paddingLeft="55dp"   	    	
@@ -549,12 +550,12 @@
    	    android:layout_toRightOf="@+id/imageviewscroll3b5left"
    	    android:layout_toLeftOf="@+id/imageviewscroll3b5right"
    	    
-        android:layout_marginTop="13dp"       
+        android:layout_marginTop="37dp"       
    	    android:fadeScrollbars="false"   	    
    	    android:scrollbars="vertical"
    	    android:textColor="#FFFFFF"   	    
    	    android:gravity="center"
-   	    android:textSize="65sp" />
+   	    android:textSize="75sp" />
      
      	<!--
      	android:layout_marginTop="30dp"

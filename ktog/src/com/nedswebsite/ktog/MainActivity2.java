@@ -2765,6 +2765,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletobig);					  	  	  	
 	  	  	
   	  	TextView blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+  	  	blessGraphic.setLayerType(View.LAYER_TYPE_SOFTWARE, null);//FOR TEXT NOT SHOWING ON 2560X1440
   		
   	  	blessGraphic.setVisibility(View.VISIBLE);
 		blessGraphic.bringToFront();
@@ -2803,6 +2804,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletobigcure);					  	  	  	
 	  	  	
   	  	TextView cureGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+  	  	cureGraphic.setLayerType(View.LAYER_TYPE_SOFTWARE, null);//FOR TEXT NOT SHOWING ON 2560X1440
   	  	
   	  	cureGraphic.setVisibility(View.VISIBLE);
 	  	cureGraphic.bringToFront();
@@ -2841,6 +2843,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletobigdodge);					  	  	  	
 	  	  	
   	  	TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
+  	  	dodgeGraphic.setLayerType(View.LAYER_TYPE_SOFTWARE, null);//FOR TEXT NOT SHOWING ON 2560X1440
   	  	
   	  	dodgeGraphic.setVisibility(View.VISIBLE);
 	  	dodgeGraphic.bringToFront();
@@ -2879,6 +2882,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletobigmb);					  	  	  	
 	  	  	
   	  	TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+  	  	mightyBlowGraphic.setLayerType(View.LAYER_TYPE_SOFTWARE, null);//FOR TEXT NOT SHOWING ON 2560X1440
   	  	
   	  	mightyBlowGraphic.setVisibility(View.VISIBLE);
 	  	mightyBlowGraphic.bringToFront();
@@ -2917,6 +2921,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletobig);					  	  	  	
 	  	  	
   	  	TextView hasteGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+  	  	hasteGraphic.setLayerType(View.LAYER_TYPE_SOFTWARE, null);//FOR TEXT NOT SHOWING ON 2560X1440
+
   	  	
   	  	hasteGraphic.setVisibility(View.VISIBLE);
 	  	hasteGraphic.bringToFront();
@@ -2955,6 +2961,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletobigch);					  	  	  	
 	  	  	
   	  	TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+  	  	criticalHitGraphic.setLayerType(View.LAYER_TYPE_SOFTWARE, null);//FOR TEXT NOT SHOWING ON 2560X1440
+
   	  	
   	  	criticalHitGraphic.setVisibility(View.VISIBLE);
 	  	criticalHitGraphic.bringToFront();
@@ -2993,6 +3001,7 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletobigcm);					  	  	  	
 	  	  	
   	  	TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+  	  	criticalMissGraphic.setLayerType(View.LAYER_TYPE_SOFTWARE, null);//FOR TEXT NOT SHOWING ON 2560X1440
   	  	
   	  	criticalMissGraphic.setVisibility(View.VISIBLE);
 	  	criticalMissGraphic.bringToFront();
@@ -19452,19 +19461,22 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		  		  			//builder.setTitle("Choose Action");
 		  		  			//Toast.makeText(MainActivity2.this,"Choose Action", Toast.LENGTH_SHORT).show();
 		  		  			
-			  		  		Toast toast = Toast.makeText(MainActivity2.this, "Choose An Action", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
-	    		  			View view = toast.getView();
-	    		  			view.setBackgroundResource(R.drawable.centerscroll3toast);
-	    		  			toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
-	
-	    		  			TextView text = (TextView) view.findViewById(android.R.id.message);
-	    		  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-	    		  			text.setTypeface(typeFace);
-	    		  			text.setTextColor(Color.parseColor("#FFFFFF"));
-	    		  			//text.setRotation(-45);
-	    		  			text.setGravity(Gravity.CENTER);
-	    		  			
-	    		  			toast.show();
+		  		  			if (ArrayOfTurn.turn[0] == 1) {
+		  		  				
+				  		  		Toast toast = Toast.makeText(MainActivity2.this, "Choose An Action", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
+		    		  			View view = toast.getView();
+		    		  			view.setBackgroundResource(R.drawable.centerscroll3toast);
+		    		  			toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+		
+		    		  			TextView text = (TextView) view.findViewById(android.R.id.message);
+		    		  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+		    		  			text.setTypeface(typeFace);
+		    		  			text.setTextColor(Color.parseColor("#FFFFFF"));
+		    		  			//text.setRotation(-45);
+		    		  			text.setGravity(Gravity.CENTER);
+		    		  			
+		    		  			toast.show();
+		  		  			}
 		  		  			
 		  		  			
 		  		  			// if back pressed: DOES THIS WORK????????????

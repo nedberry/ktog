@@ -65,7 +65,7 @@
    	    android:layout_toRightOf="@+id/imageviewscroll3b5left"
    	    android:layout_toLeftOf="@+id/imageviewscroll3b5right"
         
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="31dp"
    	    android:fadeScrollbars="false"   	    
    	    android:scrollbars="vertical"
    	    android:textColor="#FFFFFF"   	    

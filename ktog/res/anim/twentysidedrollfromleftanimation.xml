@@ -17,7 +17,8 @@
     
     <item android:drawable="@drawable/twentysevenleft3" android:duration="75" />
     
-    <item android:drawable="@drawable/twentysixleft1" android:duration="75" />    
+    <item android:drawable="@drawable/twentysixleft1" android:duration="75" />
+    
     <item android:drawable="@drawable/twentytwenty" android:duration="75" />
 
 </animation-list>

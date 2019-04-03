@@ -3656,6 +3656,8 @@ public class Host extends Activity {
 				Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobig);					  	  	  	
 			  	  	
 		  	  	TextView hasteGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+	  	  		hasteGraphic.setLayerType(View.LAYER_TYPE_SOFTWARE, null);//FOR TEXT NOT SHOWING ON 2560X1440
+
 		  	  	
 		  	  	hasteGraphic.setVisibility(View.VISIBLE);
 			  	hasteGraphic.bringToFront();
@@ -3705,6 +3707,8 @@ public class Host extends Activity {
 				Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobigcure);					  	  	  	
 			  	  	
 		  	  	TextView cureGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+		  	  	cureGraphic.setLayerType(View.LAYER_TYPE_SOFTWARE, null);//FOR TEXT NOT SHOWING ON 2560X1440
+
 		  	  	
 		  	  	cureGraphic.setVisibility(View.VISIBLE);
 			  	cureGraphic.bringToFront();
@@ -3754,6 +3758,8 @@ public class Host extends Activity {
 				Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobig);					  	  	  	
 			  	  	
 		  	  	TextView blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+		  	  	blessGraphic.setLayerType(View.LAYER_TYPE_SOFTWARE, null);//FOR TEXT NOT SHOWING ON 2560X1440
+
 		  		
 		  	  	blessGraphic.setVisibility(View.VISIBLE);
 				blessGraphic.bringToFront();
@@ -3803,6 +3809,8 @@ public class Host extends Activity {
 				Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobigdodge);					  	  	  	
 			  	  	
 		  	  	TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
+		  	  	dodgeGraphic.setLayerType(View.LAYER_TYPE_SOFTWARE, null);//FOR TEXT NOT SHOWING ON 2560X1440
+
 		  	  	
 		  	  	dodgeGraphic.setVisibility(View.VISIBLE);
 			  	dodgeGraphic.bringToFront();
@@ -3861,6 +3869,8 @@ public class Host extends Activity {
 				Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobigmb);					  	  	  	
 			  	  	
 		  	  	TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+		  	  	mightyBlowGraphic.setLayerType(View.LAYER_TYPE_SOFTWARE, null);//FOR TEXT NOT SHOWING ON 2560X1440
+
 		  	  	
 		  	  	mightyBlowGraphic.setVisibility(View.VISIBLE);
 			  	mightyBlowGraphic.bringToFront();
@@ -3919,6 +3929,8 @@ public class Host extends Activity {
 				Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobigch);					  	  	  	
 			  	  	
 		  	  	TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+		  	  	criticalHitGraphic.setLayerType(View.LAYER_TYPE_SOFTWARE, null);//FOR TEXT NOT SHOWING ON 2560X1440
+
 		  	  	
 		  	  	criticalHitGraphic.setVisibility(View.VISIBLE);
 			  	criticalHitGraphic.bringToFront();
@@ -3979,6 +3991,8 @@ public class Host extends Activity {
 				Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobigcm);					  	  	  	
 			  	  	
 		  	  	TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+		  	  	criticalMissGraphic.setLayerType(View.LAYER_TYPE_SOFTWARE, null);//FOR TEXT NOT SHOWING ON 2560X1440
+
 		  	  	
 		  	  	criticalMissGraphic.setVisibility(View.VISIBLE);
 			  	criticalMissGraphic.bringToFront();
@@ -21423,7 +21437,16 @@ public class Host extends Activity {
 					  	  	  			
 					  	  	  			
 						  	  	  		playerCardStopFadeInFadeOut();
-						  	  	  		computerCardStopFadeInFadeOut();					  	  	  	
+						  	  	  		computerCardStopFadeInFadeOut();
+						  	  	  		
+						  	  	  		
+						  	  	  		// Use a blank drawable to hide the imageview animation:
+							  	  		ImageView img1 = (ImageView)findViewById(R.id.sixsidedanimation);
+							  	  		img1.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+							  	  		img1.setImageResource(R.drawable.sixsixrightleftrotateblank);
+							  	  		
+							  	  		img1.setImageDrawable(null);
+						  	  	  		
 					  	  	  			
 					  	  	  			/*
 						  	  	  		final Handler h = new Handler();
@@ -21516,6 +21539,15 @@ public class Host extends Activity {
 					  	  	  			
 						  	  	  		playerCardStopFadeInFadeOut();
 						  	  	  		computerCardStopFadeInFadeOut();
+						  	  	  		
+						  	  	  		
+						  	  	  		// Use a blank drawable to hide the imageview animation:
+							  	  		ImageView img1 = (ImageView)findViewById(R.id.sixsidedanimation);
+							  	  		img1.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+							  	  		img1.setImageResource(R.drawable.sixsixrightleftrotateblank);
+							  	  		
+							  	  		img1.setImageDrawable(null);
+						  	  	  		
 					  	  	  			
 					  	  	  			/*
 						  	  	  		final Handler h = new Handler();
@@ -21636,7 +21668,16 @@ public class Host extends Activity {
 					  	  	  			
 					  	  	  			
 						  	  	  		playerCardStopFadeInFadeOut();
-						  	  	  		computerCardStopFadeInFadeOut();					  	  	  	
+						  	  	  		computerCardStopFadeInFadeOut();
+						  	  	  		
+						  	  	  		
+						  	  	  		// Use a blank drawable to hide the imageview animation:
+							  	  		ImageView img1 = (ImageView)findViewById(R.id.sixsidedanimation);
+							  	  		img1.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+							  	  		img1.setImageResource(R.drawable.sixsixrightleftrotateblank);
+							  	  		
+							  	  		img1.setImageDrawable(null);
+						  	  	  		
 					  	  	  			
 					  	  	  			/*
 						  	  	  		final Handler h = new Handler();
@@ -21749,6 +21790,15 @@ public class Host extends Activity {
 					  	  	  			
 						  	  	  		playerCardStopFadeInFadeOut();
 						  	  	  		computerCardStopFadeInFadeOut();
+						  	  	  		
+						  	  	  		
+						  	  	  		// Use a blank drawable to hide the imageview animation:
+							  	  		ImageView img1 = (ImageView)findViewById(R.id.sixsidedanimation);
+							  	  		img1.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+							  	  		img1.setImageResource(R.drawable.sixsixrightleftrotateblank);
+							  	  		
+							  	  		img1.setImageDrawable(null);
+						  	  	  		
 					  	  	  			
 					  	  	  			/*
 						  	  	  		final Handler h = new Handler();
@@ -21861,6 +21911,15 @@ public class Host extends Activity {
 					  	  	  			
 						  	  	  		playerCardStopFadeInFadeOut();
 						  	  	  		computerCardStopFadeInFadeOut();
+						  	  	  		
+						  	  	  		
+						  	  	  		// Use a blank drawable to hide the imageview animation:
+							  	  		ImageView img1 = (ImageView)findViewById(R.id.sixsidedanimation);
+							  	  		img1.setBackgroundResource(R.drawable.sixsixrightleftrotateblank);
+							  	  		img1.setImageResource(R.drawable.sixsixrightleftrotateblank);
+							  	  		
+							  	  		img1.setImageDrawable(null);
+						  	  	  		
 					  	  	  			
 					  	  	  			/*
 						  	  	  		final Handler h = new Handler();
@@ -22147,19 +22206,22 @@ public class Host extends Activity {
 	  			
 	  			//builder.setTitle("Choose Action");
 	  			
-	  			Toast toast = Toast.makeText(Host.this, "Choose An Action", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
-	  			View view = toast.getView();
-	  			view.setBackgroundResource(R.drawable.centerscroll3toast);
-	  			toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+	  			if (ArrayOfTurn.turn[0] == 1) {
+	  				
+	  				Toast toast = Toast.makeText(Host.this, "Choose An Action", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
+		  			View view = toast.getView();
+		  			view.setBackgroundResource(R.drawable.centerscroll3toast);
+		  			toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
 
-	  			TextView text = (TextView) view.findViewById(android.R.id.message);
-	  			//Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-	  			text.setTypeface(typeFace);
-	  			text.setTextColor(Color.parseColor("#FFFFFF"));
-	  			//text.setRotation(-45);
-	  			text.setGravity(Gravity.CENTER);
-	  			
-	  			toast.show();
+		  			TextView text = (TextView) view.findViewById(android.R.id.message);
+		  			//Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+		  			text.setTypeface(typeFace);
+		  			text.setTextColor(Color.parseColor("#FFFFFF"));
+		  			//text.setRotation(-45);
+		  			text.setGravity(Gravity.CENTER);
+		  			
+		  			toast.show();
+	  			}
 	  			
 	  			
 	  			// if back pressed: DOES THIS WORK????????????
@@ -22493,19 +22555,22 @@ public class Host extends Activity {
 	  		  			
 	  		  			//builder.setTitle("Choose Action");
 	  		  			
-		  		  		Toast toast = Toast.makeText(Host.this, "Choose An Action", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
-			  			View view = toast.getView();
-			  			view.setBackgroundResource(R.drawable.centerscroll3toast);
-			  			toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
-	
-			  			TextView text = (TextView) view.findViewById(android.R.id.message);
-			  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-			  			text.setTypeface(typeFace);
-			  			text.setTextColor(Color.parseColor("#FFFFFF"));
-			  			//text.setRotation(-45);
-			  			text.setGravity(Gravity.CENTER);
-			  			
-			  			toast.show();
+	  		  			if (ArrayOfTurn.turn[0] == 1) {
+	  		  			
+			  		  		Toast toast = Toast.makeText(Host.this, "Choose An Action", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
+				  			View view = toast.getView();
+				  			view.setBackgroundResource(R.drawable.centerscroll3toast);
+				  			toast.setGravity(Gravity.CENTER, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+		
+				  			TextView text = (TextView) view.findViewById(android.R.id.message);
+				  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+				  			text.setTypeface(typeFace);
+				  			text.setTextColor(Color.parseColor("#FFFFFF"));
+				  			//text.setRotation(-45);
+				  			text.setGravity(Gravity.CENTER);
+				  			
+				  			toast.show();
+	  		  			}
 	  		  			
 	  		  			
 	  		  			// if back pressed: DOES THIS WORK????????????
@@ -30276,115 +30341,122 @@ else if (read.contains("cstmImage")) {//MAY WANT MORE COMPLICATED TERM SO IT DOE
 											
 											if (numberOfPlayers == 2) {
 												
-												final Handler h2 = new Handler();
-									  	  	  	h2.postDelayed(new Runnable() {
-									  	  	  			
-									  	  	  		@Override
-										  	  	  	public void run() {
-//HERE									  	  		
-										  	  	  		//final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
-										  	  	  		final Animation animAlphaText = AnimationUtils.loadAnimation(Host.this, R.anim.anim_alpha_text);
-
-									  	  	  			
-											  	  		ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
-											  	  		titleBlankButton.setEnabled(false);
-											  	  		
-											  	  		runOnUiThread(new Runnable() {
-											  	  			
-										  	    	  	    @Override
-										  	    	  	    public void run() {
-										  	    	  	    	
-										  	    	  	    	Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");				
-										  	    	  	    												  	    	  	    		
-									  	    	  	    		MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
-									  	    	  	    		
-									  	    	  	    		victoryDefeatAnimation();
-									  	    	  	    		
-									  	    	  	    		
-										  	  	  	  	    	final Handler h = new Handler();
-										  	  			  	  	h.postDelayed(new Runnable() {		  	  	  			
-										  	  			  	  			
-										  	  			  	  		@Override
-										  	  			  	  		public void run() {
-										  	  		
-										  	  			  	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
-										  	  			  	  		}
-										  	  			  	  	}, 500);
+												if (gameOn == 0) {//IF GAME IS OVER
+													
+												}
+												
+												else if (gameOn == 1) {//IF GAME ISN'T OVER
+												
+													final Handler h2 = new Handler();
+										  	  	  	h2.postDelayed(new Runnable() {
+										  	  	  			
+										  	  	  		@Override
+											  	  	  	public void run() {
+	//HERE									  	  		
+											  	  	  		//final Animation animAlphaText = AnimationUtils.loadAnimation(this, R.anim.anim_alpha_text);
+											  	  	  		final Animation animAlphaText = AnimationUtils.loadAnimation(Host.this, R.anim.anim_alpha_text);
+	
+										  	  	  			
+												  	  		ImageButton titleBlankButton = (ImageButton) findViewById(R.id.imagebuttontitleblank);
+												  	  		titleBlankButton.setEnabled(false);
+												  	  		
+												  	  		runOnUiThread(new Runnable() {
+												  	  			
+											  	    	  	    @Override
+											  	    	  	    public void run() {
+											  	    	  	    	
+											  	    	  	    	Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");				
+											  	    	  	    												  	    	  	    		
+										  	    	  	    		MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
 										  	    	  	    		
-										  	    	  	    	
-									  	    	  	    		String str = "victoryDefeatAnimation";
-									  	    	  	    		sendToAllClients(str);
-										  	  					
+										  	    	  	    		victoryDefeatAnimation();
+										  	    	  	    		
+										  	    	  	    		
+											  	  	  	  	    	final Handler h = new Handler();
+											  	  			  	  	h.postDelayed(new Runnable() {		  	  	  			
+											  	  			  	  			
+											  	  			  	  		@Override
+											  	  			  	  		public void run() {
+											  	  		
+											  	  			  	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+											  	  			  	  		}
+											  	  			  	  	}, 500);
+											  	    	  	    		
+											  	    	  	    	
+										  	    	  	    		String str = "victoryDefeatAnimation";
+										  	    	  	    		sendToAllClients(str);
+											  	  					
+											  	  						
+										  	  						gameOn = 0;
 										  	  						
-									  	  						gameOn = 0;
-									  	  						
-									  	  						win = "yes";
-									  	  						
-									  	  						
-									  	  						final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
-									  	  						//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
-									  	  						
-									  	  						//Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-									  	  						centerscrolltext.setTypeface(typeFace);					
-									  	  						
-									  	  						
-									  	  						centerscrolltext.setVisibility(View.VISIBLE);												
-									  	  			  	  		centerscrolltext.startAnimation(animAlphaText);
-									  	  			  			centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + " ran away!");
-									  	  			  			
-									  	  			  			String str2 = "> " + ArrayOfPlayers.player[5] + " ran away!";
-									  	  						sendToClient0(str2);
-									  	  						
-									  	  			  			
-									  	  			  			final Handler h2 = new Handler();
-									  	  			  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
-									  	  			  	  	  			
-									  	  			  	  	  		@Override
-									  	  				  	  	  	public void run() {
-									  	  			  	  	  			
-									  	  			  	  	  			centerscrolltext.setVisibility(View.VISIBLE);												
-									  	  			  	  	  			centerscrolltext.startAnimation(animAlphaText);
-									  	  			  	  	  			centerscrolltext.append("\n" + "> Game Over!");
-									  	  			  	  	  			
-									  	  			  	  	  			String str3 = "> Game Over!";
-									  	  			  	  	  			sendToClient0(str3);
-									  	  			  	  	  			
-									  	  			  	  	  			
-									  	  			  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.buttonsound4b);
-									  	  			  	  	  			
-									  	  				  	  	  		final Handler h3 = new Handler();
-									  	  					  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
-									  	  					  	  	  			
-									  	  					  	  	  		@Override
-									  	  						  	  	  	public void run() {
-									  	  					  	  	  			
-									  	  					  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
-									  	  					  	  	  			
-									  	  					  	  	  			foldScrolls();
-									  	  					  	  	  			
-									  	  					  	  	  			String str4 = "foldScrolls";
-									  	  					  	  	  			sendToClient0(str4);
-									  	  					  	  	  			
-									  	  					  	  	  			
-									  	  						  	  	  		playerCardStopFadeInFadeOut();
-									  	  						  	  	  		computerCardStopFadeInFadeOut();
-									  	  					  	  	  			
-									  	  						  	  	  		
-									  	  						  	  	  		//writeTextToFile();
-									  	  					    			
-									  	  						  	  	  		//getTextFromFile();
-									  	  						  	  	  		
-									  	  						  	  	  		h.removeCallbacks(this);
-									  	  						  	  	  		h2.removeCallbacks(this);
-									  	  						  	  	  		h3.removeCallbacks(this);
-									  	  						  	  	  	}
-									  	  					  	  	  	}, 2000);
-									  	  				  	  	  	}
-									  	  			  	  	  	}, 2000);
-										  	    	  	    }
-											  	  		});
-									  	  	  		}
-									  	  	  	}, 2000);
+										  	  						win = "yes";
+										  	  						
+										  	  						
+										  	  						final TextView centerscrolltext = (TextView) findViewById(R.id.textviewcenterscrolltext);
+										  	  						//centerscrolltext.setMovementMethod(new ScrollingMovementMethod());		
+										  	  						
+										  	  						//Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+										  	  						centerscrolltext.setTypeface(typeFace);					
+										  	  						
+										  	  						
+										  	  						centerscrolltext.setVisibility(View.VISIBLE);												
+										  	  			  	  		centerscrolltext.startAnimation(animAlphaText);
+										  	  			  			centerscrolltext.append("\n" + "> " + ArrayOfPlayers.player[0] + " ran away!");
+										  	  			  			
+										  	  			  			String str2 = "> " + ArrayOfPlayers.player[5] + " ran away!";
+										  	  						sendToClient0(str2);
+										  	  						
+										  	  			  			
+										  	  			  			final Handler h2 = new Handler();
+										  	  			  	  	  	h2.postDelayed(new Runnable() {		  	  	  			
+										  	  			  	  	  			
+										  	  			  	  	  		@Override
+										  	  				  	  	  	public void run() {
+										  	  			  	  	  			
+										  	  			  	  	  			centerscrolltext.setVisibility(View.VISIBLE);												
+										  	  			  	  	  			centerscrolltext.startAnimation(animAlphaText);
+										  	  			  	  	  			centerscrolltext.append("\n" + "> Game Over!");
+										  	  			  	  	  			
+										  	  			  	  	  			String str3 = "> Game Over!";
+										  	  			  	  	  			sendToClient0(str3);
+										  	  			  	  	  			
+										  	  			  	  	  			
+										  	  			  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.buttonsound4b);
+										  	  			  	  	  			
+										  	  				  	  	  		final Handler h3 = new Handler();
+										  	  					  	  	  	h3.postDelayed(new Runnable() {		  	  	  			
+										  	  					  	  	  			
+										  	  					  	  	  		@Override
+										  	  						  	  	  	public void run() {
+										  	  					  	  	  			
+										  	  					  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+										  	  					  	  	  			
+										  	  					  	  	  			foldScrolls();
+										  	  					  	  	  			
+										  	  					  	  	  			String str4 = "foldScrolls";
+										  	  					  	  	  			sendToClient0(str4);
+										  	  					  	  	  			
+										  	  					  	  	  			
+										  	  						  	  	  		playerCardStopFadeInFadeOut();
+										  	  						  	  	  		computerCardStopFadeInFadeOut();
+										  	  					  	  	  			
+										  	  						  	  	  		
+										  	  						  	  	  		//writeTextToFile();
+										  	  					    			
+										  	  						  	  	  		//getTextFromFile();
+										  	  						  	  	  		
+										  	  						  	  	  		h.removeCallbacks(this);
+										  	  						  	  	  		h2.removeCallbacks(this);
+										  	  						  	  	  		h3.removeCallbacks(this);
+										  	  						  	  	  	}
+										  	  					  	  	  	}, 2000);
+										  	  				  	  	  	}
+										  	  			  	  	  	}, 2000);
+											  	    	  	    }
+												  	  		});
+										  	  	  		}
+										  	  	  	}, 2000);
+												}
 											}
 											
 											else if (numberOfPlayers == 3 && playerDeadYet[1].equals("no")) {
@@ -32014,6 +32086,9 @@ else if (read.contains("cstmImage")) {//MAY WANT MORE COMPLICATED TERM SO IT DOE
 					
 					
 					else {
+						
+						MediaPlayer quillwritingshort = MediaPlayer.create(Host.this, R.raw.quillwritingshort);
+						quillwritingshort.start();
 						
 						updateConversationHandler.post(new updateUIThread(read));
 						
