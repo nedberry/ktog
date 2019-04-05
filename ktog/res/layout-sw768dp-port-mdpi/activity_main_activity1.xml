@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/mainmenutitle"
+    tools:context="com.nedswebsite.ktog.MainActivity1" >
+
+   <!--
+    <ImageView
+        android:id="@+id/menu1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" />
+     -->
+     <!-- CODE NOT USED:
+        android:src="@drawable/unpressedoneplayer"
+        android:background="@null" -->
+
+	<ImageButton
+	    android:id="@+id/imagebuttononeplayer"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_centerHorizontal="true"
+	    android:layout_above="@+id/imagebuttonmultiplayer"
+	    android:layout_marginBottom="30dp"
+	    android:background="@drawable/one_player"
+	    android:cropToPadding="false" />
+	
+	<ImageButton
+	    android:id="@+id/imagebuttonmultiplayer"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_centerHorizontal="true"
+	    android:layout_centerVertical="true"
+	    android:layout_marginBottom="30dp"
+	    android:background="@drawable/multi_player"
+	    android:cropToPadding="false" />
+	
+	<ImageButton
+	    android:id="@+id/imagebuttonabout"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_centerHorizontal="true"
+	    android:layout_below="@+id/imagebuttonmultiplayer"
+	    android:layout_marginBottom="30dp"
+	    android:background="@drawable/about"
+	    android:cropToPadding="false" />
+
+	<Button
+	    android:id="@+id/buttonguys"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@+id/imagebuttonabout"
+	    android:layout_alignLeft="@+id/imagebuttonabout"
+	    android:background="@drawable/roundedbuttonsw800"
+	    android:text="Guys"
+	    android:textSize="15dp"
+	    android:textColor="#000000"
+	    android:textStyle="bold" />
+
+	<Button
+	    android:id="@+id/buttonrecords"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@+id/imagebuttonabout"
+	    android:layout_alignRight="@+id/imagebuttonabout"
+	    android:background="@drawable/roundedbuttonsw800"
+	    android:text="Records"
+	    android:textSize="15dp"
+	    android:textColor="#000000"
+	    android:textStyle="bold" />
+    
+</RelativeLayout>

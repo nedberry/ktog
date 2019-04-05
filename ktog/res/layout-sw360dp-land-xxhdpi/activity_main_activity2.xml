@@ -1052,7 +1052,7 @@
    	
    	<ImageButton
    	    android:id="@+id/textviewcenterscrolltextbutton"   	    
-   	    android:layout_width="175dp"
+   	    android:layout_width="211dp"
    	    android:layout_height="136dp"
    	    android:layout_alignBottom="@+id/imageviewcenterscroll"
    	    android:layout_alignTop="@+id/imageviewcenterscroll"
