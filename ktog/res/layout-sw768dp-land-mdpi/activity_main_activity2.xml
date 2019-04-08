@@ -52,7 +52,17 @@
         android:layout_alignParentTop="true"
         android:background="@drawable/leftscroll" /> 
         
-        
+    
+     
+    <ImageView
+   	    android:id="@+id/fortextintitleblanksmall"
+   	    android:layout_width="250dp"
+   	    android:layout_height="215dp"
+   	    
+   	    android:layout_centerHorizontal="true"
+   	    android:layout_marginTop="12dp"
+   	    android:background="@drawable/fortextintitleblanksmall" />
+     
      
 
     <ImageButton
@@ -155,7 +165,19 @@
     	-->
      
 	<ScrollView
-		android:gravity="center|top"
+		android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignBottom="@+id/textviewtitlektogtext"
+	    android:layout_alignLeft="@+id/fortextintitleblanksmall"
+	    android:layout_alignParentTop="true"
+	    android:layout_alignRight="@+id/fortextintitleblanksmall"
+	    android:layout_marginTop="60dp"
+	    
+	    android:gravity="center|top"
+	    android:scrollbars="none" >
+		
+	  	<!--
+	  	android:gravity="center|top"
 		android:layout_width="340dp"
    	    android:layout_height="220dp"
 		
@@ -163,11 +185,10 @@
    	    android:layout_toLeftOf="@+id/imageviewscroll3b5right"
 		
         android:layout_marginTop="20dp"
-		android:scrollbars="none" >
-		
-	  	<!--
-	  	android:layout_width="340dp"
-   	    android:layout_height="220dp"
+		android:scrollbars="none"
+   	    
+   	    
+   	    
    	    android:layout_alignLeft="@+id/imageviewcenterscroll"        
         android:layout_toLeftOf="@+id/textviewhitpointsright"
         android:layout_marginTop="9dp"
@@ -186,12 +207,14 @@
 	        android:textColor="#FFFFFF"   	    
 	   	    android:gravity="top"   	    
 	   	    android:textSize="20sp"
+	   	       	    	
+		   	android:stretchColumns="*" >
+	   	    <!--
 	   	    android:paddingTop="25dp" 	    
 	   	    android:paddingBottom="66dp"
 	   	    android:paddingRight="63dp"
-	   	    android:paddingLeft="67dp"   	    	
-		   	android:stretchColumns="*" >
-	   	    <!--
+	   	    android:paddingLeft="67dp"
+	   	    
 	   	    
 	   	    1-15 android:layout_width="wrap_content"
    	    	1-12 WAS android:paddingBottom="66dp"

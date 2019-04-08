@@ -37,7 +37,19 @@
         android:layout_alignParentTop="true"
         android:background="@drawable/leftscroll" /> 
         
-        
+    
+     
+     <ImageView
+   	    android:id="@+id/fortextintitleblanksmall"
+   	    android:layout_width="215dp"
+   	    android:layout_height="215dp"
+   	    
+   	    android:layout_centerHorizontal="true"
+   	    android:layout_marginTop="12dp"
+   	    android:background="@drawable/fortextintitleblanksmall" />     
+     	<!--
+    	HAVE TO FINAGLE THE WIDTH    
+     	-->
      
 
     <ImageButton
@@ -139,20 +151,30 @@
      	-->
      
 	<ScrollView
-		android:gravity="center|top"
-		android:layout_width="211dp"
-   	    android:layout_height="136dp"
+		android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignBottom="@+id/textviewtitlektogtext"
+	    android:layout_alignLeft="@+id/fortextintitleblanksmall"
+	    android:layout_alignParentTop="true"
+	    android:layout_alignRight="@+id/fortextintitleblanksmall"
+	    android:layout_marginTop="40dp"
+	    
+	    android:gravity="center|top"
+	    android:scrollbars="none" >
+		
+	    <!--
+	    android:gravity="center|top"
+		android:layout_width="489dp"
+   	    android:layout_height="274dp"
    	    
    	    android:layout_toRightOf="@+id/imageviewscroll3b5left"
    	    android:layout_toLeftOf="@+id/imageviewscroll3b5right"
 		
         android:layout_marginTop="7dp"
-		android:scrollbars="none" >
-		
-	    <!--
+		android:scrollbars="none"
+	    
+	    
 	    android:layout_marginTop="12dp"
-	    android:layout_width="211dp"
-   	    android:layout_height="136dp"
    	    android:layout_alignLeft="@+id/imageviewcenterscroll"        
         android:layout_toLeftOf="@+id/textviewhitpointsright"
         android:gravity="top"
@@ -172,13 +194,15 @@
 	        android:layout_height="wrap_content"
 	        android:textColor="#FFFFFF"   	    
 	   	    android:gravity="top"   	    
-	   	    android:textSize="9sp"
+	   	    android:textSize="12sp"
+	   	       	    	
+		   	android:stretchColumns="*" >
+	   	    <!--
 	   	    android:paddingTop="25dp" 	    
 	   	    android:paddingBottom="43dp"
 	   	    android:paddingRight="52dp"
-	   	    android:paddingLeft="60dp"   	    	
-		   	android:stretchColumns="*" >
-	   	    <!--
+	   	    android:paddingLeft="60dp"
+	   	    
 	   	    
    	    	1-15 android:layout_width="wrap_content"
    	    	1-12 WAS android:paddingBottom="43dp"

@@ -35,9 +35,22 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:background="@drawable/leftscroll" /> 
-        
-        
+        android:background="@drawable/leftscroll" />
+     
+     
+     
+     <ImageView
+   	    android:id="@+id/fortextintitleblanksmall"
+   	    android:layout_width="150dp"
+   	    android:layout_height="100dp"
+   	    
+   	    android:layout_centerHorizontal="true"
+   	    android:layout_marginTop="12dp"
+   	    android:background="@drawable/fortextintitleblanksmall" />
+     	<!--
+    	HAVE TO FINAGLE THE WIDTH    
+     	-->
+     	
      
 
     <ImageButton
@@ -139,20 +152,25 @@
      	-->
      
 	<ScrollView
-		android:gravity="center|top"
-		android:layout_width="211dp"
-   	    android:layout_height="136dp"
-   	    
-   	    android:layout_toRightOf="@+id/imageviewscroll3b5left"
-   	    android:layout_toLeftOf="@+id/imageviewscroll3b5right"
-		
-        android:layout_marginTop="12dp"
-		android:scrollbars="none" >
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignBottom="@+id/textviewtitlektogtext"
+	    android:layout_alignLeft="@+id/fortextintitleblanksmall"
+	    android:layout_alignParentTop="true"
+	    android:layout_alignRight="@+id/fortextintitleblanksmall"
+	    android:layout_marginTop="30dp"
+	    
+	    android:gravity="center|top"
+	    android:scrollbars="none" >
 		
 	    <!--
 	    android:layout_marginTop="12dp"
-	    android:layout_width="211dp"
-   	    android:layout_height="136dp"
+	    android:layout_width="489dp"
+   	    android:layout_height="274dp"
+   	    android:fillViewport="true"
+   	    android:layout_gravity="center"
+   	    
+   	    
    	    android:layout_alignLeft="@+id/imageviewcenterscroll"        
         android:layout_toLeftOf="@+id/textviewhitpointsright"
         android:gravity="top"
@@ -173,12 +191,15 @@
 	        android:textColor="#FFFFFF"   	    
 	   	    android:gravity="top"   	    
 	   	    android:textSize="9sp"
+	   	       	    	
+		   	android:stretchColumns="*" >
+	   	    <!--
 	   	    android:paddingTop="14dp" 	    
 	   	    android:paddingBottom="43dp"
 	   	    android:paddingRight="43dp"
-	   	    android:paddingLeft="45dp"   	    	
-		   	android:stretchColumns="*" >
-	   	    <!--
+	   	    android:paddingLeft="45dp"
+	   	    
+	   	    
    	    	1-15 android:layout_width="wrap_content"
    	    	1-12 WAS android:paddingBottom="43dp"
    	    	
@@ -1048,7 +1069,6 @@
    	    android:paddingRight="15dp"
    	    android:paddingTop="6dp"
    	    android:alpha="0"/>
-   	
    	
 
 </RelativeLayout>
