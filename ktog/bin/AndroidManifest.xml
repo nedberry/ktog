@@ -129,6 +129,58 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".Client1NewGuy"          
+            android:configChanges="orientation|screenSize"
+             >
+            <intent-filter>
+                
+                <action android:name="android.intent.action.VIEW"/>
+                <!-- <action android:name="com.nedswebsite.ktog.Client1"/> -->
+
+			    <category android:name="android.intent.category.DEFAULT"/>
+			    <category android:name="android.intent.category.BROWSABLE"/>
+			
+			    <data
+			        android:host="www.ktog.multiplayer.com"
+			        
+			        
+			        android:scheme="http"/>
+			    	<!-- 
+			    	android:noHistory="true"
+			    	
+			    	
+			    	android:pathPrefix="/"
+			    	android:path="/launch?hostip="  -->                
+                
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Client1OldGuy"          
+            android:configChanges="orientation|screenSize"
+             >
+            <intent-filter>
+                
+                <action android:name="android.intent.action.VIEW"/>
+                <!-- <action android:name="com.nedswebsite.ktog.Client1"/> -->
+
+			    <category android:name="android.intent.category.DEFAULT"/>
+			    <category android:name="android.intent.category.BROWSABLE"/>
+			
+			    <data
+			        android:host="www.ktog.multiplayer.com"
+			        
+			        
+			        android:scheme="http"/>
+			    	<!-- 
+			    	android:noHistory="true"
+			    	
+			    	
+			    	android:pathPrefix="/"
+			    	android:path="/launch?hostip="  -->                
+                
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".Client2"           
             android:screenOrientation="landscape" >
             <intent-filter>                

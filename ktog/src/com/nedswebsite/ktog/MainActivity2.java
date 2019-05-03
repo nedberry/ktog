@@ -40,6 +40,7 @@ import android.text.InputFilter;
 import android.text.Spannable;
 import android.text.method.ScrollingMovementMethod;
 import android.text.style.BackgroundColorSpan;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.GestureDetector;
@@ -140,6 +141,10 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 	// FOR ORDERING PURPOSES IN TITLE:
 	int firstsubscript;
 	int secondsubscript;
+	
+	
+	int height = 0;
+	int width = 0;
 	
 	
 	
@@ -360,6 +365,14 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 			stonedead2.setVisibility(View.INVISIBLE);
 			computerAvatar.setVisibility(View.INVISIBLE);
 		}
+		
+		
+		ImageView leftScroll = (ImageView) findViewById(R.id.imageviewscroll3b5leftdown);
+		leftScroll.setVisibility(View.INVISIBLE);
+		
+		ImageView rightScroll = (ImageView) findViewById(R.id.imageviewscroll3b5rightdown);
+		rightScroll.setVisibility(View.INVISIBLE);
+		
 		
 		ImageView blessLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftbless);
 		blessLeft.setVisibility(View.INVISIBLE);
@@ -2758,15 +2771,43 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 	 */
 	
 	
+	public void getScreenSize() {
+		
+		DisplayMetrics metrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(metrics);
+		
+		height = metrics.heightPixels;
+		width = metrics.widthPixels;
+	}
+	
+	
 	public void blessGraphic() {
 		
 		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
 		
-		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletobig);					  	  	  	
-	  	  	
-  	  	TextView blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletobig);
+		
+		
+		TextView blessGraphic;
+		
+		//NEED TO AJUST FOR SCREENS THAT ARE WIER THAN THE PRIMARY SIZE.
+		getScreenSize();
+		
+		//Toast.makeText(MainActivity2.this,"height = " + height + " width = " + width, Toast.LENGTH_LONG).show();
+		
+  	  	if ((height == 720 && width == 1480) || (height == 720 && width == 1440) || (height == 1080 && width == 2160) || (height == 1440 && width == 2960) || (height == 1440 && width == 3120) || (height == 1440 && width == 2880) || (height == 768 && width == 1366)) {
+			
+			blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic2);
+		}
+		else {
+			
+			blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+		}
+  	  	
+  	  	//TextView blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
   	  	blessGraphic.setLayerType(View.LAYER_TYPE_SOFTWARE, null);//FOR TEXT NOT SHOWING ON 2560X1440
   		
+  	  	
   	  	blessGraphic.setVisibility(View.VISIBLE);
 		blessGraphic.bringToFront();
   	  	
@@ -2787,12 +2828,29 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
   	  			
 	  	  		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletosmall);						  	  	  	
 	  	  	  	
-		  	  	final TextView blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+	  	  		
+	  	  		TextView blessGraphic;
+	  	  		
+	  	  	  	if ((height == 720 && width == 1480) || (height == 720 && width == 1440) || (height == 1080 && width == 2160) || (height == 1440 && width == 2960) || (height == 1440 && width == 3120) || (height == 1440 && width == 2880) || (height == 768 && width == 1366)) {
+					
+					blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic2);
+				}
+				else {
+					
+					blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+				}
+	  	  		
+	  	  		
+		  	  	//final TextView blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
   	  	  		blessGraphic.setTypeface(typeFace);
   	  	  		blessGraphic.setText("Bless");
   	  	  		
 	  	  	  	blessGraphic.clearAnimation();
   	  	  		blessGraphic.startAnimation(a);
+  	  	  		
+  	  			blessGraphic.setVisibility(View.GONE);
+  	  			
+  	  			System.gc();
   	  		}	  	  		
   	  	}, 3000);		
 	}
@@ -2801,9 +2859,25 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		
 		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
 		
-		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletobigcure);					  	  	  	
-	  	  	
-  	  	TextView cureGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletobigcure);
+		
+		
+		TextView cureGraphic;
+		
+		//NEED TO AJUST FOR SCREENS THAT ARE WIER THAN THE PRIMARY SIZE.
+		getScreenSize();
+		
+  	  	if ((height == 720 && width == 1480) || (height == 720 && width == 1440) || (height == 1080 && width == 2160) || (height == 1440 && width == 2960) || (height == 1440 && width == 3120) || (height == 1440 && width == 2880) || (height == 768 && width == 1366)) {
+			
+  	  		cureGraphic = (TextView)findViewById(R.id.textviewspellgraphic2);
+		}
+		else {
+			
+			cureGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+		}
+		
+		
+  	  	//TextView cureGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
   	  	cureGraphic.setLayerType(View.LAYER_TYPE_SOFTWARE, null);//FOR TEXT NOT SHOWING ON 2560X1440
   	  	
   	  	cureGraphic.setVisibility(View.VISIBLE);
@@ -2826,12 +2900,29 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
   	  			
 	  	  		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletosmallcure);						  	  	  	
 	  	  	  	
-		  	  	final TextView cureGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+	  	  		
+		  	  	TextView cureGraphic;
+				
+		  	  	if ((height == 720 && width == 1480) || (height == 720 && width == 1440) || (height == 1080 && width == 2160) || (height == 1440 && width == 2960) || (height == 1440 && width == 3120) || (height == 1440 && width == 2880) || (height == 768 && width == 1366)) {
+					
+		  	  		cureGraphic = (TextView)findViewById(R.id.textviewspellgraphic2);
+				}
+				else {
+					
+					cureGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+				}
+	  	  		
+	  	  		
+		  	  	//final TextView cureGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
 		  	  	cureGraphic.setTypeface(typeFace);
 		  	  	cureGraphic.setText(" Cure");
 	  	  	  	
 		  	  	cureGraphic.clearAnimation();
 		  	  	cureGraphic.startAnimation(a);
+		  	  	
+		  	  	cureGraphic.setVisibility(View.GONE);
+		  	  	
+		  	  	System.gc();
   	  		}	  	  		
   	  	}, 3000);		
 	}
@@ -2841,8 +2932,24 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
 		
 		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletobigdodge);					  	  	  	
-	  	  	
-  	  	TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
+	  	
+		
+		TextView dodgeGraphic;
+		
+		//NEED TO AJUST FOR SCREENS THAT ARE WIER THAN THE PRIMARY SIZE.
+		getScreenSize();
+		
+  	  	if ((height == 720 && width == 1480) || (height == 720 && width == 1440) || (height == 1080 && width == 2160) || (height == 1440 && width == 2960) || (height == 1440 && width == 3120) || (height == 1440 && width == 2880) || (height == 768 && width == 1366)) {
+			
+  	  		dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge2);
+		}
+		else {
+			
+			dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
+		}
+		
+		
+  	  	//TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
   	  	dodgeGraphic.setLayerType(View.LAYER_TYPE_SOFTWARE, null);//FOR TEXT NOT SHOWING ON 2560X1440
   	  	
   	  	dodgeGraphic.setVisibility(View.VISIBLE);
@@ -2865,12 +2972,29 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
   	  			
 	  	  		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletosmalldodge);						  	  	  	
 	  	  	  	
-		  	  	final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
+	  	  		
+		  	  	TextView dodgeGraphic;
+				
+		  	  	if ((height == 720 && width == 1480) || (height == 720 && width == 1440) || (height == 1080 && width == 2160) || (height == 1440 && width == 2960) || (height == 1440 && width == 3120) || (height == 1440 && width == 2880) || (height == 768 && width == 1366)) {
+					
+		  	  		dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge2);
+				}
+				else {
+					
+					dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
+				}
+	  	  		
+	  	  		
+		  	  	//final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
 		  	  	dodgeGraphic.setTypeface(typeFace);
 		  	  	dodgeGraphic.setText("Dodge");
 	  	  	  	
 		  	  	dodgeGraphic.clearAnimation();
 		  	  	dodgeGraphic.startAnimation(a);
+		  	  	
+		  	  	dodgeGraphic.setVisibility(View.GONE);
+		  	  	
+		  	  	System.gc();
   	  		}	  	  		
   	  	}, 3000);	
 	}
@@ -2880,8 +3004,24 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
 		
 		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletobigmb);					  	  	  	
-	  	  	
-  	  	TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+	  	
+		
+		TextView mightyBlowGraphic;
+		
+		//NEED TO AJUST FOR SCREENS THAT ARE WIER THAN THE PRIMARY SIZE.
+		getScreenSize();
+		
+  	  	if ((height == 720 && width == 1480) || (height == 720 && width == 1440) || (height == 1080 && width == 2160) || (height == 1440 && width == 2960) || (height == 1440 && width == 3120) || (height == 1440 && width == 2880) || (height == 768 && width == 1366)) {
+			
+  	  		mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall2);
+		}
+		else {
+			
+			mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+		}
+		
+		
+  	  	//TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
   	  	mightyBlowGraphic.setLayerType(View.LAYER_TYPE_SOFTWARE, null);//FOR TEXT NOT SHOWING ON 2560X1440
   	  	
   	  	mightyBlowGraphic.setVisibility(View.VISIBLE);
@@ -2904,12 +3044,29 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
   	  			
 	  	  		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletosmallmb);						  	  	  	
 	  	  	  	
-		  	  	final TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+	  	  		
+		  	  	TextView mightyBlowGraphic;
+				
+		  	  	if ((height == 720 && width == 1480) || (height == 720 && width == 1440) || (height == 1080 && width == 2160) || (height == 1440 && width == 2960) || (height == 1440 && width == 3120) || (height == 1440 && width == 2880) || (height == 768 && width == 1366)) {
+					
+		  	  		mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall2);
+				}
+				else {
+					
+					mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+				}
+	  	  		
+	  	  		
+		  	  	//final TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
 		  	  	mightyBlowGraphic.setTypeface(typeFace);
 		  	  	mightyBlowGraphic.setText("Mighty Blow");
 	  	  	  	
 		  	  	mightyBlowGraphic.clearAnimation();
 		  	  	mightyBlowGraphic.startAnimation(a);
+		  	  	
+		  	  	mightyBlowGraphic.setVisibility(View.GONE);
+		  	  	
+		  	  	System.gc();
   	  		}	  	  		
   	  	}, 3000);		
 	}
@@ -2919,8 +3076,24 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
 		
 		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletobig);					  	  	  	
-	  	  	
-  	  	TextView hasteGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+	  	
+		
+		TextView hasteGraphic;
+		
+		//NEED TO AJUST FOR SCREENS THAT ARE WIER THAN THE PRIMARY SIZE.
+		getScreenSize();
+		
+  	  	if ((height == 720 && width == 1480) || (height == 720 && width == 1440) || (height == 1080 && width == 2160) || (height == 1440 && width == 2960) || (height == 1440 && width == 3120) || (height == 1440 && width == 2880) || (height == 768 && width == 1366)) {
+			
+  	  		hasteGraphic = (TextView)findViewById(R.id.textviewspellgraphic2);
+		}
+		else {
+			
+			hasteGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+		}
+		
+		
+  	  	//TextView hasteGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
   	  	hasteGraphic.setLayerType(View.LAYER_TYPE_SOFTWARE, null);//FOR TEXT NOT SHOWING ON 2560X1440
 
   	  	
@@ -2944,12 +3117,29 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
   	  			
 	  	  		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletosmall);						  	  	  	
 	  	  	  	
-		  	  	final TextView hasteGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+	  	  		
+		  	  	TextView hasteGraphic;
+				
+		  	  	if ((height == 720 && width == 1480) || (height == 720 && width == 1440) || (height == 1080 && width == 2160) || (height == 1440 && width == 2960) || (height == 1440 && width == 3120) || (height == 1440 && width == 2880) || (height == 768 && width == 1366)) {
+					
+		  	  		hasteGraphic = (TextView)findViewById(R.id.textviewspellgraphic2);
+				}
+				else {
+					
+					hasteGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+				}
+	  	  		
+	  	  		
+		  	  	//final TextView hasteGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
 		  	  	hasteGraphic.setTypeface(typeFace);
 		  	  	hasteGraphic.setText("Haste");
 	  	  	  	
 		  	  	hasteGraphic.clearAnimation();
 		  	  	hasteGraphic.startAnimation(a);
+		  	  	
+		  	  	hasteGraphic.setVisibility(View.GONE);
+		  	  	
+		  	  	System.gc();
   	  		}	  	  		
   	  	}, 3000);		
 	}
@@ -2959,8 +3149,24 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
 		
 		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletobigch);					  	  	  	
-	  	  	
-  	  	TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+	  	
+		
+		TextView criticalHitGraphic;
+		
+		//NEED TO AJUST FOR SCREENS THAT ARE WIER THAN THE PRIMARY SIZE.
+		getScreenSize();
+		
+  	  	if ((height == 720 && width == 1480) || (height == 720 && width == 1440) || (height == 1080 && width == 2160) || (height == 1440 && width == 2960) || (height == 1440 && width == 3120) || (height == 1440 && width == 2880) || (height == 768 && width == 1366)) {
+			
+  	  		criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall2);
+		}
+		else {
+			
+			criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+		}
+		
+		
+  	  	//TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
   	  	criticalHitGraphic.setLayerType(View.LAYER_TYPE_SOFTWARE, null);//FOR TEXT NOT SHOWING ON 2560X1440
 
   	  	
@@ -2984,12 +3190,29 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
   	  			
 	  	  		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletosmallch);						  	  	  	
 	  	  	  	
-		  	  	final TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+	  	  		
+		  	  	TextView criticalHitGraphic;
+				
+		  	  	if ((height == 720 && width == 1480) || (height == 720 && width == 1440) || (height == 1080 && width == 2160) || (height == 1440 && width == 2960) || (height == 1440 && width == 3120) || (height == 1440 && width == 2880) || (height == 768 && width == 1366)) {
+					
+		  	  		criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall2);
+				}
+				else {
+					
+					criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+				}
+	  	  		
+	  	  		
+		  	  	//final TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
 		  	  	criticalHitGraphic.setTypeface(typeFace);
 		  	  	criticalHitGraphic.setText("Critical Hit");
 	  	  	  	
 		  	  	criticalHitGraphic.clearAnimation();
 		  	  	criticalHitGraphic.startAnimation(a);
+		  	  	
+		  	  	criticalHitGraphic.setVisibility(View.GONE);
+		  	  	
+		  	  	System.gc();
   	  		}	  	  		
   	  	}, 3000);		
 	}
@@ -2999,8 +3222,24 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
 		
 		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletobigcm);					  	  	  	
-	  	  	
-  	  	TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+	  	
+		
+		TextView criticalMissGraphic;
+		
+		//NEED TO AJUST FOR SCREENS THAT ARE WIER THAN THE PRIMARY SIZE.
+		getScreenSize();
+		
+  	  	if ((height == 720 && width == 1480) || (height == 720 && width == 1440) || (height == 1080 && width == 2160) || (height == 1440 && width == 2960) || (height == 1440 && width == 3120) || (height == 1440 && width == 2880) || (height == 768 && width == 1366)) {
+			
+  	  		criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall2);
+		}
+		else {
+			
+			criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+		}
+		
+		
+  	  	//TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
   	  	criticalMissGraphic.setLayerType(View.LAYER_TYPE_SOFTWARE, null);//FOR TEXT NOT SHOWING ON 2560X1440
   	  	
   	  	criticalMissGraphic.setVisibility(View.VISIBLE);
@@ -3023,12 +3262,29 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
   	  			
 	  	  		Animation a = AnimationUtils.loadAnimation(MainActivity2.this, R.anim.textscaletosmallcm);						  	  	  	
 	  	  	  	
-		  	  	final TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+	  	  		
+		  	  	TextView criticalMissGraphic;
+				
+		  	  	if ((height == 720 && width == 1480) || (height == 720 && width == 1440) || (height == 1080 && width == 2160) || (height == 1440 && width == 2960) || (height == 1440 && width == 3120) || (height == 1440 && width == 2880) || (height == 768 && width == 1366)) {
+					
+		  	  		criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall2);
+				}
+				else {
+					
+					criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+				}
+	  	  		
+	  	  		
+		  	  	//final TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
 		  	  	criticalMissGraphic.setTypeface(typeFace);
 		  	  	criticalMissGraphic.setText("Critical Miss");
 	  	  	  	
 		  	  	criticalMissGraphic.clearAnimation();
 		  	  	criticalMissGraphic.startAnimation(a);
+		  	  	
+		  	  	criticalMissGraphic.setVisibility(View.GONE);
+		  	  	
+		  	  	System.gc();
   	  		}	  	  		
   	  	}, 3000);		
 	}
@@ -3063,6 +3319,8 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		
 		criticalMissGraphic.clearAnimation();
 		criticalMissGraphic.setVisibility(View.GONE);
+		
+  	  	System.gc();
 	}
 	
 	
@@ -19599,9 +19857,17 @@ public class MainActivity2 extends Activity {//WAS ActionBarActivity (got "app s
 		  		            
 		  		            
 		  		            WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-
 		  		            lp.copyFrom(alert.getWindow().getAttributes());
-		  		            lp.width = 1050;	            
+			  	            
+		  		            if (getResources().getDisplayMetrics().densityDpi==160) {
+			  	            	
+		  		            	lp.width = 525;
+		  		            }
+		  		            else {
+			  	            	
+		  		            	lp.width = 1050;
+		  		            }
+			  	            
 		  		            alert.getWindow().setAttributes(lp);	  	  			
 		  	  	  			
 		  	  	  			

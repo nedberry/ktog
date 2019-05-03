@@ -67,6 +67,7 @@ import android.provider.MediaStore;
 import android.text.InputFilter;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Base64;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.Gravity;
@@ -100,6 +101,10 @@ public class Host extends Activity {
 	int MaxTurns;
 	
 	int count = 0;
+	
+	
+	int height = 0;
+	int width = 0;
 	
 	
 	
@@ -503,6 +508,13 @@ public class Host extends Activity {
 		*/
 		
 		
+		ImageView leftScroll = (ImageView) findViewById(R.id.imageviewscroll3b5leftdown);
+		leftScroll.setVisibility(View.INVISIBLE);
+		
+		ImageView rightScroll = (ImageView) findViewById(R.id.imageviewscroll3b5rightdown);
+		rightScroll.setVisibility(View.INVISIBLE);
+		
+		
 		ImageView blessLeft = (ImageView) findViewById(R.id.imageviewplayerbox4leftbless);
 		blessLeft.setVisibility(View.INVISIBLE);
 		blessLeft.setImageDrawable(null);
@@ -661,6 +673,8 @@ public class Host extends Activity {
 		  	  	  		computerHitPointsTextView.clearAnimation();
 		  	  	  		*/
 		  				
+		  	  	  	getScreenSize();
+		  	  	  		
 		  				final Handler h4 = new Handler();
 			  	  	  	h4.postDelayed(new Runnable() {
 			  	  	  		
@@ -3397,7 +3411,7 @@ public class Host extends Activity {
 			@Override
 			public void run() {
 				// Setting up scroll frame animation.
-				ImageView img = (ImageView)findViewById(R.id.scrollanimation);
+				final ImageView img = (ImageView)findViewById(R.id.scrollanimation);
 				img.setBackgroundResource(R.anim.scrollanimationleftup);
 			
 				// Get the background, which has been compiled to an AnimationDrawable object.
@@ -3406,7 +3420,36 @@ public class Host extends Activity {
 				// Start the animation.
 				frameAnimation.stop();
 				frameAnimation.start();
+
 				
+				ImageView leftScroll = (ImageView) findViewById(R.id.imageviewscroll3b5leftdown);
+				leftScroll.setVisibility(View.INVISIBLE);
+  	  			//leftScroll.bringToFront();
+
+				
+				//WORKAROUND FOR DEVICES WITH LARGER WIDTH THAN DRAWABLE RESOLUTION.
+				//ANIMATION DRAWABLES WILL NOT FILL OUT FULLY AND USER CAN SEE IT.
+				//ALSO NEEDED NEW IMAGEVIEW IN LAND/MAIN2 XML FOR foldscrolls()(scrollanimationdown).
+				//NOT HANDLED YET FOR MULTIPLAYER (USE INVISIBLE/VISIBLE---USED GONE HERE
+				//BECAUSE unfoldScrolls() IS CALLED ONLY ONCE).
+				//**********************************************************************************
+				//TO PROPERLY CLEAR ANIMATION?: findViewById(R.id.scrollanimation).clearAnimation();
+				//**********************************************************************************
+				
+				final Handler h = new Handler();
+	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {
+	  	  	  			
+	  	  	  			img.setVisibility(View.INVISIBLE);
+		  	  	  		
+	  	  	  			
+	  	  	  			ImageView rightScroll = (ImageView) findViewById(R.id.imageviewscroll3b5rightdown);
+	  	  	  			rightScroll.setVisibility(View.VISIBLE);
+	  	  	  			rightScroll.bringToFront();
+		  	  	  	}
+	  	  	  	}, 1000);
 				
 				img.setImageDrawable(null);
 				
@@ -3423,7 +3466,7 @@ public class Host extends Activity {
 			@Override
 			public void run() {
 				// Setting up scroll frame animation.
-				ImageView img = (ImageView)findViewById(R.id.scrollanimation);
+				final ImageView img = (ImageView)findViewById(R.id.scrollanimation);
 				img.setBackgroundResource(R.anim.scrollanimationleftupreverse);
 			
 				// Get the background, which has been compiled to an AnimationDrawable object.
@@ -3432,7 +3475,35 @@ public class Host extends Activity {
 				// Start the animation.
 				frameAnimation.stop();
 				frameAnimation.start();
+
 				
+				//WORKAROUND FOR DEVICES WITH LARGER WIDTH THAN DRAWABLE RESOLUTION.
+				//ANIMATION DRAWABLES WILL NOT FILL OUT FULLY AND USER CAN SEE IT.
+				//ALSO NEEDED NEW IMAGEVIEW IN LAND/MAIN2 XML FOR foldscrolls()(scrollanimationdown).
+				//NOT HANDLED YET FOR MULTIPLAYER (USE INVISIBLE/VISIBLE---USED GONE HERE
+				//BECAUSE unfoldScrolls() IS CALLED ONLY ONCE).
+				//**********************************************************************************
+				//TO PROPERLY CLEAR ANIMATION?: findViewById(R.id.scrollanimation).clearAnimation();
+				//**********************************************************************************
+				
+				final Handler h = new Handler();
+	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {
+	  	  	  			
+	  	  	  			img.setVisibility(View.INVISIBLE);
+	  	  	  			
+	  	  	  			
+		  	  	  		ImageView leftScroll = (ImageView) findViewById(R.id.imageviewscroll3b5leftdown);
+						leftScroll.setVisibility(View.VISIBLE);
+	  	  	  			leftScroll.bringToFront();
+	  	  	  			
+	  	  	  			ImageView rightScroll = (ImageView) findViewById(R.id.imageviewscroll3b5rightdown);
+	  	  	  			rightScroll.setVisibility(View.VISIBLE);
+	  	  	  			rightScroll.bringToFront();
+		  	  	  	}
+	  	  	  	}, 1000);
 				
 				img.setImageDrawable(null);
 				
@@ -3448,7 +3519,7 @@ public class Host extends Activity {
 			@Override
 			public void run() {
 				// Setting up scroll frame animation.
-				ImageView img = (ImageView)findViewById(R.id.scrollanimation);
+				final ImageView img = (ImageView)findViewById(R.id.scrollanimation);
 				img.setBackgroundResource(R.anim.scrollanimationrightup);
 			
 				// Get the background, which has been compiled to an AnimationDrawable object.
@@ -3458,6 +3529,35 @@ public class Host extends Activity {
 				frameAnimation.stop();
 				frameAnimation.start();
 				
+				
+				ImageView leftScroll = (ImageView) findViewById(R.id.imageviewscroll3b5leftdown);
+				leftScroll.setVisibility(View.INVISIBLE);
+  	  			//leftScroll.bringToFront();
+
+				
+				//WORKAROUND FOR DEVICES WITH LARGER WIDTH THAN DRAWABLE RESOLUTION.
+				//ANIMATION DRAWABLES WILL NOT FILL OUT FULLY AND USER CAN SEE IT.
+				//ALSO NEEDED NEW IMAGEVIEW IN LAND/MAIN2 XML FOR foldscrolls()(scrollanimationdown).
+				//NOT HANDLED YET FOR MULTIPLAYER (USE INVISIBLE/VISIBLE---USED GONE HERE
+				//BECAUSE unfoldScrolls() IS CALLED ONLY ONCE).
+				//**********************************************************************************
+				//TO PROPERLY CLEAR ANIMATION?: findViewById(R.id.scrollanimation).clearAnimation();
+				//**********************************************************************************
+				
+				final Handler h = new Handler();
+	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {
+	  	  	  			
+	  	  	  			img.setVisibility(View.INVISIBLE);
+		  	  	  		
+	  	  	  			
+	  	  	  			ImageView rightScroll = (ImageView) findViewById(R.id.imageviewscroll3b5rightdown);
+	  	  	  			rightScroll.setVisibility(View.INVISIBLE);
+	  	  	  			rightScroll.bringToFront();
+		  	  	  	}
+	  	  	  	}, 1000);
 				
 				img.setImageDrawable(null);
 				
@@ -3561,7 +3661,7 @@ public class Host extends Activity {
 			@Override
 			public void run() {
 				// Setting up scroll frame animation.
-				ImageView img = (ImageView)findViewById(R.id.scrollanimation);
+				final ImageView img = (ImageView)findViewById(R.id.scrollanimation);
 				img.setBackgroundResource(R.anim.scrollanimationdown);
 				
 				img.bringToFront();
@@ -3572,7 +3672,35 @@ public class Host extends Activity {
 				// Start the animation.
 				frameAnimation.stop();
 				frameAnimation.start();
+
 				
+				//WORKAROUND FOR DEVICES WITH LARGER WIDTH THAN DRAWABLE RESOLUTION.
+				//ANIMATION DRAWABLES WILL NOT FILL OUT FULLY AND USER CAN SEE IT.
+				//ALSO NEEDED NEW IMAGEVIEW IN LAND/MAIN2 XML FOR foldscrolls()(scrollanimationdown).
+				//NOT HANDLED YET FOR MULTIPLAYER (USE INVISIBLE/VISIBLE---USED GONE HERE
+				//BECAUSE unfoldScrolls() IS CALLED ONLY ONCE).
+				//**********************************************************************************
+				//TO PROPERLY CLEAR ANIMATION?: findViewById(R.id.scrollanimation).clearAnimation();
+				//**********************************************************************************
+				
+				final Handler h = new Handler();
+	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {
+	  	  	  			
+	  	  	  			img.setVisibility(View.INVISIBLE);
+	  	  	  			
+	  	  	  			
+		  	  	  		ImageView leftScroll = (ImageView) findViewById(R.id.imageviewscroll3b5leftdown);
+						leftScroll.setVisibility(View.VISIBLE);
+	  	  	  			leftScroll.bringToFront();
+	  	  	  			
+	  	  	  			ImageView rightScroll = (ImageView) findViewById(R.id.imageviewscroll3b5rightdown);
+	  	  	  			rightScroll.setVisibility(View.VISIBLE);
+	  	  	  			rightScroll.bringToFront();
+		  	  	  	}
+	  	  	  	}, 1000);
 				
 				img.setImageDrawable(null);
 				
@@ -3588,7 +3716,7 @@ public class Host extends Activity {
 			@Override
 			public void run() {
 				// Setting up scroll frame animation.
-				ImageView img = (ImageView)findViewById(R.id.scrollanimation);
+				final ImageView img = (ImageView)findViewById(R.id.scrollanimation);
 				img.setBackgroundResource(R.anim.scrollanimationleftdown);
 				
 				img.bringToFront();
@@ -3599,7 +3727,36 @@ public class Host extends Activity {
 				// Start the animation.
 				frameAnimation.stop();
 				frameAnimation.start();
+
 				
+				ImageView rightScroll = (ImageView) findViewById(R.id.imageviewscroll3b5rightdown);
+  	  			rightScroll.setVisibility(View.INVISIBLE);
+  	  			//rightScroll.bringToFront();
+				
+				
+				//WORKAROUND FOR DEVICES WITH LARGER WIDTH THAN DRAWABLE RESOLUTION.
+				//ANIMATION DRAWABLES WILL NOT FILL OUT FULLY AND USER CAN SEE IT.
+				//ALSO NEEDED NEW IMAGEVIEW IN LAND/MAIN2 XML FOR foldscrolls()(scrollanimationdown).
+				//NOT HANDLED YET FOR MULTIPLAYER (USE INVISIBLE/VISIBLE---USED GONE HERE
+				//BECAUSE unfoldScrolls() IS CALLED ONLY ONCE).
+				//**********************************************************************************
+				//TO PROPERLY CLEAR ANIMATION?: findViewById(R.id.scrollanimation).clearAnimation();
+				//**********************************************************************************
+				
+				final Handler h = new Handler();
+	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {
+	  	  	  			
+	  	  	  			img.setVisibility(View.INVISIBLE);
+	  	  	  			
+	  	  	  			
+	  	  	  			ImageView leftScroll = (ImageView) findViewById(R.id.imageviewscroll3b5leftdown);
+						leftScroll.setVisibility(View.VISIBLE);
+	  	  	  			leftScroll.bringToFront();
+		  	  	  	}
+	  	  	  	}, 1000);
 				
 				img.setImageDrawable(null);
 				
@@ -3615,7 +3772,7 @@ public class Host extends Activity {
 			@Override
 			public void run() {
 				// Setting up scroll frame animation.
-				ImageView img = (ImageView)findViewById(R.id.scrollanimation);
+				final ImageView img = (ImageView)findViewById(R.id.scrollanimation);
 				img.setBackgroundResource(R.anim.scrollanimationleftupnoright);
 			
 				// Get the background, which has been compiled to an AnimationDrawable object.
@@ -3624,7 +3781,35 @@ public class Host extends Activity {
 				// Start the animation.
 				frameAnimation.stop();
 				frameAnimation.start();
+
 				
+				ImageView leftScroll = (ImageView) findViewById(R.id.imageviewscroll3b5leftdown);
+				leftScroll.setVisibility(View.INVISIBLE);
+  	  			//leftScroll.bringToFront();
+  	  			
+  	  			ImageView rightScroll = (ImageView) findViewById(R.id.imageviewscroll3b5rightdown);
+  	  			rightScroll.setVisibility(View.INVISIBLE);
+  	  			//rightScroll.bringToFront();
+
+				
+				//WORKAROUND FOR DEVICES WITH LARGER WIDTH THAN DRAWABLE RESOLUTION.
+				//ANIMATION DRAWABLES WILL NOT FILL OUT FULLY AND USER CAN SEE IT.
+				//ALSO NEEDED NEW IMAGEVIEW IN LAND/MAIN2 XML FOR foldscrolls()(scrollanimationdown).
+				//NOT HANDLED YET FOR MULTIPLAYER (USE INVISIBLE/VISIBLE---USED GONE HERE
+				//BECAUSE unfoldScrolls() IS CALLED ONLY ONCE).
+				//**********************************************************************************
+				//TO PROPERLY CLEAR ANIMATION?: findViewById(R.id.scrollanimation).clearAnimation();
+				//**********************************************************************************
+				
+				final Handler h = new Handler();
+	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {
+	  	  	  			
+	  	  	  			img.setVisibility(View.INVISIBLE);
+		  	  	  	}
+	  	  	  	}, 1000);
 				
 				img.setImageDrawable(null);
 				
@@ -3645,119 +3830,43 @@ public class Host extends Activity {
 	 */	
 	
 	
-	public void hasteGraphic() {
+	public void getScreenSize() {
 		
-		runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
+		DisplayMetrics metrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(metrics);
 		
-				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
-				
-				Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobig);					  	  	  	
-			  	  	
-		  	  	TextView hasteGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
-	  	  		hasteGraphic.setLayerType(View.LAYER_TYPE_SOFTWARE, null);//FOR TEXT NOT SHOWING ON 2560X1440
-
-		  	  	
-		  	  	hasteGraphic.setVisibility(View.VISIBLE);
-			  	hasteGraphic.bringToFront();
-		  	  	
-		  	  	hasteGraphic.setTypeface(typeFace);
-		  	  	hasteGraphic.setText("Haste");  	  	
-		  	  	
-		  	  	hasteGraphic.clearAnimation();
-		  	  	hasteGraphic.startAnimation(a);
-		  		
-		  		MediaPlayerWrapper.play(Host.this, R.raw.badonkshort);
-		  		
-		  		
-				final Handler h = new Handler();
-		  	  	h.postDelayed(new Runnable() {		  	  	  			
-		  	  			
-		  	  		@Override
-		  	  		public void run() {
-		  	  			
-			  	  		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletosmall);						  	  	  	
-			  	  	  	
-				  	  	final TextView hasteGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
-				  	  	hasteGraphic.setTypeface(typeFace);
-				  	  	hasteGraphic.setText("Haste");
-			  	  	  	
-				  	  	hasteGraphic.clearAnimation();
-				  	  	hasteGraphic.startAnimation(a);
-				  	  	
-				  	  	
-				  	  	h.removeCallbacks(this);
-				  	  	
-				  	  	//System.gc();
-		  	  		}	  	  		
-		  	  	}, 3000);
-			}
-		});
-	}	
-	
-	public void cureGraphic() {
-		
-		runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
-		
-				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
-				
-				Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobigcure);					  	  	  	
-			  	  	
-		  	  	TextView cureGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
-		  	  	cureGraphic.setLayerType(View.LAYER_TYPE_SOFTWARE, null);//FOR TEXT NOT SHOWING ON 2560X1440
-
-		  	  	
-		  	  	cureGraphic.setVisibility(View.VISIBLE);
-			  	cureGraphic.bringToFront();
-		  	  	
-		  	  	cureGraphic.setTypeface(typeFace);
-		  	  	cureGraphic.setText(" Cure");  	  	
-		  	  	
-		  	  	cureGraphic.clearAnimation();
-		  	  	cureGraphic.startAnimation(a);
-		  		
-		  		MediaPlayerWrapper.play(Host.this, R.raw.badonkshort);
-		  		
-		  		
-				final Handler h = new Handler();
-		  	  	h.postDelayed(new Runnable() {		  	  	  			
-		  	  			
-		  	  		@Override
-		  	  		public void run() {
-		  	  			
-			  	  		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletosmallcure);						  	  	  	
-			  	  	  	
-				  	  	final TextView cureGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
-				  	  	cureGraphic.setTypeface(typeFace);
-				  	  	cureGraphic.setText(" Cure");
-			  	  	  	
-				  	  	cureGraphic.clearAnimation();
-				  	  	cureGraphic.startAnimation(a);
-				  	  	
-				  	  	
-				  	  	h.removeCallbacks(this);
-				  	  	
-				  	  	//System.gc();
-		  	  		}	  	  		
-		  	  	}, 3000);
-			}
-		});
+		height = metrics.heightPixels;
+		width = metrics.widthPixels;
 	}
 	
-	public void blessGraphic() {
+	
+public void blessGraphic() {
 		
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-		
+				
 				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
 				
 				Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobig);					  	  	  	
-			  	  	
-		  	  	TextView blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+			  	
+				
+				TextView blessGraphic;
+				
+				//NEED TO AJUST FOR SCREENS THAT ARE WIER THAN THE PRIMARY SIZE.
+				//getScreenSize();
+				
+		  	  	if ((height == 720 && width == 1480) || (height == 720 && width == 1440) || (height == 1080 && width == 2160) || (height == 1440 && width == 2960) || (height == 1440 && width == 3120) || (height == 1440 && width == 2880) || (height == 768 && width == 1366)) {
+					
+		  	  		blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic2);
+				}
+				else {
+					
+					blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+				}
+				
+				
+		  	  	//TextView blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
 		  	  	blessGraphic.setLayerType(View.LAYER_TYPE_SOFTWARE, null);//FOR TEXT NOT SHOWING ON 2560X1440
 
 		  		
@@ -3781,7 +3890,21 @@ public class Host extends Activity {
 		  	  			
 			  	  		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletosmall);						  	  	  	
 			  	  	  	
-				  	  	final TextView blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+			  	  		
+				  	  	TextView blessGraphic;
+						
+						
+				  	  	if ((height == 720 && width == 1480) || (height == 720 && width == 1440) || (height == 1080 && width == 2160) || (height == 1440 && width == 2960) || (height == 1440 && width == 3120) || (height == 1440 && width == 2880) || (height == 768 && width == 1366)) {
+							
+				  	  		blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic2);
+						}
+						else {
+							
+							blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+						}
+			  	  		
+			  	  		
+				  	  	//final TextView blessGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
 		  	  	  		blessGraphic.setTypeface(typeFace);
 		  	  	  		blessGraphic.setText("Bless");
 		  	  	  		
@@ -3789,28 +3912,129 @@ public class Host extends Activity {
 		  	  	  		blessGraphic.startAnimation(a);
 		  	  	  		
 		  	  	  		
-		  	  	  		h.removeCallbacks(this);
-		  	  	  		
-		  	  	  		//System.gc();
+		  	  	  		System.gc();
 		  	  		}	  	  		
-		  	  	}, 3000);
+		  	  	}, 3000);				
 			}
-		});
+		});				
 	}
 	
-	public void dodgeGraphic() {
+public void cureGraphic() {
 		
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-		
+				
 				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
 				
-				Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobigdodge);					  	  	  	
-			  	  	
-		  	  	TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
+				Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobig);					  	  	  	
+			  	
+				
+				TextView cureGraphic;
+				
+				//NEED TO AJUST FOR SCREENS THAT ARE WIER THAN THE PRIMARY SIZE.
+				//getScreenSize();
+				
+		  	  	if ((height == 720 && width == 1480) || (height == 720 && width == 1440) || (height == 1080 && width == 2160) || (height == 1440 && width == 2960) || (height == 1440 && width == 3120) || (height == 1440 && width == 2880) || (height == 768 && width == 1366)) {
+					
+		  	  		cureGraphic = (TextView)findViewById(R.id.textviewspellgraphic2);
+				}
+				else {
+					
+					cureGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+				}
+				
+				
+		  	  	//TextView cureGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+		  	  	cureGraphic.setLayerType(View.LAYER_TYPE_SOFTWARE, null);//FOR TEXT NOT SHOWING ON 2560X1440
+	
+		  	  	
+		  	  	cureGraphic.setVisibility(View.VISIBLE);
+			  	cureGraphic.bringToFront();
+		  	  	
+		  	  	cureGraphic.setTypeface(typeFace);
+		  	  	cureGraphic.setText(" Cure");  	  	
+		  	  	
+		  	  	cureGraphic.clearAnimation();
+		  	  	cureGraphic.startAnimation(a);
+		  		
+		  		MediaPlayerWrapper.play(Host.this, R.raw.badonkshort);
+		  		
+		  		
+				final Handler h = new Handler();
+		  	  	h.postDelayed(new Runnable() {		  	  	  			
+		  	  			
+		  	  		@Override
+		  	  		public void run() {
+		  	  			
+			  	  		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletosmall);						  	  	  	
+			  	  	  	
+			  	  		
+				  	  	TextView cureGraphic;
+						
+				  	  	if ((height == 720 && width == 1480) || (height == 720 && width == 1440) || (height == 1080 && width == 2160) || (height == 1440 && width == 2960) || (height == 1440 && width == 3120) || (height == 1440 && width == 2880) || (height == 768 && width == 1366)) {
+							
+				  	  		cureGraphic = (TextView)findViewById(R.id.textviewspellgraphic2);
+						}
+						else {
+							
+							cureGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+						}
+			  	  		
+			  	  		
+				  	  	//final TextView cureGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+				  	  	cureGraphic.setTypeface(typeFace);
+				  	  	cureGraphic.setText(" Cure");
+			  	  	  	
+				  	  	cureGraphic.clearAnimation();
+				  	  	cureGraphic.startAnimation(a);
+				  	  	
+				  	  	
+				  	  	System.gc();
+		  	  		}	  	  		
+		  	  	}, 3000);				
+			}
+		});				
+	}
+	
+public void dodgeGraphic() {
+		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				
+				// Use a blank drawable to hide the imageview animation:
+				// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
+				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+				img1.setBackgroundResource(R.drawable.twentytwentyblank);
+				img1.setImageResource(R.drawable.twentytwentyblank);
+				
+				img1.setImageDrawable(null);
+				
+				
+				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
+				
+				Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobig);					  	  	  	
+			  	
+				
+				TextView dodgeGraphic;
+				
+				//NEED TO AJUST FOR SCREENS THAT ARE WIER THAN THE PRIMARY SIZE.
+				//getScreenSize();
+				
+		  	  	if ((height == 720 && width == 1480) || (height == 720 && width == 1440) || (height == 1080 && width == 2160) || (height == 1440 && width == 2960) || (height == 1440 && width == 3120) || (height == 1440 && width == 2880) || (height == 768 && width == 1366)) {
+					
+		  	  		dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge2);
+				}
+				else {
+					
+					dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
+				}
+				
+				
+		  	  	//TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
 		  	  	dodgeGraphic.setLayerType(View.LAYER_TYPE_SOFTWARE, null);//FOR TEXT NOT SHOWING ON 2560X1440
-
+	
 		  	  	
 		  	  	dodgeGraphic.setVisibility(View.VISIBLE);
 			  	dodgeGraphic.bringToFront();
@@ -3830,9 +4054,22 @@ public class Host extends Activity {
 		  	  		@Override
 		  	  		public void run() {
 		  	  			
-			  	  		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletosmalldodge);						  	  	  	
+			  	  		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletosmall);						  	  	  	
 			  	  	  	
-				  	  	final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
+			  	  		
+				  	  	TextView dodgeGraphic;
+						
+				  	  	if ((height == 720 && width == 1480) || (height == 720 && width == 1440) || (height == 1080 && width == 2160) || (height == 1440 && width == 2960) || (height == 1440 && width == 3120) || (height == 1440 && width == 2880) || (height == 768 && width == 1366)) {
+							
+				  	  		dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge2);
+						}
+						else {
+							
+							dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
+						}
+			  	  		
+			  	  		
+				  	  	//final TextView dodgeGraphic = (TextView)findViewById(R.id.textviewspellgraphicdodge);
 				  	  	dodgeGraphic.setTypeface(typeFace);
 				  	  	dodgeGraphic.setText("Dodge");
 			  	  	  	
@@ -3840,16 +4077,14 @@ public class Host extends Activity {
 				  	  	dodgeGraphic.startAnimation(a);
 				  	  	
 				  	  	
-				  	  	h.removeCallbacks(this);
-				  	  	
-				  	  	//System.gc();
+				  	  	System.gc();
 		  	  		}	  	  		
-		  	  	}, 3000);
+		  	  	}, 3000);			
 			}
-		});
+		});			
 	}
 	
-	public void mightyBlowGraphic() {
+public void mightyBlowGraphic() {
 		
 		runOnUiThread(new Runnable() {
 			@Override
@@ -3857,7 +4092,7 @@ public class Host extends Activity {
 				
 				// Use a blank drawable to hide the imageview animation:
 				// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
-				final ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img1.setBackgroundResource(R.drawable.twentytwentyblank);
 				img1.setImageResource(R.drawable.twentytwentyblank);
 				
@@ -3866,11 +4101,27 @@ public class Host extends Activity {
 				
 				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
 				
-				Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobigmb);					  	  	  	
-			  	  	
-		  	  	TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+				Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobig);					  	  	  	
+			  	
+				
+				TextView mightyBlowGraphic;
+				
+				//NEED TO AJUST FOR SCREENS THAT ARE WIER THAN THE PRIMARY SIZE.
+				//getScreenSize();
+				
+		  	  	if ((height == 720 && width == 1480) || (height == 720 && width == 1440) || (height == 1080 && width == 2160) || (height == 1440 && width == 2960) || (height == 1440 && width == 3120) || (height == 1440 && width == 2880) || (height == 768 && width == 1366)) {
+					
+		  	  		mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall2);
+				}
+				else {
+					
+					mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+				}
+				
+				
+		  	  	//TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
 		  	  	mightyBlowGraphic.setLayerType(View.LAYER_TYPE_SOFTWARE, null);//FOR TEXT NOT SHOWING ON 2560X1440
-
+	
 		  	  	
 		  	  	mightyBlowGraphic.setVisibility(View.VISIBLE);
 			  	mightyBlowGraphic.bringToFront();
@@ -3890,9 +4141,22 @@ public class Host extends Activity {
 		  	  		@Override
 		  	  		public void run() {
 		  	  			
-			  	  		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletosmallmb);						  	  	  	
+			  	  		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletosmall);						  	  	  	
 			  	  	  	
-				  	  	final TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+			  	  		
+				  	  	TextView mightyBlowGraphic;
+						
+				  	  	if ((height == 720 && width == 1480) || (height == 720 && width == 1440) || (height == 1080 && width == 2160) || (height == 1440 && width == 2960) || (height == 1440 && width == 3120) || (height == 1440 && width == 2880) || (height == 768 && width == 1366)) {
+							
+				  	  		mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall2);
+						}
+						else {
+							
+							mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+						}
+			  	  		
+			  	  		
+				  	  	//final TextView mightyBlowGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
 				  	  	mightyBlowGraphic.setTypeface(typeFace);
 				  	  	mightyBlowGraphic.setText("Mighty Blow");
 			  	  	  	
@@ -3900,16 +4164,92 @@ public class Host extends Activity {
 				  	  	mightyBlowGraphic.startAnimation(a);
 				  	  	
 				  	  	
-				  	  	h.removeCallbacks(this);
-				  	  	
-				  	  	//System.gc();
+				  	  	System.gc();
 		  	  		}	  	  		
-		  	  	}, 3000);
+		  	  	}, 3000);				
 			}
 		});
 	}
 	
-	public void criticalHitGraphic() {
+public void hasteGraphic() {
+		
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				
+				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
+				
+				Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobig);					  	  	  	
+			  	
+				
+				TextView hasteGraphic;
+				
+				//NEED TO AJUST FOR SCREENS THAT ARE WIER THAN THE PRIMARY SIZE.
+				//getScreenSize();
+				
+		  	  	if ((height == 720 && width == 1480) || (height == 720 && width == 1440) || (height == 1080 && width == 2160) || (height == 1440 && width == 2960) || (height == 1440 && width == 3120) || (height == 1440 && width == 2880) || (height == 768 && width == 1366)) {
+					
+		  	  	hasteGraphic = (TextView)findViewById(R.id.textviewspellgraphic2);
+				}
+				else {
+					
+					hasteGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+				}
+				
+				
+		  	  	//TextView hasteGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+		  	  	hasteGraphic.setLayerType(View.LAYER_TYPE_SOFTWARE, null);//FOR TEXT NOT SHOWING ON 2560X1440
+
+		  	  	
+		  	  	hasteGraphic.setVisibility(View.VISIBLE);
+			  	hasteGraphic.bringToFront();
+		  	  	
+		  	  	hasteGraphic.setTypeface(typeFace);
+		  	  	hasteGraphic.setText("Haste");  	  	
+		  	  	
+		  	  	hasteGraphic.clearAnimation();
+		  	  	hasteGraphic.startAnimation(a);
+		  		
+		  		MediaPlayerWrapper.play(Host.this, R.raw.badonkshort);
+		  		
+		  		
+				final Handler h = new Handler();
+		  	  	h.postDelayed(new Runnable() {		  	  	  			
+		  	  			
+		  	  		@Override
+		  	  		public void run() {
+		  	  			
+			  	  		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletosmall);						  	  	  	
+			  	  	  	
+			  	  		
+				  	  	TextView hasteGraphic;
+						
+				  	  	if ((height == 720 && width == 1480) || (height == 720 && width == 1440) || (height == 1080 && width == 2160) || (height == 1440 && width == 2960) || (height == 1440 && width == 3120) || (height == 1440 && width == 2880) || (height == 768 && width == 1366)) {
+							
+				  	  	hasteGraphic = (TextView)findViewById(R.id.textviewspellgraphic2);
+						}
+						else {
+							
+							hasteGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+						}
+			  	  		
+			  	  		
+				  	  	//final TextView hasteGraphic = (TextView)findViewById(R.id.textviewspellgraphic);
+				  	  	hasteGraphic.setTypeface(typeFace);
+				  	  	hasteGraphic.setText("Haste");
+			  	  	  	
+				  	  	hasteGraphic.clearAnimation();
+				  	  	hasteGraphic.startAnimation(a);
+				  	  	
+				  	  	
+				  	  	System.gc();
+		  	  		}	  	  		
+		  	  	}, 3000);				
+			}
+		});			
+	}
+	
+public void criticalHitGraphic() {
 		
 		runOnUiThread(new Runnable() {
 			@Override
@@ -3917,20 +4257,36 @@ public class Host extends Activity {
 				
 				// Use a blank drawable to hide the imageview animation:
 				// PREVIOUSLY FOUND THAT ANDROID CRASHES IF USE //img.setVisibility(View.INVISIBLE);
-				final ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
+				ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
 				img1.setBackgroundResource(R.drawable.twentytwentyblank);
 				img1.setImageResource(R.drawable.twentytwentyblank);
 				
 				img1.setImageDrawable(null);
 				
-		
+				
 				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
 				
-				Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobigch);					  	  	  	
-			  	  	
-		  	  	TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+				Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobig);					  	  	  	
+			  	
+				
+				TextView criticalHitGraphic;
+				
+				//NEED TO AJUST FOR SCREENS THAT ARE WIER THAN THE PRIMARY SIZE.
+				//getScreenSize();
+				
+		  	  	if ((height == 720 && width == 1480) || (height == 720 && width == 1440) || (height == 1080 && width == 2160) || (height == 1440 && width == 2960) || (height == 1440 && width == 3120) || (height == 1440 && width == 2880) || (height == 768 && width == 1366)) {
+					
+		  	  		criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall2);
+				}
+				else {
+					
+					criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+				}
+				
+				
+		  	  	//TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
 		  	  	criticalHitGraphic.setLayerType(View.LAYER_TYPE_SOFTWARE, null);//FOR TEXT NOT SHOWING ON 2560X1440
-
+	
 		  	  	
 		  	  	criticalHitGraphic.setVisibility(View.VISIBLE);
 			  	criticalHitGraphic.bringToFront();
@@ -3950,28 +4306,37 @@ public class Host extends Activity {
 		  	  		@Override
 		  	  		public void run() {
 		  	  			
-			  	  		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletosmallch);						  	  	  	
+			  	  		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletosmall);						  	  	  	
 			  	  	  	
-				  	  	final TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+			  	  		
+				  	  	TextView criticalHitGraphic;
+						
+				  	  	if ((height == 720 && width == 1480) || (height == 720 && width == 1440) || (height == 1080 && width == 2160) || (height == 1440 && width == 2960) || (height == 1440 && width == 3120) || (height == 1440 && width == 2880) || (height == 768 && width == 1366)) {
+							
+				  	  		criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall2);
+						}
+						else {
+							
+							criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+						}
+			  	  		
+			  	  		
+				  	  	//final TextView criticalHitGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
 				  	  	criticalHitGraphic.setTypeface(typeFace);
 				  	  	criticalHitGraphic.setText(" Critical Hit");//WAS:"Critical     Hit"
 			  	  	  	
 				  	  	criticalHitGraphic.clearAnimation();
-				  	  	criticalHitGraphic.startAnimation(a);				  	  	
+				  	  	criticalHitGraphic.startAnimation(a);
 				  	  	
 				  	  	
-				  	  	img1.setImageDrawable(null);
-				  	  	
-				  	  	h.removeCallbacks(this);
-				  	  	
-				  	  	//System.gc();
+				  	  	System.gc();
 		  	  		}	  	  		
-		  	  	}, 3000);
+		  	  	}, 3000);				
 			}
-		});
-	}	
+		});				
+	}
 	
-	public void criticalMissGraphic() {
+public void criticalMissGraphic() {
 		
 		runOnUiThread(new Runnable() {
 			@Override
@@ -3985,12 +4350,28 @@ public class Host extends Activity {
 				
 				img1.setImageDrawable(null);
 				
-		
+				
 				final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");		
 				
-				Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobigcm);					  	  	  	
-			  	  	
-		  	  	TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+				Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletobig);					  	  	  	
+			  	
+				
+				TextView criticalMissGraphic;
+				
+				//NEED TO AJUST FOR SCREENS THAT ARE WIER THAN THE PRIMARY SIZE.
+				//getScreenSize();
+				
+		  	  	if ((height == 720 && width == 1480) || (height == 720 && width == 1440) || (height == 1080 && width == 2160) || (height == 1440 && width == 2960) || (height == 1440 && width == 3120) || (height == 1440 && width == 2880) || (height == 768 && width == 1366)) {
+					
+		  	  		criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall2);
+				}
+				else {
+					
+					criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+				}
+				
+				
+		  	  	//TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
 		  	  	criticalMissGraphic.setLayerType(View.LAYER_TYPE_SOFTWARE, null);//FOR TEXT NOT SHOWING ON 2560X1440
 
 		  	  	
@@ -4012,9 +4393,22 @@ public class Host extends Activity {
 		  	  		@Override
 		  	  		public void run() {
 		  	  			
-			  	  		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletosmallcm);						  	  	  	
+			  	  		Animation a = AnimationUtils.loadAnimation(Host.this, R.anim.textscaletosmall);						  	  	  	
 			  	  	  	
-				  	  	final TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+			  	  		
+				  	  	TextView criticalMissGraphic;
+						
+				  	  	if ((height == 720 && width == 1480) || (height == 720 && width == 1440) || (height == 1080 && width == 2160) || (height == 1440 && width == 2960) || (height == 1440 && width == 3120) || (height == 1440 && width == 2880) || (height == 768 && width == 1366)) {
+							
+				  	  		criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall2);
+						}
+						else {
+							
+							criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
+						}
+			  	  		
+			  	  		
+				  	  	//final TextView criticalMissGraphic = (TextView)findViewById(R.id.textviewspellgraphicextrasmall);
 				  	  	criticalMissGraphic.setTypeface(typeFace);
 				  	  	criticalMissGraphic.setText("Critical Miss");
 			  	  	  	
@@ -4022,14 +4416,12 @@ public class Host extends Activity {
 				  	  	criticalMissGraphic.startAnimation(a);
 				  	  	
 				  	  	
-				  	  	h.removeCallbacks(this);
-				  	  	
-				  	  	//System.gc();
+				  	  	System.gc();
 		  	  		}	  	  		
-		  	  	}, 3000);
+		  	  	}, 3000);				
 			}
-		});
-	}	
+		});			
+	}
 	
 	public void stopGraphics() {
 		
@@ -15400,7 +15792,8 @@ public class Host extends Activity {
 	  	  	    }
 			});
 			
-			
+  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+
 			unfoldRightScroll();
 			
 			
@@ -15482,6 +15875,8 @@ public class Host extends Activity {
 			*/
 			if (initiativeFinal[0] > initiativeFinal[5] && initiativeFinal[0] > initiativeFinal[1]) {
 				
+	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+				
 				unfoldLeftScrollReverse();
 				
 				
@@ -15550,6 +15945,8 @@ public class Host extends Activity {
 	  	  	  			
 		  	  	  		//unfoldRightScroll();
 		  	  	  		
+			  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+
 	  	  	  			scrollAnimationLeftDown();
 	  	  	  			
 	  	  	  			
@@ -15569,6 +15966,8 @@ public class Host extends Activity {
 			}
 			else if (initiativeFinal[1] > initiativeFinal[5] && initiativeFinal[1] > initiativeFinal[0]) {
 				
+	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+
 				unfoldLeftScrollReverse();
 				
 				
@@ -15638,6 +16037,8 @@ public class Host extends Activity {
 	  	  	  			
 		  	  	  		//unfoldRightScroll();
 		  	  	  		
+			  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+
 		  	  	  		scrollAnimationLeftDown();
 	  	  	  			
 	  	  	  			
@@ -16134,7 +16535,8 @@ public class Host extends Activity {
 			  			  				clientAvatar.setBackgroundResource(R.drawable.stonedead2);
 			  			  			}
 		                  			
-					    			
+		        		  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+
 					    			scrollAnimationLeftDown();
 					    			
 					    			
@@ -16314,7 +16716,8 @@ public class Host extends Activity {
 			  			  				clientAvatar.setBackgroundResource(R.drawable.stonedead2);
 			  			  			}
 		                  			
-		                  			
+		        		  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+
 					    			scrollAnimationLeftDown();
 					    			
 					    			
@@ -16606,7 +17009,8 @@ public class Host extends Activity {
 						  			  				clientAvatar.setBackgroundResource(R.drawable.stonedead2);
 						  			  			}
 			  		                  			
-			  		                  			
+				  		                  		MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+				  		                  		
 			  		                  			unfoldRightScroll();
 		  		                        		
 												
@@ -16691,7 +17095,8 @@ public class Host extends Activity {
 						  			  				clientAvatar.setBackgroundResource(R.drawable.stonedead2);
 						  			  			}
 			  		                  			
-			  		                  			
+				  		                  		MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+
 			  		                  			unfoldRightScroll();
 												
 												
@@ -18003,7 +18408,8 @@ public class Host extends Activity {
 	  			  				clientAvatar.setBackgroundResource(R.drawable.stonedead2);
 	  			  			}
 	            			
-		  	  	  			
+	    		  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+
 	            			scrollAnimationLeftDown();
 		  	  	  			
 		  	  	  			String str7 = "reveal0onright";
@@ -18087,8 +18493,11 @@ public class Host extends Activity {
     			
 				setPlayerAvatarFor5Left();
 				
-    			
+				
+	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+
     			scrollAnimationLeftUpNoRight();
+    			
     			
     			String str7 = "ClientAttackingReveal5OnLeft";
     			sendToClient1(str7);
@@ -18296,8 +18705,11 @@ public class Host extends Activity {
 				setPlayerAvatarFor1Left();
 				
 				
+	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+
 				scrollAnimationLeftUpNoRight();
     			
+				
     			String str7 = "clntattackingreveal1onleft";
     			sendToClient1(str7);
     			
@@ -18834,7 +19246,8 @@ public class Host extends Activity {
 	  			  				clientAvatar.setBackgroundResource(R.drawable.stonedead2);
 	  			  			}
 	            			
-		  	  	  			
+	    		  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+
 	            			scrollAnimationLeftDown();
 		  	  	  			
 		  	  	  			String str7 = "rEveal1onright";
@@ -18918,8 +19331,11 @@ public class Host extends Activity {
     			
 				setPlayerAvatarFor5Left();
 				
-    			
+				
+	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+
     			scrollAnimationLeftUpNoRight();
+    			
     			
     			String str7 = "ClientAttackingReveal5OnLeft";
     			sendToClient0(str7);
@@ -19127,8 +19543,11 @@ public class Host extends Activity {
     			
 				setPlayerAvatarFor0Left();
 				
-    			
+				
+	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+
     			scrollAnimationLeftUpNoRight();
+    			
     			
     			String str7 = "CntAttingrevL0onlft";
     			sendToClient0(str7);
@@ -19333,7 +19752,9 @@ public class Host extends Activity {
     			
 				setPlayerAvatarFor5Left();
 				
-    			
+				
+	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+
     			scrollAnimationLeftUpNoRight();
     			
     			
@@ -19542,7 +19963,9 @@ public class Host extends Activity {
     			
 				setPlayerAvatarFor1Left();
 				
-    			
+				
+	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+
     			scrollAnimationLeftUpNoRight();
     			
     			
@@ -19746,7 +20169,9 @@ public class Host extends Activity {
     			
 				setPlayerAvatarFor5Left();
 				
-    			
+				
+	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+
     			scrollAnimationLeftUpNoRight();
     			
     			
@@ -19956,7 +20381,9 @@ public class Host extends Activity {
     			
 				setPlayerAvatarFor0Left();
 				
-    			
+				
+	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+
     			scrollAnimationLeftUpNoRight();
     			
     			
@@ -20219,6 +20646,8 @@ public class Host extends Activity {
 							
 							setPlayerAvatarFor5Left();
 							
+							
+				  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
 							
 							unfoldLeftScroll();
 	            			
@@ -21448,6 +21877,7 @@ public class Host extends Activity {
 							  	  		img1.setImageDrawable(null);
 						  	  	  		
 					  	  	  			
+							  	  		centerscrolltext.bringToFront();
 					  	  	  			/*
 						  	  	  		final Handler h = new Handler();
 							  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -21549,6 +21979,7 @@ public class Host extends Activity {
 							  	  		img1.setImageDrawable(null);
 						  	  	  		
 					  	  	  			
+							  	  		centerscrolltext.bringToFront();
 					  	  	  			/*
 						  	  	  		final Handler h = new Handler();
 							  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -21679,6 +22110,7 @@ public class Host extends Activity {
 							  	  		img1.setImageDrawable(null);
 						  	  	  		
 					  	  	  			
+							  	  		centerscrolltext.bringToFront();
 					  	  	  			/*
 						  	  	  		final Handler h = new Handler();
 							  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -21800,6 +22232,7 @@ public class Host extends Activity {
 							  	  		img1.setImageDrawable(null);
 						  	  	  		
 					  	  	  			
+							  	  		centerscrolltext.bringToFront();
 					  	  	  			/*
 						  	  	  		final Handler h = new Handler();
 							  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -21921,6 +22354,7 @@ public class Host extends Activity {
 							  	  		img1.setImageDrawable(null);
 						  	  	  		
 					  	  	  			
+							  	  		centerscrolltext.bringToFront();
 					  	  	  			/*
 						  	  	  		final Handler h = new Handler();
 							  	  	  	h.postDelayed(new Runnable() {		  	  	  			
@@ -22812,13 +23246,18 @@ public class Host extends Activity {
 	  		            
 	  		            
 	  		            WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-
 	  		            lp.copyFrom(alert.getWindow().getAttributes());
-	  		            lp.width = 1050;	            
+	  	            
+	  		            if (getResources().getDisplayMetrics().densityDpi==160) {
+	  	            	
+	  		            	lp.width = 525;
+	  		            }
+	  		            else {
+	  	            	
+	  		            	lp.width = 1050;
+	  		            }
+	  	            
 	  		            alert.getWindow().setAttributes(lp);
-	  		            
-	  		            
-	  		            h.removeCallbacks(this);
 		  	  	  	}
 	  	  	  	}, 2000);					
   	  	    }

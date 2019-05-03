@@ -25,7 +25,7 @@
         android:id="@+id/imagebuttonstart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"        
-        android:layout_alignLeft="@+id/imageviewcenterscroll"        
+                
         android:layout_toLeftOf="@+id/textviewhitpointsright"
         
         android:layout_centerInParent="true"
@@ -42,7 +42,26 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        
         android:background="@drawable/leftscroll" />
+    
+    <ImageView
+        android:id="@+id/imageviewscroll3b5leftdown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        
+        android:background="@drawable/leftscrolldown" />
+    
+    <ImageView
+        android:id="@+id/imageviewscroll3b5rightdown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        
+        android:background="@drawable/rightscrolldown" />
     
      <ImageView
         android:id="@+id/playerturnbackgroundanimation"
@@ -945,22 +964,19 @@
    	    android:id="@+id/imageviewcenterscroll"
    	    android:layout_width="wrap_content"
    	    android:layout_height="wrap_content"   	    
-   	    android:layout_alignParentBottom="true"
-   	    android:layout_marginBottom="15dp"
-   	    android:layout_toRightOf="@+id/imageviewscroll3b5left"
    	    
-   	    android:layout_toLeftOf="@+id/imageviewscroll3b5right"
+   	    
+   	    android:layout_alignParentBottom="true"
+android:layout_centerHorizontal="true"
    	       	       	    
    	    android:background="@drawable/centerscroll3" /> 	
    	
    	<TextView
    	    android:id="@+id/textviewcenterscrolltext"   	    
-   	    android:layout_width="340dp"
+   	    android:layout_width="392dp"
    	    android:layout_height="220dp"
-   	    android:layout_alignBottom="@+id/imageviewcenterscroll"
-   	    android:layout_alignTop="@+id/imageviewcenterscroll"
-   	    android:layout_toLeftOf="@+id/imageviewscroll3b5right"
-   	    android:layout_toRightOf="@+id/imageviewscroll3b5left"
+   	    android:layout_alignParentBottom="true"
+android:layout_centerHorizontal="true"
    	    android:fadeScrollbars="false"
    	    android:gravity="bottom"
    	    android:lineSpacingExtra="2dp"
@@ -978,12 +994,27 @@
    	<ImageView
         android:id="@+id/scrollanimationdown"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        
+        
+       
+         />
         
    	<ImageView
         android:id="@+id/scrollanimation"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />   	
+        android:layout_height="match_parent"
+        
+        
+        
+         />
+   	
+   		<!--
+   		android:layout_width="wrap_content"
+   		android:adjustViewBounds="true"
+   		android:fillViewport="true"
+   		android:scaleType="fitXY"
+   		 -->
    	
    	<ImageView
         android:id="@+id/titleanimation"
@@ -1013,23 +1044,49 @@
         android:layout_width="wrap_content"
    	    android:layout_height="wrap_content"   	    
         android:textColor="#FFFFFF"
-        android:textSize="450sp"
+        android:textSize="500sp"
         android:gravity="center" />
+   	
+   	<TextView
+        android:id="@+id/textviewspellgraphic2"
+        android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"   	    
+        android:textColor="#FFFFFF"
+        android:textSize="609sp"
+        android:gravity="center" />
+   	
    	
    	<TextView
         android:id="@+id/textviewspellgraphicdodge"
         android:layout_width="wrap_content"
    	    android:layout_height="wrap_content"   	    
         android:textColor="#FFFFFF"
-        android:textSize="383sp"        
+        android:textSize="400sp"        
         android:gravity="center" />
+   	
+   	<TextView
+        android:id="@+id/textviewspellgraphicdodge2"
+        android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"   	    
+        android:textColor="#FFFFFF"
+        android:textSize="519sp"        
+        android:gravity="center" />
+   	
    	
    	<TextView
         android:id="@+id/textviewspellgraphicextrasmall"
         android:layout_width="wrap_content"
    	    android:layout_height="wrap_content"
         android:textColor="#FFFFFF"
-        android:textSize="191sp"
+        android:textSize="210sp"
+        android:gravity="center" />
+   	
+   	<TextView
+        android:id="@+id/textviewspellgraphicextrasmall2"
+        android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:textSize="264sp"
         android:gravity="center" />
    	
    	
@@ -1038,16 +1095,12 @@
    	    android:id="@+id/textviewcenterscrolltextbutton"   	    
    	    android:layout_width="340dp"
    	    android:layout_height="220dp"
-   	    android:layout_alignBottom="@+id/imageviewcenterscroll"
-   	    android:layout_alignTop="@+id/imageviewcenterscroll"
-   	    
-   	    android:layout_toRightOf="@+id/imageviewscroll3b5left"   	    
+   	   android:layout_alignParentBottom="true"
+android:layout_centerHorizontal="true"  	    
    	    android:paddingBottom="45dp"
    	    android:paddingLeft="20dp"
    	    android:paddingRight="25dp"
    	    android:paddingTop="9dp"
    	    android:alpha="0"/>
-   	
-   	
 
 </RelativeLayout>

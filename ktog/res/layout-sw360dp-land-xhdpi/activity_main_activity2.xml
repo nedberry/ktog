@@ -1034,12 +1034,32 @@
         android:gravity="center" />
    	
    	<TextView
+        android:id="@+id/textviewspellgraphic2"
+        android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"   	    
+        android:textColor="#FFFFFF"
+        android:textSize="365sp"        
+        android:gravity="center" />
+   	
+   	
+   	
+   	<TextView
         android:id="@+id/textviewspellgraphicdodge"
         android:layout_width="wrap_content"
    	    android:layout_height="wrap_content"   	    
         android:textColor="#FFFFFF"
         android:textSize="263sp"        
         android:gravity="center" />
+   	
+   	<TextView
+        android:id="@+id/textviewspellgraphicdodge2"
+        android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"   	    
+        android:textColor="#FFFFFF"
+        android:textSize="310sp"        
+        android:gravity="center" />
+   	
+   	
    	
    	<TextView
         android:id="@+id/textviewspellgraphicsmall"
@@ -1050,12 +1070,31 @@
         android:gravity="center" />
    	
    	<TextView
+        android:id="@+id/textviewspellgraphicsmall2"
+        android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:textSize="183sp"        
+        android:gravity="center" />
+   	
+   	
+   	
+   	<TextView
         android:id="@+id/textviewspellgraphicextrasmall"
         android:layout_width="wrap_content"
    	    android:layout_height="wrap_content"
         android:textColor="#FFFFFF"
         android:textSize="139sp"        
         android:gravity="center" />
+   	
+   	<TextView
+        android:id="@+id/textviewspellgraphicextrasmall2"
+        android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:textSize="164sp"        
+        android:gravity="center" />
+   	
    	
    	
    	
@@ -1072,7 +1111,5 @@
    	    android:paddingRight="15dp"
    	    android:paddingTop="6dp"
    	    android:alpha="0"/>
-   	
-   	
 
 </RelativeLayout>

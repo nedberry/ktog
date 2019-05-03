@@ -192,7 +192,7 @@
 	   	    android:paddingTop="20dp" 	    
 	   	    android:paddingBottom="66dp"
 	   	    android:paddingRight="73dp"
-	   	    android:paddingLeft="81dp"   	    	
+	   	    android:paddingLeft="83dp"   	    	
 		   	android:stretchColumns="*" >
 		   	
 	   	    <!--
@@ -996,7 +996,7 @@
         android:layout_width="wrap_content"
    	    android:layout_height="wrap_content"   	    
         android:textColor="#FFFFFF"
-        android:textSize="500sp"        
+        android:textSize="600sp"        
         android:gravity="center" />
    	
    	<TextView
@@ -1004,7 +1004,7 @@
         android:layout_width="wrap_content"
    	    android:layout_height="wrap_content"   	    
         android:textColor="#FFFFFF"
-        android:textSize="425sp"        
+        android:textSize="545sp"        
         android:gravity="center" />
    	
    	<!--
@@ -1022,7 +1022,7 @@
         android:layout_width="wrap_content"
    	    android:layout_height="wrap_content"
         android:textColor="#FFFFFF"
-        android:textSize="203sp"        
+        android:textSize="298sp"        
         android:gravity="center" />
    	
    	

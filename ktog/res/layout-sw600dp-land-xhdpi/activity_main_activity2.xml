@@ -44,6 +44,24 @@
         android:layout_alignParentTop="true"
         android:background="@drawable/leftscroll" />
     
+    <ImageView
+        android:id="@+id/imageviewscroll3b5leftdown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        
+        android:background="@drawable/leftscrolldown" />
+    
+    <ImageView
+        android:id="@+id/imageviewscroll3b5rightdown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        
+        android:background="@drawable/rightscrolldown" />
+    
      <ImageView
         android:id="@+id/playerturnbackgroundanimation"
         android:layout_width="wrap_content"
@@ -80,7 +98,7 @@
    	    android:layout_toRightOf="@+id/imageviewscroll3b5left"
    	    android:layout_toLeftOf="@+id/imageviewscroll3b5right"
    	    
-        android:layout_marginTop="18dp"        
+        android:layout_marginTop="26dp"
    	    android:fadeScrollbars="false"   	    
    	    android:scrollbars="vertical"
    	    android:textColor="#FFFFFF"   	    

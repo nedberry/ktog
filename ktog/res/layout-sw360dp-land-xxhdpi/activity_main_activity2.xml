@@ -29,6 +29,24 @@
         android:layout_alignParentTop="true"
         android:background="@drawable/leftscroll" />
     
+    <ImageView
+        android:id="@+id/imageviewscroll3b5leftdown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        
+        android:background="@drawable/leftscrolldown" />
+    
+    <ImageView
+        android:id="@+id/imageviewscroll3b5rightdown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        
+        android:background="@drawable/rightscrolldown" />
+    
      <ImageView
         android:id="@+id/playerturnbackgroundanimation"
         android:layout_width="wrap_content"
@@ -78,7 +96,7 @@
    	    android:layout_toRightOf="@+id/imageviewscroll3b5left"
    	    android:layout_toLeftOf="@+id/imageviewscroll3b5right"
                
-        android:layout_marginTop="15dp"   
+        android:layout_marginTop="20dp"   
    	    android:fadeScrollbars="false"   	    
    	    android:scrollbars="vertical"
    	    android:textColor="#FFFFFF"   	    
@@ -1050,12 +1068,30 @@
         android:gravity="center" />
    	
    	<TextView
+        android:id="@+id/textviewspellgraphic2"
+        android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"   	    
+        android:textColor="#FFFFFF"
+        android:textSize="349sp"        
+        android:gravity="center" />
+   	
+   	
+   	<TextView
         android:id="@+id/textviewspellgraphicdodge"
         android:layout_width="wrap_content"
    	    android:layout_height="wrap_content"   	    
         android:textColor="#FFFFFF"
         android:textSize="263sp"        
         android:gravity="center" />
+   	
+   	<TextView
+        android:id="@+id/textviewspellgraphicdodge2"
+        android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"   	    
+        android:textColor="#FFFFFF"
+        android:textSize="296sp"        
+        android:gravity="center" />
+   	
    	
    	<TextView
         android:id="@+id/textviewspellgraphicsmall"
@@ -1066,11 +1102,28 @@
         android:gravity="center" />
    	
    	<TextView
+        android:id="@+id/textviewspellgraphicsmall2"
+        android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:textSize="174sp"        
+        android:gravity="center" />
+   	
+   	
+   	<TextView
         android:id="@+id/textviewspellgraphicextrasmall"
         android:layout_width="wrap_content"
    	    android:layout_height="wrap_content"
         android:textColor="#FFFFFF"
         android:textSize="139sp"        
+        android:gravity="center" />
+   	
+   	<TextView
+        android:id="@+id/textviewspellgraphicextrasmall2"
+        android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:textSize="156sp"        
         android:gravity="center" />
    	
    	
@@ -1088,7 +1141,5 @@
    	    android:paddingRight="15dp"
    	    android:paddingTop="6dp"
    	    android:alpha="0"/>
-   	
-   	
 
 </RelativeLayout>

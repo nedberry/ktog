@@ -1033,12 +1033,30 @@
         android:gravity="center" />
    	
    	<TextView
+        android:id="@+id/textviewspellgraphic2"
+        android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"   	    
+        android:textColor="#FFFFFF"
+        android:textSize="492sp"        
+        android:gravity="center" />
+   	
+   	
+   	<TextView
         android:id="@+id/textviewspellgraphicdodge"
         android:layout_width="wrap_content"
    	    android:layout_height="wrap_content"   	    
         android:textColor="#FFFFFF"
         android:textSize="350sp"        
         android:gravity="center" />
+   	
+   	<TextView
+        android:id="@+id/textviewspellgraphicdodge2"
+        android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"   	    
+        android:textColor="#FFFFFF"
+        android:textSize="420sp"        
+        android:gravity="center" />
+   	
    	
    	<TextView
         android:id="@+id/textviewspellgraphicsmall"
@@ -1049,11 +1067,28 @@
         android:gravity="center" />
    	
    	<TextView
+        android:id="@+id/textviewspellgraphicsmall2"
+        android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:textSize="246sp"        
+        android:gravity="center" />
+   	
+   	
+   	<TextView
         android:id="@+id/textviewspellgraphicextrasmall"
         android:layout_width="wrap_content"
    	    android:layout_height="wrap_content"
         android:textColor="#FFFFFF"
         android:textSize="185sp"        
+        android:gravity="center" />
+   	
+   	<TextView
+        android:id="@+id/textviewspellgraphicextrasmall2"
+        android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:textSize="222sp"        
         android:gravity="center" />
    	
    	
