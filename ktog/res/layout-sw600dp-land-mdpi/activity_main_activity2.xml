@@ -44,6 +44,24 @@
         android:layout_alignParentTop="true"
         android:background="@drawable/leftscroll" />
     
+    <ImageView
+        android:id="@+id/imageviewscroll3b5leftdown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        
+        android:background="@drawable/leftscrolldown" />
+    
+    <ImageView
+        android:id="@+id/imageviewscroll3b5rightdown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        
+        android:background="@drawable/rightscrolldown" />
+    
      <ImageView
         android:id="@+id/playerturnbackgroundanimation"
         android:layout_width="wrap_content"
@@ -105,7 +123,7 @@
    	    android:layout_toLeftOf="@+id/imageviewscroll3b5right"
    	    
    	    
-        android:layout_marginTop="30dp"        
+        android:layout_marginTop="32dp"        
    	    android:fadeScrollbars="false"   	    
    	    android:scrollbars="vertical"
    	    android:textColor="#FFFFFF"   	    
@@ -188,8 +206,8 @@
 	   	    android:textSize="20sp"
 	   	    android:paddingTop="20dp" 	    
 	   	    android:paddingBottom="66dp"
-	   	    android:paddingRight="66dp"
-	   	    android:paddingLeft="64dp"   	    	
+	   	    android:paddingRight="65dp"
+	   	    android:paddingLeft="65dp"   	    	
 		   	android:stretchColumns="*" >
 	   	    <!--
 	   	    
