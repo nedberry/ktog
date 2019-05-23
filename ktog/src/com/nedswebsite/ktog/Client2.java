@@ -1136,10 +1136,10 @@ public class Client2 extends Activity {
 	          			
 	          			istitlestatsopen = "yes";
 	          			
-	          			
-	          			MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
 	              		
 	              		myInitiativeIsStarted();
+	              		
+	          			MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
 	              		
 	              		
 	              		titleBlankButton.setEnabled(false);// HERE & BELOW BECUSE GETTING WEIRD BEHAVIOR WHEN BUTTON WAS HIT AN ODD NUMBER OF TIMES (EXCEPT THE FIRST TIME).
@@ -3667,7 +3667,7 @@ public class Client2 extends Activity {
 	  			//titletext.append("KtOG");
 		  	  	
 		  	  	
-		  	  	System.gc();
+		  	  	//System.gc();
 	  	    }
   		});	
 	}
@@ -3688,7 +3688,7 @@ public class Client2 extends Activity {
 		  	  	frameAnimation.start();
 		  	  	
 		  	  	
-		  	  	System.gc();
+		  	  	//System.gc();
 			}
   		});
 	}
@@ -3701,10 +3701,19 @@ public class Client2 extends Activity {
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
+				
+				ImageView rightScroll = (ImageView) findViewById(R.id.imageviewscroll3b5rightdown);
+  	  			rightScroll.setVisibility(View.INVISIBLE);
+  	  			//rightScroll.bringToFront();
+  	  		//rightScroll.setImageDrawable(null);
+  	  		
+				
 				// Setting up scroll frame animation.
 				final ImageView img = (ImageView)findViewById(R.id.scrollanimation);
 				img.setBackgroundResource(R.anim.scrollanimationleftdown);
-			
+				
+				img.bringToFront();
+				
 				// Get the background, which has been compiled to an AnimationDrawable object.
 				final AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
 							
@@ -3713,9 +3722,7 @@ public class Client2 extends Activity {
 				frameAnimation.start();
 				
 				
-				ImageView rightScroll = (ImageView) findViewById(R.id.imageviewscroll3b5rightdown);
-  	  			rightScroll.setVisibility(View.INVISIBLE);
-  	  			//rightScroll.bringToFront();
+				
 				
 				
 				//WORKAROUND FOR DEVICES WITH LARGER WIDTH THAN DRAWABLE RESOLUTION.
@@ -3754,7 +3761,9 @@ public class Client2 extends Activity {
 				// Setting up scroll frame animation.
 				final ImageView img = (ImageView)findViewById(R.id.scrollanimation);
 				img.setBackgroundResource(R.anim.scrollanimationup);
-			
+				
+				img.bringToFront();
+				
 				// Get the background, which has been compiled to an AnimationDrawable object.
 				AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
 							
@@ -3766,10 +3775,12 @@ public class Client2 extends Activity {
 				ImageView leftScroll = (ImageView) findViewById(R.id.imageviewscroll3b5leftdown);
 				leftScroll.setVisibility(View.INVISIBLE);
   	  			//leftScroll.bringToFront();
+			leftScroll.setImageDrawable(null);
   	  			
   	  			ImageView rightScroll = (ImageView) findViewById(R.id.imageviewscroll3b5rightdown);
   	  			rightScroll.setVisibility(View.INVISIBLE);
   	  			//rightScroll.bringToFront();
+  	  		rightScroll.setImageDrawable(null);
 
 				
 				//WORKAROUND FOR DEVICES WITH LARGER WIDTH THAN DRAWABLE RESOLUTION.
@@ -3791,7 +3802,7 @@ public class Client2 extends Activity {
 		  	  	  	}
 	  	  	  	}, 1000);
 				
-				System.gc();
+				//System.gc();
 	  	    }
   		});	
 	}
@@ -3849,7 +3860,7 @@ public class Client2 extends Activity {
 		  	  	  	}
 	  	  	  	}, 1000);
 				
-				System.gc();
+				//System.gc();
 	  	    }
   		});	
 	}
@@ -3917,7 +3928,9 @@ public class Client2 extends Activity {
 				// Setting up scroll frame animation.
 				final ImageView img = (ImageView)findViewById(R.id.scrollanimation);
 				img.setBackgroundResource(R.anim.scrollanimationleftupnoright);
-			
+				
+				img.bringToFront();
+				
 				// Get the background, which has been compiled to an AnimationDrawable object.
 				AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
 							
@@ -3929,10 +3942,12 @@ public class Client2 extends Activity {
 				ImageView leftScroll = (ImageView) findViewById(R.id.imageviewscroll3b5leftdown);
 				leftScroll.setVisibility(View.INVISIBLE);
   	  			//leftScroll.bringToFront();
+			leftScroll.setImageDrawable(null);
   	  			
   	  			ImageView rightScroll = (ImageView) findViewById(R.id.imageviewscroll3b5rightdown);
   	  			rightScroll.setVisibility(View.INVISIBLE);
   	  			//rightScroll.bringToFront();
+  	  		rightScroll.setImageDrawable(null);
 
 				
 				//WORKAROUND FOR DEVICES WITH LARGER WIDTH THAN DRAWABLE RESOLUTION.
@@ -3954,7 +3969,7 @@ public class Client2 extends Activity {
 		  	  	  	}
 	  	  	  	}, 1000);
 				
-				System.gc();
+				//System.gc();
 	  	    }
   		});	
 	}
@@ -4022,7 +4037,9 @@ public class Client2 extends Activity {
 				// Setting up scroll frame animation.
 				final ImageView img = (ImageView)findViewById(R.id.scrollanimation);
 				img.setBackgroundResource(R.anim.scrollanimationleftdownreverse);
-			
+				
+				img.bringToFront();
+				
 				// Get the background, which has been compiled to an AnimationDrawable object.
 				AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
 							
@@ -4059,7 +4076,7 @@ public class Client2 extends Activity {
 		  	  	  	}
 	  	  	  	}, 1000);
 				
-				System.gc();
+				//System.gc();
 	  	    }
   		});	
 	}
@@ -4073,7 +4090,9 @@ public class Client2 extends Activity {
 				// Setting up scroll frame animation.
 				final ImageView img = (ImageView)findViewById(R.id.scrollanimation);
 				img.setBackgroundResource(R.anim.scrollanimationleftup);
-			
+				
+				img.bringToFront();
+				
 				// Get the background, which has been compiled to an AnimationDrawable object.
 				AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
 							
@@ -4085,6 +4104,7 @@ public class Client2 extends Activity {
 				ImageView leftScroll = (ImageView) findViewById(R.id.imageviewscroll3b5leftdown);
 				leftScroll.setVisibility(View.INVISIBLE);
   	  			//leftScroll.bringToFront();
+				leftScroll.setImageDrawable(null);
 
 				
 				//WORKAROUND FOR DEVICES WITH LARGER WIDTH THAN DRAWABLE RESOLUTION.
@@ -4111,7 +4131,7 @@ public class Client2 extends Activity {
 		  	  	  	}
 	  	  	  	}, 1000);
 				
-				System.gc();
+				//System.gc();
 	  	    }
   		});	
 	}
@@ -7107,10 +7127,9 @@ public void criticalMissGraphic() {
           		sendToHost(str);
 				
 				
+				myInitiativeTransition();
 				
           		MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
-				
-				myInitiativeTransition();
 				
 				
 				/*
@@ -7783,10 +7802,10 @@ public void criticalMissGraphic() {
 				
 				set2PlayerAvatar();//SETS AVATAR FOR [5]
 				
+
+				scrollAnimationLeftUpNoRight();
 				
 				MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
-
-				scrollAnimationLeftUpNoRight();			
 			}
 		});
 	}
@@ -8281,10 +8300,10 @@ public void criticalMissGraphic() {
 					  		                  			
 					  		      						set2PlayerAvatar();//SETS AVATAR FOR [5]
 					  		      						
-					  		      						
-					  		      						MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
 
 					  		                  			scrollAnimationLeftUpNoRight();
+					  		                  			
+					  		      						MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
 					  		                  			
 					  		                  			
 						  		                  		ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
@@ -8386,11 +8405,11 @@ public void criticalMissGraphic() {
 					  		      						//computerAvatar.setVisibility(View.VISIBLE);
 					  		                  			
 					  		      						setPlayerAvatarFor1Left();
-					  		      						
 					  		                  			
-					  		      						MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
 
 					  		                  			scrollAnimationLeftUpNoRight();
+					  		                  			
+					  		      						MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
 					  		                  			
 					  		                  			
 						  		                  		ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
@@ -8628,11 +8647,11 @@ public void criticalMissGraphic() {
 					  		      						//computerAvatar.setVisibility(View.VISIBLE);
 					  		                  			
 					  		      						set2PlayerAvatar();//SETS AVATAR FOR [5]
-					  		      						
 					  		                  			
-					  		      						MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
 
 					  		                  			scrollAnimationLeftUpNoRight();
+					  		                  			
+					  		      						MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
 					  		                  			
 					  		                  			
 						  		                  		ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
@@ -8734,11 +8753,11 @@ public void criticalMissGraphic() {
 					  		      						//computerAvatar.setVisibility(View.VISIBLE);
 					  		                  			
 					  		      						setPlayerAvatarFor0Left();
-					  		      						
 					  		                  			
-					  		      						MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
 
 					  		                  			scrollAnimationLeftUpNoRight();
+					  		                  			
+					  		      						MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
 					  		                  			
 					  		                  			
 						  		                  		ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
@@ -8836,9 +8855,10 @@ public void criticalMissGraphic() {
 	  				clientAvatar.setBackgroundResource(R.drawable.stonedead2);
 	  			}
 	  	  			
-	  			MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
 
     			scrollAnimationLeftDown();
+    			
+	  			MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
     			
     			
     			computerCardStartFadeInFadeOut();
@@ -8901,9 +8921,10 @@ public void criticalMissGraphic() {
 	  				clientAvatar.setBackgroundResource(R.drawable.stonedead2);
 	  			}
 	  	  			
-	  			MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
 
     			scrollAnimationLeftDown();
+    			
+	  			MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
     			
     			
     			computerCardStartFadeInFadeOut();
@@ -8935,10 +8956,10 @@ public void criticalMissGraphic() {
 				
 				set2PlayerAvatar();//SETS AVATAR FOR [5]
 				
-				
-				MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
 
 				unfoldLeftScroll();
+				
+				MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
 				
 				
 				playerCardStartFadeInFadeOut();
@@ -8970,11 +8991,12 @@ public void criticalMissGraphic() {
 				//computerAvatar.setVisibility(View.VISIBLE);
 				
 				set2PlayerAvatar();//SETS AVATAR FOR [5]
-
 				
-				MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
 
     			scrollAnimationLeftUpNoRight();
+    			
+				MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
+
     			
     			
         		ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
@@ -9017,10 +9039,10 @@ public void criticalMissGraphic() {
 				
 				setPlayerAvatarFor1Left();
 				
-				
-				MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
 
     			scrollAnimationLeftUpNoRight();
+    			
+				MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
     			
     			
         		ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
@@ -9063,10 +9085,10 @@ public void criticalMissGraphic() {
 				
 				setPlayerAvatarFor0Left();
     			
-    			
-				MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
 
     			scrollAnimationLeftUpNoRight();
+    			
+				MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
     			
     			
         		ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
@@ -9142,10 +9164,11 @@ public void criticalMissGraphic() {
 				
 				set2PlayerAvatar(); //SETS AVATAR FOR [5]
 				
+
+				//scrollAnimationLeftUpNoRight();
+				unfoldLeftScroll();
 				
 				MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
-
-				scrollAnimationLeftUpNoRight();
 			}
 		});		
 	}	
@@ -9160,9 +9183,10 @@ public void criticalMissGraphic() {
 				playersFighting = "fiveVsZero";
 				
 				
-				MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
-				
 				foldScrolls();
+				
+				MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
+
 				//scrollAnimationLeftDownReverse();
 				
 				
@@ -9230,9 +9254,9 @@ public void criticalMissGraphic() {
 			  			}
 						
 						
-						MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
-						
 						unfoldScrolls();
+						
+						MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
 						
 						
 						playerCardStartFadeInFadeOut();
@@ -9251,9 +9275,10 @@ public void criticalMissGraphic() {
 				playersFighting = "fiveVsOne";
 				
 				
-				MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
-				
 				foldScrolls();
+				
+				MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
+
 				//scrollAnimationLeftDownReverse();
 				
 				
@@ -9321,9 +9346,9 @@ public void criticalMissGraphic() {
 			  			}
 						
 						
-						MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
-						
 						unfoldScrolls();
+						
+						MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
 						
 						
 						playerCardStartFadeInFadeOut();
@@ -17195,9 +17220,10 @@ public void criticalMissGraphic() {
 					}
 					else if (read.contains("victoryDefeatAnimation")) {
 						
-						MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
-						
 						victoryDefeatAnimation();
+						
+						MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
+
 						
 						/*
 						final Handler h = new Handler();
@@ -17799,9 +17825,9 @@ public void criticalMissGraphic() {
 						
 						hideImageView();
 						
-						MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
-						
 						foldScrolls();
+						
+						MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
 						
 						clearDisarmGraphicAndSkills();
 					}
@@ -17836,10 +17862,10 @@ public void criticalMissGraphic() {
 						//test();
 					}
 					else if (read.contains("closeRightScroll")) {
+
+						scrollAnimationLeftDownReverse();
 						
 						MediaPlayerWrapper.play(Client2.this, R.raw.scroll3);
-
-						scrollAnimationLeftDownReverse();															
 					}
 					
 					else if (read.contains("0attackingFirst")) {

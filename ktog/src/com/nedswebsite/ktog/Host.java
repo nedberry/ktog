@@ -89,7 +89,7 @@ import android.widget.Toast;
 
 public class Host extends Activity {
 	
-	int test;
+	//int test;
 	
 	int tempCriticalHit;//# of successful crit hits for that user during game (INCLUdING MB)
 	//don't need tempGames, tempWins or tempLoses (just adding 1)
@@ -805,9 +805,9 @@ public class Host extends Activity {
 	          			istitlestatsopen = "yes";
 	              		
 	          			
-	          			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+	          			myInitiativeIsStarted();
 	          			
-	              		myInitiativeIsStarted();
+	          			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
 	              		
 	              		
 	              		titleBlankButton.setEnabled(false);// HERE & BELOW BECUSE GETTING WEIRD BEHAVIOR WHEN BUTTON WAS HIT AN ODD NUMBER OF TIMES (EXCEPT THE FIRST TIME).
@@ -3413,7 +3413,9 @@ public class Host extends Activity {
 				// Setting up scroll frame animation.
 				final ImageView img = (ImageView)findViewById(R.id.scrollanimation);
 				img.setBackgroundResource(R.anim.scrollanimationleftup);
-			
+				
+				img.bringToFront();
+				
 				// Get the background, which has been compiled to an AnimationDrawable object.
 				AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
 							
@@ -3451,7 +3453,7 @@ public class Host extends Activity {
 		  	  	  	}
 	  	  	  	}, 1000);
 				
-				img.setImageDrawable(null);
+				//img.setImageDrawable(null);
 				
 				//System.gc();
 	  	    }
@@ -3468,7 +3470,9 @@ public class Host extends Activity {
 				// Setting up scroll frame animation.
 				final ImageView img = (ImageView)findViewById(R.id.scrollanimation);
 				img.setBackgroundResource(R.anim.scrollanimationleftupreverse);
-			
+				
+				img.bringToFront();
+				
 				// Get the background, which has been compiled to an AnimationDrawable object.
 				AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
 							
@@ -3505,7 +3509,7 @@ public class Host extends Activity {
 		  	  	  	}
 	  	  	  	}, 1000);
 				
-				img.setImageDrawable(null);
+				//img.setImageDrawable(null);
 				
 				//System.gc();
 	  	    }
@@ -3521,7 +3525,9 @@ public class Host extends Activity {
 				// Setting up scroll frame animation.
 				final ImageView img = (ImageView)findViewById(R.id.scrollanimation);
 				img.setBackgroundResource(R.anim.scrollanimationrightup);
-			
+				
+				img.bringToFront();
+				
 				// Get the background, which has been compiled to an AnimationDrawable object.
 				AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
 							
@@ -3559,7 +3565,7 @@ public class Host extends Activity {
 		  	  	  	}
 	  	  	  	}, 1000);
 				
-				img.setImageDrawable(null);
+				//img.setImageDrawable(null);
 				
 				//System.gc();
 	  	    }
@@ -3624,7 +3630,7 @@ public class Host extends Activity {
 	  			//titletext.append("KtOG");
 		  	  	
 		  	  	
-		  	  	img.setImageDrawable(null);
+		  	  	//img.setImageDrawable(null);
 		  	  	
 		  	  	//System.gc();
 	  	    }
@@ -3647,7 +3653,7 @@ public class Host extends Activity {
 		  	  	frameAnimation.start();
 		  	  	
 		  	  	
-		  	  	img.setImageDrawable(null);
+		  	  	//img.setImageDrawable(null);
 		  	  	
 		  	  	//System.gc();
 			}
@@ -3702,7 +3708,7 @@ public class Host extends Activity {
 		  	  	  	}
 	  	  	  	}, 1000);
 				
-				img.setImageDrawable(null);
+				//img.setImageDrawable(null);
 				
 				//System.gc();
 	  	    }
@@ -3758,7 +3764,7 @@ public class Host extends Activity {
 		  	  	  	}
 	  	  	  	}, 1000);
 				
-				img.setImageDrawable(null);
+				//img.setImageDrawable(null);
 				
 				//System.gc();
 	  	    }
@@ -3774,7 +3780,9 @@ public class Host extends Activity {
 				// Setting up scroll frame animation.
 				final ImageView img = (ImageView)findViewById(R.id.scrollanimation);
 				img.setBackgroundResource(R.anim.scrollanimationleftupnoright);
-			
+				
+				img.bringToFront();
+				
 				// Get the background, which has been compiled to an AnimationDrawable object.
 				AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
 							
@@ -3811,7 +3819,7 @@ public class Host extends Activity {
 		  	  	  	}
 	  	  	  	}, 1000);
 				
-				img.setImageDrawable(null);
+				//img.setImageDrawable(null);
 				
 				//System.gc();
 	  	    }
@@ -14800,9 +14808,11 @@ public void criticalMissGraphic() {
 		}
 		*/
 		
-		MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
 		
 		myInitiativeTransition();
+		
+		MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+		
 		
 		//String str2 = "myInitiativeTransition";
 		//sendToAllClients(str2);
@@ -15792,9 +15802,11 @@ public void criticalMissGraphic() {
 	  	  	    }
 			});
 			
-  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
 
 			unfoldRightScroll();
+			
+  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+  			
 			
 			
 			//String str = "PlayerName5 :" + ArrayOfPlayers.player[5];
@@ -15875,9 +15887,9 @@ public void criticalMissGraphic() {
 			*/
 			if (initiativeFinal[0] > initiativeFinal[5] && initiativeFinal[0] > initiativeFinal[1]) {
 				
-	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
-				
 				unfoldLeftScrollReverse();
+				
+	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
 				
 				
 				String str7 = "closeRightScroll";
@@ -15891,12 +15903,6 @@ public void criticalMissGraphic() {
 		    			
 	  	  	  			String str8 = "reveal0onright";
 	  	  	  			sendToClient1(str8);
-	  	  	  			
-	  	  	  			
-	  	  	  			
-	  	  	  			
-	  	  	  			
-	  	  	  			
 	  	  	  			
 	  	  	  			
 		  	  	  		runOnUiThread(new Runnable() {
@@ -15944,31 +15950,28 @@ public void criticalMissGraphic() {
 	  	  	  			
 	  	  	  			
 		  	  	  		//unfoldRightScroll();
-		  	  	  		
-			  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
 
 	  	  	  			scrollAnimationLeftDown();
 	  	  	  			
-	  	  	  			
-	  	  	  			
-	  	  	  			
-	  	  	  			
-	  	  	  			
-	  	  	  			
-	  	  	  			
-	  	  	  			
-	  	  	  			
-	  	  	  			
-	  	  	  			
-	  	  	  			
+			  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+			  			
+			  			final Handler h = new Handler();
+			  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+			  	  	  			
+			  	  	  		@Override
+				  	  	  	public void run() {
+			  	  	  			
+			  	  	  			turn();
+				  	  	  	}
+			  	  	  	}, 2000);
 	  	  	  		}
 	  	  	  	}, 2000);
 			}
 			else if (initiativeFinal[1] > initiativeFinal[5] && initiativeFinal[1] > initiativeFinal[0]) {
-				
-	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
 
 				unfoldLeftScrollReverse();
+				
+	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
 				
 				
 				String str9 = "closeRightScroll";
@@ -15982,13 +15985,6 @@ public void criticalMissGraphic() {
 		    			
 	  	  	  			String str10 = "rEveal1onright";
 	  	  	  			sendToClient0(str10);
-	  	  	  			
-	  	  	  			
-	  	  	  			
-	  	  	  			
-	  	  	  			
-	  	  	  			
-	  	  	  			
 	  	  	  			
 	  	  	  			
 		  	  	  		runOnUiThread(new Runnable() {
@@ -16036,20 +16032,20 @@ public void criticalMissGraphic() {
 	  	  	  			
 	  	  	  			
 		  	  	  		//unfoldRightScroll();
-		  	  	  		
-			  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
 
 		  	  	  		scrollAnimationLeftDown();
-	  	  	  			
-	  	  	  			
-	  	  	  			
-	  	  	  			
-	  	  	  			
-	  	  	  			
-	  	  	  			
-	  	  	  			
-	  	  	  			
-	  	  	  			
+		  	  	  		
+			  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+			  			
+			  			final Handler h = new Handler();
+			  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+			  	  	  			
+			  	  	  		@Override
+				  	  	  	public void run() {
+			  	  	  			
+			  	  	  			turn();
+				  	  	  	}
+			  	  	  	}, 2000);
 	  	  	  		}
 	  	  	  	}, 2000);
 			}
@@ -16057,11 +16053,18 @@ public void criticalMissGraphic() {
 			else {
 				
 				String str11 = "closeRightScroll";
-				sendToClient0(str11);
+				sendToAllClients(str11);
+				
+				final Handler h = new Handler();
+	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {
+	  	  	  			
+	  	  	  			turn();
+		  	  	  	}
+	  	  	  	}, 2000);
 			}
-			
-		    
-		    turn();
 		}
 		
 		else if (numberOfPlayers == 4) {			
@@ -16321,7 +16324,15 @@ public void criticalMissGraphic() {
 				  	  	    String str2 = "displayTrn";
 				  	  	    sendToAllClients(str2);
 		    				
-		    				gameEngine3V3XPart2For5Part1();
+					  	  	final Handler h = new Handler();
+				  	  	  	h.postDelayed(new Runnable() {
+				  	  	  			
+				  	  	  		@Override
+					  	  	  	public void run() {
+				  	  	  			
+				    				gameEngine3V3XPart2For5Part1();
+					  	  	  	}
+				  	  	  	}, 1000);
 		    			}
 		    			
 		    			else if (ArrayOfTurn.turn[0] > 1 && playerDeadYet[5].equals("yes")) {
@@ -16340,11 +16351,27 @@ public void criticalMissGraphic() {
 				  	  	    
 					  	  	if (ArrayOfInitiative.initiative[0] > ArrayOfInitiative.initiative[1]) {
 								
-								gameEngine3V35Part2For0Part1();
+						  	  	final Handler h = new Handler();
+					  	  	  	h.postDelayed(new Runnable() {
+					  	  	  			
+					  	  	  		@Override
+						  	  	  	public void run() {
+					  	  	  			
+										gameEngine3V35Part2For0Part1();
+						  	  	  	}
+					  	  	  	}, 1000);
 				  	  		}
 					  	  	else {
 								
-					  	  		gameEngine3V35Part2For1Part1();
+						  	  	final Handler h = new Handler();
+					  	  	  	h.postDelayed(new Runnable() {
+					  	  	  			
+					  	  	  		@Override
+						  	  	  	public void run() {
+					  	  	  			
+							  	  		gameEngine3V35Part2For1Part1();
+						  	  	  	}
+					  	  	  	}, 1000);
 				  	  		}
 		    			}
 		  	  	    	
@@ -16388,14 +16415,22 @@ public void criticalMissGraphic() {
 			  	  	    	
 			  	  	    	//int turnVariable = ArrayOfTurn.turn[0];
 			  	  	    	
-				  	  	    String str3 = "Turn :" + ArrayOfTurn.turn[0];
-				  	  	    sendToAllClients(str3);
-			  	  	    	
-				  	  	    String str4 = "displayTrn";
-				  	  	    sendToAllClients(str4);
-							
-							
-							chooseOpponent();
+							final Handler h = new Handler();
+				  	  	  	h.postDelayed(new Runnable() {
+				  	  	  			
+				  	  	  		@Override
+					  	  	  	public void run() {
+				  	  	  			
+					  	  	  		String str3 = "Turn :" + ArrayOfTurn.turn[0];
+						  	  	    sendToAllClients(str3);
+					  	  	    	
+						  	  	    String str4 = "displayTrn";
+						  	  	    sendToAllClients(str4);
+									
+									
+									chooseOpponent();
+					  	  	  	}
+				  	  	  	}, 1000);
 		    			}			  	  	  		
 		  	  	    }
 		  		});
@@ -16435,7 +16470,15 @@ public void criticalMissGraphic() {
 				  	  	    String str2 = "displayTrn";
 				  	  	    sendToAllClients(str2);
 			  	  	    	
-			  	  	    	gameEngine3V35Part2For0Part1();
+					  	  	final Handler h = new Handler();
+				  	  	  	h.postDelayed(new Runnable() {
+				  	  	  			
+				  	  	  		@Override
+					  	  	  	public void run() {
+				  	  	  			
+					  	  	    	gameEngine3V35Part2For0Part1();
+					  	  	  	}
+				  	  	  	}, 1000);
 		    			}
 			  	  	    
 			  	  	    else if (ArrayOfTurn.turn[0] > 1 && playerDeadYet[0].equals("yes")) {
@@ -16454,11 +16497,27 @@ public void criticalMissGraphic() {
 				  	  	    
 					  	  	if (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[1]) {
 								
-					  	  		gameEngine3V3XPart2For5Part1();
+						  	  	final Handler h = new Handler();
+					  	  	  	h.postDelayed(new Runnable() {
+					  	  	  			
+					  	  	  		@Override
+						  	  	  	public void run() {
+					  	  	  			
+							  	  		gameEngine3V3XPart2For5Part1();
+						  	  	  	}
+					  	  	  	}, 1000);
 				  	  		}
 					  	  	else {
 								
-					  	  		gameEngine3V35Part2For1Part1();
+						  	  	final Handler h = new Handler();
+					  	  	  	h.postDelayed(new Runnable() {
+					  	  	  			
+					  	  	  		@Override
+						  	  	  	public void run() {
+					  	  	  			
+							  	  		gameEngine3V35Part2For1Part1();
+						  	  	  	}
+					  	  	  	}, 1000);
 				  	  		}
 		    			}
 		  	  	    	
@@ -16535,9 +16594,10 @@ public void criticalMissGraphic() {
 			  			  				clientAvatar.setBackgroundResource(R.drawable.stonedead2);
 			  			  			}
 		                  			
-		        		  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
 
 					    			scrollAnimationLeftDown();
+					    			
+		        		  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
 					    			
 					    			
 					    			computerCardStartFadeInFadeOut();
@@ -16548,30 +16608,46 @@ public void criticalMissGraphic() {
 					    			sendToAllClients(str);
 					    			
 					    			
-					    			displayTurn();
-					  	  	    	
-					  	  	    	//int turnVariable = ArrayOfTurn.turn[0];
-					  	  	    	
-						  	  	    String str2 = "Turn :" + ArrayOfTurn.turn[0];
-						  	  	    sendToAllClients(str2);
-					  	  	    	
-						  	  	    String str3 = "displayTrn";
-						  	  	    sendToAllClients(str3);
-					    			
-					    			
-					    			String str4 = "chooseOpponent";
-					    			sendToClient0(str4);
-					    			
-					    			String str5 = "forScrollTitleChat";
-				  	  	  			sendToClient1(str5);
-				  	  	  			
-				  	  	  			forScrollTitleChat();
-									
-									
-									//gameEngine3V30();
-				  	  	  			
-				  	  	  			
-				  	  	  			h.removeCallbacks(this);
+					    			final Handler h = new Handler();
+						  	  	  	h.postDelayed(new Runnable() {
+						  	  	  			
+						  	  	  		@Override
+							  	  	  	public void run() {
+						  	  	  			
+							  	  	  		displayTurn();
+							  	  	    	
+							  	  	    	//int turnVariable = ArrayOfTurn.turn[0];
+							  	  	    	
+								  	  	    String str2 = "Turn :" + ArrayOfTurn.turn[0];
+								  	  	    sendToAllClients(str2);
+							  	  	    	
+								  	  	    String str3 = "displayTrn";
+								  	  	    sendToAllClients(str3);
+							    			
+							    			
+									  	  	final Handler h = new Handler();
+								  	  	  	h.postDelayed(new Runnable() {
+								  	  	  			
+								  	  	  		@Override
+									  	  	  	public void run() {
+								  	  	  			
+									  	  	  		String str4 = "chooseOpponent";
+									    			sendToClient0(str4);
+									    			
+									    			String str5 = "forScrollTitleChat";
+								  	  	  			sendToClient1(str5);
+								  	  	  			
+								  	  	  			forScrollTitleChat();
+													
+													
+													//gameEngine3V30();
+								  	  	  			
+								  	  	  			
+								  	  	  			h.removeCallbacks(this);
+									  	  	  	}
+								  	  	  	}, 1000);
+							  	  	  	}
+						  	  	  	}, 1000);
 				  	  	  		}
 				  	  	  	}, 1000);
 		    			}
@@ -16614,8 +16690,16 @@ public void criticalMissGraphic() {
 				  	  	    String str2 = "displayTrn";
 				  	  	    sendToAllClients(str2);
 			  	  	    	
-			  	  	    	//gameEngine3V35Part2For0Part1();
-				  	  	    gameEngine3V35Part2For1Part1();
+					  	  	final Handler h = new Handler();
+				  	  	  	h.postDelayed(new Runnable() {
+				  	  	  			
+				  	  	  		@Override
+					  	  	  	public void run() {
+				  	  	  			
+				  	  	  			//gameEngine3V35Part2For0Part1();
+						  	  	    gameEngine3V35Part2For1Part1();
+					  	  	  	}
+				  	  	  	}, 1000);
 		    			}
 			  	  	    
 			  	  	    else if (ArrayOfTurn.turn[0] > 1 && playerDeadYet[1].equals("yes")) {
@@ -16635,11 +16719,27 @@ public void criticalMissGraphic() {
 				  	  	    
 					  	  	if (ArrayOfInitiative.initiative[5] > ArrayOfInitiative.initiative[0]) {
 								
-					  	  		gameEngine3V3XPart2For5Part1();
+						  	  	final Handler h = new Handler();
+					  	  	  	h.postDelayed(new Runnable() {
+					  	  	  			
+					  	  	  		@Override
+						  	  	  	public void run() {
+					  	  	  			
+							  	  		gameEngine3V3XPart2For5Part1();
+						  	  	  	}
+					  	  	  	}, 1000);
 				  	  		}
 					  	  	else {
 								
-					  	  		gameEngine3V35Part2For0Part1();
+						  	  	final Handler h = new Handler();
+					  	  	  	h.postDelayed(new Runnable() {
+					  	  	  			
+					  	  	  		@Override
+						  	  	  	public void run() {
+					  	  	  			
+							  	  		gameEngine3V35Part2For0Part1();
+						  	  	  	}
+					  	  	  	}, 1000);
 				  	  		}
 		    			}
 		  	  	    	
@@ -16716,9 +16816,10 @@ public void criticalMissGraphic() {
 			  			  				clientAvatar.setBackgroundResource(R.drawable.stonedead2);
 			  			  			}
 		                  			
-		        		  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
 
 					    			scrollAnimationLeftDown();
+					    			
+		        		  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
 					    			
 					    			
 					    			computerCardStartFadeInFadeOut();
@@ -16729,30 +16830,46 @@ public void criticalMissGraphic() {
 					    			sendToAllClients(str);
 					    			
 					    			
-					    			displayTurn();
-					  	  	    	
-					  	  	    	//int turnVariable = ArrayOfTurn.turn[0];
-					  	  	    	
-						  	  	    String str2 = "Turn :" + ArrayOfTurn.turn[0];
-						  	  	    sendToAllClients(str2);
-					  	  	    	
-						  	  	    String str3 = "displayTrn";
-						  	  	    sendToAllClients(str3);
-					    			
-					    			
-					    			String str4 = "chooseOpponent";
-					    			sendToClient1(str4);
-					    			
-					    			String str5 = "forScrollTitleChat";
-				  	  	  			sendToClient0(str5);
-				  	  	  			
-				  	  	  			forScrollTitleChat();
-									
-									
-									//gameEngine3V31();
-				  	  	  			
-				  	  	  			
-				  	  	  			h.removeCallbacks(this);
+					    			final Handler h = new Handler();
+						  	  	  	h.postDelayed(new Runnable() {
+						  	  	  			
+						  	  	  		@Override
+							  	  	  	public void run() {
+						  	  	  			
+							  	  	  		displayTurn();
+							  	  	    	
+							  	  	    	//int turnVariable = ArrayOfTurn.turn[0];
+							  	  	    	
+								  	  	    String str2 = "Turn :" + ArrayOfTurn.turn[0];
+								  	  	    sendToAllClients(str2);
+							  	  	    	
+								  	  	    String str3 = "displayTrn";
+								  	  	    sendToAllClients(str3);
+							    			
+							    			
+									  	  	final Handler h = new Handler();
+								  	  	  	h.postDelayed(new Runnable() {
+								  	  	  			
+								  	  	  		@Override
+									  	  	  	public void run() {
+								  	  	  			
+									  	  	  		String str4 = "chooseOpponent";
+									    			sendToClient1(str4);
+									    			
+									    			String str5 = "forScrollTitleChat";
+								  	  	  			sendToClient0(str5);
+								  	  	  			
+								  	  	  			forScrollTitleChat();
+													
+													
+													//gameEngine3V31();
+								  	  	  			
+								  	  	  			
+								  	  	  			h.removeCallbacks(this);
+									  	  	  	}
+								  	  	  	}, 1000);
+							  	  	  	}
+						  	  	  	}, 1000);
 				  	  	  		}
 				  	  	  	}, 1000);
 		    			}
@@ -16954,69 +17071,78 @@ public void criticalMissGraphic() {
 		  		                        		sendToAllClients(str);
 		  		                        		
 		  		                        		
-		  		                        		skillsCheckRight0();
-		  		  		  		    		
-		  		  		  		    			String str2 = "skillsCheckRight0";
-		  		  		  		    			sendToAllClients(str2);
-		  		                        		
-		  		                        		
-		  		                        		playersFighting = "fiveVsZero";
-		  		                        		
-		  		                        		
-		  		                        		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-		  		                  			
-			  		                  			TextView computerNameTextView = (TextView)findViewById(R.id.textviewnameright);
-			  		                  			computerNameTextView.setTypeface(typeFace);
-			  		                  			computerNameTextView.setText(ArrayOfPlayers.player[0]);
-			  		                  			//computerNameTextView.setVisibility(View.INVISIBLE);
-	
-			  		                  			//ArrayOfHitPoints.hitpoints[0] = 20;//20
-			  		                  			final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
-			  		                  			computerHitPointsTextView.setTypeface(typeFace);
-			  		                  			//computerHitPointsTextView.setVisibility(View.INVISIBLE);
-			  		                  			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
-	
-			  		                  			//ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
-			  		                  			//clientAvatar.setVisibility(View.VISIBLE);
-			  		                  			
-				  		                  		if (ArrayOfAvatars.avatar[0].equals("custom")){
-						  			  	  	    	
-						  				  	  	    File imgFile = new  File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files/avatar0");//WAS .png
-						  				  	  	    																			//WAS: /storage/sdcard0/avatar0
-						  		
-						  							if(imgFile.exists()){
-						  		
-						  							    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-						  		
-						  							    ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarright);
-						  		
-						  							    myImage.setImageBitmap(myBitmap);
-						  							}
-						  			  			}
-						  			  	  	    else if (ArrayOfAvatars.avatar[0].equals("computer")){
-						  			  	  	    	
-						  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
-						  			  				clientAvatar.setBackgroundResource(R.drawable.computer);
-						  			  			}
-						  			  			else if (ArrayOfAvatars.avatar[0].equals("crossedswords")){
-						  			  				
-						  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
-						  			  				clientAvatar.setBackgroundResource(R.drawable.crossedswords2);
-						  			  			}
-						  			  			else if (ArrayOfAvatars.avatar[0].equals("stonedead")){
-						  			  				
-						  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
-						  			  				clientAvatar.setBackgroundResource(R.drawable.stonedead2);
-						  			  			}
-			  		                  			
-				  		                  		MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
-				  		                  		
-			  		                  			unfoldRightScroll();
-		  		                        		
-												
-												dialog.dismiss();
-												
-												hideSystemUI();
+		  		                        		final Handler h = new Handler();
+		  							  	  	  	h.postDelayed(new Runnable() {
+		  							  	  	  			
+		  							  	  	  		@Override
+		  								  	  	  	public void run() {
+		  							  	  	  			
+				  							  	  	  	skillsCheckRight0();
+					  		  		  		    		
+				  		  		  		    			String str2 = "skillsCheckRight0";
+				  		  		  		    			sendToAllClients(str2);
+				  		                        		
+				  		                        		
+				  		                        		playersFighting = "fiveVsZero";
+				  		                        		
+				  		                        		
+				  		                        		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+				  		                  			
+					  		                  			TextView computerNameTextView = (TextView)findViewById(R.id.textviewnameright);
+					  		                  			computerNameTextView.setTypeface(typeFace);
+					  		                  			computerNameTextView.setText(ArrayOfPlayers.player[0]);
+					  		                  			//computerNameTextView.setVisibility(View.INVISIBLE);
+			
+					  		                  			//ArrayOfHitPoints.hitpoints[0] = 20;//20
+					  		                  			final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+					  		                  			computerHitPointsTextView.setTypeface(typeFace);
+					  		                  			//computerHitPointsTextView.setVisibility(View.INVISIBLE);
+					  		                  			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[0]));
+			
+					  		                  			//ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+					  		                  			//clientAvatar.setVisibility(View.VISIBLE);
+					  		                  			
+						  		                  		if (ArrayOfAvatars.avatar[0].equals("custom")){
+								  			  	  	    	
+								  				  	  	    File imgFile = new  File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files/avatar0");//WAS .png
+								  				  	  	    																			//WAS: /storage/sdcard0/avatar0
+								  		
+								  							if(imgFile.exists()){
+								  		
+								  							    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+								  		
+								  							    ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarright);
+								  		
+								  							    myImage.setImageBitmap(myBitmap);
+								  							}
+								  			  			}
+								  			  	  	    else if (ArrayOfAvatars.avatar[0].equals("computer")){
+								  			  	  	    	
+								  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+								  			  				clientAvatar.setBackgroundResource(R.drawable.computer);
+								  			  			}
+								  			  			else if (ArrayOfAvatars.avatar[0].equals("crossedswords")){
+								  			  				
+								  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+								  			  				clientAvatar.setBackgroundResource(R.drawable.crossedswords2);
+								  			  			}
+								  			  			else if (ArrayOfAvatars.avatar[0].equals("stonedead")){
+								  			  				
+								  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+								  			  				clientAvatar.setBackgroundResource(R.drawable.stonedead2);
+								  			  			}
+					  		                  			
+						  		                  		
+					  		                  			unfoldRightScroll();
+					  		                  			
+						  		                  		MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+				  		                        		
+														
+														dialog.dismiss();
+														
+														hideSystemUI();
+		  								  	  	  	}
+		  							  	  	  	}, 1000);
 		  									}
 		  		                        	
 		  		                        	else if (item == 0 && playerDeadYet[0].equals("yes")) {
@@ -17040,69 +17166,79 @@ public void criticalMissGraphic() {
 		  		                        		sendToAllClients(str);
 		  		                        		
 		  		                        		
-		  		                        		skillsCheckRight1();
-			  		  		  		    		
-		  		  		  		    			String str2 = "skillsCheckRight1";
-		  		  		  		    			sendToAllClients(str2);
-		  		                        		
-		  		                        		
-		  		                        		playersFighting = "fiveVsOne";
-		  		                        		
-		  		                        		
-		  		                        		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-			  		                  			
-			  		                  			TextView computerNameTextView = (TextView)findViewById(R.id.textviewnameright);
-			  		                  			computerNameTextView.setTypeface(typeFace);
-			  		                  			computerNameTextView.setText(ArrayOfPlayers.player[1]);
-			  		                  			//computerNameTextView.setVisibility(View.INVISIBLE);
-	
-			  		                  			//ArrayOfHitPoints.hitpoints[0] = 20;//20
-			  		                  			final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
-			  		                  			computerHitPointsTextView.setTypeface(typeFace);
-			  		                  			//computerHitPointsTextView.setVisibility(View.INVISIBLE);
-			  		                  			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
-	
-			  		                  			//ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
-			  		                  			//clientAvatar.setVisibility(View.VISIBLE);
-			  		                  			
-				  		                  		if (ArrayOfAvatars.avatar[1].equals("custom")){
-						  			  	  	    	
-						  				  	  	    File imgFile = new  File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files/avatar1");//WAS .png
-						  				  	  	    																			//WAS: /storage/sdcard0/avatar1
-						  		
-						  							if(imgFile.exists()){
-						  		
-						  							    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-						  		
-						  							    ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarright);
-						  		
-						  							    myImage.setImageBitmap(myBitmap);
-						  							}
-						  			  			}
-						  			  	  	    else if (ArrayOfAvatars.avatar[1].equals("computer")){
-						  			  	  	    	
-						  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
-						  			  				clientAvatar.setBackgroundResource(R.drawable.computer);
-						  			  			}
-						  			  			else if (ArrayOfAvatars.avatar[1].equals("crossedswords")){
-						  			  				
-						  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
-						  			  				clientAvatar.setBackgroundResource(R.drawable.crossedswords2);
-						  			  			}
-						  			  			else if (ArrayOfAvatars.avatar[1].equals("stonedead")){
-						  			  				
-						  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
-						  			  				clientAvatar.setBackgroundResource(R.drawable.stonedead2);
-						  			  			}
-			  		                  			
-				  		                  		MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
-
-			  		                  			unfoldRightScroll();
-												
-												
-												dialog.dismiss();
-												
-												hideSystemUI();																						
+		  		                        		final Handler h = new Handler();
+		  							  	  	  	h.postDelayed(new Runnable() {
+		  							  	  	  			
+		  							  	  	  		@Override
+		  								  	  	  	public void run() {
+		  							  	  	  			
+		  							  	  	  			skillsCheckRight1();
+					  		  		  		    		
+				  		  		  		    			String str2 = "skillsCheckRight1";
+				  		  		  		    			sendToAllClients(str2);
+				  		                        		
+				  		                        		
+				  		                        		playersFighting = "fiveVsOne";
+				  		                        		
+				  		                        		
+				  		                        		final Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+					  		                  			
+					  		                  			TextView computerNameTextView = (TextView)findViewById(R.id.textviewnameright);
+					  		                  			computerNameTextView.setTypeface(typeFace);
+					  		                  			computerNameTextView.setText(ArrayOfPlayers.player[1]);
+					  		                  			//computerNameTextView.setVisibility(View.INVISIBLE);
+			
+					  		                  			//ArrayOfHitPoints.hitpoints[0] = 20;//20
+					  		                  			final TextView computerHitPointsTextView = (TextView)findViewById(R.id.textviewhitpointsright);
+					  		                  			computerHitPointsTextView.setTypeface(typeFace);
+					  		                  			//computerHitPointsTextView.setVisibility(View.INVISIBLE);
+					  		                  			computerHitPointsTextView.setText(String.valueOf(ArrayOfHitPoints.hitpoints[1]));
+			
+					  		                  			//ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+					  		                  			//clientAvatar.setVisibility(View.VISIBLE);
+					  		                  			
+						  		                  		if (ArrayOfAvatars.avatar[1].equals("custom")){
+								  			  	  	    	
+								  				  	  	    File imgFile = new  File("/storage/emulated/0/Android/data/com.nedswebsite.ktog/files/avatar1");//WAS .png
+								  				  	  	    																			//WAS: /storage/sdcard0/avatar1
+								  		
+								  							if(imgFile.exists()){
+								  		
+								  							    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+								  		
+								  							    ImageView myImage = (ImageView) findViewById(R.id.imageviewavatarright);
+								  		
+								  							    myImage.setImageBitmap(myBitmap);
+								  							}
+								  			  			}
+								  			  	  	    else if (ArrayOfAvatars.avatar[1].equals("computer")){
+								  			  	  	    	
+								  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+								  			  				clientAvatar.setBackgroundResource(R.drawable.computer);
+								  			  			}
+								  			  			else if (ArrayOfAvatars.avatar[1].equals("crossedswords")){
+								  			  				
+								  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+								  			  				clientAvatar.setBackgroundResource(R.drawable.crossedswords2);
+								  			  			}
+								  			  			else if (ArrayOfAvatars.avatar[1].equals("stonedead")){
+								  			  				
+								  			  				ImageView clientAvatar = (ImageView) findViewById(R.id.imageviewavatarright);
+								  			  				clientAvatar.setBackgroundResource(R.drawable.stonedead2);
+								  			  			}
+					  		                  			
+		
+					  		                  			unfoldRightScroll();
+					  		                  			
+						  		                  		MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+														
+														
+														dialog.dismiss();
+														
+														hideSystemUI();
+		  								  	  	  	}
+		  							  	  	  	}, 1000);
+		  		                        																								
 		  									}
 		  		                        	
 		  		                        	else if (item == 1 && playerDeadYet[1].equals("yes")) {
@@ -18343,11 +18479,12 @@ public void criticalMissGraphic() {
 	  	  	    	
 		  			
 		  			playerCardStopFadeInFadeOut();
-		  				  			
 		  		  	
-		  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
 		  			
 		  			foldScrolls();
+		  			
+		  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+
 		  		  	
 		  			String str6 = "foldScrolls";
 		  			sendToAllClients(str6);
@@ -18408,46 +18545,72 @@ public void criticalMissGraphic() {
 	  			  				clientAvatar.setBackgroundResource(R.drawable.stonedead2);
 	  			  			}
 	            			
-	    		  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
 
 	            			scrollAnimationLeftDown();
+	            			
+	    		  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+
 		  	  	  			
 		  	  	  			String str7 = "reveal0onright";
 		  	  	  			sendToAllClients(str7);
 		  	  	  			
 		  	  	  			
-			  	  	  		skillsCheckRight0();
-		  		    		
-		  		    		String str10 = "skillsCheckRight0";
-							sendToAllClients(str10);
-							
-							
-							if (canHasDisarmed[0].equals("yes")) {
-			    				
-			    	    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
-			    		  		disarmedtextright.setVisibility(View.VISIBLE);
-			    		  		disarmedtextright.bringToFront();
-					  	  	  	
-			    		  		String str11 = "clientDisarmed";
-					  	  	  	sendToAllClients(str11);
-							}
-		  	  	  			
-		  	  	  			
-		  	  	  			computerCardStartFadeInFadeOut();
-		  	  	  			
-		  	  	  			
-		  	  	  			String str8 = "chooseOpponent";
-		  	  	  			sendToClient0(str8);
-		  	  	  			
-		  	  	  			String str9 = "forScrollTitleChat";
-		  	  	  			sendToClient1(str9);
-		  	  	  			
-		  	  	  			forScrollTitleChat();
-		  	  	  			
-		  	  	  			
-		  	  	  			h.removeCallbacks(this);
+			  	  	  		final Handler h = new Handler();
+				  	  	  	h.postDelayed(new Runnable() {
+				  	  	  			
+				  	  	  		@Override
+					  	  	  	public void run() {
+				  	  	  			
+					  	  	  		skillsCheckRight0();
+				  		    		
+				  		    		String str10 = "skillsCheckRight0";
+									sendToAllClients(str10);
+									
+									
+									final Handler h = new Handler();
+						  	  	  	h.postDelayed(new Runnable() {
+						  	  	  			
+						  	  	  		@Override
+							  	  	  	public void run() {
+						  	  	  			
+							  	  	  		if (canHasDisarmed[0].equals("yes")) {
+							    				
+							    	    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+							    		  		disarmedtextright.setVisibility(View.VISIBLE);
+							    		  		disarmedtextright.bringToFront();
+									  	  	  	
+							    		  		String str11 = "clientDisarmed";
+									  	  	  	sendToAllClients(str11);
+											}
+						  	  	  			
+						  	  	  			
+						  	  	  			computerCardStartFadeInFadeOut();
+						  	  	  			
+						  	  	  			
+							  	  	  		final Handler h = new Handler();
+								  	  	  	h.postDelayed(new Runnable() {
+								  	  	  			
+								  	  	  		@Override
+									  	  	  	public void run() {
+								  	  	  			
+									  	  	  		String str8 = "chooseOpponent";
+								  	  	  			sendToClient0(str8);
+								  	  	  			
+								  	  	  			String str9 = "forScrollTitleChat";
+								  	  	  			sendToClient1(str9);
+								  	  	  			
+								  	  	  			forScrollTitleChat();
+								  	  	  			
+								  	  	  			
+								  	  	  			h.removeCallbacks(this);
+									  	  	  	}
+								  	  	  	}, 1000);
+							  	  	  	}
+						  	  	  	}, 1000);
+					  	  	  	}
+				  	  	  	}, 1000);
 		  	  	  		}
-		  	  	  	}, 1000);		
+		  	  	  	}, 2000);		
 	  	  	    }
 			});
 		}
@@ -18493,180 +18656,197 @@ public void criticalMissGraphic() {
     			
 				setPlayerAvatarFor5Left();
 				
-				
-	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
 
     			scrollAnimationLeftUpNoRight();
     			
-    			
-    			String str7 = "ClientAttackingReveal5OnLeft";
-    			sendToClient1(str7);
-    			
-    			/*
-    			if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0]) {NEED THIS?
-    				
-    	    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
-    		  		disarmedtextright.setVisibility(View.INVISIBLE);
-    		  		
-    		  		String str3 = "clientNotDisarmed";
-    		  		sendToAllClients(str3);
-    	    		
-    				
-    				canHasDisarmed[0] = "no";
-    				
-    				String str4 = "CanHasDisarmed0 :" + "no";
-    				sendToAllClients(str4);
-    			}
-    	    	*/
-    	    	//THIS WAS "else if" (WANT THIS AND THE IF ABOVE TO BOTH BE EVALUATED):
-    	    	if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("yes") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0]) {
-    	    		
-    	    		canHasDisarmed[5] = "no";
-    	    		
-    	    		String str5 = "canHaSDisarmed5 :" + "no";
-    	    		sendToAllClients(str5);
-    	    		
-    	    		
-    	    		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
-    		  		disarmedtextleft.setVisibility(View.INVISIBLE);
-    	    		
-    					
-    				didHumanCriticalMiss[5] = "no";
-    				
-    				String str6 = "didHuManCriticalMiss5 :" + "no";
-    				sendToAllClients(str6);
-    	    	}
-    	    	
-    	    	
-    	    	if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0]) {
-    	    		
-    	    		canHasDisarmed[5] = "no";
-    	    		
-    	    		String str5 = "canHaSDisarmed5 :" + "no";
-    	    		sendToAllClients(str5);
-    				
-    	    		
-    				TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
-    		  		disarmedtextleft.setVisibility(View.INVISIBLE);
-    		  		    		  		
-    		  		String str6 = "hostSideNotDisarmed";
-			  		sendToAllClients(str6);
-    	    	}
-    	    	
-    	    	if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 1 == ArrayOfTurn.turn[0] && 
-    	    			(initiativeFinal[5] > initiativeFinal[1]) && (initiativeFinal[1] > initiativeFinal[0]) && fveDisarmed1) {
-    	    		
-    	    		fveDisarmed1 = false;
-    	    		
-    	    		canHasDisarmed[1] = "no";
-    				
-    				String str = "cAnHasDisarmed1 :" + "no";
-    				sendToAllClients(str);
-    	    	}
-    	    	
-    	    	if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0]) {
-    	    		
-    	    		canHasDisarmed[1] = "no";
-    				
-    				String str = "cAnHasDisarmed1 :" + "no";
-    				sendToAllClients(str);
-    	    	}
-    	    	
-    	    	if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 1 == ArrayOfTurn.turn[0] && 
-    	    			(initiativeFinal[1] > initiativeFinal[5]) && (initiativeFinal[5] > initiativeFinal[0]) && OneDisarmed5) {
-			
-					OneDisarmed5 = false;
-					
-					canHasDisarmed[5] = "no";
-    	    		
-    	    		String str5 = "canHaSDisarmed5 :" + "no";
-    	    		sendToAllClients(str5);
-    				
-    	    		
-    				TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
-    		  		disarmedtextleft.setVisibility(View.INVISIBLE);    		  		
-    		  		
-    		  		String str6 = "hostSideNotDisarmed";
-			  		sendToAllClients(str6);
-				}
-    	    	
-    	    	
-    	    	if (canHasDisarmed[5].equals("yes")) {
-    	    		
-    	    		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
-		  	  		disarmedtextleft.setVisibility(View.VISIBLE);				  	  	
-		  	  		disarmedtextleft.bringToFront();
-		  	  		
-		  	  		String str14 = "hostSideDisarmed";
-		  	  		sendToAllClients(str14);
-    	    	}
-    	    	
-    	    	if (canHasDisarmed[0].equals("yes")) {
-    	    		
-    	    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
-  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
-		  	  	  	disarmedtextright.bringToFront();
-		  	  	  	
-		  	  	  	String str15 = "clientDisarmed";
-		  	  	  	sendToClient0(str15);
-    	    	}
+	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
     			
     			
-    			skillsCheckLeft5();
-    			
-    			String str13 = "skillsCheckLeft5";
-    			sendToAllClients(str13);
-  	  	    	
-  	  	    	
-	  			//String str6 = "turn1V105";//USED JUST TO CLEAR DICE..DO THIS IN CHOOSEOPPONENT FOR CLIENT.
-	  			//sendToAllClients(str6);	  			
-	  			
-	  			
 	  			final Handler h = new Handler();
-	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  	  	  	h.postDelayed(new Runnable() {
 	  	  	  			
 	  	  	  		@Override
-		  	  	  	public void run() {	  	  	  			
-						
-			  			if (canHasDisarmed[0].equals("yes")) {
-			  				
-			  				TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
-		  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
-				  	  	  	disarmedtextright.bringToFront();
-				  	  	  	
-				  	  	  	String str8 = "clientDisarmed";
-				  	  	  	sendToAllClients(str8);
-			  				
-			  				
-			  				if ((didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0])) {
-			  	  				
-			  					String str9 = "disarmedAction";
-					  	  	  	sendToClient0(str9);			  	  												
-			  	  			}
-			  	  			
-			  	  			else if ((didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 1 == ArrayOfTurn.turn[0])) { //HUMAN MUST HAVE DISARMED HUMAN
-			  	  												
-			  	  				String str10 = "disarmedAction";
-			  	  				sendToClient0(str10);										  	  			
-			  	  			}
-			  			}
-			  			
-			  			else {  				
-			  				
-			  				TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
-		  	  	  			disarmedtextright.setVisibility(View.INVISIBLE);
-		  	  	  			
-		  	  	  			String str11 = "clientNotDisarmed";
-		  	  	  			sendToAllClients(str11);
-			  				
-		  	  	  			
-		  	  	  			String str12 = "runActionsOnUi";
-		  	  	  			sendToClient0(str12);
-			  			}
-			  			
-			  			h.removeCallbacks(this);
-	  	  	  		}
-	  	  	  	}, 2000);
+		  	  	  	public void run() {
+	  	  	  			
+		  	  	  		String str7 = "ClientAttackingReveal5OnLeft";
+		    			sendToClient1(str7);
+		    			
+		    			
+		    			final Handler h = new Handler();
+			  	  	  	h.postDelayed(new Runnable() {
+			  	  	  			
+			  	  	  		@Override
+				  	  	  	public void run() {
+			  	  	  			
+			  	  	  		/*
+				    			if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0]) {NEED THIS?
+				    				
+				    	    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+				    		  		disarmedtextright.setVisibility(View.INVISIBLE);
+				    		  		
+				    		  		String str3 = "clientNotDisarmed";
+				    		  		sendToAllClients(str3);
+				    	    		
+				    				
+				    				canHasDisarmed[0] = "no";
+				    				
+				    				String str4 = "CanHasDisarmed0 :" + "no";
+				    				sendToAllClients(str4);
+				    			}
+				    	    	*/
+				    	    	//THIS WAS "else if" (WANT THIS AND THE IF ABOVE TO BOTH BE EVALUATED):
+				    	    	if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("yes") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0]) {
+				    	    		
+				    	    		canHasDisarmed[5] = "no";
+				    	    		
+				    	    		String str5 = "canHaSDisarmed5 :" + "no";
+				    	    		sendToAllClients(str5);
+				    	    		
+				    	    		
+				    	    		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+				    		  		disarmedtextleft.setVisibility(View.INVISIBLE);
+				    	    		
+				    					
+				    				didHumanCriticalMiss[5] = "no";
+				    				
+				    				String str6 = "didHuManCriticalMiss5 :" + "no";
+				    				sendToAllClients(str6);
+				    	    	}
+				    	    	
+				    	    	
+				    	    	if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0]) {
+				    	    		
+				    	    		canHasDisarmed[5] = "no";
+				    	    		
+				    	    		String str5 = "canHaSDisarmed5 :" + "no";
+				    	    		sendToAllClients(str5);
+				    				
+				    	    		
+				    				TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+				    		  		disarmedtextleft.setVisibility(View.INVISIBLE);
+				    		  		    		  		
+				    		  		String str6 = "hostSideNotDisarmed";
+							  		sendToAllClients(str6);
+				    	    	}
+				    	    	
+				    	    	if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 1 == ArrayOfTurn.turn[0] && 
+				    	    			(initiativeFinal[5] > initiativeFinal[1]) && (initiativeFinal[1] > initiativeFinal[0]) && fveDisarmed1) {
+				    	    		
+				    	    		fveDisarmed1 = false;
+				    	    		
+				    	    		canHasDisarmed[1] = "no";
+				    				
+				    				String str = "cAnHasDisarmed1 :" + "no";
+				    				sendToAllClients(str);
+				    	    	}
+				    	    	
+				    	    	if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0]) {
+				    	    		
+				    	    		canHasDisarmed[1] = "no";
+				    				
+				    				String str = "cAnHasDisarmed1 :" + "no";
+				    				sendToAllClients(str);
+				    	    	}
+				    	    	
+				    	    	if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 1 == ArrayOfTurn.turn[0] && 
+				    	    			(initiativeFinal[1] > initiativeFinal[5]) && (initiativeFinal[5] > initiativeFinal[0]) && OneDisarmed5) {
+							
+									OneDisarmed5 = false;
+									
+									canHasDisarmed[5] = "no";
+				    	    		
+				    	    		String str5 = "canHaSDisarmed5 :" + "no";
+				    	    		sendToAllClients(str5);
+				    				
+				    	    		
+				    				TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+				    		  		disarmedtextleft.setVisibility(View.INVISIBLE);    		  		
+				    		  		
+				    		  		String str6 = "hostSideNotDisarmed";
+							  		sendToAllClients(str6);
+								}
+				    	    	
+				    	    	
+				    	    	if (canHasDisarmed[5].equals("yes")) {
+				    	    		
+				    	    		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+						  	  		disarmedtextleft.setVisibility(View.VISIBLE);				  	  	
+						  	  		disarmedtextleft.bringToFront();
+						  	  		
+						  	  		String str14 = "hostSideDisarmed";
+						  	  		sendToAllClients(str14);
+				    	    	}
+				    	    	
+				    	    	if (canHasDisarmed[0].equals("yes")) {
+				    	    		
+				    	    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+				  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
+						  	  	  	disarmedtextright.bringToFront();
+						  	  	  	
+						  	  	  	String str15 = "clientDisarmed";
+						  	  	  	sendToClient0(str15);
+				    	    	}
+				    			
+				    			
+				    			skillsCheckLeft5();
+				    			
+				    			String str13 = "skillsCheckLeft5";
+				    			sendToAllClients(str13);
+				  	  	    	
+				  	  	    	
+					  			//String str6 = "turn1V105";//USED JUST TO CLEAR DICE..DO THIS IN CHOOSEOPPONENT FOR CLIENT.
+					  			//sendToAllClients(str6);	  			
+					  			
+					  			
+					  			final Handler h = new Handler();
+					  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+					  	  	  			
+					  	  	  		@Override
+						  	  	  	public void run() {	  	  	  			
+										
+							  			if (canHasDisarmed[0].equals("yes")) {
+							  				
+							  				TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+						  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
+								  	  	  	disarmedtextright.bringToFront();
+								  	  	  	
+								  	  	  	String str8 = "clientDisarmed";
+								  	  	  	sendToAllClients(str8);
+							  				
+							  				
+							  				if ((didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0])) {
+							  	  				
+							  					String str9 = "disarmedAction";
+									  	  	  	sendToClient0(str9);			  	  												
+							  	  			}
+							  	  			
+							  	  			else if ((didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 1 == ArrayOfTurn.turn[0])) { //HUMAN MUST HAVE DISARMED HUMAN
+							  	  												
+							  	  				String str10 = "disarmedAction";
+							  	  				sendToClient0(str10);										  	  			
+							  	  			}
+							  			}
+							  			
+							  			else {  				
+							  				
+							  				TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+						  	  	  			disarmedtextright.setVisibility(View.INVISIBLE);
+						  	  	  			
+						  	  	  			String str11 = "clientNotDisarmed";
+						  	  	  			sendToAllClients(str11);
+							  				
+						  	  	  			
+						  	  	  			String str12 = "runActionsOnUi";
+						  	  	  			sendToClient0(str12);
+							  			}
+							  			
+							  			h.removeCallbacks(this);
+					  	  	  		}
+					  	  	  	}, 2000);
+				  	  	  	}
+			  	  	  	}, 1000);
+		  	  	  	}
+	  	  	  	}, 1000);
   	  	    }
 		});
 	}
@@ -18704,180 +18884,197 @@ public void criticalMissGraphic() {
     			
 				setPlayerAvatarFor1Left();
 				
-				
-	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
 
 				scrollAnimationLeftUpNoRight();
+				
+	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
     			
 				
-    			String str7 = "clntattackingreveal1onleft";
-    			sendToClient1(str7);
-    			
-    			/*
-    			if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0]) {
-    				
-    	    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
-    		  		disarmedtextright.setVisibility(View.INVISIBLE);
-    		  		
-    		  		String str3 = "clientNotDisarmed";
-    		  		sendToAllClients(str3);
-    	    		
-    				
-    				canHasDisarmed[0] = "no";
-    				
-    				String str4 = "CanHasDisarmed0 :" + "no";
-    				sendToAllClients(str4);
-    			}
-    	    	*/
-    	    	//THIS WAS "else if" (WANT THIS AND THE IF ABOVE TO BOTH BE EVALUATED):
-    	    	if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0]) {
-    	    		
-    	    		canHasDisarmed[1] = "no";
-    	    		
-    	    		String str5 = "cAnHasDisarmed1 :" + "no";
-    	    		sendToAllClients(str5);
-    	    		
-    	    		
-    	    		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
-    		  		disarmedtextleft.setVisibility(View.INVISIBLE);
-    	    		
-    					
-    				didHumanCriticalMiss[1] = "no";
-    				
-    				String str6 = "dIdHumanCriticalMiss1 :" + "no";
-    				sendToAllClients(str6);
-    	    	}
-    	    	
-    	    	
-    	    	if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0]) {
-    	    		
-    	    		canHasDisarmed[5] = "no";
-    	    		
-    	    		String str5 = "canHaSDisarmed5 :" + "no";
-    	    		sendToAllClients(str5);
-    	    	}
-    	    	
-    	    	if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 1 == ArrayOfTurn.turn[0] && 
-    	    			(initiativeFinal[5] > initiativeFinal[1]) && (initiativeFinal[1] > initiativeFinal[0]) && fveDisarmed1) {
-    	    		
-    	    		fveDisarmed1 = false;
-    	    		
-    	    		canHasDisarmed[1] = "no";
-    				
-    				String str = "cAnHasDisarmed1 :" + "no";
-    				sendToAllClients(str);
-
-    				
-    				TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
-			  		disarmedtextleft.setVisibility(View.INVISIBLE);
-			  		
-			  		String str5 = "hostSideNotDisarmed";
-			  		sendToAllClients(str5);
-    	    	}
-    	    	
-    	    	if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0]) {    	    		
-    	    		
-    	    		canHasDisarmed[1] = "no";
-    				
-    				String str = "cAnHasDisarmed1 :" + "no";
-    				sendToAllClients(str);
-
-    				
-    				TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
-			  		disarmedtextleft.setVisibility(View.INVISIBLE);
-			  		
-			  		String str5 = "hostSideNotDisarmed";
-			  		sendToAllClients(str5);
-    	    	}
-    	    	
-    	    	if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 1 == ArrayOfTurn.turn[0] && 
-    	    			(initiativeFinal[1] > initiativeFinal[5]) && (initiativeFinal[5] > initiativeFinal[0]) && OneDisarmed5) {
-			
-					OneDisarmed5 = false;
-					
-					canHasDisarmed[5] = "no";
-					
-					String str5 = "canHaSDisarmed5 :" + "no";
-    	    		sendToAllClients(str5);
-				}
-    	    	
-    	    	
-    	    	if (canHasDisarmed[1].equals("yes")) {
-    	    		
-    	    		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
-		  	  		disarmedtextleft.setVisibility(View.VISIBLE);				  	  	
-		  	  		disarmedtextleft.bringToFront();
-		  	  		
-		  	  		String str14 = "hostSideDisarmed";
-		  	  		sendToAllClients(str14);
-    	    	}
-    	    	
-    	    	if (canHasDisarmed[0].equals("yes")) {
-    	    		
-    	    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
-  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
-		  	  	  	disarmedtextright.bringToFront();
-		  	  	  	
-		  	  	  	String str15 = "clientDisarmed";
-		  	  	  	sendToClient0(str15);
-    	    	}
-  	  	    	
-    	    	
-    	    	skillsCheckLeft1();
-				
-				String str13 = "skillsCheckLeft1";
-				sendToAllClients(str13);
-    	    	
-  	  	    	
-	  			//String str6 = "turn1V105";//USED JUST TO CLEAR DICE..DO THIS IN CHOOSEOPPONENT FOR CLIENT.
-	  			//sendToAllClients(str6);	  			
-	  			
-	  			
 	  			final Handler h = new Handler();
-	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  	  	  	h.postDelayed(new Runnable() {
 	  	  	  			
 	  	  	  		@Override
-		  	  	  	public void run() {	  	  	  			
-						
-			  			if (canHasDisarmed[0].equals("yes")) {
-			  				
-			  				TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
-		  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
-				  	  	  	disarmedtextright.bringToFront();
-				  	  	  	
-				  	  	  	String str8 = "clientDisarmed";
-				  	  	  	sendToAllClients(str8);
-			  				
-			  				
-			  				if ((didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0])) {
-			  	  				
-			  					String str9 = "disarmedAction";
-					  	  	  	sendToClient0(str9);			  	  												
-			  	  			}
-			  	  			
-			  	  			else if ((didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 1 == ArrayOfTurn.turn[0])) { //HUMAN MUST HAVE DISARMED HUMAN
-			  	  												
-			  	  				String str10 = "disarmedAction";
-			  	  				sendToClient0(str10);										  	  			
-			  	  			}
-			  			}
-			  			
-			  			else {  				
-			  				
-			  				TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
-		  	  	  			disarmedtextright.setVisibility(View.INVISIBLE);
-		  	  	  			
-		  	  	  			String str11 = "clientNotDisarmed";
-		  	  	  			sendToAllClients(str11);
-			  				
-		  	  	  			
-		  	  	  			String str12 = "runActionsOnUi";
-		  	  	  			sendToClient0(str12);
-			  			}
-			  			
-			  			h.removeCallbacks(this);
-	  	  	  		}
-	  	  	  	}, 2000);  	  	    	
+		  	  	  	public void run() {
+	  	  	  			
+		  	  	  		String str7 = "clntattackingreveal1onleft";
+		    			sendToClient1(str7);
+		    			
+		    			
+		    			final Handler h = new Handler();
+			  	  	  	h.postDelayed(new Runnable() {
+			  	  	  			
+			  	  	  		@Override
+				  	  	  	public void run() {
+			  	  	  			
+			  	  	  		/*
+				    			if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0]) {
+				    				
+				    	    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+				    		  		disarmedtextright.setVisibility(View.INVISIBLE);
+				    		  		
+				    		  		String str3 = "clientNotDisarmed";
+				    		  		sendToAllClients(str3);
+				    	    		
+				    				
+				    				canHasDisarmed[0] = "no";
+				    				
+				    				String str4 = "CanHasDisarmed0 :" + "no";
+				    				sendToAllClients(str4);
+				    			}
+				    	    	*/
+				    	    	//THIS WAS "else if" (WANT THIS AND THE IF ABOVE TO BOTH BE EVALUATED):
+				    	    	if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0]) {
+				    	    		
+				    	    		canHasDisarmed[1] = "no";
+				    	    		
+				    	    		String str5 = "cAnHasDisarmed1 :" + "no";
+				    	    		sendToAllClients(str5);
+				    	    		
+				    	    		
+				    	    		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+				    		  		disarmedtextleft.setVisibility(View.INVISIBLE);
+				    	    		
+				    					
+				    				didHumanCriticalMiss[1] = "no";
+				    				
+				    				String str6 = "dIdHumanCriticalMiss1 :" + "no";
+				    				sendToAllClients(str6);
+				    	    	}
+				    	    	
+				    	    	
+				    	    	if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0]) {
+				    	    		
+				    	    		canHasDisarmed[5] = "no";
+				    	    		
+				    	    		String str5 = "canHaSDisarmed5 :" + "no";
+				    	    		sendToAllClients(str5);
+				    	    	}
+				    	    	
+				    	    	if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 1 == ArrayOfTurn.turn[0] && 
+				    	    			(initiativeFinal[5] > initiativeFinal[1]) && (initiativeFinal[1] > initiativeFinal[0]) && fveDisarmed1) {
+				    	    		
+				    	    		fveDisarmed1 = false;
+				    	    		
+				    	    		canHasDisarmed[1] = "no";
+				    				
+				    				String str = "cAnHasDisarmed1 :" + "no";
+				    				sendToAllClients(str);
+			
+				    				
+				    				TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+							  		disarmedtextleft.setVisibility(View.INVISIBLE);
+							  		
+							  		String str5 = "hostSideNotDisarmed";
+							  		sendToAllClients(str5);
+				    	    	}
+				    	    	
+				    	    	if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0]) {    	    		
+				    	    		
+				    	    		canHasDisarmed[1] = "no";
+				    				
+				    				String str = "cAnHasDisarmed1 :" + "no";
+				    				sendToAllClients(str);
+			
+				    				
+				    				TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+							  		disarmedtextleft.setVisibility(View.INVISIBLE);
+							  		
+							  		String str5 = "hostSideNotDisarmed";
+							  		sendToAllClients(str5);
+				    	    	}
+				    	    	
+				    	    	if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 1 == ArrayOfTurn.turn[0] && 
+				    	    			(initiativeFinal[1] > initiativeFinal[5]) && (initiativeFinal[5] > initiativeFinal[0]) && OneDisarmed5) {
+							
+									OneDisarmed5 = false;
+									
+									canHasDisarmed[5] = "no";
+									
+									String str5 = "canHaSDisarmed5 :" + "no";
+				    	    		sendToAllClients(str5);
+								}
+				    	    	
+				    	    	
+				    	    	if (canHasDisarmed[1].equals("yes")) {
+				    	    		
+				    	    		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+						  	  		disarmedtextleft.setVisibility(View.VISIBLE);				  	  	
+						  	  		disarmedtextleft.bringToFront();
+						  	  		
+						  	  		String str14 = "hostSideDisarmed";
+						  	  		sendToAllClients(str14);
+				    	    	}
+				    	    	
+				    	    	if (canHasDisarmed[0].equals("yes")) {
+				    	    		
+				    	    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+				  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
+						  	  	  	disarmedtextright.bringToFront();
+						  	  	  	
+						  	  	  	String str15 = "clientDisarmed";
+						  	  	  	sendToClient0(str15);
+				    	    	}
+				  	  	    	
+				    	    	
+				    	    	skillsCheckLeft1();
+								
+								String str13 = "skillsCheckLeft1";
+								sendToAllClients(str13);
+				    	    	
+				  	  	    	
+					  			//String str6 = "turn1V105";//USED JUST TO CLEAR DICE..DO THIS IN CHOOSEOPPONENT FOR CLIENT.
+					  			//sendToAllClients(str6);	  			
+					  			
+					  			
+					  			final Handler h = new Handler();
+					  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+					  	  	  			
+					  	  	  		@Override
+						  	  	  	public void run() {	  	  	  			
+										
+							  			if (canHasDisarmed[0].equals("yes")) {
+							  				
+							  				TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+						  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
+								  	  	  	disarmedtextright.bringToFront();
+								  	  	  	
+								  	  	  	String str8 = "clientDisarmed";
+								  	  	  	sendToAllClients(str8);
+							  				
+							  				
+							  				if ((didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0])) {
+							  	  				
+							  					String str9 = "disarmedAction";
+									  	  	  	sendToClient0(str9);			  	  												
+							  	  			}
+							  	  			
+							  	  			else if ((didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 1 == ArrayOfTurn.turn[0])) { //HUMAN MUST HAVE DISARMED HUMAN
+							  	  												
+							  	  				String str10 = "disarmedAction";
+							  	  				sendToClient0(str10);										  	  			
+							  	  			}
+							  			}
+							  			
+							  			else {  				
+							  				
+							  				TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+						  	  	  			disarmedtextright.setVisibility(View.INVISIBLE);
+						  	  	  			
+						  	  	  			String str11 = "clientNotDisarmed";
+						  	  	  			sendToAllClients(str11);
+							  				
+						  	  	  			
+						  	  	  			String str12 = "runActionsOnUi";
+						  	  	  			sendToClient0(str12);
+							  			}
+							  			
+							  			h.removeCallbacks(this);
+					  	  	  		}
+					  	  	  	}, 2000);
+				  	  	  	}
+			  	  	  	}, 1000);
+		  	  	  	}
+	  	  	  	}, 1000);
   	  	    }
 		});
 	}
@@ -19181,11 +19378,12 @@ public void criticalMissGraphic() {
 	  	  	    	
 		  			
 		  			playerCardStopFadeInFadeOut();
-		  				  			
 		  		  	
-		  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
 		  			
 		  			foldScrolls();
+		  			
+		  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+
 		  		  	
 		  			String str6 = "foldScrolls";
 		  			sendToAllClients(str6);
@@ -19246,46 +19444,71 @@ public void criticalMissGraphic() {
 	  			  				clientAvatar.setBackgroundResource(R.drawable.stonedead2);
 	  			  			}
 	            			
-	    		  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
 
 	            			scrollAnimationLeftDown();
-		  	  	  			
-		  	  	  			String str7 = "rEveal1onright";
+	            			
+	    		  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+	    		  			
+	    		  			String str7 = "rEveal1onright";
 		  	  	  			sendToAllClients(str7);
 		  	  	  			
-		  	  	  			
-			  	  	  		skillsCheckRight1();
-		  		    		
-		  		    		String str10 = "skillsCheckRight1";
-							sendToAllClients(str10);
-		  	  	  			
-							
-							if (canHasDisarmed[1].equals("yes")) {
-			    				
-			    	    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
-			    		  		disarmedtextright.setVisibility(View.VISIBLE);
-			    		  		disarmedtextright.bringToFront();
-					  	  	  	
-			    		  		String str11 = "clientDisarmed";
-					  	  	  	sendToAllClients(str11);
-							}
-							
-		  	  	  			
-		  	  	  			computerCardStartFadeInFadeOut();
-		  	  	  			
-		  	  	  			
-		  	  	  			String str8 = "chooseOpponent";
-		  	  	  			sendToClient1(str8);
-		  	  	  			
-		  	  	  			String str9 = "forScrollTitleChat";
-		  	  	  			sendToClient0(str9);
-		  	  	  			
-		  	  	  			forScrollTitleChat();
-		  	  	  			
-		  	  	  			
-		  	  	  			h.removeCallbacks(this);
+	    		  			
+	    		  			final Handler h = new Handler();
+	    		  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	    		  	  	  			
+	    		  	  	  		@Override
+	    			  	  	  	public void run() {
+				  	  	  			
+					  	  	  		skillsCheckRight1();
+				  		    		
+				  		    		String str10 = "skillsCheckRight1";
+									sendToAllClients(str10);
+				  	  	  			
+									
+									computerCardStartFadeInFadeOut();
+									
+									
+									final Handler h = new Handler();
+						  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+						  	  	  			
+						  	  	  		@Override
+							  	  	  	public void run() {
+						  	  	  			
+							  	  	  		if (canHasDisarmed[1].equals("yes")) {
+							    				
+							    	    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+							    		  		disarmedtextright.setVisibility(View.VISIBLE);
+							    		  		disarmedtextright.bringToFront();
+									  	  	  	
+							    		  		String str11 = "clientDisarmed";
+									  	  	  	sendToAllClients(str11);
+											}
+						  	  	  			
+						  	  	  			
+							  	  	  		final Handler h = new Handler();
+								  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+								  	  	  			
+								  	  	  		@Override
+									  	  	  	public void run() {
+								  	  	  			
+									  	  	  		String str8 = "chooseOpponent";
+								  	  	  			sendToClient1(str8);
+								  	  	  			
+								  	  	  			String str9 = "forScrollTitleChat";
+								  	  	  			sendToClient0(str9);
+								  	  	  			
+								  	  	  			forScrollTitleChat();
+								  	  	  			
+								  	  	  			
+								  	  	  			h.removeCallbacks(this);
+									  	  	  	}
+								  	  	  	}, 1000);
+							  	  	  	}
+						  	  	  	}, 1000);
+	    			  	  	  	}
+	    		  	  	  	}, 1000);
 		  	  	  		}
-		  	  	  	}, 1000);		
+		  	  	  	}, 2000);		
 	  	  	    }
 			});
 		}
@@ -19331,181 +19554,197 @@ public void criticalMissGraphic() {
     			
 				setPlayerAvatarFor5Left();
 				
-				
-	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
 
     			scrollAnimationLeftUpNoRight();
     			
+	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
     			
-    			String str7 = "ClientAttackingReveal5OnLeft";
-    			sendToClient0(str7);
     			
-    			/*
-    			if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0]) {
-    				
-    	    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
-    		  		disarmedtextright.setVisibility(View.INVISIBLE);
-    		  		
-    		  		String str3 = "clientNotDisarmed";
-    		  		sendToAllClients(str3);
-    	    		
-    				
-    				canHasDisarmed[1] = "no";
-    				
-    				String str4 = "cAnHasDisarmed1 :" + "no";
-    				sendToAllClients(str4);
-    			}
-    	    	*/
-    	    	//THIS WAS "else if" (WANT THIS AND THE IF ABOVE TO BOTH BE EVALUATED):
-    	    	if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("yes") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0]) {
-    	    		
-    	    		canHasDisarmed[5] = "no";
-    	    		
-    	    		String str5 = "canHaSDisarmed5 :" + "no";
-    	    		sendToAllClients(str5);
-    	    		
-    				
-    	    		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
-    		  		disarmedtextleft.setVisibility(View.INVISIBLE);
-    	    		
-    	    		
-    				didHumanCriticalMiss[5] = "no";
-    				
-    				String str6 = "didHuManCriticalMiss5 :" + "no";
-    				sendToAllClients(str6);
-    	    	}
-    	    	
-    	    	
-    	    	if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 1 == ArrayOfTurn.turn[0] && 
-    	    			(initiativeFinal[5] > initiativeFinal[0]) && (initiativeFinal[0] > initiativeFinal[1]) && FiveDisarmed0) {
-    	    		
-    	    		FiveDisarmed0 = false;
-    				
-    				canHasDisarmed[0] = "no";
-    				
-    				String str = "CanHasDisarmed0 :" + "no";
-    				sendToAllClients(str);
-    	    	}
-    	    	
-    	    	if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0]) {
-    	    		
-    	    		canHasDisarmed[0] = "no";
-    				
-    				String str = "CanHasDisarmed0 :" + "no";
-    				sendToAllClients(str);
-    	    	}
-    	    	
-    	    	if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 1 == ArrayOfTurn.turn[0] && 
-    	    			(initiativeFinal[0] > initiativeFinal[5]) && (initiativeFinal[5] > initiativeFinal[1]) && ZeroDisarmed5) {
-    	    		
-    	    		ZeroDisarmed5 = false;
-    	    		
-    	    		canHasDisarmed[5] = "no";
-    	    		
-    	    		String str5 = "canHaSDisarmed5 :" + "no";
-    	    		sendToAllClients(str5);
-    	    		
-    				
-    	    		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
-    		  		disarmedtextleft.setVisibility(View.INVISIBLE);
-    		  		
-    		  		String str6 = "hostSideNotDisarmed";
-			  		sendToAllClients(str6);
-				}
-    	    	
-				if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0]) {
-					
-					canHasDisarmed[5] = "no";
-    	    		
-    	    		String str5 = "canHaSDisarmed5 :" + "no";
-    	    		sendToAllClients(str5);
-    	    		
-    				
-    	    		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
-    		  		disarmedtextleft.setVisibility(View.INVISIBLE);
-    		  		
-    		  		String str6 = "hostSideNotDisarmed";
-			  		sendToAllClients(str6);
-				}
-    	    	
-    	    	
-    	    	if (canHasDisarmed[5].equals("yes")) {
-    	    		
-    	    		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
-		  	  		disarmedtextleft.setVisibility(View.VISIBLE);				  	  	
-		  	  		disarmedtextleft.bringToFront();
-		  	  		
-		  	  		String str14 = "hostSideDisarmed";
-		  	  		sendToAllClients(str14);
-    	    	}
-    	    	
-    	    	if (canHasDisarmed[1].equals("yes")) {
-    	    		
-    	    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
-  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
-		  	  	  	disarmedtextright.bringToFront();
-		  	  	  	
-		  	  	  	String str15 = "clientDisarmed";
-		  	  	  	sendToClient0(str15);
-    	    	}
-    			
-    	    	
-    			skillsCheckLeft5();
-    			
-    			String str13 = "skillsCheckLeft5";
-    			sendToAllClients(str13);
-    			
-  	  	    	
-	  			//String str6 = "turn1V105";//USED JUST TO CLEAR DICE..DO THIS IN CHOOSEOPPONENT FOR CLIENT.
-	  			//sendToAllClients(str6);	  			
-	  			
-	  			
 	  			final Handler h = new Handler();
-	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  	  	  	h.postDelayed(new Runnable() {
 	  	  	  			
 	  	  	  		@Override
-		  	  	  	public void run() {	  	  	  			
-						
-			  			if (canHasDisarmed[1].equals("yes")) {
-			  				
-			  				TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
-		  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
-				  	  	  	disarmedtextright.bringToFront();
-				  	  	  	
-				  	  	  	String str8 = "clientDisarmed";
-				  	  	  	sendToAllClients(str8);
-			  				
-			  				
-			  				if ((didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0])) {
-			  	  				
-			  					String str9 = "disarmedAction";
-					  	  	  	sendToClient1(str9);			  	  												
-			  	  			}
-			  	  			
-			  	  			else if ((didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 1 == ArrayOfTurn.turn[0])) { //HUMAN MUST HAVE DISARMED HUMAN
-			  	  												
-			  	  				String str10 = "disarmedAction";
-			  	  				sendToClient1(str10);										  	  			
-			  	  			}
-			  			}
-			  			
-			  			else {  				
-			  				
-			  				TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
-		  	  	  			disarmedtextright.setVisibility(View.INVISIBLE);
-		  	  	  			
-		  	  	  			String str11 = "clientNotDisarmed";
-		  	  	  			sendToAllClients(str11);
-			  				
-		  	  	  			
-		  	  	  			String str12 = "runActionsOnUi";
-		  	  	  			sendToClient1(str12);
-			  			}
-			  			
-			  			h.removeCallbacks(this);
-	  	  	  		}
-	  	  	  	}, 2000);
-  	  	    	
+		  	  	  	public void run() {
+	  	  	  			
+		  	  	  		String str7 = "ClientAttackingReveal5OnLeft";
+		    			sendToClient0(str7);
+		    			
+		    			
+		    			final Handler h = new Handler();
+			  	  	  	h.postDelayed(new Runnable() {
+			  	  	  			
+			  	  	  		@Override
+				  	  	  	public void run() {
+			  	  	  			
+			  	  	  		/*
+				    			if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0]) {
+				    				
+				    	    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+				    		  		disarmedtextright.setVisibility(View.INVISIBLE);
+				    		  		
+				    		  		String str3 = "clientNotDisarmed";
+				    		  		sendToAllClients(str3);
+				    	    		
+				    				
+				    				canHasDisarmed[1] = "no";
+				    				
+				    				String str4 = "cAnHasDisarmed1 :" + "no";
+				    				sendToAllClients(str4);
+				    			}
+				    	    	*/
+				    	    	//THIS WAS "else if" (WANT THIS AND THE IF ABOVE TO BOTH BE EVALUATED):
+				    	    	if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("yes") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0]) {
+				    	    		
+				    	    		canHasDisarmed[5] = "no";
+				    	    		
+				    	    		String str5 = "canHaSDisarmed5 :" + "no";
+				    	    		sendToAllClients(str5);
+				    	    		
+				    				
+				    	    		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+				    		  		disarmedtextleft.setVisibility(View.INVISIBLE);
+				    	    		
+				    	    		
+				    				didHumanCriticalMiss[5] = "no";
+				    				
+				    				String str6 = "didHuManCriticalMiss5 :" + "no";
+				    				sendToAllClients(str6);
+				    	    	}
+				    	    	
+				    	    	
+				    	    	if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 1 == ArrayOfTurn.turn[0] && 
+				    	    			(initiativeFinal[5] > initiativeFinal[0]) && (initiativeFinal[0] > initiativeFinal[1]) && FiveDisarmed0) {
+				    	    		
+				    	    		FiveDisarmed0 = false;
+				    				
+				    				canHasDisarmed[0] = "no";
+				    				
+				    				String str = "CanHasDisarmed0 :" + "no";
+				    				sendToAllClients(str);
+				    	    	}
+				    	    	
+				    	    	if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0]) {
+				    	    		
+				    	    		canHasDisarmed[0] = "no";
+				    				
+				    				String str = "CanHasDisarmed0 :" + "no";
+				    				sendToAllClients(str);
+				    	    	}
+				    	    	
+				    	    	if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 1 == ArrayOfTurn.turn[0] && 
+				    	    			(initiativeFinal[0] > initiativeFinal[5]) && (initiativeFinal[5] > initiativeFinal[1]) && ZeroDisarmed5) {
+				    	    		
+				    	    		ZeroDisarmed5 = false;
+				    	    		
+				    	    		canHasDisarmed[5] = "no";
+				    	    		
+				    	    		String str5 = "canHaSDisarmed5 :" + "no";
+				    	    		sendToAllClients(str5);
+				    	    		
+				    				
+				    	    		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+				    		  		disarmedtextleft.setVisibility(View.INVISIBLE);
+				    		  		
+				    		  		String str6 = "hostSideNotDisarmed";
+							  		sendToAllClients(str6);
+								}
+				    	    	
+								if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0]) {
+									
+									canHasDisarmed[5] = "no";
+				    	    		
+				    	    		String str5 = "canHaSDisarmed5 :" + "no";
+				    	    		sendToAllClients(str5);
+				    	    		
+				    				
+				    	    		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+				    		  		disarmedtextleft.setVisibility(View.INVISIBLE);
+				    		  		
+				    		  		String str6 = "hostSideNotDisarmed";
+							  		sendToAllClients(str6);
+								}
+				    	    	
+				    	    	
+				    	    	if (canHasDisarmed[5].equals("yes")) {
+				    	    		
+				    	    		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+						  	  		disarmedtextleft.setVisibility(View.VISIBLE);				  	  	
+						  	  		disarmedtextleft.bringToFront();
+						  	  		
+						  	  		String str14 = "hostSideDisarmed";
+						  	  		sendToAllClients(str14);
+				    	    	}
+				    	    	
+				    	    	if (canHasDisarmed[1].equals("yes")) {
+				    	    		
+				    	    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+				  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
+						  	  	  	disarmedtextright.bringToFront();
+						  	  	  	
+						  	  	  	String str15 = "clientDisarmed";
+						  	  	  	sendToClient0(str15);
+				    	    	}
+				    			
+				    	    	
+				    			skillsCheckLeft5();
+				    			
+				    			String str13 = "skillsCheckLeft5";
+				    			sendToAllClients(str13);
+				    			
+				  	  	    	
+					  			//String str6 = "turn1V105";//USED JUST TO CLEAR DICE..DO THIS IN CHOOSEOPPONENT FOR CLIENT.
+					  			//sendToAllClients(str6);	  			
+					  			
+					  			
+					  			final Handler h = new Handler();
+					  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+					  	  	  			
+					  	  	  		@Override
+						  	  	  	public void run() {	  	  	  			
+										
+							  			if (canHasDisarmed[1].equals("yes")) {
+							  				
+							  				TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+						  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
+								  	  	  	disarmedtextright.bringToFront();
+								  	  	  	
+								  	  	  	String str8 = "clientDisarmed";
+								  	  	  	sendToAllClients(str8);
+							  				
+							  				
+							  				if ((didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0])) {
+							  	  				
+							  					String str9 = "disarmedAction";
+									  	  	  	sendToClient1(str9);			  	  												
+							  	  			}
+							  	  			
+							  	  			else if ((didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 1 == ArrayOfTurn.turn[0])) { //HUMAN MUST HAVE DISARMED HUMAN
+							  	  												
+							  	  				String str10 = "disarmedAction";
+							  	  				sendToClient1(str10);										  	  			
+							  	  			}
+							  			}
+							  			
+							  			else {  				
+							  				
+							  				TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+						  	  	  			disarmedtextright.setVisibility(View.INVISIBLE);
+						  	  	  			
+						  	  	  			String str11 = "clientNotDisarmed";
+						  	  	  			sendToAllClients(str11);
+							  				
+						  	  	  			
+						  	  	  			String str12 = "runActionsOnUi";
+						  	  	  			sendToClient1(str12);
+							  			}
+							  			
+							  			h.removeCallbacks(this);
+					  	  	  		}
+					  	  	  	}, 2000);
+				  	  	  	}
+			  	  	  	}, 1000);
+		  	  	  	}
+	  	  	  	}, 1000);
   	  	    }
 		});	
 	}
@@ -19543,179 +19782,196 @@ public void criticalMissGraphic() {
     			
 				setPlayerAvatarFor0Left();
 				
-				
-	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
 
     			scrollAnimationLeftUpNoRight();
     			
+	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
     			
-    			String str7 = "CntAttingrevL0onlft";
-    			sendToClient0(str7);
-    			
-    			/*
-    			if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0]) {
-    				
-    	    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
-    		  		disarmedtextright.setVisibility(View.INVISIBLE);
-    		  		
-    		  		String str3 = "clientNotDisarmed";
-    		  		sendToAllClients(str3);
-    	    		
-    				
-    				canHasDisarmed[1] = "no";
-    				
-    				String str4 = "cAnHasDisarmed1 :" + "no";
-    				sendToAllClients(str4);
-    			}
-    	    	*/
-    	    	//THIS WAS "else if" (WANT THIS AND THE IF ABOVE TO BOTH BE EVALUATED):
-    	    	if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0]) {
-    	    		
-    	    		canHasDisarmed[0] = "no";
-    	    		
-    	    		String str5 = "CanHasDisarmed0 :" + "no";
-    	    		sendToAllClients(str5);
-    	    		
-    					
-    				didHumanCriticalMiss[0] = "no";
-    				
-    				String str6 = "DidHumanCriticalMiss0 :" + "no";
-    				sendToAllClients(str6);
-    				
-    				TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
-    		  		disarmedtextleft.setVisibility(View.INVISIBLE);
-    	    	}
-    	    	
-    	    	
-    	    	if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 1 == ArrayOfTurn.turn[0] && 
-    	    			(initiativeFinal[5] > initiativeFinal[0]) && (initiativeFinal[0] > initiativeFinal[1]) && FiveDisarmed0) {
-    	    		
-    	    		FiveDisarmed0 = false;
-    				
-    				canHasDisarmed[0] = "no";
-    				
-    				String str = "CanHasDisarmed0 :" + "no";
-    				sendToAllClients(str);
-    				
-    				
-    				TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
-    		  		disarmedtextleft.setVisibility(View.INVISIBLE);
-    				
-    				String str6 = "hostSideNotDisarmed";
-			  		sendToAllClients(str6);
-    	    	}
-    	    	
-    	    	if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0]) {
-    	    		
-    	    		canHasDisarmed[0] = "no";
-    				
-    				String str = "CanHasDisarmed0 :" + "no";
-    				sendToAllClients(str);
-    				
-    				
-    				TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
-    		  		disarmedtextleft.setVisibility(View.INVISIBLE);
-    				
-    				String str6 = "hostSideNotDisarmed";
-			  		sendToAllClients(str6);
-    	    	}
-    	    	
-    	    	if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 1 == ArrayOfTurn.turn[0] && 
-    	    			(initiativeFinal[0] > initiativeFinal[5]) && (initiativeFinal[5] > initiativeFinal[1]) && ZeroDisarmed5) {
-    	    		
-    	    		ZeroDisarmed5 = false;
-    	    		
-    	    		canHasDisarmed[5] = "no";
-    	    		
-    	    		String str5 = "canHaSDisarmed5 :" + "no";
-    	    		sendToAllClients(str5);
-				}
-    	    	
-				if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0]) {
-					
-					canHasDisarmed[5] = "no";
-    	    		
-    	    		String str5 = "canHaSDisarmed5 :" + "no";
-    	    		sendToAllClients(str5);
-				}
-    	    	
-    	    	
-    	    	if (canHasDisarmed[0].equals("yes")) {
-    	    		
-    	    		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
-		  	  		disarmedtextleft.setVisibility(View.VISIBLE);				  	  	
-		  	  		disarmedtextleft.bringToFront();
-		  	  		
-		  	  		String str14 = "hostSideDisarmed";
-		  	  		sendToAllClients(str14);
-    	    	}
-  	  	    	
-    	    	if (canHasDisarmed[1].equals("yes")) {
-    	    		
-    	    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
-  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
-		  	  	  	disarmedtextright.bringToFront();
-		  	  	  	
-		  	  	  	String str15 = "clientDisarmed";
-		  	  	  	sendToClient0(str15);
-    	    	}
-    	    	
-    			
-    			skillsCheckLeft0();
-    			
-    			String str13 = "skillsCheckLeft0";
-    			sendToAllClients(str13);
-    			
-  	  	    	
-	  			//String str6 = "turn1V105";//USED JUST TO CLEAR DICE..DO THIS IN CHOOSEOPPONENT FOR CLIENT.
-	  			//sendToAllClients(str6);	  			
-	  			
 	  			
 	  			final Handler h = new Handler();
-	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  	  	  	h.postDelayed(new Runnable() {
 	  	  	  			
 	  	  	  		@Override
-		  	  	  	public void run() {	  	  	  			
-						
-			  			if (canHasDisarmed[1].equals("yes")) {
-			  				
-			  				TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
-		  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
-				  	  	  	disarmedtextright.bringToFront();
-				  	  	  	
-				  	  	  	String str8 = "clientDisarmed";
-				  	  	  	sendToAllClients(str8);
-			  				
-			  				
-			  				if ((didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0])) {
-			  	  				
-			  					String str9 = "disarmedAction";
-					  	  	  	sendToClient1(str9);			  	  												
-			  	  			}
-			  	  			
-			  	  			else if ((didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 1 == ArrayOfTurn.turn[0])) { //HUMAN MUST HAVE DISARMED HUMAN
-			  	  												
-			  	  				String str10 = "disarmedAction";
-			  	  				sendToClient1(str10);										  	  			
-			  	  			}
-			  			}
-			  			
-			  			else {  				
-			  				
-			  				TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
-		  	  	  			disarmedtextright.setVisibility(View.INVISIBLE);
-		  	  	  			
-		  	  	  			String str11 = "clientNotDisarmed";
-		  	  	  			sendToAllClients(str11);
-			  				
-		  	  	  			
-		  	  	  			String str12 = "runActionsOnUi";
-		  	  	  			sendToClient1(str12);
-			  			}
-			  			
-			  			h.removeCallbacks(this);
-	  	  	  		}
-	  	  	  	}, 2000);  	  	    	
+		  	  	  	public void run() {
+	  	  	  			
+		  	  	  		String str7 = "CntAttingrevL0onlft";
+		    			sendToClient0(str7);
+		    			
+		    			
+		    			final Handler h = new Handler();
+			  	  	  	h.postDelayed(new Runnable() {
+			  	  	  			
+			  	  	  		@Override
+				  	  	  	public void run() {
+			  	  	  			
+			  	  	  		/*
+				    			if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0]) {
+				    				
+				    	    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+				    		  		disarmedtextright.setVisibility(View.INVISIBLE);
+				    		  		
+				    		  		String str3 = "clientNotDisarmed";
+				    		  		sendToAllClients(str3);
+				    	    		
+				    				
+				    				canHasDisarmed[1] = "no";
+				    				
+				    				String str4 = "cAnHasDisarmed1 :" + "no";
+				    				sendToAllClients(str4);
+				    			}
+				    	    	*/
+				    	    	//THIS WAS "else if" (WANT THIS AND THE IF ABOVE TO BOTH BE EVALUATED):
+				    	    	if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0]) {
+				    	    		
+				    	    		canHasDisarmed[0] = "no";
+				    	    		
+				    	    		String str5 = "CanHasDisarmed0 :" + "no";
+				    	    		sendToAllClients(str5);
+				    	    		
+				    					
+				    				didHumanCriticalMiss[0] = "no";
+				    				
+				    				String str6 = "DidHumanCriticalMiss0 :" + "no";
+				    				sendToAllClients(str6);
+				    				
+				    				TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+				    		  		disarmedtextleft.setVisibility(View.INVISIBLE);
+				    	    	}
+				    	    	
+				    	    	
+				    	    	if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 1 == ArrayOfTurn.turn[0] && 
+				    	    			(initiativeFinal[5] > initiativeFinal[0]) && (initiativeFinal[0] > initiativeFinal[1]) && FiveDisarmed0) {
+				    	    		
+				    	    		FiveDisarmed0 = false;
+				    				
+				    				canHasDisarmed[0] = "no";
+				    				
+				    				String str = "CanHasDisarmed0 :" + "no";
+				    				sendToAllClients(str);
+				    				
+				    				
+				    				TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+				    		  		disarmedtextleft.setVisibility(View.INVISIBLE);
+				    				
+				    				String str6 = "hostSideNotDisarmed";
+							  		sendToAllClients(str6);
+				    	    	}
+				    	    	
+				    	    	if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0]) {
+				    	    		
+				    	    		canHasDisarmed[0] = "no";
+				    				
+				    				String str = "CanHasDisarmed0 :" + "no";
+				    				sendToAllClients(str);
+				    				
+				    				
+				    				TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+				    		  		disarmedtextleft.setVisibility(View.INVISIBLE);
+				    				
+				    				String str6 = "hostSideNotDisarmed";
+							  		sendToAllClients(str6);
+				    	    	}
+				    	    	
+				    	    	if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 1 == ArrayOfTurn.turn[0] && 
+				    	    			(initiativeFinal[0] > initiativeFinal[5]) && (initiativeFinal[5] > initiativeFinal[1]) && ZeroDisarmed5) {
+				    	    		
+				    	    		ZeroDisarmed5 = false;
+				    	    		
+				    	    		canHasDisarmed[5] = "no";
+				    	    		
+				    	    		String str5 = "canHaSDisarmed5 :" + "no";
+				    	    		sendToAllClients(str5);
+								}
+				    	    	
+								if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0]) {
+									
+									canHasDisarmed[5] = "no";
+				    	    		
+				    	    		String str5 = "canHaSDisarmed5 :" + "no";
+				    	    		sendToAllClients(str5);
+								}
+				    	    	
+				    	    	
+				    	    	if (canHasDisarmed[0].equals("yes")) {
+				    	    		
+				    	    		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+						  	  		disarmedtextleft.setVisibility(View.VISIBLE);				  	  	
+						  	  		disarmedtextleft.bringToFront();
+						  	  		
+						  	  		String str14 = "hostSideDisarmed";
+						  	  		sendToAllClients(str14);
+				    	    	}
+				  	  	    	
+				    	    	if (canHasDisarmed[1].equals("yes")) {
+				    	    		
+				    	    		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+				  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
+						  	  	  	disarmedtextright.bringToFront();
+						  	  	  	
+						  	  	  	String str15 = "clientDisarmed";
+						  	  	  	sendToClient0(str15);
+				    	    	}
+				    	    	
+				    			
+				    			skillsCheckLeft0();
+				    			
+				    			String str13 = "skillsCheckLeft0";
+				    			sendToAllClients(str13);
+				    			
+				  	  	    	
+					  			//String str6 = "turn1V105";//USED JUST TO CLEAR DICE..DO THIS IN CHOOSEOPPONENT FOR CLIENT.
+					  			//sendToAllClients(str6);	  			
+					  			
+					  			
+					  			final Handler h = new Handler();
+					  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+					  	  	  			
+					  	  	  		@Override
+						  	  	  	public void run() {	  	  	  			
+										
+							  			if (canHasDisarmed[1].equals("yes")) {
+							  				
+							  				TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+						  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
+								  	  	  	disarmedtextright.bringToFront();
+								  	  	  	
+								  	  	  	String str8 = "clientDisarmed";
+								  	  	  	sendToAllClients(str8);
+							  				
+							  				
+							  				if ((didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0])) {
+							  	  				
+							  					String str9 = "disarmedAction";
+									  	  	  	sendToClient1(str9);			  	  												
+							  	  			}
+							  	  			
+							  	  			else if ((didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 1 == ArrayOfTurn.turn[0])) { //HUMAN MUST HAVE DISARMED HUMAN
+							  	  												
+							  	  				String str10 = "disarmedAction";
+							  	  				sendToClient1(str10);										  	  			
+							  	  			}
+							  			}
+							  			
+							  			else {  				
+							  				
+							  				TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+						  	  	  			disarmedtextright.setVisibility(View.INVISIBLE);
+						  	  	  			
+						  	  	  			String str11 = "clientNotDisarmed";
+						  	  	  			sendToAllClients(str11);
+							  				
+						  	  	  			
+						  	  	  			String str12 = "runActionsOnUi";
+						  	  	  			sendToClient1(str12);
+							  			}
+							  			
+							  			h.removeCallbacks(this);
+					  	  	  		}
+					  	  	  	}, 2000);
+				  	  	  	}
+			  	  	  	}, 1000);
+		  	  	  	}
+	  	  	  	}, 1000);
   	  	    }
 		});		
 	}
@@ -19752,10 +20008,10 @@ public void criticalMissGraphic() {
     			
 				setPlayerAvatarFor5Left();
 				
-				
-	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
 
     			scrollAnimationLeftUpNoRight();
+    			
+	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
     			
     			
         		ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
@@ -19771,166 +20027,183 @@ public void criticalMissGraphic() {
 				
 				img2.setImageDrawable(null);
 				
-		
-				playersFighting = "zeroVsFive";
-				
-				String str2 = "PlyrsFighting :" + "zeroVsFive";
-				sendToClient1(str2);
-				
-				skillsCheckLeft5();
-				
-				String str17 = "skillsCheckLeft5";
-				sendToAllClients(str17);
-			
-				String str3 = "issecondroundofhasteused :" + "no";
-				sendToClient0(str3);
-				
-				
-				if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("yes") && disarmedTurnStart[5] + 3 == ArrayOfTurn.turn[0]) {//CHANGED FROM 3 TO 2, SHOULD BE 3?
-					
-					canHasDisarmed[5] = "no";
-					
-					String str4 = "canHaSDisarmed5 :" + "no";
-					sendToAllClients(str4);
-					
-					
-					TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
-			  		disarmedtextleft.setVisibility(View.INVISIBLE);
-			  		
-			  		String str5 = "hostSideNotDisarmed";
-			  		sendToAllClients(str5);
-					
-			  		
-					didHumanCriticalMiss[5] = "no";
-					
-					String str6 = "didHuManCriticalMiss5 :" + "no";
-					sendToAllClients(str6);
-				}
-				
-				
-				if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0]) {
-					
-					canHasDisarmed[1] = "no";
-				
-					String str4 = "cAnHasDisarmed1 :" + "no";
-					sendToAllClients(str4);
-				}
-				
-				if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0]) {
-					
-					canHasDisarmed[5] = "no";
-					
-					String str4 = "canHaSDisarmed5 :" + "no";
-					sendToAllClients(str4);
-					
-					
-					TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
-			  		disarmedtextleft.setVisibility(View.INVISIBLE);
-			  		
-			  		String str5 = "hostSideNotDisarmed";
-			  		sendToAllClients(str5);
-				}
-				
-				
-				if (canHasDisarmed[5].equals("yes")) {
-		    		
-		    		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
-		  	  		disarmedtextleft.setVisibility(View.VISIBLE);				  	  	
-		  	  		disarmedtextleft.bringToFront();
-		  	  		
-		  	  		String str18 = "hostSideDisarmed";
-			  		sendToAllClients(str18);
-		    	}
-				 	  	    	
-		  	  	    	
-		    	//ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
-				//chatBlankButton.bringToFront();
-		    	
-		    	/*
-		    	displayTurn();
-		    	
-		    	//int turnVariable = ArrayOfTurn.turn[0];
-		    	
-		  	    String str7 = "Turn :" + ArrayOfTurn.turn[0];
-		  	    sendToAllClients(str7);
-		    	
-		  	    String str8 = "displayTrn";
-		  	    sendToAllClients(str8);
-		    	*/
 				
 				final Handler h = new Handler();
-		  	  	h.postDelayed(new Runnable() {		  	  	  			
-		  	  			
-		  	  		@Override
-		  	  	  	public void run() {	  	  	  			
-		  	  			
-			  	  		if (canHasDisarmed[0].equals("yes")) {
-							
-				  	  		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
-		  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
-				  	  	  	disarmedtextright.bringToFront();
-				  	  	  	
-				  	  	  	String str9= "clientDisarmed";
-				  	  	  	sendToAllClients(str9);			  	  			
-			  	  			
-							
-			  	  			if ((didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0])) {			  	  				
-				  	  			
-			  	  				String str10 = "disarmedAction";
-			  	  				sendToClient0(str10);			  	  								  	  			
-			  	  			}
-			  	  			
-			  	  			else if ((didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0])) {
-			  	  						  	  											
-			  	  				String str11 = "disarmedAction";
-			  	  				sendToClient0(str11);												  	  			
-			  	  			}			  	  			
-				  	    	
-				  			else if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 3 == ArrayOfTurn.turn[0]) {
-				  									
-				  				canHasDisarmed[0] = "no";
-				  				
-				  				String str12 = "CanHasDisarmed0 :" + "no";
-				  				sendToAllClients(str12);	  				
-				  				
-				  				
-			  	  	  			disarmedtextright.setVisibility(View.INVISIBLE);
+	  	  	  	h.postDelayed(new Runnable() {
+	  	  	  			
+	  	  	  		@Override
+		  	  	  	public void run() {
+	  	  	  			
+		  	  	  		playersFighting = "zeroVsFive";
+						
+						String str2 = "PlyrsFighting :" + "zeroVsFive";
+						sendToClient1(str2);
+						
+						
+						final Handler h = new Handler();
+			  	  	  	h.postDelayed(new Runnable() {
 			  	  	  			
-			  	  	  			String str13 = "clientNotDisarmed";
-			  	  	  			sendToAllClients(str13);
-				  				
+			  	  	  		@Override
+				  	  	  	public void run() {
 			  	  	  			
-				  				if (isInvokingService.equals("true")){
-									//NEED THIS?
-									SystemClock.sleep(1000);	        		
-										
-									String str14 = "runActionsOnUi";
-				  	  	  			sendToClient0(str14);
-								}
-				  			}
-						}
-			  	  		
-			  	  		else {							
-			  	  			
-			  	  			TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
-			  	  			disarmedtextright.setVisibility(View.INVISIBLE);
-			  	  			
-			  	  			String str15 = "clientNotDisarmed";
-			  	  			sendToAllClients(str15);
-			  	  			
-			  	  			
-							if (isInvokingService.equals("true")){
-								//NEED THIS?
-								SystemClock.sleep(1000);	        		
+				  	  	  		skillsCheckLeft5();
+								
+								String str17 = "skillsCheckLeft5";
+								sendToAllClients(str17);
+							
+								String str3 = "issecondroundofhasteused :" + "no";
+								sendToClient0(str3);
+								
+								
+								if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("yes") && disarmedTurnStart[5] + 3 == ArrayOfTurn.turn[0]) {//CHANGED FROM 3 TO 2, SHOULD BE 3?
 									
-								String str16 = "runActionsOnUi";
-			  	  	  			sendToClient0(str16);
-							}
-			  	  		}
-			  	  		
-			  	  		h.removeCallbacks(this);
+									canHasDisarmed[5] = "no";
+									
+									String str4 = "canHaSDisarmed5 :" + "no";
+									sendToAllClients(str4);
+									
+									
+									TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+							  		disarmedtextleft.setVisibility(View.INVISIBLE);
+							  		
+							  		String str5 = "hostSideNotDisarmed";
+							  		sendToAllClients(str5);
+									
+							  		
+									didHumanCriticalMiss[5] = "no";
+									
+									String str6 = "didHuManCriticalMiss5 :" + "no";
+									sendToAllClients(str6);
+								}
+								
+								
+								if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0]) {
+									
+									canHasDisarmed[1] = "no";
+								
+									String str4 = "cAnHasDisarmed1 :" + "no";
+									sendToAllClients(str4);
+								}
+								
+								if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0]) {
+									
+									canHasDisarmed[5] = "no";
+									
+									String str4 = "canHaSDisarmed5 :" + "no";
+									sendToAllClients(str4);
+									
+									
+									TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+							  		disarmedtextleft.setVisibility(View.INVISIBLE);
+							  		
+							  		String str5 = "hostSideNotDisarmed";
+							  		sendToAllClients(str5);
+								}
+								
+								
+								if (canHasDisarmed[5].equals("yes")) {
+						    		
+						    		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+						  	  		disarmedtextleft.setVisibility(View.VISIBLE);				  	  	
+						  	  		disarmedtextleft.bringToFront();
+						  	  		
+						  	  		String str18 = "hostSideDisarmed";
+							  		sendToAllClients(str18);
+						    	}
+								 	  	    	
+						  	  	    	
+						    	//ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+								//chatBlankButton.bringToFront();
+						    	
+						    	/*
+						    	displayTurn();
+						    	
+						    	//int turnVariable = ArrayOfTurn.turn[0];
+						    	
+						  	    String str7 = "Turn :" + ArrayOfTurn.turn[0];
+						  	    sendToAllClients(str7);
+						    	
+						  	    String str8 = "displayTrn";
+						  	    sendToAllClients(str8);
+						    	*/
+								
+								final Handler h = new Handler();
+						  	  	h.postDelayed(new Runnable() {		  	  	  			
+						  	  			
+						  	  		@Override
+						  	  	  	public void run() {	  	  	  			
+						  	  			
+							  	  		if (canHasDisarmed[0].equals("yes")) {
+											
+								  	  		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+						  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
+								  	  	  	disarmedtextright.bringToFront();
+								  	  	  	
+								  	  	  	String str9= "clientDisarmed";
+								  	  	  	sendToAllClients(str9);			  	  			
+							  	  			
+											
+							  	  			if ((didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0])) {			  	  				
+								  	  			
+							  	  				String str10 = "disarmedAction";
+							  	  				sendToClient0(str10);			  	  								  	  			
+							  	  			}
+							  	  			
+							  	  			else if ((didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0])) {
+							  	  						  	  											
+							  	  				String str11 = "disarmedAction";
+							  	  				sendToClient0(str11);												  	  			
+							  	  			}			  	  			
+								  	    	
+								  			else if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 3 == ArrayOfTurn.turn[0]) {
+								  									
+								  				canHasDisarmed[0] = "no";
+								  				
+								  				String str12 = "CanHasDisarmed0 :" + "no";
+								  				sendToAllClients(str12);	  				
+								  				
+								  				
+							  	  	  			disarmedtextright.setVisibility(View.INVISIBLE);
+							  	  	  			
+							  	  	  			String str13 = "clientNotDisarmed";
+							  	  	  			sendToAllClients(str13);
+								  				
+							  	  	  			
+								  				if (isInvokingService.equals("true")){
+													//NEED THIS?
+													SystemClock.sleep(1000);	        		
+														
+													String str14 = "runActionsOnUi";
+								  	  	  			sendToClient0(str14);
+												}
+								  			}
+										}
+							  	  		
+							  	  		else {							
+							  	  			
+							  	  			TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+							  	  			disarmedtextright.setVisibility(View.INVISIBLE);
+							  	  			
+							  	  			String str15 = "clientNotDisarmed";
+							  	  			sendToAllClients(str15);
+							  	  			
+							  	  			
+											if (isInvokingService.equals("true")){
+												//NEED THIS?
+												SystemClock.sleep(1000);	        		
+													
+												String str16 = "runActionsOnUi";
+							  	  	  			sendToClient0(str16);
+											}
+							  	  		}
+							  	  		
+							  	  		h.removeCallbacks(this);
+						  	  	  	}
+						  	  	}, 1000);
+				  	  	  	}
+			  	  	  	}, 1000);
 		  	  	  	}
-		  	  	}, 1000);
+	  	  	  	}, 1000);
 			}
 		}); 
 	}
@@ -19963,10 +20236,10 @@ public void criticalMissGraphic() {
     			
 				setPlayerAvatarFor1Left();
 				
-				
-	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
 
     			scrollAnimationLeftUpNoRight();
+    			
+	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
     			
     			
         		ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
@@ -19981,163 +20254,180 @@ public void criticalMissGraphic() {
 				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
 				
 				img2.setImageDrawable(null);
-			}
-		});
-		
-		
-		playersFighting = "zeroVsOne";
-		
-		String str2 = "PlyrsFighting :" + "zeroVsOne";
-		sendToClient1(str2);
-		
-		skillsCheckLeft1();
-		
-		String str13 = "skillsCheckLeft1";
-		sendToAllClients(str13);
-		
-		String str3 = "issecondroundofhasteused :" + "no";
-		sendToClient0(str3);		
-		
-		
-		if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] + 3 == ArrayOfTurn.turn[0]) {//CHANGED FROM 3 TO 2, SHOULD BE 3?
-			
-			canHasDisarmed[1] = "no";
-			
-			String str4 = "cAnHasDisarmed1 :" + "no";
-			sendToAllClients(str4);			
-			
-			
-			TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
-	  		disarmedtextleft.setVisibility(View.INVISIBLE);			
-			
-	  		String str5 = "hostSideNotDisarmed";
-	  		sendToAllClients(str5);	  		
-			
-	  		
-			didHumanCriticalMiss[1] = "no";
-			
-			String str6 = "dIdHumanCriticalMiss1 :" + "no";
-			sendToAllClients(str6);
-		}
-		
-		
-		if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0]) {
-			
-			canHasDisarmed[1] = "no";
-		
-			String str4 = "cAnHasDisarmed1 :" + "no";
-			sendToAllClients(str4);
-			
-			
-			TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
-	  		disarmedtextleft.setVisibility(View.INVISIBLE);			
-			
-	  		String str5 = "hostSideNotDisarmed";
-	  		sendToAllClients(str5);
-		}
-		
-		if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0]) {
-			
-			canHasDisarmed[5] = "no";
-			
-			String str4 = "canHaSDisarmed5 :" + "no";
-			sendToAllClients(str4);
-		}
-		
-		
-		runOnUiThread(new Runnable() {
-  	  	    @Override
-  	  	    public void run() {
-  	  	    	
-  	  	    	//ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
-	  			//chatBlankButton.bringToFront();
-  	  	    	
-  	  	    	/*
-  	  	    	displayTurn();
-  	  	    	
-  	  	    	//int turnVariable = ArrayOfTurn.turn[0];
-  	  	    	
-	  	  	    String str7 = "Turn :" + ArrayOfTurn.turn[0];
-	  	  	    sendToAllClients(str7);
-  	  	    	
-	  	  	    String str8 = "displayTrn";
-	  	  	    sendToAllClients(str8);
-  	  	    	*/
+				
 				
 				final Handler h = new Handler();
-	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  	  	  	h.postDelayed(new Runnable() {
 	  	  	  			
 	  	  	  		@Override
-		  	  	  	public void run() {	  	  	  			
+		  	  	  	public void run() {
 	  	  	  			
-			  	  		if (canHasDisarmed[0].equals("yes")) {							
-				  	  		
-					  	  	String str9 = "clientDisarmed";
-				  	  	  	sendToAllClients(str9);
-				  	  	  	
-				  	  	  	TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
-				  	  	  	disarmedtextright.setVisibility(View.VISIBLE);
-				  	  	  	disarmedtextright.bringToFront();				  	  	  	
-			  	  			
-							
-			  	  			if ((didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0])) {			  	  				
-				  	  							  	  			
-				  	  			String str10 = "disarmedAction";
-			  	  				sendToClient0(str10);
-			  	  			}
-			  	  			
-			  	  			else if ((didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0])) {
-			  	  				
-			  	  				String str11 = "disarmedAction";
-			  	  				sendToClient0(str11);												  	  			
-			  	  			}			  	  			
-				  	    	
-				  			else if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 3 == ArrayOfTurn.turn[0]) {
-				  									
-				  				canHasDisarmed[0] = "no";
-				  				
-				  				String str12 = "CanHasDisarmed0 :" + "no";
-				  				sendToAllClients(str12);
-				  				
-				  				
-				  				disarmedtextright.setVisibility(View.INVISIBLE);				  		  		
-				  		  		
-				  		  		String str13 = "clientNotDisarmed";
-				  		  		sendToAllClients(str13);
-				  		  		
-				  				
-				  				if (isInvokingService.equals("true")){
-									//NEED THIS?
-									SystemClock.sleep(1000);	        		
+		  	  	  		playersFighting = "zeroVsOne";
+						
+						String str2 = "PlyrsFighting :" + "zeroVsOne";
+						sendToClient1(str2);
+						
+						
+						final Handler h = new Handler();
+			  	  	  	h.postDelayed(new Runnable() {
+			  	  	  			
+			  	  	  		@Override
+				  	  	  	public void run() {
+			  	  	  			
+				  	  	  		skillsCheckLeft1();
+								
+								String str13 = "skillsCheckLeft1";
+								sendToAllClients(str13);
+								
+								String str3 = "issecondroundofhasteused :" + "no";
+								sendToClient0(str3);		
+								
+								
+								if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] + 3 == ArrayOfTurn.turn[0]) {//CHANGED FROM 3 TO 2, SHOULD BE 3?
 									
-				  					String str14 = "runActionsOnUi";
-			  	  	  				sendToClient0(str14);									
+									canHasDisarmed[1] = "no";
+									
+									String str4 = "cAnHasDisarmed1 :" + "no";
+									sendToAllClients(str4);			
+									
+									
+									TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+							  		disarmedtextleft.setVisibility(View.INVISIBLE);			
+									
+							  		String str5 = "hostSideNotDisarmed";
+							  		sendToAllClients(str5);	  		
+									
+							  		
+									didHumanCriticalMiss[1] = "no";
+									
+									String str6 = "dIdHumanCriticalMiss1 :" + "no";
+									sendToAllClients(str6);
 								}
-				  			}
-						}
-			  	  		
-			  	  		else {							
-			  	  			
-			  	  			TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
-			  	  			disarmedtextright.setVisibility(View.INVISIBLE);
-			  	  			
-			  	  			String str15 = "clientNotDisarmed";
-			  	  			sendToAllClients(str15);
-			  	  			
-			  	  			
-							if (isInvokingService.equals("true")){
-								//NEED THIS?
-								SystemClock.sleep(1000);	        		
+								
+								
+								if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0]) {
 									
-								String str16 = "runActionsOnUi";
-		  	  	  				sendToClient0(str16);
-							}
-			  	  		}
-			  	  		
-			  	  		h.removeCallbacks(this);
+									canHasDisarmed[1] = "no";
+								
+									String str4 = "cAnHasDisarmed1 :" + "no";
+									sendToAllClients(str4);
+									
+									
+									TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+							  		disarmedtextleft.setVisibility(View.INVISIBLE);			
+									
+							  		String str5 = "hostSideNotDisarmed";
+							  		sendToAllClients(str5);
+								}
+								
+								if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0]) {
+									
+									canHasDisarmed[5] = "no";
+									
+									String str4 = "canHaSDisarmed5 :" + "no";
+									sendToAllClients(str4);
+								}
+								
+								
+								runOnUiThread(new Runnable() {
+						  	  	    @Override
+						  	  	    public void run() {
+						  	  	    	
+						  	  	    	//ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+							  			//chatBlankButton.bringToFront();
+						  	  	    	
+						  	  	    	/*
+						  	  	    	displayTurn();
+						  	  	    	
+						  	  	    	//int turnVariable = ArrayOfTurn.turn[0];
+						  	  	    	
+							  	  	    String str7 = "Turn :" + ArrayOfTurn.turn[0];
+							  	  	    sendToAllClients(str7);
+						  	  	    	
+							  	  	    String str8 = "displayTrn";
+							  	  	    sendToAllClients(str8);
+						  	  	    	*/
+										
+										final Handler h = new Handler();
+							  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+							  	  	  			
+							  	  	  		@Override
+								  	  	  	public void run() {	  	  	  			
+							  	  	  			
+									  	  		if (canHasDisarmed[0].equals("yes")) {							
+										  	  		
+											  	  	String str9 = "clientDisarmed";
+										  	  	  	sendToAllClients(str9);
+										  	  	  	
+										  	  	  	TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+										  	  	  	disarmedtextright.setVisibility(View.VISIBLE);
+										  	  	  	disarmedtextright.bringToFront();				  	  	  	
+									  	  			
+													
+									  	  			if ((didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0])) {			  	  				
+										  	  							  	  			
+										  	  			String str10 = "disarmedAction";
+									  	  				sendToClient0(str10);
+									  	  			}
+									  	  			
+									  	  			else if ((didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0])) {
+									  	  				
+									  	  				String str11 = "disarmedAction";
+									  	  				sendToClient0(str11);												  	  			
+									  	  			}			  	  			
+										  	    	
+										  			else if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 3 == ArrayOfTurn.turn[0]) {
+										  									
+										  				canHasDisarmed[0] = "no";
+										  				
+										  				String str12 = "CanHasDisarmed0 :" + "no";
+										  				sendToAllClients(str12);
+										  				
+										  				
+										  				disarmedtextright.setVisibility(View.INVISIBLE);				  		  		
+										  		  		
+										  		  		String str13 = "clientNotDisarmed";
+										  		  		sendToAllClients(str13);
+										  		  		
+										  				
+										  				if (isInvokingService.equals("true")){
+															//NEED THIS?
+															SystemClock.sleep(1000);	        		
+															
+										  					String str14 = "runActionsOnUi";
+									  	  	  				sendToClient0(str14);									
+														}
+										  			}
+												}
+									  	  		
+									  	  		else {							
+									  	  			
+									  	  			TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+									  	  			disarmedtextright.setVisibility(View.INVISIBLE);
+									  	  			
+									  	  			String str15 = "clientNotDisarmed";
+									  	  			sendToAllClients(str15);
+									  	  			
+									  	  			
+													if (isInvokingService.equals("true")){
+														//NEED THIS?
+														SystemClock.sleep(1000);	        		
+															
+														String str16 = "runActionsOnUi";
+								  	  	  				sendToClient0(str16);
+													}
+									  	  		}
+									  	  		
+									  	  		h.removeCallbacks(this);
+								  	  	  	}
+							  	  	  	}, 1000);				
+						  	  	    }
+								});
+				  	  	  	}
+			  	  	  	}, 1000);
 		  	  	  	}
-	  	  	  	}, 1000);				
-  	  	    }
+	  	  	  	}, 1000);
+			}
 		});
 	}
 	
@@ -20169,10 +20459,10 @@ public void criticalMissGraphic() {
     			
 				setPlayerAvatarFor5Left();
 				
-				
-	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
 
     			scrollAnimationLeftUpNoRight();
+    			
+	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
     			
     			
         		ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
@@ -20188,165 +20478,182 @@ public void criticalMissGraphic() {
 				
 				img2.setImageDrawable(null);
 		
-		
-				playersFighting = "oneVsFive";
-				
-				String str2 = "PlyrsFighting :" + "oneVsFive";
-				sendToClient0(str2);
-				
-				skillsCheckLeft5();
-				
-				String str17 = "skillsCheckLeft5";
-				sendToAllClients(str17);
-			
-				String str3 = "issecondroundofhasteused :" + "no";
-				sendToClient1(str3);
-				
-				
-				if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("yes") && disarmedTurnStart[5] + 3 == ArrayOfTurn.turn[0]) {//CHANGED FROM 3 TO 2, SHOULD BE 3?
-					
-					canHasDisarmed[5] = "no";
-					
-					String str4 = "canHaSDisarmed5 :" + "no";
-					sendToAllClients(str4);
-					
-					
-					TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
-			  		disarmedtextleft.setVisibility(View.INVISIBLE);
-			  		
-			  		String str5 = "hostSideNotDisarmed";
-			  		sendToAllClients(str5);
-					
-			  		
-					didHumanCriticalMiss[5] = "no";
-					
-					String str6 = "didHuManCriticalMiss5 :" + "no";
-					sendToAllClients(str6);
-				}
-				
-				
-				if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0]) {
-					
-					canHasDisarmed[0] = "no";
-					
-					String str4 = "CanHasDisarmed0 :" + "no";
-					sendToAllClients(str4);
-				}
-				
-				if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0]) {
-					
-					canHasDisarmed[5] = "no";
-					
-					String str4 = "canHaSDisarmed5 :" + "no";
-					sendToAllClients(str4);
-					
-					
-					TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
-			  		disarmedtextleft.setVisibility(View.INVISIBLE);
-			  		
-			  		String str5 = "hostSideNotDisarmed";
-			  		sendToAllClients(str5);
-				}
-				
-				
-				if (canHasDisarmed[5].equals("yes")) {
-		    		
-		    		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
-		  	  		disarmedtextleft.setVisibility(View.VISIBLE);				  	  	
-		  	  		disarmedtextleft.bringToFront();
-		  	  		
-		  	  		String str18 = "hostSideDisarmed";
-			  		sendToAllClients(str18);
-		    	}
-		
-	  	    	
-	  	    	//ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
-	  			//chatBlankButton.bringToFront();
-		  	    	
-		  	    /*	
-	  	    	displayTurn();
-		  	    	
-	  	    	//int turnVariable = ArrayOfTurn.turn[0];
-		  	    	
-	  	  	    String str7 = "Turn :" + ArrayOfTurn.turn[0];
-	  	  	    sendToAllClients(str7);
-		  	    	
-	  	  	    String str8 = "displayTrn";
-	  	  	    sendToAllClients(str8);
-		  	    */
 				
 				final Handler h = new Handler();
-	  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+	  	  	  	h.postDelayed(new Runnable() {
 	  	  	  			
 	  	  	  		@Override
 		  	  	  	public void run() {
 	  	  	  			
-	  	  	  			
-			  	  		if (canHasDisarmed[1].equals("yes")) {
-							
-				  	  		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
-		  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
-				  	  	  	disarmedtextright.bringToFront();
-				  	  	  	
-				  	  	  	String str9 = "clientDisarmed";
-				  	  	  	sendToAllClients(str9);			  	  			
-			  	  			
-							
-			  	  			if ((didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0])) {			  	  				
-				  	  			
-			  	  				String str10 = "disarmedAction";
-			  	  				sendToClient1(str10);			  	  								  	  			
-			  	  			}
-			  	  			
-			  	  			else if ((didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0])) {
-			  	  						  	  											
-			  	  				String str11 = "disarmedAction";
-			  	  				sendToClient1(str11);												  	  			
-			  	  			}			  	  			
-				  	    	
-				  			else if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 3 == ArrayOfTurn.turn[0]) {
-				  									
-				  				canHasDisarmed[1] = "no";
-				  				
-				  				String str12 = "cAnHasDisarmed1 :" + "no";
-				  				sendToAllClients(str12);	  				
-				  				
-				  				
-			  	  	  			disarmedtextright.setVisibility(View.INVISIBLE);
+		  	  	  		playersFighting = "oneVsFive";
+						
+						String str2 = "PlyrsFighting :" + "oneVsFive";
+						sendToClient0(str2);
+						
+						
+						final Handler h = new Handler();
+			  	  	  	h.postDelayed(new Runnable() {
 			  	  	  			
-			  	  	  			String str13 = "clientNotDisarmed";
-			  	  	  			sendToAllClients(str13);
-				  				
+			  	  	  		@Override
+				  	  	  	public void run() {
 			  	  	  			
-				  				if (isInvokingService.equals("true")){
-									//NEED THIS?
-									SystemClock.sleep(1000);	        		
-										
-									String str14 = "runActionsOnUi";
-				  	  	  			sendToClient1(str14);
-								}
-				  			}
-						}
-			  	  		
-			  	  		else {							
-			  	  			
-			  	  			TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
-			  	  			disarmedtextright.setVisibility(View.INVISIBLE);
-			  	  			
-			  	  			String str15 = "clientNotDisarmed";
-			  	  			sendToAllClients(str15);
-			  	  			
-			  	  			
-							if (isInvokingService.equals("true")){
-								//NEED THIS?
-								SystemClock.sleep(1000);	        		
+				  	  	  		skillsCheckLeft5();
+								
+								String str17 = "skillsCheckLeft5";
+								sendToAllClients(str17);
+							
+								String str3 = "issecondroundofhasteused :" + "no";
+								sendToClient1(str3);
+								
+								
+								if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("yes") && disarmedTurnStart[5] + 3 == ArrayOfTurn.turn[0]) {//CHANGED FROM 3 TO 2, SHOULD BE 3?
 									
-								String str16 = "runActionsOnUi";
-			  	  	  			sendToClient1(str16);
-							}
-			  	  		}
-			  	  		
-			  	  		h.removeCallbacks(this);
+									canHasDisarmed[5] = "no";
+									
+									String str4 = "canHaSDisarmed5 :" + "no";
+									sendToAllClients(str4);
+									
+									
+									TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+							  		disarmedtextleft.setVisibility(View.INVISIBLE);
+							  		
+							  		String str5 = "hostSideNotDisarmed";
+							  		sendToAllClients(str5);
+									
+							  		
+									didHumanCriticalMiss[5] = "no";
+									
+									String str6 = "didHuManCriticalMiss5 :" + "no";
+									sendToAllClients(str6);
+								}
+								
+								
+								if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0]) {
+									
+									canHasDisarmed[0] = "no";
+									
+									String str4 = "CanHasDisarmed0 :" + "no";
+									sendToAllClients(str4);
+								}
+								
+								if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0]) {
+									
+									canHasDisarmed[5] = "no";
+									
+									String str4 = "canHaSDisarmed5 :" + "no";
+									sendToAllClients(str4);
+									
+									
+									TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+							  		disarmedtextleft.setVisibility(View.INVISIBLE);
+							  		
+							  		String str5 = "hostSideNotDisarmed";
+							  		sendToAllClients(str5);
+								}
+								
+								
+								if (canHasDisarmed[5].equals("yes")) {
+						    		
+						    		TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+						  	  		disarmedtextleft.setVisibility(View.VISIBLE);				  	  	
+						  	  		disarmedtextleft.bringToFront();
+						  	  		
+						  	  		String str18 = "hostSideDisarmed";
+							  		sendToAllClients(str18);
+						    	}
+						
+					  	    	
+					  	    	//ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+					  			//chatBlankButton.bringToFront();
+						  	    	
+						  	    /*	
+					  	    	displayTurn();
+						  	    	
+					  	    	//int turnVariable = ArrayOfTurn.turn[0];
+						  	    	
+					  	  	    String str7 = "Turn :" + ArrayOfTurn.turn[0];
+					  	  	    sendToAllClients(str7);
+						  	    	
+					  	  	    String str8 = "displayTrn";
+					  	  	    sendToAllClients(str8);
+						  	    */
+								
+								final Handler h = new Handler();
+					  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+					  	  	  			
+					  	  	  		@Override
+						  	  	  	public void run() {
+					  	  	  			
+					  	  	  			
+							  	  		if (canHasDisarmed[1].equals("yes")) {
+											
+								  	  		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+						  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
+								  	  	  	disarmedtextright.bringToFront();
+								  	  	  	
+								  	  	  	String str9 = "clientDisarmed";
+								  	  	  	sendToAllClients(str9);			  	  			
+							  	  			
+											
+							  	  			if ((didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0])) {			  	  				
+								  	  			
+							  	  				String str10 = "disarmedAction";
+							  	  				sendToClient1(str10);			  	  								  	  			
+							  	  			}
+							  	  			
+							  	  			else if ((didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0])) {
+							  	  						  	  											
+							  	  				String str11 = "disarmedAction";
+							  	  				sendToClient1(str11);												  	  			
+							  	  			}			  	  			
+								  	    	
+								  			else if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 3 == ArrayOfTurn.turn[0]) {
+								  									
+								  				canHasDisarmed[1] = "no";
+								  				
+								  				String str12 = "cAnHasDisarmed1 :" + "no";
+								  				sendToAllClients(str12);	  				
+								  				
+								  				
+							  	  	  			disarmedtextright.setVisibility(View.INVISIBLE);
+							  	  	  			
+							  	  	  			String str13 = "clientNotDisarmed";
+							  	  	  			sendToAllClients(str13);
+								  				
+							  	  	  			
+								  				if (isInvokingService.equals("true")){
+													//NEED THIS?
+													SystemClock.sleep(1000);	        		
+														
+													String str14 = "runActionsOnUi";
+								  	  	  			sendToClient1(str14);
+												}
+								  			}
+										}
+							  	  		
+							  	  		else {							
+							  	  			
+							  	  			TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+							  	  			disarmedtextright.setVisibility(View.INVISIBLE);
+							  	  			
+							  	  			String str15 = "clientNotDisarmed";
+							  	  			sendToAllClients(str15);
+							  	  			
+							  	  			
+											if (isInvokingService.equals("true")){
+												//NEED THIS?
+												SystemClock.sleep(1000);	        		
+													
+												String str16 = "runActionsOnUi";
+							  	  	  			sendToClient1(str16);
+											}
+							  	  		}
+							  	  		
+							  	  		h.removeCallbacks(this);
+						  	  	  	}
+					  	  	  	}, 1000);
+				  	  	  	}
+			  	  	  	}, 1000);
 		  	  	  	}
 	  	  	  	}, 1000);
 			}
@@ -20381,10 +20688,10 @@ public void criticalMissGraphic() {
     			
 				setPlayerAvatarFor0Left();
 				
-				
-	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
 
     			scrollAnimationLeftUpNoRight();
+    			
+	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
     			
     			
         		ImageView img1 = (ImageView)findViewById(R.id.twentysidedanimation);		
@@ -20399,164 +20706,181 @@ public void criticalMissGraphic() {
 				img2.setImageResource(R.drawable.sixsixrightleftrotateblank);
 				
 				img2.setImageDrawable(null);
-			}
-		});
-		
-		
-		playersFighting = "oneVsZero";
-		
-		String str2 = "PlyrsFighting :" + "oneVsZero";
-		sendToClient0(str2);
-		
-		skillsCheckLeft0();
-		
-		String str13 = "skillsCheckLeft0";
-		sendToAllClients(str13);
-	
-		String str3 = "issecondroundofhasteused :" + "no";
-		sendToClient1(str3);
-		
-		
-		if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] + 3 == ArrayOfTurn.turn[0]) {//CHANGED FROM 3 TO 2, SHOULD BE 3?
-			
-			canHasDisarmed[0] = "no";
-			
-			String str4 = "CanHasDisarmed0 :" + "no";
-			sendToAllClients(str4);
-			
-			
-			TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
-			disarmedtextleft.setVisibility(View.INVISIBLE);
-			
-			String str5 = "hostSideNotDisarmed";
-			sendToAllClients(str5);
-			
-			
-			didHumanCriticalMiss[0] = "no";
-			
-			String str6 = "DidHumanCriticalMiss0 :" + "no";
-			sendToAllClients(str6);
-		}
-		
-		
-		if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0]) {
-			
-			canHasDisarmed[0] = "no";
-			
-			String str4 = "CanHasDisarmed0 :" + "no";
-			sendToAllClients(str4);
-			
-			
-			TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
-			disarmedtextleft.setVisibility(View.INVISIBLE);
-			
-			String str5 = "hostSideNotDisarmed";
-			sendToAllClients(str5);
-		}
-		
-		if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0]) {
-			
-			canHasDisarmed[5] = "no";
-			
-			String str4 = "canHaSDisarmed5 :" + "no";
-			sendToAllClients(str4);
-		}
-		
-		
-		runOnUiThread(new Runnable() {
-		    @Override
-		    public void run() {
-		    	
-		    	//ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
-				//chatBlankButton.bringToFront();
-		  	    	
-		  	    /*	
-		    	displayTurn();
-		  	    	
-		    	//int turnVariable = ArrayOfTurn.turn[0];
-		  	    	
-		  	    String str7 = "Turn :" + ArrayOfTurn.turn[0];
-		  	    sendToAllClients(str7);
-		  	    	
-		  	    String str8 = "displayTrn";
-		  	    sendToAllClients(str8);
-		  	    */	
+				
 				
 				final Handler h = new Handler();
-		  	  	h.postDelayed(new Runnable() {		  	  	  			
-		  	  			
-		  	  		@Override
+	  	  	  	h.postDelayed(new Runnable() {
+	  	  	  			
+	  	  	  		@Override
 		  	  	  	public void run() {
-		  	  			
-		  	  			
-			  	  		if (canHasDisarmed[1].equals("yes")) {
-							
-				  	  		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
-		  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
-				  	  	  	disarmedtextright.bringToFront();
-				  	  	  	
-				  	  	  	String str9 = "clientDisarmed";
-				  	  	  	sendToAllClients(str9);			  	  			
-			  	  			
-							
-			  	  			if ((didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0])) {			  	  				
-				  	  			
-			  	  				String str10 = "disarmedAction";
-			  	  				sendToClient1(str10);			  	  								  	  			
-			  	  			}
-			  	  			
-			  	  			else if ((didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0])) {
-			  	  						  	  											
-			  	  				String str11 = "disarmedAction";
-			  	  				sendToClient1(str11);												  	  			
-			  	  			}			  	  			
-				  	    	
-				  			else if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 3 == ArrayOfTurn.turn[0]) {
-				  									
-				  				canHasDisarmed[1] = "no";
-				  				
-				  				String str12 = "cAnHasDisarmed1 :" + "no";
-				  				sendToAllClients(str12);	  				
-				  				
-				  				
-			  	  	  			disarmedtextright.setVisibility(View.INVISIBLE);
+	  	  	  			
+		  	  	  		playersFighting = "oneVsZero";
+						
+						String str2 = "PlyrsFighting :" + "oneVsZero";
+						sendToClient0(str2);
+						
+						
+						final Handler h = new Handler();
+			  	  	  	h.postDelayed(new Runnable() {
 			  	  	  			
-			  	  	  			String str13 = "clientNotDisarmed";
-			  	  	  			sendToAllClients(str13);
-				  				
+			  	  	  		@Override
+				  	  	  	public void run() {
 			  	  	  			
-				  				if (isInvokingService.equals("true")){
-									//NEED THIS?
-									SystemClock.sleep(1000);	        		
-										
-									String str14 = "runActionsOnUi";
-				  	  	  			sendToClient1(str14);
-								}
-				  			}
-						}
-			  	  		
-			  	  		else {							
-			  	  			
-			  	  			TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
-			  	  			disarmedtextright.setVisibility(View.INVISIBLE);
-			  	  			
-			  	  			String str15 = "clientNotDisarmed";
-			  	  			sendToAllClients(str15);
-			  	  			
-			  	  			
-							if (isInvokingService.equals("true")){
-								//NEED THIS?
-								SystemClock.sleep(1000);	        		
+				  	  	  		skillsCheckLeft0();
+								
+								String str13 = "skillsCheckLeft0";
+								sendToAllClients(str13);
+							
+								String str3 = "issecondroundofhasteused :" + "no";
+								sendToClient1(str3);
+								
+								
+								if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("yes") && disarmedTurnStart[0] + 3 == ArrayOfTurn.turn[0]) {//CHANGED FROM 3 TO 2, SHOULD BE 3?
 									
-								String str16 = "runActionsOnUi";
-			  	  	  			sendToClient1(str16);
-							}
-			  	  		}
-			  	  		
-			  	  		h.removeCallbacks(this);
+									canHasDisarmed[0] = "no";
+									
+									String str4 = "CanHasDisarmed0 :" + "no";
+									sendToAllClients(str4);
+									
+									
+									TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+									disarmedtextleft.setVisibility(View.INVISIBLE);
+									
+									String str5 = "hostSideNotDisarmed";
+									sendToAllClients(str5);
+									
+									
+									didHumanCriticalMiss[0] = "no";
+									
+									String str6 = "DidHumanCriticalMiss0 :" + "no";
+									sendToAllClients(str6);
+								}
+								
+								
+								if (canHasDisarmed[0].equals("yes") && didHumanCriticalMiss[0].equals("no") && disarmedTurnStart[0] + 2 == ArrayOfTurn.turn[0]) {
+									
+									canHasDisarmed[0] = "no";
+									
+									String str4 = "CanHasDisarmed0 :" + "no";
+									sendToAllClients(str4);
+									
+									
+									TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+									disarmedtextleft.setVisibility(View.INVISIBLE);
+									
+									String str5 = "hostSideNotDisarmed";
+									sendToAllClients(str5);
+								}
+								
+								if (canHasDisarmed[5].equals("yes") && didHumanCriticalMiss[5].equals("no") && disarmedTurnStart[5] + 2 == ArrayOfTurn.turn[0]) {
+									
+									canHasDisarmed[5] = "no";
+									
+									String str4 = "canHaSDisarmed5 :" + "no";
+									sendToAllClients(str4);
+								}
+								
+								
+								runOnUiThread(new Runnable() {
+								    @Override
+								    public void run() {
+								    	
+								    	//ImageButton chatBlankButton = (ImageButton) findViewById(R.id.textviewcenterscrolltextbutton);
+										//chatBlankButton.bringToFront();
+								  	    	
+								  	    /*	
+								    	displayTurn();
+								  	    	
+								    	//int turnVariable = ArrayOfTurn.turn[0];
+								  	    	
+								  	    String str7 = "Turn :" + ArrayOfTurn.turn[0];
+								  	    sendToAllClients(str7);
+								  	    	
+								  	    String str8 = "displayTrn";
+								  	    sendToAllClients(str8);
+								  	    */	
+										
+										final Handler h = new Handler();
+								  	  	h.postDelayed(new Runnable() {		  	  	  			
+								  	  			
+								  	  		@Override
+								  	  	  	public void run() {
+								  	  			
+								  	  			
+									  	  		if (canHasDisarmed[1].equals("yes")) {
+													
+										  	  		TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+								  	  	  			disarmedtextright.setVisibility(View.VISIBLE);
+										  	  	  	disarmedtextright.bringToFront();
+										  	  	  	
+										  	  	  	String str9 = "clientDisarmed";
+										  	  	  	sendToAllClients(str9);			  	  			
+									  	  			
+													
+									  	  			if ((didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[1].equals("yes") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0])) {			  	  				
+										  	  			
+									  	  				String str10 = "disarmedAction";
+									  	  				sendToClient1(str10);			  	  								  	  			
+									  	  			}
+									  	  			
+									  	  			else if ((didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 1 == ArrayOfTurn.turn[0]) || (didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 2 == ArrayOfTurn.turn[0])) {
+									  	  						  	  											
+									  	  				String str11 = "disarmedAction";
+									  	  				sendToClient1(str11);												  	  			
+									  	  			}			  	  			
+										  	    	
+										  			else if (canHasDisarmed[1].equals("yes") && didHumanCriticalMiss[1].equals("no") && disarmedTurnStart[1] + 3 == ArrayOfTurn.turn[0]) {
+										  									
+										  				canHasDisarmed[1] = "no";
+										  				
+										  				String str12 = "cAnHasDisarmed1 :" + "no";
+										  				sendToAllClients(str12);	  				
+										  				
+										  				
+									  	  	  			disarmedtextright.setVisibility(View.INVISIBLE);
+									  	  	  			
+									  	  	  			String str13 = "clientNotDisarmed";
+									  	  	  			sendToAllClients(str13);
+										  				
+									  	  	  			
+										  				if (isInvokingService.equals("true")){
+															//NEED THIS?
+															SystemClock.sleep(1000);	        		
+																
+															String str14 = "runActionsOnUi";
+										  	  	  			sendToClient1(str14);
+														}
+										  			}
+												}
+									  	  		
+									  	  		else {							
+									  	  			
+									  	  			TextView disarmedtextright = (TextView) findViewById(R.id.textdisarmedright);
+									  	  			disarmedtextright.setVisibility(View.INVISIBLE);
+									  	  			
+									  	  			String str15 = "clientNotDisarmed";
+									  	  			sendToAllClients(str15);
+									  	  			
+									  	  			
+													if (isInvokingService.equals("true")){
+														//NEED THIS?
+														SystemClock.sleep(1000);	        		
+															
+														String str16 = "runActionsOnUi";
+									  	  	  			sendToClient1(str16);
+													}
+									  	  		}
+									  	  		
+									  	  		h.removeCallbacks(this);
+								  	  	  	}
+								  	  	}, 1000);				
+								    }
+								});
+				  	  	  	}
+			  	  	  	}, 1000);
 		  	  	  	}
-		  	  	}, 1000);				
-		    }
+	  	  	  	}, 1000);
+			}
 		});
 	}
 	
@@ -20612,11 +20936,12 @@ public void criticalMissGraphic() {
 	  	  	    	
 		  			
 		  			computerCardStopFadeInFadeOut();
-		  		  	
 		  			
-		  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
 		  			
 		  			foldScrolls();
+		  			
+		  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+
 		  		  	
 		  			String str6 = "foldScrolls";
 		  			sendToAllClients(str6);
@@ -20647,41 +20972,57 @@ public void criticalMissGraphic() {
 							setPlayerAvatarFor5Left();
 							
 							
-				  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
-							
 							unfoldLeftScroll();
+							
+				  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
 	            			
 		  	  	  			
 		  	  	  			String str7 = "reVeal5onleft";
 		  	  	  			sendToAllClients(str7);
 		  	  	  			
 		  	  	  			
-			  	  	  		skillsCheckLeft5();
-		  		    		
-		  		    		String str8 = "skillsCheckLeft5";
-							sendToAllClients(str8);
-							
-							
-							if (canHasDisarmed[5].equals("yes")) {
-			    				
-								TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
-		    		  			disarmedtextleft.setVisibility(View.VISIBLE);
-		    		  			disarmedtextleft.bringToFront();
-					  	  	  	
-					  	  	  	String str9 = "hostSideDisarmed";
-					  	  	  	sendToAllClients(str9);
-							}
-		  	  	  			
-		  	  	  			
-		  	  	  			playerCardStartFadeInFadeOut();	  	  	  			
-		  	  	  			
-		  	  	  			
-		  	  	  			chooseOpponent();
-		  	  	  			
-		  	  	  			
-		  	  	  			h.removeCallbacks(this);
+			  	  	  		final Handler h = new Handler();
+				  	  	  	h.postDelayed(new Runnable() {		  	  	  			
+				  	  	  			
+				  	  	  		@Override
+					  	  	  	public void run() {
+				  	  	  			
+					  	  	  		skillsCheckLeft5();
+				  		    		
+				  		    		String str8 = "skillsCheckLeft5";
+									sendToAllClients(str8);
+									
+									
+									final Handler h = new Handler();
+						  	  	  	h.postDelayed(new Runnable() {
+						  	  	  			
+						  	  	  		@Override
+							  	  	  	public void run() {
+						  	  	  			
+							  	  	  		if (canHasDisarmed[5].equals("yes")) {
+							    				
+												TextView disarmedtextleft = (TextView) findViewById(R.id.textdisarmedleft);
+						    		  			disarmedtextleft.setVisibility(View.VISIBLE);
+						    		  			disarmedtextleft.bringToFront();
+									  	  	  	
+									  	  	  	String str9 = "hostSideDisarmed";
+									  	  	  	sendToAllClients(str9);
+											}
+						  	  	  			
+						  	  	  			
+						  	  	  			playerCardStartFadeInFadeOut();	  	  	  			
+						  	  	  			
+						  	  	  			
+						  	  	  			chooseOpponent();
+						  	  	  			
+						  	  	  			
+						  	  	  			h.removeCallbacks(this);
+							  	  	  	}
+						  	  	  	}, 1000);
+					  	  	  	}
+				  	  	  	}, 1000);
 		  	  	  		}
-		  	  	  	}, 1000);		
+		  	  	  	}, 2000);		
 	  	  	    }
 			});
 		}
@@ -21786,9 +22127,9 @@ public void criticalMissGraphic() {
   	  	    	
   	  	    	if (numberOfPlayers == 2) {
   	  	    		
-  	  	    		MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
-  	  	    		
   	  	    		victoryDefeatAnimation();
+  	  	    		
+  	  	    		MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
   	  	    		
   	  	    		
 	  	  	    	final Handler h = new Handler();
@@ -21857,9 +22198,10 @@ public void criticalMissGraphic() {
 					  	  	  			
 					  	  	  			//MediaPlayerWrapper.play(MainActivity2.this, R.raw.buttonsound6);
 					  	  	  			
-					  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
-					  	  	  			
 					  	  	  			foldScrolls();
+					  	  	  			
+					  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+
 					  	  	  			
 					  	  	  			String str4 = "foldScrolls";
 					  	  	  			sendToClient0(str4);
@@ -21959,9 +22301,10 @@ public void criticalMissGraphic() {
 					  	  	  			
 					  	  	  			//MediaPlayerWrapper.play(MainActivity2.this, R.raw.buttonsound6);
 					  	  	  			
-					  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
-					  	  	  			
 					  	  	  			foldScrolls();
+					  	  	  			
+					  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+
 					  	  	  			
 					  	  	  			String str6 = "foldScrolls";
 					  	  	  			sendToClient0(str6);
@@ -22022,9 +22365,10 @@ public void criticalMissGraphic() {
 					if (playerDeadYet[5].equals("no") && playerDeadYet[0].equals("yes") && playerDeadYet[1].equals("yes")) {
 					/*&& playerDeadYet[2] == "yes" && playerDeadYet[3] == "yes"	&& playerDeadYet[4] == "yes" && playerDeadYet[5] == "yes"*/
 						
-						MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
 						
 						victoryDefeatAnimation();
+						
+						MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
 						
 						
 						final Handler h = new Handler();
@@ -22090,9 +22434,10 @@ public void criticalMissGraphic() {
 					  	  	  			
 					  	  	  			//MediaPlayerWrapper.play(MainActivity2.this, R.raw.buttonsound6);
 					  	  	  			
-					  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
-					  	  	  			
 					  	  	  			foldScrolls();
+					  	  	  			
+					  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+
 					  	  	  			
 					  	  	  			String str4 = "foldScrolls";
 					  	  	  			sendToAllClients(str4);
@@ -22143,9 +22488,9 @@ public void criticalMissGraphic() {
 							/*&& playerDeadYet[2] == "yes" && playerDeadYet[3] == "yes"
 							&& playerDeadYet[4] == "yes" && playerDeadYet[5] == "yes"*/) {
 						
-						MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
-						
 						victoryDefeatAnimation();
+						
+						MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
 						
 						
 						final Handler h = new Handler();
@@ -22212,9 +22557,10 @@ public void criticalMissGraphic() {
 					  	  	  			
 					  	  	  			//MediaPlayerWrapper.play(MainActivity2.this, R.raw.buttonsound6);
 					  	  	  			
-					  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
-					  	  	  			
 					  	  	  			foldScrolls();
+					  	  	  			
+					  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+
 					  	  	  			
 					  	  	  			String str6 = "foldScrolls";
 					  	  	  			sendToAllClients(str6);
@@ -22265,9 +22611,9 @@ public void criticalMissGraphic() {
 							/*&& playerDeadYet[2] == "yes" && playerDeadYet[3] == "yes"
 							&& playerDeadYet[4] == "yes" && playerDeadYet[5] == "yes"*/) {
 						
-						MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
-						
 						victoryDefeatAnimation();
+						
+						MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
 						
 						
 						final Handler h = new Handler();
@@ -22334,9 +22680,10 @@ public void criticalMissGraphic() {
 					  	  	  			
 					  	  	  			//MediaPlayerWrapper.play(MainActivity2.this, R.raw.buttonsound6);
 					  	  	  			
-					  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
-					  	  	  			
 					  	  	  			foldScrolls();
+					  	  	  			
+					  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+
 					  	  	  			
 					  	  	  			String str6 = "foldScrolls";
 					  	  	  			sendToAllClients(str6);
@@ -23459,7 +23806,7 @@ public void criticalMissGraphic() {
 			
 			if (ishasteused.equals("yes")) {
 				
-				test=1;
+				//test=1;
 				//turnTest();
 				
 				hastePartTwo();
@@ -23468,7 +23815,7 @@ public void criticalMissGraphic() {
 				
 				if ((initiativeFinal[0] > initiativeFinal[1]) && Has0TakenTurn.equals("no") && hAs1TakenTurn.equals("no")) {
 					
-					test=2;
+					//test=2;
 					//turnTest();
 					
 					String str = "hastePartTwo";
@@ -23478,7 +23825,7 @@ public void criticalMissGraphic() {
 				}
 				if ((initiativeFinal[1] > initiativeFinal[0]) && hAs1TakenTurn.equals("yes") && Has0TakenTurn.equals("no")) {
 					
-					test=3;
+					//test=3;
 					//turnTest();
 					
 					String str = "hastePartTwo";
@@ -23492,7 +23839,7 @@ public void criticalMissGraphic() {
 				
 				if ((initiativeFinal[0] > initiativeFinal[1]) && Has0TakenTurn.equals("yes") && hAs1TakenTurn.equals("no")) {
 
-					test=4;
+					//test=4;
 					//turnTest();
 					
 					String str = "hastePartTwo";
@@ -23502,7 +23849,7 @@ public void criticalMissGraphic() {
 				}
 				if ((initiativeFinal[1] > initiativeFinal[0]) && hAs1TakenTurn.equals("no") && Has0TakenTurn.equals("no")) {
 
-					test=5;
+					//test=5;
 					//turnTest();
 					
 					String str = "hastePartTwo";
@@ -23513,35 +23860,35 @@ public void criticalMissGraphic() {
 			}
 			else if ((initiativeFinal[0] > initiativeFinal[1]) && Has0TakenTurn.equals("no") && hAs1TakenTurn.equals("no")) {
 
-				test=6;
+				//test=6;
 				//turnTest();
 				
 				gameEngine3V35Part2For0Part1();
 			}
 			else if ((initiativeFinal[0] > initiativeFinal[1]) && Has0TakenTurn.equals("yes") && hAs1TakenTurn.equals("no")) {
 
-				test=7;
+				//test=7;
 				//turnTest();
 				
 				gameEngine3V35Part2For1Part1();
 			}
 			else if ((initiativeFinal[1] > initiativeFinal[0]) && Has0TakenTurn.equals("no") && hAs1TakenTurn.equals("no")) {
 
-				test=8;
+				//test=8;
 				//turnTest();
 				
 				gameEngine3V35Part2For1Part1();
 			}
 			else if ((initiativeFinal[1] > initiativeFinal[0]) && Has0TakenTurn.equals("no") && hAs1TakenTurn.equals("yes")) {
 
-				test=9;
+				//test=9;
 				//turnTest();
 				
 				gameEngine3V35Part2For0Part1();
 			}			
 			else {
 
-				test=10;
+				//test=10;
 				//turnTest();
 				
 				turn();
@@ -23553,7 +23900,7 @@ public void criticalMissGraphic() {
 			
 			if (ishasteused0.equals("yes")) {
 				
-				test=11;
+				//test=11;
 				//turnTest();
 				
 				String str = "hastePartTwo";
@@ -23563,14 +23910,14 @@ public void criticalMissGraphic() {
 				
 				if ((initiativeFinal[5] > initiativeFinal[1]) && has5TakenTurn.equals("no") && hAs1TakenTurn.equals("no")) {
 
-					test=12;
+					//test=12;
 					//turnTest();
 					
 					hastePartTwo();
 				}
 				if ((initiativeFinal[1] > initiativeFinal[5]) && hAs1TakenTurn.equals("yes") && has5TakenTurn.equals("no")) {
 
-					test=13;
+					//test=13;
 					//turnTest();
 					
 					hastePartTwo();
@@ -23580,7 +23927,7 @@ public void criticalMissGraphic() {
 				
 				if ((initiativeFinal[5] > initiativeFinal[1]) && has5TakenTurn.equals("yes") && hAs1TakenTurn.equals("no")) {				
 
-					test=14;
+					//test=14;
 					//turnTest();
 					
 					String str = "hastePartTwo";
@@ -23590,7 +23937,7 @@ public void criticalMissGraphic() {
 				}
 				if ((initiativeFinal[1] > initiativeFinal[5]) && hAs1TakenTurn.equals("no") && has5TakenTurn.equals("no")) {
 
-					test=15;
+					//test=15;
 					//turnTest();
 					
 					String str = "hastePartTwo";
@@ -23601,21 +23948,21 @@ public void criticalMissGraphic() {
 			}
 			else if ((initiativeFinal[5] > initiativeFinal[1]) && (has5TakenTurn.equals("no") && hAs1TakenTurn.equals("no"))) {//ABN CHECK
 
-				test=16;
+				//test=16;
 				//turnTest();
 				
 				gameEngine3V3XPart2For5Part1();
 			}
 			else if ((initiativeFinal[5] > initiativeFinal[1]) && has5TakenTurn.equals("yes") && hAs1TakenTurn.equals("no")) {
 
-				test=17;
+				//test=17;
 				//turnTest();
 				
 				gameEngine3V35Part2For1Part1();
 			}
 			else if ((initiativeFinal[1] > initiativeFinal[5]) && hAs1TakenTurn.equals("no") && has5TakenTurn.equals("no")) {
 
-				test=18;
+				//test=18;
 				//turnTest();
 				
 				//gameEngine3V3XPart2For5Part1();
@@ -23623,14 +23970,14 @@ public void criticalMissGraphic() {
 			}
 			else if ((initiativeFinal[1] > initiativeFinal[5]) && hAs1TakenTurn.equals("yes") && has5TakenTurn.equals("no")) {
 
-				test=19;
+				//test=19;
 				//turnTest();
 				
 				gameEngine3V3XPart2For5Part1();
 			}
 			else {
 
-				test=20;
+				//test=20;
 				//turnTest();
 				
 				turn();
@@ -23642,7 +23989,7 @@ public void criticalMissGraphic() {
 			
 			if (ishasteused1.equals("yes")) {
 				
-				test=21;
+				//test=21;
 				//turnTest();
 				
 				String str = "hastePartTwo";
@@ -23652,14 +23999,14 @@ public void criticalMissGraphic() {
 				
 				if ((initiativeFinal[5] > initiativeFinal[0]) && has5TakenTurn.equals("no") && Has0TakenTurn.equals("no")) {
 
-					test=22;
+					//test=22;
 					//turnTest();
 					
 					hastePartTwo();
 				}
 				if ((initiativeFinal[0] > initiativeFinal[5]) && Has0TakenTurn.equals("yes") && has5TakenTurn.equals("no")) {
 
-					test=23;
+					//test=23;
 					//turnTest();
 					
 					hastePartTwo();
@@ -23669,7 +24016,7 @@ public void criticalMissGraphic() {
 				
 				if ((initiativeFinal[5] > initiativeFinal[0]) && has5TakenTurn.equals("yes") && Has0TakenTurn.equals("no")) {
 
-					test=24;
+					//test=24;
 					//turnTest();
 					
 					String str = "hastePartTwo";
@@ -23679,7 +24026,7 @@ public void criticalMissGraphic() {
 				}
 				if ((initiativeFinal[0] > initiativeFinal[5]) && Has0TakenTurn.equals("no") && has5TakenTurn.equals("no")) {
 
-					test=25;
+					//test=25;
 					//turnTest();
 					
 					String str = "hastePartTwo";
@@ -23690,35 +24037,35 @@ public void criticalMissGraphic() {
 			}
 			else if ((initiativeFinal[5] > initiativeFinal[0]) && has5TakenTurn.equals("no") && Has0TakenTurn.equals("no")) {
 
-				test=26;
+				//test=26;
 				//turnTest();
 				
 				gameEngine3V3XPart2For5Part1();
 			}
 			else if ((initiativeFinal[5] > initiativeFinal[0]) && has5TakenTurn.equals("yes") && Has0TakenTurn.equals("no")) {
 
-				test=27;
+				//test=27;
 				//turnTest();
 				
 				gameEngine3V35Part2For0Part1();
 			}
 			else if ((initiativeFinal[0] > initiativeFinal[5]) && Has0TakenTurn.equals("no") && has5TakenTurn.equals("no")) {
 
-				test=28;
+				//test=28;
 				//turnTest();
 				
 				gameEngine3V35Part2For0Part1();
 			}
 			else if ((initiativeFinal[0] > initiativeFinal[5]) && Has0TakenTurn.equals("yes") && has5TakenTurn.equals("no")) {
 
-				test=29;
+				//test=29;
 				//turnTest();
 				
 				gameEngine3V3XPart2For5Part1();
 			}
 			else {
 
-				test=30;
+				//test=30;
 				//turnTest();
 				
 				turn();
@@ -30806,9 +31153,10 @@ else if (read.contains("cstmImage")) {//MAY WANT MORE COMPLICATED TERM SO IT DOE
 											  	    	  	    	
 											  	    	  	    	Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");				
 											  	    	  	    												  	    	  	    		
-										  	    	  	    		MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
-										  	    	  	    		
+									  	    	  	    		
 										  	    	  	    		victoryDefeatAnimation();
+										  	    	  	    		
+										  	    	  	    		MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
 										  	    	  	    		
 										  	    	  	    		
 											  	  	  	  	    	final Handler h = new Handler();
@@ -30868,9 +31216,10 @@ else if (read.contains("cstmImage")) {//MAY WANT MORE COMPLICATED TERM SO IT DOE
 										  	  					  	  	  		@Override
 										  	  						  	  	  	public void run() {
 										  	  					  	  	  			
-										  	  					  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
-										  	  					  	  	  			
 										  	  					  	  	  			foldScrolls();
+										  	  					  	  	  			
+										  	  					  	  	  			MediaPlayerWrapper.play(Host.this, R.raw.scroll3);
+
 										  	  					  	  	  			
 										  	  					  	  	  			String str4 = "foldScrolls";
 										  	  					  	  	  			sendToClient0(str4);
