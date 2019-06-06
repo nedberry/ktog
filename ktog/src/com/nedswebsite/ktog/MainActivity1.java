@@ -284,7 +284,7 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 		            	
 		            	//savePlayerName();
 		            	
-		            	insertToDatabase(playername);	        	
+		            	//insertToDatabase(playername);	        	
 			        	
 			        	// ARRAY ADAPTER WITH ICON STUFF:	        	
 			        	
@@ -552,7 +552,7 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 		            	
 		            	//savePlayerName();
 		            	
-		            	insertToDatabase(playername);	        	
+		            	//insertToDatabase(playername);	        	
 			        	
 			        	// ARRAY ADAPTER WITH ICON STUFF:	        	
 			        	
@@ -2618,7 +2618,7 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 	// SEPERATOR
 	//===================================================================================================
 	
-	
+	/*
 	public static void insertToDatabase(final String player){
         class SendPostReqAsyncTask extends AsyncTask<String, Void, String> {
             @Override
@@ -2648,18 +2648,20 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
                 return "success";
             }
         }
-        /*
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-
-            Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
-            TextView textViewResult = (TextView) findViewById(R.id.textViewResult);
-            textViewResult.setText("Inserted");
-        }*/
+        
+        //@Override
+        //protected void onPostExecute(String result) {
+        //    super.onPostExecute(result);
+		//
+        //    Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+        //    TextView textViewResult = (TextView) findViewById(R.id.textViewResult);
+        //    textViewResult.setText("Inserted");
+        //}
+        
         SendPostReqAsyncTask sendPostReqAsyncTask = new SendPostReqAsyncTask();
         sendPostReqAsyncTask.execute(player);		
     }
+    */
 	
 	/*
 	public void savePlayerName() {
@@ -2846,7 +2848,7 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 		                	
 		                	//savePlayerName();
 		                	
-		                	insertToDatabase(playername);    	        	
+		                	//insertToDatabase(playername);    	        	
 		    	        	
 		    	        	// ARRAY ADAPTER WITH ICON STUFF:    	        	
 		    	        	
@@ -3064,7 +3066,7 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 		                	
 		                	//savePlayerName();
 		                	
-		                	insertToDatabase(playername);	        	
+		                	//insertToDatabase(playername);	        	
 		    	        	
 		    	        	// ARRAY ADAPTER WITH ICON STUFF:	        	
 		    	        	
@@ -3909,7 +3911,7 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 		                	
 		                	//savePlayerName();
 		                	
-		                	insertToDatabase(playername);    	        	
+		                	//insertToDatabase(playername);    	        	
 		    	        	
 		    	        	// ARRAY ADAPTER WITH ICON STUFF:    	        	
 		    	        	
@@ -4126,7 +4128,7 @@ public class MainActivity1 extends Activity {//WAS ActionBarActivity (got "app s
 		                	
 		                	//savePlayerName();
 		                	
-		                	insertToDatabase(playername);	        	
+		                	//insertToDatabase(playername);	        	
 		    	        	
 		    	        	// ARRAY ADAPTER WITH ICON STUFF:	        	
 		    	        	
