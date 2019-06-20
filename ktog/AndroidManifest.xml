@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.nedswebsite.ktog"
+    package="com.killtheotherguy.ktog"
     android:versionCode="1"
     android:versionName="1.0" >
 
     <uses-sdk
         android:minSdkVersion="15"
-        android:targetSdkVersion="26" />
+        android:targetSdkVersion="28" />
     <!-- WAS: android:targetSdkVersion="21" -->
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -14,12 +14,16 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.SEND_SMS" />
+    
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <!-- NEED EXTERNAL STORAGE PERM.?????? (for avatars, video) -->  
+    <!-- NEED EXTERNAL STORAGE PERM.?????? (for avatars, video)
+    
+    FORCED TO TAKE OUT BY GOOGLE:
+    <uses-permission android:name="android.permission.SEND_SMS" />
+     -->  
 
     <application
         android:allowBackup="true"
@@ -33,7 +37,7 @@
         
         <service
         android:enabled="true"         
-        android:name="com.nedswebsite.ktog.Badonk2SoundService"        
+        android:name="com.killtheotherguy.ktog.Badonk2SoundService"        
         />
         <!--
         THIS WAS LAST USED:
@@ -46,7 +50,7 @@
         <!-- was using: android:theme="@style/AppTheme" but the above worked -->
 
         <activity
-            android:name=".Video"
+            android:name="com.killtheotherguy.ktog.Video"
             android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -55,35 +59,35 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity1"
+            android:name="com.killtheotherguy.ktog.MainActivity1"
             android:configChanges="orientation|screenSize" >
             <intent-filter>
-                <action android:name="com.nedswebsite.ktog.MAINACTIVITY1" />
+                <action android:name="com.killtheotherguy.ktog.MAINACTIVITY1" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".Rules" > 
+        <activity android:name="com.killtheotherguy.ktog.Rules" > 
             <intent-filter>
-                <action android:name="com.nedswebsite.ktog.RULES" />
+                <action android:name="com.killtheotherguy.ktog.RULES" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity2"            
+            android:name="com.killtheotherguy.ktog.MainActivity2"            
             android:screenOrientation="landscape" >
             <intent-filter>
-                <action android:name="com.nedswebsite.ktog.MAINACTIVITY2" />
+                <action android:name="com.killtheotherguy.ktog.MAINACTIVITY2" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".Host"            
+            android:name="com.killtheotherguy.ktog.Host"            
             android:screenOrientation="landscape" >
             <intent-filter>
-                <action android:name="com.nedswebsite.ktog.HOST" />
+                <action android:name="com.killtheotherguy.ktog.HOST" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -92,10 +96,10 @@
         
         
         <activity
-            android:name=".playerNamesAndRecords"            
+            android:name="com.killtheotherguy.ktog.playerNamesAndRecords"            
             android:screenOrientation="landscape" >
             <intent-filter>
-                <action android:name="com.nedswebsite.ktog.HOST" />
+                <action android:name="com.killtheotherguy.ktog.HOST" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -104,13 +108,13 @@
         
         
         <activity
-            android:name=".Client1"          
+            android:name="com.killtheotherguy.ktog.Client1"          
             android:configChanges="orientation|screenSize"
              >
             <intent-filter>
                 
                 <action android:name="android.intent.action.VIEW"/>
-                <!-- <action android:name="com.nedswebsite.ktog.Client1"/> -->
+                <!-- <action android:name="com.killtheotherguy.ktog.Client1"/> -->
 
 			    <category android:name="android.intent.category.DEFAULT"/>
 			    <category android:name="android.intent.category.BROWSABLE"/>
@@ -130,13 +134,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Client1NewGuy"          
+            android:name="com.killtheotherguy.ktog.Client1NewGuy"          
             android:configChanges="orientation|screenSize"
              >
             <intent-filter>
                 
                 <action android:name="android.intent.action.VIEW"/>
-                <!-- <action android:name="com.nedswebsite.ktog.Client1"/> -->
+                <!-- <action android:name="com.killtheotherguy.ktog.Client1"/> -->
 
 			    <category android:name="android.intent.category.DEFAULT"/>
 			    <category android:name="android.intent.category.BROWSABLE"/>
@@ -156,13 +160,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Client1OldGuy"          
+            android:name="com.killtheotherguy.ktog.Client1OldGuy"          
             android:configChanges="orientation|screenSize"
              >
             <intent-filter>
                 
                 <action android:name="android.intent.action.VIEW"/>
-                <!-- <action android:name="com.nedswebsite.ktog.Client1"/> -->
+                <!-- <action android:name="com.killtheotherguy.ktog.Client1"/> -->
 
 			    <category android:name="android.intent.category.DEFAULT"/>
 			    <category android:name="android.intent.category.BROWSABLE"/>
@@ -182,10 +186,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Client2"           
+            android:name="com.killtheotherguy.ktog.Client2"           
             android:screenOrientation="landscape" >
             <intent-filter>                
-                <action android:name="com.nedswebsite.ktog.Client2"/>
+                <action android:name="com.killtheotherguy.ktog.Client2"/>
                 <!-- WAS: <action android:name="android.intent.action.VIEW"/>  -->
 
 			    <category android:name="android.intent.category.DEFAULT"/>                

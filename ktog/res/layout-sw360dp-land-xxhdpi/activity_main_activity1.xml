@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/mainmenutitle"
-    tools:context="com.nedswebsite.ktog.MainActivity1" >
+    tools:context="com.killtheotherguy.ktog.MainActivity1" >
 	
     <!--
     <LinearLayout 
