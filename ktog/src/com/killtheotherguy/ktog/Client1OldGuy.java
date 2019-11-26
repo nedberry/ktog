@@ -177,6 +177,13 @@ public class Client1OldGuy extends Activity {//WAS ActionBarActivity (got "app s
 		  			toast.show();
 	        		
 	        		
+		  			Intent intent = new Intent(Client1OldGuy.this, MainActivity1.class);
+		  			//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+		  			startActivity(intent);
+		  		  	
+		  		  	hideSystemUI();
+		  			
+		  			
 					//stopService(svc);
 					//startService(svc);
 	        	}
@@ -256,6 +263,8 @@ public class Client1OldGuy extends Activity {//WAS ActionBarActivity (got "app s
 	    	    	        public void onDismiss(DialogInterface dialog) {
 	    	    	        	
 	    	    	        	hideSystemUI();
+	    	    	        	
+	    	    	        	//finish();
 	    	    	        }
 	    	    	    });
 	    		  		
@@ -284,338 +293,128 @@ public class Client1OldGuy extends Activity {//WAS ActionBarActivity (got "app s
 	    	                        	
 	    		                        	if (item == i) {
 	    		                        		
-	    		                        		buttonSound.start();
-	    		                        		
-	    		                        		
 	    		                        		//ArrayOfPlayers.player[5] = name[i];
 	    		                        		tempName = name[i];
 	    		                        		
 	    		                        		//Toast.makeText(Client1OldGuy.this, name[i], Toast.LENGTH_SHORT).show();
 	    		                        		
 	    		                        		
-	    		                        		final String[] items = {"One Player", "Multiplayer"};
-	    		                        		
-	    		                        		// Instead of String[] items, Here you can also use ArrayList for your custom object..
-	    		                        		
-	    		                		  		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.list_row, R.id.title,items) {
-	    		                	
-	    		                		  		    ViewHolder holder;
-	    		                		  		    Drawable icon;//FOR LAST AVATAR THAT WAS USED??? (LOCATION CAN BE SAVE LIKE OTHER GAME DATA)
-	    		                	
-	    		                		  		    class ViewHolder {
-	    		                		  		        ImageView icon;
-	    		                		  		        TextView title;						
-	    		                		  		    }
-	    		                	
-	    		                		  		    public View getView(int position, View convertView, ViewGroup parent) {
-	    		                		  		        final LayoutInflater inflater = (LayoutInflater) getApplicationContext()
-	    		                		  		                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);		  			  		        
-	    		                	
-	    		                		  		        if (convertView == null) {
-	    		                		  		            convertView = inflater.inflate(R.layout.list_row, null);
-	    		                	
-	    		                		  		            holder = new ViewHolder();
-	    		                		  		            holder.icon = (ImageView) convertView.findViewById(R.id.icon);
-	    		                		  		            holder.title = (TextView) convertView.findViewById(R.id.title);		  		           
-	    		                		  		            
-	    		                		  		            convertView.setTag(holder);
-	    		                		  		        }
-	    		                		  		        
-	    		                		  		        else {
-	    		                		  		            // view already defined, retrieve view holder
-	    		                		  		            holder = (ViewHolder) convertView.getTag();
-	    		                		  		        }       
-	    		                	
-	    		                		  		       // Drawable drawable = getResources().getDrawable(R.drawable.list_icon); //this is an image from the drawables folder
-	    		                	
-	    		                		  		        holder.title.setText(items[position]);
-	    		                		  		        //holder.icon.setImageDrawable(drawable);     
-	    		                		  		        
-	    		                	
-	    		                		  		        return convertView;
-	    		                		  		    }
-	    		                		  		};
-	    		                		  		
-	    		                		  		
-	    		                		  		// THIS WAY ALLOWS YOU TO STYLE THE DIALOG (ex. background doesn't dim.):
-	    		                		  		ContextThemeWrapper cw = new ContextThemeWrapper(Client1OldGuy.this, R.layout.avatar_adapter);
-	    		                		  		AlertDialog.Builder builder = new AlertDialog.Builder(cw, R.style.customalertdialog);		  			  		
-	    		                		  		
-	    		                	  			
-	    		                		  		//builder.setTitle("Choose Your Game");
-	    		                		  		//Toast.makeText(Client1OldGuy.this,"Choose Your Game", Toast.LENGTH_SHORT).show();
-	    		                		  		
-	    		                		  		
-	    		                	  			//builder.setCancelable(false);
-	    		                		  		builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-	    		        	    	    	        @Override
-	    		        	    	    	        public void onDismiss(DialogInterface dialog) {
-	    		        	    	    	        	
-	    		        	    	    	        	hideSystemUI();
-	    		        	    	    	        }
-	    		        	    	    	    });
-	    		                		  		
-	    		                		  		/*
-	    		                		  		builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
-	    		        	    					@Override
-	    		        	    					public void onCancel(DialogInterface dialog) {		  							
-	    		        	    						
-	    		        	    						//IF NOTHING DOESN'T WORK, TRY:
-	    		        	    						
-	    		        	    						stopService(svc);
-	    		        	    						
-	    		        	    						Intent i = new Intent(Client1OldGuy.this, MainActivity1.class);
-	    		        	    			        	Client1OldGuy.this.startActivity(i);
-	    		        	    					}
-	    		        	    				});
-	    		                				*/
-	    		                		  		
-	    		                	            builder.setAdapter(adapter,
-	    		                	                    new DialogInterface.OnClickListener() {
-	    		                	                        @Override
-	    		                	                        public void onClick(final DialogInterface dialog, int item) {
-	    		                	                        	
-	    	                		                        	if (item == 0) {
+	    		                        		buttonSound.start();
 	    	                		                        		
-	    	                		                        		buttonSound.start();
-	    	                		                        		
-	    	                		                        		
-	    	                		                        		ArrayOfPlayers.player[0] = tempName;
-	    	                		                        		ArrayOfPlayers.player[1] = "Computer";
-	    	                		                        		
-	    	                		                        		
-	    	                		                        		final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead", "Custom"};
-	    	                		            		    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2, R.drawable.computer};
-	    	                		            		    		
-	    	                		            		    		ListAdapter adapter = new ArrayAdapterWithIcon(Client1OldGuy.this, items, avatars);
-	    	                		            		    		
-	    	                		            		    		ContextThemeWrapper wrapper = new ContextThemeWrapper(Client1OldGuy.this, R.layout.avatar_adapter);
-	    	                		            		    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper, R.style.customalertdialog);
-	    	                		            		    		//builder.setIcon(R.drawable.computerhead);
-	    	                		            		    		
-	    	                		            		    		//builder.setTitle("Choose Your Avatar");
-	    	                		            		    		//Toast.makeText(Client1OldGuy.this,"Choose Your Avatar", Toast.LENGTH_SHORT).show();
-	    	                		            		    		
-	    	                		            		    		
-	    	                		            		    		Toast toast = Toast.makeText(Client1OldGuy.this, "Choose An Avatar", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
-	    	                		            		  			View view = toast.getView();
-	    	                		            		  			view.setBackgroundResource(R.drawable.centerscroll3toast);
-	    	                		            		  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
+        		                        		multiplayer = "yes";
+        		                        		
+        		                        		ArrayOfPlayers.player[0] = tempName;
+        		                        		
+        		                        		
+        		                        		final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead", "Custom"};
+        		            		    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2, R.drawable.computer};
+        		            		    		
+        		            		    		ListAdapter adapter = new ArrayAdapterWithIcon(Client1OldGuy.this, items, avatars);
+        		            		    		
+        		            		    		ContextThemeWrapper wrapper = new ContextThemeWrapper(Client1OldGuy.this, R.layout.avatar_adapter);
+        		            		    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper, R.style.customalertdialog);
+        		            		    		//builder.setIcon(R.drawable.computerhead);
+        		            		    		
+        		            		    		//builder.setTitle("Choose Your Avatar");
+        		            		    		//Toast.makeText(Client1OldGuy.this,"Choose Your Avatar", Toast.LENGTH_SHORT).show();
+        		            		    		
+        		            		    		
+        		            		    		Toast toast = Toast.makeText(Client1OldGuy.this, "Choose An Avatar", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
+        		            		  			View view = toast.getView();
+        		            		  			view.setBackgroundResource(R.drawable.centerscroll3toast);
+        		            		  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
 
-	    	                		            		  			TextView text = (TextView) view.findViewById(android.R.id.message);
-	    	                		            		  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-	    	                		            		  			text.setTypeface(typeFace);
-	    	                		            		  			text.setTextColor(Color.parseColor("#FFFFFF"));
-	    	                		            		  			//text.setRotation(-45);
-	    	                		            		  			text.setGravity(Gravity.CENTER);
-	    	                		            		  			
-	    	                		            		  			toast.show();
-	    	                		            		    		
-	    	                		            		    		
-	    	                		            		    		builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-	    	                		        	    	    	        @Override
-	    	                		        	    	    	        public void onDismiss(DialogInterface dialog) {
-	    	                		        	    	    	        	
-	    	                		        	    	    	        	hideSystemUI();
-	    	                		        	    	    	        }
-	    	                		        	    	    	    });
-	    	                		            		    		
-	    	                		            		    		/*
-	    	                		            		    		builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
-	    	                		        	    					@Override
-	    	                		        	    					public void onCancel(DialogInterface dialog) {		  							
-	    	                		        	    						
-	    	                		        	    						//IF NOTHING DOESN'T WORK, TRY:
-	    	                		        	    						
-	    	                		        	    						stopService(svc);
-	    	                		        	    						
-	    	                		        	    						Intent i = new Intent(Client1OldGuy.this, MainActivity1.class);
-	    	                		        	    			        	Client1OldGuy.this.startActivity(i);
-	    	                		        	    					}
-	    	                		        	    				});
-	    	                		            		    		*/
-	    	                		            		    		
-	    	                		            		    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
-	    	                		            		    			public void onClick(DialogInterface dialog, int item) { 
-	    	                		            		    								
-	    	                		            		    				if (item == 0) {
-	    	                		            		    					ArrayOfAvatars.avatar[0] = "computer";
-	    	                		            		    					
-	    	                		            		    					stopService(svc);	    				
-	    	                		            			    				
-	    	                		            			    				Intent intent = new Intent(Client1OldGuy.this, MainActivity2.class);
-	    	                		            			    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-	    	                		            			    				startActivity(intent);
-	    	                		            			    	        	
-	    	                		            			    	        	dialog.dismiss();
-	    	                		            			    	        	
-	    	                		            			    	        	hideSystemUI();
-	    	                		            		    				}
-	    	                		            		    				else if (item == 1) {
-	    	                		            		    					ArrayOfAvatars.avatar[0] = "crossedswords";
-	    	                		            		    					
-	    	                		            		    					stopService(svc);	    				
-	    	                		            			    				
-	    	                		            			    				Intent intent = new Intent(Client1OldGuy.this, MainActivity2.class);
-	    	                		            			    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-	    	                		            			    				startActivity(intent);
-	    	                		            			    	        	
-	    	                		            			    	        	dialog.dismiss();
-	    	                		            			    	        	
-	    	                		            			    	        	hideSystemUI();
-	    	                		            		    				}
-	    	                		            		    				else if (item == 2) {
-	    	                		            		    					ArrayOfAvatars.avatar[0] = "stonedead";
-	    	                		            		    					
-	    	                		            		    					stopService(svc);	    				
-	    	                		            			    				
-	    	                		            			    				Intent intent = new Intent(Client1OldGuy.this, MainActivity2.class);
-	    	                		            			    				//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-	    	                		            			    				startActivity(intent);
-	    	                		            			    	        	
-	    	                		            			    	        	dialog.dismiss();
-	    	                		            			    	        	
-	    	                		            			    	        	hideSystemUI();
-	    	                		            		    				}
-	    	                		            		    				else if (item == 3) {
-	    	                		            		    					ArrayOfAvatars.avatar[0] = "custom";
-	    	                		            		    					
-	    	                		            		    					stopService(svc);
-	    	                		            		    					
-	    	                		            		    					openGallery();
-	    	                		            		    					
-	    	                		            		    					dialog.dismiss();
-	    	                		            		    					
-	    	                		            		    					hideSystemUI();
-	    	                		            		    				}    				
-	    	                		            		    	        	
-	    	                		            		    	        	//finish();
-	    	                		            	        	  		}
-	    	                		            		    		});	    		
-	    	                		            		        	
-	    	                		            		            builder.create().show();
-	    	                		                        	}
-	    	                		                        	
-	    	                		                        	else if (item == 1) {
-	    	                		                        		
-	    	                		                        		buttonSound.start();
-	    	                		                        		
-	    	                		                        		multiplayer = "yes";
-	    	                		                        		
-	    	                		                        		ArrayOfPlayers.player[0] = tempName;
-	    	                		                        		
-	    	                		                        		
-	    	                		                        		final String[] items = new String[] {"Computer", "Crossed Swords", "Stone Dead", "Custom"};
-	    	                		            		    		final Integer[] avatars = new Integer[] {R.drawable.computer, R.drawable.crossedswords2, R.drawable.stonedead2, R.drawable.computer};
-	    	                		            		    		
-	    	                		            		    		ListAdapter adapter = new ArrayAdapterWithIcon(Client1OldGuy.this, items, avatars);
-	    	                		            		    		
-	    	                		            		    		ContextThemeWrapper wrapper = new ContextThemeWrapper(Client1OldGuy.this, R.layout.avatar_adapter);
-	    	                		            		    		AlertDialog.Builder builder = new AlertDialog.Builder(wrapper, R.style.customalertdialog);
-	    	                		            		    		//builder.setIcon(R.drawable.computerhead);
-	    	                		            		    		
-	    	                		            		    		//builder.setTitle("Choose Your Avatar");
-	    	                		            		    		//Toast.makeText(Client1OldGuy.this,"Choose Your Avatar", Toast.LENGTH_SHORT).show();
-	    	                		            		    		
-	    	                		            		    		
-	    	                		            		    		Toast toast = Toast.makeText(Client1OldGuy.this, "Choose An Avatar", Toast.LENGTH_SHORT);//INSTEAD OF "Choose Action": R.string.string_message_id
-	    	                		            		  			View view = toast.getView();
-	    	                		            		  			view.setBackgroundResource(R.drawable.centerscroll3toast);
-	    	                		            		  			toast.setGravity(Gravity.TOP, 0, 0);//CAN CHANGE X, Y POSITIONS RELATIVE TO CENTER
-
-	    	                		            		  			TextView text = (TextView) view.findViewById(android.R.id.message);
-	    	                		            		  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
-	    	                		            		  			text.setTypeface(typeFace);
-	    	                		            		  			text.setTextColor(Color.parseColor("#FFFFFF"));
-	    	                		            		  			//text.setRotation(-45);
-	    	                		            		  			text.setGravity(Gravity.CENTER);
-	    	                		            		  			
-	    	                		            		  			toast.show();
-	    	                		            		    		
-	    	                		            		    		
-	    	                		            		    		builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-	    	                		        	    	    	        @Override
-	    	                		        	    	    	        public void onDismiss(DialogInterface dialog) {
-	    	                		        	    	    	        	
-	    	                		        	    	    	        	hideSystemUI();
-	    	                		        	    	    	        }
-	    	                		        	    	    	    });
-	    	                		            		    		
-	    	                		            		    		/*
-	    	                		            		    		builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
-	    	                		        	    					@Override
-	    	                		        	    					public void onCancel(DialogInterface dialog) {		  							
-	    	                		        	    						
-	    	                		        	    						//IF NOTHING DOESN'T WORK, TRY:
-	    	                		        	    						
-	    	                		        	    						stopService(svc);
-	    	                		        	    						
-	    	                		        	    						Intent i = new Intent(Client1OldGuy.this, MainActivity1.class);
-	    	                		        	    			        	Client1OldGuy.this.startActivity(i);
-	    	                		        	    					}
-	    	                		        	    				});
-	    	                		            		    		*/
-	    	                		            		    		
-	    	                		            		    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
-	    	                		            		    			public void onClick(DialogInterface dialog, int item) { 
-	    	                		            		    								
-	    	                		            		    				if (item == 0) {
-	    	                		            		    					
-	    	                		            		    					buttonSound.start();
-	    	                		            		    					
-	    	                		            		    					ArrayOfAvatars.avatar[0] = "computer";
-	    	                		            		    					
-	    	                		            		    					goToJoin();
-	    	                		            			    	        	
-	    	                		            			    	        	dialog.dismiss();
-	    	                		            			    	        	
-	    	                		            			    	        	hideSystemUI();
-	    	                		            		    				}
-	    	                		            		    				else if (item == 1) {
-	    	                		            		    					
-	    	                		            		    					buttonSound.start();
-	    	                		            		    					
-	    	                		            		    					ArrayOfAvatars.avatar[0] = "crossedswords";
-	    	                		            		    					
-	    	                		            		    					goToJoin();
-	    	                		            			    	        	
-	    	                		            			    	        	dialog.dismiss();
-	    	                		            			    	        	
-	    	                		            			    	        	hideSystemUI();
-	    	                		            		    				}
-	    	                		            		    				else if (item == 2) {
-	    	                		            		    					
-	    	                		            		    					buttonSound.start();
-	    	                		            		    					
-	    	                		            		    					ArrayOfAvatars.avatar[0] = "stonedead";
-	    	                		            		    					
-	    	                		            		    					goToJoin();
-	    	                		            			    	        	
-	    	                		            			    	        	dialog.dismiss();
-	    	                		            			    	        	
-	    	                		            			    	        	hideSystemUI();
-	    	                		            		    				}
-	    	                		            		    				else if (item == 3) {
-	    	                		            		    					
-	    	                		            		    					buttonSound.start();
-	    	                		            		    					
-	    	                		            		    					ArrayOfAvatars.avatar[0] = "custom";	    					
-	    	                		            		    					
-	    	                		            		    					openGallery();
-	    	                		            		    					
-	    	                		            		    					dialog.dismiss();
-	    	                		            		    					
-	    	                		            		    					hideSystemUI();
-	    	                		            		    				}    				
-	    	                		            		    	        	
-	    	                		            		    	        	//finish();
-	    	                		            	        	  		}
-	    	                		            		    		});	    		
-	    	                		            		        	
-	    	                		            		            builder.create().show();
-	    	                		                        	}
-	    		                	                        }
-	    		                	                    });	            
+        		            		  			TextView text = (TextView) view.findViewById(android.R.id.message);
+        		            		  			Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/PirataOne-Regular.ttf");
+        		            		  			text.setTypeface(typeFace);
+        		            		  			text.setTextColor(Color.parseColor("#FFFFFF"));
+        		            		  			//text.setRotation(-45);
+        		            		  			text.setGravity(Gravity.CENTER);
+        		            		  			
+        		            		  			toast.show();
+        		            		    		
+        		            		    		
+        		            		    		builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+        		        	    	    	        @Override
+        		        	    	    	        public void onDismiss(DialogInterface dialog) {
+        		        	    	    	        	
+        		        	    	    	        	hideSystemUI();
+        		        	    	    	        }
+        		        	    	    	    });
+        		            		    		
+        		            		    		/*
+        		            		    		builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+        		        	    					@Override
+        		        	    					public void onCancel(DialogInterface dialog) {		  							
+        		        	    						
+        		        	    						//IF NOTHING DOESN'T WORK, TRY:
+        		        	    						
+        		        	    						stopService(svc);
+        		        	    						
+        		        	    						Intent i = new Intent(Client1OldGuy.this, MainActivity1.class);
+        		        	    			        	Client1OldGuy.this.startActivity(i);
+        		        	    					}
+        		        	    				});
+        		            		    		*/
+        		            		    		
+        		            		    		builder.setAdapter(adapter, new DialogInterface.OnClickListener() { 
+        		            		    			public void onClick(DialogInterface dialog, int item) { 
+        		            		    								
+        		            		    				if (item == 0) {
+        		            		    					
+        		            		    					buttonSound.start();
+        		            		    					
+        		            		    					ArrayOfAvatars.avatar[0] = "computer";
+        		            		    					
+        		            		    					goToJoin();
+        		            			    	        	
+        		            			    	        	dialog.dismiss();
+        		            			    	        	
+        		            			    	        	hideSystemUI();
+        		            		    				}
+        		            		    				else if (item == 1) {
+        		            		    					
+        		            		    					buttonSound.start();
+        		            		    					
+        		            		    					ArrayOfAvatars.avatar[0] = "crossedswords";
+        		            		    					
+        		            		    					goToJoin();
+        		            			    	        	
+        		            			    	        	dialog.dismiss();
+        		            			    	        	
+        		            			    	        	hideSystemUI();
+        		            		    				}
+        		            		    				else if (item == 2) {
+        		            		    					
+        		            		    					buttonSound.start();
+        		            		    					
+        		            		    					ArrayOfAvatars.avatar[0] = "stonedead";
+        		            		    					
+        		            		    					goToJoin();
+        		            			    	        	
+        		            			    	        	dialog.dismiss();
+        		            			    	        	
+        		            			    	        	hideSystemUI();
+        		            		    				}
+        		            		    				else if (item == 3) {
+        		            		    					
+        		            		    					buttonSound.start();
+        		            		    					
+        		            		    					ArrayOfAvatars.avatar[0] = "custom";
+        		            		    					
+        		            		    					openGallery();
+        		            		    					
+        		            		    					dialog.dismiss();
+        		            		    					
+        		            		    					hideSystemUI();
+        		            		    				}    				
+        		            		    	        	
+        		            		    	        	//finish();
+        		            	        	  		}
+        		            		    		});	    		
+        		            		        	
+        		            		            builder.create().show();
+	    	                		                        	     
 	    		                	            
 	    		                	            AlertDialog alert = builder.create();
 	    		                	            alert.show();	            
@@ -677,9 +476,6 @@ public class Client1OldGuy extends Activity {//WAS ActionBarActivity (got "app s
 						//startService(svc);
 				//}
             	}
-  	    	
-  	  	    
-    		
 		 
 	}
 	
@@ -985,6 +781,11 @@ public class Client1OldGuy extends Activity {//WAS ActionBarActivity (got "app s
 		  			text2.setGravity(Gravity.CENTER);
 		  			
 		  			toast2.show();
+		  			
+		  			
+		  			hideSystemUI();
+    	        	
+    	        	finish();
 				}
 				
 				else {
@@ -1003,6 +804,11 @@ public class Client1OldGuy extends Activity {//WAS ActionBarActivity (got "app s
 		  			text3.setGravity(Gravity.CENTER);
 		  			
 		  			toast3.show();
+		  			
+		  			
+		  			hideSystemUI();
+    	        	
+    	        	finish();
 				}
 			}
 			
@@ -1022,6 +828,11 @@ public class Client1OldGuy extends Activity {//WAS ActionBarActivity (got "app s
 	  			text4.setGravity(Gravity.CENTER);
 	  			
 	  			toast4.show();
+	  			
+	  			
+	  			hideSystemUI();
+	        	
+	        	finish();
 			}
 			
 			break;//NEED THIS?
@@ -1119,13 +930,13 @@ public class Client1OldGuy extends Activity {//WAS ActionBarActivity (got "app s
 	@Override
     public void onBackPressed() {
 			
-			//hideSystemUI();
-			
-			Intent svc=new Intent(this, Badonk2SoundService.class);
-			stopService(svc);
-			
-            super.onBackPressed();
-            this.finish();
+		//hideSystemUI();
+		
+		Intent svc=new Intent(this, Badonk2SoundService.class);
+		stopService(svc);
+		
+        super.onBackPressed();
+        this.finish();
     }
 	
 	// DESTROYS EVERYTHING (EXCEPT SERVICE?)
@@ -1135,9 +946,12 @@ public class Client1OldGuy extends Activity {//WAS ActionBarActivity (got "app s
 		Intent svc=new Intent(this, Badonk2SoundService.class);
 		stopService(svc);
 		
-	    android.os.Process.killProcess(android.os.Process.myPid());
+	    //android.os.Process.killProcess(android.os.Process.myPid());
 	    
 	    super.onDestroy();
+	    
+	    //stopService(svc);
+		//startService(svc);
 	}	
 	
 	public void onPause() {

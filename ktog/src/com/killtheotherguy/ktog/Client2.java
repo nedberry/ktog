@@ -34,8 +34,9 @@ import java.util.List;
 import java.util.Set;
 
 import com.killtheotherguy.ktog.R;
-import com.killtheotherguy.ktog.Host.ClientWorker;
-import com.killtheotherguy.ktog.Host.updateUIThread;
+
+//import com.killtheotherguy.ktog.Host.ClientWorker;
+//import com.killtheotherguy.ktog.Host.updateUIThread;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -56,6 +57,8 @@ import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.net.nsd.NsdManager;
+import android.net.nsd.NsdServiceInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -94,6 +97,15 @@ import android.widget.Toast;
  */
 public class Client2 extends Activity {
     
+	private String SERVICE_NAME = "Client Device";
+    private String SERVICE_TYPE = "_http._tcp.";
+    
+    private InetAddress hostAddress;
+    private int hostPort;
+    private NsdManager mNsdManager;
+	
+	
+	
 	int tempCriticalHit;//# of successful crit hits for that user during game (INCLUdING MB)
 	//don't need tempGames, tempWins or tempLoses (just adding 1)
 	
@@ -292,16 +304,20 @@ public class Client2 extends Activity {
 		
 		final Intent svc=new Intent(this, Badonk2SoundService.class);
 		//stopService(svc);
-		//startService(svc);		
+		//startService(svc);
 		
+		
+		mNsdManager = (NsdManager) getSystemService(Context.NSD_SERVICE);
+        mNsdManager.discoverServices(SERVICE_TYPE, NsdManager.PROTOCOL_DNS_SD, mDiscoveryListener);
+        
 		
 		updateConversationHandler = new Handler();
 		
 		//startup();
-		hostIP = ArrayOfIP.hostIP[5];
+		//hostIP = ArrayOfIP.hostIP[5];
 		
 		// MOVE THIS DOWN A BIT??????????????
-		new Thread(new ClientThread()).start();
+		//new Thread(new ClientThread()).start();
 		
 		
 		
@@ -739,8 +755,13 @@ public class Client2 extends Activity {
   	  	h3.postDelayed(new Runnable() {
 
   	  		@Override
-  	  		public void run()
-  	  		{  	  			
+  	  		public void run() {
+  	  			
+  	  			
+  	  			new Thread(new ClientThread()).start();//HERE TO GIVE NSD TIME TO CONFIGURE
+  	  			
+  	  			//Toast.makeText(Client2.this, "THIS IS THE HOSTIP" + hostIP, Toast.LENGTH_SHORT).show();
+  	  			
   	  			centerscrolltext.setVisibility(View.VISIBLE);
   	  			centerscrolltext.startAnimation(animAlphaText);
 	  			centerscrolltext.append("> Welcome, " + ArrayOfPlayers.player[0] + ".");
@@ -3447,6 +3468,10 @@ public class Client2 extends Activity {
 		Intent svc=new Intent(this, Badonk2SoundService.class);
 		stopService(svc);
 		
+		if (mNsdManager != null) {
+            mNsdManager.stopServiceDiscovery(mDiscoveryListener);
+        }
+		
 		if (socket != null) {
 			try {
 				socket.close();
@@ -3533,13 +3558,26 @@ public class Client2 extends Activity {
 		// Toast.LENGTH_SHORT).show();
 	}
 	
+	@Override
+    protected void onPause() {
+        if (mNsdManager != null) {
+            mNsdManager.stopServiceDiscovery(mDiscoveryListener);
+        }
+        super.onPause();
+    }
+	/*
 	public void onResume() {
 		
 		hideSystemUI();
 		
-		super.onResume();		
+		super.onResume();
+		
+		if (mNsdManager != null) {
+            mNsdManager.discoverServices(
+                SERVICE_TYPE, NsdManager.PROTOCOL_DNS_SD, mDiscoveryListener);
+        }
 	}	
-	
+	*/
 	
 	/*
 	 * 
@@ -15917,7 +15955,6 @@ public void criticalMissGraphic() {
 				Toast.makeText(Client2.this, "WORKING!!!!!!!!!!!!", Toast.LENGTH_SHORT).show();
 			}
 		});
-		
 	}
 	*/
 	
@@ -16168,6 +16205,166 @@ public void criticalMissGraphic() {
 	//=============================================================================================
 	
 	
+	//NSD STUFF:
+	
+	//public class ClientActivity extends Activity {
+	
+		//COMMENTED-OUT IS UP TOP OR INCLUDED ANDROID METHODS:
+		
+		/*
+	    private String SERVICE_NAME = "Client Device";
+	    private String SERVICE_TYPE = "_http._tcp.";
+	    
+	    private InetAddress hostAddress;
+	    private int hostPort;
+	    private NsdManager mNsdManager;
+
+	    @Override
+	    public void onCreate(Bundle savedInstanceState) {HERE
+	        super.onCreate(savedInstanceState);
+	        
+	        // set content view and other stuff
+	        
+	        // NSD Stuff
+	        mNsdManager = (NsdManager) getSystemService(Context.NSD_SERVICE);
+	        mNsdManager.discoverServices(SERVICE_TYPE,
+	            NsdManager.PROTOCOL_DNS_SD, mDiscoveryListener);
+	    }
+	    */
+		/*
+	    @Override
+	    protected void onPause() {
+	        if (mNsdManager != null) {
+	            mNsdManager.stopServiceDiscovery(mDiscoveryListener);
+	        }
+	        super.onPause();
+	    }
+	    */
+		/*
+	    @Override
+	    protected void onResume() {
+	        super.onResume();
+	        if (mNsdManager != null) {
+	            mNsdManager.discoverServices(
+	                SERVICE_TYPE, NsdManager.PROTOCOL_DNS_SD, mDiscoveryListener);
+	        }
+	    }
+	    */
+		/*
+	    @Override
+	    protected void onDestroy() {
+	        if (mNsdManager != null) {
+	            mNsdManager.stopServiceDiscovery(mDiscoveryListener);
+	        }
+	        super.onDestroy();
+	    }
+	    */
+
+	    NsdManager.DiscoveryListener mDiscoveryListener = new NsdManager.DiscoveryListener() {
+	    	
+	        // Called as soon as service discovery begins.
+	        @Override
+	        public void onDiscoveryStarted(String regType) {
+	            //Log.d(TAG, "Service discovery started");
+	        	//Toast.makeText(Client2.this, "WORKING!!!!!!!!!!!!", Toast.LENGTH_SHORT).show();
+	        }
+	        
+	        @Override
+	        public void onServiceFound(NsdServiceInfo service) {
+	                // A service was found! Do something with it.
+	                //Log.d(TAG, "Service discovery success : " + service);
+	                //Log.d(TAG, "Host = "+ service.getServiceName());
+	                //Log.d(TAG, "port = " + String.valueOf(service.getPort()));
+	                
+	            if (!service.getServiceType().equals(SERVICE_TYPE)) {
+	                // Service type is the string containing the protocol and
+	                // transport layer for this service.
+	                //Log.d(TAG, "Unknown Service Type: " + service.getServiceType());
+	            } else if (service.getServiceName().equals(SERVICE_NAME)) {
+	                // The name of the service tells the user what they'd be
+	                // connecting to. It could be "Bob's Chat App".
+	                //Log.d(TAG, "Same machine: " + SERVICE_NAME);
+	            } else {
+	                //Log.d(TAG, "Diff Machine : " + service.getServiceName());
+	                // connect to the service and obtain serviceInfo
+	                mNsdManager.resolveService(service, mResolveListener);
+	            }
+	        }
+	        
+	        @Override
+	        public void onServiceLost(NsdServiceInfo service) {
+	            // When the network service is no longer available.
+	            // Internal bookkeeping code goes here.
+	            //Log.e(TAG, "service lost" + service);
+	        }
+	        
+	        @Override
+	        public void onDiscoveryStopped(String serviceType) {
+	            //Log.i(TAG, "Discovery stopped: " + serviceType);
+	        }
+	        
+	        @Override
+	        public void onStartDiscoveryFailed(String serviceType, int errorCode) {
+	            //Log.e(TAG, "Discovery failed: Error code:" + errorCode);
+	            mNsdManager.stopServiceDiscovery(this);
+	            Toast.makeText(Client2.this, "NOT WORKING", Toast.LENGTH_SHORT).show();
+	        }
+	        
+	        @Override
+	        public void onStopDiscoveryFailed(String serviceType, int errorCode) {
+	            //Log.e(TAG, "Discovery failed: Error code:" + errorCode);
+	            mNsdManager.stopServiceDiscovery(this);
+	        }
+	    };
+	    
+	    NsdManager.ResolveListener mResolveListener = new NsdManager.ResolveListener() {
+	    
+	        @Override
+	        public void onResolveFailed(NsdServiceInfo serviceInfo, int errorCode) {
+	            // Called when the resolve fails. Use the error code to debug.
+	            //Log.e(TAG, "Resolve failed " + errorCode);
+	            //Log.e(TAG, "serivce = " + serviceInfo);
+	        }
+	    
+	        @Override
+	        public void onServiceResolved(NsdServiceInfo serviceInfo) {
+	            //Log.d(TAG, "Resolve Succeeded. " + serviceInfo);
+	            
+	            if (serviceInfo.getServiceName().equals(SERVICE_NAME)) {
+	                //Log.d(TAG, "Same IP.");
+	                return;
+	            }
+	        
+	            // Obtain port and IP
+	            hostPort = 2000;//WAS: serviceInfo.getPort()
+	            hostAddress = serviceInfo.getHost();
+	            
+	            hostIP = hostAddress.getHostAddress();
+	        }
+	    };
+	    
+	//}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public void print(Object obj){
 		
 		try {	
@@ -16187,9 +16384,6 @@ public void criticalMissGraphic() {
 		
 		print(read);
 	}
-	
-	
-	
 	
 	
 	
@@ -16230,12 +16424,10 @@ public void criticalMissGraphic() {
 	
 	
 	
-	
-	
-	
 	class ClientThread implements Runnable {
 		
 		private BufferedReader input;
+		
 		
 		@Override
 		public void run() {

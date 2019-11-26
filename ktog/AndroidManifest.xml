@@ -15,6 +15,10 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     
+    <!-- NEED THESE TOO? 
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>    
+    -->
+    
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -83,28 +87,51 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.killtheotherguy.ktog.Host"            
-            android:screenOrientation="landscape" >
-            <intent-filter>
-                <action android:name="com.killtheotherguy.ktog.HOST" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
         
         
         
         <activity
-            android:name="com.killtheotherguy.ktog.playerNamesAndRecords"            
+            android:name="com.killtheotherguy.ktog.Host1NewGuy"          
+            android:configChanges="orientation|screenSize"
+            
+             >
+            <intent-filter>
+                
+                <action android:name="com.killtheotherguy.ktog.Host1NewGuy"/>
+
+			    <category android:name="android.intent.category.DEFAULT"/>
+			    <!-- android:noHistory="true"
+			    <action android:name="android.intent.action.VIEW"/>
+			    <category android:name="android.intent.category.BROWSABLE"/> -->
+                
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.killtheotherguy.ktog.Host1OldGuy"          
+            android:configChanges="orientation|screenSize"
+            
+             >
+            <intent-filter>
+                
+                <action android:name="com.killtheotherguy.ktog.Host1OldGuy"/>
+
+			    <category android:name="android.intent.category.DEFAULT"/>
+			    
+			    <!-- android:noHistory="true"
+			    "android.intent.action.VIEW"
+			    <category android:name="android.intent.category.BROWSABLE"/> -->
+                
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.killtheotherguy.ktog.Host2"            
             android:screenOrientation="landscape" >
             <intent-filter>
-                <action android:name="com.killtheotherguy.ktog.HOST" />
+                <action android:name="com.killtheotherguy.ktog.HOST2" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        
         
         
         <activity
@@ -113,23 +140,17 @@
              >
             <intent-filter>
                 
-                <action android:name="android.intent.action.VIEW"/>
-                <!-- <action android:name="com.killtheotherguy.ktog.Client1"/> -->
+                <!-- <action android:name="android.intent.action.VIEW"/> -->
+                <action android:name="com.killtheotherguy.ktog.Client1"/>
 
 			    <category android:name="android.intent.category.DEFAULT"/>
-			    <category android:name="android.intent.category.BROWSABLE"/>
+			    <!-- <category android:name="android.intent.category.BROWSABLE"/> -->
 			
-			    <data
+			    <!-- 
+			    	<data
 			        android:host="www.ktog.multiplayer.com"
 			        
-			        
-			        android:scheme="http"/>
-			    	<!-- 
-			    	android:noHistory="true"
-			    	
-			    	
-			    	android:pathPrefix="/"
-			    	android:path="/launch?hostip="  -->                
+			        android:scheme="http"/>  -->
                 
             </intent-filter>
         </activity>
@@ -139,23 +160,17 @@
              >
             <intent-filter>
                 
-                <action android:name="android.intent.action.VIEW"/>
-                <!-- <action android:name="com.killtheotherguy.ktog.Client1"/> -->
+                <!-- <action android:name="android.intent.action.VIEW"/> -->
+                <action android:name="com.killtheotherguy.ktog.Client1NewGuy"/>
 
 			    <category android:name="android.intent.category.DEFAULT"/>
-			    <category android:name="android.intent.category.BROWSABLE"/>
+			    <!-- <category android:name="android.intent.category.BROWSABLE"/> -->
 			
-			    <data
+			    <!-- 
+			    	<data
 			        android:host="www.ktog.multiplayer.com"
 			        
-			        
-			        android:scheme="http"/>
-			    	<!-- 
-			    	android:noHistory="true"
-			    	
-			    	
-			    	android:pathPrefix="/"
-			    	android:path="/launch?hostip="  -->                
+			        android:scheme="http"/>  -->
                 
             </intent-filter>
         </activity>
@@ -165,23 +180,17 @@
              >
             <intent-filter>
                 
-                <action android:name="android.intent.action.VIEW"/>
-                <!-- <action android:name="com.killtheotherguy.ktog.Client1"/> -->
+                <!-- <action android:name="android.intent.action.VIEW"/> -->
+                <action android:name="com.killtheotherguy.ktog.Client1OldGuy"/>
 
 			    <category android:name="android.intent.category.DEFAULT"/>
-			    <category android:name="android.intent.category.BROWSABLE"/>
+			    <!-- <category android:name="android.intent.category.BROWSABLE"/> -->
 			
-			    <data
+			    <!-- 
+			    	<data
 			        android:host="www.ktog.multiplayer.com"
 			        
-			        
-			        android:scheme="http"/>
-			    	<!-- 
-			    	android:noHistory="true"
-			    	
-			    	
-			    	android:pathPrefix="/"
-			    	android:path="/launch?hostip="  -->                
+			        android:scheme="http"/>  -->
                 
             </intent-filter>
         </activity>
@@ -190,11 +199,23 @@
             android:screenOrientation="landscape" >
             <intent-filter>                
                 <action android:name="com.killtheotherguy.ktog.Client2"/>
-                <!-- WAS: <action android:name="android.intent.action.VIEW"/>  -->
+                <!-- <action android:name="android.intent.action.VIEW"/>  -->
 
 			    <category android:name="android.intent.category.DEFAULT"/>                
             </intent-filter>
         </activity>
+        
+        
+        <activity
+            android:name="com.killtheotherguy.ktog.playerNamesAndRecords"            
+            android:screenOrientation="landscape" >
+            <intent-filter>
+                <action android:name="com.killtheotherguy.ktog.playerNamesAndRecords" />
+				<!-- <action android:name="com.killtheotherguy.ktog.HOST" />  -->
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
         
     </application>
 

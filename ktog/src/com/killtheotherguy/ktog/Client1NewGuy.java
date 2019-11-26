@@ -132,7 +132,9 @@ public class Client1NewGuy extends Activity {//WAS ActionBarActivity (got "app s
 		
 		
 		AlertDialog.Builder alert = new AlertDialog.Builder(Client1NewGuy.this, R.style.customalertdialog);
-
+		
+		alert.setCancelable(false);
+		
     	//alert.setTitle("Multiplayer");
     	//alert.setMessage("Enter Name");
     	
@@ -289,6 +291,8 @@ public class Client1NewGuy extends Activity {//WAS ActionBarActivity (got "app s
     	  public void onClick(DialogInterface dialog, int whichButton) {
     	    
     		  hideSystemUI();
+    		  
+    		  finish();
     	  }
     	});
     	
@@ -689,13 +693,13 @@ public class Client1NewGuy extends Activity {//WAS ActionBarActivity (got "app s
 	@Override
     public void onBackPressed() {
 			
-			//hideSystemUI();
-			
-			Intent svc=new Intent(this, Badonk2SoundService.class);
-			stopService(svc);
-			
-            super.onBackPressed();
-            this.finish();
+		//hideSystemUI();
+		
+		Intent svc=new Intent(this, Badonk2SoundService.class);
+		stopService(svc);
+		
+        super.onBackPressed();
+        this.finish();
     }
 	
 	// DESTROYS EVERYTHING (EXCEPT SERVICE?)
@@ -705,7 +709,7 @@ public class Client1NewGuy extends Activity {//WAS ActionBarActivity (got "app s
 		Intent svc=new Intent(this, Badonk2SoundService.class);
 		stopService(svc);
 		
-	    android.os.Process.killProcess(android.os.Process.myPid());
+	    //android.os.Process.killProcess(android.os.Process.myPid());
 	    
 	    super.onDestroy();
 	}	
